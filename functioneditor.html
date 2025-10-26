@@ -27,6 +27,30 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
     ],
     previousStatement: null,
     nextStatement: null,
+  },
+  {
+    type: 'clear_inv',
+    message0: 'clear inventory of %1 filter item %2 max count %3',
+    colour: 160,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        text: 'Steve',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'ITEM_ID',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'MAX_COUNT'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
   }
 ]);
 
@@ -39,28 +63,22 @@ var toolbox = {
       {
         "kind": "category",
         "name": "Settings",
+        "colour": 160,
         "contents": [
           {
             "kind": "block",
             "type": "always_day"
-          },
+          }
         ]
       },
       {
         "kind": "category",
-        "name": "Logic",
+        "name": "Actions",
+        "colour": 100,
         "contents": [
           {
             "kind": "block",
-            "type": "logic_compare"
-          },
-          {
-            "kind": "block",
-            "type": "logic_operation"
-          },
-          {
-            "kind": "block",
-            "type": "logic_boolean"
+            "type": "clear_inv"
           }
         ]
       }

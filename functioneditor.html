@@ -71,7 +71,92 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
       {
         type: 'field_input',
         name: 'BLOCK_ID',
+        text: 'minecraft:stone',
         spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'fill_blocks',
+    message0: 'fill blocks from x %1 y %2 z %3 to x %4 y %5 z %6 with %7',
+    colour: 80,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'X_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS2'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS2'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS2'
+      },
+      {
+        type: 'field_input',
+        name: 'BLOCK_ID',
+        text: 'minecraft:stone',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'clone_blocks',
+    message0: 'clone blocks from x %1 y %2 z %3 to x %4 y %5 z %6 to destination x %7 y %8 z %9',
+    colour: 80,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'X_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS2'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS2'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS2'
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS3'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS3'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS3'
       }
     ],
     previousStatement: null,
@@ -115,6 +200,14 @@ var toolbox = {
           {
             "kind": "block",
             "type": "set_block"
+          },
+          {
+            "kind": "block",
+            "type": "fill_blocks"
+          },
+          {
+            "kind": "block",
+            "type": "clone_blocks"
           }
         ]
       }

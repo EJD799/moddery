@@ -162,6 +162,28 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
     previousStatement: null,
     nextStatement: null,
   }
+  {
+    type: 'op_status',
+    message0: '%1 op status to %2',
+    colour: 160,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'MODE',
+        options: [
+          ['give', 'GIVE'],
+          ['revoke', 'REVOKE']
+        ]
+      },
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  }
 ]);
 
 // Register the definition.
@@ -178,6 +200,14 @@ var toolbox = {
           {
             "kind": "block",
             "type": "always_day"
+          },
+          {
+            "kind": "block",
+            "type": "op_status"
+          },
+          {
+            "kind": "block",
+            "type": "difficulty"
           }
         ]
       },

@@ -161,7 +161,7 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
     ],
     previousStatement: null,
     nextStatement: null,
-  }
+  },
   {
     type: 'op_status',
     message0: '%1 op status to %2',
@@ -179,6 +179,25 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
         type: 'field_input',
         name: 'PLAYER',
         spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'difficulty',
+    message0: 'set difficulty to %1',
+    colour: 160,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'DIFFICULTY',
+        options: [
+          ['peaceful', 'PEACEFUL'],
+          ['easy', 'EASY'],
+          ['normal', 'NORMAL'],
+          ['hard', 'HARD'],
+        ]
       }
     ],
     previousStatement: null,

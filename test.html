@@ -6,3 +6,13 @@
 <script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
 <!-- Load a message file -->
 <script src="https://unpkg.com/blockly/msg/en.js"></script>
+
+<div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+<script>
+  // Passes the ID.
+const workspace = Blockly.inject('blocklyDiv', { /* config */ });
+
+// Passes the injection div.
+const workspace = Blockly.inject(
+    document.getElementById('blocklyDiv'), { /* config */ });
+</script>

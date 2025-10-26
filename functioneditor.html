@@ -50,6 +50,32 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
     ],
     previousStatement: null,
     nextStatement: null,
+  },
+  {
+    type: 'set_block',
+    message0: 'set block at x %1 y %2 z %3 to %4',
+    colour: 80,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      },
+      {
+        type: 'field_input',
+        name: 'BLOCK_ID',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
   }
 ]);
 
@@ -78,6 +104,17 @@ var toolbox = {
           {
             "kind": "block",
             "type": "clear_inv"
+          }
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "Blocks",
+        "colour": 80,
+        "contents": [
+          {
+            "kind": "block",
+            "type": "set_block"
           }
         ]
       }

@@ -27,4 +27,5 @@ body {
 }
 .ui-menu-item {
     display: relative;
+    width: 101px;
 }

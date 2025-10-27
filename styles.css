@@ -17,15 +17,15 @@ body {
     display: inline-block;
     margin: 0;
     padding: 0;
-    width: auto;
 }
 .ui-menu:not(.sublist) {
     top: 0;
     left: 0;
     right: 0;
     width: 100%;
+    width: auto;
 }
 .ui-menu-item {
     display: relative;
-    width: 101px;
+    width: 101px !important;
 }

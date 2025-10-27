@@ -1,5 +1,6 @@
 body {
     background: #333333;
+    padding: 0;
 }
 
 /* Clearfix for the menu */
@@ -17,7 +18,7 @@ body {
     padding: 0;
     width: auto;
 }
-.ui-menu {
+.ui-menu:not(.sublist) {
     top: 0;
     left: 0;
     right: 0;

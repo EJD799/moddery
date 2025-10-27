@@ -27,5 +27,13 @@ body {
 }
 .ui-menu-item {
     display: relative;
-    width: 101px !important;
+    width: 70px;
+    text-align: center;
+}
+#logo_box {
+    width: 102px !important;
+}
+.logo {
+    width: 100px;
+    height: 35px;
 }

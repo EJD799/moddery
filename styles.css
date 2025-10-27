@@ -13,7 +13,7 @@ body {
 }
 .ui-menu:not(.sublist) .ui-menu-item:not(.subitem) {
     display: inline-block;
-    float: left;
+    float: top;
     margin: 0;
     padding: 0;
     width: auto;

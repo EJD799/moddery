@@ -382,6 +382,42 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
     previousStatement: null,
     nextStatement: null,
   },
+  {
+    type: 'enchant',
+    message0: 'enchant held item of %1 with %2 level %3',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      },
+      {
+        type: 'field_dropdown',
+        name: 'ENCHANTMENT',
+        options: [
+          ['Aqua Affinity', 'aqua_affinity'],
+          ['Bane of Arthropods', 'bane_of_arthropods'],
+          ['Blast Protection', 'blast_protection'],
+          ['Channeling', 'channeling'],
+          ['Depth Strider', 'depth_strider'],
+          ['Efficiency', 'efficiency'],
+          ['Feather Falling', 'feather_falling'],
+          ['Fire Aspect', 'fire_aspect'],
+          ['Fire Protection', 'fire_protection'],
+          ['Flame', 'flame'],
+          ['Fortune', 'fortune'],
+          ['Frost Walker', 'frost_walker']
+        ]
+      },
+      {
+        type: 'field_number',
+        name: 'level'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
 ]);
 
 // Register the definition.
@@ -437,6 +473,10 @@ var toolbox = {
           {
             "kind": "block",
             "type": "effect"
+          },
+          {
+            "kind": "block",
+            "type": "enchant"
           }
         ]
       },

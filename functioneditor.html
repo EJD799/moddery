@@ -248,7 +248,7 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
     nextStatement: null,
   },
   {
-    type: 'maxplayers',
+    type: 'max_players',
     message0: 'set player limit to %1',
     colour: 160,
     args0: [
@@ -261,7 +261,7 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
     nextStatement: null,
   },
   {
-    type: 'worldspawn',
+    type: 'world_spawn',
     message0: 'set world spawn point to x %1 y %2 z %3',
     colour: 160,
     args0: [
@@ -282,7 +282,7 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
     nextStatement: null,
   },
   {
-    type: 'playerspawn',
+    type: 'player_spawn',
     message0: 'set spawn point of player %1 to x %2 y %3 z %4',
     colour: 10,
     args0: [
@@ -302,6 +302,20 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
       {
         type: 'field_number',
         name: 'Z_POS'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'run_command',
+    message0: 'run command %1',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'COMMAND',
+        spellcheck: false
       }
     ],
     previousStatement: null,
@@ -338,11 +352,11 @@ var toolbox = {
           },
           {
             "kind": "block",
-            "type": "maxplayers"
+            "type": "max_players"
           },
           {
             "kind": "block",
-            "type": "worldspawn"
+            "type": "world_spawn"
           }
         ]
       },
@@ -357,7 +371,7 @@ var toolbox = {
           },
           {
             "kind": "block",
-            "type": "playerspawn"
+            "type": "player_spawn"
           }
         ]
       },
@@ -385,7 +399,10 @@ var toolbox = {
         "name": "Other",
         "colour": 240,
         "contents": [
-
+          {
+            "kind": "block",
+            "type": "run_command"
+          }
         ]
       }
     ]

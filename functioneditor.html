@@ -20,8 +20,8 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
         type: 'field_dropdown',
         name: 'VALUE',
         options: [
-          ["true", "TRUE"],
-          ["false", "FALSE"]
+          ["true", "true"],
+          ["false", "false"]
         ]
       }
     ],
@@ -193,16 +193,120 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
         type: 'field_dropdown',
         name: 'DIFFICULTY',
         options: [
-          ['peaceful', 'PEACEFUL'],
-          ['easy', 'EASY'],
-          ['normal', 'NORMAL'],
-          ['hard', 'HARD'],
+          ['peaceful', 'peaceful'],
+          ['easy', 'easy'],
+          ['normal', 'normal'],
+          ['hard', 'hard'],
         ]
       }
     ],
     previousStatement: null,
     nextStatement: null,
-  }
+  },
+  {
+    type: 'gamerule',
+    message0: 'set gamerule %1 to %2',
+    colour: 160,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'RULE',
+        options: [
+          ['commandBlockOutput', 'commandBlockOutput'],
+          ['commandBlocksEnabled', 'commandBlocksEnabled'],
+          ['doDaylightCycle', 'doDaylightCycle'],
+          ['doEntityDrops', 'doEntityDrops'],
+          ['doFireTick', 'doFireTick'],
+          ['doImmediateRespawn', 'doImmediateRespawn'],
+          ['doInsomnia', 'doInsomnia'],
+          ['doMobLoot', 'doMobLoot'],
+          ['doMobSpawning', 'doMobSpawning'],
+          ['doTileDrops', 'doTileDrops'],
+          ['doWeatherCycle', 'doWeatherCycle'],
+          ['drowningDamage', 'drowningDamage'],
+          ['fallDamage', 'fallDamage'],
+          ['fireDamage', 'fireDamage'],
+          ['keepInventory', 'keepInventory'],
+          ['maxCommandChainLength', 'maxCommandChainLength'],
+          ['mobGriefing', 'mobGriefing'],
+          ['naturalRegeneration', 'naturalRegeneration'],
+          ['pvp', 'pvp'],
+          ['randomTickSpeed', 'randomTickSpeed'],
+          ['sendCommandFeedback', 'sendCommandFeedback'],
+          ['showCoordinates', 'showCoordinates'],
+          ['showDeathMessages', 'showDeathMessages'],
+          ['tntExplodes', 'tntExplodes']
+        ]
+      },
+      {
+        type: 'field_input',
+        name: 'VALUE',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'maxplayers',
+    message0: 'set player limit to %1',
+    colour: 160,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'MAX_PLAYERS'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'worldspawn',
+    message0: 'set world spawn point to x %1 y %2 z %3',
+    colour: 160,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'playerspawn',
+    message0: 'set spawn point of player %1 to x %2 y %3 z %4',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
 ]);
 
 // Register the definition.
@@ -227,17 +331,33 @@ var toolbox = {
           {
             "kind": "block",
             "type": "difficulty"
+          },
+          {
+            "kind": "block",
+            "type": "gamerule"
+          },
+          {
+            "kind": "block",
+            "type": "maxplayers"
+          },
+          {
+            "kind": "block",
+            "type": "worldspawn"
           }
         ]
       },
       {
         "kind": "category",
-        "name": "Inventory",
+        "name": "Entity",
         "colour": 10,
         "contents": [
           {
             "kind": "block",
             "type": "clear_inv"
+          },
+          {
+            "kind": "block",
+            "type": "playerspawn"
           }
         ]
       },

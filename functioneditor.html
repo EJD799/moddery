@@ -321,6 +321,42 @@ const definitions = Blockly.common.createBlockDefinitionsFromJsonArray([
     previousStatement: null,
     nextStatement: null,
   },
+  {
+    type: 'effect',
+    message0: 'give effect %1 level %2 to %3 for %4 seconds hide particles %5',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'EFFECT',
+        options: [
+          ['absorption', 'absorption'],
+          ['blindness', 'blindness']
+        ]
+      },
+      {
+        type: 'field_number',
+        name: 'LEVEL',
+        value: 1
+      },
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'DURATION',
+        value: 60
+      },
+      {
+        type: 'field_checkbox',
+        name: 'HIDE_PARTICLES'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
 ]);
 
 // Register the definition.
@@ -372,6 +408,10 @@ var toolbox = {
           {
             "kind": "block",
             "type": "player_spawn"
+          },
+          {
+            "kind": "block",
+            "type": "effect"
           }
         ]
       },

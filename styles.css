@@ -1,6 +1,7 @@
 body {
     background: #333333;
     padding: 0;
+    margin: 0 !important;
 }
 
 /* Clearfix for the menu */

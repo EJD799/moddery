@@ -41,6 +41,14 @@ $("#loaderDlg").dialog({
   width: 300,
   closeOnEscape: false
 });
+$("#aboutDlg").dialog("close");
+$("#aboutDlg").dialog({
+  position: { my: "center", at: "center", of: $("body") },
+  resizable: false,
+  height: 200,
+  width: 300,
+  closeOnEscape: false
+});
 $("#loaderDlg").dialog("close");
 function openNewProjDlg() {
   $("#newProjDlg").dialog("open");
@@ -83,6 +91,12 @@ function openLoader() {
 }
 function closeLoader() {
   $("#loaderDlg").dialog("close");
+}
+function openAboutDlg() {
+  $("#aboutDlg").dialog("open");
+}
+function closeAboutDlg() {
+  $("#aboutDlg").dialog("close");
 }
 function addElement() {
   var elementJSON = {
@@ -168,4 +182,5 @@ tabs.on( "click", "span.ui-icon-close", function() {
 });
 
 $("#newProjBtn").button();
+$("#closeAboutBtn").button();
 document.getElementById("tabs").hidden = true;

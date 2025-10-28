@@ -13,6 +13,11 @@
 <ul id="toolbar">
   <li id="logo_box">
     <div><img src="moddery_logo.svg" id="logo"> </div>
+    <ul class="sublist">
+      <li class="subitem">
+        <div onclick="openAboutDlg()">About Moddery</div>
+      </li>
+    </ul>
   </li>
   <li>
     <div>File</div>
@@ -137,6 +142,13 @@
   <center>
     <span>Loading...</span><br>
     <div id="loaderProgress"></div>
+  </center>
+</div>
+
+<div id="aboutDlg" title="About Moddery">
+  <center>
+    <span>Moddery [Development Build]</span><br>
+    <button id="closeAboutBtn" onclick="closeAboutDlg()">OK</button>
   </center>
 </div>
 

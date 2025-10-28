@@ -58,6 +58,8 @@ function createProject() {
   projZip.file("manifest.json", JSON.stringify(projManifest));
   projZip.folder("elements");
   projZip.folder("assets");
+  $("#newProjNameBox").val("");
+  $("#newProjNamespaceBox").val("");
 }
 function openAddElementDlg() {
   $("#addElementDlg").dialog("open");
@@ -84,6 +86,8 @@ function addElement() {
     "type": $("#addElementType").val()
   };
   projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
+  $("#addElementNameBox").val("");
+  $("#addElementIDBox").val("");
 }
 function saveProject() {
   projZip.generateAsync({type:"blob"})

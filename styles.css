@@ -62,7 +62,7 @@ input {
     font-family: Verdana, sans-serif;
     padding: 10px;
 }
-#elementFrame {
+.elementFrame {
     padding: 0;
     margin: 0;
     width: 100%;

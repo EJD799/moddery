@@ -475,6 +475,77 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     previousStatement: null,
     nextStatement: null,
   },
+  {
+    type: 'xp',
+    message0: 'give %1 xp %2 to %3',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'QUANTITY',
+      },
+      {
+        type: 'field_dropdown',
+        name: 'FORMAT',
+        options: [
+            ["points", "points"],
+            ["levels", "levels"]
+        ]
+      },
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'tp_e',
+    message0: 'teleport %1 to %2',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PLAYER1',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'PLAYER2',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'tp_xyz',
+    message0: 'teleport %1 to x %2 y %3 z %4',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
 ]);
 
 var bedrockFunctionToolbox = {
@@ -531,6 +602,18 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "enchant"
+          },
+          {
+            "kind": "block",
+            "type": "xp"
+          },
+          {
+            "kind": "block",
+            "type": "tp_xyz"
+          },
+          {
+            "kind": "block",
+            "type": "tp_e"
           }
         ]
       },

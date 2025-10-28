@@ -108,7 +108,11 @@ $("#loaderProgress").progressbar({
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 
 function getTabContent(role, elementID) {
-  return "Test";
+  if (role = "Function") {
+    return '<iframe src="functioneditor.html" class="elementFrame"></iframe>';
+  } else {
+    return "Coming soon!";
+  }
 }
 
 function addTab(role, elementID) {

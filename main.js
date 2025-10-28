@@ -1,5 +1,5 @@
-var projectZip;
-var projectZipElements;
+var projZip;
+var projManifest;
 
 $("#toolbar").menu();
 $("#tabs").tabs();
@@ -47,10 +47,17 @@ function closeNewProjDlg() {
 function createProject() {
   closeNewProjDlg();
   alert($("#newProjNameBox").val() + "\n" + $("#newProjType").val() + "\n" + $("#newProjNamespaceBox").val());
-  projectZip = new JSZip();
-  projectZip.file("manifest.json", "{}");
-  projectZipElements = projectZip.folder("elements");
-  projectZipElements.file("test.txt", "test");
+  projZip = new JSZip();
+  projManifest = {
+    "name": $("#newProjNameBox").val(),
+    "type": $("#newProjType").val(),
+    "namespace": $("#newProjNamespaceBox").val(),
+    "bp_uuid": crypto.randomUUID(),
+    "rp_uuid": crypto.randomUUID()
+  };
+  projZip.file("manifest.json", JSON.stringify(projManifest));
+  projZip.folder("elements");
+  projZip.folder("assets");
 }
 function openAddElementDlg() {
   $("#addElementDlg").dialog("open");
@@ -71,10 +78,18 @@ function closeLoader() {
   $("#loaderDlg").dialog("close");
 }
 function addElement() {
-  alert("test");
+  var elementJSON = {
+    "name": $("#addElementNameBox").val(),
+    "id": $("#addElementIDBox").val(),
+    "type": $("#addElementType").val()
+  };
+  projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
 }
 function saveProject() {
-  alert("test");
+  projZip.generateAsync({type:"blob"})
+  .then(function(content) {
+      saveAs(content, projManifest.name + ".zip");
+  });
 }
 $("#addElementBtn").button();
 $("#loaderProgress").progressbar({

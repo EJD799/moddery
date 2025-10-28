@@ -24,10 +24,10 @@
         <div>Open...</div>
       </li>
       <li class="subitem">
-        <div>Save</div>
+        <div onclick="saveProject();">Save</div>
       </li>
       <li class="subitem">
-        <div>Save As...</div>
+        <div onclick="openExportDlg();">Export</div>
       </li>
     </ul>
   </li>
@@ -117,6 +117,19 @@
     <br><br>
     <button id="addElementCancelBtn" onclick="closeAddElementDlg()">Cancel</button>
     <button id="addElementAddBtn" onclick="addElement()">Add</button>
+  </center>
+</div>
+
+<div id="exportDlg" title="Export Project">
+  <center>
+    <span>Coming Soon!</span>
+  </center>
+</div>
+
+<div id="loaderDlg" title="Loading...">
+  <center>
+    <span>Loading...</span><br>
+    <div id="loaderProgress"></div>
   </center>
 </div>
 

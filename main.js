@@ -23,6 +23,21 @@ $("#addElementDlg").dialog("close");
 $("#addElementType").selectmenu();
 $("#addElementCancelBtn").button();
 $("#addElementAddBtn").button();
+$("#exportDlg").dialog({
+  position: { my: "center", at: "center", of: $("body") },
+  resizable: false,
+  height: 400,
+  width: 500
+});
+$("#exportDlg").dialog("close");
+$("#loaderDlg").dialog({
+  position: { my: "center", at: "center", of: $("body") },
+  resizable: false,
+  height: 150,
+  width: 300,
+  closeOnEscape: false
+});
+$("#loaderDlg").dialog("close");
 function openNewProjDlg() {
   $("#newProjDlg").dialog("open");
 }
@@ -43,8 +58,23 @@ function openAddElementDlg() {
 function closeAddElementDlg() {
   $("#addElementDlg").dialog("close");
 }
+function openExportDlg() {
+  $("#addElementDlg").dialog("open");
+}
+function closeExportDlg() {
+  $("#addElementDlg").dialog("close");
+}
+function openLoader() {
+  $("#loaderDlg").dialog("open");
+}
+function closeLoader() {
+  $("#loaderDlg").dialog("close");
+}
 function addElement() {
   alert("test");
+}
+function saveProject() {
+
 }
 $("#addElementBtn").button();
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");

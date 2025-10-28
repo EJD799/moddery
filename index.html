@@ -16,7 +16,7 @@
     <div>File</div>
     <ul class="sublist">
       <li class="subitem">
-        <div>New</div>
+        <div onclick="newProject()">New</div>
       </li>
       <li class="subitem">
         <div>Open...</div>
@@ -54,5 +54,14 @@
 
 <script>
     $("#toolbar").menu();
-    $("#newProjectDialog").dialog();
+    $("#newProjectDialog").dialog({
+      position: { my: "center", at: "center", of: $("body") },
+      resizable: false,
+      height: 400,
+      width: 400
+    });
+    $("#newProjectDialog").dialog("close");
+    function newProject() {
+      $("#newProjectDialog").dialog("open");
+    }
 </script>

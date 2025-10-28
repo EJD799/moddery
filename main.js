@@ -41,7 +41,6 @@ $("#loaderDlg").dialog({
   width: 300,
   closeOnEscape: false
 });
-$("#aboutDlg").dialog("close");
 $("#aboutDlg").dialog({
   position: { my: "center", at: "center", of: $("body") },
   resizable: false,
@@ -49,6 +48,7 @@ $("#aboutDlg").dialog({
   width: 300,
   closeOnEscape: false
 });
+$("#aboutDlg").dialog("close");
 $("#loaderDlg").dialog("close");
 function openNewProjDlg() {
   $("#newProjDlg").dialog("open");

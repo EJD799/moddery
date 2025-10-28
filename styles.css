@@ -54,3 +54,11 @@ input {
 #loaderProgress .ui-progressbar-value {
     background-color: #008cff;
 }
+#welcome {
+    width: 100%;
+    height: 100%;
+    background: #222222;
+    color: white;
+    font-family: Verdana, sans-serif;
+    padding: 10px;
+}

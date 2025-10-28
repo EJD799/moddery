@@ -44,7 +44,7 @@ $("#loaderDlg").dialog({
 $("#aboutDlg").dialog({
   position: { my: "center", at: "center", of: $("body") },
   resizable: false,
-  height: 200,
+  height: 300,
   width: 300,
   closeOnEscape: false
 });

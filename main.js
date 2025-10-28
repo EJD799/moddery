@@ -3,6 +3,7 @@ var projManifest;
 var tabCounter = 3;
 var tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>";
 var tabs = $("#tabs");
+var elementCount = 0;
 
 $("#toolbar").menu();
 $("#tabs").tabs();
@@ -91,6 +92,18 @@ function addElement() {
   };
   projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
   addTab($("#addElementType").val(), $("#addElementNameBox").val());
+  elementCount++;
+  var parentDiv = document.getElementById("tabs-1");
+  var elementBox = document.createElement("div");
+  elementBox.setAttribute("class", "elementbox");
+  elementBox.innerHTML = `
+  <h3>` + $("#addElementNameBox").val() + `</h3>
+  <button onclick="editElement('` + $("#addElementNameBox").val() + `')">Edit</button>
+  `;
+  parentDiv.appendChild(elementBox);
+  if (elementCount % 3 === 0) {
+    parentDiv.appendChild(document.createElement("br"));
+  }
   closeAddElementDlg();
   $("#addElementNameBox").val("");
   $("#addElementIDBox").val("");
@@ -121,6 +134,13 @@ function shouldRemoveMargin(role) {
   } else {
     return false;
   }
+}
+
+function editElement(elementID) {
+  projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
+    var dataParsed = JSON.parse(data);
+    addTab(dataParsed.type, elementID);
+  });
 }
 
 function addTab(role, elementID) {

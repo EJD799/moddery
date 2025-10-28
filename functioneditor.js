@@ -454,7 +454,17 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
           ['Multishot', 'multishot'],
           ['Piercing', 'piercing'],
           ['Power', 'power'],
-          ['Projectile Protection', 'projectile_protection']
+          ['Projectile Protection', 'projectile_protection'],
+          ['Protection', 'protection'],
+          ['Punch', 'punch'],
+          ['Quick Charge', 'quick_charge'],
+          ['Respiration', 'respiration'],
+          ['Riptide', 'riptide'],
+          ['Sharpness', 'sharpness'],
+          ['Silk Touch', 'silk_touch'],
+          ['Smite', 'smite'],
+          ['Thorns', 'thorns'],
+          ['Unbreaking', 'unbreaking']
         ]
       },
       {

@@ -90,6 +90,7 @@ function addElement() {
   projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
   $("#addElementNameBox").val("");
   $("#addElementIDBox").val("");
+  addTab($("#addElementType").val(), $("#addElementNameBox").val());
 }
 function saveProject() {
   projZip.generateAsync({type:"blob"})
@@ -103,14 +104,24 @@ $("#loaderProgress").progressbar({
 });
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 
-function addTab() {
-  var label = "Tab " + tabCounter,
+function getTabContent(role, elementID) {
+  return "Test";
+}
+
+function addTab(role, elementID) {
+  var label = elementID,
     id = "tabs-" + tabCounter,
     li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
-    tabContentHtml = "Tab " + tabCounter + " content.";
+    tabContentHtml = getTabContent(role, elementID);
  
   tabs.find( ".ui-tabs-nav" ).append( li );
   tabs.append( "<div id='" + id + "'><p>" + tabContentHtml + "</p></div>" );
   tabs.tabs( "refresh" );
   tabCounter++;
 }
+
+tabs.on( "click", "span.ui-icon-close", function() {
+  var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
+  $( "#" + panelId ).remove();
+  tabs.tabs( "refresh" );
+});

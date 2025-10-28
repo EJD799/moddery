@@ -2,6 +2,7 @@ var projZip;
 var projManifest;
 var tabCounter = 2;
 var tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>";
+var tabs = $("#tabs");
 
 $("#toolbar").menu();
 $("#tabs").tabs();

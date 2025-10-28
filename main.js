@@ -115,6 +115,14 @@ function getTabContent(role, elementID) {
   }
 }
 
+function shouldRemoveMargin(role) {
+  if (role == "Function") {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function addTab(role, elementID) {
   var label = elementID,
     id = "tabs-" + tabCounter,
@@ -122,7 +130,12 @@ function addTab(role, elementID) {
     tabContentHtml = getTabContent(role, elementID);
  
   tabs.find( ".ui-tabs-nav" ).append( li );
-  tabs.append( "<div id='" + id + "'><p>" + tabContentHtml + "</p></div>" );
+  if (shouldRemoveMargin(role)) {
+    marginClass = 'class="noMargin" + ';
+  } else {
+    marginClass = '';
+  }
+  tabs.append( "<div " + marginClass + "id='" + id + "'><p>" + tabContentHtml + "</p></div>" );
   tabs.tabs( "refresh" );
   tabCounter++;
 }

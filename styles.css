@@ -30,6 +30,8 @@ body {
 }
 #logo_box {
     color: #00000000;
+    display: inline-block !important;
+    position: relative !important;
 }
 #logo {
     width: 100px;

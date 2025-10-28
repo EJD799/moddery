@@ -16,7 +16,7 @@
     <div>File</div>
     <ul class="sublist">
       <li class="subitem">
-        <div onclick="newProject()">New</div>
+        <div onclick="showNewProjDlg()">New</div>
       </li>
       <li class="subitem">
         <div>Open...</div>
@@ -85,7 +85,7 @@
     $("#newProjType").selectmenu();
     $("#newProjCancelBtn").button();
     $("#newProjCreateBtn").button();
-    function newProj() {
+    function showNewProjDlg() {
       $("#newProjDlg").dialog("open");
     }
 </script>

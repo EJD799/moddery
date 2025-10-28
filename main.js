@@ -59,10 +59,10 @@ function closeAddElementDlg() {
   $("#addElementDlg").dialog("close");
 }
 function openExportDlg() {
-  $("#addElementDlg").dialog("open");
+  $("#exportDlg").dialog("open");
 }
 function closeExportDlg() {
-  $("#addElementDlg").dialog("close");
+  $("#exportDlg").dialog("close");
 }
 function openLoader() {
   $("#loaderDlg").dialog("open");

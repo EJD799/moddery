@@ -35,3 +35,6 @@ body {
     width: 100px;
     height: 35px;
 }
+input {
+    padding: 10px;
+}

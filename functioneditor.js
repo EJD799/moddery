@@ -311,6 +311,52 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'run_function',
+    message0: 'run function %1',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'FUNCTION',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'time',
+    message0: 'set time to %1',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'TIME',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'weather',
+    message0: 'set weather to %1',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'WEATHER',
+        options: [
+            ["clear", "clear"],
+            ["rain", "rain"],
+            ["thunder", "thunder"]
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'effect',
     message0: 'give effect %1 level %2 to %3 for %4 seconds hide particles %5',
     colour: 10,
@@ -505,6 +551,18 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "run_command"
+          },
+          {
+            "kind": "block",
+            "type": "run_function"
+          },
+          {
+            "kind": "block",
+            "type": "time"
+          },
+          {
+            "kind": "block",
+            "type": "weather"
           }
         ]
       }

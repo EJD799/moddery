@@ -1,5 +1,6 @@
 var projZip;
 var projManifest;
+var tabCounter = 2;
 
 $("#toolbar").menu();
 $("#tabs").tabs();

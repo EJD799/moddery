@@ -1,3 +1,6 @@
+var projectZip;
+var projectZipElements;
+
 $("#toolbar").menu();
 $("#tabs").tabs();
 $("#newProjDlg").dialog({
@@ -29,6 +32,10 @@ function closeNewProjDlg() {
 function createProject() {
   closeNewProjDlg();
   alert($("#newProjNameBox").val() + "\n" + $("#newProjType").val() + "\n" + $("#newProjNamespaceBox").val());
+  projectZip = new JSZip();
+  projectZip.file("manifest.json", "{}");
+  projectZipElements = projectZip.folder("elements");
+  projectZipElements.file("test.txt", "test");
 }
 function openAddElementDlg() {
   $("#addElementDlg").dialog("open");

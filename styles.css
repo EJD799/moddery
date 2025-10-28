@@ -40,3 +40,7 @@ body {
 input {
     padding: 10px;
 }
+#tabs {
+    bottom: 0;
+    top: 20px;
+}

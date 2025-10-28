@@ -88,9 +88,10 @@ function addElement() {
     "type": $("#addElementType").val()
   };
   projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
+  addTab($("#addElementType").val(), $("#addElementNameBox").val());
+  closeAddElementDlg();
   $("#addElementNameBox").val("");
   $("#addElementIDBox").val("");
-  addTab($("#addElementType").val(), $("#addElementNameBox").val());
 }
 function saveProject() {
   projZip.generateAsync({type:"blob"})

@@ -46,7 +46,6 @@ function closeNewProjDlg() {
 }
 function createProject() {
   closeNewProjDlg();
-  alert($("#newProjNameBox").val() + "\n" + $("#newProjType").val() + "\n" + $("#newProjNamespaceBox").val());
   projZip = new JSZip();
   projManifest = {
     "name": $("#newProjNameBox").val(),

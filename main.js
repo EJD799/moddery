@@ -49,6 +49,8 @@ function closeNewProjDlg() {
 }
 function createProject() {
   closeNewProjDlg();
+  document.getElementById("tabs").hidden = false;
+  document.getElementById("welcome").hidden = true;
   projZip = new JSZip();
   projManifest = {
     "name": $("#newProjNameBox").val(),
@@ -126,3 +128,6 @@ tabs.on( "click", "span.ui-icon-close", function() {
   $( "#" + panelId ).remove();
   tabs.tabs( "refresh" );
 });
+
+$("#newProjBtn").button();
+document.getElementById("tabs").hidden = true;

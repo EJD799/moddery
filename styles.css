@@ -49,7 +49,7 @@ input {
     width: 100%;
 }
 #loaderDlg .ui-dialog-titlebar-close {
-    display: none;
+    display: none !important;
 }
 #loaderProgress .ui-progressbar-value {
     background-color: #008cff;

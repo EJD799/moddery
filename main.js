@@ -74,7 +74,10 @@ function addElement() {
   alert("test");
 }
 function saveProject() {
-
+  alert("test");
 }
 $("#addElementBtn").button();
+$("#loaderProgress").progressbar({
+  value: 50
+});
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");

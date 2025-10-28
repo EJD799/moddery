@@ -48,20 +48,44 @@
   </li>
 </ul>
 
-<div id="newProjectDialog" title="New Project">
-  Test
+<div id="newProjDlg" title="New Project">
+  <label for="newProjNameBox">Project Name</label>
+  <input type="text" name="newProjNameBox" id="newProjNameBox" placeholder="Project Name">
+  <br>
+  <label for="newProjType">Project Type</label>
+  <select name="newProjType" id="newProjType">
+    <optgroup label="Bedrock Edition">
+      <option selected>Addon</option>
+      <option disabled>Resource Pack</option>
+    </optgroup>
+    <optgroup label="Java Edition">
+      <option disabled>Datapack</option>
+      <option disabled>Resource Pack</option>
+      <option disabled>Forge Mod</option>
+      <option disabled>Fabric Mod</option>
+    </optgroup>
+  </select>
+  <br>
+  <label for="newProjNamespaceBox">Namespace ID</label>
+  <input type="text" name="newProjNamespaceBox" id="newProjNamespaceBox" placeholder="Namespace ID">
+  <br>
+  <button id="newProjCancelBtn">Cancel</button>
+  <button id="newProjCreateBtn">Create</button>
 </div>
 
 <script>
     $("#toolbar").menu();
-    $("#newProjectDialog").dialog({
+    $("#newProjDlg").dialog({
       position: { my: "center", at: "center", of: $("body") },
       resizable: false,
       height: 400,
-      width: 400
+      width: 800
     });
-    $("#newProjectDialog").dialog("close");
-    function newProject() {
-      $("#newProjectDialog").dialog("open");
+    $("#newProjDlg").dialog("close");
+    $("#newProjType").selectmenu();
+    $("#newProjCancelBtn").button();
+    $("#newProjCreateBtn").button();
+    function newProj() {
+      $("#newProjDlg").dialog("open");
     }
 </script>

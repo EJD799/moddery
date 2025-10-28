@@ -48,6 +48,20 @@
   </li>
 </ul>
 
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Elements</a></li>
+    <li><a href="#tabs-2">Assets</a></li>
+  </ul>
+  <div id="tabs-1">
+    <p>Elements</p>
+  </div>
+  <div id="tabs-2">
+    <p>Assets</p>
+  </div>
+</div>
+ 
+
 <div id="newProjDlg" title="New Project">
   <center>
     <label for="newProjNameBox">Project Name</label>
@@ -78,6 +92,7 @@
 
 <script>
     $("#toolbar").menu();
+    $("#tabs").tabs();
     $("#newProjDlg").dialog({
       position: { my: "center", at: "center", of: $("body") },
       resizable: false,

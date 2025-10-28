@@ -137,6 +137,7 @@ function addTab(role, elementID) {
   }
   tabs.append( "<div " + marginClass + "id='" + id + "'><p>" + tabContentHtml + "</p></div>" );
   tabs.tabs( "refresh" );
+  tabs.tabs("option", "active", -1);
   tabCounter++;
 }
 

@@ -46,7 +46,6 @@ input {
     left: 0;
     right: 0;
     height: 100%;
-    width: 100%;
 }
 #loaderDlg .ui-dialog-titlebar-close {
     display: none !important;
@@ -55,7 +54,6 @@ input {
     background-color: #008cff;
 }
 #welcome {
-    width: 100%;
     height: 100%;
     background: #222222;
     color: white;

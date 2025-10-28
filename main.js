@@ -39,4 +39,5 @@ function closeAddElementDlg() {
 function addElement() {
   alert("test");
 }
+$("#addElementBtn").button();
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");

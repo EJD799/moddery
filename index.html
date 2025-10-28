@@ -50,6 +50,7 @@
 
 <div id="tabs">
   <ul>
+    <li><a href="javascript:openAddElementDlg()">+</a></li>
     <li><a href="#tabs-1">Elements</a></li>
     <li><a href="#tabs-2">Assets</a></li>
   </ul>
@@ -90,28 +91,31 @@
   </center>
 </div>
 
-<script>
-    $("#toolbar").menu();
-    $("#tabs").tabs();
-    $("#newProjDlg").dialog({
-      position: { my: "center", at: "center", of: $("body") },
-      resizable: false,
-      height: 400,
-      width: 500
-    });
-    $("#newProjDlg").dialog("close");
-    $("#newProjType").selectmenu();
-    $("#newProjCancelBtn").button();
-    $("#newProjCreateBtn").button();
-    function openNewProjDlg() {
-      $("#newProjDlg").dialog("open");
-    }
-    function closeNewProjDlg() {
-      $("#newProjDlg").dialog("close");
-    }
-    function createProject() {
-      closeNewProjDlg();
-      alert($("#newProjNameBox").val() + "\n" + $("#newProjType").val() + "\n" + $("#newProjNamespaceBox").val());
-    }
-    $('input').addClass("ui-widget ui-widget-content ui-corner-all");
-</script>
+<div id="addElementDlg" title="Add Element">
+  <center>
+    <label for="addElementNameBox">Element Name</label>
+    <input type="text" name="addElementNameBox" id="addElementNameBox" placeholder="Element Name">
+    <br><br>
+    <label for="addElementIDBox">Element Identifier</label>
+    <input type="text" name="addElementIDBox" id="addElementIDBox" placeholder="Element ID">
+    <br><br>
+    <label for="addElementType">Element Type</label>
+    <select name="addElementType" id="addElementType">
+      <option>Block</option>
+      <option>Item</option>
+      <option>Entity</option>
+      <option>Recipe</option>
+      <option>Function</option>
+      <option>Script</option>
+      <option>Loot Table</option>
+      <option>Command</option>
+      <option>Biome</option>
+      <option>Structure</option>
+    </select>
+    <br><br>
+    <button id="addElementCancelBtn" onclick="closeAddElementDlg()">Cancel</button>
+    <button id="addElementAddBtn" onclick="addElement()">Add</button>
+  </center>
+</div>
+
+<script src="main.js"></script>

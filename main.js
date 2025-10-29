@@ -138,7 +138,7 @@ $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 
 function getTabContent(role, elementID) {
   if (role == "Function") {
-    return '<iframe src="functioneditor.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
+    return '<iframe src="editor/bedrock/function.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else {
     return "Coming soon!";
   }

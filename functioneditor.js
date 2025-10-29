@@ -546,6 +546,138 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     previousStatement: null,
     nextStatement: null,
   },
+  {
+    type: 'kill',
+    message0: 'kill %1',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'ENTITY',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'gamemode',
+    message0: 'set gamemode of %1 to %2',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      },
+      {
+        type: 'field_dropdown',
+        name: 'GAMEMODE',
+        options: [
+          ['Survival', 'survival'],
+          ['Creative', 'creative'],
+          ['Adventure', 'adventure'],
+          ['Spectator', 'spectator']
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'summon',
+    message0: 'summon %1 at x %2 y %3 z %4',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'ENTITY',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'give',
+    message0: 'give %1 of %2 to %3',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'QUANTITY'
+      },
+      {
+        type: 'field_input',
+        name: 'ITEM',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'replaceitem',
+    message0: 'replace item in %1 slot %2 of %3 with %4 of %5',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'SLOT_TYPE',
+        options: [
+          ['main hand', 'slot.weapon.mainhand'],
+          ['off hand', 'slot.weapon.offhand'],
+          ['hotbar', 'slot.hotbar'],
+          ['inventory', 'slot.inventory'],
+          ['helmet slot', 'slot.armor.head'],
+          ['chestplate slot', 'slot.armor.chest'],
+          ['leggings slot', 'slot.armor.legs'],
+          ['boots slot', 'slot.armor.feet'],
+          ['ender chest', 'slot.enderchest'],
+          ['saddle', 'slot.saddle'],
+          ['horse armor', 'slot.armor'],
+          ['entity chest', 'slot.chest']
+        ]
+      },
+      {
+        type: 'field_number',
+        name: 'SLOT_NUMBER'
+      },
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'QUANTITY'
+      },
+      {
+        type: 'field_input',
+        name: 'ITEM',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
 ]);
 
 var bedrockFunctionToolbox = {
@@ -614,6 +746,26 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "tp_e"
+          },
+          {
+            "kind": "block",
+            "type": "kill"
+          },
+          {
+            "kind": "block",
+            "type": "gamemode"
+          },
+          {
+            "kind": "block",
+            "type": "summon"
+          },
+          {
+            "kind": "block",
+            "type": "give"
+          },
+          {
+            "kind": "block",
+            "type": "replaceitem"
           }
         ]
       },

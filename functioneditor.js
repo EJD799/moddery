@@ -901,8 +901,7 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
         type: 'field_dropdown',
         name: 'DISPLAY',
         options: [
-          ['sidebar ascending', 'sidebar_ascending'],
-          ['sidebar descending', 'sidebar_descending'],
+          ['sidebar', 'sidebar'],
           ['below name', 'below_name']
         ]
       }
@@ -1131,3 +1130,10 @@ var bedrockFunctionToolbox = {
 
 Blockly.common.defineBlocks(bedrockFunctionDefinitions);
 var workspace = Blockly.inject('blocklyDiv', {toolbox: bedrockFunctionToolbox});
+
+function loadProject(data) {
+  Blockly.serialization.workspaces.load(data, workspace);
+}
+function saveProject() {
+  return Blockly.serialization.workspaces.save(workspace);
+}

@@ -4,6 +4,7 @@ var tabCounter = 3;
 var tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>";
 var tabs = $("#tabs");
 var elementCount = 0;
+var openElements = {};
 
 $("#toolbar").menu();
 $("#tabs").tabs();
@@ -136,7 +137,7 @@ $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 
 function getTabContent(role, elementID) {
   if (role == "Function") {
-    return '<iframe src="functioneditor.html" class="elementFrame"></iframe>';
+    return '<iframe src="functioneditor.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else {
     return "Coming soon!";
   }
@@ -173,13 +174,33 @@ function addTab(role, elementID) {
   tabs.tabs( "refresh" );
   tabs.tabs("option", "active", -1);
   tabCounter++;
+  openElements[id] = [role, elementID];
+  if (role == "Function") {
+    var frame = document.getElementById(elementID + "_frame");
+    frame.onload = function() {
+      setTimeout(function(){
+        projZip.folder("elements").file(elementID + ".code.json").async("string").then(function (data) {
+          frame.contentWindow.loadProject(data);
+        });
+      }, 500);
+    };
+  }
 }
 
 tabs.on( "click", "span.ui-icon-close", function() {
   var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
+  saveElement(openElements[panelId]);
+  delete openElements[panelId];
   $( "#" + panelId ).remove();
   tabs.tabs( "refresh" );
 });
+
+function saveElement(elementTab) {
+  if (elementTab[0] == "Function") {
+    var frame = document.getElementById(elementTab[1] + "_frame");
+    projZip.folder("elements").file(elementTab[1] + ".code.json", frame.contentWindow.saveProject());
+  }
+}
 
 $("#newProjBtn").button();
 $("#closeAboutBtn").button();

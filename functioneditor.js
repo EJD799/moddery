@@ -836,6 +836,112 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     previousStatement: null,
     nextStatement: null,
   },
+  {
+    type: 'addobjective',
+    message0: 'add objective %1 display name %2',
+    colour: 320,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'OBJECTIVE',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'DISPLAY_NAME',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'removeobjective',
+    message0: 'remove objective %1',
+    colour: 320,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'OBJECTIVE',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'objectivedisplay',
+    message0: 'set display %1 to objective %2',
+    colour: 320,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'DISPLAY',
+        options: [
+          ['sidebar ascending', 'sidebar_ascending'],
+          ['sidebar descending', 'sidebar_descending'],
+          ['below name', 'below_name']
+        ]
+      },
+      {
+        type: 'field_input',
+        name: 'OBJECTIVE',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'hidedisplay',
+    message0: 'disable display %1',
+    colour: 320,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'DISPLAY',
+        options: [
+          ['sidebar ascending', 'sidebar_ascending'],
+          ['sidebar descending', 'sidebar_descending'],
+          ['below name', 'below_name']
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'operatescore',
+    message0: '%1 score %2 to score of %3 on objective %4',
+    colour: 320,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'DISPLAY',
+        options: [
+          ['add', 'add'],
+          ['remove', 'remove'],
+          ['set', 'set']
+        ]
+      },
+      {
+        type: 'field_number',
+        name: 'QUANTITY'
+      },
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'OBJECTIVE',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
 ]);
 
 var bedrockFunctionToolbox = {
@@ -932,7 +1038,7 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "tag"
-          },
+          }
         ]
       },
       {
@@ -990,7 +1096,7 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "stopsound"
-          },
+          }
         ]
       },
       {
@@ -998,7 +1104,26 @@ var bedrockFunctionToolbox = {
         "name": "Scoreboard",
         "colour": 320,
         "contents": [
-
+          {
+            "kind": "block",
+            "type": "addobjective"
+          },
+          {
+            "kind": "block",
+            "type": "removeobjective"
+          },
+          {
+            "kind": "block",
+            "type": "objectivedisplay"
+          },
+          {
+            "kind": "block",
+            "type": "hidedisplay"
+          },
+          {
+            "kind": "block",
+            "type": "operatescore"
+          }
         ]
       }
     ]

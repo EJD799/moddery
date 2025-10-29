@@ -72,3 +72,9 @@ input {
 .noMargin {
     padding: 0 !important;
 }
+
+.elementbox {
+    padding: 10px;
+    background: #333333;
+    border-radius: 10px;
+}

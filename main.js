@@ -113,8 +113,9 @@ function addElement() {
   elementBox.setAttribute("class", "elementbox");
   elementBox.innerHTML = `
   <h3>` + $("#addElementNameBox").val() + `</h3>
-  <button onclick="editElement('` + $("#addElementNameBox").val() + `')">Edit</button>
+  <button onclick="editElement('` + $("#addElementNameBox").val() + `')" id="` + $("#addElementNameBox").val() + `_editBtn">Edit</button>
   `;
+  $("#" + $("#addElementNameBox").val() + "_editBtn").button();
   parentDiv.appendChild(elementBox);
   if (elementCount % 3 === 0) {
     parentDiv.appendChild(document.createElement("br"));

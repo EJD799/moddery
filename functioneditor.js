@@ -678,6 +678,25 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     previousStatement: null,
     nextStatement: null,
   },
+  {
+    type: 'message',
+    message0: 'send message %1 to %2',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'MESSAGE',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
 ]);
 
 var bedrockFunctionToolbox = {
@@ -766,6 +785,10 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "replaceitem"
+          },
+          {
+            "kind": "block",
+            "type": "message"
           }
         ]
       },

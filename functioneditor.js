@@ -1129,7 +1129,17 @@ var bedrockFunctionToolbox = {
   };
 
 Blockly.common.defineBlocks(bedrockFunctionDefinitions);
-var workspace = Blockly.inject('blocklyDiv', {toolbox: bedrockFunctionToolbox});
+var workspace = Blockly.inject('blocklyDiv', {
+  toolbox: bedrockFunctionToolbox,
+  move: {
+    scrollbars: {
+      horizontal: true,
+      vertical: true
+    },
+    drag: true,
+    wheel: true
+  }
+});
 
 function loadProject(data) {
   Blockly.serialization.workspaces.load(data, workspace);

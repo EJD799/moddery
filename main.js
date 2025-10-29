@@ -180,7 +180,7 @@ function addTab(role, elementID) {
     frame.onload = function() {
       setTimeout(function(){
         projZip.folder("elements").file(elementID + ".code.json").async("string").then(function (data) {
-          frame.contentWindow.loadProject(data);
+          frame.contentWindow.loadProject(JSON.parse(data));
         });
       }, 500);
     };

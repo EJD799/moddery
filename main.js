@@ -198,7 +198,7 @@ tabs.on( "click", "span.ui-icon-close", function() {
 function saveElement(elementTab) {
   if (elementTab[0] == "Function") {
     var frame = document.getElementById(elementTab[1] + "_frame");
-    projZip.folder("elements").file(elementTab[1] + ".code.json", frame.contentWindow.saveProject());
+    projZip.folder("elements").file(elementTab[1] + ".code.json", JSON.stringify(frame.contentWindow.saveProject()));
   }
 }
 

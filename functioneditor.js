@@ -697,6 +697,140 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     previousStatement: null,
     nextStatement: null,
   },
+  {
+    type: 'particle',
+    message0: 'show particle %1 at x %1 y %2 z %3',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PARTICLE',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'title',
+    message0: 'show title %1 to %2 style %3',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'TEXT',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      },
+      {
+        type: 'field_dropdown',
+        name: 'STYLE',
+        options: [
+          ['title', 'title'],
+          ['subtitle', 'subtitle'],
+          ['actionbar', 'actionbar']
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'tag',
+    message0: '%1 tag %2 for entity %3',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'MODE',
+        options: [
+          ['add', 'add'],
+          ['remove', 'remove']
+        ]
+      },
+      {
+        type: 'field_input',
+        name: 'TAG',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'playsound',
+    message0: 'play sound %1 for %2 at x %3 y %4 z %5 volume %6 pitch %7',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'SOUND',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'ENTITY',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'VOLUME'
+      },
+      {
+        type: 'field_number',
+        name: 'PITCH'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'stopsound',
+    message0: 'stop sound %1 for %2',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'SOUND',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
 ]);
 
 var bedrockFunctionToolbox = {
@@ -789,7 +923,11 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "message"
-          }
+          },
+          {
+            "kind": "block",
+            "type": "tag"
+          },
         ]
       },
       {
@@ -831,7 +969,31 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "weather"
-          }
+          },
+          {
+            "kind": "block",
+            "type": "particle"
+          },
+          {
+            "kind": "block",
+            "type": "title"
+          },
+          {
+            "kind": "block",
+            "type": "playsound"
+          },
+          {
+            "kind": "block",
+            "type": "stopsound"
+          },
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "Scoreboard",
+        "colour": 320,
+        "contents": [
+          
         ]
       }
     ]

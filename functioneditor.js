@@ -699,7 +699,7 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
   },
   {
     type: 'particle',
-    message0: 'show particle %1 at x %1 y %2 z %3',
+    message0: 'show particle %1 at x %2 y %3 z %4',
     colour: 240,
     args0: [
       {
@@ -767,6 +767,11 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
       {
         type: 'field_input',
         name: 'TAG',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'ENTITY',
         spellcheck: false
       }
     ],
@@ -993,7 +998,7 @@ var bedrockFunctionToolbox = {
         "name": "Scoreboard",
         "colour": 320,
         "contents": [
-          
+
         ]
       }
     ]

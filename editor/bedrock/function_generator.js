@@ -101,7 +101,7 @@ Blockly.BedrockFunction.forBlock['time'] = function(block) {
 };
 Blockly.BedrockFunction.forBlock['weather'] = function(block) {
     const weather = block.getFieldValue('WEATHER');
-    return `weather ${time}\n`;
+    return `weather ${weather}\n`;
 };
 Blockly.BedrockFunction.forBlock['effect'] = function(block) {
     const effect = block.getFieldValue('EFFECT');

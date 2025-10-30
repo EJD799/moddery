@@ -74,6 +74,81 @@ Blockly.BedrockFunction.forBlock['max_players'] = function(block) {
     const max_players = block.getFieldValue('MAX_PLAYERS');
     return "setmaxplayers " + max_players + "\n";
 };
+Blockly.BedrockFunction.forBlock['world_spawn'] = function(block) {
+    const x_pos = block.getFieldValue('X_POS');
+    const y_pos = block.getFieldValue('Y_POS');
+    const z_pos = block.getFieldValue('Z_POS');
+    return "setworldspawn " + x_pos + " " + y_pos + " " + z_pos + "\n";
+};
+Blockly.BedrockFunction.forBlock['player_spawn'] = function(block) {
+    const player = block.getFieldValue('PLAYER');
+    const x_pos = block.getFieldValue('X_POS');
+    const y_pos = block.getFieldValue('Y_POS');
+    const z_pos = block.getFieldValue('Z_POS');
+    return "spawnpoint " + player + " " + x_pos + " " + y_pos + " " + z_pos + "\n";
+};
+Blockly.BedrockFunction.forBlock['run_command'] = function(block) {
+    const command = block.getFieldValue('COMMAND');
+    return command + "\n";
+};
+Blockly.BedrockFunction.forBlock['run_function'] = function(block) {
+    const func = block.getFieldValue('FUNCTION');
+    return "function " + func + "\n";
+};
+Blockly.BedrockFunction.forBlock['time'] = function(block) {
+    const time = block.getFieldValue('TIME');
+    return "time set " + time + "\n";
+};
+Blockly.BedrockFunction.forBlock['weather'] = function(block) {
+    const weather = block.getFieldValue('WEATHER');
+    return "weather " + time + "\n";
+};
+Blockly.BedrockFunction.forBlock['effect'] = function(block) {
+    const effect = block.getFieldValue('EFFECT');
+    const level = block.getFieldValue('LEVEL');
+    const player = block.getFieldValue('PLAYER');
+    const duration = block.getFieldValue('DURATION');
+    const hide_particles = block.getFieldValue('HIDE_PARTICLES');
+    return "effect " + player + " " + effect + " " + duration + " " + level + " " + hide_particles + "\n";
+};
+Blockly.BedrockFunction.forBlock['enchant'] = function(block) {
+    const player = block.getFieldValue('PLAYER');
+    const enchantment = block.getFieldValue('ENCHANTMENT');
+    const level = block.getFieldValue('LEVEL');
+    return "enchant " + player + " " + enchantment + " " + level + "\n";
+};
+Blockly.BedrockFunction.forBlock['xp'] = function(block) {
+    const player = block.getFieldValue('PLAYER');
+    const quantity = block.getFieldValue('QUANTITY');
+    const format = block.getFieldValue('FORMAT');
+    if (format == "levels") {
+        return "xp " + quantity + "L " + player + "\n";
+    } else {
+        return "xp " + quantity + " " + player + "\n";
+    }
+};
+Blockly.BedrockFunction.forBlock['tp_e'] = function(block) {
+    const player1 = block.getFieldValue('PLAYER1');
+    const player2 = block.getFieldValue('PLAYER2');
+    return "tp " + player1 + " " + player2 + "\n";
+};
+Blockly.BedrockFunction.forBlock['tp_xyz'] = function(block) {
+    const player1 = block.getFieldValue('PLAYER1');
+    const x_pos = block.getFieldValue('X_POS');
+    const y_pos = block.getFieldValue('Y_POS');
+    const z_pos = block.getFieldValue('Z_POS');
+    return "tp " + player1 + " " + x_pos + " " + y_pos + " " + z_pos + "\n";
+};
+Blockly.BedrockFunction.forBlock['kill'] = function(block) {
+    const entity = block.getFieldValue('ENTITY');
+    return "kill " + entity + "\n";
+};
+Blockly.BedrockFunction.forBlock['gamemode'] = function(block) {
+    const player = block.getFieldValue('PLAYER');
+    const gamemode = block.getFieldValue('GAMEMODE');
+    return "gamemode " + player + " " + gamemode + "\n";
+};
+
 
 // Chaining function for statement blocks
 Blockly.BedrockFunction.scrub_ = function(block, code) {

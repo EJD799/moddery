@@ -469,7 +469,7 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
       },
       {
         type: 'field_number',
-        name: 'level'
+        name: 'LEVEL'
       }
     ],
     previousStatement: null,

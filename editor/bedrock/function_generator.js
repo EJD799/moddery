@@ -148,7 +148,7 @@ Blockly.BedrockFunction.forBlock['gamemode'] = function(block) {
     const gamemode = block.getFieldValue('GAMEMODE');
     return `gamemode ${player} ${gamemode}\n`;
 };
-Blockly.BedrockFunction.forBlock['tp_xyz'] = function(block) {
+Blockly.BedrockFunction.forBlock['summon'] = function(block) {
     const entity = block.getFieldValue('ENTITY');
     const x_pos = block.getFieldValue('X_POS');
     const y_pos = block.getFieldValue('Y_POS');

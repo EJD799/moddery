@@ -160,8 +160,8 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
         type: 'field_dropdown',
         name: 'MODE',
         options: [
-          ['give', 'GIVE'],
-          ['revoke', 'REVOKE']
+          ['give', 'give'],
+          ['revoke', 'revoke']
         ]
       },
       {

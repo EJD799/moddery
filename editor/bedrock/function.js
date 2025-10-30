@@ -790,7 +790,7 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
       },
       {
         type: 'field_input',
-        name: 'ENTITY',
+        name: 'PLAYER',
         spellcheck: false
       },
       {

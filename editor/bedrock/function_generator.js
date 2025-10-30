@@ -6,7 +6,7 @@ Blockly.BedrockFunction.forBlock['message'] = function(block) {
     return "say " + player + " " + message + "\n";
 };
 Blockly.BedrockFunction.forBlock['always_day'] = function(block) {
-    const value = block.getFieldValue('value');
+    const value = block.getFieldValue('VALUE');
     return "alwaysday " + value + "\n";
 };
 Blockly.BedrockFunction.forBlock['clear_inv'] = function(block) {

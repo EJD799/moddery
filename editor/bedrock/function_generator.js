@@ -5,7 +5,7 @@ Blockly.BedrockFunction = new Blockly.Generator('BedrockFunction');
 Blockly.BedrockFunction.ORDER_ATOMIC = 0;
 
 // Define how each block generates code
-Blockly.BedrockFunction['message'] = function (block) {
+Blockly.BedrockFunction.forBlock['message'] = function (block) {
   const player = block.getFieldValue('PLAYER');
   const message = block.getFieldValue('MESSAGE');
   return 'say ' + player + ' ' + message;

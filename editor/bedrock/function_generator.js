@@ -11,6 +11,8 @@ Blockly.BedrockFunction['message'] = function (block) {
   return 'say ' + player + ' ' + message;
 };
 
+console.log("Registered message generator:", Blockly.BedrockFunction.forBlock);
+
 // Define workspaceToCode() helper
 Blockly.BedrockFunction.finish = function (code) {
   // Add footer or header if desired

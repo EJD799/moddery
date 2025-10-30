@@ -65,6 +65,15 @@ Blockly.BedrockFunction.forBlock['difficulty'] = function(block) {
     const difficulty = block.getFieldValue('DIFFICULTY');
     return "difficulty " + difficulty + "\n";
 };
+Blockly.BedrockFunction.forBlock['gamerule'] = function(block) {
+    const rule = block.getFieldValue('RULE');
+    const value = block.getFieldValue('VALUE');
+    return "gamerule " + rule + " " + value + "\n";
+};
+Blockly.BedrockFunction.forBlock['max_players'] = function(block) {
+    const max_players = block.getFieldValue('MAX_PLAYERS');
+    return "setmaxplayers " + max_players + "\n";
+};
 
 // Chaining function for statement blocks
 Blockly.BedrockFunction.scrub_ = function(block, code) {

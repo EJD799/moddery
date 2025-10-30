@@ -167,7 +167,7 @@ Blockly.BedrockFunction.forBlock['replaceitem'] = function(block) {
     const player = block.getFieldValue('PLAYER');
     const quantity = block.getFieldValue('QUANTITY');
     const item = block.getFieldValue('ITEM');
-    return `replaceitem entity ${player} ${slot_type} ${slot_number} ${item} ${QUANTITY}\n`;
+    return `replaceitem entity ${player} ${slot_type} ${slot_number} ${item} ${quantity}\n`;
 };
 Blockly.BedrockFunction.forBlock['particle'] = function(block) {
     const particle = block.getFieldValue('PARTICLE');

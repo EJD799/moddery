@@ -203,6 +203,39 @@ Blockly.BedrockFunction.forBlock['stopsound'] = function(block) {
     const player = block.getFieldValue('PLAYER');
     return `stopsound ${player} ${sound}\n`;
 };
+Blockly.BedrockFunction.forBlock['addobjective'] = function(block) {
+    const objective = block.getFieldValue('OBJECTIVE');
+    const display_name = block.getFieldValue('DISPLAY_NAME');
+    return `scoreboard objectives add ${objective} dummy ${display_name}\n`;
+};
+Blockly.BedrockFunction.forBlock['removeobjective'] = function(block) {
+    const objective = block.getFieldValue('OBJECTIVE');
+    return `scoreboard objectives remove ${objective}\n`;
+};
+Blockly.BedrockFunction.forBlock['objectivedisplay'] = function(block) {
+    const objective = block.getFieldValue('OBJECTIVE');
+    const display = block.getFieldValue('DISPLAY');
+    if (display == "sidebar_ascending") {
+        return `scoreboard objectives setdisplay sidebar ${objective} ascending\n`;
+    }
+    if (display == "sidebar_descending") {
+        return `scoreboard objectives setdisplay sidebar ${objective} descending\n`;
+    }
+    if (display == "belowname") {
+        return `scoreboard objectives setdisplay belowname ${objective}\n`;
+    }
+};
+Blockly.BedrockFunction.forBlock['hidedisplay'] = function(block) {
+    const display = block.getFieldValue('DISPLAY');
+    return `scoreboard objectives setdisplay ${display}\n`;
+};
+Blockly.BedrockFunction.forBlock['operatescore'] = function(block) {
+    const mode = block.getFieldValue('MODE');
+    const quantity = block.getFieldValue('QUANTITY');
+    const player = block.getFieldValue('PLAYER');
+    const objective = block.getFieldValue('OBJECTIVE');
+    return `scoreboard players ${mode} ${player} ${objective} ${quantity}\n`;
+};
 
 // Chaining function for statement blocks
 Blockly.BedrockFunction.scrub_ = function(block, code) {

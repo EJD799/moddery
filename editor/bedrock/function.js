@@ -902,7 +902,7 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
         name: 'DISPLAY',
         options: [
           ['sidebar', 'sidebar'],
-          ['below name', 'below_name']
+          ['below name', 'belowname']
         ]
       }
     ],
@@ -916,7 +916,7 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     args0: [
       {
         type: 'field_dropdown',
-        name: 'DISPLAY',
+        name: 'MODE',
         options: [
           ['add', 'add'],
           ['remove', 'remove'],

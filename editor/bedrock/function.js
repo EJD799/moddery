@@ -1147,3 +1147,11 @@ function loadProject(data) {
 function saveProject() {
   return Blockly.serialization.workspaces.save(workspace);
 }
+function generateCode() {
+  const code = Blockly.BedrockFunction.workspaceToCode(workspace);
+  console.log(code);
+  alert(code);
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'g') generateCode();
+});

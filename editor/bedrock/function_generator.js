@@ -1,6 +1,6 @@
 Blockly.BedrockFunction = new Blockly.Generator('BedrockFunction');
 
-Blockly.BedrockFunction['message'] = function(block) {
+Blockly.BedrockFunction.forBlock['message'] = function(block) {
   const player = block.getFieldValue('PLAYER');
   const message = block.getFieldValue('MESSAGE');
   return `say ${player} ${message}\n`;

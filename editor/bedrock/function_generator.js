@@ -55,7 +55,7 @@ Blockly.BedrockFunction.forBlock['clone_blocks'] = function(block) {
 Blockly.BedrockFunction.forBlock['op_status'] = function(block) {
     const mode = block.getFieldValue('MODE');
     const player = block.getFieldValue('PLAYER');
-    if (mode = "revoke") {
+    if (mode == "revoke") {
         return `deop ${player}\n`;
     } else {
         return `op ${player}\n`;

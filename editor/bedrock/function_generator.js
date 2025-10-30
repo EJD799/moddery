@@ -161,7 +161,7 @@ Blockly.BedrockFunction.forBlock['give'] = function(block) {
     const player = block.getFieldValue('PLAYER');
     return `give ${player} ${item} ${quantity}\n`;
 };
-Blockly.BedrockFunction.forBlock['replace_item'] = function(block) {
+Blockly.BedrockFunction.forBlock['replaceitem'] = function(block) {
     const slot_type = block.getFieldValue('SLOT_TYPE');
     const slot_number = block.getFieldValue('SLOT_NUMBER');
     const player = block.getFieldValue('PLAYER');

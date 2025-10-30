@@ -1,20 +1,16 @@
-// Create the generator object
 Blockly.BedrockFunction = new Blockly.Generator('BedrockFunction');
 
-// Optional: define order constants (not always needed)
-Blockly.BedrockFunction.ORDER_ATOMIC = 0;
-
-// Define how each block generates code
-Blockly.BedrockFunction.forBlock['message'] = function (block) {
+Blockly.BedrockFunction['message'] = function(block) {
   const player = block.getFieldValue('PLAYER');
   const message = block.getFieldValue('MESSAGE');
-  return 'say ' + player + ' ' + message;
+  return `say ${player} ${message}\n`;
 };
 
-console.log("Registered message generator:", Blockly.BedrockFunction.forBlock);
-
-// Define workspaceToCode() helper
-Blockly.BedrockFunction.finish = function (code) {
-  // Add footer or header if desired
-  return code;
+// Chaining function for statement blocks
+Blockly.BedrockFunction.scrub_ = function(block, code) {
+  const nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+  const nextCode = nextBlock ? Blockly.BedrockFunction.blockToCode(nextBlock) : '';
+  return code + nextCode;
 };
+
+Blockly.BedrockFunction.finish = function(code) { return code; };

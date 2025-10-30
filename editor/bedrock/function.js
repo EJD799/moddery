@@ -1151,6 +1151,7 @@ function generateCode() {
   const code = Blockly.BedrockFunction.workspaceToCode(workspace);
   console.log(code);
   alert(code);
+  return code;
 }
 document.addEventListener('keydown', e => {
   if (e.key === 'g') generateCode();

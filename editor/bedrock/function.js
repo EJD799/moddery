@@ -945,10 +945,11 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     type: "on_start",
     message0: "on start",
     nextStatement: null,
-    colour: 50,
+    colour: 45,
     hat: "cap",
     deletable: false,
-    movable: false
+    movable: false,
+    editable: false
   }
 ]);
 

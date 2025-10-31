@@ -949,7 +949,8 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     hat: "cap",
     deletable: false,
     movable: false,
-    editable: false
+    editable: false,
+    extensions: ["no_disable_menu"]
   }
 ]);
 
@@ -1138,6 +1139,17 @@ var bedrockFunctionToolbox = {
     ]
   };
 
+
+Blockly.Extensions.register('no_disable_menu', function() {
+  this.customContextMenu = function(menuOptions) {
+    // Filter out "Disable block" entries
+    for (let i = menuOptions.length - 1; i >= 0; i--) {
+      if (menuOptions[i].text && menuOptions[i].text.includes('Disable')) {
+        menuOptions.splice(i, 1);
+      }
+    }
+  };
+});
 Blockly.common.defineBlocks(bedrockFunctionDefinitions);
 var workspace = Blockly.inject('blocklyDiv', {
   toolbox: bedrockFunctionToolbox,

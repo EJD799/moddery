@@ -1167,6 +1167,36 @@ startBlock.initSvg();
 startBlock.render();
 startBlock.setDeletable(false);
 startBlock.moveBy(50, 50);
+workspace.addChangeListener(function (e) {
+  // Ignore UI-only events for performance
+  if (e.type === Blockly.Events.UI) return;
+
+  // If no hat block, nothing to validate
+  if (!startBlock) return;
+
+  // Get all blocks connected under the hat
+  const connected = new Set();
+  function traverse(block) {
+    connected.add(block.id);
+    if (block.nextConnection && block.nextConnection.targetBlock()) {
+      traverse(block.nextConnection.targetBlock());
+    }
+  }
+  traverse(startBlock);
+
+  // Enable connected blocks, disable others
+  for (const block of workspace.getAllBlocks(false)) {
+    if (connected.has(block.id)) {
+      block.setDisabled(false);
+    } else {
+      block.setDisabled(true);
+    }
+  }
+
+  // Always keep the hat enabled
+  startBlock.setDisabled(false);
+});
+
 
 
 function loadProject(data) {

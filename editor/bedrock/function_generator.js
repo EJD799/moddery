@@ -244,4 +244,20 @@ Blockly.BedrockFunction.scrub_ = function(block, code) {
     return code + nextCode;
 };
 
+Blockly.BedrockFunction.workspaceToCode = function (workspace) {
+  // Find the hat block
+  const hat = workspace.getAllBlocks(false).find(b => b.type === 'on_start');
+  if (!hat) return ''; // No start block means no code.
+
+  let code = '';
+  // Walk through all blocks chained under the hat
+  let current = hat.nextConnection && hat.nextConnection.targetBlock();
+  while (current) {
+    const line = Blockly.BedrockFunction.blockToCode(current);
+    if (typeof line === 'string') code += line;
+    current = current.nextConnection && current.nextConnection.targetBlock();
+  }
+  return Blockly.BedrockFunction.finish(code);
+};
+
 Blockly.BedrockFunction.finish = function(code) { return code; };

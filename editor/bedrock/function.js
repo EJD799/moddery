@@ -941,6 +941,15 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     previousStatement: null,
     nextStatement: null,
   },
+  {
+    type: "on_start",
+    message0: "on start",
+    nextStatement: null,
+    colour: 50,
+    hat: "cap",
+    deletable: false,
+    movable: false
+  }
 ]);
 
 var bedrockFunctionToolbox = {
@@ -1140,6 +1149,11 @@ var workspace = Blockly.inject('blocklyDiv', {
     wheel: true
   }
 });
+const startBlock = workspace.newBlock('on_start');
+startBlock.initSvg();
+startBlock.render();
+startBlock.setDeletable(false);
+
 
 function loadProject(data) {
   Blockly.serialization.workspaces.load(data, workspace);

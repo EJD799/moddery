@@ -1196,6 +1196,8 @@ workspace.addChangeListener(function (e) {
     if (!(block instanceof Blockly.Block)) continue;
 
     const shouldBeEnabled = connected.has(block.id) || block.type === 'on_start';
+    console.log(block);
+    console.log(shouldBeEnabled);
     block.setDisabled(!shouldBeEnabled);
   }
 });

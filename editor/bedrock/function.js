@@ -1168,34 +1168,38 @@ startBlock.render();
 startBlock.setDeletable(false);
 startBlock.moveBy(50, 50);
 workspace.addChangeListener(function (e) {
-  // Ignore UI-only events for performance
+  // Ignore UI-only or non-block events
   if (e.type === Blockly.Events.UI) return;
+  if (e.type === Blockly.Events.FINISHED_LOADING) return;
 
-  // If no hat block, nothing to validate
-  if (!startBlock) return;
+  // Find the hat block (the one you want everything to attach to)
+  const hatBlock = workspace.getAllBlocks(false).find(b => b.type === 'on_start');
+  if (!hatBlock) return;
 
-  // Get all blocks connected under the hat
+  // Get all connected blocks under the hat
   const connected = new Set();
+
   function traverse(block) {
+    if (!block) return;
     connected.add(block.id);
     if (block.nextConnection && block.nextConnection.targetBlock()) {
       traverse(block.nextConnection.targetBlock());
     }
   }
-  traverse(startBlock);
 
-  // Enable connected blocks, disable others
-  for (const block of workspace.getAllBlocks(false)) {
-    if (connected.has(block.id)) {
-      block.setDisabled(false);
-    } else {
-      block.setDisabled(true);
-    }
+  traverse(hatBlock);
+
+  // Loop through actual block objects only
+  const allBlocks = workspace.getAllBlocks(false);
+  for (const block of allBlocks) {
+    // Ensure it's a valid Blockly.Block
+    if (!(block instanceof Blockly.Block)) continue;
+
+    const shouldBeEnabled = connected.has(block.id) || block.type === 'on_start';
+    block.setDisabled(!shouldBeEnabled);
   }
-
-  // Always keep the hat enabled
-  startBlock.setDisabled(false);
 });
+
 
 
 

@@ -238,11 +238,11 @@ Blockly.BedrockFunction.forBlock['operatescore'] = function(block) {
 };
 
 // Chaining function for statement blocks
-Blockly.BedrockFunction.scrub_ = function(block, code) {
+/*Blockly.BedrockFunction.scrub_ = function(block, code) {
     const nextBlock = block.nextConnection && block.nextConnection.targetBlock();
     const nextCode = nextBlock ? Blockly.BedrockFunction.blockToCode(nextBlock) : '';
     return code + nextCode;
-};
+};*/
 
 Blockly.BedrockFunction.workspaceToCode = function (workspace) {
   // Find the hat block

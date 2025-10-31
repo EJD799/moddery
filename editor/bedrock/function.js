@@ -1154,6 +1154,7 @@ const startBlock = workspace.newBlock('on_start');
 startBlock.initSvg();
 startBlock.render();
 startBlock.setDeletable(false);
+startBlock.moveBy(50, 50);
 
 
 function loadProject(data) {

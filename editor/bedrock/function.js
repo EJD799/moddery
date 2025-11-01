@@ -1140,16 +1140,7 @@ var bedrockFunctionToolbox = {
   };
 
 
-/*Blockly.Extensions.register('no_disable_menu', function() {
-  this.customContextMenu = function(menuOptions) {
-    // Filter out "Disable block" entries
-    for (let i = menuOptions.length - 1; i >= 0; i--) {
-      if (menuOptions[i].text && menuOptions[i].text.includes('Disable')) {
-        menuOptions.splice(i, 1);
-      }
-    }
-  };
-});*/
+
 
 // Apply the no_disable_menu logic to all blocks
 Blockly.BlockSvg.prototype.customContextMenu = function(menuOptions) {
@@ -1187,40 +1178,6 @@ startBlock.initSvg();
 startBlock.render();
 startBlock.setDeletable(false);
 startBlock.moveBy(50, 50);
-/*workspace.addChangeListener(function (e) {
-  // Ignore UI-only or non-block events
-  if (e.type === Blockly.Events.UI) return;
-  if (e.type === Blockly.Events.FINISHED_LOADING) return;
-
-  // Find the hat block (the one you want everything to attach to)
-  const hatBlock = workspace.getAllBlocks(false).find(b => b.type === 'on_start');
-  if (!hatBlock) return;
-
-  // Get all connected blocks under the hat
-  const connected = new Set();
-
-  function traverse(block) {
-    if (!block) return;
-    connected.add(block.id);
-    if (block.nextConnection && block.nextConnection.targetBlock()) {
-      traverse(block.nextConnection.targetBlock());
-    }
-  }
-
-  traverse(hatBlock);
-
-  // Loop through actual block objects only
-  const allBlocks = workspace.getAllBlocks(false);
-  for (const block of allBlocks) {
-    // Ensure it's a valid Blockly.Block
-    if (!block || typeof block.setDisabled !== "function") continue;
-
-    const shouldBeEnabled = connected.has(block.id) || block.type === 'on_start';
-    console.log(block);
-    console.log(shouldBeEnabled);
-    block.setDisabled(!shouldBeEnabled);
-  }
-});*/
 
 
 

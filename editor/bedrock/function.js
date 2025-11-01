@@ -1193,7 +1193,7 @@ workspace.addChangeListener(function (e) {
   const allBlocks = workspace.getAllBlocks(false);
   for (const block of allBlocks) {
     // Ensure it's a valid Blockly.Block
-    if (!(block instanceof Blockly.Block)) continue;
+    if (!block || typeof block.setDisabled !== "function") continue;
 
     const shouldBeEnabled = connected.has(block.id) || block.type === 'on_start';
     console.log(block);

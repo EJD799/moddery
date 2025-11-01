@@ -13,6 +13,45 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   }
 ]);
 
+Blockly.common.createBlockDefinitionsFromJsonArray([
+  {
+    type: 'colour_picker',
+    message0: 'pick colour %1',
+    args0: [{ type: 'field_colour', name: 'COLOUR', colour: '#ff0000' }],
+    output: 'Colour',
+    colour: 20,
+  },
+  {
+    type: 'colour_random',
+    message0: 'random colour',
+    output: 'Colour',
+    colour: 20
+  },
+  {
+    type: 'colour_rgb',
+    message0: 'red %1 green %2 blue %3',
+    args0: [
+      { type: 'input_value', name: 'RED', check: 'Number' },
+      { type: 'input_value', name: 'GREEN', check: 'Number' },
+      { type: 'input_value', name: 'BLUE', check: 'Number' }
+    ],
+    output: 'Colour',
+    colour: 20
+  },
+  {
+    type: 'colour_blend',
+    message0: 'blend %1 and %2 ratio %3',
+    args0: [
+      { type: 'input_value', name: 'COLOUR1', check: 'Colour' },
+      { type: 'input_value', name: 'COLOUR2', check: 'Colour' },
+      { type: 'input_value', name: 'RATIO', check: 'Number' }
+    ],
+    output: 'Colour',
+    colour: 20
+  }
+]);
+
+
 
 
 const bedrockScriptToolbox = {
@@ -162,7 +201,7 @@ const bedrockScriptToolbox = {
       name: 'Colour',
       colour: '%{BKY_COLOUR_HUE}',
       contents: [
-        //{ kind: 'block', type: 'colour_picker' },
+        { kind: 'block', type: 'colour_picker' },
         { kind: 'block', type: 'colour_random' },
         { kind: 'block', type: 'colour_rgb' },
         { kind: 'block', type: 'colour_blend' }

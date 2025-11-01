@@ -13,7 +13,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   }
 ]);
 
-Blockly.common.createBlockDefinitionsFromJsonArray([
+const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
     type: 'colour_picker',
     message0: 'pick colour %1',
@@ -227,6 +227,7 @@ const bedrockScriptToolbox = {
 
 
 Blockly.common.defineBlocks(bedrockScriptDefinitions);
+Blockly.common.defineBlocks(colourDefinitions);
 var workspace = Blockly.inject('blocklyDiv', {
   toolbox: bedrockScriptToolbox,
   move: {

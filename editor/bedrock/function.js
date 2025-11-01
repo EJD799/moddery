@@ -1140,7 +1140,7 @@ var bedrockFunctionToolbox = {
   };
 
 
-Blockly.Extensions.register('no_disable_menu', function() {
+/*Blockly.Extensions.register('no_disable_menu', function() {
   this.customContextMenu = function(menuOptions) {
     // Filter out "Disable block" entries
     for (let i = menuOptions.length - 1; i >= 0; i--) {
@@ -1149,7 +1149,18 @@ Blockly.Extensions.register('no_disable_menu', function() {
       }
     }
   };
-});
+});*/
+
+// Apply the no_disable_menu logic to all blocks
+Blockly.BlockSvg.prototype.customContextMenu = function(menuOptions) {
+  // Filter out "Disable block" entries
+  for (let i = menuOptions.length - 1; i >= 0; i--) {
+    if (menuOptions[i].text && menuOptions[i].text.includes('Disable')) {
+      menuOptions.splice(i, 1);
+    }
+  }
+};
+
 Blockly.common.defineBlocks(bedrockFunctionDefinitions);
 var workspace = Blockly.inject('blocklyDiv', {
   toolbox: bedrockFunctionToolbox,
@@ -1167,7 +1178,7 @@ startBlock.initSvg();
 startBlock.render();
 startBlock.setDeletable(false);
 startBlock.moveBy(50, 50);
-workspace.addChangeListener(function (e) {
+/*workspace.addChangeListener(function (e) {
   // Ignore UI-only or non-block events
   if (e.type === Blockly.Events.UI) return;
   if (e.type === Blockly.Events.FINISHED_LOADING) return;
@@ -1200,7 +1211,7 @@ workspace.addChangeListener(function (e) {
     console.log(shouldBeEnabled);
     block.setDisabled(!shouldBeEnabled);
   }
-});
+});*/
 
 
 

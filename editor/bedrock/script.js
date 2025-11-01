@@ -13,6 +13,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   }
 ]);
 
+window.addEventListener('load', () => {
+
 const bedrockScriptToolbox = {
   kind: 'categoryToolbox',
   contents: [
@@ -240,6 +242,8 @@ startBlock.initSvg();
 startBlock.render();
 startBlock.setDeletable(false);
 startBlock.moveBy(50, 50);
+
+});
 
 
 

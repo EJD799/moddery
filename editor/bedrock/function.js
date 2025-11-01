@@ -1172,7 +1172,15 @@ var workspace = Blockly.inject('blocklyDiv', {
     drag: true,
     wheel: true
   },
-  renderer: 'zelos'
+  renderer: 'zelos',
+  zoom: {
+    controls: true,
+    wheel: true,
+    startScale: 0.75, // smaller scale (0.5–1.0 is common)
+    maxScale: 1.2,
+    minScale: 0.5,
+    scaleSpeed: 1.1
+  }
 });
 const startBlock = workspace.newBlock('on_start');
 startBlock.initSvg();

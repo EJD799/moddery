@@ -18,6 +18,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
 const bedrockScriptToolbox = {
   kind: 'categoryToolbox',
   contents: [
+    // Logic
     {
       kind: 'category',
       name: 'Logic',
@@ -28,9 +29,10 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'logic_operation' },
         { kind: 'block', type: 'logic_negate' },
         { kind: 'block', type: 'logic_boolean' },
-        { kind: 'block', type: 'logic_ternary' },
-      ],
+        { kind: 'block', type: 'logic_ternary' }
+      ]
     },
+    // Loops
     {
       kind: 'category',
       name: 'Loops',
@@ -39,29 +41,25 @@ const bedrockScriptToolbox = {
         {
           kind: 'block',
           type: 'controls_repeat_ext',
-          inputs: {
-            TIMES: {
-              shadow: {
-                type: 'math_number',
-                fields: { NUM: 10 },
-              },
-            },
-          },
+          values: {
+            TIMES: { shadow: { type: 'math_number', fields: { NUM: 10 } } }
+          }
         },
         { kind: 'block', type: 'controls_whileUntil' },
         {
           kind: 'block',
           type: 'controls_for',
-          inputs: {
+          values: {
             FROM: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
             TO: { shadow: { type: 'math_number', fields: { NUM: 10 } } },
-            BY: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
-          },
+            BY: { shadow: { type: 'math_number', fields: { NUM: 1 } } }
+          }
         },
         { kind: 'block', type: 'controls_forEach' },
-        { kind: 'block', type: 'controls_flow_statements' },
-      ],
+        { kind: 'block', type: 'controls_flow_statements' }
+      ]
     },
+    // Math
     {
       kind: 'category',
       name: 'Math',
@@ -76,9 +74,9 @@ const bedrockScriptToolbox = {
         {
           kind: 'block',
           type: 'math_change',
-          inputs: {
-            DELTA: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
-          },
+          values: {
+            DELTA: { shadow: { type: 'math_number', fields: { NUM: 1 } } }
+          }
         },
         { kind: 'block', type: 'math_round' },
         { kind: 'block', type: 'math_on_list' },
@@ -86,22 +84,23 @@ const bedrockScriptToolbox = {
         {
           kind: 'block',
           type: 'math_constrain',
-          inputs: {
+          values: {
             LOW: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
-            HIGH: { shadow: { type: 'math_number', fields: { NUM: 100 } } },
-          },
+            HIGH: { shadow: { type: 'math_number', fields: { NUM: 100 } } }
+          }
         },
         {
           kind: 'block',
           type: 'math_random_int',
-          inputs: {
+          values: {
             FROM: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
-            TO: { shadow: { type: 'math_number', fields: { NUM: 100 } } },
-          },
+            TO: { shadow: { type: 'math_number', fields: { NUM: 100 } } }
+          }
         },
-        { kind: 'block', type: 'math_random_float' },
-      ],
+        { kind: 'block', type: 'math_random_float' }
+      ]
     },
+    // Text
     {
       kind: 'category',
       name: 'Text',
@@ -112,60 +111,40 @@ const bedrockScriptToolbox = {
         {
           kind: 'block',
           type: 'text_append',
-          inputs: { TEXT: { shadow: { type: 'text' } } },
+          values: { TEXT: { shadow: { type: 'text' } } }
         },
         { kind: 'block', type: 'text_length' },
         { kind: 'block', type: 'text_isEmpty' },
         {
           kind: 'block',
           type: 'text_indexOf',
-          inputs: {
-            VALUE: {
-              block: {
-                type: 'variables_get',
-                fields: { VAR: 'text' },
-              },
-            },
-            FIND: { shadow: { type: 'text' } },
-          },
+          values: {
+            VALUE: { block: { type: 'variables_get', fields: { VAR: 'text' } } },
+            FIND: { shadow: { type: 'text' } }
+          }
         },
         {
           kind: 'block',
           type: 'text_charAt',
-          inputs: {
-            VALUE: {
-              block: {
-                type: 'variables_get',
-                fields: { VAR: 'text' },
-              },
-            },
-          },
+          values: {
+            VALUE: { block: { type: 'variables_get', fields: { VAR: 'text' } } }
+          }
         },
         { kind: 'block', type: 'text_getSubstring' },
         { kind: 'block', type: 'text_changeCase' },
         { kind: 'block', type: 'text_trim' },
         { kind: 'block', type: 'text_print' },
-        { kind: 'block', type: 'text_prompt_ext' },
-      ],
+        { kind: 'block', type: 'text_prompt_ext' }
+      ]
     },
+    // Lists
     {
       kind: 'category',
       name: 'Lists',
       colour: '%{BKY_LISTS_HUE}',
       contents: [
         { kind: 'block', type: 'lists_create_with' },
-        {
-          kind: 'block',
-          type: 'lists_create_with',
-          extraState: { itemCount: 0 },
-        },
-        {
-          kind: 'block',
-          type: 'lists_repeat',
-          inputs: {
-            NUM: { shadow: { type: 'math_number', fields: { NUM: 5 } } },
-          },
-        },
+        { kind: 'block', type: 'lists_repeat', values: { NUM: { shadow: { type: 'math_number', fields: { NUM: 5 } } } } },
         { kind: 'block', type: 'lists_length' },
         { kind: 'block', type: 'lists_isEmpty' },
         { kind: 'block', type: 'lists_indexOf' },
@@ -174,9 +153,10 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'lists_getSublist' },
         { kind: 'block', type: 'lists_sort' },
         { kind: 'block', type: 'lists_split' },
-        { kind: 'block', type: 'lists_reverse' },
-      ],
+        { kind: 'block', type: 'lists_reverse' }
+      ]
     },
+    // Colour
     {
       kind: 'category',
       name: 'Colour',
@@ -185,36 +165,27 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'colour_picker' },
         { kind: 'block', type: 'colour_random' },
         { kind: 'block', type: 'colour_rgb' },
-        { kind: 'block', type: 'colour_blend' },
-      ],
+        { kind: 'block', type: 'colour_blend' }
+      ]
     },
     { kind: 'sep' },
+    // Variables
     {
       kind: 'category',
       name: 'Variables',
       custom: 'VARIABLE',
-      colour: '%{BKY_VARIABLES_HUE}',
+      colour: '%{BKY_VARIABLES_HUE}'
     },
+    // Functions
     {
       kind: 'category',
       name: 'Functions',
       custom: 'PROCEDURE',
-      colour: '%{BKY_PROCEDURES_HUE}',
-    },
-  ],
-};
-
-
-
-// Apply the no_disable_menu logic to all blocks
-Blockly.BlockSvg.prototype.customContextMenu = function(menuOptions) {
-  // Filter out "Disable block" entries
-  for (let i = menuOptions.length - 1; i >= 0; i--) {
-    if (menuOptions[i].text && menuOptions[i].text.includes('Disable')) {
-      menuOptions.splice(i, 1);
+      colour: '%{BKY_PROCEDURES_HUE}'
     }
-  }
+  ]
 };
+
 
 Blockly.common.defineBlocks(bedrockScriptDefinitions);
 var workspace = Blockly.inject('blocklyDiv', {

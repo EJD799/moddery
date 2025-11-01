@@ -1171,7 +1171,8 @@ var workspace = Blockly.inject('blocklyDiv', {
     },
     drag: true,
     wheel: true
-  }
+  },
+  renderer: 'zelos'
 });
 const startBlock = workspace.newBlock('on_start');
 startBlock.initSvg();

@@ -950,7 +950,7 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     deletable: false,
     movable: false,
     editable: false,
-    extensions: ["no_disable_menu"]
+    //extensions: ["no_disable_menu"]
   }
 ]);
 

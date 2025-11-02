@@ -99,13 +99,13 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'math_trig' },
         { kind: 'block', type: 'math_constant' },
         { kind: 'block', type: 'math_number_property' },
-        {
+        /*{
           kind: 'block',
           type: 'math_change',
           values: {
             DELTA: { shadow: { type: 'math_number', fields: { NUM: 1 } } }
           }
-        },
+        },*/
         { kind: 'block', type: 'math_round' },
         { kind: 'block', type: 'math_on_list' },
         { kind: 'block', type: 'math_modulo' },
@@ -208,6 +208,13 @@ const bedrockScriptToolbox = {
       name: 'Functions',
       custom: 'PROCEDURE',
       colour: '%{BKY_PROCEDURES_HUE}'
+    },
+    {
+      kind: "sep"
+    },
+    {
+      kind: 'category',
+      name: 'World',
     }
   ]
 };

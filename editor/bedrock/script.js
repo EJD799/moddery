@@ -30,7 +30,9 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
           ['the end', 'the_end']
         ]
       }
-    ]
+    ],
+    previousStatement: null,
+    nextStatement: null,
   },
   {
     type: "run_command_player",
@@ -47,7 +49,9 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         name: 'PLAYER',
         spellcheck: false
       }
-    ]
+    ],
+    previousStatement: null,
+    nextStatement: null,
   }
 ]);
 

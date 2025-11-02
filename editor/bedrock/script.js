@@ -17,7 +17,7 @@ const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
     type: 'colour_picker',
     message0: 'pick colour %1',
-    args0: [{ type: 'field_colour', name: 'COLOUR', colour: '#ff0000' }],
+    args0: [{ type: 'field_input', name: 'COLOUR', text: '#ff0000', spellcheck: false }],
     output: 'Colour',
     colour: 20,
   },
@@ -31,20 +31,9 @@ const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
     type: 'colour_rgb',
     message0: 'red %1 green %2 blue %3',
     args0: [
-      { type: 'input_value', name: 'RED', check: 'Number' },
-      { type: 'input_value', name: 'GREEN', check: 'Number' },
-      { type: 'input_value', name: 'BLUE', check: 'Number' }
-    ],
-    output: 'Colour',
-    colour: 20
-  },
-  {
-    type: 'colour_blend',
-    message0: 'blend %1 and %2 ratio %3',
-    args0: [
-      { type: 'input_value', name: 'COLOUR1', check: 'Colour' },
-      { type: 'input_value', name: 'COLOUR2', check: 'Colour' },
-      { type: 'input_value', name: 'RATIO', check: 'Number' }
+      { type: 'input_number', name: 'RED', value: 255, min: 0, max: 255 },
+      { type: 'input_number', name: 'GREEN', value: 0, min: 0, max: 255 },
+      { type: 'input_number', name: 'BLUE', value: 0, min: 0, max: 255 }
     ],
     output: 'Colour',
     colour: 20

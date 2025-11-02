@@ -192,8 +192,7 @@ const bedrockScriptToolbox = {
       contents: [
         { kind: 'block', type: 'colour_picker' },
         { kind: 'block', type: 'colour_random' },
-        { kind: 'block', type: 'colour_rgb' },
-        { kind: 'block', type: 'colour_blend' }
+        { kind: 'block', type: 'colour_rgb' }
       ]
     },
     // Variables

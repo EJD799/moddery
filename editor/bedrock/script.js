@@ -17,9 +17,9 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     colour: 160,
     args0: [
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'COMMAND',
-        spellcheck: false
+        check: 'String'
       },
       {
         type: 'field_dropdown',
@@ -40,14 +40,14 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     colour: 160,
     args0: [
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'COMMAND',
-        spellcheck: false
+        check: 'String'
       },
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'PLAYER',
-        spellcheck: false
+        check: 'String'
       }
     ],
     previousStatement: null,

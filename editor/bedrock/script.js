@@ -10,6 +10,44 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     movable: false,
     editable: false,
     //extensions: ["no_disable_menu"]
+  },
+  {
+    type: "run_command_dimension",
+    message0: "run command %1 in dimension %2",
+    colour: 160,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'COMMAND',
+        spellcheck: false
+      },
+      {
+        type: 'field_dropdown',
+        name: 'DIMENSION',
+        options: [
+          ['overworld', 'overworld'],
+          ['nether', 'nether'],
+          ['the end', 'the_end']
+        ]
+      }
+    ]
+  },
+  {
+    type: "run_command_player",
+    message0: "run command %1 as player %2",
+    colour: 160,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'COMMAND',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      }
+    ]
   }
 ]);
 
@@ -215,6 +253,11 @@ const bedrockScriptToolbox = {
     {
       kind: 'category',
       name: 'World',
+      colour: 160,
+      contents: [
+        { kind: 'block', type: 'run_command_dimension'},
+        { kind: 'block', type: 'run_command_player'}
+      ]
     }
   ]
 };

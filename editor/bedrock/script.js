@@ -17,7 +17,7 @@ const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
     type: 'colour_picker',
     message0: 'pick colour %1',
-    args0: [{ type: 'field_input', name: 'COLOUR', text: '#ff0000', spellcheck: false }],
+    args0: [{ type: 'input_value', name: 'COLOUR', check: 'String' }],
     output: 'Colour',
     colour: 20,
   },
@@ -31,9 +31,9 @@ const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
     type: 'colour_rgb',
     message0: 'red %1 green %2 blue %3',
     args0: [
-      { type: 'input_number', name: 'RED', value: 255, min: 0, max: 255 },
-      { type: 'input_number', name: 'GREEN', value: 0, min: 0, max: 255 },
-      { type: 'input_number', name: 'BLUE', value: 0, min: 0, max: 255 }
+      { type: 'input_value', name: 'RED', check: 'Number' },
+      { type: 'input_value', name: 'GREEN', check: 'Number' },
+      { type: 'input_value', name: 'BLUE', check: 'Number' }
     ],
     output: 'Colour',
     colour: 20
@@ -196,7 +196,6 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'colour_blend' }
       ]
     },
-    { kind: 'sep' },
     // Variables
     {
       kind: 'category',

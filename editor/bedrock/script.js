@@ -291,18 +291,17 @@ var workspace = Blockly.inject('blocklyDiv', {
     scaleSpeed: 1.1
   }
 });
-// Save the original method
-const originalDoTypeChecks = Blockly.Connection.prototype.doTypeChecks_;
-
-// Override it
-Blockly.Connection.prototype.doTypeChecks_ = function(otherConnection) {
-  // Only apply to value input connections
-  if (this.type === Blockly.INPUT_VALUE && otherConnection.type === Blockly.OUTPUT_VALUE) {
-    return Blockly.Connection.CAN_CONNECT; // Allow any reporter into any input
+// Monkey-patch the value connection check globally
+const originalCanConnectWithReason = Blockly.Connection.prototype.canConnectWithReason;
+Blockly.Connection.prototype.canConnectWithReason = function(otherConnection) {
+  // If either connection is a value input, ignore output types
+  if (this.type === Blockly.INPUT_VALUE || otherConnection.type === Blockly.INPUT_VALUE) {
+    return Blockly.Connection.CAN_CONNECT;
   }
-  // Otherwise, fall back to original checks
-  return originalDoTypeChecks.call(this, otherConnection);
+  // Otherwise, use the original logic
+  return originalCanConnectWithReason.call(this, otherConnection);
 };
+
 const startBlock = workspace.newBlock('on_start');
 startBlock.initSvg();
 startBlock.render();

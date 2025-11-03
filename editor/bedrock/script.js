@@ -412,7 +412,7 @@ workspace.addChangeListener(function(event) {
         const newReporter = workspace.newBlock('show_form_var');
         newReporter.initSvg();
         newReporter.render();
-        block.getInput('REPORTERS').connection.connect(newReporter.outputConnection);
+        block.getInput('CALLBACK').connection.connect(newReporter.outputConnection);
       }
     });
   }

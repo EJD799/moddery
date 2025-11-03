@@ -291,14 +291,23 @@ var workspace = Blockly.inject('blocklyDiv', {
     scaleSpeed: 1.1
   }
 });
+// Save the original method
+const originalDoTypeChecks = Blockly.Connection.prototype.doTypeChecks_;
+
+// Override it
+Blockly.Connection.prototype.doTypeChecks_ = function(otherConnection) {
+  // Only apply to value input connections
+  if (this.type === Blockly.INPUT_VALUE && otherConnection.type === Blockly.OUTPUT_VALUE) {
+    return Blockly.Connection.CAN_CONNECT; // Allow any reporter into any input
+  }
+  // Otherwise, fall back to original checks
+  return originalDoTypeChecks.call(this, otherConnection);
+};
 const startBlock = workspace.newBlock('on_start');
 startBlock.initSvg();
 startBlock.render();
 startBlock.setDeletable(false);
 startBlock.moveBy(50, 50);
-Blockly.Connection.prototype.checkType_ = function() {
-  return true; // always allow
-};
 
 function loadProject(data) {
   Blockly.serialization.workspaces.load(data, workspace);

@@ -33,6 +33,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: "run_command_player",
@@ -52,6 +53,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   }
 ]);
 
@@ -294,11 +296,9 @@ startBlock.initSvg();
 startBlock.render();
 startBlock.setDeletable(false);
 startBlock.moveBy(50, 50);
-
-
-
-
-
+Blockly.Connection.prototype.checkType_ = function() {
+  return true; // always allow
+};
 
 function loadProject(data) {
   Blockly.serialization.workspaces.load(data, workspace);

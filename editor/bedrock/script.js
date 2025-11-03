@@ -400,23 +400,24 @@ var workspace = Blockly.inject('blocklyDiv', {
 })();
 
 workspace.addChangeListener(function(event) {
-  if (event.type === Blockly.Events.BLOCK_CREATE) {
-    const block = workspace.getBlockById(event.blockId);
-    if (!block) return;
-    
-    if (block.type === 'show_form') {
-      // Spawn 2 local reporters as initial defaults
-      for (let i = 0; i < 2; i++) {
-        const reporter = workspace.newBlock('show_form_var');
-        reporter.initSvg();
-        reporter.render();
-        // Connect as a child inside CALLBACK input
-        const connection = block.getInput('CALLBACK').connection;
-        connection.connect(reporter.outputConnection);
+  if (event.type === Blockly.Events.BLOCK_MOVE || event.type === Blockly.Events.BLOCK_DELETE) {
+    const allShowFormBlocks = workspace.getAllBlocks().filter(b => b.type === 'show_form');
+
+    allShowFormBlocks.forEach(block => {
+      const reporters = block.getChildren().filter(child => child.type === 'show_form_var');
+      const hasAvailable = reporters.some(r => !r.getParent());
+
+      // If there’s no available free reporter inside, spawn one
+      if (!hasAvailable) {
+        const newReporter = workspace.newBlock('show_form_var');
+        newReporter.initSvg();
+        newReporter.render();
+        block.getInput('REPORTERS').connection.connect(newReporter.outputConnection);
       }
-    }
+    });
   }
 });
+
 
 const startBlock = workspace.newBlock('on_start');
 startBlock.initSvg();

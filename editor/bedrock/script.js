@@ -54,7 +54,52 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     previousStatement: null,
     nextStatement: null,
     inputsInline: true
-  }
+  },
+  {
+    type: "new_form",
+    message0: "new %1",
+    colour: 160,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'TYPE',
+        options: [
+          ['action form', 'ActionFormData'],
+          ['message form', 'MessageFormData'],
+          ['modal form', 'ModalFormData']
+        ]
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "show_form",
+    message0: "show form %1 callback %2",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'FORM',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'CALLBACK',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "show_form_var",
+    message0: "form response",
+    colour: 160,
+    output: null,
+    inputsInline: true
+  },
 ]);
 
 const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -264,6 +309,24 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } }, PLAYER: { shadow: { type: 'text', fields: { TEXT: "" } } } } }
       ]
+    },
+    {
+      kind: 'category',
+      name: 'Forms',
+      colour: 160,
+      contents: [
+        { kind: 'block', type: 'new_form'},
+        { kind: 'block', type: 'show_form'},
+        /*{ kind: 'block', type: 'form_title'},
+        { kind: 'block', type: 'form_body'},
+        { kind: 'block', type: 'form_cancel'},
+        { kind: 'block', type: 'form_confirm'},
+        { kind: 'block', type: 'form_button'},
+        { kind: 'block', type: 'form_textfield'},
+        { kind: 'block', type: 'form_dropdown'},
+        { kind: 'block', type: 'form_slider'},
+        { kind: 'block', type: 'form_toggle'},*/
+      ]
     }
   ]
 };
@@ -336,6 +399,24 @@ var workspace = Blockly.inject('blocklyDiv', {
   applyInputOverrides(Blockly.getMainWorkspace());
 })();
 
+workspace.addChangeListener(function(event) {
+  if (event.type === Blockly.Events.BLOCK_CREATE) {
+    const block = workspace.getBlockById(event.blockId);
+    if (!block) return;
+    
+    if (block.type === 'show_form') {
+      // Spawn 2 local reporters as initial defaults
+      for (let i = 0; i < 2; i++) {
+        const reporter = workspace.newBlock('show_form_var');
+        reporter.initSvg();
+        reporter.render();
+        // Connect as a child inside CALLBACK input
+        const connection = block.getInput('CALLBACK').connection;
+        connection.connect(reporter.outputConnection);
+      }
+    }
+  }
+});
 
 const startBlock = workspace.newBlock('on_start');
 startBlock.initSvg();

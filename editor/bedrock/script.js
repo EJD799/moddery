@@ -291,16 +291,51 @@ var workspace = Blockly.inject('blocklyDiv', {
     scaleSpeed: 1.1
   }
 });
-// Monkey-patch the value connection check globally
-const originalCanConnectWithReason = Blockly.Connection.prototype.canConnectWithReason;
-Blockly.Connection.prototype.canConnectWithReason = function(otherConnection) {
-  // If either connection is a value input, ignore output types
-  if (this.type === Blockly.INPUT_VALUE || otherConnection.type === Blockly.INPUT_VALUE) {
-    return Blockly.Connection.CAN_CONNECT;
+
+// ------------------------------
+// Globally allow all reporter/value blocks to connect to any value input
+// ------------------------------
+(function() {
+  // Step 1: Remove output type checks from all reporter blocks
+  for (const type in Blockly.Blocks) {
+    const def = Blockly.Blocks[type];
+    if (def && def.output) {
+      const oldInit = def.init;
+      def.init = function() {
+        if (oldInit) oldInit.call(this);
+        if (this.outputConnection) this.outputConnection.setCheck(null);
+      };
+    }
   }
-  // Otherwise, use the original logic
-  return originalCanConnectWithReason.call(this, otherConnection);
-};
+
+  // Step 2: Remove input type checks only for value inputs
+  Blockly.Extensions.register('remove_value_input_checks', function() {
+    this.inputList.forEach(input => {
+      if (input.connection && input.connection.type === Blockly.INPUT_VALUE) {
+        input.connection.setCheck(null);
+      }
+    });
+  });
+
+  // Step 3: Apply the extension to all blocks in the workspace
+  function applyInputOverrides(workspace) {
+    workspace.getAllBlocks().forEach(block => {
+      if (!block._valueInputChecksRemoved) {
+        Blockly.Extensions.apply('remove_value_input_checks', block, false);
+        block._valueInputChecksRemoved = true;
+      }
+    });
+  }
+
+  // Listen for workspace changes to catch newly created blocks
+  Blockly.getMainWorkspace().addChangeListener(() => {
+    applyInputOverrides(Blockly.getMainWorkspace());
+  });
+
+  // Initial application for existing blocks
+  applyInputOverrides(Blockly.getMainWorkspace());
+})();
+
 
 const startBlock = workspace.newBlock('on_start');
 startBlock.initSvg();

@@ -75,7 +75,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "show_form",
-    message0: "show form %1 to player %2 callback %3",
+    message0: "show form %1 to player %2 callback %3 %4",
     colour: 200,
     args0: [
       {
@@ -92,6 +92,10 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         type: 'input_value',
         name: 'CALLBACK',
         check: null
+      },
+      {
+        type: "input_statement",
+        name: "DO"
       }
     ],
     previousStatement: null,

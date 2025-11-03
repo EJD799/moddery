@@ -14,7 +14,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "run_command_dimension",
     message0: "run command %1 in dimension %2",
-    colour: 160,
+    colour: 180,
     args0: [
       {
         type: 'input_value',
@@ -38,7 +38,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "run_command_player",
     message0: "run command %1 as player %2",
-    colour: 160,
+    colour: 180,
     args0: [
       {
         type: 'input_value',
@@ -58,7 +58,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "new_form",
     message0: "new %1",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'field_dropdown',
@@ -76,7 +76,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "show_form",
     message0: "show form %1 to player %2 callback %3",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -101,14 +101,14 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "show_form_var",
     message0: "form response",
-    colour: 160,
+    colour: 200,
     output: null,
     inputsInline: true
   },
   {
     type: "form_title",
     message0: "set title of form %1 to %2",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -128,7 +128,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "form_body",
     message0: "set body text of form %1 to %2",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -148,7 +148,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "form_cancel",
     message0: "set cancel button text of form %1 to %2",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -168,7 +168,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "form_confirm",
     message0: "set confirm button text of form %1 to %2",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -188,7 +188,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "form_submit",
     message0: "set submit button text of form %1 to %2",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -208,7 +208,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "form_button",
     message0: "add button with text %1 image %2 to form %3",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -233,7 +233,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "form_textfield",
     message0: "add textfield with label %1 placeholder %2 default value %3 to form %4",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -263,7 +263,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "form_dropdown",
     message0: "add dropdown with label %1 options from list %2 default value %3 to form %4",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -293,7 +293,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "form_slider",
     message0: "add slider with label %1 minimum value %2 maximum value %3 step value %4 default value %5 to form %6",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -333,7 +333,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "form_toggle",
     message0: "add toggle with label %1 default value %2 to form %3",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -358,7 +358,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "form_response_action",
     message0: "button selection of form response %1",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -372,7 +372,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "form_response_message",
     message0: "confirmation status of form response %1",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -386,7 +386,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "form_response_modal",
     message0: "value of field %1 in form response %2",
-    colour: 160,
+    colour: 200,
     args0: [
       {
         type: 'input_value',
@@ -606,7 +606,7 @@ const bedrockScriptToolbox = {
     {
       kind: 'category',
       name: 'World',
-      colour: 160,
+      colour: 180,
       contents: [
         { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } }
@@ -615,7 +615,7 @@ const bedrockScriptToolbox = {
     {
       kind: 'category',
       name: 'Forms',
-      colour: 160,
+      colour: 200,
       contents: [
         { kind: 'label', text: 'General'},
         { kind: 'block', type: 'new_form'},

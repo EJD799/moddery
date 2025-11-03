@@ -289,6 +289,12 @@ var workspace = Blockly.inject('blocklyDiv', {
     scaleSpeed: 1.1
   }
 });
+for (const key in Blockly.Blocks) {
+  const block = Blockly.Blocks[key];
+  if (block && block.json && block.json.hasOwnProperty("inputsInline") === false) {
+    block.json.inputsInline = true;
+  }
+}
 const startBlock = workspace.newBlock('on_start');
 startBlock.initSvg();
 startBlock.render();

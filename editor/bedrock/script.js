@@ -19,7 +19,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
       {
         type: 'input_value',
         name: 'COMMAND',
-        check: 'String'
+        check: null
       },
       {
         type: 'field_dropdown',
@@ -43,12 +43,12 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
       {
         type: 'input_value',
         name: 'COMMAND',
-        check: 'String'
+        check: null
       },
       {
         type: 'input_value',
         name: 'PLAYER',
-        check: 'String'
+        check: null
       }
     ],
     previousStatement: null,
@@ -75,12 +75,17 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "show_form",
-    message0: "show form %1 to player callback %2",
+    message0: "show form %1 to player %2 callback %3",
     colour: 160,
     args0: [
       {
         type: 'input_value',
         name: 'FORM',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'PLAYER',
         check: null
       },
       {
@@ -350,6 +355,53 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     nextStatement: null,
     inputsInline: true
   },
+  {
+    type: "form_response_action",
+    message0: "button selection of form response %1",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'RESPONSE',
+        check: null
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "form_response_message",
+    message0: "confirmation status of form response %1",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'RESPONSE',
+        check: null
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "form_response_modal",
+    message0: "value of field %1 in form response %2",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'FIELD',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'RESPONSE',
+        check: null
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
 ]);
 
 const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -557,7 +609,7 @@ const bedrockScriptToolbox = {
       colour: 160,
       contents: [
         { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } }, PLAYER: { shadow: { type: 'text', fields: { TEXT: "" } } } } }
+        { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } }
       ]
     },
     {
@@ -572,18 +624,21 @@ const bedrockScriptToolbox = {
         { kind: 'sep'},
         { kind: 'label', text: 'Action Forms'},
         { kind: 'block', type: 'form_button', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } }, IMAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
+        { kind: 'block', type: 'form_response_action'},
         { kind: 'sep'},
         { kind: 'label', text: 'Message Forms'},
         { kind: 'block', type: 'form_body', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'form_cancel', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'form_confirm', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'form_response_message'},
         { kind: 'sep'},
         { kind: 'label', text: 'Modal Forms'},
         { kind: 'block', type: 'form_submit', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'form_textfield', inputs: { LABEL: { shadow: { type: 'text', fields: { TEXT: "" } } }, PLACEHOLDER: { shadow: { type: 'text', fields: { TEXT: "" } } }, DEFAULT: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
         { kind: 'block', type: 'form_dropdown', inputs: { LABEL: { shadow: { type: 'text', fields: { TEXT: "" } } }, DEFAULT: { shadow: { type: 'math_number', fields: { NUM: "" } } } }},
         { kind: 'block', type: 'form_slider', inputs: { LABEL: { shadow: { type: 'text', fields: { TEXT: "" } } }, MIN: { shadow: { type: 'math_number', fields: { NUM: "" } } }, MAX: { shadow: { type: 'math_number', fields: { NUM: "" } } }, STEP: { shadow: { type: 'math_number', fields: { NUM: "" } } }, DEFAULT: { shadow: { type: 'math_number', fields: { NUM: "" } } } }},
-        { kind: 'block', type: 'form_toggle', inputs: { LABEL: { shadow: { type: 'text', fields: { TEXT: "" } } } }}
+        { kind: 'block', type: 'form_toggle', inputs: { LABEL: { shadow: { type: 'text', fields: { TEXT: "" } } }, DEFAULT: { shadow: { type: 'logic_boolean', fields: { BOOL: true } } } }},
+        { kind: 'block', type: 'form_response_modal', inputs: { FIELD: { shadow: { type: 'math_number', fields: { NUM: "" } } } }}
       ]
     }
   ]

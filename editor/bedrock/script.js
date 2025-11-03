@@ -100,6 +100,256 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
+  {
+    type: "form_title",
+    message0: "set title of form %1 to %2",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'FORM',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'TEXT',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "form_body",
+    message0: "set body text of form %1 to %2",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'FORM',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'TEXT',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "form_cancel",
+    message0: "set cancel button text of form %1 to %2",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'FORM',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'TEXT',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "form_confirm",
+    message0: "set confirm button text of form %1 to %2",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'FORM',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'TEXT',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "form_submit",
+    message0: "set submit button text of form %1 to %2",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'FORM',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'TEXT',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "form_button",
+    message0: "add button with text %1 image %2 to form %3",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'TEXT',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'IMAGE',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'FORM',
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "form_textfield",
+    message0: "add textfield with label %1 placeholder %2 default value %3 to form %4",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'LABEL',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'PLACEHOLDER',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'DEFAULT',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'FORM',
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "form_dropdown",
+    message0: "add dropdown with label %1 options from list %2 default value %3 to form %4",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'LABEL',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'OPTIONS',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'DEFAULT',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'FORM',
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "form_slider",
+    message0: "add slider with label %1 minimum value %2 maximum value %3 step value %4 default value %5 to form %6",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'LABEL',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'MIN',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'MAX',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'STEP',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'DEFAULT',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'FORM',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "form_toggle",
+    message0: "add toggle with label %1 default value %2 to form %3",
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'LABEL',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'DEFAULT',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'FORM',
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
 ]);
 
 const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -315,17 +565,25 @@ const bedrockScriptToolbox = {
       name: 'Forms',
       colour: 160,
       contents: [
+        { kind: 'label', text: 'General'},
         { kind: 'block', type: 'new_form'},
         { kind: 'block', type: 'show_form'},
-        /*{ kind: 'block', type: 'form_title'},
-        { kind: 'block', type: 'form_body'},
-        { kind: 'block', type: 'form_cancel'},
-        { kind: 'block', type: 'form_confirm'},
-        { kind: 'block', type: 'form_button'},
-        { kind: 'block', type: 'form_textfield'},
-        { kind: 'block', type: 'form_dropdown'},
-        { kind: 'block', type: 'form_slider'},
-        { kind: 'block', type: 'form_toggle'},*/
+        { kind: 'block', type: 'form_title', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
+        { kind: 'sep'},
+        { kind: 'label', text: 'Action Forms'},
+        { kind: 'block', type: 'form_button', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } }, IMAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
+        { kind: 'sep'},
+        { kind: 'label', text: 'Message Forms'},
+        { kind: 'block', type: 'form_body', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'form_cancel', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'form_confirm', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'sep'},
+        { kind: 'label', text: 'Modal Forms'},
+        { kind: 'block', type: 'form_submit', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'form_textfield', inputs: { LABEL: { shadow: { type: 'text', fields: { TEXT: "" } } }, PLACEHOLDER: { shadow: { type: 'text', fields: { TEXT: "" } } }, DEFAULT: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
+        { kind: 'block', type: 'form_dropdown', inputs: { LABEL: { shadow: { type: 'text', fields: { TEXT: "" } } }, DEFAULT: { shadow: { type: 'math_number', fields: { NUM: "" } } } }},
+        { kind: 'block', type: 'form_slider', inputs: { LABEL: { shadow: { type: 'text', fields: { TEXT: "" } } }, MIN: { shadow: { type: 'math_number', fields: { NUM: "" } } }, MAX: { shadow: { type: 'math_number', fields: { NUM: "" } } }, STEP: { shadow: { type: 'math_number', fields: { NUM: "" } } }, DEFAULT: { shadow: { type: 'math_number', fields: { NUM: "" } } } }},
+        { kind: 'block', type: 'form_toggle', inputs: { LABEL: { shadow: { type: 'text', fields: { TEXT: "" } } } }}
       ]
     }
   ]

@@ -214,7 +214,7 @@ const bedrockScriptToolbox = {
       colour: '%{BKY_LISTS_HUE}',
       contents: [
         { kind: 'block', type: 'lists_create_with' },
-        { kind: 'block', type: 'lists_repeat', values: { NUM: { shadow: { type: 'math_number', fields: { NUM: 5 } } } } },
+        { kind: 'block', type: 'lists_repeat', inputs: { NUM: { shadow: { type: 'math_number', fields: { NUM: 5 } } } } },
         { kind: 'block', type: 'lists_length' },
         { kind: 'block', type: 'lists_isEmpty' },
         { kind: 'block', type: 'lists_indexOf' },
@@ -259,8 +259,8 @@ const bedrockScriptToolbox = {
       name: 'World',
       colour: 160,
       contents: [
-        { kind: 'block', type: 'run_command_dimension'},
-        { kind: 'block', type: 'run_command_player'}
+        { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } }, PLAYER: { shadow: { type: 'text', fields: { TEXT: "" } } } } }
       ]
     }
   ]

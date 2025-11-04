@@ -143,17 +143,19 @@ function getTabContent(role, elementID) {
     return '<iframe src="editor/bedrock/function.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else if (role == "Script") {
     return '<iframe src="editor/bedrock/script.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
+  } else if (role == "Item") {
+    return '<iframe src="editor/bedrock/item.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else {
     return "Coming soon!";
   }
 }
 
 function shouldRemoveMargin(role) {
-  if (role == "Function") {
+  //if (role == "Function") {
     return true;
-  } else {
-    return false;
-  }
+  //} else {
+  //  return false;
+  //}
 }
 
 function editElement(elementID) {

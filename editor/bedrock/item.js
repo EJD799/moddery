@@ -1,0 +1,1 @@
+$("#categoryBox").selectMenu();

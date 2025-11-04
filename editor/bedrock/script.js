@@ -132,7 +132,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "show_form",
-    message0: "show form %1 to player %2 callback %3",
+    message0: "show form %1 to player %2 callback %3 %4",
     colour: 210,
     args0: [
       {

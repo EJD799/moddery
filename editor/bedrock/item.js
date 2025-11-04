@@ -106,7 +106,6 @@ var currentItemComponents = {};
 $("#categoryBox").selectmenu();
 $("#itemTextureBtn").button();
 $("#addComponentBtn").button();
-$("#addComponentType").selectmenu();
 $("#addComponentCancelBtn").button();
 $("#addComponentAddBtn").button();
 $("#selectTextureCancelBtn").button();
@@ -161,3 +160,4 @@ function selectTexture() {
     alert("Coming Soon!");
     $("#selectTextureDlg").dialog("close");
 }
+$("#addComponentType").selectmenu();

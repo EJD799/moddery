@@ -27,7 +27,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
           ['playerGameModeChange', 'playerGameModeChange'],
           ['playerInteractWithBlock', 'playerInteractWithBlock'],
           ['playerInteractWithEntity', 'playerInteractWithEntity'],
-          ['playerLeave', 'playerLeave']
+          ['playerLeave', 'playerLeave'],
+          ['weatherChange', 'weatherChange']
         ]
       },
       {
@@ -52,7 +53,28 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         type: 'field_dropdown',
         name: 'EVENT',
         options: [
-          ['placeholder', 'placeholder']
+          ['blockExplode', 'blockExplode'],
+          ['buttonPush', 'buttonPush'],
+          ['dataDrivenEntityTrigger', 'dataDrivenEntityTrigger'],
+          ['effectAdd', 'effectAdd'],
+          ['entityDie', 'entityDie'],
+          ['entityHealthChanged', 'entityHealthChanged'],
+          ['entityHitBlock', 'entityHitBlock'],
+          ['entityHitEntity', 'entityHitEntity'],
+          ['entityHurt', 'entityHurt'],
+          ['entityLoad', 'entityLoad'],
+          ['entityRemove', 'entityRemove'],
+          ['entitySpawn', 'entitySpawn'],
+          ['explosion', 'explosion'],
+          ['gameRuleChange', 'gameRuleChange'],
+          ['itemCompleteUse', 'itemCompleteUse'],
+          ['itemReleaseUse', 'itemReleaseUse'],
+          ['itemStartUse', 'itemStartUse'],
+          ['itemStartUseOn', 'itemStartUseOn'],
+          ['itemStopUse', 'itemStopUse'],
+          ['itemStopUseOn', 'itemStopUseOn'],
+          ['itemUse', 'itemUse'],
+          ['leverAction', 'leverAction']
         ]
       },
       {

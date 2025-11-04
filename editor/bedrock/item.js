@@ -141,12 +141,18 @@ function closeSelectTextureDlg() {
 }
 function createComponent() {
     let newComponentObj = {};
+    let newComponentType;
     let newComponentDefault;
     for (let i = 0; i < componentDefinitions[$("#addComponentType").val()].inputs.length; i++) {
-        if (componentDefinitions[$("#addComponentType").val()].inputs[i].type == "text") {
+        newComponentType = componentDefinitions[$("#addComponentType").val()].inputs[i].type
+        if (newComponentType == "number") {
+            newComponentDefault = 0;
+        } else if (newComponentType == "boolean") {
+            newComponentDefault = false;
+        } else {
             newComponentDefault = "";
         }
-        newComponentObj[componentDefinitions[$("#addComponentType").val()].inputs[i].name] = ;
+        newComponentObj[componentDefinitions[$("#addComponentType").val()].inputs[i].name] = newComponentDefault;
     }
     currentItemComponents[$("#addComponentType").val()] = newComponentObj;
     $("#addComponentDlg").dialog("close");

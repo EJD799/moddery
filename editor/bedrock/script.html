@@ -9,6 +9,69 @@
     margin: 0;
   }
 </style>
+<style>
+/* Remove gray background */
+.blocklyToolboxDiv {
+  background-color: #ffffff !important;
+  border-right: none !important;
+}
+
+/* Make categories horizontal like Scratch */
+.blocklyTreeRoot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #ffffff;
+  padding: 6px 0;
+}
+
+/* Each category as icon+text column */
+.blocklyTreeRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+  height: auto;
+  margin: 4px;
+  background: none !important;
+  padding: 0;
+}
+
+/* Hide colored rectangle */
+.blocklyTreeIcon {
+  display: none !important;
+}
+
+/* Add colored circle indicator */
+.blocklyTreeRow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--category-color, #999);
+  margin-bottom: 4px;
+}
+
+/* Use category color as CSS variable */
+.blocklyTreeRow[aria-label="Logic"]::before { --category-color: #4C97FF; }
+.blocklyTreeRow[aria-label="Loops"]::before { --category-color: #0FBD8C; }
+.blocklyTreeRow[aria-label="Math"]::before { --category-color: #59C059; }
+.blocklyTreeRow[aria-label="Text"]::before { --category-color: #FFAB19; }
+.blocklyTreeRow[aria-label="Colour"]::before { --category-color: #FF6680; }
+.blocklyTreeRow[aria-label="Variables"]::before { --category-color: #FF8C1A; }
+.blocklyTreeRow[aria-label="Functions"]::before { --category-color: #FF661A; }
+
+/* Label below circle */
+.blocklyTreeLabel {
+  font-size: 11px !important;
+  color: #555 !important;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
 
 <div id="blocklyDiv" style="height: 100%; width: 100%;"></div>
 <script src="script.js" defer></script>

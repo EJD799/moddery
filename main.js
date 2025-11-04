@@ -114,13 +114,14 @@ function addElement() {
   elementBox.innerHTML = `
   <h3>` + $("#addElementNameBox").val() + `</h3>
   <button onclick="editElement('` + $("#addElementNameBox").val() + `')" id="` + $("#addElementNameBox").val() + `_editBtn">Edit</button>
-  <button onclick="elementDropdown('` + $("#addElementNameBox").val() + `')">&#x22EF;</button>
+  <button onclick="elementDropdown('` + $("#addElementNameBox").val() + `')" id="` + $("#addElementNameBox").val() + `_optionBtn">&#x22EF;</button>
   `;
   parentDiv.appendChild(elementBox);
   if (elementCount % 4 === 0) {
     parentDiv.appendChild(document.createElement("br"));
   }
   $("#" + $("#addElementNameBox").val() + "_editBtn").button();
+  $("#" + $("#addElementNameBox").val() + "_optionBtn").button();
   closeAddElementDlg();
   $("#addElementNameBox").val("");
   $("#addElementIDBox").val("");

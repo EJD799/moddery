@@ -114,9 +114,10 @@ function addElement() {
   elementBox.innerHTML = `
   <h3>` + $("#addElementNameBox").val() + `</h3>
   <button onclick="editElement('` + $("#addElementNameBox").val() + `')" id="` + $("#addElementNameBox").val() + `_editBtn">Edit</button>
+  <button onclick="elementDropdown('` + $("#addElementNameBox").val() + `')">&#x22EF;</button>
   `;
   parentDiv.appendChild(elementBox);
-  if (elementCount % 3 === 0) {
+  if (elementCount % 4 === 0) {
     parentDiv.appendChild(document.createElement("br"));
   }
   $("#" + $("#addElementNameBox").val() + "_editBtn").button();
@@ -159,6 +160,10 @@ function editElement(elementID) {
   });
 }
 
+function elementDropdown(elementID) {
+  alert("Coming soon!")
+}
+
 function addTab(role, elementID) {
   var label = elementID,
     id = "tabs-" + tabCounter,
@@ -183,7 +188,7 @@ function addTab(role, elementID) {
         projZip.folder("elements").file(elementID + ".code.json").async("string").then(function (data) {
           frame.contentWindow.loadProject(JSON.parse(data));
         });
-      }, 500);
+      }, 200);
     };
   }
 }

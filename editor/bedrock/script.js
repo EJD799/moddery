@@ -117,6 +117,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "event_data",
     message0: "event data",
+    colour: 45,
     output: null,
     inputsInline: true
   },

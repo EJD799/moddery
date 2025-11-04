@@ -1,3 +1,108 @@
+const componentDefinitions = {
+    "Allow Off Hand": {
+        name: "Allow Off Hand",
+        id: "minecraft:allow_off_hand",
+        inputs: [
+            {
+                type: "boolean",
+                name: "main",
+                label: "Allow Off Hand"
+            }
+        ],
+        requires: false
+    },
+    "Block Placer": {
+        name: "Block Placer",
+        id: "minecraft:block_placer",
+        inputs: [
+            {
+                type: "text",
+                name: "block",
+                label: "Block ID"
+            },
+            {
+                type: "boolean",
+                name: "replace_block_item",
+                label: "Replace Block Item"
+            }
+        ],
+        requires: false
+    },
+    "Bundle Interaction": {
+        name: "Bundle Interaction",
+        id: "minecraft:bundle_interaction",
+        inputs: [
+            {
+                type: "number",
+                name: "num_viewable_slots",
+                label: "Number of Viewable Slots"
+            }
+        ],
+        requires: ["minecraft:storage_item"]
+    },
+    "Can Destroy in Creative": {
+        name: "Can Destroy in Creative",
+        id: "minecraft:can_destroy_in_creative",
+        inputs: [
+            {
+                type: "boolean",
+                name: "main",
+                label: "Can Break Blocks"
+            }
+        ],
+        requires: false
+    },
+    "Compostable": {
+        name: "Compostable",
+        id: "minecraft:compostable",
+        inputs: [
+            {
+                type: "number",
+                name: "composting_chance",
+                label: "Composting Chance (%)"
+            }
+        ],
+        requires: false
+    },
+    "Cooldown": {
+        name: "Cooldown",
+        id: "minecraft:cooldown",
+        inputs: [
+            {
+                type: "number",
+                name: "duration",
+                label: "Duration (seconds)"
+            }
+        ],
+        requires: false
+    },
+    "Damage": {
+        name: "Damage",
+        id: "minecraft:damage",
+        inputs: [
+            {
+                type: "number",
+                name: "main",
+                label: "Damage Points"
+            }
+        ],
+        requires: false
+    },
+    "Digger": {
+        name: "Digger",
+        id: "minecraft:digger",
+        inputs: [
+            {
+                type: "number",
+                name: "speed",
+                label: "Destroy Speed"
+            }
+        ],
+        requires: false
+    },
+};
+var currentItemComponents = {};
+
 $("#categoryBox").selectmenu();
 $("#itemTextureBtn").button();
 $("#addComponentBtn").button();
@@ -35,7 +140,15 @@ function closeSelectTextureDlg() {
   $("#selectTextureDlg").dialog("close");
 }
 function createComponent() {
-    alert("Coming Soon!");
+    let newComponentObj = {};
+    let newComponentDefault;
+    for (let i = 0; i < componentDefinitions[$("#addComponentType").val()].inputs.length; i++) {
+        if (componentDefinitions[$("#addComponentType").val()].inputs[i].type == "text") {
+            newComponentDefault = "";
+        }
+        newComponentObj[componentDefinitions[$("#addComponentType").val()].inputs[i].name] = ;
+    }
+    currentItemComponents[$("#addComponentType").val()] = newComponentObj;
     $("#addComponentDlg").dialog("close");
 }
 function selectTexture() {

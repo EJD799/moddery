@@ -112,9 +112,9 @@ function addElement() {
   var elementBox = document.createElement("div");
   elementBox.setAttribute("class", "elementbox");
   elementBox.innerHTML = `
-  <h3>` + $("#addElementNameBox").val() + `</h3>
-  <button onclick="editElement('` + $("#addElementNameBox").val() + `')" id="` + $("#addElementNameBox").val() + `_editBtn">Edit</button>
-  <button onclick="elementDropdown('` + $("#addElementNameBox").val() + `')" id="` + $("#addElementNameBox").val() + `_optionBtn">&#x22EF;</button>
+  <h3>${$("#addElementNameBox").val()}</h3>
+  <button onclick="editElement('${$("#addElementNameBox").val()}')" id="${$("#addElementNameBox").val()}_editBtn">Edit</button>
+  <button onclick="elementDropdown('${$("#addElementNameBox").val()}')" id="${$("#addElementNameBox").val()}_optionBtn">&#x22EF;</button>
   `;
   parentDiv.appendChild(elementBox);
   if (elementCount % 4 === 0) {

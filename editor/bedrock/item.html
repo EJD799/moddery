@@ -33,7 +33,7 @@
 </select>
 <br><br>
 <label for="itemTextureBtn">Item Texture</label>
-<button name="itemTextureBtn" id="itemTextureBtn" onclick="selectTexture()">Select Texture</button><br><br>
+<button name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg()">Select Texture</button><br><br>
 <h3>Components <button id="addComponentBtn" onclick="addComponent()">+ Add Component</button></h3>
 <div id="addComponentDlg" title="Add Component">
   <center>
@@ -43,7 +43,13 @@
     </select>
     <br><br>
     <button id="addComponentCancelBtn" onclick="closeAddComponentDlg()">Cancel</button>
-    <button id="addComponentAddBtn" onclick="createComponent()">Create</button>
+    <button id="addComponentAddBtn" onclick="createComponent()">Add</button>
+  </center>
+</div>
+<div id="selectTextureDlg" title="Select Texture">
+  <center>
+    <button id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
+    <button id="selectTextureSelectBtn" onclick="selectTexture()">Select</button>
   </center>
 </div>
 <script src="item.js"></script>

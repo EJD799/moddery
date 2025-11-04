@@ -52,7 +52,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         type: 'field_dropdown',
         name: 'EVENT',
         options: [
-          
+          ['placeholder', 'placeholder']
         ]
       },
       {

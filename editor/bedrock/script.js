@@ -714,33 +714,6 @@ const bedrockScriptToolbox = {
   ]
 };
 
-const ScratchStyleTheme = Blockly.Theme.defineTheme('scratchStyle', {
-  'base': Blockly.Themes.Classic,
-  'componentStyles': {
-    'workspaceBackgroundColour': '#ffffff',
-    'toolboxBackgroundColour': '#ffffff',
-    'flyoutBackgroundColour': '#ffffff',
-    'flyoutOpacity': 1,
-    'scrollbarColour': '#ccc',
-    'insertionMarkerColour': '#000000',
-    'insertionMarkerOpacity': 0.2,
-    'scrollbarOpacity': 0.4,
-  },
-  'categoryStyles': {
-    'logic_category': { 'colour': '#4C97FF' },
-    'loops_category': { 'colour': '#0FBD8C' },
-    'math_category': { 'colour': '#59C059' },
-    'text_category': { 'colour': '#FFAB19' },
-    'colour_category': { 'colour': '#FF6680' },
-    'variables_category': { 'colour': '#FF8C1A' },
-    'functions_category': { 'colour': '#FF661A' }
-  },
-  'fontStyle': {
-    'family': 'Nunito Sans, sans-serif',
-    'weight': '600',
-    'size': 10
-  }
-});
 
 Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
@@ -762,8 +735,7 @@ var workspace = Blockly.inject('blocklyDiv', {
     maxScale: 1.2,
     minScale: 0.5,
     scaleSpeed: 1.1
-  },
-  theme: ScratchStyleTheme
+  }
 });
 
 let isAdjustingReporters = false; // prevent recursive loops

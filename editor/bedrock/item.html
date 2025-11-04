@@ -16,19 +16,34 @@
 </style>
 
 <label for="elementIDBox">Element ID (Editor)</label>
-<input label="elementIDBox" id="elementIDBox" placeholder="Element ID">
+<input name="elementIDBox" id="elementIDBox" placeholder="Element ID">
 <br><br>
 <label for="itemIDBox">Item ID</label>
-<input label="itemIDBox" id="itemIDBox" placeholder="Item ID">
+<input name="itemIDBox" id="itemIDBox" placeholder="Item ID">
 <br><br>
 <label for="nameBox">Item Name</label>
-<input label="nameBox" id="nameBox" placeholder="Item Name">
+<input name="nameBox" id="nameBox" placeholder="Item Name">
 <br><br>
 <label for="categoryBox">Inventory Category</label>
-<select label="categoryBox" id="categoryBox">
+<select name="categoryBox" id="categoryBox">
     <option>Construction</option>
     <option>Equipment</option>
     <option selected>Items</option>
     <option>Nature</option>
 </select>
+<br><br>
+<label for="itemTextureBtn">Item Texture</label>
+<button name="itemTextureBtn" id="itemTextureBtn" onclick="selectTexture()">Select Texture</button><br><br>
+<h3>Components <button id="addComponentBtn" onclick="addComponent()">+ Add Component</button></h3>
+<div id="addComponentDlg" title="Add Component">
+  <center>
+    <label for="addComponentType">Component Type</label>
+    <select name="addComponentType" id="addComponentType">
+      <option></option>
+    </select>
+    <br><br>
+    <button id="addComponentCancelBtn" onclick="closeAddComponentDlg()">Cancel</button>
+    <button id="addComponentAddBtn" onclick="createComponent()">Create</button>
+  </center>
+</div>
 <script src="item.js"></script>

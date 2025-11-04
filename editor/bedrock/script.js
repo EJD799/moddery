@@ -115,6 +115,12 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     nextStatement: null
   },
   {
+    type: "event_data",
+    message0: "event data",
+    output: null,
+    inputsInline: true
+  },
+  {
     type: "run_command_dimension",
     message0: "run command %1 in dimension %2",
     colour: 180,
@@ -795,18 +801,30 @@ workspace.addChangeListener(function(event) {
 
   isAdjustingReporters = true;
   try {
-    const allShowFormBlocks = workspace.getAllBlocks(false)
-      .filter(b => b.type === 'show_form');
+    // Parent block types that should spawn reporters
+    const parentTypes = ['show_form', 'after_event', 'before_event'];
 
-    for (const formBlock of allShowFormBlocks) {
-      const input = formBlock.getInput('CALLBACK');
+    // Map each parent type to its corresponding reporter type
+    const reporterMap = {
+      'show_form': 'show_form_var',
+      'after_event': 'event_data',
+      'before_event': 'event_data'
+    };
+
+    // Find all parent blocks of interest
+    const allParentBlocks = workspace.getAllBlocks(false)
+      .filter(b => parentTypes.includes(b.type));
+
+    for (const parentBlock of allParentBlocks) {
+      const input = parentBlock.getInput('CALLBACK');
       if (!input) continue;
 
       const connected = input.connection.targetBlock();
 
       // If nothing is connected, spawn a new reporter block
       if (!connected) {
-        const newReporter = workspace.newBlock('show_form_var');
+        const reporterType = reporterMap[parentBlock.type];
+        const newReporter = workspace.newBlock(reporterType);
         newReporter.initSvg();
         newReporter.render();
         input.connection.connect(newReporter.outputConnection);

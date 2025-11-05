@@ -45,7 +45,7 @@ input {
     top: 0;
     left: 0;
     right: 0;
-    height: 100%;
+    height: calc(100% - 32px);
 }
 #loaderDlg .ui-dialog-titlebar-close {
     display: none !important;
@@ -88,7 +88,7 @@ input {
     border-radius: 10px;
     text-align: center;
     width: 26%;
-    height: 200px;
+    height: 220px;
     display: inline-block;
     margin: 10px;
     vertical-align: middle;

@@ -100,6 +100,10 @@ function createProject() {
   $("#newProjNameBox").val("");
   $("#newProjNamespaceBox").val("");
 }
+function saveProjectInfo() {
+  alert("Coming Soon!");
+  closeEditProjDlg();
+}
 function openAddElementDlg() {
   $("#addElementDlg").dialog("open");
 }

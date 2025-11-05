@@ -91,10 +91,10 @@ function closeAddElementDlg() {
   $("#addElementDlg").dialog("close");
 }
 function openAddAssetDlg() {
-  $("#addElementDlg").dialog("open");
+  $("#addAssetDlg").dialog("open");
 }
 function closeAddAssetDlg() {
-  $("#addElementDlg").dialog("close");
+  $("#addAssetDlg").dialog("close");
 }
 function openExportDlg() {
   $("#exportDlg").dialog("open");

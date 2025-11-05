@@ -158,7 +158,7 @@ function createComponent() {
         currentItemComponents[$("#addComponentType").val()] = newComponentObj;
         var parentDiv = document.getElementById("componentsBox");
         var elementBox = document.createElement("div");
-        elementBox.setAttribute("class", "elementbox");
+        elementBox.setAttribute("class", "componentbox");
         var elementBoxTitle = document.createElement("h3");
         elementBoxTitle.innerHTML = $("#addComponentType").val();
         elementBox.appendChild(elementBoxTitle);

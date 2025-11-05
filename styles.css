@@ -82,3 +82,13 @@ input {
     display: inline-block;
     margin: 10px;
 }
+.componentbox {
+    padding: 10px;
+    background: #333333;
+    border-radius: 10px;
+    text-align: center;
+    width: 20%;
+    height: 100px;
+    display: inline-block;
+    margin: 10px;
+}

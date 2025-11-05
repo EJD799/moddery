@@ -18,6 +18,15 @@ $("#newProjDlg").dialog("close");
 $("#newProjType").selectmenu();
 $("#newProjCancelBtn").button();
 $("#newProjCreateBtn").button();
+$("#editProjDlg").dialog({
+  position: { my: "center", at: "center", of: $("body") },
+  resizable: false,
+  height: 400,
+  width: 500
+});
+$("#editProjDlg").dialog("close");
+$("#editProjCancelBtn").button();
+$("#editProjSaveBtn").button();
 $("#addElementDlg").dialog({
   position: { my: "center", at: "center", of: $("body") },
   resizable: false,
@@ -66,6 +75,12 @@ function openNewProjDlg() {
 }
 function closeNewProjDlg() {
   $("#newProjDlg").dialog("close");
+}
+function openEditProjDlg() {
+  $("#editProjDlg").dialog("open");
+}
+function closeEditProjDlg() {
+  $("#editProjDlg").dialog("close");
 }
 function createProject() {
   closeNewProjDlg();

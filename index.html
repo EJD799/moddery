@@ -60,6 +60,7 @@
 
 <div id="tabs">
   <ul>
+    <li><button onclick="openEditProjDlg()" id="editProjBtn">&#x270E;</button></li>
     <li><button onclick="openAddElementDlg()" id="addElementBtn">+ E</button></li>
     <li><button onclick="openAddAssetDlg()" id="addAssetBtn">+ A</button></li>
     <li><a href="#tabs-1">Elements</a></li>
@@ -110,6 +111,19 @@
   </center>
 </div>
 
+<div id="editProjDlg" title="Edit Project">
+  <center>
+    <label for="editProjNameBox">Project Name</label>
+    <input type="text" name="editProjNameBox" id="editProjNameBox" placeholder="Project Name">
+    <br><br>
+    <label for="editProjNamespaceBox">Namespace ID</label>
+    <input type="text" name="editProjNamespaceBox" id="editProjNamespaceBox" placeholder="Namespace ID">
+    <br><br>
+    <button id="editProjCancelBtn" onclick="closeEditProjDlg()">Cancel</button>
+    <button id="editProjSaveBtn" onclick="saveProject()">Create</button>
+  </center>
+</div>
+
 <div id="addElementDlg" title="Add Element">
   <center>
     <label for="addElementNameBox">Element Name</label>
@@ -139,8 +153,10 @@
 
 <div id="addAssetDlg" title="Add Asset">
   <center>
+    <span>Upload an asset to add it to your project. Accepts PNG textures, WAV audio, and JSON geometry files.</span>
+    <br><br>
     <button onclick="document.getElementById('addAssetUploadInput').click()" id="addAssetUploadBtn">Upload...</button>
-    <input type="file" id="addAssetUploadInput" style="display:none">
+    <input type="file" id="addAssetUploadInput" style="display:none" accept=".png, .wav, .json">
     <br><br>
     <button id="addAssetCancelBtn" onclick="closeAddAssetDlg()">Cancel</button>
     <button id="addAssetAddBtn" onclick="addAsset()">Add</button>

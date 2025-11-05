@@ -45,7 +45,7 @@ input {
     top: 0;
     left: 0;
     right: 0;
-    height: calc(100% - 32px);
+    height: calc(100% - 52px);
 }
 #loaderDlg .ui-dialog-titlebar-close {
     display: none !important;
@@ -54,7 +54,7 @@ input {
     background-color: #008cff;
 }
 #welcome {
-    height: calc(100% - 32px);
+    height: calc(100% - 52px);
     background: #222222;
     color: white;
     font-family: Verdana, sans-serif;

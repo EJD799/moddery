@@ -178,7 +178,6 @@ function createComponent() {
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 newComponentDOM.setAttribute("type", "number");
                 elementBox.appendChild(newComponentDOM);
-                elementBox.appendChild(document.createElement("br"));
             } else if (newComponentType == "boolean") {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
@@ -189,7 +188,6 @@ function createComponent() {
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("type", "checkbox");
                 elementBox.appendChild(newComponentDOM);
-                elementBox.appendChild(document.createElement("br"));
             } else {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
@@ -200,8 +198,9 @@ function createComponent() {
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 elementBox.appendChild(newComponentDOM);
-                elementBox.appendChild(document.createElement("br"));
             }
+            elementBox.appendChild(document.createElement("br"));
+            elementBox.appendChild(document.createElement("br"));
         }
         parentDiv.appendChild(elementBox);
         $('input').addClass("ui-widget ui-widget-content ui-corner-all");

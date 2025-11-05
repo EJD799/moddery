@@ -165,16 +165,42 @@ function createComponent() {
         for (let i = 0; i < componentDefinitions[$("#addComponentType").val()].inputs.length; i++) {
             newComponentType = componentDefinitions[$("#addComponentType").val()].inputs[i].type;
             newComponentInputName = componentDefinitions[$("#addComponentType").val()].inputs[i].name;
+            newComponentInputLabel = componentDefinitions[$("#addComponentType").val()].inputs[i].label;
             newComponentTypeName = componentDefinitions[$("#addComponentType").val()].name;
             if (newComponentType == "number") {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("type", "number");
+                elementBox.appendChild(newComponentDOM);
+                elementBox.appendChild(document.createElement("br"));
+            } else if (newComponentType == "boolean") {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
-            } else if (newComponentType == "boolean") {
-                newComponentDefault = false;
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("type", "checkbox");
+                elementBox.appendChild(newComponentDOM);
+                elementBox.appendChild(document.createElement("br"));
             } else {
-                newComponentDefault = "";
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                elementBox.appendChild(newComponentDOM);
+                elementBox.appendChild(document.createElement("br"));
             }
         }
         parentDiv.appendChild(elementBox);

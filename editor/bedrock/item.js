@@ -204,9 +204,9 @@ function createComponent() {
             }
         }
         parentDiv.appendChild(elementBox);
-        if (Object.keys(currentItemComponents).length % 4 === 0) {
+        /*if (Object.keys(currentItemComponents).length % 3 === 0) {
             parentDiv.appendChild(document.createElement("br"));
-        }
+        }*/
     }
     $("#addComponentDlg").dialog("close");
 }

@@ -170,7 +170,7 @@ function createComponent() {
             if (newComponentType == "number") {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
-                newComponentDOM.innerHTML = newComponentInputLabel;
+                newComponentDOM.innerHTML = newComponentInputLabel + " ";
                 elementBox.appendChild(newComponentDOM);
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
@@ -182,7 +182,7 @@ function createComponent() {
             } else if (newComponentType == "boolean") {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
-                newComponentDOM.innerHTML = newComponentInputLabel;
+                newComponentDOM.innerHTML = newComponentInputLabel + " ";
                 elementBox.appendChild(newComponentDOM);
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
@@ -193,7 +193,7 @@ function createComponent() {
             } else {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
-                newComponentDOM.innerHTML = newComponentInputLabel;
+                newComponentDOM.innerHTML = newComponentInputLabel + " ";
                 elementBox.appendChild(newComponentDOM);
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
@@ -202,9 +202,9 @@ function createComponent() {
                 elementBox.appendChild(newComponentDOM);
                 elementBox.appendChild(document.createElement("br"));
             }
-            $('input').addClass("ui-widget ui-widget-content ui-corner-all");
         }
         parentDiv.appendChild(elementBox);
+        $('input').addClass("ui-widget ui-widget-content ui-corner-all");
         /*if (Object.keys(currentItemComponents).length % 3 === 0) {
             parentDiv.appendChild(document.createElement("br"));
         }*/

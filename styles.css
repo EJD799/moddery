@@ -54,7 +54,7 @@ input {
     background-color: #008cff;
 }
 #welcome {
-    height: 100%;
+    height: calc(100% - 32px);
     background: #222222;
     color: white;
     font-family: Verdana, sans-serif;

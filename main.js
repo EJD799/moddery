@@ -28,6 +28,15 @@ $("#addElementDlg").dialog("close");
 $("#addElementType").selectmenu();
 $("#addElementCancelBtn").button();
 $("#addElementAddBtn").button();
+$("#addAssetDlg").dialog({
+  position: { my: "center", at: "center", of: $("body") },
+  resizable: false,
+  height: 400,
+  width: 500
+});
+$("#addAssetDlg").dialog("close");
+$("#addAssetCancelBtn").button();
+$("#addAssetAddBtn").button();
 $("#exportDlg").dialog({
   position: { my: "center", at: "center", of: $("body") },
   resizable: false,
@@ -81,6 +90,12 @@ function openAddElementDlg() {
 function closeAddElementDlg() {
   $("#addElementDlg").dialog("close");
 }
+function openAddAssetDlg() {
+  $("#addElementDlg").dialog("open");
+}
+function closeAddAssetDlg() {
+  $("#addElementDlg").dialog("close");
+}
 function openExportDlg() {
   $("#exportDlg").dialog("open");
 }
@@ -126,6 +141,12 @@ function addElement() {
   $("#addElementNameBox").val("");
   $("#addElementIDBox").val("");
 }
+
+function addAsset() {
+  alert("Coming Soon!");
+  closeAddAssetDlg();
+}
+
 function saveProject() {
   projZip.generateAsync({type:"blob"})
   .then(function(content) {
@@ -133,6 +154,7 @@ function saveProject() {
   });
 }
 $("#addElementBtn").button();
+$("#addAssetBtn").button();
 $("#loaderProgress").progressbar({
   value: 50
 });

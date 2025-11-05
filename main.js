@@ -35,6 +35,7 @@ $("#addAssetDlg").dialog({
   width: 500
 });
 $("#addAssetDlg").dialog("close");
+$("#addAssetUploadBtn").button();
 $("#addAssetCancelBtn").button();
 $("#addAssetAddBtn").button();
 $("#exportDlg").dialog({

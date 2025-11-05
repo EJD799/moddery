@@ -100,6 +100,130 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Durability": {
+        name: "Durability",
+        id: "minecraft:durability",
+        inputs: [
+            {
+                type: "number",
+                name: "max_durability",
+                label: "Durability"
+            }
+        ],
+        requires: false
+    },
+    "Dyeable": {
+        name: "Dyeable",
+        id: "minecraft:dyeable",
+        inputs: [
+            {
+                type: "text",
+                name: "default_color",
+                label: "Default Color"
+            }
+        ],
+        requires: false
+    },
+    "Enchantable": {
+        name: "Enchantable",
+        id: "minecraft:enchantable",
+        inputs: [
+            {
+                type: "dropdown",
+                name: "slot",
+                label: "Slot",
+                options: [
+                    "armor_feet",
+                    "armor_torso",
+                    "armor_head",
+                    "armor_legs",
+                    "axe",
+                    "bow",
+                    "cosmetic_head",
+                    "crossbow",
+                    "elytra",
+                    "fishing_rod",
+                    "flintsteel",
+                    "hoe",
+                    "pickaxe",
+                    "shears",
+                    "shield",
+                    "shovel",
+                    "sword",
+                    "all"
+                ]
+            },
+            {
+                type: "number",
+                name: "value",
+                label: "Enchantability Value"
+            }
+        ],
+        requires: false
+    },
+    "Entity Placer": {
+        name: "Entity Placer",
+        id: "minecraft:entity_placer",
+        inputs: [
+            {
+                type: "text",
+                name: "entity",
+                label: "Entity"
+            }
+        ],
+        requires: false
+    },
+    "Fire Resistant": {
+        name: "Fire Resistant",
+        id: "minecraft:fire_resistant",
+        inputs: [
+            {
+                type: "boolean",
+                name: "main",
+                label: "Fire Resistant"
+            }
+        ],
+        requires: false
+    },
+    "Food": {
+        name: "Food",
+        id: "minecraft:food",
+        inputs: [
+            {
+                type: "boolean",
+                name: "can_always_eat",
+                label: "Can Always Eat"
+            },
+            {
+                type: "number",
+                name: "nutrition",
+                label: "Nutrition"
+            },
+            {
+                type: "number",
+                name: "saturation_modifier",
+                label: "Saturation"
+            },
+            {
+                type: "string",
+                name: "using_converts_to",
+                label: "Using Converts To"
+            }
+        ],
+        requires: false
+    },
+    "Fuel": {
+        name: "Fuel",
+        id: "minecraft:fuel",
+        inputs: [
+            {
+                type: "number",
+                name: "duration",
+                label: "Duration"
+            }
+        ],
+        requires: false
+    },
 };
 var currentItemComponents = {};
 

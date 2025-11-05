@@ -154,7 +154,7 @@ function createComponent() {
         }
         newComponentObj[componentDefinitions[$("#addComponentType").val()].inputs[i].name] = newComponentDefault;
     }
-    if (!currentItemComponents.keys().has($("#addComponentType").val())) {
+    if (!Object.keys(currentItemComponents).has($("#addComponentType").val())) {
         currentItemComponents[$("#addComponentType").val()] = newComponentObj;
         var parentDiv = document.getElementById("componentsBox");
         var elementBox = document.createElement("div");

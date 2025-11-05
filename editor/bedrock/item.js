@@ -161,7 +161,7 @@ function createComponent() {
     <h3>${$("#addComponentType").val()}</h3>
     `;
     parentDiv.appendChild(elementBox);
-    if (elementCount % 4 === 0) {
+    if (currentItemComponents.length % 4 === 0) {
         parentDiv.appendChild(document.createElement("br"));
     }
     $("#addComponentDlg").dialog("close");

@@ -178,7 +178,7 @@ function createComponent() {
             }
         }
         parentDiv.appendChild(elementBox);
-        if (currentItemComponents.keys().length % 4 === 0) {
+        if (Object.keys(currentItemComponents).length % 4 === 0) {
             parentDiv.appendChild(document.createElement("br"));
         }
     }

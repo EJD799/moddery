@@ -154,6 +154,16 @@ function createComponent() {
         newComponentObj[componentDefinitions[$("#addComponentType").val()].inputs[i].name] = newComponentDefault;
     }
     currentItemComponents[$("#addComponentType").val()] = newComponentObj;
+    var parentDiv = document.getElementById("componentsBox");
+    var elementBox = document.createElement("div");
+    elementBox.setAttribute("class", "elementbox");
+    elementBox.innerHTML = `
+    <h3>${$("#addComponentType").val()}</h3>
+    `;
+    parentDiv.appendChild(elementBox);
+    if (elementCount % 4 === 0) {
+        parentDiv.appendChild(document.createElement("br"));
+    }
     $("#addComponentDlg").dialog("close");
 }
 function selectTexture() {

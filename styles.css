@@ -91,4 +91,5 @@ input {
     height: 200px;
     display: inline-block;
     margin: 10px;
+    vertical-align: middle;
 }

@@ -202,6 +202,7 @@ function createComponent() {
                 elementBox.appendChild(newComponentDOM);
                 elementBox.appendChild(document.createElement("br"));
             }
+            $('input').addClass("ui-widget ui-widget-content ui-corner-all");
         }
         parentDiv.appendChild(elementBox);
         /*if (Object.keys(currentItemComponents).length % 3 === 0) {

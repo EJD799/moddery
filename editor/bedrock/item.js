@@ -142,6 +142,7 @@ function createComponent() {
     let newComponentObj = {};
     let newComponentType;
     let newComponentDefault;
+    let newComponentDOM;
     for (let i = 0; i < componentDefinitions[$("#addComponentType").val()].inputs.length; i++) {
         newComponentType = componentDefinitions[$("#addComponentType").val()].inputs[i].type
         if (newComponentType == "number") {
@@ -153,16 +154,33 @@ function createComponent() {
         }
         newComponentObj[componentDefinitions[$("#addComponentType").val()].inputs[i].name] = newComponentDefault;
     }
-    currentItemComponents[$("#addComponentType").val()] = newComponentObj;
-    var parentDiv = document.getElementById("componentsBox");
-    var elementBox = document.createElement("div");
-    elementBox.setAttribute("class", "elementbox");
-    elementBox.innerHTML = `
-    <h3>${$("#addComponentType").val()}</h3>
-    `;
-    parentDiv.appendChild(elementBox);
-    if (currentItemComponents.length % 4 === 0) {
-        parentDiv.appendChild(document.createElement("br"));
+    if (!currentItemComponents.keys().has($("#addComponentType").val())) {
+        currentItemComponents[$("#addComponentType").val()] = newComponentObj;
+        var parentDiv = document.getElementById("componentsBox");
+        var elementBox = document.createElement("div");
+        elementBox.setAttribute("class", "elementbox");
+        var elementBoxTitle = document.createElement("h3");
+        elementBoxTitle.innerHTML = $("#addComponentType").val();
+        elementBox.appendChild(elementBoxTitle);
+        for (let i = 0; i < componentDefinitions[$("#addComponentType").val()].inputs.length; i++) {
+            newComponentType = componentDefinitions[$("#addComponentType").val()].inputs[i].type;
+            newComponentInputName = componentDefinitions[$("#addComponentType").val()].inputs[i].name;
+            newComponentTypeName = componentDefinitions[$("#addComponentType").val()].name;
+            if (newComponentType == "number") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
+            } else if (newComponentType == "boolean") {
+                newComponentDefault = false;
+            } else {
+                newComponentDefault = "";
+            }
+        }
+        parentDiv.appendChild(elementBox);
+        if (currentItemComponents.keys().length % 4 === 0) {
+            parentDiv.appendChild(document.createElement("br"));
+        }
     }
     $("#addComponentDlg").dialog("close");
 }

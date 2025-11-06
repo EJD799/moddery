@@ -4,6 +4,7 @@ var tabCounter = 3;
 var tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>";
 var tabs = $("#tabs");
 var elementCount = 0;
+var assetCount = 0;
 var openElements = {};
 
 $("#toolbar").menu();
@@ -163,9 +164,28 @@ function addElement() {
 }
 
 function addAsset() {
-  file = addAssetUploadInput.files[0];
+  let file = addAssetUploadInput.files[0];
+  let fileType = file.name.split(".")[1];
+  let preview;
   if (file) {
     projZip.folder("assets").file(file.name, file);
+    assetCount++;
+    var parentDiv = document.getElementById("tabs-2");
+    var assetBox = document.createElement("div");
+    assetBox.setAttribute("class", "elementbox");
+    assetBox.innerHTML = `
+    <h3>${file.name}</h3>
+    <button onclick="assetDropdown('${file.name}')" id="${file.name}_assetOptionBtn">&#x22EF;</button>
+    `;
+    if (fileType == "png") {
+      preview = document.createElement("img");
+      preview.setAttribute("src", URL.createObjectURL(file));
+    }
+    assetBox.appendChild(preview);
+    parentDiv.appendChild(assetBox);
+    if (assetCount % 4 === 0) {
+      parentDiv.appendChild(document.createElement("br"));
+    }
   }
   closeAddAssetDlg();
 }

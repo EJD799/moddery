@@ -168,16 +168,14 @@ function addAsset() {
   let fileType = file.name.split(".")[1];
   let previewBox;
   let preview;
+  let editBtn;
   if (file) {
     projZip.folder("assets").file(file.name, file);
     assetCount++;
     var parentDiv = document.getElementById("tabs-2");
     var assetBox = document.createElement("div");
     assetBox.setAttribute("class", "elementbox");
-    assetBox.innerHTML = `
-    <h3>${file.name}</h3>
-    <button onclick="assetDropdown('${file.name}')" id="${file.name}_assetOptionBtn">&#x22EF;</button>
-    `;
+    assetBox.innerHTML = `<h3>${file.name}</h3>`;
     if (fileType == "png") {
       previewBox = document.createElement("div");
       previewBox.setAttribute("class", "previewBox");
@@ -185,8 +183,13 @@ function addAsset() {
       preview.setAttribute("src", URL.createObjectURL(file));
       previewBox.appendChild(preview);
     }
-    assetBox.appendChild(preview);
+    assetBox.appendChild(previewBox);
     assetBox.appendChild(document.createElement("br"));
+    editBtn = document.createElement("button");
+    editBtn.setAttribute("onclick", `assetDropdown('${file.name}')" id="${file.name}_assetOptionBtn`);
+    editBtn.setAttribute("id", `${file.name}_assetOptionBtn`);
+    editBtn.innerHTML = "&#x22EF;";
+    assetBox.appendChild(editBtn);
     parentDiv.appendChild(assetBox);
     $(`#${file.name}_assetOptionBtn`).button();
     if (assetCount % 4 === 0) {

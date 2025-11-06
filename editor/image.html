@@ -35,6 +35,70 @@
     // create a blank editor (width, height, options)
     const editorInstance = miniCanvasEditor.Editor.createBlank(placeholder, 1200, 800, {});
 
+    const canvas = editorInstance.canvas;
+
+    // --- Undo / Redo helpers ---
+    function undo() {
+    if (typeof editorInstance.undo === 'function') editorInstance.undo();
+    }
+    function redo() {
+    if (typeof editorInstance.redo === 'function') editorInstance.redo();
+    }
+
+    // --- Delete helper ---
+    function deleteSelection() {
+    const activeObjs = canvas.getActiveObjects?.() || [];
+    if (activeObjs.length === 0) return;
+
+    activeObjs.forEach(obj => {
+        // Optional: skip locked objects
+        if (obj.selectable !== false) canvas.remove(obj);
+    });
+    canvas.discardActiveObject();
+    canvas.requestRenderAll();
+    }
+
+    // --- Keyboard handling ---
+    window.addEventListener('keydown', function (e) {
+    const key = e.key.toLowerCase();
+    const activeObj = canvas.getActiveObject();
+
+    // 1️⃣ Skip when typing in textbox or input fields
+    const el = document.activeElement;
+    const tag = el && el.tagName;
+    const isEditable =
+        (activeObj && activeObj.type === 'textbox' && activeObj.isEditing) ||
+        el?.isContentEditable ||
+        tag === 'INPUT' ||
+        tag === 'TEXTAREA' ||
+        el?.getAttribute('role') === 'textbox';
+
+    if (isEditable) return;
+
+    // 2️⃣ Undo / Redo
+    if ((e.ctrlKey || e.metaKey) && !e.shiftKey && key === 'z') {
+        e.preventDefault();
+        undo();
+        return;
+    }
+    if (
+        (e.ctrlKey || e.metaKey) &&
+        (key === 'y' || (e.shiftKey && key === 'z'))
+    ) {
+        e.preventDefault();
+        redo();
+        return;
+    }
+
+    // 3️⃣ Delete / Backspace
+    if (key === 'delete' || key === 'backspace') {
+        e.preventDefault();
+        deleteSelection();
+        return;
+    }
+    });
+
+
     // The created object usually exposes the fabric canvas as `editorInstance.canvas`
     // (Mini bundles Fabric.js with the UMD build). Use fabric to load an image.
     // NOTE: fabric is provided by the bundle and is available as `window.fabric`.

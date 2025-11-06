@@ -166,7 +166,7 @@ function addElement() {
 function addAsset() {
   let file = addAssetUploadInput.files[0];
   let fileType = file.name.split(".")[1];
-  let fileNameEncoded = file.name.replace(".", "_");
+  let fileNameEncoded = file.name.replace(".", "_dot_");
   let previewBox;
   let preview;
   let editBtn;
@@ -244,6 +244,10 @@ function editElement(elementID) {
 }
 
 function elementDropdown(elementID) {
+  alert("Coming soon!")
+}
+
+function assetDropdown(assetID) {
   alert("Coming soon!")
 }
 

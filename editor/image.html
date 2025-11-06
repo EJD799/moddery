@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pixel Art Editor</title>
+<title>Pixel Art Editor with Transparency</title>
 <style>
   html, body { margin:0; padding:0; height:100%; font-family:Verdana,sans-serif; background:#222; color:#fff; }
-  #toolbar { display:flex; gap:4px; padding:4px; background:#333; align-items:center; }
+  #toolbar { display:flex; gap:4px; padding:4px; background:#333; align-items:center; flex-wrap:wrap; }
   #toolbar button { padding:4px 8px; background:#444; color:#fff; border:none; cursor:pointer; }
   #toolbar button.active { background:#666; }
   #toolbar input[type=color], #toolbar input[type=range] { margin-left:4px; }
   #canvasContainer { flex:1; position:relative; overflow:auto; background:#111; cursor:crosshair; }
-  canvas { display:block; background:#000; image-rendering:pixelated; }
+  canvas { display:block; background:transparent; image-rendering:pixelated; }
 </style>
 </head>
 <body>
@@ -24,7 +24,7 @@
   <button id="undoBtn">Undo</button>
   <button id="redoBtn">Redo</button>
 </div>
-<div id="canvasContainer">
+<div id="canvasContainer" style="flex:1; display:flex;">
   <canvas id="pixelCanvas"></canvas>
 </div>
 
@@ -57,7 +57,7 @@ function resizeCanvas() {
   drawGrid();
 }
 function drawGrid() {
-  ctx.fillStyle = '#000'; ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.strokeStyle = '#333';
   for(let x=0;x<=gridWidth;x++){
     ctx.beginPath(); ctx.moveTo(x*pixelSize,0); ctx.lineTo(x*pixelSize,canvas.height); ctx.stroke();
@@ -80,38 +80,38 @@ function drawPixel(x,y,color){
   ctx.fillRect(x*pixelSize, y*pixelSize, pixelSize, pixelSize);
 }
 
-function floodFill(x,y,color){
-  const img = ctx.getImageData(0,0,canvas.width,canvas.height);
-  const w = canvas.width/ pixelSize;
-  const h = canvas.height/ pixelSize;
-  const targetColor = getPixelColor(img,x,y);
-  if(targetColor === color) return;
-  const stack = [[x,y]];
-  while(stack.length){
-    const [cx,cy] = stack.pop();
-    if(cx<0||cy<0||cx>=w||cy>=h) continue;
-    if(getPixelColor(img,cx,cy)!==targetColor) continue;
-    setPixelColor(img,cx,cy,color);
-    stack.push([cx+1,cy],[cx-1,cy],[cx,cy+1],[cx,cy-1]);
-  }
-  ctx.putImageData(img,0,0);
-}
-function getPixelColor(img,x,y){
-  const idx = (y*pixelSize*canvas.width + x*pixelSize)*4;
-  return `rgba(${img.data[idx]},${img.data[idx+1]},${img.data[idx+2]},${img.data[idx+3]/255})`;
-}
-function setPixelColor(img,x,y,color){
-  const c = parseColor(color);
-  for(let px=0;px<pixelSize;px++){
-    for(let py=0;py<pixelSize;py++){
-      const idx = ((y*pixelSize+py)*canvas.width + (x*pixelSize+px))*4;
-      img.data[idx] = c.r; img.data[idx+1] = c.g; img.data[idx+2] = c.b; img.data[idx+3] = c.a;
+// Flood fill
+function floodFillPixelArt(x, y, color) {
+  const grid = [];
+  for (let gx = 0; gx < gridWidth; gx++) {
+    grid[gx] = [];
+    for (let gy = 0; gy < gridHeight; gy++) {
+      const px = gx * pixelSize;
+      const py = gy * pixelSize;
+      const data = ctx.getImageData(px, py, 1, 1).data;
+      grid[gx][gy] = `rgba(${data[0]},${data[1]},${data[2]},${data[3]/255})`;
     }
   }
+
+  const targetColor = grid[x][y];
+  if(targetColor === color) return;
+
+  const stack = [[x, y]];
+  while (stack.length) {
+    const [cx, cy] = stack.pop();
+    if(cx<0||cy<0||cx>=gridWidth||cy>=gridHeight) continue;
+    if(grid[cx][cy] !== targetColor) continue;
+    grid[cx][cy] = color;
+    drawPixel(cx, cy, color);
+    stack.push([cx+1,cy],[cx-1,cy],[cx,cy+1],[cx,cy-1]);
+  }
 }
-function parseColor(hex){
-  const c = hex.match(/\w\w/g).map(h=>parseInt(h,16));
-  return {r:c[0],g:c[1],b:c[2],a:255};
+
+// Rectangle drawing
+function drawRect(x1,y1,x2,y2,color){
+  const xmin = Math.min(x1,x2), xmax=Math.max(x1,x2);
+  const ymin = Math.min(y1,y2), ymax=Math.max(y1,y2);
+  for(let x=xmin;x<=xmax;x++) for(let y=ymin;y<=ymax;y++) drawPixel(x,y,color);
 }
 
 // Mouse events
@@ -121,17 +121,14 @@ canvas.addEventListener('mousedown', e => {
   isDrawing = true;
   saveState();
   if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor);
-  if(currentTool==='eraser') drawPixel(pos.x,pos.y,'#000000');
-  if(currentTool==='fill') floodFill(pos.x,pos.y,currentColor);
+  if(currentTool==='eraser') drawPixel(pos.x,pos.y,'rgba(0,0,0,0)');
+  if(currentTool==='fill') floodFillPixelArt(pos.x,pos.y,currentColor);
 });
 canvas.addEventListener('mousemove', e => {
   if(!isDrawing) return;
   const pos = getMousePos(e);
   if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor);
-  if(currentTool==='eraser') drawPixel(pos.x,pos.y,'#000000');
-  if(currentTool==='rect'){
-    drawRectPreview(startX,startY,pos.x,pos.y);
-  }
+  if(currentTool==='eraser') drawPixel(pos.x,pos.y,'rgba(0,0,0,0)');
 });
 canvas.addEventListener('mouseup', e => {
   if(currentTool==='rect') {
@@ -141,68 +138,67 @@ canvas.addEventListener('mouseup', e => {
   isDrawing = false;
 });
 
-// Rectangle drawing
-function drawRect(x1,y1,x2,y2,color){
-  const xmin = Math.min(x1,x2), xmax=Math.max(x1,x2);
-  const ymin = Math.min(y1,y2), ymax=Math.max(y1,y2);
-  for(let x=xmin;x<=xmax;x++) for(let y=ymin;y<=ymax;y++) drawPixel(x,y,color);
+// Toolbar buttons
+const toolButtons = {
+  pencil: document.getElementById('toolPencil'),
+  rect: document.getElementById('toolRect'),
+  fill: document.getElementById('toolFill'),
+  eraser: document.getElementById('toolEraser'),
+};
+function selectTool(toolName) {
+  currentTool = toolName;
+  Object.keys(toolButtons).forEach(t=>{
+    toolButtons[t].classList.toggle('active', t === toolName);
+  });
 }
-function drawRectPreview(x1,y1,x2,y2){
-  // optional: implement a live preview
-}
+toolButtons.pencil.onclick = ()=>selectTool('pencil');
+toolButtons.rect.onclick = ()=>selectTool('rect');
+toolButtons.fill.onclick = ()=>selectTool('fill');
+toolButtons.eraser.onclick = ()=>selectTool('eraser');
 
-// Toolbar events
-document.getElementById('toolPencil').onclick = ()=>currentTool='pencil';
-document.getElementById('toolRect').onclick = ()=>currentTool='rect';
-document.getElementById('toolFill').onclick = ()=>currentTool='fill';
-document.getElementById('toolEraser').onclick = ()=>currentTool='eraser';
 document.getElementById('colorPicker').onchange = e=>currentColor=e.target.value;
 document.getElementById('pixelSize').oninput = e=>{ pixelSize=parseInt(e.target.value); resizeCanvas(); drawGrid(); };
 document.getElementById('undoBtn').onclick = undo;
 document.getElementById('redoBtn').onclick = redo;
 
-// Offscreen canvas for exporting at the true pixel size
+// Save/load 16x16
 const exportWidth = 16;
 const exportHeight = 16;
 
-// Save the project as 16x16 PNG base64
 function saveProject() {
   const exportCanvas = document.createElement('canvas');
   exportCanvas.width = exportWidth;
   exportCanvas.height = exportHeight;
   const exportCtx = exportCanvas.getContext('2d');
+  exportCtx.clearRect(0,0,exportWidth,exportHeight);
 
   for(let y=0;y<exportHeight;y++){
     for(let x=0;x<exportWidth;x++){
-      // get color from editor canvas
       const sx = x * pixelSize;
       const sy = y * pixelSize;
-      const imgData = ctx.getImageData(sx,sy,1,1).data;
-      exportCtx.fillStyle = `rgba(${imgData[0]},${imgData[1]},${imgData[2]},${imgData[3]/255})`;
+      const data = ctx.getImageData(sx,sy,1,1).data;
+      exportCtx.fillStyle = `rgba(${data[0]},${data[1]},${data[2]},${data[3]/255})`;
       exportCtx.fillRect(x,y,1,1);
     }
   }
-
-  return exportCanvas.toDataURL();
+  return exportCanvas.toDataURL('image/png');
 }
 
-// Load a 16x16 image (base64) into the editor, scaling to current pixel size
 function loadProject(base64) {
   const img = new Image();
   img.onload = () => {
-    // scale image to editor canvas
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.imageSmoothingEnabled = false; // important for pixel art
-    ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, gridWidth*pixelSize, gridHeight*pixelSize);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(img,0,0,img.width,img.height,0,0,gridWidth*pixelSize,gridHeight*pixelSize);
     drawGrid();
   };
   img.src = base64;
 }
 
-
 // Initialize
 resizeCanvas();
 drawGrid();
+
 </script>
 </body>
 </html>

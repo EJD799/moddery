@@ -1,157 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <title>Mini Canvas Editor — Fixed Scrolling, Text, Cursor</title>
+  <meta charset="utf-8">
+  <title>Mini Canvas Editor — Fixed Fullscreen</title>
+
   <link href="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/css/editor.css" rel="stylesheet">
   <style>
     html, body {
       margin: 0;
-      padding: 0;
-      width: 100%;
       height: 100%;
       overflow: hidden;
       background: #222;
       font-family: Verdana, sans-serif;
-      cursor: default;
     }
-
-    #placeholder {
+    #editorRoot {
       width: 100%;
       height: 100%;
+      cursor: default;
     }
-
-    /* Force crosshair cursor only inside Fabric canvas */
-    canvas {
+    /* Cursor fix: crosshair inside canvas only */
+    .mce-workspace canvas {
       cursor: crosshair !important;
     }
   </style>
 </head>
 <body>
-  <div id="placeholder"></div>
+  <div id="editorRoot"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
+
   <script>
-    const MCE = window.MiniCanvasEditor || window.miniCanvasEditor || window.miniCanvas;
-    const placeholder = document.getElementById('placeholder');
+    // Create editor in fullscreen container
+    const root = document.getElementById('editorRoot');
+    const editor = miniCanvasEditor.Editor.createBlank(root, window.innerWidth, window.innerHeight, {});
 
-    const editorInstance = MCE.Editor.createBlank(placeholder, window.innerWidth, window.innerHeight, {});
-    const canvas = editorInstance.workspace.canvas;
-    const fabric = window.fabric;
+    // Get Fabric canvas
+    const canvas = editor.canvas || editor.editor?.canvas || editor.workspace?.canvas;
 
-    // --- Proper background and defaults ---
-    canvas.setBackgroundColor('#333', canvas.renderAll.bind(canvas));
+    // --- Fix invisible text + font ---
+    if (window.fabric) {
+      fabric.Textbox.prototype.initialize = (function (original) {
+        return function (...args) {
+          original.apply(this, args);
+          this.set({
+            fontFamily: 'Verdana',
+            fill: '#ffffff',
+            fontSize: 20
+          });
+        };
+      })(fabric.Textbox.prototype.initialize);
+    }
 
-    // --- Fix invisible textboxes (force Verdana + fill color) ---
-    const originalInitTextbox = fabric.Textbox.prototype.initialize;
-    fabric.Textbox.prototype.initialize = function (...args) {
-      originalInitTextbox.apply(this, args);
-      this.fontFamily = 'Verdana';
-      this.fill = '#ffffff';
-    };
+    // --- Smooth zoom + scroll-pan ---
+    let isPanning = false;
+    let lastX = 0, lastY = 0;
 
-    // --- Fix Fabric’s hiddenText rendering issue ---
-    const originalRender = fabric.Textbox.prototype._render;
-    fabric.Textbox.prototype._render = function (ctx) {
-      ctx.save();
-      ctx.imageSmoothingEnabled = true;
-      ctx.globalAlpha = 1;
-      originalRender.call(this, ctx);
-      ctx.restore();
-    };
-
-    // --- Delete / Backspace handler ---
-    window.addEventListener('keydown', e => {
-      const active = canvas.getActiveObject?.();
-      const tag = document.activeElement?.tagName;
-      const isTextboxEditing = active && active.type === 'textbox' && active.isEditing;
-      if (isTextboxEditing || tag === 'INPUT' || tag === 'TEXTAREA') return;
-
-      if (e.key === 'Backspace' || e.key === 'Delete') {
-        e.preventDefault();
-        if (active && active.selectable !== false) {
-          canvas.remove(active);
-          canvas.requestRenderAll();
-        }
-      }
-    });
-
-    // --- Zoom + Pan behavior ---
-    let zoom = 1;
-    let isDragging = false;
-    let lastPosX, lastPosY;
-
-    // Smooth scrolling speed factors
-    const PAN_SPEED = 1.5;
-    const ZOOM_STEP = 0.0015;
-
+    // Scroll/pinch = zoom
     canvas.upperCanvasEl.addEventListener('wheel', e => {
       e.preventDefault();
-      const vpt = canvas.viewportTransform;
-
-      if (e.ctrlKey || Math.abs(e.deltaY) < 0.01) {
-        // Pinch zoom (macOS trackpad)
-        const delta = e.deltaY * ZOOM_STEP;
-        zoom *= 1 - delta;
-        zoom = Math.min(Math.max(zoom, 0.1), 10);
-        const point = new fabric.Point(e.offsetX, e.offsetY);
-        canvas.zoomToPoint(point, zoom);
-      } else {
-        // Scroll to pan
-        vpt[4] -= e.deltaX * PAN_SPEED;
-        vpt[5] -= e.deltaY * PAN_SPEED;
-        canvas.setViewportTransform(vpt);
-      }
-
+      const pointer = canvas.getPointer(e);
+      const zoomDelta = e.deltaY < 0 ? 1.2 : 1 / 1.2;
+      const oldZoom = canvas.getZoom();
+      let newZoom = oldZoom * zoomDelta;
+      newZoom = Math.max(0.1, Math.min(10, newZoom));
+      canvas.zoomToPoint({ x: pointer.x, y: pointer.y }, newZoom);
       canvas.requestRenderAll();
     }, { passive: false });
 
-    // --- Mouse drag panning (when no object is selected) ---
-    canvas.on('mouse:down', function (opt) {
-      if (opt.target) return;
-      isDragging = true;
-      const evt = opt.e;
-      lastPosX = evt.clientX;
-      lastPosY = evt.clientY;
-      canvas.setCursor('grabbing');
+    // Two-finger drag or middle mouse = pan
+    canvas.upperCanvasEl.addEventListener('mousedown', e => {
+      if (e.button === 1 || e.ctrlKey || e.metaKey) {
+        isPanning = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        e.preventDefault();
+      }
+    });
+    window.addEventListener('mouseup', () => isPanning = false);
+    canvas.upperCanvasEl.addEventListener('mousemove', e => {
+      if (!isPanning) return;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      const t = canvas.viewportTransform.slice();
+      t[4] += dx;
+      t[5] += dy;
+      canvas.setViewportTransform(t);
+      canvas.requestRenderAll();
     });
 
-    canvas.on('mouse:move', function (opt) {
-      if (!isDragging) return;
-      const e = opt.e;
-      const vpt = canvas.viewportTransform;
-      vpt[4] += e.clientX - lastPosX;
-      vpt[5] += e.clientY - lastPosY;
-      canvas.setViewportTransform(vpt);
-      lastPosX = e.clientX;
-      lastPosY = e.clientY;
-    });
+    // --- Keep rectangle tool active ---
+    const originalSetMode = editor.setMode.bind(editor);
+    editor.setMode = (mode) => {
+      originalSetMode(mode);
+      editor.currentTool = mode;
+    };
 
-    canvas.on('mouse:up', function () {
-      isDragging = false;
-      canvas.setCursor('crosshair');
-    });
+    // Prevent auto-reset to move tool
+    const originalAddObject = canvas.add.bind(canvas);
+    canvas.add = (...args) => {
+      const result = originalAddObject(...args);
+      if (editor.currentTool) editor.setMode(editor.currentTool);
+      return result;
+    };
 
-    // --- Add a few test shapes and text ---
-    const rect = new fabric.Rect({
-      left: 200, top: 200, width: 200, height: 150,
-      fill: '#00aaff', stroke: '#0077cc', strokeWidth: 2
-    });
-
-    const text = new fabric.Textbox('Hello, Verdana!', {
-      left: 500, top: 250, width: 300,
-      fontSize: 32, fontFamily: 'Verdana',
-      fill: '#ffffff', editable: true
-    });
-
-    canvas.add(rect, text);
-    canvas.requestRenderAll();
-
-    // --- Resize handling ---
+    // Resize canvas when window resizes
     window.addEventListener('resize', () => {
-      editorInstance.resize(window.innerWidth, window.innerHeight);
-      canvas.setDimensions({ width: window.innerWidth, height: window.innerHeight });
+      canvas.setWidth(window.innerWidth);
+      canvas.setHeight(window.innerHeight);
       canvas.requestRenderAll();
     });
   </script>

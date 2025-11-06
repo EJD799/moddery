@@ -237,6 +237,8 @@ function getTabContent(role, elementID) {
     return '<iframe src="editor/bedrock/script.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else if (role == "Item") {
     return '<iframe src="editor/bedrock/item.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
+  } else if (role == "Image") {
+    return '<iframe src="editor/image.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else {
     return "Coming soon!";
   }
@@ -260,7 +262,11 @@ function editElement(elementID) {
 function elementDropdown(elementID) {
   alert("Coming soon!")
 }
-
+function editAsset(assetID) {
+  projZip.folder("assets").file(assetID.replace("_dot_", ".")).async("string").then(function (data) {
+    addTab("Image", elementID);
+  });
+}
 function assetDropdown(assetID) {
   alert("Coming soon!")
 }

@@ -163,21 +163,26 @@ function addElement() {
   $("#addElementIDBox").val("");
 }
 
+addAssetUploadInput.addEventListener("change", (event) => {
+  addAssetNameBox.value = addAssetUploadInput.files[0].name;
+});
+
 function addAsset() {
   let file = addAssetUploadInput.files[0];
   let fileType = file.name.split(".")[1];
-  let fileNameEncoded = file.name.replace(".", "_dot_");
+  let fileName = addAssetNameBox.value;
+  let fileNameEncoded = fileName.replace(".", "_dot_");
   let previewBox;
   let preview;
   let editBtn;
   if (file) {
-    projZip.folder("assets").file(file.name, file);
+    projZip.folder("assets").file(fileName, file);
     assetCount++;
     var parentDiv = document.getElementById("tabs-2");
     var assetBox = document.createElement("div");
     var center = document.createElement("center");
     assetBox.setAttribute("class", "elementbox");
-    center.innerHTML = `<h3>${file.name}</h3>`;
+    center.innerHTML = `<h3>${fileName}</h3>`;
     if (fileType == "png") {
       previewBox = document.createElement("div");
       previewBox.setAttribute("class", "previewBox");

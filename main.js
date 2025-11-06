@@ -163,7 +163,10 @@ function addElement() {
 }
 
 function addAsset() {
-  alert("Coming Soon!");
+  file = addAssetUploadInput.files[0];
+  if (file) {
+    projZip.folder("assets").file(file.name, file);
+  }
   closeAddAssetDlg();
 }
 

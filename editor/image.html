@@ -1,157 +1,151 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="utf-8" />
   <title>Mini Canvas Editor — Fixed Example</title>
 
-  <!-- Mini CSS (from README) -->
+  <!-- Mini Canvas Editor -->
   <link href="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/css/editor.css" rel="stylesheet">
-
-  <style>
-    body { margin:0; height:100vh; display:flex; flex-direction:column; background:#222; color:#fff; }
-    #toolbar { padding:8px; background:#111; display:flex; gap:8px; align-items:center; }
-    #work { flex:1; overflow:auto; background:#333; cursor:grab; }
-    #placeholder { width: 1200px; height:800px; margin:40px auto; } /* canvas area center */
-  </style>
-  <div id="toolbar">
-    <button id="btnOpen">Open image (file)</button>
-    <button id="btnReset">Reset view</button>
-    <span id="info" style="opacity:.8;margin-left:8px">Use wheel / pinch to zoom, drag to pan</span>
-  </div>
-
-  <div id="work">
-    <!-- placeholder for the editor - API wants an element or selector -->
-    <div id="placeholder"></div>
-  </div>
-
-  <!-- REQUIRED: core then editor (UMD builds) -->
   <script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
 
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #222;
+      color: #fff;
+      overflow: hidden;
+    }
+    #toolbar {
+      padding: 8px;
+      background: #111;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    #work {
+      flex: 1;
+      overflow: hidden;
+      background: #333;
+      cursor: grab;
+    }
+    #placeholder {
+      width: 1200px;
+      height: 800px;
+      margin: 40px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="toolbar">
+    <button id="btnOpen">Open image (file)</button>
+    <button id="btnReset">Reset view</button>
+    <span style="opacity:.8;margin-left:8px">Scroll to zoom, drag to pan</span>
+  </div>
+
+  <div id="work">
+    <div id="placeholder"></div>
+  </div>
+
   <script>
-    // --- Create the editor the way README suggests (use the correct global) ---
-    // The global exposed by the UMD bundle is `miniCanvasEditor`.
-    // The Editor API provides convenience constructors such as createBlank.
     const placeholder = document.getElementById('placeholder');
-
-    // create a blank editor (width, height, options)
     const editorInstance = miniCanvasEditor.Editor.createBlank(placeholder, 1200, 800, {});
+    const canvas = editorInstance.canvas; // ✅ actual Fabric canvas reference
 
-    const canvas = editorInstance.canvas;
-
-    // --- Undo / Redo helpers ---
+    // ----------------------------
+    // Keyboard shortcuts
+    // ----------------------------
     function undo() {
-    if (typeof editorInstance.undo === 'function') editorInstance.undo();
+      if (typeof editorInstance.undo === 'function') editorInstance.undo();
     }
     function redo() {
-    if (typeof editorInstance.redo === 'function') editorInstance.redo();
+      if (typeof editorInstance.redo === 'function') editorInstance.redo();
     }
-
-    // --- Delete helper ---
     function deleteSelection() {
-    const activeObjs = canvas.getActiveObjects?.() || [];
-    if (activeObjs.length === 0) return;
+      const activeObjs = canvas.getActiveObjects?.() || [];
+      if (activeObjs.length === 0) return;
 
-    activeObjs.forEach(obj => {
-        // Optional: skip locked objects
+      activeObjs.forEach(obj => {
         if (obj.selectable !== false) canvas.remove(obj);
-    });
-    canvas.discardActiveObject();
-    canvas.requestRenderAll();
+      });
+      canvas.discardActiveObject();
+      canvas.requestRenderAll();
     }
 
-    // --- Keyboard handling ---
-    window.addEventListener('keydown', function (e) {
-    const key = e.key.toLowerCase();
-    const activeObj = canvas.getActiveObject();
+    window.addEventListener('keydown', function(e) {
+      const key = e.key.toLowerCase();
+      const activeObj = canvas.getActiveObject?.();
 
-    // 1️⃣ Skip when typing in textbox or input fields
-    const el = document.activeElement;
-    const tag = el && el.tagName;
-    const isEditable =
+      // Skip when editing text or input
+      const el = document.activeElement;
+      const tag = el && el.tagName;
+      const isEditable =
         (activeObj && activeObj.type === 'textbox' && activeObj.isEditing) ||
         el?.isContentEditable ||
         tag === 'INPUT' ||
         tag === 'TEXTAREA' ||
         el?.getAttribute('role') === 'textbox';
+      if (isEditable) return;
 
-    if (isEditable) return;
+      // Undo / Redo
+      if ((e.ctrlKey || e.metaKey) && !e.shiftKey && key === 'z') {
+        e.preventDefault(); undo(); return;
+      }
+      if ((e.ctrlKey || e.metaKey) && (key === 'y' || (e.shiftKey && key === 'z'))) {
+        e.preventDefault(); redo(); return;
+      }
 
-    // 2️⃣ Undo / Redo
-    if ((e.ctrlKey || e.metaKey) && !e.shiftKey && key === 'z') {
-        e.preventDefault();
-        undo();
-        return;
-    }
-    if (
-        (e.ctrlKey || e.metaKey) &&
-        (key === 'y' || (e.shiftKey && key === 'z'))
-    ) {
-        e.preventDefault();
-        redo();
-        return;
-    }
-
-    // 3️⃣ Delete / Backspace
-    if (key === 'delete' || key === 'backspace') {
-        e.preventDefault();
-        deleteSelection();
-        return;
-    }
+      // Delete / Backspace
+      if (key === 'delete' || key === 'backspace') {
+        e.preventDefault(); deleteSelection(); return;
+      }
     });
 
-
-    // The created object usually exposes the fabric canvas as `editorInstance.canvas`
-    // (Mini bundles Fabric.js with the UMD build). Use fabric to load an image.
-    // NOTE: fabric is provided by the bundle and is available as `window.fabric`.
-
+    // ----------------------------
+    // Load image helper
+    // ----------------------------
     function loadExampleImage(url) {
-      // remove existing objects
-      editorInstance.canvas.clear();
-
-      // load image onto fabric canvas, then center
+      canvas.clear();
       fabric.Image.fromURL(url, function(img) {
-        // scale to fit the canvas nicely
-        const maxW = editorInstance.canvas.getWidth() * 0.9;
-        const maxH = editorInstance.canvas.getHeight() * 0.9;
+        const maxW = canvas.getWidth() * 0.9;
+        const maxH = canvas.getHeight() * 0.9;
         const scale = Math.min(maxW / img.width, maxH / img.height, 1);
-        img.set({ left: 0, top: 0, originX: 'left', originY: 'top', selectable: true });
         img.scale(scale);
-        editorInstance.canvas.add(img);
-        editorInstance.canvas.setActiveObject(img);
-        editorInstance.canvas.requestRenderAll();
-
-        // center image on viewport
+        img.set({ left: 0, top: 0, originX: 'left', originY: 'top', selectable: true });
+        canvas.add(img);
         img.center();
         img.setCoords();
-        editorInstance.canvas.requestRenderAll();
+        canvas.setActiveObject(img);
+        canvas.requestRenderAll();
       }, { crossOrigin: 'anonymous' });
     }
 
-    // load a remote example (picsum is CORS friendly)
     loadExampleImage('https://picsum.photos/1600/900');
 
-    // --- Smooth wheel zoom + drag pan behavior (works with Fabric) ---
+    // ----------------------------
+    // Zoom + Pan
+    // ----------------------------
     const work = document.getElementById('work');
     let isDragging = false;
     let lastX = 0, lastY = 0;
 
-    // wheel -> zoom (preserve focal point)
     work.addEventListener('wheel', function(e) {
-      // if user is holding ctrl/meta we still do zoom; we preventDefault to allow trackpad pinch/wheel
       e.preventDefault();
-
-      const pointer = editorInstance.canvas.getPointer(e);
+      const pointer = canvas.getPointer(e);
       const zoomDelta = e.deltaY < 0 ? 1.12 : 1 / 1.12;
-      const oldZoom = editorInstance.canvas.getZoom();
+      const oldZoom = canvas.getZoom();
       let newZoom = oldZoom * zoomDelta;
-      newZoom = Math.max(0.1, Math.min(10, newZoom)); // clamp
-
-      // zoomToPoint keeps zoom centered around pointer
-      editorInstance.canvas.zoomToPoint({ x: pointer.x, y: pointer.y }, newZoom);
-      editorInstance.canvas.requestRenderAll();
+      newZoom = Math.max(0.1, Math.min(10, newZoom));
+      canvas.zoomToPoint({ x: pointer.x, y: pointer.y }, newZoom);
+      canvas.requestRenderAll();
     }, { passive: false });
 
-    // panning with drag
-    work.addEventListener('mousedown', (e) => {
+    work.addEventListener('mousedown', e => {
+      if (e.button !== 0) return;
       isDragging = true;
       lastX = e.clientX;
       lastY = e.clientY;
@@ -161,31 +155,29 @@
       isDragging = false;
       work.style.cursor = 'grab';
     });
-    work.addEventListener('mousemove', (e) => {
+    work.addEventListener('mousemove', e => {
       if (!isDragging) return;
       const dx = e.clientX - lastX;
       const dy = e.clientY - lastY;
       lastX = e.clientX;
       lastY = e.clientY;
-
-      // viewport transform indices 4/5 are translate x/y
-      const t = editorInstance.canvas.viewportTransform.slice();
+      const t = canvas.viewportTransform.slice();
       t[4] += dx;
       t[5] += dy;
-      editorInstance.canvas.setViewportTransform(t);
-      editorInstance.canvas.requestRenderAll();
+      canvas.setViewportTransform(t);
+      canvas.requestRenderAll();
     });
 
-    // --- Reset view button ---
+    // ----------------------------
+    // Toolbar actions
+    // ----------------------------
     document.getElementById('btnReset').addEventListener('click', () => {
-      editorInstance.canvas.setViewportTransform([1,0,0,1,0,0]);
-      editorInstance.canvas.setZoom(1);
-      editorInstance.canvas.requestRenderAll();
+      canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+      canvas.setZoom(1);
+      canvas.requestRenderAll();
     });
 
-    // --- Open local image via file picker (fallback if showOpenFilePicker not available) ---
     document.getElementById('btnOpen').addEventListener('click', async () => {
-      // Use an <input type=file> fallback for compatibility
       const input = document.createElement('input');
       input.type = 'file';
       input.accept = 'image/*';
@@ -198,3 +190,5 @@
       input.click();
     });
   </script>
+</body>
+</html>

@@ -175,6 +175,7 @@ function addAsset() {
   let previewBox;
   let preview;
   let editBtn;
+  let optionsBtn;
   if (file) {
     projZip.folder("assets").file(fileName, file);
     assetCount++;
@@ -193,10 +194,15 @@ function addAsset() {
     center.appendChild(previewBox);
     center.appendChild(document.createElement("br"));
     editBtn = document.createElement("button");
-    editBtn.setAttribute("onclick", `assetDropdown('${fileNameEncoded}')`);
-    editBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
-    editBtn.innerHTML = "&#x22EF;";
+    editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}')`);
+    editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
+    editBtn.innerHTML = "Edit";
+    optionsBtn = document.createElement("button");
+    optionsBtn.setAttribute("onclick", `assetDropdown('${fileNameEncoded}')`);
+    optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
+    optionsBtn.innerHTML = "&#x22EF;";
     center.appendChild(editBtn);
+    center.appendChild(optionsBtn);
     assetBox.appendChild(center);
     parentDiv.appendChild(assetBox);
     $(`#${fileNameEncoded}_assetOptionBtn`).button();

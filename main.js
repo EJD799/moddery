@@ -205,6 +205,8 @@ function addAsset() {
     }
   }
   closeAddAssetDlg();
+  addAssetUploadInput.value = "";
+  addAssetNameBox.value = "";
 }
 
 function saveProject() {

@@ -161,13 +161,44 @@ document.getElementById('pixelSize').oninput = e=>{ pixelSize=parseInt(e.target.
 document.getElementById('undoBtn').onclick = undo;
 document.getElementById('redoBtn').onclick = redo;
 
-// Save/Load functions
-function saveProject(){ return canvas.toDataURL(); }
-function loadProject(base64){
+// Offscreen canvas for exporting at the true pixel size
+const exportWidth = 16;
+const exportHeight = 16;
+
+// Save the project as 16x16 PNG base64
+function saveProject() {
+  const exportCanvas = document.createElement('canvas');
+  exportCanvas.width = exportWidth;
+  exportCanvas.height = exportHeight;
+  const exportCtx = exportCanvas.getContext('2d');
+
+  for(let y=0;y<exportHeight;y++){
+    for(let x=0;x<exportWidth;x++){
+      // get color from editor canvas
+      const sx = x * pixelSize;
+      const sy = y * pixelSize;
+      const imgData = ctx.getImageData(sx,sy,1,1).data;
+      exportCtx.fillStyle = `rgba(${imgData[0]},${imgData[1]},${imgData[2]},${imgData[3]/255})`;
+      exportCtx.fillRect(x,y,1,1);
+    }
+  }
+
+  return exportCanvas.toDataURL();
+}
+
+// Load a 16x16 image (base64) into the editor, scaling to current pixel size
+function loadProject(base64) {
   const img = new Image();
-  img.onload = ()=>{ ctx.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height); };
+  img.onload = () => {
+    // scale image to editor canvas
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.imageSmoothingEnabled = false; // important for pixel art
+    ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, gridWidth*pixelSize, gridHeight*pixelSize);
+    drawGrid();
+  };
   img.src = base64;
 }
+
 
 // Initialize
 resizeCanvas();

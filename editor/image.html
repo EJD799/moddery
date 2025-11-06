@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pixel Art Editor with Zoom, Pan, Eyedropper</title>
+<title>Pixel Art Editor</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
 <style>
 html, body {
@@ -10,14 +10,16 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: Verdana, sans-serif;
-    background: #222;
+    background: #111;
     color: #fff;
+    display: flex;
+    flex-direction: column;
 }
 #toolbar {
     display: flex;
     gap: 4px;
     padding: 4px;
-    background: #333;
+    background: #222;
     align-items: center;
     flex-wrap: wrap;
 }
@@ -26,13 +28,13 @@ html, body {
     align-items: center;
     gap: 4px;
     padding: 4px 8px;
-    background: #444;
+    background: #333;
     color: #fff;
     border: none;
     cursor: pointer;
 }
 #toolbar button.active {
-    background: #666;
+    background: #555;
 }
 #toolbar input[type=color],
 #toolbar input[type=range] {
@@ -42,11 +44,11 @@ html, body {
     flex: 1;
     position: relative;
     overflow: hidden;
-    background: #111;
-    cursor: crosshair;
+    background: #000;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: crosshair;
 }
 canvas {
     image-rendering: pixelated;
@@ -64,7 +66,7 @@ canvas {
     <button id="toolEraser"><i class="fas fa-eraser"></i>Eraser</button>
     <button id="toolEyedropper"><i class="fas fa-eye-dropper"></i>Eyedropper</button>
     <label>Color:<input type="color" id="colorPicker" value="#ff0000"></label>
-    <label>Pixel Size:<input type="range" id="pixelSize" min="4" max="64" value="16"></label>
+    <label>Pixel Size:<input type="range" id="pixelSize" min="4" max="64" value="32"></label>
     <button id="undoBtn"><i class="fas fa-undo"></i>Undo</button>
     <button id="redoBtn"><i class="fas fa-redo"></i>Redo</button>
     <button id="saveBtn"><i class="fas fa-download"></i>Save</button>
@@ -81,22 +83,21 @@ const canvas = document.getElementById('pixelCanvas');
 const ctx = canvas.getContext('2d');
 const container = document.getElementById('canvasContainer');
 
-let gridWidth = 32, gridHeight = 32; // can support larger images
-let pixelSize = 16;
+let gridWidth = 16, gridHeight = 16;
+let pixelSize = 32;
 let currentTool = 'pencil';
 let currentColor = '#ff0000';
 let isDrawing = false;
 let startX = 0, startY = 0;
 
-// Camera for zoom/pan
 let offsetX = 0, offsetY = 0;
 let scale = 1;
 
-// Offscreen background canvas for pixels
 const bgCanvas = document.createElement('canvas');
+const bgCtx = bgCanvas.getContext('2d');
+
 bgCanvas.width = gridWidth;
 bgCanvas.height = gridHeight;
-const bgCtx = bgCanvas.getContext('2d');
 bgCtx.clearRect(0,0,gridWidth,gridHeight);
 
 // Undo/Redo
@@ -105,10 +106,10 @@ function saveState(){redoStack=[]; undoStack.push(bgCtx.getImageData(0,0,gridWid
 function undo(){if(undoStack.length){redoStack.push(bgCtx.getImageData(0,0,gridWidth,gridHeight)); bgCtx.putImageData(undoStack.pop(),0,0); render();}}
 function redo(){if(redoStack.length){undoStack.push(bgCtx.getImageData(0,0,gridWidth,gridHeight)); bgCtx.putImageData(redoStack.pop(),0,0); render();}}
 
-// Resize canvas
+// Resize canvas to fill container
 function resizeCanvas(){canvas.width=container.clientWidth; canvas.height=container.clientHeight; render();}
 
-// Get mouse pos in pixel coords
+// Mouse/pointer helpers
 function getMousePos(e){
     const rect=canvas.getBoundingClientRect();
     const x = (e.clientX - rect.left - offsetX) / (pixelSize*scale);
@@ -116,10 +117,8 @@ function getMousePos(e){
     return {x: Math.floor(x), y: Math.floor(y)};
 }
 
-// Draw pixel
 function drawPixel(x,y,color){bgCtx.fillStyle=color; bgCtx.fillRect(x,y,1,1); render();}
 
-// Flood fill
 function floodFill(x,y,color){
     const data=bgCtx.getImageData(0,0,gridWidth,gridHeight);
     const targetColor=[...data.data.slice((y*gridWidth+x)*4,(y*gridWidth+x)*4+4)];
@@ -137,19 +136,17 @@ function floodFill(x,y,color){
     bgCtx.putImageData(data,0,0); render();
 }
 
-// Draw rectangle
 function drawRect(x1,y1,x2,y2,color){
     const xmin=Math.min(x1,x2), xmax=Math.max(x1,x2), ymin=Math.min(y1,y2), ymax=Math.max(y1,y2);
     for(let x=xmin;x<=xmax;x++) for(let y=ymin;y<=ymax;y++) drawPixel(x,y,color);
 }
 
-// Convert color string to RGBA
 function colorToRGBA(str){
     const c=document.createElement('canvas').getContext('2d'); c.fillStyle=str; c.fillRect(0,0,1,1);
     return c.getImageData(0,0,1,1).data;
 }
 
-// Render function
+// Render
 let renderScheduled=false, previewRect=null;
 function render(){
     if(renderScheduled) return;
@@ -160,17 +157,18 @@ function render(){
         ctx.translate(offsetX,offsetY);
         ctx.scale(scale*pixelSize,scale*pixelSize);
         ctx.imageSmoothingEnabled=false;
+        // Draw pixels
         ctx.drawImage(bgCanvas,0,0,gridWidth,gridHeight,0,0,gridWidth,gridHeight);
-
-        // rectangle preview
+        // Draw grid overlay
+        ctx.strokeStyle='rgba(255,255,255,0.1)';
+        ctx.lineWidth=1/scale/pixelSize;
+        for(let i=0;i<=gridWidth;i++){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,gridHeight);ctx.stroke();}
+        for(let i=0;i<=gridHeight;i++){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(gridWidth,i);ctx.stroke();}
+        // Rectangle preview
         if(previewRect){
-            ctx.fillStyle = currentColor+'55';
+            ctx.fillStyle=currentColor+'55';
             ctx.fillRect(previewRect.x, previewRect.y, previewRect.w, previewRect.h);
-            ctx.strokeStyle=currentColor;
-            ctx.lineWidth=1/scale/pixelSize;
-            ctx.strokeRect(previewRect.x, previewRect.y, previewRect.w, previewRect.h);
         }
-
         renderScheduled=false;
     });
 }
@@ -180,7 +178,6 @@ canvas.addEventListener('mousedown', e=>{
     const pos=getMousePos(e);
     startX=pos.x; startY=pos.y; isDrawing=true;
     if(['pencil','eraser','fill','rect'].includes(currentTool)) saveState();
-
     if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor);
     if(currentTool==='eraser') drawPixel(pos.x,pos.y,'rgba(0,0,0,0)');
     if(currentTool==='fill') floodFill(pos.x,pos.y,currentColor);
@@ -193,9 +190,9 @@ canvas.addEventListener('mousemove', e=>{
     if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor);
     if(currentTool==='eraser') drawPixel(pos.x,pos.y,'rgba(0,0,0,0)');
     if(currentTool==='rect'){
-        const x = Math.min(startX,pos.x), y = Math.min(startY,pos.y);
-        const w = Math.abs(pos.x-startX)+1, h = Math.abs(pos.y-startY)+1;
-        previewRect = {x,y,w,h};
+        const x=Math.min(startX,pos.x), y=Math.min(startY,pos.y);
+        const w=Math.abs(pos.x-startX)+1, h=Math.abs(pos.y-startY)+1;
+        previewRect={x,y,w,h};
         render();
     }
 });
@@ -205,8 +202,7 @@ canvas.addEventListener('mouseup', e=>{
         drawRect(startX,startY,getMousePos(e).x,getMousePos(e).y,currentColor);
         previewRect=null;
     }
-    isDrawing=false;
-    render();
+    isDrawing=false; render();
 });
 
 // Eyedropper
@@ -232,33 +228,36 @@ document.getElementById('redoBtn').onclick=redo;
 let isPanning=false, lastX=0, lastY=0;
 canvas.addEventListener('wheel', e=>{
     e.preventDefault();
-    const delta = -e.deltaY*0.0015; // zoom speed
-    const mx = e.offsetX - offsetX;
-    const my = e.offsetY - offsetY;
-    const newScale = Math.min(Math.max(scale*(1+delta),0.5),32);
+    const delta=-e.deltaY*0.0015;
+    const mx=e.offsetX-offsetX;
+    const my=e.offsetY-offsetY;
+    const newScale=Math.min(Math.max(scale*(1+delta),0.5),32);
     offsetX -= mx*(newScale-scale);
     offsetY -= my*(newScale-scale);
     scale=newScale;
     render();
-}, {passive:false});
-
-canvas.addEventListener('mousedown', e=>{
-    if(e.button===1){isPanning=true; lastX=e.clientX; lastY=e.clientY; canvas.style.cursor='move'; e.preventDefault();}
-});
+},{passive:false});
+canvas.addEventListener('mousedown', e=>{if(e.button===1){isPanning=true; lastX=e.clientX; lastY=e.clientY; canvas.style.cursor='move'; e.preventDefault();}});
 window.addEventListener('mouseup', e=>{isPanning=false; canvas.style.cursor='crosshair';});
-window.addEventListener('mousemove', e=>{
-    if(isPanning){
-        offsetX += e.clientX-lastX;
-        offsetY += e.clientY-lastY;
-        lastX=e.clientX; lastY=e.clientY;
-        render();
-    }
-});
+window.addEventListener('mousemove', e=>{if(isPanning){offsetX += e.clientX-lastX; offsetY += e.clientY-lastY; lastX=e.clientX; lastY=e.clientY; render();}});
 
 // Save/load
-const exportSize = 16;
-function saveProject(){const c=document.createElement('canvas'); c.width=exportSize; c.height=exportSize; const cx=c.getContext('2d'); cx.imageSmoothingEnabled=false; cx.drawImage(bgCanvas,0,0,exportSize,exportSize); return c.toDataURL('image/png');}
-function loadProject(base64){const img=new Image(); img.onload=()=>{bgCtx.clearRect(0,0,gridWidth,gridHeight); bgCtx.drawImage(img,0,0,gridWidth,gridHeight); render();}; img.src=base64;}
+function saveProject(){
+    const c=document.createElement('canvas'); c.width=gridWidth; c.height=gridHeight;
+    const cx=c.getContext('2d'); cx.imageSmoothingEnabled=false; cx.drawImage(bgCanvas,0,0,gridWidth,gridHeight);
+    return c.toDataURL('image/png');
+}
+function loadProject(base64){
+    const img=new Image();
+    img.onload=()=>{
+        gridWidth=img.width; gridHeight=img.height;
+        bgCanvas.width=gridWidth; bgCanvas.height=gridHeight;
+        bgCtx.clearRect(0,0,gridWidth,gridHeight);
+        bgCtx.drawImage(img,0,0,gridWidth,gridHeight);
+        resizeCanvas();
+    };
+    img.src=base64;
+}
 document.getElementById('saveBtn').onclick=()=>{const data=saveProject(); const a=document.createElement('a'); a.href=data; a.download='pixel.png'; a.click();}
 document.getElementById('loadBtn').onclick=()=>{document.getElementById('fileInput').click();}
 document.getElementById('fileInput').onchange=e=>{
@@ -271,6 +270,7 @@ document.getElementById('fileInput').onchange=e=>{
 // Initial
 resizeCanvas();
 window.addEventListener('resize',resizeCanvas);
+render();
 </script>
 </body>
 </html>

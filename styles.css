@@ -93,3 +93,6 @@ input {
     margin: 10px;
     vertical-align: middle;
 }
+.versionBox {
+    width: 30px;
+}

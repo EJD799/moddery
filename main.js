@@ -173,6 +173,7 @@ function saveProject() {
       saveAs(content, projManifest.name + ".zip");
   });
 }
+$("#editProjectBtn").button();
 $("#addElementBtn").button();
 $("#addAssetBtn").button();
 $("#loaderProgress").progressbar({

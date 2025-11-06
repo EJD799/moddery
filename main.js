@@ -264,7 +264,7 @@ function elementDropdown(elementID) {
 }
 function editAsset(assetID) {
   projZip.folder("assets").file(assetID.replace("_dot_", ".")).async("string").then(function (data) {
-    addTab("Image", elementID);
+    addTab("Image", assetID);
   });
 }
 function assetDropdown(assetID) {

@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pixel Art Editor with Transparency</title>
+<title>Pixel Art Editor (Background-Processed)</title>
 <style>
   html, body { margin:0; padding:0; height:100%; font-family:Verdana,sans-serif; background:#222; color:#fff; }
   #toolbar { display:flex; gap:4px; padding:4px; background:#333; align-items:center; flex-wrap:wrap; }
   #toolbar button { padding:4px 8px; background:#444; color:#fff; border:none; cursor:pointer; }
   #toolbar button.active { background:#666; }
   #toolbar input[type=color], #toolbar input[type=range] { margin-left:4px; }
-  #canvasContainer { flex:1; position:relative; overflow:auto; background:#111; cursor:crosshair; }
-  canvas { display:block; background:transparent; image-rendering:pixelated; }
+  #canvasContainer { flex:1; position:relative; overflow:auto; background:#111; cursor:crosshair; display:flex; justify-content:center; align-items:center; }
+  canvas { image-rendering:pixelated; background:transparent; display:block; }
 </style>
 </head>
 <body>
@@ -24,7 +24,7 @@
   <button id="undoBtn">Undo</button>
   <button id="redoBtn">Redo</button>
 </div>
-<div id="canvasContainer" style="flex:1; display:flex;">
+<div id="canvasContainer">
   <canvas id="pixelCanvas"></canvas>
 </div>
 
@@ -38,26 +38,39 @@ let pixelSize = 16;
 let currentTool = 'pencil';
 let currentColor = '#ff0000';
 let isDrawing = false;
-let startX = 0, startY = 0;
+let startX=0,startY=0;
 
-// Undo/Redo stack
-let undoStack = [], redoStack = [];
+// --- Background canvas stores the real pixel data ---
+const bgCanvas = document.createElement('canvas');
+bgCanvas.width = gridWidth;
+bgCanvas.height = gridHeight;
+const bgCtx = bgCanvas.getContext('2d');
+bgCtx.clearRect(0,0,gridWidth,gridHeight); // transparent initial
+
+// --- Undo/Redo stack ---
+let undoStack=[], redoStack=[];
 function saveState() {
   redoStack = [];
-  undoStack.push(ctx.getImageData(0,0,canvas.width,canvas.height));
-  if(undoStack.length > 50) undoStack.shift();
+  undoStack.push(bgCtx.getImageData(0,0,gridWidth,gridHeight));
+  if(undoStack.length>50) undoStack.shift();
 }
-function undo() { if(undoStack.length){ redoStack.push(ctx.getImageData(0,0,canvas.width,canvas.height)); ctx.putImageData(undoStack.pop(),0,0); }}
-function redo() { if(redoStack.length){ undoStack.push(ctx.getImageData(0,0,canvas.width,canvas.height)); ctx.putImageData(redoStack.pop(),0,0); }}
+function undo(){ if(undoStack.length){ redoStack.push(bgCtx.getImageData(0,0,gridWidth,gridHeight)); bgCtx.putImageData(undoStack.pop(),0,0); render(); } }
+function redo(){ if(redoStack.length){ undoStack.push(bgCtx.getImageData(0,0,gridWidth,gridHeight)); bgCtx.putImageData(redoStack.pop(),0,0); render(); } }
 
-// Initialize canvas
+// --- Resize visible canvas ---
 function resizeCanvas() {
-  canvas.width = gridWidth * pixelSize;
-  canvas.height = gridHeight * pixelSize;
-  drawGrid();
+  canvas.width = gridWidth*pixelSize;
+  canvas.height = gridHeight*pixelSize;
+  render();
 }
-function drawGrid() {
+
+// --- Render background to visible canvas ---
+function render() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(bgCanvas, 0, 0, gridWidth, gridHeight, 0,0, canvas.width, canvas.height);
+
+  // draw grid lines
   ctx.strokeStyle = '#333';
   for(let x=0;x<=gridWidth;x++){
     ctx.beginPath(); ctx.moveTo(x*pixelSize,0); ctx.lineTo(x*pixelSize,canvas.height); ctx.stroke();
@@ -67,7 +80,7 @@ function drawGrid() {
   }
 }
 
-// Tools
+// --- Tools ---
 function getMousePos(e){
   const rect = canvas.getBoundingClientRect();
   return {
@@ -76,129 +89,112 @@ function getMousePos(e){
   };
 }
 function drawPixel(x,y,color){
-  ctx.fillStyle = color;
-  ctx.fillRect(x*pixelSize, y*pixelSize, pixelSize, pixelSize);
+  bgCtx.fillStyle=color;
+  bgCtx.fillRect(x,y,1,1);
+  render();
 }
 
 // Flood fill
-function floodFillPixelArt(x, y, color) {
-  const grid = [];
-  for (let gx = 0; gx < gridWidth; gx++) {
-    grid[gx] = [];
-    for (let gy = 0; gy < gridHeight; gy++) {
-      const px = gx * pixelSize;
-      const py = gy * pixelSize;
-      const data = ctx.getImageData(px, py, 1, 1).data;
-      grid[gx][gy] = `rgba(${data[0]},${data[1]},${data[2]},${data[3]/255})`;
-    }
-  }
+function floodFill(x,y,color){
+  const data = bgCtx.getImageData(0,0,gridWidth,gridHeight);
+  const targetColor = [...data.data.slice((y*gridWidth+x)*4,(y*gridWidth+x)*4+4)];
+  const fillColor = colorStringToRGBA(color);
 
-  const targetColor = grid[x][y];
-  if(targetColor === color) return;
-
-  const stack = [[x, y]];
-  while (stack.length) {
-    const [cx, cy] = stack.pop();
+  function sameColor(idx){ return data.data[idx]===targetColor[0] && data.data[idx+1]===targetColor[1] && data.data[idx+2]===targetColor[2] && data.data[idx+3]===targetColor[3]; }
+  const stack=[[x,y]];
+  while(stack.length){
+    const [cx,cy]=stack.pop();
     if(cx<0||cy<0||cx>=gridWidth||cy>=gridHeight) continue;
-    if(grid[cx][cy] !== targetColor) continue;
-    grid[cx][cy] = color;
-    drawPixel(cx, cy, color);
+    const idx=(cy*gridWidth+cx)*4;
+    if(!sameColor(idx)) continue;
+    data.data[idx]=fillColor[0]; data.data[idx+1]=fillColor[1]; data.data[idx+2]=fillColor[2]; data.data[idx+3]=fillColor[3];
     stack.push([cx+1,cy],[cx-1,cy],[cx,cy+1],[cx,cy-1]);
   }
+  bgCtx.putImageData(data,0,0);
+  render();
+}
+function colorStringToRGBA(str){
+  const ctx2=document.createElement('canvas').getContext('2d');
+  ctx2.fillStyle=str; ctx2.fillRect(0,0,1,1);
+  const d=ctx2.getImageData(0,0,1,1).data;
+  return d;
 }
 
-// Rectangle drawing
+// Rectangle
 function drawRect(x1,y1,x2,y2,color){
-  const xmin = Math.min(x1,x2), xmax=Math.max(x1,x2);
-  const ymin = Math.min(y1,y2), ymax=Math.max(y1,y2);
+  const xmin=Math.min(x1,x2), xmax=Math.max(x1,x2);
+  const ymin=Math.min(y1,y2), ymax=Math.max(y1,y2);
   for(let x=xmin;x<=xmax;x++) for(let y=ymin;y<=ymax;y++) drawPixel(x,y,color);
 }
 
 // Mouse events
-canvas.addEventListener('mousedown', e => {
-  const pos = getMousePos(e);
-  startX = pos.x; startY = pos.y;
-  isDrawing = true;
+canvas.addEventListener('mousedown',e=>{
+  const pos=getMousePos(e);
+  startX=pos.x; startY=pos.y;
+  isDrawing=true;
   saveState();
   if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor);
   if(currentTool==='eraser') drawPixel(pos.x,pos.y,'rgba(0,0,0,0)');
-  if(currentTool==='fill') floodFillPixelArt(pos.x,pos.y,currentColor);
+  if(currentTool==='fill') floodFill(pos.x,pos.y,currentColor);
 });
-canvas.addEventListener('mousemove', e => {
+canvas.addEventListener('mousemove',e=>{
   if(!isDrawing) return;
-  const pos = getMousePos(e);
+  const pos=getMousePos(e);
   if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor);
   if(currentTool==='eraser') drawPixel(pos.x,pos.y,'rgba(0,0,0,0)');
 });
-canvas.addEventListener('mouseup', e => {
-  if(currentTool==='rect') {
-    const pos = getMousePos(e);
+canvas.addEventListener('mouseup',e=>{
+  if(currentTool==='rect'){
+    const pos=getMousePos(e);
     drawRect(startX,startY,pos.x,pos.y,currentColor);
   }
-  isDrawing = false;
+  isDrawing=false;
 });
 
-// Toolbar buttons
+// Toolbar
 const toolButtons = {
   pencil: document.getElementById('toolPencil'),
   rect: document.getElementById('toolRect'),
   fill: document.getElementById('toolFill'),
   eraser: document.getElementById('toolEraser'),
 };
-function selectTool(toolName) {
-  currentTool = toolName;
-  Object.keys(toolButtons).forEach(t=>{
-    toolButtons[t].classList.toggle('active', t === toolName);
-  });
-}
+function selectTool(tool){ currentTool=tool; Object.keys(toolButtons).forEach(t=>toolButtons[t].classList.toggle('active',t===tool)); }
 toolButtons.pencil.onclick = ()=>selectTool('pencil');
 toolButtons.rect.onclick = ()=>selectTool('rect');
 toolButtons.fill.onclick = ()=>selectTool('fill');
 toolButtons.eraser.onclick = ()=>selectTool('eraser');
 
-document.getElementById('colorPicker').onchange = e=>currentColor=e.target.value;
-document.getElementById('pixelSize').oninput = e=>{ pixelSize=parseInt(e.target.value); resizeCanvas(); drawGrid(); };
-document.getElementById('undoBtn').onclick = undo;
-document.getElementById('redoBtn').onclick = redo;
+document.getElementById('colorPicker').onchange=e=>currentColor=e.target.value;
+document.getElementById('pixelSize').oninput=e=>{ pixelSize=parseInt(e.target.value); resizeCanvas(); };
 
-// Save/load 16x16
-const exportWidth = 16;
-const exportHeight = 16;
+// Undo/Redo
+document.getElementById('undoBtn').onclick=undo;
+document.getElementById('redoBtn').onclick=redo;
 
-function saveProject() {
-  const exportCanvas = document.createElement('canvas');
-  exportCanvas.width = exportWidth;
-  exportCanvas.height = exportHeight;
-  const exportCtx = exportCanvas.getContext('2d');
-  exportCtx.clearRect(0,0,exportWidth,exportHeight);
+// --- Save/load ---
+const exportWidth=16, exportHeight=16;
 
-  for(let y=0;y<exportHeight;y++){
-    for(let x=0;x<exportWidth;x++){
-      const sx = x * pixelSize;
-      const sy = y * pixelSize;
-      const data = ctx.getImageData(sx,sy,1,1).data;
-      exportCtx.fillStyle = `rgba(${data[0]},${data[1]},${data[2]},${data[3]/255})`;
-      exportCtx.fillRect(x,y,1,1);
-    }
-  }
+function saveProject(){
+  const exportCanvas=document.createElement('canvas');
+  exportCanvas.width=exportWidth; exportCanvas.height=exportHeight;
+  const exportCtx=exportCanvas.getContext('2d');
+  exportCtx.imageSmoothingEnabled=false;
+  exportCtx.drawImage(bgCanvas,0,0,exportWidth,exportHeight);
   return exportCanvas.toDataURL('image/png');
 }
 
-function loadProject(base64) {
-  const img = new Image();
-  img.onload = () => {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(img,0,0,img.width,img.height,0,0,gridWidth*pixelSize,gridHeight*pixelSize);
-    drawGrid();
+function loadProject(base64){
+  const img=new Image();
+  img.onload=()=>{
+    bgCtx.clearRect(0,0,gridWidth,gridHeight);
+    bgCtx.drawImage(img,0,0,gridWidth,gridHeight);
+    render();
   };
-  img.src = base64;
+  img.src=base64;
 }
 
 // Initialize
 resizeCanvas();
-drawGrid();
-
 </script>
 </body>
 </html>

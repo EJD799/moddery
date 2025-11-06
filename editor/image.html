@@ -2,8 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Mini Canvas Editor — Fixed Fullscreen</title>
-
+  <title>Mini Canvas Editor — Fixed Pan/Zoom/Text</title>
   <link href="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/css/editor.css" rel="stylesheet">
   <style>
     html, body {
@@ -12,106 +11,119 @@
       overflow: hidden;
       background: #222;
       font-family: Verdana, sans-serif;
+      cursor: default;
     }
     #editorRoot {
       width: 100%;
       height: 100%;
-      cursor: default;
     }
-    /* Cursor fix: crosshair inside canvas only */
     .mce-workspace canvas {
       cursor: crosshair !important;
     }
   </style>
 </head>
 <body>
-  <div id="editorRoot"></div>
+<div id="editorRoot"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
+<script>
+const editor = miniCanvasEditor.Editor.createBlank(
+  document.getElementById('editorRoot'),
+  window.innerWidth,
+  window.innerHeight,
+  {}
+);
+const canvas = editor.canvas || editor.editor?.canvas || editor.workspace?.canvas;
+const fabric = window.fabric;
 
-  <script>
-    // Create editor in fullscreen container
-    const root = document.getElementById('editorRoot');
-    const editor = miniCanvasEditor.Editor.createBlank(root, window.innerWidth, window.innerHeight, {});
+// --- Fix invisible textboxes ---
+if (fabric) {
+  const originalInit = fabric.Textbox.prototype.initialize;
+  fabric.Textbox.prototype.initialize = function(...args) {
+    originalInit.apply(this, args);
+    this.set({ fontFamily: 'Verdana', fill: '#ffffff', fontSize: 20 });
+    this.setCoords();
+  };
+}
 
-    // Get Fabric canvas
-    const canvas = editor.canvas || editor.editor?.canvas || editor.workspace?.canvas;
+// --- Add example shapes ---
+const rect = new fabric.Rect({ left: 200, top: 200, width: 200, height: 150, fill: '#00aaff', stroke: '#0077cc', strokeWidth: 2 });
+const text = new fabric.Textbox('Editable Verdana Text', { left: 500, top: 250, width: 300, fontSize: 28 });
+canvas.add(rect, text);
+canvas.setActiveObject(text);
+canvas.renderAll();
 
-    // --- Fix invisible text + font ---
-    if (window.fabric) {
-      fabric.Textbox.prototype.initialize = (function (original) {
-        return function (...args) {
-          original.apply(this, args);
-          this.set({
-            fontFamily: 'Verdana',
-            fill: '#ffffff',
-            fontSize: 20
-          });
-        };
-      })(fabric.Textbox.prototype.initialize);
-    }
+// --- Pan & zoom ---
+let isPanning = false;
+let lastX = 0, lastY = 0;
+const PAN_SPEED = 0.7;
+const ZOOM_SPEED = 0.002;
 
-    // --- Smooth zoom + scroll-pan ---
-    let isPanning = false;
-    let lastX = 0, lastY = 0;
+canvas.upperCanvasEl.addEventListener('wheel', e => {
+  e.preventDefault();
+  const pointer = canvas.getPointer(e);
 
-    // Scroll/pinch = zoom
-    canvas.upperCanvasEl.addEventListener('wheel', e => {
-      e.preventDefault();
-      const pointer = canvas.getPointer(e);
-      const zoomDelta = e.deltaY < 0 ? 1.2 : 1 / 1.2;
-      const oldZoom = canvas.getZoom();
-      let newZoom = oldZoom * zoomDelta;
-      newZoom = Math.max(0.1, Math.min(10, newZoom));
-      canvas.zoomToPoint({ x: pointer.x, y: pointer.y }, newZoom);
-      canvas.requestRenderAll();
-    }, { passive: false });
+  if (e.ctrlKey || e.metaKey || e.scale) {
+    // pinch zoom
+    const zoomDelta = e.deltaY < 0 ? 1.1 : 0.9;
+    let zoom = canvas.getZoom() * zoomDelta;
+    zoom = Math.max(0.1, Math.min(10, zoom));
+    canvas.zoomToPoint({ x: pointer.x, y: pointer.y }, zoom);
+  } else {
+    // scroll pan
+    const t = canvas.viewportTransform.slice();
+    t[4] -= e.deltaX * PAN_SPEED;
+    t[5] -= e.deltaY * PAN_SPEED;
+    canvas.setViewportTransform(t);
+    canvas.renderAll();
+  }
+}, { passive: false });
 
-    // Two-finger drag or middle mouse = pan
-    canvas.upperCanvasEl.addEventListener('mousedown', e => {
-      if (e.button === 1 || e.ctrlKey || e.metaKey) {
-        isPanning = true;
-        lastX = e.clientX;
-        lastY = e.clientY;
-        e.preventDefault();
-      }
-    });
-    window.addEventListener('mouseup', () => isPanning = false);
-    canvas.upperCanvasEl.addEventListener('mousemove', e => {
-      if (!isPanning) return;
-      const dx = e.clientX - lastX;
-      const dy = e.clientY - lastY;
-      lastX = e.clientX;
-      lastY = e.clientY;
-      const t = canvas.viewportTransform.slice();
-      t[4] += dx;
-      t[5] += dy;
-      canvas.setViewportTransform(t);
-      canvas.requestRenderAll();
-    });
+// --- Drag pan ---
+canvas.on('mouse:down', opt => {
+  if (opt.target) return;
+  isPanning = true;
+  lastX = opt.e.clientX;
+  lastY = opt.e.clientY;
+  canvas.setCursor('grabbing');
+});
+canvas.on('mouse:move', opt => {
+  if (!isPanning) return;
+  const e = opt.e;
+  const t = canvas.viewportTransform;
+  t[4] += e.clientX - lastX;
+  t[5] += e.clientY - lastY;
+  canvas.setViewportTransform(t);
+  canvas.renderAll();
+  lastX = e.clientX;
+  lastY = e.clientY;
+});
+canvas.on('mouse:up', () => {
+  isPanning = false;
+  canvas.setCursor('crosshair');
+});
 
-    // --- Keep rectangle tool active ---
-    const originalSetMode = editor.setMode.bind(editor);
-    editor.setMode = (mode) => {
-      originalSetMode(mode);
-      editor.currentTool = mode;
-    };
+// --- Keep rectangle tool active ---
+editor.currentTool = 'rect';
+const originalSetMode = editor.setMode.bind(editor);
+editor.setMode = mode => {
+  originalSetMode(mode);
+  editor.currentTool = mode;
+};
+const originalAddObject = canvas.add.bind(canvas);
+canvas.add = (...args) => {
+  const result = originalAddObject(...args);
+  if (editor.currentTool) editor.setMode(editor.currentTool);
+  return result;
+};
 
-    // Prevent auto-reset to move tool
-    const originalAddObject = canvas.add.bind(canvas);
-    canvas.add = (...args) => {
-      const result = originalAddObject(...args);
-      if (editor.currentTool) editor.setMode(editor.currentTool);
-      return result;
-    };
-
-    // Resize canvas when window resizes
-    window.addEventListener('resize', () => {
-      canvas.setWidth(window.innerWidth);
-      canvas.setHeight(window.innerHeight);
-      canvas.requestRenderAll();
-    });
-  </script>
+// --- Resize ---
+window.addEventListener('resize', () => {
+  editor.resize(window.innerWidth, window.innerHeight);
+  canvas.setDimensions({ width: window.innerWidth, height: window.innerHeight });
+  canvas.renderAll();
+});
+</script>
 </body>
 </html>

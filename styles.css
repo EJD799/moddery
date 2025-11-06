@@ -94,7 +94,7 @@ input {
     vertical-align: middle;
 }
 .versionBox {
-    width: 30px;
+    width: 40px;
 }
 /* For WebKit-based browsers (Chrome, Safari, Edge) */
 input::-webkit-outer-spin-button,
@@ -106,9 +106,5 @@ input::-webkit-inner-spin-button {
 /* For Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
-}
-
-/* For other browsers (general approach) */
-input[type="number"] {
   appearance: textfield;
 }

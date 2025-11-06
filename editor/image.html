@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Mini Canvas Editor — Blank Canvas Example</title>
+  <title>Mini Canvas Editor — Fixed Panning + Object Movement</title>
 
-  <!-- Mini Canvas Editor (UMD build) -->
   <link href="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/css/editor.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
@@ -31,7 +30,6 @@
       overflow: hidden;
       background: #333;
       position: relative;
-      cursor: grab;
     }
     #placeholder {
       width: 1200px;
@@ -47,7 +45,7 @@
     <button id="btnUndo">Undo</button>
     <button id="btnRedo">Redo</button>
     <button id="btnReset">Reset view</button>
-    <span style="opacity:.7; margin-left:10px;">Scroll = Pan | Ctrl+Scroll = Zoom | Backspace/Delete = Remove Object</span>
+    <span style="opacity:.7; margin-left:10px;">Hold Space or Right-Click to Pan | Ctrl+Scroll = Zoom</span>
   </div>
 
   <div id="work">
@@ -57,17 +55,17 @@
   <script>
     window.addEventListener('load', () => {
       const MCE = window.MiniCanvasEditor || window.miniCanvasEditor || window.miniCanvas;
-      if (!MCE) {
-        alert("MiniCanvasEditor global not found!");
-        return;
-      }
-
       const placeholder = document.getElementById('placeholder');
       const editorInstance = MCE.Editor.createBlank(placeholder, 1200, 800, {});
       const canvas = editorInstance.workspace.canvas;
+      // Fix invisible text bug in Fabric v6 + Mini Canvas Editor
+      canvas.on('after:render', () => {
+        canvas.contextContainer.imageSmoothingEnabled = true;
+      });
+
       const fabric = window.fabric;
 
-      console.log("✅ Blank editor ready", editorInstance);
+      console.log("✅ Editor initialized", editorInstance);
 
       // --- Add Text ---
       document.getElementById('btnAddText').addEventListener('click', () => {
@@ -85,34 +83,32 @@
 
       // --- Undo / Redo ---
       document.getElementById('btnUndo').addEventListener('click', () => {
-        if (editorInstance.history?.undo) editorInstance.history.undo();
+        editorInstance.history?.undo?.();
       });
       document.getElementById('btnRedo').addEventListener('click', () => {
-        if (editorInstance.history?.redo) editorInstance.history.redo();
+        editorInstance.history?.redo?.();
       });
 
-      // --- Reset view ---
       document.getElementById('btnReset').addEventListener('click', () => {
         canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
         canvas.setZoom(1);
         canvas.requestRenderAll();
       });
 
-      // --- Keyboard shortcuts ---
+      // --- Keyboard: Undo/Redo/Delete ---
       window.addEventListener('keydown', (e) => {
         const key = e.key.toLowerCase();
         const active = canvas.getActiveObject();
 
-        // ignore typing in textboxes
         if (active && active.type === 'textbox' && active.isEditing) return;
 
         if ((e.ctrlKey || e.metaKey) && key === 'z') {
           e.preventDefault();
-          editorInstance.history?.undo();
+          editorInstance.history?.undo?.();
         }
         if ((e.ctrlKey || e.metaKey) && (key === 'y' || (e.shiftKey && key === 'z'))) {
           e.preventDefault();
-          editorInstance.history?.redo();
+          editorInstance.history?.redo?.();
         }
         if (key === 'backspace' || key === 'delete') {
           e.preventDefault();
@@ -124,46 +120,69 @@
         }
       });
 
-      // --- Zoom and Pan ---
+      // --- Pan / Zoom behavior ---
       const work = document.getElementById('work');
-      let isDragging = false, lastX = 0, lastY = 0;
+      let isPanning = false;
+      let lastX = 0, lastY = 0;
+      let spaceHeld = false;
+
+      // detect space for panning
+      window.addEventListener('keydown', (e) => {
+        if (e.code === 'Space') spaceHeld = true;
+      });
+      window.addEventListener('keyup', (e) => {
+        if (e.code === 'Space') spaceHeld = false;
+      });
 
       work.addEventListener('wheel', (e) => {
         e.preventDefault();
+        const t = canvas.viewportTransform;
         if (e.ctrlKey || e.metaKey) {
           const zoom = canvas.getZoom() * (e.deltaY < 0 ? 1.1 : 0.9);
           canvas.zoomToPoint({ x: e.offsetX, y: e.offsetY }, Math.min(Math.max(zoom, 0.1), 10));
         } else {
-          const t = canvas.viewportTransform;
-          t[4] -= e.deltaX;
-          t[5] -= e.deltaY;
+          // scroll pans
+          t[4] -= e.deltaX * 1.2;
+          t[5] -= e.deltaY * 1.2;
           canvas.setViewportTransform(t);
           canvas.requestRenderAll();
         }
       }, { passive: false });
 
       work.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        lastX = e.clientX;
-        lastY = e.clientY;
-        work.style.cursor = 'grabbing';
+        // allow right-click or spacebar drag for panning
+        if (e.button === 2 || spaceHeld) {
+          isPanning = true;
+          lastX = e.clientX;
+          lastY = e.clientY;
+          work.style.cursor = 'grabbing';
+          canvas.selection = false;
+        }
       });
-      window.addEventListener('mouseup', () => {
-        isDragging = false;
-        work.style.cursor = 'grab';
-      });
+
       work.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
+        if (!isPanning) return;
+        const t = canvas.viewportTransform;
         const dx = e.clientX - lastX;
         const dy = e.clientY - lastY;
-        lastX = e.clientX;
-        lastY = e.clientY;
-        const t = canvas.viewportTransform;
         t[4] += dx;
         t[5] += dy;
         canvas.setViewportTransform(t);
         canvas.requestRenderAll();
+        lastX = e.clientX;
+        lastY = e.clientY;
       });
+
+      window.addEventListener('mouseup', () => {
+        if (isPanning) {
+          isPanning = false;
+          work.style.cursor = 'default';
+          canvas.selection = true;
+        }
+      });
+
+      // disable context menu (for right-click panning)
+      work.addEventListener('contextmenu', e => e.preventDefault());
     });
   </script>
 </body>

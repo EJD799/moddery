@@ -205,6 +205,7 @@ function addAsset() {
     center.appendChild(optionsBtn);
     assetBox.appendChild(center);
     parentDiv.appendChild(assetBox);
+    $(`#${fileNameEncoded}_assetEditBtn`).button();
     $(`#${fileNameEncoded}_assetOptionBtn`).button();
     if (assetCount % 4 === 0) {
       parentDiv.appendChild(document.createElement("br"));

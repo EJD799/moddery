@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Mini Canvas Editor — Working Example</title>
+  <title>Mini Canvas Editor — Blank Canvas Example</title>
 
-  <!-- Correct UMD build (exposes window.MiniCanvasEditor) -->
+  <!-- Mini Canvas Editor (UMD build) -->
   <link href="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/css/editor.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
@@ -37,15 +37,17 @@
       width: 1200px;
       height: 800px;
       margin: 40px auto;
+      border: 1px solid #555;
     }
   </style>
 </head>
 <body>
   <div id="toolbar">
-    <button id="btnOpen">Open image</button>
-    <button id="btnReset">Reset view</button>
     <button id="btnAddText">Add Text</button>
-    <span style="opacity:.7; margin-left:10px;">Scroll = Pan | Ctrl+Scroll = Zoom | Backspace = Delete</span>
+    <button id="btnUndo">Undo</button>
+    <button id="btnRedo">Redo</button>
+    <button id="btnReset">Reset view</button>
+    <span style="opacity:.7; margin-left:10px;">Scroll = Pan | Ctrl+Scroll = Zoom | Backspace/Delete = Remove Object</span>
   </div>
 
   <div id="work">
@@ -53,7 +55,6 @@
   </div>
 
   <script>
-    // Wait for scripts to load
     window.addEventListener('load', () => {
       const MCE = window.MiniCanvasEditor || window.miniCanvasEditor || window.miniCanvas;
       if (!MCE) {
@@ -64,47 +65,84 @@
       const placeholder = document.getElementById('placeholder');
       const editorInstance = MCE.Editor.createBlank(placeholder, 1200, 800, {});
       const canvas = editorInstance.workspace.canvas;
-      const fabric = MCE.fabric;
+      const fabric = window.fabric;
 
-      console.log("✅ Editor ready", editorInstance);
+      console.log("✅ Blank editor ready", editorInstance);
 
-      // --- Load example image ---
-      function loadExampleImage(url) {
-        canvas.clear();
-        fabric.Image.fromURL(url, (img) => {
-          const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
-          img.scale(scale);
-          img.set({ left: canvas.width / 2, top: canvas.height / 2, originX: 'center', originY: 'center' });
-          canvas.add(img);
-          canvas.setActiveObject(img);
-          canvas.requestRenderAll();
-        }, { crossOrigin: 'anonymous' });
-      }
+      // --- Add Text ---
+      document.getElementById('btnAddText').addEventListener('click', () => {
+        const text = new fabric.Textbox('Type here', {
+          left: 100,
+          top: 100,
+          fill: '#fff',
+          fontSize: 24,
+          editable: true
+        });
+        canvas.add(text);
+        canvas.setActiveObject(text);
+        canvas.requestRenderAll();
+      });
 
-      loadExampleImage('https://picsum.photos/1600/900');
+      // --- Undo / Redo ---
+      document.getElementById('btnUndo').addEventListener('click', () => {
+        if (editorInstance.history?.undo) editorInstance.history.undo();
+      });
+      document.getElementById('btnRedo').addEventListener('click', () => {
+        if (editorInstance.history?.redo) editorInstance.history.redo();
+      });
+
+      // --- Reset view ---
+      document.getElementById('btnReset').addEventListener('click', () => {
+        canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+        canvas.setZoom(1);
+        canvas.requestRenderAll();
+      });
+
+      // --- Keyboard shortcuts ---
+      window.addEventListener('keydown', (e) => {
+        const key = e.key.toLowerCase();
+        const active = canvas.getActiveObject();
+
+        // ignore typing in textboxes
+        if (active && active.type === 'textbox' && active.isEditing) return;
+
+        if ((e.ctrlKey || e.metaKey) && key === 'z') {
+          e.preventDefault();
+          editorInstance.history?.undo();
+        }
+        if ((e.ctrlKey || e.metaKey) && (key === 'y' || (e.shiftKey && key === 'z'))) {
+          e.preventDefault();
+          editorInstance.history?.redo();
+        }
+        if (key === 'backspace' || key === 'delete') {
+          e.preventDefault();
+          if (active) {
+            canvas.remove(active);
+            canvas.discardActiveObject();
+            canvas.requestRenderAll();
+          }
+        }
+      });
 
       // --- Zoom and Pan ---
       const work = document.getElementById('work');
-      let isDragging = false;
-      let lastX = 0, lastY = 0;
+      let isDragging = false, lastX = 0, lastY = 0;
 
-      work.addEventListener('wheel', function(e) {
+      work.addEventListener('wheel', (e) => {
+        e.preventDefault();
         if (e.ctrlKey || e.metaKey) {
-          e.preventDefault();
           const zoom = canvas.getZoom() * (e.deltaY < 0 ? 1.1 : 0.9);
           canvas.zoomToPoint({ x: e.offsetX, y: e.offsetY }, Math.min(Math.max(zoom, 0.1), 10));
         } else {
-          // scroll pans the canvas
           const t = canvas.viewportTransform;
           t[4] -= e.deltaX;
           t[5] -= e.deltaY;
           canvas.setViewportTransform(t);
+          canvas.requestRenderAll();
         }
-        canvas.requestRenderAll();
       }, { passive: false });
 
       work.addEventListener('mousedown', (e) => {
-        if (e.button !== 0) return;
         isDragging = true;
         lastX = e.clientX;
         lastY = e.clientY;
@@ -124,63 +162,6 @@
         t[4] += dx;
         t[5] += dy;
         canvas.setViewportTransform(t);
-        canvas.requestRenderAll();
-      });
-
-      // --- Keyboard Shortcuts ---
-      window.addEventListener('keydown', (e) => {
-        const key = e.key.toLowerCase();
-        const obj = canvas.getActiveObject();
-
-        // typing in textbox
-        if (obj && obj.type === 'textbox' && obj.isEditing) return;
-
-        if ((e.ctrlKey || e.metaKey) && key === 'z') {
-          e.preventDefault();
-          editorInstance.undo?.();
-        } else if ((e.ctrlKey || e.metaKey) && (key === 'y' || (e.shiftKey && key === 'z'))) {
-          e.preventDefault();
-          editorInstance.redo?.();
-        } else if (key === 'backspace' || key === 'delete') {
-          e.preventDefault();
-          if (obj) {
-            canvas.remove(obj);
-            canvas.requestRenderAll();
-          }
-        }
-      });
-
-      // --- Buttons ---
-      document.getElementById('btnReset').addEventListener('click', () => {
-        canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-        canvas.setZoom(1);
-        canvas.requestRenderAll();
-      });
-
-      document.getElementById('btnOpen').addEventListener('click', () => {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = 'image/*';
-        input.onchange = () => {
-          const file = input.files[0];
-          if (!file) return;
-          const url = URL.createObjectURL(file);
-          loadExampleImage(url);
-        };
-        input.click();
-      });
-
-      document.getElementById('btnAddText').addEventListener('click', () => {
-        const t = new fabric.Textbox('Text here', {
-          left: canvas.width / 2,
-          top: canvas.height / 2,
-          fontSize: 40,
-          fill: '#fff',
-          originX: 'center',
-          originY: 'center'
-        });
-        canvas.add(t);
-        canvas.setActiveObject(t);
         canvas.requestRenderAll();
       });
     });

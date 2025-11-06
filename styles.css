@@ -109,11 +109,11 @@ input[type="number"] {
   appearance: textfield;
 }
 .previewBox {
-  width: 100px;
+  width: 200px;
   height: 100px;
-  border: 1px solid #999;
+  border: none;
   overflow: hidden;
-  background: #eee;
+  background: none;
   display: flex;
   align-items: center;
   justify-content: center;

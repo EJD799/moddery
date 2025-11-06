@@ -2,68 +2,63 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Mini Canvas Editor — Full Example</title>
+<title>Mini Canvas Editor — Zoom & Pan</title>
 <link href="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/css/editor.css" rel="stylesheet">
 <style>
-  html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; font-family: Verdana, sans-serif; background:#222; }
+  html, body {
+    margin:0; padding:0; width:100%; height:100%; overflow:hidden;
+    font-family: Verdana, sans-serif; background:#222; color:#fff;
+  }
   #editorRoot { width:100%; height:100%; }
-  /* Canvas cursor */
+  /* Crosshair cursor inside canvas */
   .mce-workspace canvas { cursor: crosshair !important; }
 </style>
 </head>
 <body>
 <div id="editorRoot"></div>
 
-<!-- Load Fabric.js first -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/6.0.0-beta.14/fabric.min.js"></script>
-
-<!-- Load Mini Canvas Editor -->
 <script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
 
 <script>
-  // --- Create blank editor filling window ---
   const editor = miniCanvasEditor.Editor.createBlank(
     document.getElementById('editorRoot'),
     window.innerWidth,
     window.innerHeight,
     {
-      textOptions: { fontFamily: 'Verdana', fill: '#ffffff', fontSize: 20 },
+      textOptions: { fontFamily: 'Verdana', fill: '#ffffff', fontSize: 24 },
       keyboard: { delete: true, undo: true, redo: true, arrowMoveStep: 5 }
     }
   );
 
-  const canvas = editor.canvas.fabric; // access the internal Fabric canvas
+  const canvas = editor.canvas; // built-in canvas object
 
-  // --- Smooth zoom/pan ---
-  const ZOOM_STEP = 1.05;  // zoom per tick
-  const PAN_SPEED = 0.5;   // scroll-to-pan speed
+  // --- Zoom & Pan variables ---
+  const ZOOM_SPEED = 1.03; // slower zoom per wheel tick
   let isPanning = false, lastX = 0, lastY = 0;
 
-  const upperCanvas = canvas.upperCanvasEl;
-
-  // Wheel: ctrl/cmd or pinch = zoom, normal scroll = pan
-  upperCanvas.addEventListener('wheel', e => {
+  // Wheel: pinch/trackpad zoom, normal scroll pan
+  canvas.upperCanvasEl.addEventListener('wheel', e => {
     e.preventDefault();
     const pointer = canvas.getPointer(e);
 
     if (e.ctrlKey || e.metaKey || e.scale) {
-      // Zoom
-      const delta = e.deltaY < 0 ? ZOOM_STEP : 1 / ZOOM_STEP;
+      // Zoom (slower)
+      const delta = e.deltaY < 0 ? ZOOM_SPEED : 1 / ZOOM_SPEED;
       canvas.zoomToPoint(pointer, canvas.getZoom() * delta);
     } else {
       // Scroll-to-pan
       const t = canvas.viewportTransform.slice();
-      t[4] -= e.deltaX * PAN_SPEED;
-      t[5] -= e.deltaY * PAN_SPEED;
+      t[4] -= e.deltaX;
+      t[5] -= e.deltaY;
       canvas.setViewportTransform(t);
       canvas.requestRenderAll();
     }
   }, { passive: false });
 
-  // Drag-to-pan when clicking empty canvas
+  // Cmd/Ctrl + drag to pan
   canvas.on('mouse:down', opt => {
-    if (!opt.target) {
+    if ((opt.e.metaKey || opt.e.ctrlKey) && !opt.target) {
       isPanning = true;
       lastX = opt.e.clientX;
       lastY = opt.e.clientY;
@@ -76,7 +71,6 @@
     const dy = opt.e.clientY - lastY;
     lastX = opt.e.clientX;
     lastY = opt.e.clientY;
-
     const t = canvas.viewportTransform.slice();
     t[4] += dx;
     t[5] += dy;
@@ -88,17 +82,10 @@
     canvas.setCursor('crosshair');
   });
 
-  // --- Handle window resize ---
+  // --- Window resize ---
   window.addEventListener('resize', () => {
     editor.resize(window.innerWidth, window.innerHeight);
-    canvas.setDimensions({ width: window.innerWidth, height: window.innerHeight });
-    canvas.requestRenderAll();
   });
-
-  // --- Optional: Keep selected tool active (rectangle/text) ---
-  editor.onToolChanged = tool => {
-    editor.currentTool = tool;
-  };
 </script>
 </body>
 </html>

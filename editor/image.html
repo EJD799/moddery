@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Mini Canvas Editor — Fixed Pan/Zoom/Text</title>
+  <title>Mini Canvas Editor — Fixed Fullscreen</title>
   <link href="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/css/editor.css" rel="stylesheet">
   <style>
     html, body {
@@ -27,6 +27,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
+
 <script>
 const editor = miniCanvasEditor.Editor.createBlank(
   document.getElementById('editorRoot'),
@@ -47,64 +48,12 @@ if (fabric) {
   };
 }
 
-// --- Add example shapes ---
+// --- Add example objects (optional) ---
 const rect = new fabric.Rect({ left: 200, top: 200, width: 200, height: 150, fill: '#00aaff', stroke: '#0077cc', strokeWidth: 2 });
 const text = new fabric.Textbox('Editable Verdana Text', { left: 500, top: 250, width: 300, fontSize: 28 });
 canvas.add(rect, text);
-canvas.setActiveObject(text);
-canvas.renderAll();
 
-// --- Pan & zoom ---
-let isPanning = false;
-let lastX = 0, lastY = 0;
-const PAN_SPEED = 0.7;
-const ZOOM_SPEED = 0.002;
-
-canvas.upperCanvasEl.addEventListener('wheel', e => {
-  e.preventDefault();
-  const pointer = canvas.getPointer(e);
-
-  if (e.ctrlKey || e.metaKey || e.scale) {
-    // pinch zoom
-    const zoomDelta = e.deltaY < 0 ? 1.1 : 0.9;
-    let zoom = canvas.getZoom() * zoomDelta;
-    zoom = Math.max(0.1, Math.min(10, zoom));
-    canvas.zoomToPoint({ x: pointer.x, y: pointer.y }, zoom);
-  } else {
-    // scroll pan
-    const t = canvas.viewportTransform.slice();
-    t[4] -= e.deltaX * PAN_SPEED;
-    t[5] -= e.deltaY * PAN_SPEED;
-    canvas.setViewportTransform(t);
-    canvas.renderAll();
-  }
-}, { passive: false });
-
-// --- Drag pan ---
-canvas.on('mouse:down', opt => {
-  if (opt.target) return;
-  isPanning = true;
-  lastX = opt.e.clientX;
-  lastY = opt.e.clientY;
-  canvas.setCursor('grabbing');
-});
-canvas.on('mouse:move', opt => {
-  if (!isPanning) return;
-  const e = opt.e;
-  const t = canvas.viewportTransform;
-  t[4] += e.clientX - lastX;
-  t[5] += e.clientY - lastY;
-  canvas.setViewportTransform(t);
-  canvas.renderAll();
-  lastX = e.clientX;
-  lastY = e.clientY;
-});
-canvas.on('mouse:up', () => {
-  isPanning = false;
-  canvas.setCursor('crosshair');
-});
-
-// --- Keep rectangle tool active ---
+// --- Persistent rectangle tool ---
 editor.currentTool = 'rect';
 const originalSetMode = editor.setMode.bind(editor);
 editor.setMode = mode => {
@@ -118,11 +67,115 @@ canvas.add = (...args) => {
   return result;
 };
 
-// --- Resize ---
+// --- Zoom & pan ---
+let isPanning = false, lastX = 0, lastY = 0, raf = null;
+const PAN_SPEED = 0.6;
+const ZOOM_FACTOR = 1.02;
+
+function updateViewport(dx, dy, zoomDelta, pointer) {
+  if (zoomDelta !== 0) {
+    let zoom = canvas.getZoom() * zoomDelta;
+    zoom = Math.max(0.1, Math.min(10, zoom));
+    canvas.zoomToPoint(pointer, zoom);
+  }
+  if (dx !== 0 || dy !== 0) {
+    const t = canvas.viewportTransform.slice();
+    t[4] += dx;
+    t[5] += dy;
+    canvas.setViewportTransform(t);
+  }
+  canvas.requestRenderAll();
+}
+
+// Wheel = pan normally, ctrl/cmd = zoom
+canvas.upperCanvasEl.addEventListener('wheel', e => {
+  e.preventDefault();
+  const pointer = canvas.getPointer(e);
+  let dx = 0, dy = 0, zoomDelta = 0;
+  const isZoom = e.ctrlKey || e.metaKey || e.scale;
+
+  if (isZoom) {
+    zoomDelta = e.deltaY < 0 ? ZOOM_FACTOR : 1 / ZOOM_FACTOR;
+  } else {
+    dx = -e.deltaX * PAN_SPEED;
+    dy = -e.deltaY * PAN_SPEED;
+  }
+
+  if (raf) cancelAnimationFrame(raf);
+  raf = requestAnimationFrame(() => updateViewport(dx, dy, zoomDelta, pointer));
+}, { passive: false });
+
+// Drag to pan
+canvas.on('mouse:down', opt => {
+  if (opt.target) return;
+  isPanning = true;
+  lastX = opt.e.clientX;
+  lastY = opt.e.clientY;
+  canvas.setCursor('grabbing');
+});
+canvas.on('mouse:move', opt => {
+  if (!isPanning) return;
+  const dx = opt.e.clientX - lastX;
+  const dy = opt.e.clientY - lastY;
+  lastX = opt.e.clientX;
+  lastY = opt.e.clientY;
+  const t = canvas.viewportTransform.slice();
+  t[4] += dx;
+  t[5] += dy;
+  canvas.setViewportTransform(t);
+  canvas.requestRenderAll();
+});
+canvas.on('mouse:up', () => {
+  isPanning = false;
+  canvas.setCursor('crosshair');
+});
+
+// --- Keyboard handling ---
+window.addEventListener('keydown', e => {
+  const key = e.key.toLowerCase();
+  const el = document.activeElement;
+  const tag = el?.tagName;
+  const isEditing =
+    (canvas.getActiveObject()?.type === 'textbox' && canvas.getActiveObject().isEditing) ||
+    el?.isContentEditable ||
+    tag === 'INPUT' || tag === 'TEXTAREA' ||
+    el?.getAttribute('role') === 'textbox';
+
+  if (isEditing) return;
+
+  const activeObj = canvas.getActiveObject?.();
+  const moveStep = 5;
+
+  // Undo/Redo
+  if ((e.ctrlKey || e.metaKey) && !e.shiftKey && key === 'z') { e.preventDefault(); editor.undo?.(); return; }
+  if ((e.ctrlKey || e.metaKey) && (key === 'y' || (e.shiftKey && key === 'z'))) { e.preventDefault(); editor.redo?.(); return; }
+
+  // Delete / Backspace
+  if (key === 'delete' || key === 'backspace') {
+    e.preventDefault();
+    if (activeObj) { canvas.remove(activeObj); canvas.discardActiveObject(); canvas.requestRenderAll(); }
+    return;
+  }
+
+  // Arrow keys
+  if (activeObj) {
+    e.preventDefault();
+    switch(key) {
+      case 'arrowup': activeObj.top -= moveStep; break;
+      case 'arrowdown': activeObj.top += moveStep; break;
+      case 'arrowleft': activeObj.left -= moveStep; break;
+      case 'arrowright': activeObj.left += moveStep; break;
+    }
+    activeObj.setCoords();
+    canvas.requestRenderAll();
+  }
+});
+
+// --- Resize canvas ---
 window.addEventListener('resize', () => {
   editor.resize(window.innerWidth, window.innerHeight);
   canvas.setDimensions({ width: window.innerWidth, height: window.innerHeight });
-  canvas.renderAll();
+  canvas.requestRenderAll();
 });
 </script>
 </body>

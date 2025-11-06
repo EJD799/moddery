@@ -272,7 +272,7 @@ function assetDropdown(assetID) {
 }
 
 function addTab(role, elementID) {
-  var label = elementID,
+  var label = elementID.replace("_dot_", "."),
     id = "tabs-" + tabCounter,
     li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
     tabContentHtml = getTabContent(role, elementID);

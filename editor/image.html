@@ -21,7 +21,7 @@
     const editor = new tui.ImageEditor('#tui-image-editor-container', {
       includeUI: {
         loadImage: {
-          path: 'https://uicdn.toast.com/toastui/img/tui-image-editor-bi.png',
+          path: '/moddery/moddery_icon.png',
           name: 'SampleImage'
         },
         theme: {}, // optional theme customization
@@ -35,10 +35,5 @@
       },
       cssMaxWidth: 700,
       cssMaxHeight: 500
-    });
-
-    // Example: access the plugin API
-    editor.loadImageFromURL('/moddery/moddery_icon.png').then(() => {
-      console.log('Image loaded');
     });
 </script>

@@ -125,4 +125,5 @@ input[type="number"] {
   height: 100%;
   object-fit: contain; /* 🔹 scales image to fit while preserving aspect ratio */
   object-position: center; /* centers it nicely */
+  image-rendering: pixelated;
 }

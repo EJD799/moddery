@@ -1,64 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Mini Editor Example</title>
-<style>
-  body { margin: 0; background: #333; overflow: hidden; }
-  #editor-container { width: 100vw; height: 100vh; }
-</style>
-<script src="https://cdn.jsdelivr.net/gh/NaiveAI/mini-canvas-editor@latest/dist/mini-canvas-editor.umd.js"></script>
+  <meta charset="utf-8" />
+  <title>Mini Canvas Editor — Working Example</title>
+
+  <!-- Correct UMD build (exposes window.MiniCanvasEditor) -->
+  <link href="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/css/editor.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #222;
+      color: #fff;
+      font-family: sans-serif;
+    }
+    #toolbar {
+      padding: 8px;
+      background: #111;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    #work {
+      flex: 1;
+      overflow: hidden;
+      background: #333;
+      position: relative;
+      cursor: grab;
+    }
+    #placeholder {
+      width: 1200px;
+      height: 800px;
+      margin: 40px auto;
+    }
+  </style>
 </head>
 <body>
-  <div id="editor-container"></div>
-<script>
-(async () => {
-  // Create editor
-  const container = document.getElementById("editor-container");
-  const editorInstance = await miniCanvasEditor.Editor.createBlank(container, 1200, 800, {});
-  console.log("Created editorInstance:", editorInstance);
+  <div id="toolbar">
+    <button id="btnOpen">Open image</button>
+    <button id="btnReset">Reset view</button>
+    <button id="btnAddText">Add Text</button>
+    <span style="opacity:.7; margin-left:10px;">Scroll = Pan | Ctrl+Scroll = Zoom | Backspace = Delete</span>
+  </div>
 
-  // Find the internal Fabric canvas
-  let fabricCanvas = null;
-  if (editorInstance?.workspace?.canvas) {
-    fabricCanvas = editorInstance.workspace.canvas;
-    console.log("Found fabricCanvas:", fabricCanvas);
-  } else {
-    console.error("Fabric canvas not found in editorInstance");
-  }
+  <div id="work">
+    <div id="placeholder"></div>
+  </div>
 
-  // Handle keyboard shortcuts safely
-  document.addEventListener("keydown", (e) => {
-    if (!fabricCanvas) return;
-
-    // DELETE or BACKSPACE: delete selected non-focused object
-    if (e.key === "Backspace" || e.key === "Delete") {
-      const active = fabricCanvas.getActiveObject?.();
-      const focusedTextbox = document.activeElement?.tagName === "TEXTAREA" || document.activeElement?.tagName === "INPUT";
-      if (active && !focusedTextbox) {
-        fabricCanvas.remove(active);
-        fabricCanvas.requestRenderAll();
-        e.preventDefault();
+  <script>
+    // Wait for scripts to load
+    window.addEventListener('load', () => {
+      const MCE = window.MiniCanvasEditor || window.miniCanvasEditor || window.miniCanvas;
+      if (!MCE) {
+        alert("MiniCanvasEditor global not found!");
+        return;
       }
-    }
 
-    // Undo / Redo
-    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") {
-      e.preventDefault();
-      editorInstance.history?.undo?.();
-    }
-    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "y") {
-      e.preventDefault();
-      editorInstance.history?.redo?.();
-    }
-  });
+      const placeholder = document.getElementById('placeholder');
+      const editorInstance = MCE.Editor.createBlank(placeholder, 1200, 800, {});
+      const canvas = editorInstance.workspace.canvas;
+      const fabric = MCE.fabric;
 
-  // Example: add one rectangle
-  fabricCanvas.add(new miniCanvasEditor.fabric.Rect({
-    left: 200, top: 150, width: 200, height: 120, fill: 'red'
-  }));
+      console.log("✅ Editor ready", editorInstance);
 
-})();
-</script>
+      // --- Load example image ---
+      function loadExampleImage(url) {
+        canvas.clear();
+        fabric.Image.fromURL(url, (img) => {
+          const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+          img.scale(scale);
+          img.set({ left: canvas.width / 2, top: canvas.height / 2, originX: 'center', originY: 'center' });
+          canvas.add(img);
+          canvas.setActiveObject(img);
+          canvas.requestRenderAll();
+        }, { crossOrigin: 'anonymous' });
+      }
+
+      loadExampleImage('https://picsum.photos/1600/900');
+
+      // --- Zoom and Pan ---
+      const work = document.getElementById('work');
+      let isDragging = false;
+      let lastX = 0, lastY = 0;
+
+      work.addEventListener('wheel', function(e) {
+        if (e.ctrlKey || e.metaKey) {
+          e.preventDefault();
+          const zoom = canvas.getZoom() * (e.deltaY < 0 ? 1.1 : 0.9);
+          canvas.zoomToPoint({ x: e.offsetX, y: e.offsetY }, Math.min(Math.max(zoom, 0.1), 10));
+        } else {
+          // scroll pans the canvas
+          const t = canvas.viewportTransform;
+          t[4] -= e.deltaX;
+          t[5] -= e.deltaY;
+          canvas.setViewportTransform(t);
+        }
+        canvas.requestRenderAll();
+      }, { passive: false });
+
+      work.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return;
+        isDragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        work.style.cursor = 'grabbing';
+      });
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+        work.style.cursor = 'grab';
+      });
+      work.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - lastX;
+        const dy = e.clientY - lastY;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        const t = canvas.viewportTransform;
+        t[4] += dx;
+        t[5] += dy;
+        canvas.setViewportTransform(t);
+        canvas.requestRenderAll();
+      });
+
+      // --- Keyboard Shortcuts ---
+      window.addEventListener('keydown', (e) => {
+        const key = e.key.toLowerCase();
+        const obj = canvas.getActiveObject();
+
+        // typing in textbox
+        if (obj && obj.type === 'textbox' && obj.isEditing) return;
+
+        if ((e.ctrlKey || e.metaKey) && key === 'z') {
+          e.preventDefault();
+          editorInstance.undo?.();
+        } else if ((e.ctrlKey || e.metaKey) && (key === 'y' || (e.shiftKey && key === 'z'))) {
+          e.preventDefault();
+          editorInstance.redo?.();
+        } else if (key === 'backspace' || key === 'delete') {
+          e.preventDefault();
+          if (obj) {
+            canvas.remove(obj);
+            canvas.requestRenderAll();
+          }
+        }
+      });
+
+      // --- Buttons ---
+      document.getElementById('btnReset').addEventListener('click', () => {
+        canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+        canvas.setZoom(1);
+        canvas.requestRenderAll();
+      });
+
+      document.getElementById('btnOpen').addEventListener('click', () => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = () => {
+          const file = input.files[0];
+          if (!file) return;
+          const url = URL.createObjectURL(file);
+          loadExampleImage(url);
+        };
+        input.click();
+      });
+
+      document.getElementById('btnAddText').addEventListener('click', () => {
+        const t = new fabric.Textbox('Text here', {
+          left: canvas.width / 2,
+          top: canvas.height / 2,
+          fontSize: 40,
+          fill: '#fff',
+          originX: 'center',
+          originY: 'center'
+        });
+        canvas.add(t);
+        canvas.setActiveObject(t);
+        canvas.requestRenderAll();
+      });
+    });
+  </script>
 </body>
 </html>

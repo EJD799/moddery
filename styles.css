@@ -96,3 +96,19 @@ input {
 .versionBox {
     width: 30px;
 }
+/* For WebKit-based browsers (Chrome, Safari, Edge) */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Optional: Removes any default margin */
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* For other browsers (general approach) */
+input[type="number"] {
+  appearance: textfield;
+}

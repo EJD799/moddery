@@ -186,7 +186,9 @@ function addAsset() {
       previewBox.appendChild(preview);
     }
     assetBox.appendChild(preview);
+    assetBox.appendChild(document.createElement("br"));
     parentDiv.appendChild(assetBox);
+    $(`#${file.name}_assetOptionBtn`).button();
     if (assetCount % 4 === 0) {
       parentDiv.appendChild(document.createElement("br"));
     }

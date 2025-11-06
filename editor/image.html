@@ -44,7 +44,7 @@ html, body {
     flex: 1;
     position: relative;
     overflow: hidden;
-    background: #000;
+    background: #222;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,10 +160,10 @@ function render(){
         // Draw pixels
         ctx.drawImage(bgCanvas,0,0,gridWidth,gridHeight,0,0,gridWidth,gridHeight);
         // Draw grid overlay
-        ctx.strokeStyle='rgba(255,255,255,0.1)';
+        ctx.strokeStyle='rgba(255,255,255,0.15)';
         ctx.lineWidth=1/scale/pixelSize;
-        for(let i=0;i<=gridWidth;i++){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,gridHeight);ctx.stroke();}
-        for(let i=0;i<=gridHeight;i++){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(gridWidth,i);ctx.stroke();}
+        for(let i=0;i<=gridWidth;i++){ctx.beginPath();ctx.moveTo(i,0); ctx.lineTo(i,gridHeight); ctx.stroke();}
+        for(let i=0;i<=gridHeight;i++){ctx.beginPath();ctx.moveTo(0,i); ctx.lineTo(gridWidth,i); ctx.stroke();}
         // Rectangle preview
         if(previewRect){
             ctx.fillStyle=currentColor+'55';
@@ -175,16 +175,22 @@ function render(){
 
 // Mouse events
 canvas.addEventListener('mousedown', e=>{
+    if(e.button===1){isPanning=true; lastX=e.clientX; lastY=e.clientY; canvas.style.cursor='move'; return;}
     const pos=getMousePos(e);
     startX=pos.x; startY=pos.y; isDrawing=true;
     if(['pencil','eraser','fill','rect'].includes(currentTool)) saveState();
     if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor);
     if(currentTool==='eraser') drawPixel(pos.x,pos.y,'rgba(0,0,0,0)');
     if(currentTool==='fill') floodFill(pos.x,pos.y,currentColor);
-    if(currentTool==='eyedropper') currentColor=getPixelColor(pos.x,pos.y);
+    if(currentTool==='eyedropper'){
+        const c=getPixelColor(pos.x,pos.y);
+        currentColor=c;
+        document.getElementById('colorPicker').value=rgbaToHex(c);
+    }
 });
 
 canvas.addEventListener('mousemove', e=>{
+    if(isPanning){offsetX += e.movementX; offsetY += e.movementY; render(); return;}
     if(!isDrawing) return;
     const pos=getMousePos(e);
     if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor);
@@ -205,10 +211,17 @@ canvas.addEventListener('mouseup', e=>{
     isDrawing=false; render();
 });
 
-// Eyedropper
+// Eyedropper helper
 function getPixelColor(x,y){
     const data=bgCtx.getImageData(x,y,1,1).data;
     return `rgba(${data[0]},${data[1]},${data[2]},${data[3]/255})`;
+}
+
+function rgbaToHex(rgba){
+    const m=rgba.match(/rgba?\((\d+),\s*(\d+),\s*(\d+),?\s*([\d.]*)\)/);
+    if(!m) return '#000000';
+    const [_,r,g,b]=m;
+    return '#'+((1<<24)+(parseInt(r)<<16)+(parseInt(g)<<8)+parseInt(b)).toString(16).slice(1);
 }
 
 // Toolbar
@@ -224,19 +237,21 @@ document.getElementById('pixelSize').oninput=e=>{pixelSize=parseInt(e.target.val
 document.getElementById('undoBtn').onclick=undo;
 document.getElementById('redoBtn').onclick=redo;
 
-// Zoom & Pan
-let isPanning=false, lastX=0, lastY=0;
+// Wheel zoom
 canvas.addEventListener('wheel', e=>{
     e.preventDefault();
-    const delta=-e.deltaY*0.0015;
+    const delta=-e.deltaY*0.002; // slower zoom
     const mx=e.offsetX-offsetX;
     const my=e.offsetY-offsetY;
-    const newScale=Math.min(Math.max(scale*(1+delta),0.5),32);
+    const newScale=Math.min(Math.max(scale*(1+delta),0.1),64); // zoom out further
     offsetX -= mx*(newScale-scale);
     offsetY -= my*(newScale-scale);
     scale=newScale;
     render();
 },{passive:false});
+
+// Pan with middle click
+let isPanning=false, lastX=0, lastY=0;
 canvas.addEventListener('mousedown', e=>{if(e.button===1){isPanning=true; lastX=e.clientX; lastY=e.clientY; canvas.style.cursor='move'; e.preventDefault();}});
 window.addEventListener('mouseup', e=>{isPanning=false; canvas.style.cursor='crosshair';});
 window.addEventListener('mousemove', e=>{if(isPanning){offsetX += e.clientX-lastX; offsetY += e.clientY-lastY; lastX=e.clientX; lastY=e.clientY; render();}});

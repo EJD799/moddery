@@ -170,7 +170,6 @@ function addAsset() {
   let previewBox;
   let preview;
   let editBtn;
-  let center;
   if (file) {
     projZip.folder("assets").file(file.name, file);
     assetCount++;

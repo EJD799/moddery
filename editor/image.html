@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Mini Canvas Editor — Fullscreen Fixed</title>
+  <meta charset="utf-8" />
+  <title>Mini Canvas Editor — macOS Trackpad Optimized</title>
   <link href="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/css/editor.css" rel="stylesheet">
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
       width: 100%;
+      height: 100%;
       overflow: hidden;
       background: #222;
+      font-family: Verdana, sans-serif;
     }
     #placeholder {
       width: 100%;
       height: 100%;
+      cursor: crosshair;
     }
   </style>
 </head>
@@ -25,13 +27,16 @@
   <script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
   <script>
-    // --- Initialize editor ---
     const MCE = window.MiniCanvasEditor || window.miniCanvasEditor || window.miniCanvas;
     const placeholder = document.getElementById('placeholder');
     const editorInstance = MCE.Editor.createBlank(placeholder, window.innerWidth, window.innerHeight, {});
     const canvas = editorInstance.workspace.canvas;
+    const fabric = window.fabric;
 
-    // --- Fix invisible textboxes ---
+    // 🧱 Basic canvas setup
+    canvas.setBackgroundColor('#333', canvas.renderAll.bind(canvas));
+
+    // ✅ Fix invisible textboxes + force Verdana
     canvas.on('after:render', () => {
       const ctx = canvas.contextContainer;
       if (ctx) {
@@ -40,8 +45,15 @@
         ctx.filter = 'none';
       }
     });
+    fabric.Textbox.prototype.initialize = (function(original) {
+      return function(...args) {
+        original.apply(this, args);
+        this.fontFamily = 'Verdana';
+        this.fill = '#ffffff';
+      };
+    })(fabric.Textbox.prototype.initialize);
 
-    // --- Keyboard: delete selected object (except active textbox) ---
+    // --- Delete / Backspace ---
     window.addEventListener('keydown', e => {
       const active = canvas.getActiveObject?.();
       const tag = document.activeElement?.tagName;
@@ -57,64 +69,69 @@
       }
     });
 
-    // --- Interaction: scroll pans, Ctrl+scroll zooms ---
+    // --- Improved zoom & pan for macOS trackpad ---
+    let zoom = 1;
+    let isPanning = false;
     let lastX = 0, lastY = 0;
-    let isDragging = false;
+    let pinchZoomLast = null;
 
-    // Panning by dragging
-    canvas.on('mouse:down', e => {
-      // Only pan if user clicks on empty space
-      if (!e.target) {
-        isDragging = true;
-        lastX = e.e.clientX;
-        lastY = e.e.clientY;
-        canvas.defaultCursor = 'grabbing';
-      }
-    });
-    canvas.on('mouse:up', () => {
-      isDragging = false;
-      canvas.defaultCursor = 'default';
-    });
-    canvas.on('mouse:move', e => {
-      if (!isDragging) return;
-      const dx = e.e.clientX - lastX;
-      const dy = e.e.clientY - lastY;
-      lastX = e.e.clientX;
-      lastY = e.e.clientY;
-      const t = canvas.viewportTransform;
-      t[4] += dx;
-      t[5] += dy;
-      canvas.setViewportTransform(t);
-      canvas.requestRenderAll();
-    });
-
-    // Scrolling → pan, Ctrl+scroll → zoom
-    window.addEventListener('wheel', e => {
-      e.preventDefault();
-      const t = canvas.viewportTransform;
-      if (e.ctrlKey || e.metaKey) {
-        // zoom
-        const zoom = canvas.getZoom() * (e.deltaY < 0 ? 1.1 : 0.9);
-        canvas.zoomToPoint({ x: e.offsetX, y: e.offsetY }, Math.max(0.1, Math.min(10, zoom)));
+    // Normal scroll pans; pinch zooms automatically
+    canvas.upperCanvasEl.addEventListener('wheel', e => {
+      if (e.ctrlKey || e.metaKey || e.scale) {
+        // pinch zoom gesture (Mac trackpad)
+        e.preventDefault();
+        const zoomFactor = 1.2;
+        const delta = e.deltaY < 0 ? zoomFactor : 1 / zoomFactor;
+        const pointer = canvas.getPointer(e);
+        zoom *= delta;
+        zoom = Math.max(0.1, Math.min(10, zoom));
+        canvas.zoomToPoint(pointer, zoom);
+        canvas.requestRenderAll();
       } else {
-        // pan
-        t[4] -= e.deltaX;
-        t[5] -= e.deltaY;
+        // regular scroll pans
+        e.preventDefault();
+        const t = canvas.viewportTransform;
+        t[4] -= e.deltaX * 1.2;
+        t[5] -= e.deltaY * 1.2;
         canvas.setViewportTransform(t);
+        canvas.requestRenderAll();
       }
-      canvas.requestRenderAll();
     }, { passive: false });
 
-    // --- Add a default textbox to test ---
-    const textbox = new fabric.Textbox('Hello Mini Canvas!', {
-      left: 100,
-      top: 100,
-      fontSize: 32,
-      fill: '#ffffff',
-      editable: true,
-      width: 400
+    // Dragging with empty space pans
+    canvas.on('mouse:down', opt => {
+      if (opt.target) return;
+      isPanning = true;
+      canvas.defaultCursor = 'grabbing';
+      lastX = opt.e.clientX;
+      lastY = opt.e.clientY;
     });
-    canvas.add(textbox);
+    canvas.on('mouse:move', opt => {
+      if (!isPanning) return;
+      const e = opt.e;
+      const vpt = canvas.viewportTransform;
+      vpt[4] += e.clientX - lastX;
+      vpt[5] += e.clientY - lastY;
+      canvas.setViewportTransform(vpt);
+      canvas.requestRenderAll();
+      lastX = e.clientX;
+      lastY = e.clientY;
+    });
+    canvas.on('mouse:up', () => {
+      isPanning = false;
+      canvas.defaultCursor = 'crosshair';
+    });
+
+    // --- Add default test content ---
+    const rect = new fabric.Rect({
+      left: 250, top: 250, width: 200, height: 200,
+      fill: '#00aaff', stroke: '#0077cc', strokeWidth: 2, selectable: true
+    });
+    const text = new fabric.Textbox('Editable Text', {
+      left: 550, top: 300, fontSize: 28, fontFamily: 'Verdana',
+      fill: '#fff', width: 400, editable: true
+    });
+    canvas.add(rect, text);
     canvas.requestRenderAll();
 
     // --- Resize handling ---

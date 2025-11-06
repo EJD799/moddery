@@ -108,3 +108,20 @@ input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
+.previewBox {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* hide parts of large images */
+  background: #eee;
+}
+
+.previewBox img {
+  image-rendering: pixelated; /* optional, to preserve sharp pixels */
+  object-fit: none;           /* disables automatic scaling */
+  max-width: none;            /* ensure browser doesn't shrink */
+  max-height: none;
+}

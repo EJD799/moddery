@@ -166,6 +166,7 @@ function addElement() {
 function addAsset() {
   let file = addAssetUploadInput.files[0];
   let fileType = file.name.split(".")[1];
+  let previewBox;
   let preview;
   if (file) {
     projZip.folder("assets").file(file.name, file);
@@ -178,8 +179,11 @@ function addAsset() {
     <button onclick="assetDropdown('${file.name}')" id="${file.name}_assetOptionBtn">&#x22EF;</button>
     `;
     if (fileType == "png") {
+      previewBox = document.createElement("div");
+      previewBox.setAttribute("class", "previewBox");
       preview = document.createElement("img");
       preview.setAttribute("src", URL.createObjectURL(file));
+      previewBox.appendChild(preview);
     }
     assetBox.appendChild(preview);
     parentDiv.appendChild(assetBox);

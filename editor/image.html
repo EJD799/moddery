@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pixel Art Editor with Rectangle Preview</title>
+<title>Pixel Art Editor with Zoom, Pan, Eyedropper</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
 <style>
 html, body {
@@ -62,8 +62,9 @@ canvas {
     <button id="toolRect"><i class="fas fa-square"></i>Rectangle</button>
     <button id="toolFill"><i class="fas fa-fill-drip"></i>Fill</button>
     <button id="toolEraser"><i class="fas fa-eraser"></i>Eraser</button>
+    <button id="toolEyedropper"><i class="fas fa-eye-dropper"></i>Eyedropper</button>
     <label>Color:<input type="color" id="colorPicker" value="#ff0000"></label>
-    <label>Pixel Size:<input type="range" id="pixelSize" min="4" max="32" value="16"></label>
+    <label>Pixel Size:<input type="range" id="pixelSize" min="4" max="64" value="16"></label>
     <button id="undoBtn"><i class="fas fa-undo"></i>Undo</button>
     <button id="redoBtn"><i class="fas fa-redo"></i>Redo</button>
     <button id="saveBtn"><i class="fas fa-download"></i>Save</button>
@@ -80,14 +81,18 @@ const canvas = document.getElementById('pixelCanvas');
 const ctx = canvas.getContext('2d');
 const container = document.getElementById('canvasContainer');
 
-let gridWidth = 16, gridHeight = 16;
+let gridWidth = 32, gridHeight = 32; // can support larger images
 let pixelSize = 16;
 let currentTool = 'pencil';
 let currentColor = '#ff0000';
 let isDrawing = false;
 let startX = 0, startY = 0;
 
-// Offscreen background canvas for real pixels
+// Camera for zoom/pan
+let offsetX = 0, offsetY = 0;
+let scale = 1;
+
+// Offscreen background canvas for pixels
 const bgCanvas = document.createElement('canvas');
 bgCanvas.width = gridWidth;
 bgCanvas.height = gridHeight;
@@ -95,33 +100,30 @@ const bgCtx = bgCanvas.getContext('2d');
 bgCtx.clearRect(0,0,gridWidth,gridHeight);
 
 // Undo/Redo
-let undoStack = [];
-let redoStack = [];
-function saveState() {
-    redoStack = [];
-    undoStack.push(bgCtx.getImageData(0,0,gridWidth,gridHeight));
-    if(undoStack.length>50) undoStack.shift();
-}
+let undoStack = [], redoStack = [];
+function saveState(){redoStack=[]; undoStack.push(bgCtx.getImageData(0,0,gridWidth,gridHeight)); if(undoStack.length>50) undoStack.shift();}
 function undo(){if(undoStack.length){redoStack.push(bgCtx.getImageData(0,0,gridWidth,gridHeight)); bgCtx.putImageData(undoStack.pop(),0,0); render();}}
 function redo(){if(redoStack.length){undoStack.push(bgCtx.getImageData(0,0,gridWidth,gridHeight)); bgCtx.putImageData(redoStack.pop(),0,0); render();}}
 
-// Resize visible canvas
-function resizeCanvas(){canvas.width=gridWidth*pixelSize; canvas.height=gridHeight*pixelSize; render();}
+// Resize canvas
+function resizeCanvas(){canvas.width=container.clientWidth; canvas.height=container.clientHeight; render();}
 
-// Convert color string to RGBA array
-function colorToRGBA(str){
-    const c=document.createElement('canvas').getContext('2d'); c.fillStyle=str; c.fillRect(0,0,1,1);
-    return c.getImageData(0,0,1,1).data;
+// Get mouse pos in pixel coords
+function getMousePos(e){
+    const rect=canvas.getBoundingClientRect();
+    const x = (e.clientX - rect.left - offsetX) / (pixelSize*scale);
+    const y = (e.clientY - rect.top - offsetY) / (pixelSize*scale);
+    return {x: Math.floor(x), y: Math.floor(y)};
 }
 
-// Draw one pixel
+// Draw pixel
 function drawPixel(x,y,color){bgCtx.fillStyle=color; bgCtx.fillRect(x,y,1,1); render();}
 
 // Flood fill
 function floodFill(x,y,color){
-    const data = bgCtx.getImageData(0,0,gridWidth,gridHeight);
-    const targetColor = [...data.data.slice((y*gridWidth+x)*4,(y*gridWidth+x)*4+4)];
-    const fillColor = colorToRGBA(color);
+    const data=bgCtx.getImageData(0,0,gridWidth,gridHeight);
+    const targetColor=[...data.data.slice((y*gridWidth+x)*4,(y*gridWidth+x)*4+4)];
+    const fillColor=colorToRGBA(color);
     if(targetColor.every((v,i)=>v===fillColor[i])) return;
     const stack=[[x,y]];
     while(stack.length){
@@ -141,36 +143,34 @@ function drawRect(x1,y1,x2,y2,color){
     for(let x=xmin;x<=xmax;x++) for(let y=ymin;y<=ymax;y++) drawPixel(x,y,color);
 }
 
-// Get mouse pos relative to pixel grid
-function getMousePos(e){
-    const rect = canvas.getBoundingClientRect();
-    return {x:Math.floor((e.clientX-rect.left)/pixelSize), y:Math.floor((e.clientY-rect.top)/pixelSize)};
+// Convert color string to RGBA
+function colorToRGBA(str){
+    const c=document.createElement('canvas').getContext('2d'); c.fillStyle=str; c.fillRect(0,0,1,1);
+    return c.getImageData(0,0,1,1).data;
 }
 
-// Render function (draw pixels and grid)
-let renderScheduled = false;
-let previewRect = null; // rectangle preview
+// Render function
+let renderScheduled=false, previewRect=null;
 function render(){
     if(renderScheduled) return;
-    renderScheduled = true;
+    renderScheduled=true;
     requestAnimationFrame(()=>{
+        ctx.setTransform(1,0,0,1,0,0);
         ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.translate(offsetX,offsetY);
+        ctx.scale(scale*pixelSize,scale*pixelSize);
         ctx.imageSmoothingEnabled=false;
-        ctx.drawImage(bgCanvas,0,0,gridWidth,gridHeight,0,0,canvas.width,canvas.height);
+        ctx.drawImage(bgCanvas,0,0,gridWidth,gridHeight,0,0,gridWidth,gridHeight);
 
         // rectangle preview
         if(previewRect){
-            ctx.fillStyle = currentColor+'55'; // semi-transparent
-            ctx.fillRect(previewRect.x*pixelSize, previewRect.y*pixelSize, previewRect.w*pixelSize, previewRect.h*pixelSize);
-            ctx.strokeStyle = currentColor;
-            ctx.lineWidth = 1;
-            ctx.strokeRect(previewRect.x*pixelSize, previewRect.y*pixelSize, previewRect.w*pixelSize, previewRect.h*pixelSize);
+            ctx.fillStyle = currentColor+'55';
+            ctx.fillRect(previewRect.x, previewRect.y, previewRect.w, previewRect.h);
+            ctx.strokeStyle=currentColor;
+            ctx.lineWidth=1/scale/pixelSize;
+            ctx.strokeRect(previewRect.x, previewRect.y, previewRect.w, previewRect.h);
         }
 
-        // draw grid
-        ctx.strokeStyle="#333"; ctx.lineWidth=1;
-        for(let x=0;x<=gridWidth;x++){ctx.beginPath();ctx.moveTo(x*pixelSize,0);ctx.lineTo(x*pixelSize,canvas.height);ctx.stroke();}
-        for(let y=0;y<=gridHeight;y++){ctx.beginPath();ctx.moveTo(0,y*pixelSize);ctx.lineTo(canvas.width,y*pixelSize);ctx.stroke();}
         renderScheduled=false;
     });
 }
@@ -179,11 +179,14 @@ function render(){
 canvas.addEventListener('mousedown', e=>{
     const pos=getMousePos(e);
     startX=pos.x; startY=pos.y; isDrawing=true;
-    if(currentTool==='pencil'||currentTool==='eraser'||currentTool==='fill'||currentTool==='rect') saveState();
+    if(['pencil','eraser','fill','rect'].includes(currentTool)) saveState();
+
     if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor);
     if(currentTool==='eraser') drawPixel(pos.x,pos.y,'rgba(0,0,0,0)');
     if(currentTool==='fill') floodFill(pos.x,pos.y,currentColor);
+    if(currentTool==='eyedropper') currentColor=getPixelColor(pos.x,pos.y);
 });
+
 canvas.addEventListener('mousemove', e=>{
     if(!isDrawing) return;
     const pos=getMousePos(e);
@@ -196,26 +199,61 @@ canvas.addEventListener('mousemove', e=>{
         render();
     }
 });
+
 canvas.addEventListener('mouseup', e=>{
     if(currentTool==='rect' && previewRect){
         drawRect(startX,startY,getMousePos(e).x,getMousePos(e).y,currentColor);
-        previewRect = null;
+        previewRect=null;
     }
     isDrawing=false;
     render();
 });
 
+// Eyedropper
+function getPixelColor(x,y){
+    const data=bgCtx.getImageData(x,y,1,1).data;
+    return `rgba(${data[0]},${data[1]},${data[2]},${data[3]/255})`;
+}
+
 // Toolbar
-const toolButtons={pencil:document.getElementById('toolPencil'),rect:document.getElementById('toolRect'),fill:document.getElementById('toolFill'),eraser:document.getElementById('toolEraser')};
+const toolButtons={pencil:document.getElementById('toolPencil'),rect:document.getElementById('toolRect'),fill:document.getElementById('toolFill'),eraser:document.getElementById('toolEraser'),eyedropper:document.getElementById('toolEyedropper')};
 function selectTool(tool){currentTool=tool; Object.keys(toolButtons).forEach(t=>toolButtons[t].classList.toggle('active',t===tool));}
 toolButtons.pencil.onclick=()=>selectTool('pencil');
 toolButtons.rect.onclick=()=>selectTool('rect');
 toolButtons.fill.onclick=()=>selectTool('fill');
 toolButtons.eraser.onclick=()=>selectTool('eraser');
+toolButtons.eyedropper.onclick=()=>selectTool('eyedropper');
 document.getElementById('colorPicker').onchange=e=>currentColor=e.target.value;
 document.getElementById('pixelSize').oninput=e=>{pixelSize=parseInt(e.target.value); resizeCanvas();}
 document.getElementById('undoBtn').onclick=undo;
 document.getElementById('redoBtn').onclick=redo;
+
+// Zoom & Pan
+let isPanning=false, lastX=0, lastY=0;
+canvas.addEventListener('wheel', e=>{
+    e.preventDefault();
+    const delta = -e.deltaY*0.0015; // zoom speed
+    const mx = e.offsetX - offsetX;
+    const my = e.offsetY - offsetY;
+    const newScale = Math.min(Math.max(scale*(1+delta),0.5),32);
+    offsetX -= mx*(newScale-scale);
+    offsetY -= my*(newScale-scale);
+    scale=newScale;
+    render();
+}, {passive:false});
+
+canvas.addEventListener('mousedown', e=>{
+    if(e.button===1){isPanning=true; lastX=e.clientX; lastY=e.clientY; canvas.style.cursor='move'; e.preventDefault();}
+});
+window.addEventListener('mouseup', e=>{isPanning=false; canvas.style.cursor='crosshair';});
+window.addEventListener('mousemove', e=>{
+    if(isPanning){
+        offsetX += e.clientX-lastX;
+        offsetY += e.clientY-lastY;
+        lastX=e.clientX; lastY=e.clientY;
+        render();
+    }
+});
 
 // Save/load
 const exportSize = 16;
@@ -230,8 +268,9 @@ document.getElementById('fileInput').onchange=e=>{
     reader.readAsDataURL(f);
 }
 
-// Initial setup
+// Initial
 resizeCanvas();
+window.addEventListener('resize',resizeCanvas);
 </script>
 </body>
 </html>

@@ -1,194 +1,343 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Mini Canvas Editor — Fixed Example</title>
+  <title>Mini Canvas Editor — robust example</title>
 
-  <!-- Mini Canvas Editor -->
+  <!-- Mini CDN -->
   <link href="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/css/editor.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
 
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: #222;
-      color: #fff;
-      overflow: hidden;
-    }
-    #toolbar {
-      padding: 8px;
-      background: #111;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    #work {
-      flex: 1;
-      overflow: hidden;
-      background: #333;
-      cursor: grab;
-    }
-    #placeholder {
-      width: 1200px;
-      height: 800px;
-      margin: 40px auto;
-    }
+    body { margin:0; height:100vh; display:flex; flex-direction:column; background:#222; color:#fff; }
+    #toolbar { padding:8px; background:#111; display:flex; gap:8px; align-items:center; }
+    #work { flex:1; overflow:hidden; background:#333; cursor:grab; }
+    #placeholder { width: 1200px; height:800px; margin:40px auto; }
+    .log { font-family: monospace; font-size: 12px; opacity: .8; margin-left:10px }
   </style>
 </head>
 <body>
-
   <div id="toolbar">
-    <button id="btnOpen">Open image (file)</button>
+    <button id="btnOpen">Open image</button>
     <button id="btnReset">Reset view</button>
-    <span style="opacity:.8;margin-left:8px">Scroll to zoom, drag to pan</span>
+    <span class="log" id="status">Status: starting…</span>
   </div>
 
-  <div id="work">
-    <div id="placeholder"></div>
-  </div>
+  <div id="work"><div id="placeholder"></div></div>
 
-  <script>
-    const placeholder = document.getElementById('placeholder');
-    const editorInstance = miniCanvasEditor.Editor.createBlank(placeholder, 1200, 800, {});
-    const canvas = editorInstance.canvas; // ✅ actual Fabric canvas reference
+<script>
+/* -------------------------
+   Create editor instance
+   ------------------------- */
+const placeholder = document.getElementById('placeholder');
+const statusEl = document.getElementById('status');
 
-    // ----------------------------
-    // Keyboard shortcuts
-    // ----------------------------
-    function undo() {
-      if (typeof editorInstance.undo === 'function') editorInstance.undo();
-    }
-    function redo() {
-      if (typeof editorInstance.redo === 'function') editorInstance.redo();
-    }
-    function deleteSelection() {
-      const activeObjs = canvas.getActiveObjects?.() || [];
-      if (activeObjs.length === 0) return;
+let editorInstance;
+try {
+  editorInstance = miniCanvasEditor.Editor.createBlank(placeholder, 1200, 800, {});
+  console.log('Created editorInstance:', editorInstance);
+  statusEl.textContent = 'Status: editor instance created';
+} catch (err) {
+  console.error('Failed to create editorInstance:', err);
+  statusEl.textContent = 'Status: failed to create editorInstance — see console';
+}
 
-      activeObjs.forEach(obj => {
-        if (obj.selectable !== false) canvas.remove(obj);
-      });
-      canvas.discardActiveObject();
-      canvas.requestRenderAll();
-    }
+/* -------------------------
+   Helper: detect Fabric canvas
+   - Scans top-level props then nested ones for an object that looks
+     like a Fabric canvas (has getActiveObject, renderAll, viewportTransform, etc.)
+   ------------------------- */
+function detectFabricCanvas(obj) {
+  if (!obj || typeof obj !== 'object') return null;
 
-    window.addEventListener('keydown', function(e) {
-      const key = e.key.toLowerCase();
-      const activeObj = canvas.getActiveObject?.();
-
-      // Skip when editing text or input
-      const el = document.activeElement;
-      const tag = el && el.tagName;
-      const isEditable =
-        (activeObj && activeObj.type === 'textbox' && activeObj.isEditing) ||
-        el?.isContentEditable ||
-        tag === 'INPUT' ||
-        tag === 'TEXTAREA' ||
-        el?.getAttribute('role') === 'textbox';
-      if (isEditable) return;
-
-      // Undo / Redo
-      if ((e.ctrlKey || e.metaKey) && !e.shiftKey && key === 'z') {
-        e.preventDefault(); undo(); return;
+  // Direct detection
+  for (const [k, v] of Object.entries(obj)) {
+    try {
+      if (
+        v &&
+        typeof v.getActiveObject === 'function' &&
+        typeof v.requestRenderAll === 'function' ||
+        (v && typeof v.getActiveObject === 'function' && typeof v.renderAll === 'function')
+      ) {
+        console.log(`detectFabricCanvas: found canvas at property "${k}"`);
+        return { canvas: v, path: [k] };
       }
-      if ((e.ctrlKey || e.metaKey) && (key === 'y' || (e.shiftKey && key === 'z'))) {
-        e.preventDefault(); redo(); return;
-      }
-
-      // Delete / Backspace
-      if (key === 'delete' || key === 'backspace') {
-        e.preventDefault(); deleteSelection(); return;
-      }
-    });
-
-    // ----------------------------
-    // Load image helper
-    // ----------------------------
-    function loadExampleImage(url) {
-      canvas.clear();
-      fabric.Image.fromURL(url, function(img) {
-        const maxW = canvas.getWidth() * 0.9;
-        const maxH = canvas.getHeight() * 0.9;
-        const scale = Math.min(maxW / img.width, maxH / img.height, 1);
-        img.scale(scale);
-        img.set({ left: 0, top: 0, originX: 'left', originY: 'top', selectable: true });
-        canvas.add(img);
-        img.center();
-        img.setCoords();
-        canvas.setActiveObject(img);
-        canvas.requestRenderAll();
-      }, { crossOrigin: 'anonymous' });
+    } catch (e) {
+      // ignore property access errors
     }
+  }
 
-    loadExampleImage('https://picsum.photos/1600/900');
+  // Check nested objects one level deep
+  for (const [k, v] of Object.entries(obj)) {
+    if (v && typeof v === 'object') {
+      for (const [k2, v2] of Object.entries(v)) {
+        try {
+          if (
+            v2 &&
+            typeof v2.getActiveObject === 'function' &&
+            (typeof v2.requestRenderAll === 'function' || typeof v2.renderAll === 'function')
+          ) {
+            console.log(`detectFabricCanvas: found canvas at property "${k}.${k2}"`);
+            return { canvas: v2, path: [k, k2] };
+          }
+        } catch (e) {
+          // ignore
+        }
+      }
+    }
+  }
 
-    // ----------------------------
-    // Zoom + Pan
-    // ----------------------------
-    const work = document.getElementById('work');
-    let isDragging = false;
-    let lastX = 0, lastY = 0;
+  return null;
+}
 
-    work.addEventListener('wheel', function(e) {
-      e.preventDefault();
-      const pointer = canvas.getPointer(e);
-      const zoomDelta = e.deltaY < 0 ? 1.12 : 1 / 1.12;
-      const oldZoom = canvas.getZoom();
-      let newZoom = oldZoom * zoomDelta;
-      newZoom = Math.max(0.1, Math.min(10, newZoom));
-      canvas.zoomToPoint({ x: pointer.x, y: pointer.y }, newZoom);
-      canvas.requestRenderAll();
-    }, { passive: false });
+/* -------------------------
+   If editorInstance is actually a data snapshot (serialized),
+   it will typically have a `data` property with `objects` etc.
+   Detect that and warn the user.
+   ------------------------- */
+if (!editorInstance) {
+  console.error('No editorInstance variable found.');
+  statusEl.textContent = 'Status: no editorInstance';
+  throw new Error('editorInstance not created');
+}
+if (editorInstance && typeof editorInstance === 'object' && editorInstance.data && editorInstance.data.objects) {
+  console.warn('It looks like editorInstance is a serialized data snapshot (has .data.objects). Make sure you keep the live instance returned by createBlank, not its exported data.');
+  statusEl.textContent = 'Status: editorInstance appears to be a data snapshot — keep the live instance';
+  // continue attempting detection anyway (some wrappers still work)
+}
 
-    work.addEventListener('mousedown', e => {
-      if (e.button !== 0) return;
-      isDragging = true;
-      lastX = e.clientX;
-      lastY = e.clientY;
-      work.style.cursor = 'grabbing';
-    });
-    window.addEventListener('mouseup', () => {
-      isDragging = false;
-      work.style.cursor = 'grab';
-    });
-    work.addEventListener('mousemove', e => {
-      if (!isDragging) return;
-      const dx = e.clientX - lastX;
-      const dy = e.clientY - lastY;
-      lastX = e.clientX;
-      lastY = e.clientY;
-      const t = canvas.viewportTransform.slice();
-      t[4] += dx;
-      t[5] += dy;
+/* -------------------------
+   Detect canvas robustly
+   ------------------------- */
+let detected = detectFabricCanvas(editorInstance);
+let canvas = detected ? detected.canvas : null;
+
+if (!canvas) {
+  // Try common names explicitly
+  const candidates = ['canvas','_canvas','fabricCanvas','_fabricCanvas','editor','engine'];
+  for (const name of candidates) {
+    try {
+      const candidate = editorInstance[name];
+      if (!candidate) continue;
+      const found = detectFabricCanvas({ candidate });
+      if (found) {
+        canvas = found.canvas;
+        detected = { canvas, path: [name, ...found.path] };
+        break;
+      }
+    } catch (e) {}
+  }
+}
+
+if (!canvas) {
+  // Final fallback: check window for any fabric canvas objects created recently
+  console.warn('detectFabricCanvas: could not auto-detect Fabric canvas inside editorInstance.');
+  console.log('editorInstance keys:', Object.keys(editorInstance));
+  statusEl.textContent = 'Status: could not detect Fabric canvas — see console';
+  // Print guidance for user
+  console.info('Guidance: In your code, keep the variable returned by createBlank (editorInstance). ' +
+    'If you later replace it with editorInstance.data or call export() and store that, the live API is lost.' +
+    ' To continue, paste the console output of Object.keys(editorInstance) here.');
+  throw new Error('Fabric canvas not found inside editorInstance — check console output');
+}
+
+// At this point we have a fabric canvas object
+console.log('Using detected canvas at path:', detected.path);
+statusEl.textContent = 'Status: canvas detected at ' + detected.path.join('.');
+
+/* -------------------------
+   Helpers: Undo/Redo/Delete
+   - tries editorInstance.undo/redo if available, otherwise uses canvas._history if present
+   ------------------------- */
+function undo() {
+  if (editorInstance && typeof editorInstance.undo === 'function') {
+    editorInstance.undo();
+    console.log('undo via editorInstance.undo()');
+    return;
+  }
+  if (canvas && typeof canvas.undo === 'function') {
+    canvas.undo();
+    console.log('undo via canvas.undo()');
+    return;
+  }
+  console.log('undo not available on this build');
+}
+
+function redo() {
+  if (editorInstance && typeof editorInstance.redo === 'function') {
+    editorInstance.redo();
+    console.log('redo via editorInstance.redo()');
+    return;
+  }
+  if (canvas && typeof canvas.redo === 'function') {
+    canvas.redo();
+    console.log('redo via canvas.redo()');
+    return;
+  }
+  console.log('redo not available on this build');
+}
+
+function deleteSelection() {
+  const activeObjs = canvas.getActiveObjects?.() || [];
+  if (activeObjs.length === 0) return;
+  activeObjs.forEach(obj => {
+    if (obj && obj.selectable !== false) {
+      canvas.remove(obj);
+    }
+  });
+  canvas.discardActiveObject();
+  // sane fallback for Fabric v6 methods:
+  if (typeof canvas.requestRenderAll === 'function') canvas.requestRenderAll();
+  else if (typeof canvas.renderAll === 'function') canvas.renderAll();
+}
+
+/* -------------------------
+   Keyboard shortcuts
+   - Backspace/Delete: delete selected (unless editing text)
+   - Ctrl/Cmd+Z: undo
+   - Ctrl/Cmd+Y or Ctrl/Cmd+Shift+Z: redo
+   ------------------------- */
+window.addEventListener('keydown', function (e) {
+  // Normalise key
+  const key = (e.key || '').toLowerCase();
+
+  // Are we editing a Fabric textbox?
+  let activeObj;
+  try { activeObj = (typeof canvas.getActiveObject === 'function') ? canvas.getActiveObject() : null; } catch (err) { activeObj = null; }
+
+  const el = document.activeElement;
+  const tag = el && el.tagName;
+
+  const isEditingText = !!(activeObj && activeObj.type && (activeObj.type === 'textbox' || activeObj.type === 'i-text' || activeObj.type === 'text') && activeObj.isEditing);
+  const isEditableElement = el?.isContentEditable || tag === 'INPUT' || tag === 'TEXTAREA' || el?.getAttribute('role') === 'textbox';
+
+  // If user is typing in page input or canvas text editor, let keys behave normally
+  if (isEditingText || isEditableElement) {
+    return;
+  }
+
+  // Undo / Redo
+  if ((e.ctrlKey || e.metaKey) && !e.shiftKey && key === 'z') {
+    e.preventDefault();
+    undo();
+    return;
+  }
+  if ((e.ctrlKey || e.metaKey) && (key === 'y' || (e.shiftKey && key === 'z'))) {
+    e.preventDefault();
+    redo();
+    return;
+  }
+
+  // Delete / Backspace -> delete selection
+  if (key === 'delete' || key === 'backspace') {
+    e.preventDefault();
+    deleteSelection();
+    return;
+  }
+});
+
+/* -------------------------
+   Image load helper
+   ------------------------- */
+function loadExampleImage(url) {
+  if (!canvas) return;
+  // attempt to clear and load image
+  if (typeof canvas.clear === 'function') canvas.clear();
+  if (typeof fabric === 'undefined') {
+    console.error('fabric global is not available');
+    return;
+  }
+  fabric.Image.fromURL(url, function(img) {
+    const maxW = canvas.getWidth ? canvas.getWidth() * 0.9 : (canvas.width || 1200) * 0.9;
+    const maxH = canvas.getHeight ? canvas.getHeight() * 0.9 : (canvas.height || 800) * 0.9;
+    const scale = Math.min(maxW / img.width, maxH / img.height, 1);
+    img.scale(scale);
+    img.set({ left: 0, top: 0, originX: 'left', originY: 'top', selectable: true });
+    canvas.add(img);
+    if (typeof img.center === 'function') img.center();
+    if (typeof img.setCoords === 'function') img.setCoords();
+    if (typeof canvas.setActiveObject === 'function') canvas.setActiveObject(img);
+    if (typeof canvas.requestRenderAll === 'function') canvas.requestRenderAll();
+  }, { crossOrigin: 'anonymous' });
+}
+
+loadExampleImage('https://picsum.photos/1600/900');
+
+/* -------------------------
+   Wheel: Ctrl/Cmd + wheel = zoom (fast), otherwise = pan
+   Pan implemented by adjusting viewportTransform (indices 4/5)
+   ------------------------- */
+const work = document.getElementById('work');
+let lastPointer = null;
+
+work.addEventListener('wheel', function(e) {
+  // prevent page scroll
+  e.preventDefault();
+
+  // pointer relative to canvas
+  let pointer;
+  try {
+    pointer = (typeof canvas.getPointer === 'function') ? canvas.getPointer(e) : { x: e.clientX, y: e.clientY };
+  } catch (err) {
+    pointer = { x: e.clientX, y: e.clientY };
+  }
+
+  if (e.ctrlKey || e.metaKey) {
+    // zoom
+    const zoomDelta = e.deltaY < 0 ? 1.25 : 0.8; // faster feel
+    const oldZoom = (typeof canvas.getZoom === 'function') ? canvas.getZoom() : (canvas.zoom || 1);
+    let newZoom = oldZoom * zoomDelta;
+    newZoom = Math.max(0.05, Math.min(20, newZoom));
+    if (typeof canvas.zoomToPoint === 'function') {
+      canvas.zoomToPoint(pointer, newZoom);
+    } else if (typeof canvas.setZoom === 'function') {
+      canvas.setZoom(newZoom);
+    } else {
+      canvas.zoom = newZoom;
+    }
+    if (typeof canvas.requestRenderAll === 'function') canvas.requestRenderAll();
+  } else {
+    // pan
+    const speed = 1.5; // adjust for pan sensitivity
+    const t = canvas.viewportTransform ? canvas.viewportTransform.slice() : [1,0,0,1,0,0];
+    t[4] -= e.deltaX * speed;
+    t[5] -= e.deltaY * speed;
+    if (typeof canvas.setViewportTransform === 'function') {
       canvas.setViewportTransform(t);
-      canvas.requestRenderAll();
-    });
+    } else {
+      canvas.viewportTransform = t;
+    }
+    if (typeof canvas.requestRenderAll === 'function') canvas.requestRenderAll();
+  }
+}, { passive: false });
 
-    // ----------------------------
-    // Toolbar actions
-    // ----------------------------
-    document.getElementById('btnReset').addEventListener('click', () => {
-      canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-      canvas.setZoom(1);
-      canvas.requestRenderAll();
-    });
+/* -------------------------
+   Drag-to-pan with mouse while holding Space or Hand tool is not handled
+   here — we don't override tool behavior. If the editor already supports
+   dragging for pan via space/hand that will continue to work.
+   ------------------------- */
 
-    document.getElementById('btnOpen').addEventListener('click', async () => {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = 'image/*';
-      input.onchange = () => {
-        const file = input.files[0];
-        if (!file) return;
-        const url = URL.createObjectURL(file);
-        loadExampleImage(url);
-      };
-      input.click();
-    });
-  </script>
+/* -------------------------
+   Toolbar buttons
+   ------------------------- */
+document.getElementById('btnReset').addEventListener('click', () => {
+  if (typeof canvas.setViewportTransform === 'function') canvas.setViewportTransform([1,0,0,1,0,0]);
+  if (typeof canvas.setZoom === 'function') canvas.setZoom(1);
+  if (typeof canvas.requestRenderAll === 'function') canvas.requestRenderAll();
+});
+document.getElementById('btnOpen').addEventListener('click', () => {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = () => {
+    const file = input.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    loadExampleImage(url);
+  };
+  input.click();
+});
+</script>
 </body>
 </html>

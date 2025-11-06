@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Fabric.js Image Editor</title>
-<!-- Fabric.js CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/6.0.0-beta.14/fabric.min.js"></script>
-<style>
-  html, body { margin:0; height:100%; width:100%; overflow:hidden; font-family: Verdana, sans-serif; }
-  #toolbar {
-    display:flex;
-    gap:4px;
-    padding:6px;
-    background:#222;
-    color:#fff;
-    align-items:center;
-  }
-  #toolbar button { padding:4px 8px; background:#333; border:none; color:#fff; cursor:pointer; }
-  #toolbar button.active { background:#555; }
-  #editorContainer { position:relative; width:100%; height:calc(100% - 36px); cursor:crosshair; }
-  canvas { background:#eee; display:block; margin:0 auto; }
-</style>
+  <meta charset="UTF-8">
+  <title>Fabric.js Editor with Color Picker & Brush Size</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script> <!-- ensure fabric is loaded -->
+  <style>
+    html, body {
+      margin:0; padding:0;
+      width:100%; height:100%;
+      overflow:hidden;
+      font-family: Verdana, sans-serif;
+    }
+    #toolbar {
+      display:flex; gap:4px; padding:6px;
+      background:#222; color:#fff;
+    }
+    #toolbar button { padding:4px 8px; background:#333; border:none; color:#fff; cursor:pointer; }
+    #toolbar button.active { background:#555; }
+    #toolbar input[type=color], #toolbar input[type=range] {
+      margin-left:4px;
+    }
+    #editorContainer {
+      position:relative;
+      width:100%; height:calc(100% - 40px);
+      background:#ddd;
+      cursor:crosshair;
+    }
+    canvas { background:#fff; display:block; margin:0; }
+  </style>
 </head>
 <body>
 
@@ -29,6 +37,8 @@
   <button id="toolText">Text</button>
   <button id="toolBrush">Brush</button>
   <button id="btnLoadImage">Open Image</button>
+  <label>Brush Color: <input type="color" id="brushColor" value="#000000"></label>
+  <label>Brush Size: <input type="range" id="brushSize" min="1" max="50" value="5"></label>
   <button id="btnUndo">Undo</button>
   <button id="btnRedo">Redo</button>
 </div>
@@ -38,129 +48,204 @@
 </div>
 
 <script>
-const canvasEl = document.getElementById('canvas');
-const canvas = new fabric.Canvas('canvas', { selection: true });
-canvas.setHeight(window.innerHeight - 36);
-canvas.setWidth(window.innerWidth);
+  const canvasEl = document.getElementById('canvas');
+  const canvas = new fabric.Canvas('canvas', { selection: true });
+  canvas.setWidth(window.innerWidth);
+  canvas.setHeight(window.innerHeight - 40);
 
-// Toolbar tool handling
-let currentTool = 'move';
-function setTool(tool){
-  currentTool = tool;
-  document.querySelectorAll('#toolbar button').forEach(b=>b.classList.remove('active'));
-  if(tool==='move') document.getElementById('toolMove').classList.add('active');
-  if(tool==='rect') document.getElementById('toolRect').classList.add('active');
-  if(tool==='text') document.getElementById('toolText').classList.add('active');
-  if(tool==='brush') document.getElementById('toolBrush').classList.add('active');
+  // Toolbar tool handling
+  let currentTool = 'move';
+  function setTool(tool){
+    currentTool = tool;
+    document.querySelectorAll('#toolbar button').forEach(b=>b.classList.remove('active'));
+    document.getElementById('toolMove').classList.toggle('active', tool==='move');
+    document.getElementById('toolRect').classList.toggle('active', tool==='rect');
+    document.getElementById('toolText').classList.toggle('active', tool==='text');
+    document.getElementById('toolBrush').classList.toggle('active', tool==='brush');
 
-  canvas.isDrawingMode = tool==='brush';
-  if(tool!=='brush') canvas.selection = true;
-}
-
-// Tool buttons
-document.getElementById('toolMove').onclick = ()=>setTool('move');
-document.getElementById('toolRect').onclick = ()=>setTool('rect');
-document.getElementById('toolText').onclick = ()=>setTool('text');
-document.getElementById('toolBrush').onclick = ()=>setTool('brush');
-
-// Undo/redo stack
-const stateStack = [];
-let currentState = -1;
-function saveState(){
-  const json = canvas.toJSON();
-  stateStack.splice(currentState+1);
-  stateStack.push(json);
-  currentState++;
-}
-function undo(){ if(currentState>0){ currentState--; canvas.loadFromJSON(stateStack[currentState], canvas.renderAll.bind(canvas)); } }
-function redo(){ if(currentState<stateStack.length-1){ currentState++; canvas.loadFromJSON(stateStack[currentState], canvas.renderAll.bind(canvas)); } }
-
-// Save initial state
-saveState();
-canvas.on('object:added', saveState);
-canvas.on('object:modified', saveState);
-canvas.on('object:removed', saveState);
-
-// Canvas drawing events
-let rect, isDown=false, origX, origY;
-canvas.on('mouse:down', function(o){
-  const pointer = canvas.getPointer(o.e);
-  if(currentTool==='rect'){
-    isDown=true; origX=pointer.x; origY=pointer.y;
-    rect = new fabric.Rect({ left: origX, top: origY, width:0, height:0, fill:'rgba(255,0,0,0.5)', selectable:true });
-    canvas.add(rect);
-  } else if(currentTool==='text'){
-    const txt = new fabric.IText('Text', { left:pointer.x, top:pointer.y, fontFamily:'Verdana', fill:'#000', fontSize:20 });
-    canvas.add(txt).setActiveObject(txt);
+    canvas.isDrawingMode = (tool==='brush');
+    if(tool==='brush'){
+      canvas.freeDrawingBrush.color = document.getElementById('brushColor').value;
+      canvas.freeDrawingBrush.width = parseInt(document.getElementById('brushSize').value,10);
+    }
+    if(tool!=='brush') canvas.selection = true;
   }
-});
-canvas.on('mouse:move', function(o){
-  if(!isDown) return;
-  const pointer = canvas.getPointer(o.e);
-  rect.set({ width: pointer.x-origX, height:pointer.y-origY });
-  canvas.renderAll();
-});
-canvas.on('mouse:up', function(o){ isDown=false; rect=null; });
 
-// Load image
-document.getElementById('btnLoadImage').onclick = ()=>{
-  const input = document.createElement('input');
-  input.type='file'; input.accept='image/*';
-  input.onchange = ()=> {
-    const file = input.files[0]; if(!file) return;
-    const url = URL.createObjectURL(file);
-    fabric.Image.fromURL(url, img=>{
-      img.set({ left:canvas.width/2, top:canvas.height/2, originX:'center', originY:'center' });
-      canvas.add(img).setActiveObject(img);
-    }, { crossOrigin:'anonymous' });
+  document.getElementById('toolMove').onclick = ()=>setTool('move');
+  document.getElementById('toolRect').onclick = ()=>setTool('rect');
+  document.getElementById('toolText').onclick = ()=>setTool('text');
+  document.getElementById('toolBrush').onclick = ()=>setTool('brush');
+
+  // Brush controls
+  document.getElementById('brushColor').onchange = () => {
+    if(canvas.isDrawingMode) canvas.freeDrawingBrush.color = event.target.value;
   };
-  input.click();
-};
+  document.getElementById('brushSize').oninput = () => {
+    if(canvas.isDrawingMode) canvas.freeDrawingBrush.width = parseInt(event.target.value,10);
+  };
 
-// Keyboard shortcuts
-window.addEventListener('keydown', function(e){
-  const obj = canvas.getActiveObject();
-  const key = e.key.toLowerCase();
-
-  if(key==='delete' || key==='backspace'){ e.preventDefault(); if(obj) canvas.remove(obj); saveState(); }
-  if((e.ctrlKey||e.metaKey)&&!e.shiftKey && key==='z'){ e.preventDefault(); undo(); }
-  if((e.ctrlKey||e.metaKey)&&((key==='y')||(e.shiftKey&&key==='z'))){ e.preventDefault(); redo(); }
-  if(obj){
-    let moveAmount = e.shiftKey?10:1;
-    if(key==='arrowleft'){ e.preventDefault(); obj.left-=moveAmount; obj.setCoords(); canvas.renderAll(); }
-    if(key==='arrowright'){ e.preventDefault(); obj.left+=moveAmount; obj.setCoords(); canvas.renderAll(); }
-    if(key==='arrowup'){ e.preventDefault(); obj.top-=moveAmount; obj.setCoords(); canvas.renderAll(); }
-    if(key==='arrowdown'){ e.preventDefault(); obj.top+=moveAmount; obj.setCoords(); canvas.renderAll(); }
+  // Undo/Redo
+  const stateStack = [];
+  let currentState = -1;
+  function saveState(){
+    const json = canvas.toJSON();
+    stateStack.splice(currentState+1);
+    stateStack.push(json);
+    currentState++;
   }
-});
+  function undo(){
+    if(currentState > 0){
+      currentState--;
+      canvas.loadFromJSON(stateStack[currentState], canvas.renderAll.bind(canvas));
+    }
+  }
+  function redo(){
+    if(currentState < stateStack.length - 1){
+      currentState++;
+      canvas.loadFromJSON(stateStack[currentState], canvas.renderAll.bind(canvas));
+    }
+  }
 
-// Zoom & pan
-let isPanning=false, lastX, lastY;
-canvas.on('mouse:wheel', function(opt){
-  opt.e.preventDefault();
-  const delta = opt.e.deltaY;
-  let zoom = canvas.getZoom();
-  const zoomSpeed = 0.02; // smaller = slower zoom
-  zoom *= delta>0? (1-zoomSpeed):(1+zoomSpeed);
-  zoom = Math.max(0.1, Math.min(zoom, 20));
-  const pointer = canvas.getPointer(opt.e);
-  canvas.zoomToPoint({ x:pointer.x, y:pointer.y }, zoom);
-});
-canvas.on('mouse:down', function(opt){
-  if(opt.e.ctrlKey||opt.e.metaKey){ isPanning=true; lastX=opt.e.clientX; lastY=opt.e.clientY; canvas.selection=false; }
-});
-canvas.on('mouse:move', function(opt){
-  if(isPanning){
-    const e = opt.e; const vpt = canvas.viewportTransform;
-    vpt[4]+=e.clientX-lastX; vpt[5]+=e.clientY-lastY;
+  document.getElementById('btnUndo').onclick = undo;
+  document.getElementById('btnRedo').onclick = redo;
+
+  // Save state on changes
+  saveState();
+  canvas.on('object:added', saveState);
+  canvas.on('object:modified', saveState);
+  canvas.on('object:removed', saveState);
+
+  // Drawing rectangle or text
+  let rect, isDown=false, origX, origY;
+  canvas.on('mouse:down', function(o){
+    const pointer = canvas.getPointer(o.e);
+    if(currentTool==='rect'){
+      isDown=true; origX = pointer.x; origY = pointer.y;
+      rect = new fabric.Rect({
+        left: origX, top: origY, width:0, height:0,
+        fill:'rgba(0,0,255,0.3)', selectable:true
+      });
+      canvas.add(rect);
+    } else if(currentTool==='text'){
+      const txt = new fabric.IText('Text', {
+        left: pointer.x,
+        top: pointer.y,
+        fontFamily: 'Verdana',
+        fill: '#000',
+        fontSize: 24
+      });
+      canvas.add(txt).setActiveObject(txt);
+    }
+  });
+  canvas.on('mouse:move', function(o){
+    if(!isDown || currentTool!=='rect') return;
+    const pointer = canvas.getPointer(o.e);
+    rect.set({ width: pointer.x - origX, height: pointer.y - origY });
+    canvas.renderAll();
+  });
+  canvas.on('mouse:up', function(o){
+    isDown=false;
+    rect=null;
+  });
+
+  // Load image
+  document.getElementById('btnLoadImage').onclick = ()=>{
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = ()=> {
+      const file = input.files[0];
+      if(!file) return;
+      const url = URL.createObjectURL(file);
+      fabric.Image.fromURL(url, img=>{
+        img.set({
+          left: canvas.width / 2,
+          top: canvas.height / 2,
+          originX: 'center',
+          originY: 'center'
+        });
+        canvas.add(img).setActiveObject(img);
+      }, {crossOrigin:'anonymous'});
+    };
+    input.click();
+  };
+
+  // Keyboard shortcuts
+  window.addEventListener('keydown', function(e){
+    const obj = canvas.getActiveObject();
+    const key = e.key.toLowerCase();
+
+    if(key==='delete' || key==='backspace'){
+      e.preventDefault();
+      if(obj){
+        canvas.remove(obj);
+        saveState();
+      }
+    }
+    if((e.ctrlKey||e.metaKey)&&!e.shiftKey && key==='z'){
+      e.preventDefault(); undo();
+    }
+    if((e.ctrlKey||e.metaKey)&&((key==='y')||(e.shiftKey&&key==='z'))){
+      e.preventDefault(); redo();
+    }
+    if(obj){
+      let step = e.shiftKey ? 10 : 1;
+      switch(key){
+        case 'arrowleft': e.preventDefault(); obj.left -= step; break;
+        case 'arrowright': e.preventDefault(); obj.left += step; break;
+        case 'arrowup': e.preventDefault(); obj.top -= step; break;
+        case 'arrowdown': e.preventDefault(); obj.top += step; break;
+      }
+      obj.setCoords();
+      canvas.renderAll();
+    }
+  });
+
+  // Zoom & pan logic
+  let isPanning = false, lastX=0, lastY=0;
+  canvas.on('mouse:wheel', function(opt){
+    opt.e.preventDefault();
+    const delta = opt.e.deltaY;
+    let zoom = canvas.getZoom();
+    const zoomSpeed = 0.02; // slower zoom
+    zoom *= delta > 0 ? (1 - zoomSpeed) : (1 + zoomSpeed);
+    zoom = Math.max(0.1, Math.min(zoom, 20));
+    const pointer = canvas.getPointer(opt.e);
+    canvas.zoomToPoint({ x:pointer.x, y:pointer.y }, zoom);
+  });
+  canvas.on('mouse:down', function(opt){
+    if(opt.e.ctrlKey||opt.e.metaKey){
+      isPanning = true;
+      lastX = opt.e.clientX;
+      lastY = opt.e.clientY;
+      canvas.selection = false;
+    }
+  });
+  canvas.on('mouse:move', function(opt){
+    if(!isPanning) return;
+    const e = opt.e;
+    const vpt = canvas.viewportTransform;
+    vpt[4] += e.clientX - lastX;
+    vpt[5] += e.clientY - lastY;
     canvas.requestRenderAll();
-    lastX=e.clientX; lastY=e.clientY;
-  }
-});
-canvas.on('mouse:up', function(opt){ isPanning=false; canvas.selection=true; });
+    lastX = e.clientX;
+    lastY = e.clientY;
+  });
+  canvas.on('mouse:up', function(opt){
+    isPanning = false;
+    canvas.selection = true;
+  });
 
-// Resize canvas on window resize
-window.addEventListener('resize', ()=>{ canvas.setWidth(window.innerWidth); canvas.setHeight(window.innerHeight-36); canvas.renderAll(); });
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    canvas.setWidth(window.innerWidth);
+    canvas.setHeight(window.innerHeight - 40);
+    canvas.renderAll();
+  });
+
+  // Initialize default tool
+  setTool('move');
+
 </script>
 
 </body>

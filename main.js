@@ -170,13 +170,15 @@ function addAsset() {
   let previewBox;
   let preview;
   let editBtn;
+  let center;
   if (file) {
     projZip.folder("assets").file(file.name, file);
     assetCount++;
     var parentDiv = document.getElementById("tabs-2");
     var assetBox = document.createElement("div");
+    var center = document.createElement("center");
     assetBox.setAttribute("class", "elementbox");
-    assetBox.innerHTML = `<h3>${file.name}</h3>`;
+    center.innerHTML = `<h3>${file.name}</h3>`;
     if (fileType == "png") {
       previewBox = document.createElement("div");
       previewBox.setAttribute("class", "previewBox");
@@ -185,12 +187,13 @@ function addAsset() {
       previewBox.appendChild(preview);
     }
     assetBox.appendChild(previewBox);
-    assetBox.appendChild(document.createElement("br"));
+    center.appendChild(document.createElement("br"));
     editBtn = document.createElement("button");
     editBtn.setAttribute("onclick", `assetDropdown('${fileNameEncoded}')`);
     editBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
     editBtn.innerHTML = "&#x22EF;";
-    assetBox.appendChild(editBtn);
+    center.appendChild(editBtn);
+    assetBox.appendChild(center);
     parentDiv.appendChild(assetBox);
     $(`#${fileNameEncoded}_assetOptionBtn`).button();
     if (assetCount % 4 === 0) {

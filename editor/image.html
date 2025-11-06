@@ -1,124 +1,136 @@
 
+  <meta charset="utf-8" />
+  <title>Mini Canvas Editor — Fixed Example</title>
 
-  <!-- Mini Canvas Editor CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/mini-canvas-editor@latest/dist/style.css">
+  <!-- Mini CSS (from README) -->
+  <link href="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/css/editor.css" rel="stylesheet">
 
   <style>
-    body {
-      margin: 0;
-      background: #222;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    #editor-container {
-      flex: 1;
-      position: relative;
-      overflow: auto;
-      background: #333;
-      cursor: grab;
-    }
-
-    #toolbar {
-      background: #1e1e1e;
-      color: white;
-      padding: 8px 12px;
-      font-family: sans-serif;
-    }
-
-    canvas {
-      background: #444;
-      border-radius: 4px;
-      margin: 50px;
-    }
+    body { margin:0; height:100vh; display:flex; flex-direction:column; background:#222; color:#fff; }
+    #toolbar { padding:8px; background:#111; display:flex; gap:8px; align-items:center; }
+    #work { flex:1; overflow:auto; background:#333; cursor:grab; }
+    #placeholder { width: 1200px; height:800px; margin:40px auto; } /* canvas area center */
   </style>
-</head>
-
-<body>
   <div id="toolbar">
-    <button id="openImage">Open Image</button>
-    <button id="resetView">Reset View</button>
+    <button id="btnOpen">Open image (file)</button>
+    <button id="btnReset">Reset view</button>
+    <span id="info" style="opacity:.8;margin-left:8px">Use wheel / pinch to zoom, drag to pan</span>
   </div>
 
-  <div id="editor-container">
-    <div id="editor"></div>
+  <div id="work">
+    <!-- placeholder for the editor - API wants an element or selector -->
+    <div id="placeholder"></div>
   </div>
 
-  <!-- Mini Canvas Editor JS -->
-  <script src="https://unpkg.com/mini-canvas-editor@latest/dist/mini-canvas-editor.umd.js"></script>
+  <!-- REQUIRED: core then editor (UMD builds) -->
+  <script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
 
   <script>
-    // Initialize Mini Canvas Editor
-    const editor = new MiniCanvasEditor({
-      el: '#editor',
-      width: 1000,
-      height: 700
-    });
+    // --- Create the editor the way README suggests (use the correct global) ---
+    // The global exposed by the UMD bundle is `miniCanvasEditor`.
+    // The Editor API provides convenience constructors such as createBlank.
+    const placeholder = document.getElementById('placeholder');
 
-    // Load an example image
-    const img = new Image();
-    img.src = 'https://picsum.photos/1600/900';
-    img.onload = () => {
-      editor.addImage(img.src);
-    };
+    // create a blank editor (width, height, options)
+    const editorInstance = miniCanvasEditor.Editor.createBlank(placeholder, 1200, 800, {});
 
-    // Smooth zoom and pan logic
-    const container = document.getElementById('editor-container');
-    let scale = 1.0;
+    // The created object usually exposes the fabric canvas as `editorInstance.canvas`
+    // (Mini bundles Fabric.js with the UMD build). Use fabric to load an image.
+    // NOTE: fabric is provided by the bundle and is available as `window.fabric`.
+
+    function loadExampleImage(url) {
+      // remove existing objects
+      editorInstance.canvas.clear();
+
+      // load image onto fabric canvas, then center
+      fabric.Image.fromURL(url, function(img) {
+        // scale to fit the canvas nicely
+        const maxW = editorInstance.canvas.getWidth() * 0.9;
+        const maxH = editorInstance.canvas.getHeight() * 0.9;
+        const scale = Math.min(maxW / img.width, maxH / img.height, 1);
+        img.set({ left: 0, top: 0, originX: 'left', originY: 'top', selectable: true });
+        img.scale(scale);
+        editorInstance.canvas.add(img);
+        editorInstance.canvas.setActiveObject(img);
+        editorInstance.canvas.requestRenderAll();
+
+        // center image on viewport
+        img.center();
+        img.setCoords();
+        editorInstance.canvas.requestRenderAll();
+      }, { crossOrigin: 'anonymous' });
+    }
+
+    // load a remote example (picsum is CORS friendly)
+    loadExampleImage('https://picsum.photos/1600/900');
+
+    // --- Smooth wheel zoom + drag pan behavior (works with Fabric) ---
+    const work = document.getElementById('work');
     let isDragging = false;
-    let lastX, lastY;
+    let lastX = 0, lastY = 0;
 
-    container.addEventListener('wheel', e => {
+    // wheel -> zoom (preserve focal point)
+    work.addEventListener('wheel', function(e) {
+      // if user is holding ctrl/meta we still do zoom; we preventDefault to allow trackpad pinch/wheel
       e.preventDefault();
-      const zoomFactor = 1.15;
-      if (e.deltaY < 0) scale *= zoomFactor;
-      else scale /= zoomFactor;
-      scale = Math.min(Math.max(0.2, scale), 8);
-      editor.canvas.setZoom(scale);
-      editor.canvas.requestRenderAll();
+
+      const pointer = editorInstance.canvas.getPointer(e);
+      const zoomDelta = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+      const oldZoom = editorInstance.canvas.getZoom();
+      let newZoom = oldZoom * zoomDelta;
+      newZoom = Math.max(0.1, Math.min(10, newZoom)); // clamp
+
+      // zoomToPoint keeps zoom centered around pointer
+      editorInstance.canvas.zoomToPoint({ x: pointer.x, y: pointer.y }, newZoom);
+      editorInstance.canvas.requestRenderAll();
     }, { passive: false });
 
-    container.addEventListener('mousedown', e => {
+    // panning with drag
+    work.addEventListener('mousedown', (e) => {
       isDragging = true;
       lastX = e.clientX;
       lastY = e.clientY;
-      container.style.cursor = 'grabbing';
+      work.style.cursor = 'grabbing';
     });
-
-    container.addEventListener('mouseup', () => {
+    window.addEventListener('mouseup', () => {
       isDragging = false;
-      container.style.cursor = 'grab';
+      work.style.cursor = 'grab';
     });
-
-    container.addEventListener('mousemove', e => {
+    work.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
       const dx = e.clientX - lastX;
       const dy = e.clientY - lastY;
-      const viewport = editor.canvas.viewportTransform;
-      viewport[4] += dx;
-      viewport[5] += dy;
-      editor.canvas.setViewportTransform(viewport);
       lastX = e.clientX;
       lastY = e.clientY;
+
+      // viewport transform indices 4/5 are translate x/y
+      const t = editorInstance.canvas.viewportTransform.slice();
+      t[4] += dx;
+      t[5] += dy;
+      editorInstance.canvas.setViewportTransform(t);
+      editorInstance.canvas.requestRenderAll();
     });
 
-    // Reset view
-    document.getElementById('resetView').onclick = () => {
-      scale = 1;
-      editor.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-      editor.canvas.setZoom(scale);
-      editor.canvas.requestRenderAll();
-    };
+    // --- Reset view button ---
+    document.getElementById('btnReset').addEventListener('click', () => {
+      editorInstance.canvas.setViewportTransform([1,0,0,1,0,0]);
+      editorInstance.canvas.setZoom(1);
+      editorInstance.canvas.requestRenderAll();
+    });
 
-    // Open a new image
-    document.getElementById('openImage').onclick = async () => {
-      const fileHandle = await window.showOpenFilePicker({
-        types: [{ description: 'Images', accept: { 'image/*': ['.png', '.jpg', '.jpeg'] } }]
-      });
-      const file = await fileHandle[0].getFile();
-      const url = URL.createObjectURL(file);
-      editor.addImage(url);
-    };
+    // --- Open local image via file picker (fallback if showOpenFilePicker not available) ---
+    document.getElementById('btnOpen').addEventListener('click', async () => {
+      // Use an <input type=file> fallback for compatibility
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = () => {
+        const file = input.files[0];
+        if (!file) return;
+        const url = URL.createObjectURL(file);
+        loadExampleImage(url);
+      };
+      input.click();
+    });
   </script>

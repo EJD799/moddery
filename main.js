@@ -166,6 +166,7 @@ function addElement() {
 function addAsset() {
   let file = addAssetUploadInput.files[0];
   let fileType = file.name.split(".")[1];
+  let fileNameEncoded = file.name.replace(".", "_");
   let previewBox;
   let preview;
   let editBtn;
@@ -186,12 +187,12 @@ function addAsset() {
     assetBox.appendChild(previewBox);
     assetBox.appendChild(document.createElement("br"));
     editBtn = document.createElement("button");
-    editBtn.setAttribute("onclick", `assetDropdown('${file.name}')" id="${file.name}_assetOptionBtn`);
-    editBtn.setAttribute("id", `${file.name}_assetOptionBtn`);
+    editBtn.setAttribute("onclick", `assetDropdown('${fileNameEncoded}')`);
+    editBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
     editBtn.innerHTML = "&#x22EF;";
     assetBox.appendChild(editBtn);
     parentDiv.appendChild(assetBox);
-    $(`#${file.name}_assetOptionBtn`).button();
+    $(`#${fileNameEncoded}_assetOptionBtn`).button();
     if (assetCount % 4 === 0) {
       parentDiv.appendChild(document.createElement("br"));
     }

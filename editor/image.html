@@ -1,98 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Mini Canvas Editor — Combined Revisions</title>
-<link href="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/css/editor.css" rel="stylesheet">
-<style>
-  html, body {
-    margin:0; padding:0; width:100%; height:100%; overflow:hidden;
-    font-family: Verdana, sans-serif; background:#222; color:#fff;
-  }
-  #editorRoot { width:100%; height:100%; }
-  .mce-workspace canvas { cursor: crosshair !important; }
-</style>
+  <meta charset="UTF-8">
+  <title>Image Editor – TOAST UI Example</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/tui-image-editor/3.15.3/tui-image-editor.min.css"
+  />
+  <style>
+    html, body {
+      margin: 0; padding: 0; width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: Verdana, sans-serif;
+      background: #222; color: #fff;
+    }
+    #editorContainer {
+      width: 100%; height: 100%;
+    }
+    /* Crosshair cursor inside editor area */
+    #editorContainer, #editorContainer .tui-image-editor-canvas-container {
+      cursor: crosshair;
+    }
+  </style>
 </head>
 <body>
-<div id="editorRoot"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
+<div id="editorContainer"></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.6.0/fabric.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tui-image-editor/3.15.3/tui-image-editor.min.js"></script>
 <script>
-  // Create editor filling the window
-  const editor = miniCanvasEditor.Editor.createBlank(
-    document.getElementById('editorRoot'),
-    window.innerWidth,
-    window.innerHeight,
-    {
-      textOptions: { fontFamily: 'Verdana', fill: '#ffffff', fontSize: 24 },
-      keyboard: { delete: true, undo: true, redo: true, arrowMoveStep: 5 }
+  const container = document.getElementById('editorContainer');
+  const editor = new tui.ImageEditor(container, {
+    includeUI: {
+      loadImage: {
+        path: '',
+        name: 'Untitled'
+      },
+      menu: ['crop', 'flip', 'rotate', 'draw', 'shape', 'text', 'filter', 'icon'],
+      initMenu: 'draw',
+      menuBarPosition: 'top'
+    },
+    cssMaxWidth: window.innerWidth,
+    cssMaxHeight: window.innerHeight,
+    usageStatistics: false
+  });
+
+  // Tune zoom/pan speed (example: slower zoom)
+  const zoomStep = 0.9;  // adjust: <1 = slower zoom
+  // Here we modify wheel zoom behaviour on the underlying fabric canvas
+  const canvas = editor.getCanvas();
+  canvas.on('mouse:wheel', function(opt) {
+    opt.e.preventDefault();
+    const delta = opt.e.deltaY;
+    let zoom = canvas.getZoom();
+    zoom = zoom * (delta < 0 ? (1 / zoomStep) : zoomStep);
+    zoom = Math.max(0.1, Math.min(zoom, 20));
+    canvas.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
+    opt.e.stopPropagation();
+  });
+
+  // Make Ctrl+Drag / Cmd+Drag pan
+  canvas.on('mouse:down', function(opt) {
+    const evt = opt.e;
+    if ((evt.ctrlKey || evt.metaKey) && !opt.target) {
+      this.isDragging = true;
+      this.lastPosX = evt.clientX;
+      this.lastPosY = evt.clientY;
+      this.selection = false;
     }
-  );
-
-  const canvas = editor.canvas; // built-in canvas
-
-  // --- Zoom / Pan ---
-  const ZOOM_STEP = 1.03; // slower zoom
-  let isPanning = false, lastX = 0, lastY = 0;
-
-  const upperCanvas = canvas.upperCanvasEl;
-
-  // Wheel: pinch/trackpad zoom, normal scroll pan
-  upperCanvas.addEventListener('wheel', e => {
-    e.preventDefault();
-    const pointer = canvas.getPointer(e);
-    if (e.ctrlKey || e.metaKey || e.scale) {
-      const delta = e.deltaY < 0 ? ZOOM_STEP : 1 / ZOOM_STEP;
-      canvas.zoomToPoint(pointer, canvas.getZoom() * delta);
-    } else {
-      const t = canvas.viewportTransform.slice();
-      t[4] -= e.deltaX;
-      t[5] -= e.deltaY;
-      canvas.setViewportTransform(t);
+  });
+  canvas.on('mouse:move', function(opt) {
+    if (this.isDragging) {
+      const e = opt.e;
+      const vpt = canvas.viewportTransform;
+      vpt[4] += e.clientX - this.lastPosX;
+      vpt[5] += e.clientY - this.lastPosY;
       canvas.requestRenderAll();
-    }
-  }, { passive:false });
-
-  // Cmd/Ctrl + drag to pan
-  canvas.on('mouse:down', opt => {
-    if ((opt.e.metaKey || opt.e.ctrlKey) && !opt.target) {
-      isPanning = true;
-      lastX = opt.e.clientX;
-      lastY = opt.e.clientY;
-      canvas.setCursor('grabbing');
+      this.lastPosX = e.clientX;
+      this.lastPosY = e.clientY;
     }
   });
-  canvas.on('mouse:move', opt => {
-    if (!isPanning) return;
-    const dx = opt.e.clientX - lastX;
-    const dy = opt.e.clientY - lastY;
-    lastX = opt.e.clientX;
-    lastY = opt.e.clientY;
-    const t = canvas.viewportTransform.slice();
-    t[4] += dx;
-    t[5] += dy;
-    canvas.setViewportTransform(t);
-    canvas.requestRenderAll();
-  });
-  canvas.on('mouse:up', () => {
-    isPanning = false;
-    canvas.setCursor('crosshair');
+  canvas.on('mouse:up', function(opt) {
+    this.isDragging = false;
+    this.selection = true;
   });
 
-  // --- Keep selected tool active ---
-  editor.onToolChanged = tool => {
-    editor.currentTool = tool;
-  };
-
-  // --- Window resize ---
+  // Resize editor on window resize
   window.addEventListener('resize', () => {
-    editor.resize(window.innerWidth, window.innerHeight);
+    editor.ui.resizeEditor({ cssMaxWidth: window.innerWidth, cssMaxHeight: window.innerHeight });
   });
 
-  // --- Undo / Redo / Delete handled by Mini's built-in keyboard ---
-  // Backspace/delete removes selected object, arrow keys move object
 </script>
+
 </body>
 </html>

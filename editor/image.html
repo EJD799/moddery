@@ -1,252 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Fabric.js Editor with Color Picker & Brush Size</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script> <!-- ensure fabric is loaded -->
-  <style>
-    html, body {
-      margin:0; padding:0;
-      width:100%; height:100%;
-      overflow:hidden;
-      font-family: Verdana, sans-serif;
-    }
-    #toolbar {
-      display:flex; gap:4px; padding:6px;
-      background:#222; color:#fff;
-    }
-    #toolbar button { padding:4px 8px; background:#333; border:none; color:#fff; cursor:pointer; }
-    #toolbar button.active { background:#555; }
-    #toolbar input[type=color], #toolbar input[type=range] {
-      margin-left:4px;
-    }
-    #editorContainer {
-      position:relative;
-      width:100%; height:calc(100% - 40px);
-      background:#ddd;
-      cursor:crosshair;
-    }
-    canvas { background:#fff; display:block; margin:0; }
-  </style>
+<meta charset="UTF-8">
+<title>Pixel Art Editor</title>
+<style>
+  html, body { margin:0; padding:0; height:100%; font-family:Verdana,sans-serif; background:#222; color:#fff; }
+  #toolbar { display:flex; gap:4px; padding:4px; background:#333; align-items:center; }
+  #toolbar button { padding:4px 8px; background:#444; color:#fff; border:none; cursor:pointer; }
+  #toolbar button.active { background:#666; }
+  #toolbar input[type=color], #toolbar input[type=range] { margin-left:4px; }
+  #canvasContainer { flex:1; position:relative; overflow:auto; background:#111; cursor:crosshair; }
+  canvas { display:block; background:#000; image-rendering:pixelated; }
+</style>
 </head>
 <body>
-
 <div id="toolbar">
-  <button id="toolMove" class="active">Move</button>
+  <button id="toolPencil" class="active">Pencil</button>
   <button id="toolRect">Rectangle</button>
-  <button id="toolText">Text</button>
-  <button id="toolBrush">Brush</button>
-  <button id="btnLoadImage">Open Image</button>
-  <label>Brush Color: <input type="color" id="brushColor" value="#000000"></label>
-  <label>Brush Size: <input type="range" id="brushSize" min="1" max="50" value="5"></label>
-  <button id="btnUndo">Undo</button>
-  <button id="btnRedo">Redo</button>
+  <button id="toolFill">Fill</button>
+  <button id="toolEraser">Eraser</button>
+  <label>Color: <input type="color" id="colorPicker" value="#ff0000"></label>
+  <label>Pixel Size: <input type="range" id="pixelSize" min="4" max="32" value="16"></label>
+  <button id="undoBtn">Undo</button>
+  <button id="redoBtn">Redo</button>
 </div>
-
-<div id="editorContainer">
-  <canvas id="canvas"></canvas>
+<div id="canvasContainer">
+  <canvas id="pixelCanvas"></canvas>
 </div>
 
 <script>
-  const canvasEl = document.getElementById('canvas');
-  const canvas = new fabric.Canvas('canvas', { selection: true });
-  canvas.setWidth(window.innerWidth);
-  canvas.setHeight(window.innerHeight - 40);
+const canvas = document.getElementById('pixelCanvas');
+const ctx = canvas.getContext('2d');
 
-  // Toolbar tool handling
-  let currentTool = 'move';
-  function setTool(tool){
-    currentTool = tool;
-    document.querySelectorAll('#toolbar button').forEach(b=>b.classList.remove('active'));
-    document.getElementById('toolMove').classList.toggle('active', tool==='move');
-    document.getElementById('toolRect').classList.toggle('active', tool==='rect');
-    document.getElementById('toolText').classList.toggle('active', tool==='text');
-    document.getElementById('toolBrush').classList.toggle('active', tool==='brush');
+let gridWidth = 16;
+let gridHeight = 16;
+let pixelSize = 16;
+let currentTool = 'pencil';
+let currentColor = '#ff0000';
+let isDrawing = false;
+let startX = 0, startY = 0;
 
-    canvas.isDrawingMode = (tool==='brush');
-    if(tool==='brush'){
-      canvas.freeDrawingBrush.color = document.getElementById('brushColor').value;
-      canvas.freeDrawingBrush.width = parseInt(document.getElementById('brushSize').value,10);
-    }
-    if(tool!=='brush') canvas.selection = true;
+// Undo/Redo stack
+let undoStack = [], redoStack = [];
+function saveState() {
+  redoStack = [];
+  undoStack.push(ctx.getImageData(0,0,canvas.width,canvas.height));
+  if(undoStack.length > 50) undoStack.shift();
+}
+function undo() { if(undoStack.length){ redoStack.push(ctx.getImageData(0,0,canvas.width,canvas.height)); ctx.putImageData(undoStack.pop(),0,0); }}
+function redo() { if(redoStack.length){ undoStack.push(ctx.getImageData(0,0,canvas.width,canvas.height)); ctx.putImageData(redoStack.pop(),0,0); }}
+
+// Initialize canvas
+function resizeCanvas() {
+  canvas.width = gridWidth * pixelSize;
+  canvas.height = gridHeight * pixelSize;
+  drawGrid();
+}
+function drawGrid() {
+  ctx.fillStyle = '#000'; ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.strokeStyle = '#333';
+  for(let x=0;x<=gridWidth;x++){
+    ctx.beginPath(); ctx.moveTo(x*pixelSize,0); ctx.lineTo(x*pixelSize,canvas.height); ctx.stroke();
   }
+  for(let y=0;y<=gridHeight;y++){
+    ctx.beginPath(); ctx.moveTo(0,y*pixelSize); ctx.lineTo(canvas.width,y*pixelSize); ctx.stroke();
+  }
+}
 
-  document.getElementById('toolMove').onclick = ()=>setTool('move');
-  document.getElementById('toolRect').onclick = ()=>setTool('rect');
-  document.getElementById('toolText').onclick = ()=>setTool('text');
-  document.getElementById('toolBrush').onclick = ()=>setTool('brush');
-
-  // Brush controls
-  document.getElementById('brushColor').onchange = () => {
-    if(canvas.isDrawingMode) canvas.freeDrawingBrush.color = event.target.value;
+// Tools
+function getMousePos(e){
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: Math.floor((e.clientX - rect.left)/pixelSize),
+    y: Math.floor((e.clientY - rect.top)/pixelSize)
   };
-  document.getElementById('brushSize').oninput = () => {
-    if(canvas.isDrawingMode) canvas.freeDrawingBrush.width = parseInt(event.target.value,10);
-  };
+}
+function drawPixel(x,y,color){
+  ctx.fillStyle = color;
+  ctx.fillRect(x*pixelSize, y*pixelSize, pixelSize, pixelSize);
+}
 
-  // Undo/Redo
-  const stateStack = [];
-  let currentState = -1;
-  function saveState(){
-    const json = canvas.toJSON();
-    stateStack.splice(currentState+1);
-    stateStack.push(json);
-    currentState++;
+function floodFill(x,y,color){
+  const img = ctx.getImageData(0,0,canvas.width,canvas.height);
+  const w = canvas.width/ pixelSize;
+  const h = canvas.height/ pixelSize;
+  const targetColor = getPixelColor(img,x,y);
+  if(targetColor === color) return;
+  const stack = [[x,y]];
+  while(stack.length){
+    const [cx,cy] = stack.pop();
+    if(cx<0||cy<0||cx>=w||cy>=h) continue;
+    if(getPixelColor(img,cx,cy)!==targetColor) continue;
+    setPixelColor(img,cx,cy,color);
+    stack.push([cx+1,cy],[cx-1,cy],[cx,cy+1],[cx,cy-1]);
   }
-  function undo(){
-    if(currentState > 0){
-      currentState--;
-      canvas.loadFromJSON(stateStack[currentState], canvas.renderAll.bind(canvas));
+  ctx.putImageData(img,0,0);
+}
+function getPixelColor(img,x,y){
+  const idx = (y*pixelSize*canvas.width + x*pixelSize)*4;
+  return `rgba(${img.data[idx]},${img.data[idx+1]},${img.data[idx+2]},${img.data[idx+3]/255})`;
+}
+function setPixelColor(img,x,y,color){
+  const c = parseColor(color);
+  for(let px=0;px<pixelSize;px++){
+    for(let py=0;py<pixelSize;py++){
+      const idx = ((y*pixelSize+py)*canvas.width + (x*pixelSize+px))*4;
+      img.data[idx] = c.r; img.data[idx+1] = c.g; img.data[idx+2] = c.b; img.data[idx+3] = c.a;
     }
   }
-  function redo(){
-    if(currentState < stateStack.length - 1){
-      currentState++;
-      canvas.loadFromJSON(stateStack[currentState], canvas.renderAll.bind(canvas));
-    }
-  }
+}
+function parseColor(hex){
+  const c = hex.match(/\w\w/g).map(h=>parseInt(h,16));
+  return {r:c[0],g:c[1],b:c[2],a:255};
+}
 
-  document.getElementById('btnUndo').onclick = undo;
-  document.getElementById('btnRedo').onclick = redo;
-
-  // Save state on changes
+// Mouse events
+canvas.addEventListener('mousedown', e => {
+  const pos = getMousePos(e);
+  startX = pos.x; startY = pos.y;
+  isDrawing = true;
   saveState();
-  canvas.on('object:added', saveState);
-  canvas.on('object:modified', saveState);
-  canvas.on('object:removed', saveState);
+  if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor);
+  if(currentTool==='eraser') drawPixel(pos.x,pos.y,'#000000');
+  if(currentTool==='fill') floodFill(pos.x,pos.y,currentColor);
+});
+canvas.addEventListener('mousemove', e => {
+  if(!isDrawing) return;
+  const pos = getMousePos(e);
+  if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor);
+  if(currentTool==='eraser') drawPixel(pos.x,pos.y,'#000000');
+  if(currentTool==='rect'){
+    drawRectPreview(startX,startY,pos.x,pos.y);
+  }
+});
+canvas.addEventListener('mouseup', e => {
+  if(currentTool==='rect') {
+    const pos = getMousePos(e);
+    drawRect(startX,startY,pos.x,pos.y,currentColor);
+  }
+  isDrawing = false;
+});
 
-  // Drawing rectangle or text
-  let rect, isDown=false, origX, origY;
-  canvas.on('mouse:down', function(o){
-    const pointer = canvas.getPointer(o.e);
-    if(currentTool==='rect'){
-      isDown=true; origX = pointer.x; origY = pointer.y;
-      rect = new fabric.Rect({
-        left: origX, top: origY, width:0, height:0,
-        fill:'rgba(0,0,255,0.3)', selectable:true
-      });
-      canvas.add(rect);
-    } else if(currentTool==='text'){
-      const txt = new fabric.IText('Text', {
-        left: pointer.x,
-        top: pointer.y,
-        fontFamily: 'Verdana',
-        fill: '#000',
-        fontSize: 24
-      });
-      canvas.add(txt).setActiveObject(txt);
-    }
-  });
-  canvas.on('mouse:move', function(o){
-    if(!isDown || currentTool!=='rect') return;
-    const pointer = canvas.getPointer(o.e);
-    rect.set({ width: pointer.x - origX, height: pointer.y - origY });
-    canvas.renderAll();
-  });
-  canvas.on('mouse:up', function(o){
-    isDown=false;
-    rect=null;
-  });
+// Rectangle drawing
+function drawRect(x1,y1,x2,y2,color){
+  const xmin = Math.min(x1,x2), xmax=Math.max(x1,x2);
+  const ymin = Math.min(y1,y2), ymax=Math.max(y1,y2);
+  for(let x=xmin;x<=xmax;x++) for(let y=ymin;y<=ymax;y++) drawPixel(x,y,color);
+}
+function drawRectPreview(x1,y1,x2,y2){
+  // optional: implement a live preview
+}
 
-  // Load image
-  document.getElementById('btnLoadImage').onclick = ()=>{
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
-    input.onchange = ()=> {
-      const file = input.files[0];
-      if(!file) return;
-      const url = URL.createObjectURL(file);
-      fabric.Image.fromURL(url, img=>{
-        img.set({
-          left: canvas.width / 2,
-          top: canvas.height / 2,
-          originX: 'center',
-          originY: 'center'
-        });
-        canvas.add(img).setActiveObject(img);
-      }, {crossOrigin:'anonymous'});
-    };
-    input.click();
-  };
+// Toolbar events
+document.getElementById('toolPencil').onclick = ()=>currentTool='pencil';
+document.getElementById('toolRect').onclick = ()=>currentTool='rect';
+document.getElementById('toolFill').onclick = ()=>currentTool='fill';
+document.getElementById('toolEraser').onclick = ()=>currentTool='eraser';
+document.getElementById('colorPicker').onchange = e=>currentColor=e.target.value;
+document.getElementById('pixelSize').oninput = e=>{ pixelSize=parseInt(e.target.value); resizeCanvas(); drawGrid(); };
+document.getElementById('undoBtn').onclick = undo;
+document.getElementById('redoBtn').onclick = redo;
 
-  // Keyboard shortcuts
-  window.addEventListener('keydown', function(e){
-    const obj = canvas.getActiveObject();
-    const key = e.key.toLowerCase();
+// Save/Load functions
+function saveProject(){ return canvas.toDataURL(); }
+function loadProject(base64){
+  const img = new Image();
+  img.onload = ()=>{ ctx.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height); };
+  img.src = base64;
+}
 
-    if(key==='delete' || key==='backspace'){
-      e.preventDefault();
-      if(obj){
-        canvas.remove(obj);
-        saveState();
-      }
-    }
-    if((e.ctrlKey||e.metaKey)&&!e.shiftKey && key==='z'){
-      e.preventDefault(); undo();
-    }
-    if((e.ctrlKey||e.metaKey)&&((key==='y')||(e.shiftKey&&key==='z'))){
-      e.preventDefault(); redo();
-    }
-    if(obj){
-      let step = e.shiftKey ? 10 : 1;
-      switch(key){
-        case 'arrowleft': e.preventDefault(); obj.left -= step; break;
-        case 'arrowright': e.preventDefault(); obj.left += step; break;
-        case 'arrowup': e.preventDefault(); obj.top -= step; break;
-        case 'arrowdown': e.preventDefault(); obj.top += step; break;
-      }
-      obj.setCoords();
-      canvas.renderAll();
-    }
-  });
-
-  // Zoom & pan logic
-  let isPanning = false, lastX=0, lastY=0;
-  canvas.on('mouse:wheel', function(opt){
-    opt.e.preventDefault();
-    const delta = opt.e.deltaY;
-    let zoom = canvas.getZoom();
-    const zoomSpeed = 0.02; // slower zoom
-    zoom *= delta > 0 ? (1 - zoomSpeed) : (1 + zoomSpeed);
-    zoom = Math.max(0.1, Math.min(zoom, 20));
-    const pointer = canvas.getPointer(opt.e);
-    canvas.zoomToPoint({ x:pointer.x, y:pointer.y }, zoom);
-  });
-  canvas.on('mouse:down', function(opt){
-    if(opt.e.ctrlKey||opt.e.metaKey){
-      isPanning = true;
-      lastX = opt.e.clientX;
-      lastY = opt.e.clientY;
-      canvas.selection = false;
-    }
-  });
-  canvas.on('mouse:move', function(opt){
-    if(!isPanning) return;
-    const e = opt.e;
-    const vpt = canvas.viewportTransform;
-    vpt[4] += e.clientX - lastX;
-    vpt[5] += e.clientY - lastY;
-    canvas.requestRenderAll();
-    lastX = e.clientX;
-    lastY = e.clientY;
-  });
-  canvas.on('mouse:up', function(opt){
-    isPanning = false;
-    canvas.selection = true;
-  });
-
-  // Handle window resize
-  window.addEventListener('resize', () => {
-    canvas.setWidth(window.innerWidth);
-    canvas.setHeight(window.innerHeight - 40);
-    canvas.renderAll();
-  });
-
-  // Initialize default tool
-  setTool('move');
-
+// Initialize
+resizeCanvas();
+drawGrid();
 </script>
-
 </body>
 </html>

@@ -1,188 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Mini Canvas Editor — Fixed Panning + Object Movement</title>
-
+  <meta charset="utf-8">
+  <title>Mini Canvas Editor — Fullscreen Fixed</title>
   <link href="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/css/editor.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
-
   <style>
-    body {
+    html, body {
       margin: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: #222;
-      color: #fff;
-      font-family: sans-serif;
-    }
-    #toolbar {
-      padding: 8px;
-      background: #111;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    #work {
-      flex: 1;
+      padding: 0;
+      height: 100%;
+      width: 100%;
       overflow: hidden;
-      background: #333;
-      position: relative;
+      background: #222;
     }
     #placeholder {
-      width: 1200px;
-      height: 800px;
-      margin: 40px auto;
-      border: 1px solid #555;
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
 <body>
-  <div id="toolbar">
-    <button id="btnAddText">Add Text</button>
-    <button id="btnUndo">Undo</button>
-    <button id="btnRedo">Redo</button>
-    <button id="btnReset">Reset view</button>
-    <span style="opacity:.7; margin-left:10px;">Hold Space or Right-Click to Pan | Ctrl+Scroll = Zoom</span>
-  </div>
+  <div id="placeholder"></div>
 
-  <div id="work">
-    <div id="placeholder"></div>
-  </div>
-
+  <script src="https://cdn.jsdelivr.net/npm/mini-canvas-core@0.3.2/dist/index.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mini-canvas-editor@0.3.2/dist/index.umd.js"></script>
   <script>
-    window.addEventListener('load', () => {
-      const MCE = window.MiniCanvasEditor || window.miniCanvasEditor || window.miniCanvas;
-      const placeholder = document.getElementById('placeholder');
-      const editorInstance = MCE.Editor.createBlank(placeholder, 1200, 800, {});
-      const canvas = editorInstance.workspace.canvas;
-      // Fix invisible text bug in Fabric v6 + Mini Canvas Editor
-      canvas.on('after:render', () => {
-        canvas.contextContainer.imageSmoothingEnabled = true;
-      });
+    // --- Initialize editor ---
+    const MCE = window.MiniCanvasEditor || window.miniCanvasEditor || window.miniCanvas;
+    const placeholder = document.getElementById('placeholder');
+    const editorInstance = MCE.Editor.createBlank(placeholder, window.innerWidth, window.innerHeight, {});
+    const canvas = editorInstance.workspace.canvas;
 
-      const fabric = window.fabric;
+    // --- Fix invisible textboxes ---
+    canvas.on('after:render', () => {
+      const ctx = canvas.contextContainer;
+      if (ctx) {
+        ctx.imageSmoothingEnabled = true;
+        ctx.globalAlpha = 1;
+        ctx.filter = 'none';
+      }
+    });
 
-      console.log("✅ Editor initialized", editorInstance);
+    // --- Keyboard: delete selected object (except active textbox) ---
+    window.addEventListener('keydown', e => {
+      const active = canvas.getActiveObject?.();
+      const tag = document.activeElement?.tagName;
+      const isTextboxEditing = active && active.type === 'textbox' && active.isEditing;
+      if (isTextboxEditing || tag === 'INPUT' || tag === 'TEXTAREA') return;
 
-      // --- Add Text ---
-      document.getElementById('btnAddText').addEventListener('click', () => {
-        const text = new fabric.Textbox('Type here', {
-          left: 100,
-          top: 100,
-          fill: '#fff',
-          fontSize: 24,
-          editable: true
-        });
-        canvas.add(text);
-        canvas.setActiveObject(text);
-        canvas.requestRenderAll();
-      });
-
-      // --- Undo / Redo ---
-      document.getElementById('btnUndo').addEventListener('click', () => {
-        editorInstance.history?.undo?.();
-      });
-      document.getElementById('btnRedo').addEventListener('click', () => {
-        editorInstance.history?.redo?.();
-      });
-
-      document.getElementById('btnReset').addEventListener('click', () => {
-        canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-        canvas.setZoom(1);
-        canvas.requestRenderAll();
-      });
-
-      // --- Keyboard: Undo/Redo/Delete ---
-      window.addEventListener('keydown', (e) => {
-        const key = e.key.toLowerCase();
-        const active = canvas.getActiveObject();
-
-        if (active && active.type === 'textbox' && active.isEditing) return;
-
-        if ((e.ctrlKey || e.metaKey) && key === 'z') {
-          e.preventDefault();
-          editorInstance.history?.undo?.();
-        }
-        if ((e.ctrlKey || e.metaKey) && (key === 'y' || (e.shiftKey && key === 'z'))) {
-          e.preventDefault();
-          editorInstance.history?.redo?.();
-        }
-        if (key === 'backspace' || key === 'delete') {
-          e.preventDefault();
-          if (active) {
-            canvas.remove(active);
-            canvas.discardActiveObject();
-            canvas.requestRenderAll();
-          }
-        }
-      });
-
-      // --- Pan / Zoom behavior ---
-      const work = document.getElementById('work');
-      let isPanning = false;
-      let lastX = 0, lastY = 0;
-      let spaceHeld = false;
-
-      // detect space for panning
-      window.addEventListener('keydown', (e) => {
-        if (e.code === 'Space') spaceHeld = true;
-      });
-      window.addEventListener('keyup', (e) => {
-        if (e.code === 'Space') spaceHeld = false;
-      });
-
-      work.addEventListener('wheel', (e) => {
+      if (e.key === 'Backspace' || e.key === 'Delete') {
         e.preventDefault();
-        const t = canvas.viewportTransform;
-        if (e.ctrlKey || e.metaKey) {
-          const zoom = canvas.getZoom() * (e.deltaY < 0 ? 1.1 : 0.9);
-          canvas.zoomToPoint({ x: e.offsetX, y: e.offsetY }, Math.min(Math.max(zoom, 0.1), 10));
-        } else {
-          // scroll pans
-          t[4] -= e.deltaX * 1.2;
-          t[5] -= e.deltaY * 1.2;
-          canvas.setViewportTransform(t);
+        if (active && active.selectable !== false) {
+          canvas.remove(active);
           canvas.requestRenderAll();
         }
-      }, { passive: false });
+      }
+    });
 
-      work.addEventListener('mousedown', (e) => {
-        // allow right-click or spacebar drag for panning
-        if (e.button === 2 || spaceHeld) {
-          isPanning = true;
-          lastX = e.clientX;
-          lastY = e.clientY;
-          work.style.cursor = 'grabbing';
-          canvas.selection = false;
-        }
-      });
+    // --- Interaction: scroll pans, Ctrl+scroll zooms ---
+    let lastX = 0, lastY = 0;
+    let isDragging = false;
 
-      work.addEventListener('mousemove', (e) => {
-        if (!isPanning) return;
-        const t = canvas.viewportTransform;
-        const dx = e.clientX - lastX;
-        const dy = e.clientY - lastY;
-        t[4] += dx;
-        t[5] += dy;
+    // Panning by dragging
+    canvas.on('mouse:down', e => {
+      // Only pan if user clicks on empty space
+      if (!e.target) {
+        isDragging = true;
+        lastX = e.e.clientX;
+        lastY = e.e.clientY;
+        canvas.defaultCursor = 'grabbing';
+      }
+    });
+    canvas.on('mouse:up', () => {
+      isDragging = false;
+      canvas.defaultCursor = 'default';
+    });
+    canvas.on('mouse:move', e => {
+      if (!isDragging) return;
+      const dx = e.e.clientX - lastX;
+      const dy = e.e.clientY - lastY;
+      lastX = e.e.clientX;
+      lastY = e.e.clientY;
+      const t = canvas.viewportTransform;
+      t[4] += dx;
+      t[5] += dy;
+      canvas.setViewportTransform(t);
+      canvas.requestRenderAll();
+    });
+
+    // Scrolling → pan, Ctrl+scroll → zoom
+    window.addEventListener('wheel', e => {
+      e.preventDefault();
+      const t = canvas.viewportTransform;
+      if (e.ctrlKey || e.metaKey) {
+        // zoom
+        const zoom = canvas.getZoom() * (e.deltaY < 0 ? 1.1 : 0.9);
+        canvas.zoomToPoint({ x: e.offsetX, y: e.offsetY }, Math.max(0.1, Math.min(10, zoom)));
+      } else {
+        // pan
+        t[4] -= e.deltaX;
+        t[5] -= e.deltaY;
         canvas.setViewportTransform(t);
-        canvas.requestRenderAll();
-        lastX = e.clientX;
-        lastY = e.clientY;
-      });
+      }
+      canvas.requestRenderAll();
+    }, { passive: false });
 
-      window.addEventListener('mouseup', () => {
-        if (isPanning) {
-          isPanning = false;
-          work.style.cursor = 'default';
-          canvas.selection = true;
-        }
-      });
+    // --- Add a default textbox to test ---
+    const textbox = new fabric.Textbox('Hello Mini Canvas!', {
+      left: 100,
+      top: 100,
+      fontSize: 32,
+      fill: '#ffffff',
+      editable: true,
+      width: 400
+    });
+    canvas.add(textbox);
+    canvas.requestRenderAll();
 
-      // disable context menu (for right-click panning)
-      work.addEventListener('contextmenu', e => e.preventDefault());
+    // --- Resize handling ---
+    window.addEventListener('resize', () => {
+      editorInstance.resize(window.innerWidth, window.innerHeight);
+      canvas.setDimensions({ width: window.innerWidth, height: window.innerHeight });
+      canvas.requestRenderAll();
     });
   </script>
 </body>

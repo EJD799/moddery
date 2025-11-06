@@ -1,96 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Image Editor – TOAST UI Example</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/tui-image-editor/3.15.3/tui-image-editor.min.css"
-  />
-  <style>
-    html, body {
-      margin: 0; padding: 0; width: 100%; height: 100%;
-      overflow: hidden;
-      font-family: Verdana, sans-serif;
-      background: #222; color: #fff;
-    }
-    #editorContainer {
-      width: 100%; height: 100%;
-    }
-    /* Crosshair cursor inside editor area */
-    #editorContainer, #editorContainer .tui-image-editor-canvas-container {
-      cursor: crosshair;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Fabric.js Image Editor</title>
+<!-- Fabric.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/6.0.0-beta.14/fabric.min.js"></script>
+<style>
+  html, body { margin:0; height:100%; width:100%; overflow:hidden; font-family: Verdana, sans-serif; }
+  #toolbar {
+    display:flex;
+    gap:4px;
+    padding:6px;
+    background:#222;
+    color:#fff;
+    align-items:center;
+  }
+  #toolbar button { padding:4px 8px; background:#333; border:none; color:#fff; cursor:pointer; }
+  #toolbar button.active { background:#555; }
+  #editorContainer { position:relative; width:100%; height:calc(100% - 36px); cursor:crosshair; }
+  canvas { background:#eee; display:block; margin:0 auto; }
+</style>
 </head>
 <body>
 
-<div id="editorContainer"></div>
+<div id="toolbar">
+  <button id="toolMove" class="active">Move</button>
+  <button id="toolRect">Rectangle</button>
+  <button id="toolText">Text</button>
+  <button id="toolBrush">Brush</button>
+  <button id="btnLoadImage">Open Image</button>
+  <button id="btnUndo">Undo</button>
+  <button id="btnRedo">Redo</button>
+</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.6.0/fabric.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tui-image-editor/3.15.3/tui-image-editor.min.js"></script>
+<div id="editorContainer">
+  <canvas id="canvas"></canvas>
+</div>
+
 <script>
-  const container = document.getElementById('editorContainer');
-  const editor = new tui.ImageEditor(container, {
-    includeUI: {
-      loadImage: {
-        path: '',
-        name: 'Untitled'
-      },
-      menu: ['crop', 'flip', 'rotate', 'draw', 'shape', 'text', 'filter', 'icon'],
-      initMenu: 'draw',
-      menuBarPosition: 'top'
-    },
-    cssMaxWidth: window.innerWidth,
-    cssMaxHeight: window.innerHeight,
-    usageStatistics: false
-  });
+const canvasEl = document.getElementById('canvas');
+const canvas = new fabric.Canvas('canvas', { selection: true });
+canvas.setHeight(window.innerHeight - 36);
+canvas.setWidth(window.innerWidth);
 
-  // Tune zoom/pan speed (example: slower zoom)
-  const zoomStep = 0.9;  // adjust: <1 = slower zoom
-  // Here we modify wheel zoom behaviour on the underlying fabric canvas
-  const canvas = editor.getCanvas();
-  canvas.on('mouse:wheel', function(opt) {
-    opt.e.preventDefault();
-    const delta = opt.e.deltaY;
-    let zoom = canvas.getZoom();
-    zoom = zoom * (delta < 0 ? (1 / zoomStep) : zoomStep);
-    zoom = Math.max(0.1, Math.min(zoom, 20));
-    canvas.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
-    opt.e.stopPropagation();
-  });
+// Toolbar tool handling
+let currentTool = 'move';
+function setTool(tool){
+  currentTool = tool;
+  document.querySelectorAll('#toolbar button').forEach(b=>b.classList.remove('active'));
+  if(tool==='move') document.getElementById('toolMove').classList.add('active');
+  if(tool==='rect') document.getElementById('toolRect').classList.add('active');
+  if(tool==='text') document.getElementById('toolText').classList.add('active');
+  if(tool==='brush') document.getElementById('toolBrush').classList.add('active');
 
-  // Make Ctrl+Drag / Cmd+Drag pan
-  canvas.on('mouse:down', function(opt) {
-    const evt = opt.e;
-    if ((evt.ctrlKey || evt.metaKey) && !opt.target) {
-      this.isDragging = true;
-      this.lastPosX = evt.clientX;
-      this.lastPosY = evt.clientY;
-      this.selection = false;
-    }
-  });
-  canvas.on('mouse:move', function(opt) {
-    if (this.isDragging) {
-      const e = opt.e;
-      const vpt = canvas.viewportTransform;
-      vpt[4] += e.clientX - this.lastPosX;
-      vpt[5] += e.clientY - this.lastPosY;
-      canvas.requestRenderAll();
-      this.lastPosX = e.clientX;
-      this.lastPosY = e.clientY;
-    }
-  });
-  canvas.on('mouse:up', function(opt) {
-    this.isDragging = false;
-    this.selection = true;
-  });
+  canvas.isDrawingMode = tool==='brush';
+  if(tool!=='brush') canvas.selection = true;
+}
 
-  // Resize editor on window resize
-  window.addEventListener('resize', () => {
-    editor.ui.resizeEditor({ cssMaxWidth: window.innerWidth, cssMaxHeight: window.innerHeight });
-  });
+// Tool buttons
+document.getElementById('toolMove').onclick = ()=>setTool('move');
+document.getElementById('toolRect').onclick = ()=>setTool('rect');
+document.getElementById('toolText').onclick = ()=>setTool('text');
+document.getElementById('toolBrush').onclick = ()=>setTool('brush');
 
+// Undo/redo stack
+const stateStack = [];
+let currentState = -1;
+function saveState(){
+  const json = canvas.toJSON();
+  stateStack.splice(currentState+1);
+  stateStack.push(json);
+  currentState++;
+}
+function undo(){ if(currentState>0){ currentState--; canvas.loadFromJSON(stateStack[currentState], canvas.renderAll.bind(canvas)); } }
+function redo(){ if(currentState<stateStack.length-1){ currentState++; canvas.loadFromJSON(stateStack[currentState], canvas.renderAll.bind(canvas)); } }
+
+// Save initial state
+saveState();
+canvas.on('object:added', saveState);
+canvas.on('object:modified', saveState);
+canvas.on('object:removed', saveState);
+
+// Canvas drawing events
+let rect, isDown=false, origX, origY;
+canvas.on('mouse:down', function(o){
+  const pointer = canvas.getPointer(o.e);
+  if(currentTool==='rect'){
+    isDown=true; origX=pointer.x; origY=pointer.y;
+    rect = new fabric.Rect({ left: origX, top: origY, width:0, height:0, fill:'rgba(255,0,0,0.5)', selectable:true });
+    canvas.add(rect);
+  } else if(currentTool==='text'){
+    const txt = new fabric.IText('Text', { left:pointer.x, top:pointer.y, fontFamily:'Verdana', fill:'#000', fontSize:20 });
+    canvas.add(txt).setActiveObject(txt);
+  }
+});
+canvas.on('mouse:move', function(o){
+  if(!isDown) return;
+  const pointer = canvas.getPointer(o.e);
+  rect.set({ width: pointer.x-origX, height:pointer.y-origY });
+  canvas.renderAll();
+});
+canvas.on('mouse:up', function(o){ isDown=false; rect=null; });
+
+// Load image
+document.getElementById('btnLoadImage').onclick = ()=>{
+  const input = document.createElement('input');
+  input.type='file'; input.accept='image/*';
+  input.onchange = ()=> {
+    const file = input.files[0]; if(!file) return;
+    const url = URL.createObjectURL(file);
+    fabric.Image.fromURL(url, img=>{
+      img.set({ left:canvas.width/2, top:canvas.height/2, originX:'center', originY:'center' });
+      canvas.add(img).setActiveObject(img);
+    }, { crossOrigin:'anonymous' });
+  };
+  input.click();
+};
+
+// Keyboard shortcuts
+window.addEventListener('keydown', function(e){
+  const obj = canvas.getActiveObject();
+  const key = e.key.toLowerCase();
+
+  if(key==='delete' || key==='backspace'){ e.preventDefault(); if(obj) canvas.remove(obj); saveState(); }
+  if((e.ctrlKey||e.metaKey)&&!e.shiftKey && key==='z'){ e.preventDefault(); undo(); }
+  if((e.ctrlKey||e.metaKey)&&((key==='y')||(e.shiftKey&&key==='z'))){ e.preventDefault(); redo(); }
+  if(obj){
+    let moveAmount = e.shiftKey?10:1;
+    if(key==='arrowleft'){ e.preventDefault(); obj.left-=moveAmount; obj.setCoords(); canvas.renderAll(); }
+    if(key==='arrowright'){ e.preventDefault(); obj.left+=moveAmount; obj.setCoords(); canvas.renderAll(); }
+    if(key==='arrowup'){ e.preventDefault(); obj.top-=moveAmount; obj.setCoords(); canvas.renderAll(); }
+    if(key==='arrowdown'){ e.preventDefault(); obj.top+=moveAmount; obj.setCoords(); canvas.renderAll(); }
+  }
+});
+
+// Zoom & pan
+let isPanning=false, lastX, lastY;
+canvas.on('mouse:wheel', function(opt){
+  opt.e.preventDefault();
+  const delta = opt.e.deltaY;
+  let zoom = canvas.getZoom();
+  const zoomSpeed = 0.02; // smaller = slower zoom
+  zoom *= delta>0? (1-zoomSpeed):(1+zoomSpeed);
+  zoom = Math.max(0.1, Math.min(zoom, 20));
+  const pointer = canvas.getPointer(opt.e);
+  canvas.zoomToPoint({ x:pointer.x, y:pointer.y }, zoom);
+});
+canvas.on('mouse:down', function(opt){
+  if(opt.e.ctrlKey||opt.e.metaKey){ isPanning=true; lastX=opt.e.clientX; lastY=opt.e.clientY; canvas.selection=false; }
+});
+canvas.on('mouse:move', function(opt){
+  if(isPanning){
+    const e = opt.e; const vpt = canvas.viewportTransform;
+    vpt[4]+=e.clientX-lastX; vpt[5]+=e.clientY-lastY;
+    canvas.requestRenderAll();
+    lastX=e.clientX; lastY=e.clientY;
+  }
+});
+canvas.on('mouse:up', function(opt){ isPanning=false; canvas.selection=true; });
+
+// Resize canvas on window resize
+window.addEventListener('resize', ()=>{ canvas.setWidth(window.innerWidth); canvas.setHeight(window.innerHeight-36); canvas.renderAll(); });
 </script>
 
 </body>

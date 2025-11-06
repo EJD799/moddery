@@ -185,7 +185,7 @@ function addAsset() {
       preview.setAttribute("src", URL.createObjectURL(file));
       previewBox.appendChild(preview);
     }
-    assetBox.appendChild(previewBox);
+    center.appendChild(previewBox);
     center.appendChild(document.createElement("br"));
     editBtn = document.createElement("button");
     editBtn.setAttribute("onclick", `assetDropdown('${fileNameEncoded}')`);

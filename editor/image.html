@@ -2,284 +2,351 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pixel Editor — Full Version</title>
+<title>Pixel Art Editor</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
 <style>
-  html, body {
-    margin:0; height:100%; overflow:hidden;
-    background:#000;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
     font-family: Verdana, sans-serif;
-  }
-  #toolbar {
-    display:flex;
-    background:#111;
-    padding:8px;
-    color:#fff;
-    align-items:center;
-    gap:4px;
-  }
-  #toolbar button.active {
-    background:#333;
-  }
-  #work {
-    position:relative;
-    width:100%;
-    height:calc(100% - 40px);
-    overflow:hidden;
-    cursor:crosshair;
-  }
-  canvas {
-    display:block;
-  }
-  input[type=color] {
-    margin-left:8px;
-  }
+    background: #111;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+#toolbar {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    background: #222;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#toolbar button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+#toolbar button.active {
+    background: #555;
+}
+#toolbar input[type=color],
+#toolbar input[type=range] {
+    margin-left: 4px;
+}
+#canvasContainer {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: crosshair;
+}
+canvas {
+    image-rendering: pixelated;
+    background: transparent;
+    display: block;
+}
 </style>
 </head>
 <body>
 
 <div id="toolbar">
-  <button data-tool="move" class="active">Move</button>
-  <button data-tool="rect">Rectangle</button>
-  <button data-tool="brush">Brush</button>
-  <button data-tool="eraser">Eraser</button>
-  <button data-tool="eyedropper">Eyedropper</button>
-  <input type="color" id="colorPicker" value="#ff0000">
-  <button id="btnOpen">Open</button>
-  <button id="btnSave">Save</button>
-  <span style="margin-left:8px;">Scroll to pan, pinch to zoom</span>
+    <button id="toolPencil" class="active"><i class="fas fa-pencil-alt"></i>Pencil</button>
+    <button id="toolRect"><i class="fas fa-square"></i>Rectangle</button>
+    <button id="toolFill"><i class="fas fa-fill-drip"></i>Fill</button>
+    <button id="toolEraser"><i class="fas fa-eraser"></i>Eraser</button>
+    <button id="toolEyedropper"><i class="fas fa-eye-dropper"></i>Eyedropper</button>
+    <label>Color:<input type="color" id="colorPicker" value="#ff0000"></label>
+    <label>Pixel Size:<input type="range" id="pixelSize" min="4" max="64" value="16"></label>
+    <button id="undoBtn"><i class="fas fa-undo"></i>Undo</button>
+    <button id="redoBtn"><i class="fas fa-redo"></i>Redo</button>
+    <button id="saveBtn"><i class="fas fa-download"></i>Save</button>
+    <button id="loadBtn"><i class="fas fa-upload"></i>Load</button>
+    <input type="file" id="fileInput" style="display:none">
 </div>
 
-<div id="work">
-  <canvas id="editorCanvas"></canvas>
+<div id="canvasContainer">
+    <canvas id="pixelCanvas"></canvas>
 </div>
 
 <script>
-// -------------------- CORE CANVAS --------------------
-const canvas = document.getElementById('editorCanvas');
+const canvas = document.getElementById('pixelCanvas');
 const ctx = canvas.getContext('2d');
+const container = document.getElementById('canvasContainer');
 
-let canvasWidth = 16;
-let canvasHeight = 16;
-
-let pixelSize = 16; // zoom
-let offsetX = 0;
-let offsetY = 0;
-
-let currentTool = 'move';
+let gridWidth = 16, gridHeight = 16;
+let pixelSize = 16;
+let currentTool = 'pencil';
 let currentColor = '#ff0000';
-let drawing = false;
-let startX=0, startY=0;
-let pixelData = [];
+let isDrawing = false;
+let startX = 0, startY = 0;
 
-// Initialize empty pixel buffer
-function initBuffer(w,h){
-  canvasWidth=w; canvasHeight=h;
-  pixelData=[];
-  for(let y=0;y<h;y++){
-    pixelData[y]=[];
-    for(let x=0;x<w;x++) pixelData[y][x]=null;
-  }
-  canvas.width=w*pixelSize;
-  canvas.height=h*pixelSize;
+let offsetX = 0, offsetY = 0;
+let scale = 1;
+
+// Background canvas holds pixel data
+const bgCanvas = document.createElement('canvas');
+const bgCtx = bgCanvas.getContext('2d');
+bgCanvas.width = gridWidth;
+bgCanvas.height = gridHeight;
+bgCtx.clearRect(0,0,gridWidth,gridHeight);
+
+// Undo/Redo
+let undoStack = [], redoStack = [];
+function saveState(){redoStack=[]; undoStack.push(bgCtx.getImageData(0,0,gridWidth,gridHeight)); if(undoStack.length>50) undoStack.shift();}
+function undo(){if(undoStack.length){redoStack.push(bgCtx.getImageData(0,0,gridWidth,gridHeight)); bgCtx.putImageData(undoStack.pop(),0,0); render();}}
+function redo(){if(redoStack.length){undoStack.push(bgCtx.getImageData(0,0,gridWidth,gridHeight)); bgCtx.putImageData(redoStack.pop(),0,0); render();}}
+
+// Resize canvas to fill container
+function resizeCanvas(){canvas.width=container.clientWidth; canvas.height=container.clientHeight; render();}
+
+// Mouse/pointer helpers
+function getMousePos(e){
+    const rect=canvas.getBoundingClientRect();
+    const x = (e.clientX - rect.left - offsetX) / (pixelSize*scale);
+    const y = (e.clientY - rect.top - offsetY) / (pixelSize*scale);
+    return {x: Math.floor(x), y: Math.floor(y)};
 }
-initBuffer(16,16);
 
-// -------------------- TOOLBAR --------------------
-const toolbarButtons = document.querySelectorAll('#toolbar [data-tool]');
-toolbarButtons.forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    currentTool=btn.dataset.tool;
-    toolbarButtons.forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-  });
-});
-
-document.getElementById('colorPicker').addEventListener('input', e=>{
-  currentColor=e.target.value;
-});
-
-// -------------------- RENDER --------------------
-function render(){
-  canvas.width=canvasWidth*pixelSize;
-  canvas.height=canvasHeight*pixelSize;
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.save();
-  ctx.translate(offsetX, offsetY);
-  ctx.scale(pixelSize, pixelSize);
-
-  // Draw pixels
-  for(let y=0;y<canvasHeight;y++){
-    for(let x=0;x<canvasWidth;x++){
-      const col = pixelData[y][x];
-      if(col){
-        ctx.fillStyle=col;
-        ctx.fillRect(x,y,1,1);
-      } else {
-        ctx.fillStyle='rgba(0,0,0,0)';
-        ctx.fillRect(x,y,1,1);
-      }
+function drawPixel(x,y,color){
+    if(color==='eraser') bgCtx.clearRect(x,y,1,1);
+    else{
+        bgCtx.fillStyle=color;
+        bgCtx.fillRect(x,y,1,1);
     }
-  }
-  ctx.restore();
+    render();
 }
 
-// -------------------- DRAWING --------------------
+function floodFill(x,y,color){
+    const data=bgCtx.getImageData(0,0,gridWidth,gridHeight);
+    const targetColor=[...data.data.slice((y*gridWidth+x)*4,(y*gridWidth+x)*4+4)];
+    const fillColor=colorToRGBA(color);
+    if(targetColor.every((v,i)=>v===fillColor[i])) return;
+    const stack=[[x,y]];
+    while(stack.length){
+        const [cx,cy]=stack.pop();
+        if(cx<0||cy<0||cx>=gridWidth||cy>=gridHeight) continue;
+        const idx=(cy*gridWidth+cx)*4;
+        if(data.data[idx]!==targetColor[0]||data.data[idx+1]!==targetColor[1]||data.data[idx+2]!==targetColor[2]||data.data[idx+3]!==targetColor[3]) continue;
+        data.data[idx]=fillColor[0]; data.data[idx+1]=fillColor[1]; data.data[idx+2]=fillColor[2]; data.data[idx+3]=fillColor[3];
+        stack.push([cx+1,cy],[cx-1,cy],[cx,cy+1],[cx,cy-1]);
+    }
+    bgCtx.putImageData(data,0,0); render();
+}
+
+function drawRect(x1,y1,x2,y2,color){
+    const xmin=Math.min(x1,x2), xmax=Math.max(x1,x2), ymin=Math.min(y1,y2), ymax=Math.max(y1,y2);
+    for(let x=xmin;x<=xmax;x++) for(let y=ymin;y<=ymax;y++) drawPixel(x,y,color);
+}
+
+function colorToRGBA(str){
+    const c=document.createElement('canvas').getContext('2d'); c.fillStyle=str; c.fillRect(0,0,1,1);
+    return c.getImageData(0,0,1,1).data;
+}
+
+// Render
+let renderScheduled=false, previewRect=null;
+function render(){
+    if(renderScheduled) return;
+    renderScheduled=true;
+    requestAnimationFrame(()=>{
+        ctx.setTransform(1,0,0,1,0,0);
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.translate(offsetX,offsetY);
+        ctx.scale(scale*pixelSize,scale*pixelSize);
+        ctx.imageSmoothingEnabled=false;
+        // Draw pixels
+        ctx.drawImage(bgCanvas,0,0,gridWidth,gridHeight,0,0,gridWidth,gridHeight);
+        // Grid overlay
+        ctx.strokeStyle='rgba(255,255,255,0.15)';
+        ctx.lineWidth=1/scale/pixelSize;
+        for(let i=0;i<=gridWidth;i++){ctx.beginPath();ctx.moveTo(i,0); ctx.lineTo(i,gridHeight); ctx.stroke();}
+        for(let i=0;i<=gridHeight;i++){ctx.beginPath();ctx.moveTo(0,i); ctx.lineTo(gridWidth,i); ctx.stroke();}
+        // Rectangle preview
+        if(previewRect){
+            ctx.fillStyle=currentColor+'55'; // semi-transparent
+            ctx.fillRect(previewRect.x, previewRect.y, previewRect.w, previewRect.h);
+        }
+        renderScheduled=false;
+    });
+}
+
+// Mouse events
+let isPanning=false, lastX=0, lastY=0;
 canvas.addEventListener('mousedown', e=>{
-  const px = Math.floor((e.offsetX - offsetX)/pixelSize);
-  const py = Math.floor((e.offsetY - offsetY)/pixelSize);
-  startX=px; startY=py;
-  drawing=true;
-  drawPixel(px,py);
+    if(e.button===1){isPanning=true; lastX=e.clientX; lastY=e.clientY; canvas.style.cursor='move'; return;}
+    const pos=getMousePos(e);
+    startX=pos.x; startY=pos.y; isDrawing=true;
+    if(['pencil','eraser','fill','rect'].includes(currentTool)) saveState();
+    if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor);
+    if(currentTool==='eraser') drawPixel(pos.x,pos.y,'eraser');
+    if(currentTool==='fill') floodFill(pos.x,pos.y,currentColor);
+    if(currentTool==='eyedropper'){
+        const c=getPixelColor(pos.x,pos.y);
+        currentColor=c;
+        document.getElementById('colorPicker').value=rgbaToHex(c);
+    }
 });
 
 canvas.addEventListener('mousemove', e=>{
-  if(!drawing) return;
-  const px = Math.floor((e.offsetX - offsetX)/pixelSize);
-  const py = Math.floor((e.offsetY - offsetY)/pixelSize);
-  drawPixel(px,py);
-});
-
-canvas.addEventListener('mouseup', ()=>drawing=false);
-canvas.addEventListener('mouseleave', ()=>drawing=false);
-
-function drawPixel(x,y){
-  if(x<0||y<0||x>=canvasWidth||y>=canvasHeight) return;
-  switch(currentTool){
-    case 'brush': pixelData[y][x]=currentColor; break;
-    case 'eraser': pixelData[y][x]=null; break;
-    case 'rect':
-      const minX=Math.min(startX,x), maxX=Math.max(startX,x);
-      const minY=Math.min(startY,y), maxY=Math.max(startY,y);
-      for(let yy=minY;yy<=maxY;yy++){
-        for(let xx=minX;xx<=maxX;xx++){
-          pixelData[yy][xx]=currentColor;
-        }
-      }
-      break;
-    case 'eyedropper':
-      const c = pixelData[y][x];
-      if(c) {
-        currentColor=c;
-        document.getElementById('colorPicker').value=c;
-      }
-      break;
-  }
-  render();
-}
-
-// -------------------- SCROLL / PINCH --------------------
-let isTouchPinch=false, touchStartDist=0, lastPixelSize=pixelSize;
-let startOffsetX=offsetX, startOffsetY=offsetY;
-
-const work = document.getElementById('work');
-
-work.addEventListener('wheel', e=>{
-  e.preventDefault();
-  const isPinch = e.ctrlKey || e.metaKey || (Math.abs(e.deltaX)<0.1 && Math.abs(e.deltaY)<0.1 && Math.abs(e.deltaZ)>0);
-
-  if(isPinch){
-    const rect = work.getBoundingClientRect();
-    const pointerX=(e.clientX-rect.left - offsetX)/pixelSize;
-    const pointerY=(e.clientY-rect.top - offsetY)/pixelSize;
-
-    const zoomFactor = e.deltaY<0 ? 1.06 : 1/1.06;
-    const newPixelSize=Math.min(Math.max(pixelSize*zoomFactor,1),128);
-    offsetX -= pointerX*(newPixelSize - pixelSize);
-    offsetY -= pointerY*(newPixelSize - pixelSize);
-    pixelSize=newPixelSize;
-    render();
-  } else {
-    offsetX-=e.deltaX;
-    offsetY-=e.deltaY;
-    render();
-  }
-},{passive:false});
-
-// Touch pinch for mobile
-work.addEventListener('touchstart', e=>{
-  if(e.touches.length===2){
-    isTouchPinch=true;
-    const dx=e.touches[0].clientX - e.touches[1].clientX;
-    const dy=e.touches[0].clientY - e.touches[1].clientY;
-    touchStartDist=Math.hypot(dx,dy);
-    lastPixelSize=pixelSize;
-    startOffsetX=offsetX;
-    startOffsetY=offsetY;
-  }
-});
-work.addEventListener('touchmove', e=>{
-  if(isTouchPinch && e.touches.length===2){
-    e.preventDefault();
-    const dx=e.touches[0].clientX - e.touches[1].clientX;
-    const dy=e.touches[0].clientY - e.touches[1].clientY;
-    const dist=Math.hypot(dx,dy);
-    const zoomFactor=dist/touchStartDist;
-    const newPixelSize=Math.min(Math.max(lastPixelSize*zoomFactor,1),128);
-
-    const rect=work.getBoundingClientRect();
-    const centerX=(e.touches[0].clientX+e.touches[1].clientX)/2 - rect.left;
-    const centerY=(e.touches[0].clientY+e.touches[1].clientY)/2 - rect.top;
-
-    offsetX=startOffsetX - (centerX/lastPixelSize)*(newPixelSize-lastPixelSize);
-    offsetY=startOffsetY - (centerY/lastPixelSize)*(newPixelSize-lastPixelSize);
-    pixelSize=newPixelSize;
-    render();
-  }
-},{passive:false});
-work.addEventListener('touchend', e=>{
-  if(e.touches.length<2) isTouchPinch=false;
-});
-
-// -------------------- SAVE / LOAD --------------------
-function saveProject(){
-  const tempCanvas = document.createElement('canvas');
-  tempCanvas.width=canvasWidth;
-  tempCanvas.height=canvasHeight;
-  const tctx=tempCanvas.getContext('2d');
-
-  for(let y=0;y<canvasHeight;y++){
-    for(let x=0;x<canvasWidth;x++){
-      if(pixelData[y][x]){
-        tctx.fillStyle=pixelData[y][x];
-        tctx.fillRect(x,y,1,1);
-      }
+    if(isPanning){offsetX += e.movementX; offsetY += e.movementY; render(); return;}
+    if(!isDrawing) return;
+    const pos=getMousePos(e);
+    if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor);
+    if(currentTool==='eraser') drawPixel(pos.x,pos.y,'eraser');
+    if(currentTool==='rect'){
+        const x=Math.min(startX,pos.x), y=Math.min(startY,pos.y);
+        const w=Math.abs(pos.x-startX)+1, h=Math.abs(pos.y-startY)+1;
+        previewRect={x,y,w,h};
+        render();
     }
-  }
-  return tempCanvas.toDataURL();
-}
-
-function loadProject(base64png){
-  const img=new Image();
-  img.onload=()=>{
-    canvasWidth=img.width;
-    canvasHeight=img.height;
-    initBuffer(canvasWidth,canvasHeight);
-    ctx.drawImage(img,0,0,canvasWidth,canvasHeight);
-    render();
-  };
-  img.src=base64png;
-}
-
-document.getElementById('btnOpen').addEventListener('click',()=>{
-  const input=document.createElement('input');
-  input.type='file';
-  input.accept='image/*';
-  input.onchange=()=>{
-    const file=input.files[0];
-    if(!file) return;
-    const url=URL.createObjectURL(file);
-    loadProject(url);
-  };
-  input.click();
 });
 
-document.getElementById('btnSave').addEventListener('click',()=>{
-  const dataUrl=saveProject();
-  const a=document.createElement('a');
-  a.href=dataUrl;
-  a.download='pixelart.png';
-  a.click();
+canvas.addEventListener('mouseup', e=>{
+    if(currentTool==='rect' && previewRect){
+        drawRect(startX,startY,getMousePos(e).x,getMousePos(e).y,currentColor);
+        previewRect=null;
+    }
+    isDrawing=false; render();
 });
+
+// Eyedropper helper
+function getPixelColor(x,y){
+    const data=bgCtx.getImageData(x,y,1,1).data;
+    return `rgba(${data[0]},${data[1]},${data[2]},${data[3]/255})`;
+}
+function rgbaToHex(rgba){
+    const m=rgba.match(/rgba?\((\d+),\s*(\d+),\s*(\d+),?\s*([\d.]*)\)/);
+    if(!m) return '#000000';
+    const [_,r,g,b]=m;
+    return '#'+((1<<24)+(parseInt(r)<<16)+(parseInt(g)<<8)+parseInt(b)).toString(16).slice(1);
+}
+
+// Toolbar
+const toolButtons={pencil:document.getElementById('toolPencil'),rect:document.getElementById('toolRect'),fill:document.getElementById('toolFill'),eraser:document.getElementById('toolEraser'),eyedropper:document.getElementById('toolEyedropper')};
+function selectTool(tool){currentTool=tool; Object.keys(toolButtons).forEach(t=>toolButtons[t].classList.toggle('active',t===tool));}
+toolButtons.pencil.onclick=()=>selectTool('pencil');
+toolButtons.rect.onclick=()=>selectTool('rect');
+toolButtons.fill.onclick=()=>selectTool('fill');
+toolButtons.eraser.onclick=()=>selectTool('eraser');
+toolButtons.eyedropper.onclick=()=>selectTool('eyedropper');
+document.getElementById('colorPicker').onchange=e=>currentColor=e.target.value;
+document.getElementById('pixelSize').oninput=e=>{pixelSize=parseInt(e.target.value); resizeCanvas();}
+document.getElementById('undoBtn').onclick=()=>undo();
+document.getElementById('redoBtn').onclick=()=>redo();
+
+
+canvas.addEventListener('wheel', e => {
+    if (e.ctrlKey || e.metaKey) {
+        // pinch-to-zoom style: ctrl+wheel zooms
+        e.preventDefault();
+        const mx = e.clientX - offsetX;
+        const my = e.clientY - offsetY;
+        const zoomFactor = 1 + (-e.deltaY * 0.0025); // slower, smoother zoom
+        const newScale = Math.min(Math.max(scale * zoomFactor, 0.1), 64);
+        offsetX -= mx * (newScale - scale);
+        offsetY -= my * (newScale - scale);
+        scale = newScale;
+        render();
+    } else {
+        // normal scroll: pan
+        e.preventDefault();
+        offsetX -= e.deltaX;
+        offsetY -= e.deltaY;
+        render();
+    }
+}, { passive: false });
+
+// Touch pinch zoom (multi-touch)
+let lastTouchDistance = null;
+canvas.addEventListener('touchmove', e => {
+    if (e.touches.length === 2) {
+        e.preventDefault();
+        const dx = e.touches[0].clientX - e.touches[1].clientX;
+        const dy = e.touches[0].clientY - e.touches[1].clientY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (lastTouchDistance) {
+            const delta = dist - lastTouchDistance;
+            const mx = (e.touches[0].clientX + e.touches[1].clientX) / 2 - offsetX;
+            const my = (e.touches[0].clientY + e.touches[1].clientY) / 2 - offsetY;
+            const newScale = Math.min(Math.max(scale * (1 + delta * 0.01), 0.1), 64);
+            offsetX -= mx * (newScale - scale);
+            offsetY -= my * (newScale - scale);
+            scale = newScale;
+            render();
+        }
+        lastTouchDistance = dist;
+    } else if (e.touches.length < 2) {
+        lastTouchDistance = null;
+    }
+}, { passive: false });
+
+// Optional: one-finger touch drag for pan
+let lastTouchX = null, lastTouchY = null;
+canvas.addEventListener('touchstart', e => {
+    if (e.touches.length === 1) {
+        lastTouchX = e.touches[0].clientX;
+        lastTouchY = e.touches[0].clientY;
+    }
+});
+canvas.addEventListener('touchmove', e => {
+    if (e.touches.length === 1 && lastTouchX !== null) {
+        e.preventDefault();
+        const dx = e.touches[0].clientX - lastTouchX;
+        const dy = e.touches[0].clientY - lastTouchY;
+        offsetX += dx;
+        offsetY += dy;
+        lastTouchX = e.touches[0].clientX;
+        lastTouchY = e.touches[0].clientY;
+        render();
+    }
+}, { passive: false });
+canvas.addEventListener('touchend', e => {
+    if (e.touches.length === 0) {
+        lastTouchX = lastTouchY = null;
+    }
+});
+
+
+// Save/load
+function saveProject(){
+    const c=document.createElement('canvas'); c.width=gridWidth; c.height=gridHeight;
+    const cx=c.getContext('2d'); cx.imageSmoothingEnabled=false; cx.drawImage(bgCanvas,0,0,gridWidth,gridHeight);
+    return c.toDataURL('image/png');
+}
+function loadProject(base64){
+    const img=new Image();
+    img.onload=()=>{
+        gridWidth=img.width; gridHeight=img.height;
+        bgCanvas.width=gridWidth; bgCanvas.height=gridHeight;
+        bgCtx.clearRect(0,0,gridWidth,gridHeight);
+        bgCtx.drawImage(img,0,0,gridWidth,gridHeight);
+        resizeCanvas();
+    };
+    img.src=base64;
+}
+document.getElementById('saveBtn').onclick=()=>{const data=saveProject(); const a=document.createElement('a'); a.href=data; a.download='pixel.png'; a.click();}
+document.getElementById('loadBtn').onclick=()=>{document.getElementById('fileInput').click();}
+document.getElementById('fileInput').onchange=e=>{
+    const f=e.target.files[0]; if(!f) return;
+    const reader=new FileReader();
+    reader.onload = evt=>loadProject(evt.target.result);
+    reader.readAsDataURL(f);
+}
+
+// Initial
+resizeCanvas();
+window.addEventListener('resize',resizeCanvas);
+render();
 </script>
 </body>
 </html>

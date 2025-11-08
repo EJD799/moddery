@@ -289,16 +289,22 @@ function addTab(role, elementID) {
   tabs.tabs("option", "active", -1);
   tabCounter++;
   openElements[id] = [role, elementID];
-  if (role == "Function") {
-    var frame = document.getElementById(elementID + "_frame");
-    frame.onload = function() {
-      //setTimeout(function(){
-        projZip.folder("elements").file(elementID + ".code.json").async("string").then(function (data) {
-          frame.contentWindow.loadProject(JSON.parse(data));
-        });
-      //}, 200);
-    };
-  }
+  var frame = document.getElementById(elementID + "_frame");
+  frame.onload = function() {
+    if ((role == "Function") || (role == "Script")) {
+      projZip.folder("elements").file(elementID + ".code.json").async("string").then(function (data) {
+        frame.contentWindow.loadProject(JSON.parse(data));
+      });
+    } else if ((role == "Item")) {
+      projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
+        frame.contentWindow.loadProject(JSON.parse(data));
+      });
+    } else if (role == "Image") {
+      projZip.folder("assets").file(elementID + ".png").async("string").then(function (data) {
+        frame.contentWindow.loadProject(JSON.parse(data));
+      });
+    }
+  };
 }
 
 tabs.on( "click", "span.ui-icon-close", function() {

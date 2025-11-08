@@ -278,6 +278,7 @@ canvas.addEventListener('mousedown', e=>{
 });
 canvas.addEventListener('mousemove', e => {
     lastMouseEvent = e;
+
     if (isPanning) {
         offsetX += e.movementX;
         offsetY += e.movementY;
@@ -288,22 +289,24 @@ canvas.addEventListener('mousemove', e => {
 
     const pos = getMousePos(e);
 
-    // Interpolate between last position and current for smooth strokes
-    let lastPos = getMousePos({ clientX: lastX, clientY: lastY });
-    const dx = pos.x - lastPos.x;
-    const dy = pos.y - lastPos.y;
-    const dist = Math.max(Math.abs(dx), Math.abs(dy));
-    for (let i = 0; i <= dist; i++) {
-        const x = Math.round(lastPos.x + (dx * i) / dist);
-        const y = Math.round(lastPos.y + (dy * i) / dist);
-        switch (currentTool) {
-            case 'pencil': drawPixel(x, y, currentColor, bgCtx); break;
-            case 'eraser': drawPixel(x, y, 'eraser', bgCtx); break;
-            case 'hue': drawPixel(x, y, 'hue', bgCtx); break;
+    // Smooth brush interpolation
+    if (currentTool === 'pencil' || currentTool === 'eraser' || currentTool === 'hue') {
+        const lastPos = getMousePos({ clientX: e.clientX - e.movementX, clientY: e.clientY - e.movementY });
+        const dx = pos.x - lastPos.x;
+        const dy = pos.y - lastPos.y;
+        const dist = Math.max(Math.abs(dx), Math.abs(dy));
+
+        for (let i = 0; i <= dist; i++) {
+            const x = Math.round(lastPos.x + (dx * i) / dist);
+            const y = Math.round(lastPos.y + (dy * i) / dist);
+
+            if (currentTool === 'pencil') drawPixel(x, y, currentColor, bgCtx);
+            if (currentTool === 'eraser') drawPixel(x, y, 'eraser', bgCtx);
+            if (currentTool === 'hue') drawPixel(x, y, 'hue', bgCtx);
         }
     }
 
-    // Update rectangle preview if needed
+    // Rectangle preview
     if (currentTool === 'rect') {
         const x = Math.min(startX, pos.x);
         const y = Math.min(startY, pos.y);
@@ -312,12 +315,8 @@ canvas.addEventListener('mousemove', e => {
         previewRect = { x, y, w, h };
     }
 
-    lastX = e.clientX;
-    lastY = e.clientY;
-
     render();
 });
-
 
 
 canvas.addEventListener('mouseup', e=>{

@@ -288,27 +288,36 @@ canvas.addEventListener('mousemove', e => {
 
     const pos = getMousePos(e);
 
-    switch (currentTool) {
-        case 'pencil':
-            drawPixel(pos.x, pos.y, currentColor, bgCtx);
-            break;
-        case 'eraser':
-            drawPixel(pos.x, pos.y, 'eraser', bgCtx);
-            break;
-        case 'rect':
-            const x = Math.min(startX, pos.x);
-            const y = Math.min(startY, pos.y);
-            const w = Math.abs(pos.x - startX) + 1;
-            const h = Math.abs(pos.y - startY) + 1;
-            previewRect = { x, y, w, h };
-            break;
-        case 'hue':
-            drawPixel(pos.x, pos.y, 'hue', bgCtx);
-            break;
+    // Interpolate between last position and current for smooth strokes
+    let lastPos = getMousePos({ clientX: lastX, clientY: lastY });
+    const dx = pos.x - lastPos.x;
+    const dy = pos.y - lastPos.y;
+    const dist = Math.max(Math.abs(dx), Math.abs(dy));
+    for (let i = 0; i <= dist; i++) {
+        const x = Math.round(lastPos.x + (dx * i) / dist);
+        const y = Math.round(lastPos.y + (dy * i) / dist);
+        switch (currentTool) {
+            case 'pencil': drawPixel(x, y, currentColor, bgCtx); break;
+            case 'eraser': drawPixel(x, y, 'eraser', bgCtx); break;
+            case 'hue': drawPixel(x, y, 'hue', bgCtx); break;
+        }
     }
+
+    // Update rectangle preview if needed
+    if (currentTool === 'rect') {
+        const x = Math.min(startX, pos.x);
+        const y = Math.min(startY, pos.y);
+        const w = Math.abs(pos.x - startX) + 1;
+        const h = Math.abs(pos.y - startY) + 1;
+        previewRect = { x, y, w, h };
+    }
+
+    lastX = e.clientX;
+    lastY = e.clientY;
 
     render();
 });
+
 
 
 canvas.addEventListener('mouseup', e=>{

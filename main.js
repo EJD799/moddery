@@ -188,7 +188,8 @@ function addAsset() {
       previewBox = document.createElement("div");
       previewBox.setAttribute("class", "previewBox");
       preview = document.createElement("img");
-      preview.setAttribute("src", URL.createObjectURL(file));
+      let reader = new FileReader();
+      preview.setAttribute("src", reader.readAsDataURL(file));
       previewBox.appendChild(preview);
     }
     center.appendChild(previewBox);
@@ -301,7 +302,8 @@ function addTab(role, elementID) {
       });
     } else if (role == "Image") {
       projZip.folder("assets").file(elementID + ".png").async("string").then(function (data) {
-        frame.contentWindow.loadProject(JSON.parse(data));
+        let reader = new FileReader();
+        frame.contentWindow.loadProject(reader.readAsDataURL(data));
       });
     }
   };
@@ -315,10 +317,31 @@ tabs.on( "click", "span.ui-icon-close", function() {
   tabs.tabs( "refresh" );
 });
 
+function dataURItoFile(dataURI, filename) {
+  // Split the metadata and the base64 data
+  const [header, base64] = dataURI.split(',');
+  const mime = header.match(/:(.*?);/)[1];
+  const binary = atob(base64);
+  const len = binary.length;
+  const bytes = new Uint8Array(len);
+
+  for (let i = 0; i < len; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+
+  return new File([bytes], filename, { type: mime });
+}
+
 function saveElement(elementTab) {
-  if (elementTab[0] == "Function") {
+  if ((elementTab[0] == "Function") || (elementTab[0] == "Script")) {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("elements").file(elementTab[1] + ".code.json", JSON.stringify(frame.contentWindow.saveProject()));
+  } else if ((elementTab[0] == "Item")) {
+    var frame = document.getElementById(elementTab[1] + "_frame");
+    projZip.folder("elements").file(elementTab[1] + ".json", JSON.stringify(frame.contentWindow.saveProject()));
+  } else if (elementTab[0] == "Image") {
+    var frame = document.getElementById(elementTab[1] + "_frame");
+    projZip.folder("assets").file(elementTab[1] + ".png", dataURItoFile(frame.contentWindow.saveProject(), elementTab[1] + ".png"));
   }
 }
 

@@ -245,11 +245,11 @@ function render(){
             ctx.fillRect(previewRect.x, previewRect.y, previewRect.w, previewRect.h);
         }
 
-        // Brush preview
-        if(isDrawing && ['pencil','eraser','hue'].includes(currentTool) && lastMouseEvent){
+        // Brush preview - commented out because it was never supposed to be there
+        /*if(isDrawing && ['pencil','eraser','hue'].includes(currentTool) && lastMouseEvent){
             const pos=getMousePos(lastMouseEvent);
             drawPixel(pos.x,pos.y,(currentTool==='hue'?'hue':currentColor),ctx,false);
-        }
+        }*/
 
         renderScheduled=false;
     });

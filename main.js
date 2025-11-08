@@ -229,6 +229,7 @@ $("#loaderProgress").progressbar({
   value: 50
 });
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");
+$('textarea').addClass("ui-widget ui-widget-content ui-corner-all");
 
 function getTabContent(role, elementID) {
   if (role == "Function") {

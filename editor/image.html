@@ -15,8 +15,23 @@ html, body {
     align-items: center; flex-wrap: wrap;
 }
 #toolbar button {
-    display: flex; align-items: center; gap: 4px;
-    padding: 4px 8px; background: #333; color: #fff; border: none; cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+#toolbar input[type=color] {
+    gap: 4px;
+    padding: 4px 8px;
+    background: #333;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
 }
 #toolbar button.active { background: #555; }
 #toolbar input[type=color], #toolbar input[type=range] { margin-left: 4px; }
@@ -30,7 +45,7 @@ canvas { image-rendering: pixelated; display: block; }
 <body>
 
 <div id="toolbar">
-    <button id="toolPencil" class="active"><i class="fas fa-pencil-alt"></i>Pencil</button>
+    <button id="toolPencil" class="active"><i class="fas fa-paintbrush"></i>Brush</button>
     <button id="toolRect"><i class="fas fa-square"></i>Rectangle</button>
     <button id="toolFill"><i class="fas fa-fill-drip"></i>Fill</button>
     <button id="toolEraser"><i class="fas fa-eraser"></i>Eraser</button>

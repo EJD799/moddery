@@ -133,36 +133,3 @@ input[type="number"] {
   object-position: center; /* centers it nicely */
   image-rendering: pixelated;
 }
-
-.ui-dialog-titlebar-close {
-    background: none;   /* remove default background */
-    border: none;       /* remove border */
-    text-indent: 0;     /* ensure no text indent */
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    font-family: "Font Awesome 6 Free"; /* Use FA */
-    font-weight: 900;  /* needed for solid icons */
-    font-size: 18px;
-    color: #fff;        /* change as needed */
-}
-
-.ui-dialog-titlebar-close span.ui-icon {
-    display: none; /* hide the original icon span */
-}
-
-.ui-dialog-titlebar-close::before {
-    content: "\f00d"; /* Font Awesome "times" icon */
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;  /* solid style */
-}
-
-.ui-tabs .ui-icon-closethick::before {
-    content: "\f00d"; /* Font Awesome "times" */
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-size: 14px;
-}
-.ui-tabs .ui-icon-closethick {
-    background: none; /* hide default background */
-}

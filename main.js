@@ -318,3 +318,23 @@ function saveElement(elementTab) {
 $("#newProjBtn").button();
 $("#closeAboutBtn").button();
 document.getElementById("tabs").hidden = true;
+
+$(".ui-dialog-titlebar-close").html('<i class="fas fa-xmark"></i>').css({
+    'text-indent': '0',        // removes any leftover indentation
+    'width': '1.5em',          // make square
+    'height': '1.5em',
+    'padding': '0',
+    'border': '1px solid #ccc', // or your preferred border
+    'border-radius': '4px',    // optional rounding
+    'line-height': '1.5em',    // centers icon vertically
+    'text-align': 'center',    // centers icon horizontally
+    'background': '#eee',      // base color
+    'cursor': 'pointer'
+});
+
+// Optional: hover effect
+$(".ui-dialog-titlebar-close").hover(function(){
+    $(this).css('background','#ddd');
+}, function(){
+    $(this).css('background','#eee');
+});

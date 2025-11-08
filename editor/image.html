@@ -201,8 +201,8 @@ function drawRect(x1,y1,x2,y2,color){
     const xmax=Math.max(x1,x2);
     const ymin=Math.min(y1,y2);
     const ymax=Math.max(y1,y2);
-    for(let x=xmin;x<xmax;x++)
-        for(let y=ymin;y<ymax;y++)
+    for(let x=xmin;x<=xmax;x++)
+        for(let y=ymin;y<=ymax;y++)
             drawPixel(x,y,color,bgCtx,false);
 }
 
@@ -311,8 +311,8 @@ canvas.addEventListener('mousemove', e => {
         // Rectangle preview only
         const x = Math.min(startX, pos.x);
         const y = Math.min(startY, pos.y);
-        const w = Math.abs(pos.x - startX);
-        const h = Math.abs(pos.y - startY);
+        const w = Math.abs(pos.x - startX) + 1;
+        const h = Math.abs(pos.y - startY) + 1;
         previewRect = { x, y, w, h };
     }
 

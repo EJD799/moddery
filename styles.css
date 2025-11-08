@@ -28,6 +28,9 @@ body {
 .ui-menu-item {
     display: relative;
 }
+.sublist {
+    width: max-content;
+}
 #logo_box {
     color: #00000000;
     display: inline-block !important;

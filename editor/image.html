@@ -276,17 +276,40 @@ canvas.addEventListener('mousedown', e=>{
         }
     }
 });
-canvas.addEventListener('mousemove', e=>{
-    lastMouseEvent=e;
-    if(isPanning){offsetX+=e.movementX;offsetY+=e.movementY; render(); return;}
-    if(!isDrawing) return;
-    const pos=getMousePos(e);
-    if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor,bgCtx);
-    if(currentTool==='eraser') drawPixel(pos.x,pos.y,'eraser',bgCtx);
-    if(currentTool==='rect'){const x=Math.min(startX,pos.x),y=Math.min(startY,pos.y),w=Math.abs(pos.x-startX)+1,h=Math.abs(pos.y-startY)+1; previewRect={x,y,w,h};}
-    if(currentTool==='hue') drawPixel(pos.x,pos.y,'hue',bgCtx);
+canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX - rect.left - offsetX) / (pixelSize * scale);
+    const y = (e.clientY - rect.top - offsetY) / (pixelSize * scale);
+
+    if (!isDrawing) {
+        lastMouseEvent = {x, y};
+        return;
+    }
+
+    const prev = lastMouseEvent;
+    if (!prev) {
+        lastMouseEvent = {x, y};
+        return;
+    }
+
+    const dx = x - prev.x;
+    const dy = y - prev.y;
+    const steps = Math.max(Math.abs(dx), Math.abs(dy));
+
+    // Interpolate between previous and current points for smooth strokes
+    for (let i = 0; i <= steps; i++) {
+        const ix = Math.round(prev.x + (dx * i) / steps);
+        const iy = Math.round(prev.y + (dy * i) / steps);
+
+        if (currentTool === 'pencil') drawPixel(ix, iy, currentColor);
+        else if (currentTool === 'eraser') drawPixel(ix, iy, 'eraser');
+        else if (currentTool === 'hueBrush') drawPixel(ix, iy, 'hue');
+    }
+
+    lastMouseEvent = {x, y};
     render();
 });
+
 canvas.addEventListener('mouseup', e=>{
     if(currentTool==='rect' && previewRect){drawRect(startX,startY,getMousePos(e).x,getMousePos(e).y,currentColor); previewRect=null;}
     isDrawing=false; render();

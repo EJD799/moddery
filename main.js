@@ -292,11 +292,11 @@ function addTab(role, elementID) {
   if (role == "Function") {
     var frame = document.getElementById(elementID + "_frame");
     frame.onload = function() {
-      setTimeout(function(){
+      //setTimeout(function(){
         projZip.folder("elements").file(elementID + ".code.json").async("string").then(function (data) {
           frame.contentWindow.loadProject(JSON.parse(data));
         });
-      }, 200);
+      //}, 200);
     };
   }
 }

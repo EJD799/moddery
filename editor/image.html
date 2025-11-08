@@ -277,36 +277,45 @@ canvas.addEventListener('mousedown', e=>{
     }
 });
 canvas.addEventListener('mousemove', e => {
-    const rect = canvas.getBoundingClientRect();
-    const x = (e.clientX - rect.left - offsetX) / (pixelSize * scale);
-    const y = (e.clientY - rect.top - offsetY) / (pixelSize * scale);
-
-    if (!isDrawing) {
-        lastMouseEvent = {x, y};
+    lastMouseEvent = e;
+    if (isPanning) {
+        offsetX += e.movementX;
+        offsetY += e.movementY;
+        render();
         return;
     }
+    if (!isDrawing) return;
 
-    const prev = lastMouseEvent;
-    if (!prev) {
-        lastMouseEvent = {x, y};
-        return;
-    }
+    const pos = getMousePos(e);
 
-    const dx = x - prev.x;
-    const dy = y - prev.y;
-    const steps = Math.max(Math.abs(dx), Math.abs(dy));
+    // Smooth brush interpolation
+    const dx = pos.x - startX;
+    const dy = pos.y - startY;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const steps = Math.max(1, Math.ceil(dist * 2)); // more steps = smoother
 
-    // Interpolate between previous and current points for smooth strokes
     for (let i = 0; i <= steps; i++) {
-        const ix = Math.round(prev.x + (dx * i) / steps);
-        const iy = Math.round(prev.y + (dy * i) / steps);
-
-        if (currentTool === 'pencil') drawPixel(ix, iy, currentColor);
-        else if (currentTool === 'eraser') drawPixel(ix, iy, 'eraser');
-        else if (currentTool === 'hueBrush') drawPixel(ix, iy, 'hue');
+        const t = i / steps;
+        const ix = Math.round(startX + dx * t);
+        const iy = Math.round(startY + dy * t);
+        if (currentTool === 'pencil')
+            drawPixel(ix, iy, currentColor, bgCtx);
+        else if (currentTool === 'eraser')
+            drawPixel(ix, iy, 'eraser', bgCtx);
+        else if (currentTool === 'hue')
+            drawPixel(ix, iy, 'hue', bgCtx);
     }
 
-    lastMouseEvent = {x, y};
+    if (currentTool === 'rect') {
+        const x = Math.min(startX, pos.x),
+              y = Math.min(startY, pos.y),
+              w = Math.abs(pos.x - startX) + 1,
+              h = Math.abs(pos.y - startY) + 1;
+        previewRect = { x, y, w, h };
+    }
+
+    startX = pos.x;
+    startY = pos.y;
     render();
 });
 

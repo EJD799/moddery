@@ -26,7 +26,7 @@ body {
     width: auto;
 }
 .ui-menu-item {
-    display: inline-block;
+    display: relative;
 }
 #logo_box {
     color: #00000000;
@@ -36,6 +36,9 @@ body {
 #logo {
     width: 57px;
     height: 20px;
+}
+.menuIcon {
+    display: inline;
 }
 input {
     padding: 10px;

@@ -6,6 +6,10 @@ var tabs = $("#tabs");
 var elementCount = 0;
 var assetCount = 0;
 var openElements = {};
+var renameElementID;
+var renameElementType;
+var deleteElementID;
+var deleteElementType;
 
 $("#toolbar").menu();
 $("#tabs").tabs();
@@ -71,6 +75,35 @@ $("#aboutDlg").dialog({
 });
 $("#aboutDlg").dialog("close");
 $("#loaderDlg").dialog("close");
+$("#deleteDlg").dialog({
+  position: { my: "center", at: "center", of: $("body") },
+  resizable: false,
+  height: 150,
+  width: 300,
+  closeOnEscape: false
+});
+$("#deleteDlg").dialog("close");
+$("#deleteDlgCancel").button();
+$("#deleteDlgConfirm").button();
+$("#renameDlg").dialog({
+  position: { my: "center", at: "center", of: $("body") },
+  resizable: false,
+  height: 200,
+  width: 300,
+  closeOnEscape: false
+});
+$("#renameDlg").dialog("close");
+$("#renameDlgCancel").button();
+$("#renameDlgConfirm").button();
+$("#elementInfoDlg").dialog({
+  position: { my: "center", at: "center", of: $("body") },
+  resizable: false,
+  height: 300,
+  width: 300,
+  closeOnEscape: false
+});
+$("#elementInfoDlg").dialog("close");
+$("#elementInfoDlgClose").button();
 function openNewProjDlg() {
   $("#newProjDlg").dialog("open");
 }
@@ -144,15 +177,15 @@ function createElementDropdown(elementID, type) {
     menu.setAttribute("id", elementID + "_assetMenu");
     menuItem = document.createElement("li");
     menuItem.innerHTML = `<div><i class="fas fa-circle-info"></i> Info</div>`;
-    menuItem.setAttribute("onclick", `elementInfo('${elementID}', 'asset')`);
+    menuItem.setAttribute("onclick", `openElementInfo('${elementID}', 'asset')`);
     menu.appendChild(menuItem);
     menuItem = document.createElement("li");
     menuItem.innerHTML = `<div><i class="fas fa-pencil"></i> Rename</div>`;
-    menuItem.setAttribute("onclick", `renameElement('${elementID}', 'asset')`);
+    menuItem.setAttribute("onclick", `openRenameElement('${elementID}', 'asset')`);
     menu.appendChild(menuItem);
     menuItem = document.createElement("li");
     menuItem.innerHTML = `<div class="ui-menu-item-wrapper deleteBtn"><i class="fas fa-trash"></i> Delete</div>`;
-    menuItem.setAttribute("onclick", `deleteElement('${elementID}', 'asset')`);
+    menuItem.setAttribute("onclick", `openDeleteElement('${elementID}', 'asset')`);
     menu.appendChild(menuItem);
     document.body.appendChild(menu);
     $(`#${elementID}_assetMenu`).menu();
@@ -172,15 +205,15 @@ function createElementDropdown(elementID, type) {
     menu.setAttribute("id", elementID + "_elementMenu");
     menuItem = document.createElement("li");
     menuItem.innerHTML = `<div><i class="fas fa-circle-info"></i> Info</div>`;
-    menuItem.setAttribute("onclick", `elementInfo('${elementID}', 'element')`);
+    menuItem.setAttribute("onclick", `openElementInfo('${elementID}', 'element')`);
     menu.appendChild(menuItem);
     menuItem = document.createElement("li");
     menuItem.innerHTML = `<div><i class="fas fa-pencil"></i> Rename</div>`;
-    menuItem.setAttribute("onclick", `renameElement('${elementID}', 'element')`);
+    menuItem.setAttribute("onclick", `openRenameElement('${elementID}', 'element')`);
     menu.appendChild(menuItem);
     menuItem = document.createElement("li");
     menuItem.innerHTML = `<div class="ui-menu-item-wrapper deleteBtn"><i class="fas fa-trash"></i> Delete</div>`;
-    menuItem.setAttribute("onclick", `deleteElement('${elementID}', 'element')`);
+    menuItem.setAttribute("onclick", `openDeleteElement('${elementID}', 'element')`);
     menu.appendChild(menuItem);
     document.body.appendChild(menu);
     $(`#${elementID}_elementMenu`).menu();
@@ -340,14 +373,28 @@ function editAsset(assetID) {
   });
 }
 
-function elementInfo(elementID, type) {
+function openElementInfo(elementID, type) {
+  $("#elementInfoDlg").dialog("open");
+}
+function openRenameElement(elementID, type) {
+  $("#renameDlg").dialog("open");
+  renameElementID = elementID;
+  renameElementType = type;
+}
+function openDeleteElement(elementID, type) {
+  $("deleteDlg").dialog("open");
+  deleteElementID = elementID;
+  deleteElementType = type;
+}
 
+function closeElementInfo() {
+  $("#elementInfoDlg").dialog("close");
 }
-function renameElement(elementID, type) {
-  
+function closeRenameElement() {
+  $("#renameDlg").dialog("close");
 }
-function deleteElement(elementID, type) {
-  
+function closeDeleteElement() {
+  $("deleteDlg").dialog("close");
 }
 
 function addTab(role, elementID) {

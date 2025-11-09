@@ -350,7 +350,7 @@ async function saveElement(elementTab) {
   } else if (elementTab[0] == "Image") {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("assets").file(elementTab[1].replace("_dot_", "."), dataURItoFile(frame.contentWindow.saveProject(), elementTab[1] + ".png"));
-    var preview = document.getElementById(elementTab[1].replace("_dot_", ".") + "_preview");
+    var preview = document.getElementById(elementTab[1] + "_preview");
     preview.src = frame.contentWindow.saveProject();
   }
 }

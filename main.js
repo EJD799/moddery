@@ -214,7 +214,7 @@ function addElement() {
   elementBox.innerHTML = `
   <h3>${$("#addElementNameBox").val()}</h3>
   <button onclick="editElement('${$("#addElementNameBox").val()}')" id="${$("#addElementNameBox").val()}_editBtn">Edit</button>
-  <button onclick="elementDropdown('${$("#addElementNameBox").val()}')" id="${$("#addElementNameBox").val()}_optionBtn">&#x22EF;</button>
+  <button id="${$("#addElementNameBox").val()}_optionBtn">&#x22EF;</button>
   `;
   parentDiv.appendChild(elementBox);
   if (elementCount % 4 === 0) {
@@ -222,6 +222,7 @@ function addElement() {
   }
   $("#" + $("#addElementNameBox").val() + "_editBtn").button();
   $("#" + $("#addElementNameBox").val() + "_optionBtn").button();
+  createElementDropdown($("#addElementNameBox").val(), "element");
   closeAddElementDlg();
   $("#addElementNameBox").val("");
   $("#addElementIDBox").val("");
@@ -272,7 +273,6 @@ async function addAsset() {
     editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
     editBtn.innerHTML = "Edit";
     optionsBtn = document.createElement("button");
-    optionsBtn.setAttribute("onclick", `assetDropdown('${fileNameEncoded}')`);
     optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
     optionsBtn.innerHTML = "&#x22EF;";
     center.appendChild(editBtn);
@@ -281,6 +281,7 @@ async function addAsset() {
     parentDiv.appendChild(assetBox);
     $(`#${fileNameEncoded}_assetEditBtn`).button();
     $(`#${fileNameEncoded}_assetOptionBtn`).button();
+    createElementDropdown(fileNameEncoded, "asset");
     if (assetCount % 4 === 0) {
       parentDiv.appendChild(document.createElement("br"));
     }
@@ -333,17 +334,10 @@ function editElement(elementID) {
     addTab(dataParsed.type, elementID);
   });
 }
-
-function elementDropdown(elementID) {
-  alert("Coming soon!")
-}
 function editAsset(assetID) {
   projZip.folder("assets").file(assetID.replace("_dot_", ".")).async("string").then(function (data) {
     addTab("Image", assetID);
   });
-}
-function assetDropdown(assetID) {
-  alert("Coming soon!")
 }
 
 function addTab(role, elementID) {

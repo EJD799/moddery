@@ -176,7 +176,7 @@ function fileToDataURL(file) {
   });
 }
 
-function addAsset() {
+async function addAsset() {
   let file = addAssetUploadInput.files[0];
   let fileType = file.name.split(".")[1];
   let fileName = addAssetNameBox.value;
@@ -309,8 +309,7 @@ function addTab(role, elementID) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
     } else if (role == "Image") {
-      projZip.folder("assets").file(elementID + ".png").async("string").then(function (data) {
-        let reader = new FileReader();
+      projZip.folder("assets").file(elementID + ".png").async("string").then(async function (data) {
         frame.contentWindow.loadProject(await fileToDataURL(data));
       });
     }

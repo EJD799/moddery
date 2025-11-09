@@ -136,8 +136,67 @@ function closeAboutDlg() {
   $("#aboutDlg").dialog("close");
 }
 
-function createElementDropdown(elementID) {
+function createElementDropdown(elementID, type) {
   let menu = document.createElement("ul");
+  menu.setAttribute("class", "sublist");
+  let menuItem;
+  if (type == "asset") {
+    menu.setAttribute("id", elementID + "_assetMenu");
+    menuItem = document.createElement("li");
+    menuItem.innerHTML = "Info";
+    menuItem.setAttribute("onclick", `elementInfo('${elementID}', 'asset')`);
+    menu.appendChild(menuItem);
+    menuItem = document.createElement("li");
+    menuItem.innerHTML = "Rename";
+    menuItem.setAttribute("onclick", `renameElement('${elementID}', 'asset')`);
+    menu.appendChild(menuItem);
+    menuItem = document.createElement("li");
+    menuItem.innerHTML = "Delete";
+    menuItem.setAttribute("onclick", `deleteElement('${elementID}', 'asset')`);
+    menu.appendChild(menuItem);
+    document.body.appendChild(menu);
+    $(`#${elementID}_assetMenu`).menu();
+    $(`#${elementID}_assetOptionBtn`).on("click", function () {
+      $(`#${elementID}_assetMenu`).show().position({
+        my: "left top",
+        at: "left bottom",
+        of: $(`#${elementID}_assetOptionBtn`)
+      });
+    });
+    $(document).on('click', function (e) {
+      if (!$(e.target).closest($(`#${elementID}_assetMenu`)).length && !$(e.target).is($(`#${elementID}_assetOptionBtn`))) {
+          $(`#${elementID}_assetMenu`).hide();
+      }
+    });
+  } else {
+    menu.setAttribute("id", elementID + "_elementMenu");
+    menuItem = document.createElement("li");
+    menuItem.innerHTML = "Info";
+    menuItem.setAttribute("onclick", `elementInfo('${elementID}', 'element')`);
+    menu.appendChild(menuItem);
+    menuItem = document.createElement("li");
+    menuItem.innerHTML = "Rename";
+    menuItem.setAttribute("onclick", `renameElement('${elementID}', 'element')`);
+    menu.appendChild(menuItem);
+    menuItem = document.createElement("li");
+    menuItem.innerHTML = "Delete";
+    menuItem.setAttribute("onclick", `deleteElement('${elementID}', 'element')`);
+    menu.appendChild(menuItem);
+    document.body.appendChild(menu);
+    $(`#${elementID}_elementMenu`).menu();
+    $(`#${elementID}_optionBtn`).on("click", function () {
+      $(`#${elementID}_elementMenu`).show().position({
+        my: "left top",
+        at: "left bottom",
+        of: $(`#${elementID}_optionBtn`)
+      });
+    });
+    $(document).on('click', function (e) {
+      if (!$(e.target).closest($(`#${elementID}_elementMenu`)).length && !$(e.target).is($(`#${elementID}_optionBtn`))) {
+          $(`#${elementID}_elementMenu`).hide();
+      }
+    });
+  }
 }
 
 function addElement() {

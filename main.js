@@ -309,7 +309,7 @@ function addTab(role, elementID) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
     } else if (role == "Image") {
-      projZip.folder("assets").file(elementID + ".png").async("blob").then(async function (data) {
+      projZip.folder("assets").file(elementID.replace("_dot_", ".")).async("blob").then(async function (data) {
         frame.contentWindow.loadProject(await fileToDataURL(data));
       });
     }

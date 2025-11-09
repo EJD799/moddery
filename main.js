@@ -198,6 +198,7 @@ async function addAsset() {
       previewBox.setAttribute("class", "previewBox");
       preview = document.createElement("img");
       preview.setAttribute("src", await fileToDataURL(file));
+      preview.setAttribute("id", fileNameEncoded + "_preview");
       previewBox.appendChild(preview);
     }
     center.appendChild(previewBox);
@@ -339,7 +340,7 @@ function dataURItoFile(dataURI, filename) {
   return new File([bytes], filename, { type: mime });
 }
 
-function saveElement(elementTab) {
+async function saveElement(elementTab) {
   if ((elementTab[0] == "Function") || (elementTab[0] == "Script")) {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("elements").file(elementTab[1] + ".code.json", JSON.stringify(frame.contentWindow.saveProject()));
@@ -349,6 +350,8 @@ function saveElement(elementTab) {
   } else if (elementTab[0] == "Image") {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("assets").file(elementTab[1].replace("_dot_", "."), dataURItoFile(frame.contentWindow.saveProject(), elementTab[1] + ".png"));
+    var preview = document.getElementById(elementTab[1].replace("_dot_", ".") + "_preview");
+    preview.src = frame.contentWindow.saveProject();
   }
 }
 

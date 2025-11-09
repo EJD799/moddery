@@ -167,6 +167,15 @@ addAssetUploadInput.addEventListener("change", (event) => {
   addAssetNameBox.value = addAssetUploadInput.files[0].name;
 });
 
+function fileToDataURL(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
 function addAsset() {
   let file = addAssetUploadInput.files[0];
   let fileType = file.name.split(".")[1];
@@ -188,8 +197,7 @@ function addAsset() {
       previewBox = document.createElement("div");
       previewBox.setAttribute("class", "previewBox");
       preview = document.createElement("img");
-      let reader = new FileReader();
-      preview.setAttribute("src", reader.readAsDataURL(file));
+      preview.setAttribute("src", await fileToDataURL(file));
       previewBox.appendChild(preview);
     }
     center.appendChild(previewBox);
@@ -303,7 +311,7 @@ function addTab(role, elementID) {
     } else if (role == "Image") {
       projZip.folder("assets").file(elementID + ".png").async("string").then(function (data) {
         let reader = new FileReader();
-        frame.contentWindow.loadProject(reader.readAsDataURL(data));
+        frame.contentWindow.loadProject(await fileToDataURL(data));
       });
     }
   };

@@ -340,6 +340,16 @@ function editAsset(assetID) {
   });
 }
 
+function elementInfo(elementID, type) {
+
+}
+function renameElement(elementID, type) {
+  
+}
+function deleteElement(elementID, type) {
+  
+}
+
 function addTab(role, elementID) {
   var label = elementID.replace("_dot_", "."),
     id = "tabs-" + tabCounter,

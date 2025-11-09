@@ -348,7 +348,7 @@ function saveElement(elementTab) {
     projZip.folder("elements").file(elementTab[1] + ".json", JSON.stringify(frame.contentWindow.saveProject()));
   } else if (elementTab[0] == "Image") {
     var frame = document.getElementById(elementTab[1] + "_frame");
-    projZip.folder("assets").file(elementTab[1] + ".png", dataURItoFile(frame.contentWindow.saveProject(), elementTab[1] + ".png"));
+    projZip.folder("assets").file(elementTab[1].replace("_dot_", "."), dataURItoFile(frame.contentWindow.saveProject(), elementTab[1] + ".png"));
   }
 }
 

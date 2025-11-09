@@ -133,3 +133,8 @@ input[type="number"] {
   object-position: center; /* centers it nicely */
   image-rendering: pixelated;
 }
+
+.deleteBtn:hover {
+    border-color: #ff837d;
+    color: #ff837d;
+}

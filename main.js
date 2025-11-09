@@ -143,15 +143,15 @@ function createElementDropdown(elementID, type) {
   if (type == "asset") {
     menu.setAttribute("id", elementID + "_assetMenu");
     menuItem = document.createElement("li");
-    menuItem.innerHTML = "Info";
+    menuItem.innerHTML = `<div><i class="fas fa-circle-info"></i> Info</div>`;
     menuItem.setAttribute("onclick", `elementInfo('${elementID}', 'asset')`);
     menu.appendChild(menuItem);
     menuItem = document.createElement("li");
-    menuItem.innerHTML = "Rename";
+    menuItem.innerHTML = `<div><i class="fas fa-pencil"></i> Rename</div>`;
     menuItem.setAttribute("onclick", `renameElement('${elementID}', 'asset')`);
     menu.appendChild(menuItem);
     menuItem = document.createElement("li");
-    menuItem.innerHTML = "Delete";
+    menuItem.innerHTML = `<div><i class="fas fa-trash"></i> Delete</div>`;
     menuItem.setAttribute("onclick", `deleteElement('${elementID}', 'asset')`);
     menu.appendChild(menuItem);
     document.body.appendChild(menu);
@@ -171,15 +171,15 @@ function createElementDropdown(elementID, type) {
   } else {
     menu.setAttribute("id", elementID + "_elementMenu");
     menuItem = document.createElement("li");
-    menuItem.innerHTML = "Info";
+    menuItem.innerHTML = `<div><i class="fas fa-circle-info"></i> Info</div>`;
     menuItem.setAttribute("onclick", `elementInfo('${elementID}', 'element')`);
     menu.appendChild(menuItem);
     menuItem = document.createElement("li");
-    menuItem.innerHTML = "Rename";
+    menuItem.innerHTML = `<div><i class="fas fa-pencil"></i> Rename</div>`;
     menuItem.setAttribute("onclick", `renameElement('${elementID}', 'element')`);
     menu.appendChild(menuItem);
     menuItem = document.createElement("li");
-    menuItem.innerHTML = "Delete";
+    menuItem.innerHTML = `<div><i class="fas fa-trash"></i> Delete</div>`;
     menuItem.setAttribute("onclick", `deleteElement('${elementID}', 'element')`);
     menu.appendChild(menuItem);
     document.body.appendChild(menu);

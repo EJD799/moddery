@@ -135,6 +135,11 @@ function openAboutDlg() {
 function closeAboutDlg() {
   $("#aboutDlg").dialog("close");
 }
+
+function createElementDropdown(elementID) {
+  let menu = document.createElement("ul");
+}
+
 function addElement() {
   var elementJSON = {
     "name": $("#addElementNameBox").val(),

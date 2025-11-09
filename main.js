@@ -184,7 +184,7 @@ function createElementDropdown(elementID, type) {
     menuItem.setAttribute("onclick", `openRenameElement('${elementID}', 'asset')`);
     menu.appendChild(menuItem);
     menuItem = document.createElement("li");
-    menuItem.innerHTML = `<div class="ui-menu-item-wrapper deleteBtn"><i class="fas fa-trash"></i> Delete</div>`;
+    menuItem.innerHTML = `<div class="deleteBtn"><i class="fas fa-trash"></i> Delete</div>`;
     menuItem.setAttribute("onclick", `openDeleteElement('${elementID}', 'asset')`);
     menu.appendChild(menuItem);
     document.body.appendChild(menu);
@@ -212,7 +212,7 @@ function createElementDropdown(elementID, type) {
     menuItem.setAttribute("onclick", `openRenameElement('${elementID}', 'element')`);
     menu.appendChild(menuItem);
     menuItem = document.createElement("li");
-    menuItem.innerHTML = `<div class="ui-menu-item-wrapper deleteBtn"><i class="fas fa-trash"></i> Delete</div>`;
+    menuItem.innerHTML = `<div class="deleteBtn"><i class="fas fa-trash"></i> Delete</div>`;
     menuItem.setAttribute("onclick", `openDeleteElement('${elementID}', 'element')`);
     menu.appendChild(menuItem);
     document.body.appendChild(menu);

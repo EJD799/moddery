@@ -845,12 +845,6 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     colour: 320,
     inputsInline: true
   },
-  {
-    type: "objective_from_name",
-    message0: "objective",
-    colour: 320,
-    inputsInline: true
-  },
 ]);
 
 const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -1165,8 +1159,20 @@ const bedrockScriptToolbox = {
                     "NUM": ""
                   }
                 }
+              },
+              "OBJECTIVE": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": ""
+                  }
+                }
               }
             }
+          },
+          {
+            "kind": "block",
+            "type": "objective_list"
           }
         ]
     }

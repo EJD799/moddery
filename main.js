@@ -382,7 +382,7 @@ function openRenameElement(elementID, type) {
   renameElementType = type;
 }
 function openDeleteElement(elementID, type) {
-  $("deleteDlg").dialog("open");
+  $("#deleteDlg").dialog("open");
   deleteElementID = elementID;
   deleteElementType = type;
 }

@@ -1200,7 +1200,7 @@ const bedrockScriptToolbox = {
           kind: 'block',
           type: 'text_indexOf',
           inputs: {
-            VALUE: { block: { type: 'text' } },
+            VALUE: { shadow: { type: 'text' } },
             FIND: { shadow: { type: 'text' } }
           }
         },
@@ -1208,8 +1208,8 @@ const bedrockScriptToolbox = {
           kind: 'block',
           type: 'text_charAt',
           inputs: {
-            VALUE: { block: { type: 'text' } },
-            AT: { block: { type: 'math_number' } }
+            VALUE: { shadow: { type: 'text' } },
+            AT: { shadow: { type: 'math_number' } }
           }
         },
         { kind: 'block', type: 'text_getSubstring' },

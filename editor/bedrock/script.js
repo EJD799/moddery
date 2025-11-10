@@ -731,7 +731,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: 'addobjective',
-    message0: 'add objective %1 display name %2',
+    message0: 'add objective id %1 display name %2',
     colour: 320,
     args0: [
       {
@@ -747,6 +747,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'removeobjective',
@@ -761,6 +762,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'objectivedisplay',
@@ -784,6 +786,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'hidedisplay',
@@ -801,6 +804,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'operatescore',
@@ -833,6 +837,19 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "objective_list",
+    message0: "list of objectives",
+    colour: 320,
+    inputsInline: true
+  },
+  {
+    type: "objective_from_name",
+    message0: "objective",
+    colour: 320,
+    inputsInline: true
   },
 ]);
 
@@ -1097,6 +1114,14 @@ const bedrockScriptToolbox = {
             "kind": "block",
             "type": "addobjective",
             "inputs": {
+              "OBJECTIVE": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": ""
+                  }
+                }
+              },
               "DISPLAY_NAME": {
                 "shadow": {
                   "type": "text",
@@ -1109,7 +1134,17 @@ const bedrockScriptToolbox = {
           },
           {
             "kind": "block",
-            "type": "removeobjective"
+            "type": "removeobjective",
+            "inputs": {
+              "OBJECTIVE": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": ""
+                  }
+                }
+              }
+            }
           },
           {
             "kind": "block",

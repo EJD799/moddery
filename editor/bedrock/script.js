@@ -841,6 +841,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     type: "objective_list",
     message0: "list of objectives",
     colour: 320,
+    output: null,
     inputsInline: true
   },
 ]);

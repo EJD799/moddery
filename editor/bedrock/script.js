@@ -340,6 +340,22 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         type: 'field_dropdown',
         name: 'RULE',
         options: [
+          ['maxCommandChainLength', 'maxCommandChainLength'],
+          ['randomTickSpeed', 'randomTickSpeed'],
+        ]
+      }
+    ],
+    output: null,
+  },
+  {
+    type: 'get_gamerule_boolean',
+    message0: 'get gamerule %1',
+    colour: 180,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'RULE',
+        options: [
           ['commandBlockOutput', 'commandBlockOutput'],
           ['commandBlocksEnabled', 'commandBlocksEnabled'],
           ['doDaylightCycle', 'doDaylightCycle'],
@@ -355,11 +371,9 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
           ['fallDamage', 'fallDamage'],
           ['fireDamage', 'fireDamage'],
           ['keepInventory', 'keepInventory'],
-          ['maxCommandChainLength', 'maxCommandChainLength'],
           ['mobGriefing', 'mobGriefing'],
           ['naturalRegeneration', 'naturalRegeneration'],
           ['pvp', 'pvp'],
-          ['randomTickSpeed', 'randomTickSpeed'],
           ['sendCommandFeedback', 'sendCommandFeedback'],
           ['showCoordinates', 'showCoordinates'],
           ['showDeathMessages', 'showDeathMessages'],
@@ -367,7 +381,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         ]
       }
     ],
-    output: null,
+    output: "Boolean",
   },
   {
     type: "new_form",
@@ -873,7 +887,6 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
           ['selectedSlotIndex', 'selectedSlotIndex'],
           ['totalXpNeededForNextLevel', 'totalXpNeededForNextLevel'],
           ['xpEarnedAtCurrentLevel', 'xpEarnedAtCurrentLevel'],
-
         ]
       },
       {
@@ -1126,15 +1139,22 @@ const bedrockScriptToolbox = {
       name: 'World',
       colour: 180,
       contents: [
+        { kind: 'sep'},
+        { kind: 'label', text: 'Commands'},
         { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'send_message', inputs: { MESSAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'sep'},
+        { kind: 'label', text: 'Settings'},
         { kind: 'block', type: 'set_gamerule' },
         { kind: 'block', type: 'get_gamerule' },
+        { kind: 'block', type: 'get_gamerule_boolean' },
         { kind: 'block', type: 'is_hardcore' },
+        { kind: 'sep'},
+        { kind: 'label', text: 'Players'},
         { kind: 'block', type: 'player_list' },
         { kind: 'block', type: 'player_property_reporter' },
         { kind: 'block', type: 'player_property_boolean' },
+        { kind: 'block', type: 'send_message', inputs: { MESSAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
       ]
     },
     {

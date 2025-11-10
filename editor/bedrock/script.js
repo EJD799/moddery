@@ -1437,97 +1437,6 @@ Blockly.Blocks['text'].init = function() {
   this.setHelpUrl("");
 };
 
-Blockly.Blocks['custom_procedure_def'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("define")
-        .appendField(new Blockly.FieldTextInput("my_function"), "NAME");
-    this.appendDummyInput("ARGS_LABEL")
-        .appendField("with args");
-    this.setColour(290);
-    this.setTooltip("Define a custom function");
-    this.setHelpUrl("");
-    this.setInputsInline(true);
-    this.arguments_ = ['x', 'y']; // default args for example
-    this.updateArgs_();
-  },
-
-  /**
-   * Rebuild the argument bubbles inline.
-   */
-  updateArgs_: function() {
-    // Remove old arg inputs if any
-    if (this.getInput("ARGS")) this.removeInput("ARGS");
-
-    const input = this.appendDummyInput("ARGS");
-    for (let i = 0; i < this.arguments_.length; i++) {
-      const argName = this.arguments_[i];
-      input.appendField(new Blockly.FieldVariable(argName), "ARG" + i);
-    }
-    this.setInputsInline(true);
-  },
-
-  mutationToDom: function() {
-    const container = document.createElement('mutation');
-    container.setAttribute('args', JSON.stringify(this.arguments_));
-    return container;
-  },
-
-  domToMutation: function(xml) {
-    this.arguments_ = JSON.parse(xml.getAttribute('args') || '[]');
-    this.updateArgs_();
-  }
-};
-
-Blockly.Blocks['custom_procedure_call'] = {
-  init: function() {
-    this.appendDummyInput("HEADER")
-        .appendField("call")
-        .appendField(new Blockly.FieldLabelSerializable("my_function"), "NAME");
-
-    this.arguments_ = ['x', 'y']; // default, will sync with def
-    this.updateArgs_();
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(195);
-    this.setInputsInline(true);
-  },
-
-  /**
-   * Update value inputs to match current argument names.
-   */
-  updateArgs_: function() {
-    // Remove any existing argument inputs
-    let i = 0;
-    while (this.getInput("ARG" + i)) {
-      this.removeInput("ARG" + i);
-      i++;
-    }
-
-    for (let i = 0; i < this.arguments_.length; i++) {
-      this.appendValueInput("ARG" + i)
-          .setCheck(null)
-          .appendField(this.arguments_[i]);
-    }
-
-    this.setInputsInline(true);
-  },
-
-  mutationToDom: function() {
-    const container = document.createElement('mutation');
-    container.setAttribute('args', JSON.stringify(this.arguments_));
-    container.setAttribute('name', this.getFieldValue('NAME'));
-    return container;
-  },
-
-  domToMutation: function(xml) {
-    this.arguments_ = JSON.parse(xml.getAttribute('args') || '[]');
-    this.getField('NAME').setValue(xml.getAttribute('name') || '');
-    this.updateArgs_();
-  }
-};
-
 
 Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
@@ -1551,22 +1460,6 @@ var workspace = Blockly.inject('blocklyDiv', {
     scaleSpeed: 1.1
   }
 });
-
-Blockly.Procedures.mutateCallers = function(defBlock) {
-  const workspace = defBlock.workspace;
-  const name = defBlock.getFieldValue('NAME');
-  const args = defBlock.arguments_;
-
-  const callers = workspace.getBlocksByType('custom_procedure_call', false);
-  for (const block of callers) {
-    if (block.getFieldValue('NAME') === name) {
-      block.arguments_ = [...args];
-      block.updateArgs_();
-      block.render();
-    }
-  }
-};
-
 
 let isAdjustingReporters = false; // prevent recursive loops
 

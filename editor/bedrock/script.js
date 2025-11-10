@@ -207,7 +207,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     ],
     output: null,
     inputsInline: true
-  }
+  },
   {
     type: "run_command_dimension",
     message0: "run command %1 in dimension %2",

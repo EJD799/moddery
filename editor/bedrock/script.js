@@ -964,11 +964,49 @@ const bedrockScriptToolbox = {
       colour: '%{BKY_LOGIC_HUE}',
       contents: [
         { kind: 'block', type: 'controls_if' },
-        { kind: 'block', type: 'logic_compare' },
+        { kind: 'block', type: 'logic_compare',
+          inputs: {
+            A: { 
+              shadow: { 
+                type: 'text',
+                fields: {
+                  TEXT: ""
+                }
+              }
+            },
+            B: { 
+              shadow: { 
+                type: 'text',
+                fields: {
+                  TEXT: ""
+                }
+              }
+            }
+          }
+        },
         { kind: 'block', type: 'logic_operation' },
         { kind: 'block', type: 'logic_negate' },
         { kind: 'block', type: 'logic_boolean' },
-        { kind: 'block', type: 'logic_ternary' }
+        { kind: 'block', type: 'logic_ternary',
+          inputs: {
+            THEN: { 
+              shadow: { 
+                type: 'text',
+                fields: {
+                  TEXT: ""
+                }
+              }
+            },
+            ELSE: { 
+              shadow: { 
+                type: 'text',
+                fields: {
+                  TEXT: ""
+                }
+              }
+            }
+          }
+        },
       ]
     },
     // Loops
@@ -980,7 +1018,7 @@ const bedrockScriptToolbox = {
         {
           kind: 'block',
           type: 'controls_repeat_ext',
-          values: {
+          inputs: {
             TIMES: { shadow: { type: 'math_number', fields: { NUM: 10 } } }
           }
         },
@@ -988,7 +1026,7 @@ const bedrockScriptToolbox = {
         {
           kind: 'block',
           type: 'controls_for',
-          values: {
+          inputs: {
             FROM: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
             TO: { shadow: { type: 'math_number', fields: { NUM: 10 } } },
             BY: { shadow: { type: 'math_number', fields: { NUM: 1 } } }
@@ -1005,11 +1043,63 @@ const bedrockScriptToolbox = {
       colour: '%{BKY_MATH_HUE}',
       contents: [
         { kind: 'block', type: 'math_number' },
-        { kind: 'block', type: 'math_arithmetic' },
-        { kind: 'block', type: 'math_single' },
-        { kind: 'block', type: 'math_trig' },
+        { kind: 'block', type: 'math_arithmetic',
+          inputs: {
+            A: { 
+              shadow: { 
+                type: 'math_number',
+                fields: {
+                  NUM: 0
+                }
+              }
+            },
+            B: { 
+              shadow: { 
+                type: 'math_number',
+                fields: {
+                  NUM: 0
+                }
+              }
+            }
+          }
+        },
+        { kind: 'block', type: 'math_single',
+          inputs: {
+            NUM: { 
+              shadow: { 
+                type: 'math_number',
+                fields: {
+                  NUM: 0
+                }
+              }
+            }
+          }
+        },
+        { kind: 'block', type: 'math_trig',
+          inputs: {
+            NUM: { 
+              shadow: { 
+                type: 'math_number',
+                fields: {
+                  NUM: 0
+                }
+              }
+            }
+          }
+        },
         { kind: 'block', type: 'math_constant' },
-        { kind: 'block', type: 'math_number_property' },
+        { kind: 'block', type: 'math_number_property',
+          inputs: {
+            NUMBER_TO_CHECK: { 
+              shadow: { 
+                type: 'math_number',
+                fields: {
+                  NUM: 0
+                }
+              }
+            }
+          }
+        },
         /*{
           kind: 'block',
           type: 'math_change',
@@ -1017,13 +1107,43 @@ const bedrockScriptToolbox = {
             DELTA: { shadow: { type: 'math_number', fields: { NUM: 1 } } }
           }
         },*/
-        { kind: 'block', type: 'math_round' },
+        { kind: 'block', type: 'math_round',
+          inputs: {
+            NUM: { 
+              shadow: { 
+                type: 'math_number',
+                fields: {
+                  NUM: 0
+                }
+              }
+            }
+          }
+        },
         { kind: 'block', type: 'math_on_list' },
-        { kind: 'block', type: 'math_modulo' },
+        { kind: 'block', type: 'math_modulo',
+          inputs: {
+            DIVEDEND: { 
+              shadow: { 
+                type: 'math_number',
+                fields: {
+                  NUM: 0
+                }
+              }
+            },
+            DIVISOR: { 
+              shadow: { 
+                type: 'math_number',
+                fields: {
+                  NUM: 0
+                }
+              }
+            }
+          }
+        },
         {
           kind: 'block',
           type: 'math_constrain',
-          values: {
+          inputs: {
             LOW: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
             HIGH: { shadow: { type: 'math_number', fields: { NUM: 100 } } }
           }
@@ -1031,7 +1151,7 @@ const bedrockScriptToolbox = {
         {
           kind: 'block',
           type: 'math_random_int',
-          values: {
+          inputs: {
             FROM: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
             TO: { shadow: { type: 'math_number', fields: { NUM: 100 } } }
           }

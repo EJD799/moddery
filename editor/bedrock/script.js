@@ -209,6 +209,21 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     inputsInline: true
   },
   {
+    type: "cancel_event",
+    message0: "cancel before event",
+    colour: 45,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'EVENT',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
     type: "run_command_dimension",
     message0: "run command %1 in dimension %2",
     colour: 180,
@@ -240,6 +255,26 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
       {
         type: 'input_value',
         name: 'COMMAND',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'PLAYER',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "send_message",
+    message0: "send message %1 to player %2",
+    colour: 180,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'MESSAGE',
         check: null
       },
       {
@@ -811,7 +846,8 @@ const bedrockScriptToolbox = {
       contents: [
         { kind: 'block', type: 'before_event'},
         { kind: 'block', type: 'after_event'},
-        { kind: 'block', type: 'get_event_data'}
+        { kind: 'block', type: 'get_event_data'},
+        { kind: 'block', type: 'cancel_event'}
       ]
     },
     {
@@ -820,7 +856,8 @@ const bedrockScriptToolbox = {
       colour: 180,
       contents: [
         { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } }
+        { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'send_message', inputs: { MESSAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } } }
       ]
     },
     {

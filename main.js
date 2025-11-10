@@ -250,9 +250,9 @@ function addElement() {
   <button id="${$("#addElementNameBox").val()}_optionBtn">&#x22EF;</button>
   `;
   parentDiv.appendChild(elementBox);
-  if (elementCount % 4 === 0) {
+  /*if (elementCount % 4 === 0) {
     parentDiv.appendChild(document.createElement("br"));
-  }
+  }*/
   $("#" + $("#addElementNameBox").val() + "_editBtn").button();
   $("#" + $("#addElementNameBox").val() + "_optionBtn").button();
   createElementDropdown($("#addElementNameBox").val(), "element");
@@ -315,9 +315,9 @@ async function addAsset() {
     $(`#${fileNameEncoded}_assetEditBtn`).button();
     $(`#${fileNameEncoded}_assetOptionBtn`).button();
     createElementDropdown(fileNameEncoded, "asset");
-    if (assetCount % 4 === 0) {
+    /*if (assetCount % 4 === 0) {
       parentDiv.appendChild(document.createElement("br"));
-    }
+    }*/
   }
   closeAddAssetDlg();
   addAssetUploadInput.value = "";
@@ -380,7 +380,7 @@ function openElementInfo(elementID, type) {
   let elementIdentifier;
   let elementType;
   if (type == "asset") {
-    elementInfoDlg.setAttribute("title", "Asset Info");
+    $("#elementInfoDlg").dialog("option", "title", "Asset Info");
     elementID = elementID.replace("_dot_", ".");
     elementIdentifier = elementID.replace("_dot_", ".");
     if (elementID.endsWith("png")) {
@@ -393,8 +393,9 @@ function openElementInfo(elementID, type) {
     ID: ${elementIdentifier}<br>
     Type: ${elementType}
     `;
+    $(`#${elementID}_assetMenu`).hide();
   } else {
-    elementInfoDlg.setAttribute("title", "Element Info");
+    $("#elementInfoDlg").dialog("option", "title", "Element Info");
     projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
       elementIdentifier = JSON.parse(data).id;
       elementType = JSON.parse(data).type;
@@ -404,6 +405,7 @@ function openElementInfo(elementID, type) {
       Type: ${elementType}
       `;
     });
+    $(`#${elementID}_elementMenu`).hide();
   }
 }
 function openRenameElement(elementID, type) {
@@ -411,11 +413,15 @@ function openRenameElement(elementID, type) {
   renameElementID = elementID;
   renameElementType = type;
   let renameDlg = document.getElementById("renameDlg");
+  let renameDlgText = document.getElementById("renameDlgText");
   if (type == "asset") {
-    renameDlg.setAttribute("title", "Rename Asset");
+    $("#renameDlg").dialog("option", "title", "Rename Asset");
+    $(`#${elementID}_assetMenu`).hide();
   } else {
-    renameDlg.setAttribute("title", "Rename Element");
+    $("#renameDlg").dialog("option", "title", "Rename Element");
+    $(`#${elementID}_elementMenu`).hide();
   }
+  renameDlgText.innerHTML = `Rename ${elementID.replace("_dot_", ".")} to:`;
   let renameBox = document.getElementById("renameDlgBox");
   renameBox.value = elementID.replace("_dot_", ".");
 }
@@ -426,11 +432,13 @@ function openDeleteElement(elementID, type) {
   let deleteDlg = document.getElementById("deleteDlg");
   let deleteDlgText = document.getElementById("deleteDlgText");
   if (type == "asset") {
-    deleteDlg.setAttribute("title", "Delete Asset?");
+    $("#deleteDlg").dialog("option", "title", "Delete Asset?");
     deleteDlgText.innerHTML = `Are you sure you want to delete the asset ${elementID.replace("_dot_", ".")}?`;
+    $(`#${elementID}_assetMenu`).hide();
   } else {
-    deleteDlg.setAttribute("title", "Delete Element?");
+    $("#deleteDlg").dialog("option", "title", "Delete Element?");
     deleteDlgText.innerHTML = `Are you sure you want to delete the element ${elementID}?`;
+    $(`#${elementID}_elementMenu`).hide();
   }
 }
 
@@ -445,10 +453,10 @@ function closeDeleteElement() {
 }
 
 function deleteElement() {
-
+  closeDeleteElement();
 }
 function renameElement() {
-
+  closeRenameElement();
 }
 
 function addTab(role, elementID) {

@@ -288,6 +288,89 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     inputsInline: true
   },
   {
+    type: 'set_gamerule',
+    message0: 'set gamerule %1 to %2',
+    colour: 180,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'RULE',
+        options: [
+          ['commandBlockOutput', 'commandBlockOutput'],
+          ['commandBlocksEnabled', 'commandBlocksEnabled'],
+          ['doDaylightCycle', 'doDaylightCycle'],
+          ['doEntityDrops', 'doEntityDrops'],
+          ['doFireTick', 'doFireTick'],
+          ['doImmediateRespawn', 'doImmediateRespawn'],
+          ['doInsomnia', 'doInsomnia'],
+          ['doMobLoot', 'doMobLoot'],
+          ['doMobSpawning', 'doMobSpawning'],
+          ['doTileDrops', 'doTileDrops'],
+          ['doWeatherCycle', 'doWeatherCycle'],
+          ['drowningDamage', 'drowningDamage'],
+          ['fallDamage', 'fallDamage'],
+          ['fireDamage', 'fireDamage'],
+          ['keepInventory', 'keepInventory'],
+          ['maxCommandChainLength', 'maxCommandChainLength'],
+          ['mobGriefing', 'mobGriefing'],
+          ['naturalRegeneration', 'naturalRegeneration'],
+          ['pvp', 'pvp'],
+          ['randomTickSpeed', 'randomTickSpeed'],
+          ['sendCommandFeedback', 'sendCommandFeedback'],
+          ['showCoordinates', 'showCoordinates'],
+          ['showDeathMessages', 'showDeathMessages'],
+          ['tntExplodes', 'tntExplodes']
+        ]
+      },
+      {
+        type: 'input_value',
+        name: 'VALUE',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'get_gamerule',
+    message0: 'get gamerule %1',
+    colour: 180,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'RULE',
+        options: [
+          ['commandBlockOutput', 'commandBlockOutput'],
+          ['commandBlocksEnabled', 'commandBlocksEnabled'],
+          ['doDaylightCycle', 'doDaylightCycle'],
+          ['doEntityDrops', 'doEntityDrops'],
+          ['doFireTick', 'doFireTick'],
+          ['doImmediateRespawn', 'doImmediateRespawn'],
+          ['doInsomnia', 'doInsomnia'],
+          ['doMobLoot', 'doMobLoot'],
+          ['doMobSpawning', 'doMobSpawning'],
+          ['doTileDrops', 'doTileDrops'],
+          ['doWeatherCycle', 'doWeatherCycle'],
+          ['drowningDamage', 'drowningDamage'],
+          ['fallDamage', 'fallDamage'],
+          ['fireDamage', 'fireDamage'],
+          ['keepInventory', 'keepInventory'],
+          ['maxCommandChainLength', 'maxCommandChainLength'],
+          ['mobGriefing', 'mobGriefing'],
+          ['naturalRegeneration', 'naturalRegeneration'],
+          ['pvp', 'pvp'],
+          ['randomTickSpeed', 'randomTickSpeed'],
+          ['sendCommandFeedback', 'sendCommandFeedback'],
+          ['showCoordinates', 'showCoordinates'],
+          ['showDeathMessages', 'showDeathMessages'],
+          ['tntExplodes', 'tntExplodes']
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: "new_form",
     message0: "new %1",
     colour: 210,
@@ -857,7 +940,9 @@ const bedrockScriptToolbox = {
       contents: [
         { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'send_message', inputs: { MESSAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } } }
+        { kind: 'block', type: 'send_message', inputs: { MESSAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'set_gamerule' },
+        { kind: 'block', type: 'get_gamerule' }
       ]
     },
     {

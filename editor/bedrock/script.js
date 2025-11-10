@@ -735,12 +735,12 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     colour: 320,
     args0: [
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'OBJECTIVE',
         spellcheck: false
       },
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'DISPLAY_NAME',
         spellcheck: false
       }
@@ -754,7 +754,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     colour: 320,
     args0: [
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'OBJECTIVE',
         spellcheck: false
       }
@@ -777,7 +777,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         ]
       },
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'OBJECTIVE',
         spellcheck: false
       }
@@ -817,16 +817,16 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         ]
       },
       {
-        type: 'field_number',
+        type: 'input_value',
         name: 'QUANTITY'
       },
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'PLAYER',
         spellcheck: false
       },
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'OBJECTIVE',
         spellcheck: false
       }
@@ -1095,7 +1095,17 @@ const bedrockScriptToolbox = {
         "contents": [
           {
             "kind": "block",
-            "type": "addobjective"
+            "type": "addobjective",
+            "inputs": {
+              "DISPLAY_NAME": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": ""
+                  }
+                }
+              }
+            }
           },
           {
             "kind": "block",
@@ -1111,7 +1121,17 @@ const bedrockScriptToolbox = {
           },
           {
             "kind": "block",
-            "type": "operatescore"
+            "type": "operatescore",
+            "inputs": {
+              "QUANTITY": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": ""
+                  }
+                }
+              }
+            }
           }
         ]
     }

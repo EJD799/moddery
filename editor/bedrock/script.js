@@ -367,6 +367,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         ]
       }
     ],
+    output: null,
     previousStatement: null,
     nextStatement: null,
   },

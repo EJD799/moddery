@@ -210,7 +210,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "cancel_event",
-    message0: "cancel before event",
+    message0: "cancel before event %1",
     colour: 45,
     args0: [
       {

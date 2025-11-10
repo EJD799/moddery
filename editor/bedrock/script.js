@@ -1276,6 +1276,14 @@ const bedrockScriptToolbox = {
   ]
 };
 
+Blockly.Blocks['text'].init = function() {
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldTextInput(""), "TEXT");
+  this.setOutput(true, "String");
+  this.setColour(160);
+  this.setTooltip("Text");
+  this.setHelpUrl("");
+};
 
 Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);

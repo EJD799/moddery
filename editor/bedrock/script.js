@@ -881,7 +881,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         name: "PLAYER",
         check: null
       }
-    ]
+    ],
     output: null,
     inputsInline: true
   },
@@ -905,7 +905,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         name: "PLAYER",
         check: null
       }
-    ]
+    ],
     output: "Boolean",
     inputsInline: true
   },

@@ -1141,7 +1141,17 @@ const bedrockScriptToolbox = {
           },
           {
             "kind": "block",
-            "type": "objectivedisplay"
+            "type": "objectivedisplay",
+            "inputs": {
+              "OBJECTIVE": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": ""
+                  }
+                }
+              }
+            }
           },
           {
             "kind": "block",

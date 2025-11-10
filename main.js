@@ -394,7 +394,7 @@ function closeRenameElement() {
   $("#renameDlg").dialog("close");
 }
 function closeDeleteElement() {
-  $("deleteDlg").dialog("close");
+  $("#deleteDlg").dialog("close");
 }
 
 function addTab(role, elementID) {

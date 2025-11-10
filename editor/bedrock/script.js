@@ -844,6 +844,71 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
+  {
+    type: "player_list",
+    message0: "list of players",
+    colour: 180,
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "player_property_reporter",
+    message0: "get property %1 of player %2",
+    colour: 180,
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "PROPERTY",
+        options: [
+          ["camera", "camera"],
+          ["clientSystemInfo", "clientSystemInfo"],
+          ["commandPermissionLevel", "commandPermissionLevel"],
+          ["graphicsMode", "graphicsMode"],
+          ["inputInfo", "inputInfo"],
+          ["inputPermissions", "inputPermissions"],
+          ['level', 'level'],
+          ['name', 'name'],
+          ['onScreenDisplay', 'onScreenDisplay'],
+          ['playerPermissionLevel', 'playerPermissionLevel'],
+          ['selectedSlotIndex', 'selectedSlotIndex'],
+          ['totalXpNeededForNextLevel', 'totalXpNeededForNextLevel'],
+          ['xpEarnedAtCurrentLevel', 'xpEarnedAtCurrentLevel'],
+
+        ]
+      },
+      {
+        type: "input_value",
+        name: "PLAYER",
+        check: null
+      }
+    ]
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "player_property_boolean",
+    message0: "get property %1 of player %2",
+    colour: 180,
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "PROPERTY",
+        options: [
+          ['isEmoting', 'isEmoting'],
+          ['isFlying', 'isFlying'],
+          ['isGliding', 'isGliding'],
+          ['isJumping', 'isJumping'],
+        ]
+      },
+      {
+        type: "input_value",
+        name: "PLAYER",
+        check: null
+      }
+    ]
+    output: "Boolean",
+    inputsInline: true
+  },
 ]);
 
 const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -1067,6 +1132,9 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'set_gamerule' },
         { kind: 'block', type: 'get_gamerule' },
         { kind: 'block', type: 'is_hardcore' },
+        { kind: 'block', type: 'player_list' },
+        { kind: 'block', type: 'player_property_reporter' },
+        { kind: 'block', type: 'player_property_boolean' },
       ]
     },
     {

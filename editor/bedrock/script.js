@@ -1428,16 +1428,6 @@ Blockly.Blocks['text'].init = function() {
   this.setHelpUrl("");
 };
 
-const originalUpdate = Blockly.Procedures.mutateCallers;
-Blockly.Procedures.mutateCallers = function(defBlock) {
-  originalUpdate.call(this, defBlock);
-  const workspace = defBlock.workspace;
-  const callers = Blockly.Procedures.getCallers(defBlock.getFieldValue('NAME'), workspace);
-  callers.forEach(block => {
-    block.setInputsInline(true); // 👈 force inline layout for all call blocks
-  });
-};
-
 
 Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
@@ -1461,6 +1451,16 @@ var workspace = Blockly.inject('blocklyDiv', {
     scaleSpeed: 1.1
   }
 });
+
+const originalUpdate = Blockly.Procedures.mutateCallers;
+Blockly.Procedures.mutateCallers = function(defBlock) {
+  originalUpdate.call(this, defBlock);
+  const workspace = defBlock.workspace;
+  const callers = Blockly.Procedures.getCallers(defBlock.getFieldValue('NAME'), workspace);
+  callers.forEach(block => {
+    block.setInputsInline(true); // 👈 force inline layout for all call blocks
+  });
+};
 
 let isAdjustingReporters = false; // prevent recursive loops
 

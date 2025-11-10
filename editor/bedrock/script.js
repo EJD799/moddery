@@ -1122,7 +1122,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'math_on_list' },
         { kind: 'block', type: 'math_modulo',
           inputs: {
-            DIVEDEND: { 
+            DIVIDEND: { 
               shadow: { 
                 type: 'math_number',
                 fields: {
@@ -1170,23 +1170,46 @@ const bedrockScriptToolbox = {
         {
           kind: 'block',
           type: 'text_append',
-          values: { TEXT: { shadow: { type: 'text' } } }
+          inputs: { TEXT: { shadow: { type: 'text' } } }
         },
-        { kind: 'block', type: 'text_length' },
-        { kind: 'block', type: 'text_isEmpty' },
+        { kind: 'block', type: 'text_length',
+          inputs: {
+            VALUE: { 
+              shadow: { 
+                type: 'text',
+                fields: {
+                  TEXT: ""
+                }
+              }
+            }
+          }
+        },
+        { kind: 'block', type: 'text_isEmpty',
+          inputs: {
+            VALUE: { 
+              shadow: { 
+                type: 'text',
+                fields: {
+                  TEXT: ""
+                }
+              }
+            }
+          }
+        },
         {
           kind: 'block',
           type: 'text_indexOf',
-          values: {
-            VALUE: { block: { type: 'variables_get', fields: { VAR: 'text' } } },
-            FIND: { shadow: { type: 'text' } }
+          inputs: {
+            VALUE: { block: { type: 'text' } },
+            END: { shadow: { type: 'text' } }
           }
         },
         {
           kind: 'block',
           type: 'text_charAt',
-          values: {
-            VALUE: { block: { type: 'variables_get', fields: { VAR: 'text' } } }
+          inputs: {
+            VALUE: { block: { type: 'text' } },
+            AT: { block: { type: 'math_number' } }
           }
         },
         { kind: 'block', type: 'text_getSubstring' },

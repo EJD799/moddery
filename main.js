@@ -375,16 +375,55 @@ function editAsset(assetID) {
 
 function openElementInfo(elementID, type) {
   $("#elementInfoDlg").dialog("open");
+  let elementInfoDlg = document.getElementById("elementInfoDlg");
+  let elementIdentifier;
+  let elementType;
+  if (type == "asset") {
+    elementInfoDlg.setAttribute("title", "Asset Info");
+    elementID = elementID.replace("_dot_", ".");
+    elementIdentifier = elementID.replace("_dot_", ".");
+    if (elementID.endsWith("png")) {
+      elementType = "Image";
+    } else {
+      elementType = "Asset";
+    }
+  } else {
+    elementInfoDlg.setAttribute("title", "Element Info");
+    projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
+      elementIdentifier = JSON.parse(data).id;
+      elementType = JSON.parse(data).type;
+    });
+  }
+  let elementInfoDlgContent = document.getElementById("elementInfoDlgContent");
+  elementInfoDlgContent.innerHTML = `
+  Name: ${elementID}<br>
+  ID: ${elementIdentifier}<br>
+  Type: ${elementType}
+  `;
 }
 function openRenameElement(elementID, type) {
   $("#renameDlg").dialog("open");
   renameElementID = elementID;
   renameElementType = type;
+  let renameDlg = document.getElementById("renameDlg");
+  if (type == "asset") {
+    renameDlg.setAttribute("title", "Rename Asset");
+  } else {
+    renameDlg.setAttribute("title", "Rename Element");
+  }
+  let renameBox = document.getElementById("renameDlgBox");
+  renameBox.value = elementID;
 }
 function openDeleteElement(elementID, type) {
   $("#deleteDlg").dialog("open");
   deleteElementID = elementID;
   deleteElementType = type;
+  let deleteDlg = document.getElementById("deleteDlg");
+  if (type == "asset") {
+    deleteDlg.setAttribute("title", "Delete Asset?");
+  } else {
+    deleteDlg.setAttribute("title", "Delete Element?");
+  }
 }
 
 function closeElementInfo() {
@@ -395,6 +434,13 @@ function closeRenameElement() {
 }
 function closeDeleteElement() {
   $("#deleteDlg").dialog("close");
+}
+
+function deleteElement() {
+
+}
+function renameElement() {
+
 }
 
 function addTab(role, elementID) {

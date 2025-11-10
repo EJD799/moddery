@@ -376,6 +376,7 @@ function editAsset(assetID) {
 function openElementInfo(elementID, type) {
   $("#elementInfoDlg").dialog("open");
   let elementInfoDlg = document.getElementById("elementInfoDlg");
+  let elementInfoDlgContent = document.getElementById("elementInfoDlgContent");
   let elementIdentifier;
   let elementType;
   if (type == "asset") {
@@ -387,19 +388,23 @@ function openElementInfo(elementID, type) {
     } else {
       elementType = "Asset";
     }
+    elementInfoDlgContent.innerHTML = `
+    Name: ${elementID}<br>
+    ID: ${elementIdentifier}<br>
+    Type: ${elementType}
+    `;
   } else {
     elementInfoDlg.setAttribute("title", "Element Info");
     projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
       elementIdentifier = JSON.parse(data).id;
       elementType = JSON.parse(data).type;
+      elementInfoDlgContent.innerHTML = `
+      Name: ${elementID}<br>
+      ID: ${elementIdentifier}<br>
+      Type: ${elementType}
+      `;
     });
   }
-  let elementInfoDlgContent = document.getElementById("elementInfoDlgContent");
-  elementInfoDlgContent.innerHTML = `
-  Name: ${elementID}<br>
-  ID: ${elementIdentifier}<br>
-  Type: ${elementType}
-  `;
 }
 function openRenameElement(elementID, type) {
   $("#renameDlg").dialog("open");
@@ -412,17 +417,20 @@ function openRenameElement(elementID, type) {
     renameDlg.setAttribute("title", "Rename Element");
   }
   let renameBox = document.getElementById("renameDlgBox");
-  renameBox.value = elementID;
+  renameBox.value = elementID.replace("_dot_", ".");
 }
 function openDeleteElement(elementID, type) {
   $("#deleteDlg").dialog("open");
   deleteElementID = elementID;
   deleteElementType = type;
   let deleteDlg = document.getElementById("deleteDlg");
+  let deleteDlgText = document.getElementById("deleteDlgText");
   if (type == "asset") {
     deleteDlg.setAttribute("title", "Delete Asset?");
+    deleteDlgText.innerHTML = `Are you sure you want to delete the asset ${elementID.replace("_dot_", ".")}?`;
   } else {
     deleteDlg.setAttribute("title", "Delete Element?");
+    deleteDlgText.innerHTML = `Are you sure you want to delete the element ${elementID}?`;
   }
 }
 

@@ -1257,13 +1257,13 @@ const bedrockScriptToolbox = {
       colour: '%{BKY_VARIABLES_HUE}'
     },
     // Functions
-    /*{
+    {
       kind: 'category',
       name: 'Functions',
       custom: 'PROCEDURE',
       colour: '%{BKY_PROCEDURES_HUE}'
-    },*/
-    {
+    },
+    /*{
       kind: 'category',
       name: 'Functions',
       colour: '%{BKY_PROCEDURES_HUE}',
@@ -1271,7 +1271,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'custom_procedure_def'},
         { kind: 'block', type: 'custom_procedure_call'},
       ]
-    },
+    },*/
     {
       kind: "sep"
     },

@@ -699,7 +699,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       }
     ],
-    output: null,
+    output: "Boolean",
     inputsInline: true
   },
   {
@@ -719,6 +719,13 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
       }
     ],
     output: null,
+    inputsInline: true
+  },
+  {
+    type: "is_hardcore",
+    message0: "is world in hardcore?",
+    colour: 180,
+    output: "Boolean",
     inputsInline: true
   },
 ]);
@@ -942,7 +949,8 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'send_message', inputs: { MESSAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'set_gamerule' },
-        { kind: 'block', type: 'get_gamerule' }
+        { kind: 'block', type: 'get_gamerule' },
+        { kind: 'block', type: 'is_hardcore' },
       ]
     },
     {

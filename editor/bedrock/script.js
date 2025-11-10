@@ -1201,7 +1201,7 @@ const bedrockScriptToolbox = {
           type: 'text_indexOf',
           inputs: {
             VALUE: { block: { type: 'text' } },
-            END: { shadow: { type: 'text' } }
+            FIND: { shadow: { type: 'text' } }
           }
         },
         {
@@ -1427,6 +1427,17 @@ Blockly.Blocks['text'].init = function() {
   this.setTooltip("Text");
   this.setHelpUrl("");
 };
+
+const originalUpdate = Blockly.Procedures.mutateCallers;
+Blockly.Procedures.mutateCallers = function(defBlock) {
+  originalUpdate.call(this, defBlock);
+  const workspace = defBlock.workspace;
+  const callers = Blockly.Procedures.getCallers(defBlock.getFieldValue('NAME'), workspace);
+  callers.forEach(block => {
+    block.setInputsInline(true); // 👈 force inline layout for all call blocks
+  });
+};
+
 
 Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);

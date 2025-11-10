@@ -393,7 +393,7 @@ function openElementInfo(elementID, type) {
     ID: ${elementIdentifier}<br>
     Type: ${elementType}
     `;
-    $(`#${elementID}_assetMenu`).hide();
+    $(`#${elementID.replace(".", "_dot_")}_assetMenu`).hide();
   } else {
     $("#elementInfoDlg").dialog("option", "title", "Element Info");
     projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {

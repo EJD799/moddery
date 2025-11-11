@@ -24,6 +24,11 @@ const componentDefinitions = {
                 type: "boolean",
                 name: "replace_block_item",
                 label: "Replace Block Item"
+            },
+            {
+                type: "list",
+                name: "use_on",
+                label: "Use On Filter"
             }
         ],
         requires: false
@@ -312,6 +317,21 @@ function createComponent() {
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("type", "checkbox");
                 elementBox.appendChild(newComponentDOM);
+            } else if (newComponentType == "list") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
+                newComponentDOM.innerHTML = `
+                ${newComponentInputLabel} <i class="fas fa-sliders tooltipIcon" title="Separate items with commas. Do not add spaces."></i> 
+                `;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                elementBox.appendChild(newComponentDOM);
+                $(".tooltipIcon").tooltip({
+                    show: { delay: 0 }
+                });
             } else {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);

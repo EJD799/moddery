@@ -375,15 +375,15 @@ function createComponent() {
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 elementBox.appendChild(newComponentDOM);
             }
-            $(".tooltipIcon").tooltip({
-                show: { effect: "fadeIn", duration: 200, delay: 0 },
-                hide: { effect: "fadeOut", duration: 200, delay: 0 },
-                track: false
-            });
             elementBox.appendChild(document.createElement("br"));
             elementBox.appendChild(document.createElement("br"));
         }
         parentDiv.appendChild(elementBox);
+        $(".tooltipIcon").tooltip({
+            show: { effect: "fadeIn", duration: 200, delay: 0 },
+            hide: { effect: "fadeOut", duration: 200, delay: 0 },
+            track: false
+        });
         $('input').addClass("ui-widget ui-widget-content ui-corner-all");
         /*if (Object.keys(currentItemComponents).length % 3 === 0) {
             parentDiv.appendChild(document.createElement("br"));

@@ -268,32 +268,34 @@ function createElementDropdown(elementID, type) {
 }
 
 function addElement() {
-  var elementJSON = {
-    "name": $("#addElementNameBox").val(),
-    "id": $("#addElementIDBox").val(),
-    "type": $("#addElementType").val()
-  };
-  projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
-  addTab($("#addElementType").val(), $("#addElementNameBox").val());
-  elementCount++;
-  var parentDiv = document.getElementById("tabs-1");
-  var elementBox = document.createElement("div");
-  elementBox.setAttribute("class", "elementbox");
-  elementBox.innerHTML = `
-  <h3>${$("#addElementNameBox").val()}</h3>
-  <button onclick="editElement('${$("#addElementNameBox").val()}')" id="${$("#addElementNameBox").val()}_editBtn">Edit</button>
-  <button id="${$("#addElementNameBox").val()}_optionBtn">&#x22EF;</button>
-  `;
-  parentDiv.appendChild(elementBox);
-  /*if (elementCount % 4 === 0) {
-    parentDiv.appendChild(document.createElement("br"));
-  }*/
-  $("#" + $("#addElementNameBox").val() + "_editBtn").button();
-  $("#" + $("#addElementNameBox").val() + "_optionBtn").button();
-  createElementDropdown($("#addElementNameBox").val(), "element");
-  closeAddElementDlg();
-  $("#addElementNameBox").val("");
-  $("#addElementIDBox").val("");
+  if (fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json")) {
+    var elementJSON = {
+      "name": $("#addElementNameBox").val(),
+      "id": $("#addElementIDBox").val(),
+      "type": $("#addElementType").val()
+    };
+    projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
+    addTab($("#addElementType").val(), $("#addElementNameBox").val());
+    elementCount++;
+    var parentDiv = document.getElementById("tabs-1");
+    var elementBox = document.createElement("div");
+    elementBox.setAttribute("class", "elementbox");
+    elementBox.innerHTML = `
+    <h3>${$("#addElementNameBox").val()}</h3>
+    <button onclick="editElement('${$("#addElementNameBox").val()}')" id="${$("#addElementNameBox").val()}_editBtn">Edit</button>
+    <button id="${$("#addElementNameBox").val()}_optionBtn">&#x22EF;</button>
+    `;
+    parentDiv.appendChild(elementBox);
+    /*if (elementCount % 4 === 0) {
+      parentDiv.appendChild(document.createElement("br"));
+    }*/
+    $("#" + $("#addElementNameBox").val() + "_editBtn").button();
+    $("#" + $("#addElementNameBox").val() + "_optionBtn").button();
+    createElementDropdown($("#addElementNameBox").val(), "element");
+    closeAddElementDlg();
+    $("#addElementNameBox").val("");
+    $("#addElementIDBox").val("");
+  }
 }
 
 addAssetUploadInput.addEventListener("change", (event) => {

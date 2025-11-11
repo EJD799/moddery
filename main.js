@@ -555,19 +555,13 @@ async function saveElement(elementTab) {
 function fileListInFolder(path) {
   const folder = projZip.folder(path);
   const folderPath = path + "/";
-  const filesInFolder = Object.keys(folder.files).filter(name => {
-    const file = folder.files[name];
-    // Must start with the folder path
-    if (!name.startsWith(folderPath)) return false;
-    // Exclude directories
-    if (file.dir) return false;
-    // Optional: exclude deeper subfolders (only immediate children)
-    const relPath = name.slice(folderPath.length);
-    if (relPath.includes("/")) return false;
-
-    return true;
+  let fileNames;
+  folder.forEach((relativePath, file) => {
+    if (!file.dir) {
+      fileNames.push(relativePath); // relativePath excludes "myfolder/"
+    }
   });
-  return filesInFolder;
+  return fileNames;
 }
 
 function getTextureList() {

@@ -212,3 +212,7 @@ input[type="number"] {
 #selectTextureDlg {
     padding: 0;
 }
+
+.textureRadio {
+    margin-left: 10px;
+}

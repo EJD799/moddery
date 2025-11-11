@@ -397,7 +397,7 @@ function openSelectTextureDlg() {
   let preview;
   let itemTitle;
   selectTextureMenu.innerHTML = "";
-  for (let i = 0; i < textures.length; i++;) {
+  for (let i = 0; i < textures.length; i++) {
     selectTextureMenuItem = document.createElement("div");
     selectTextureMenuItem.setAttribute("class", "textureMenuItem");
     previewBox = document.createElement("div");

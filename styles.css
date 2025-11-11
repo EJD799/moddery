@@ -147,6 +147,10 @@ input[type="number"] {
     color: #75abff;
 }
 
+.deleteIcon:hover {
+    color: #ff837d;
+}
+
 .ui-tooltip {
     max-width: 200px;           /* smaller width */
     padding: 5px 8px;           /* less padding */

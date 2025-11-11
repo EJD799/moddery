@@ -463,5 +463,9 @@ function loadProject(data) {
     $("#categoryBox").val(data.invCategory);
     $("#stackSizeBox").val(data.maxStackSize);
     selectedTexture = data.texture;
-    document.getElementById("textureNameText").innerHTML = selectedTexture;
+    if (selectedTexture) {
+        document.getElementById("textureNameText").innerHTML = selectedTexture;
+    } else {
+        document.getElementById("textureNameText").innerHTML = "No texture selected";
+    }
 }

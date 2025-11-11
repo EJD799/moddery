@@ -11,6 +11,21 @@ var renameElementType;
 var deleteElementID;
 var deleteElementType;
 
+function arraysEqual(a, b) {
+  if (!Array.isArray(a) || !Array.isArray(b)) return false;
+  if (a.length !== b.length) return false;
+  return a.every((val, i) => val === b[i]);
+}
+
+function arrayContains(arrayOfArrays, targetArray) {
+  return arrayOfArrays.some(arr => arraysEqual(arr, targetArray));
+}
+
+function indexInArray(arrayOfArrays, targetArray) {
+  return arrayOfArrays.findIndex(arr => arraysEqual(arr, targetArray));
+}
+
+
 $("#toolbar").menu();
 $("#tabs").tabs();
 $("#newProjDlg").dialog({
@@ -384,12 +399,16 @@ function shouldRemoveMargin(role) {
 function editElement(elementID) {
   projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
     var dataParsed = JSON.parse(data);
-    addTab(dataParsed.type, elementID);
+    if (!arrayContains(Object.values(openElements), [dataParsed.type, elementID])) {
+      addTab(dataParsed.type, elementID);
+    }
   });
 }
 function editAsset(assetID) {
   projZip.folder("assets").file(decodeText(assetID)).async("string").then(function (data) {
-    addTab("Image", assetID);
+    if (!arrayContains(Object.values(openElements), ["Image", assetID])) {
+      addTab("Image", assetID);
+    }
   });
 }
 

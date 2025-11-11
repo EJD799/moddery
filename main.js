@@ -169,6 +169,13 @@ function closeAboutDlg() {
   $("#aboutDlg").dialog("close");
 }
 
+function encodeText(text) {
+  return text.replace(" ", "_space_").replace(".", "_dot_").replace("(", "_op_").replace(")", "_cp_");
+}
+function decodeText(text) {
+  return text.replace("_space_", " ").replace("_dot_", ".").replace("_op_", "(").replace("_cp_", ")");
+}
+
 function createElementDropdown(elementID, type) {
   let menu = document.createElement("ul");
   menu.setAttribute("class", "sublist");
@@ -278,7 +285,7 @@ async function addAsset() {
   let file = addAssetUploadInput.files[0];
   let fileType = file.name.split(".")[1];
   let fileName = addAssetNameBox.value;
-  let fileNameEncoded = fileName.replace(".", "_dot_").replace(" ", "_space_");
+  let fileNameEncoded = encodeText(fileName);
   let previewBox;
   let preview;
   let editBtn;
@@ -368,7 +375,7 @@ function editElement(elementID) {
   });
 }
 function editAsset(assetID) {
-  projZip.folder("assets").file(assetID.replace("_dot_", ".").replace("_space_", " ")).async("string").then(function (data) {
+  projZip.folder("assets").file(decodeText(assetID)).async("string").then(function (data) {
     addTab("Image", assetID);
   });
 }
@@ -381,8 +388,8 @@ function openElementInfo(elementID, type) {
   let elementType;
   if (type == "asset") {
     $("#elementInfoDlg").dialog("option", "title", "Asset Info");
-    elementID = elementID.replace("_dot_", ".").replace("_space_", " ");
-    elementIdentifier = elementID.replace("_dot_", ".").replace("_space_", " ");
+    elementID = decodeText(elementID);
+    elementIdentifier = decodeText(elementID);
     if (elementID.endsWith("png")) {
       elementType = "Image";
     } else {
@@ -393,7 +400,7 @@ function openElementInfo(elementID, type) {
     ID: ${elementIdentifier}<br>
     Type: ${elementType}
     `;
-    $(`#${elementID.replace(".", "_dot_").replace(" ", "_space_")}_assetMenu`).hide();
+    $(`#${encodeText(elementID)}_assetMenu`).hide();
   } else {
     $("#elementInfoDlg").dialog("option", "title", "Element Info");
     projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
@@ -421,9 +428,9 @@ function openRenameElement(elementID, type) {
     $("#renameDlg").dialog("option", "title", "Rename Element");
     $(`#${elementID}_elementMenu`).hide();
   }
-  renameDlgText.innerHTML = `Rename ${elementID.replace("_dot_", ".").replace("_space_", " ")} to:`;
+  renameDlgText.innerHTML = `Rename ${decodeText(elementID)} to:`;
   let renameBox = document.getElementById("renameDlgBox");
-  renameBox.value = elementID.replace("_dot_", ".").replace("_space_", " ");
+  renameBox.value = decodeText(elementID);
 }
 function openDeleteElement(elementID, type) {
   $("#deleteDlg").dialog("open");
@@ -433,11 +440,11 @@ function openDeleteElement(elementID, type) {
   let deleteDlgText = document.getElementById("deleteDlgText");
   if (type == "asset") {
     $("#deleteDlg").dialog("option", "title", "Delete Asset?");
-    deleteDlgText.innerHTML = `Are you sure you want to delete the asset ${elementID.replace("_dot_", ".").replace("_space_", " ")}?`;
+    deleteDlgText.innerHTML = `Are you sure you want to delete the asset ${decodeText(elementID)}?`;
     $(`#${elementID}_assetMenu`).hide();
   } else {
     $("#deleteDlg").dialog("option", "title", "Delete Element?");
-    deleteDlgText.innerHTML = `Are you sure you want to delete the element ${elementID}?`;
+    deleteDlgText.innerHTML = `Are you sure you want to delete the element ${decodeText(elementID)}?`;
     $(`#${elementID}_elementMenu`).hide();
   }
 }
@@ -460,7 +467,7 @@ function renameElement() {
 }
 
 function addTab(role, elementID) {
-  var label = elementID.replace("_dot_", ".").replace("_space_", " "),
+  var label = decodeText(elementID),
     id = "tabs-" + tabCounter,
     li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
     tabContentHtml = getTabContent(role, elementID);
@@ -487,7 +494,7 @@ function addTab(role, elementID) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
     } else if (role == "Image") {
-      projZip.folder("assets").file(elementID.replace("_dot_", ".").replace("_space_", " ")).async("blob").then(async function (data) {
+      projZip.folder("assets").file(decodeText(elementID)).async("blob").then(async function (data) {
         frame.contentWindow.loadProject(await fileToDataURL(data));
       });
     }
@@ -526,7 +533,7 @@ async function saveElement(elementTab) {
     projZip.folder("elements").file(elementTab[1] + ".json", JSON.stringify(frame.contentWindow.saveProject()));
   } else if (elementTab[0] == "Image") {
     var frame = document.getElementById(elementTab[1] + "_frame");
-    projZip.folder("assets").file(elementTab[1].replace("_dot_", ".").replace("_space_", " "), dataURItoFile(frame.contentWindow.saveProject(), elementTab[1] + ".png"));
+    projZip.folder("assets").file(decodeText(elementTab[1]), dataURItoFile(frame.contentWindow.saveProject(), elementTab[1] + ".png"));
     var preview = document.getElementById(elementTab[1] + "_preview");
     preview.src = frame.contentWindow.saveProject();
   }

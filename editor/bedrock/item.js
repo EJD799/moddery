@@ -390,7 +390,6 @@ function createComponent() {
 function openSelectTextureDlg() {
   $("#selectTextureDlg").dialog("open");
   textures = window.parent.getTextureList();
-  alert(JSON.stringify(textures));
   let selectTextureMenu = document.getElementById("selectTextureMenu");
   selectTextureMenu.innerHTML = "";
   for (let i = 0; i < textures.length; i++) {

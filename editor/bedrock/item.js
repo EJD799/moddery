@@ -257,7 +257,7 @@ $("#addComponentDlg").dialog("close");
 $("#selectTextureDlg").dialog({
   position: { my: "center", at: "center", of: $("body") },
   resizable: false,
-  height: 200,
+  height: 500,
   width: 500
 });
 $("#selectTextureDlg").dialog("close");
@@ -391,6 +391,29 @@ function openSelectTextureDlg() {
   $("#selectTextureDlg").dialog("open");
   textures = window.parent.getTextureList();
   alert(JSON.stringify(textures));
+  let selectTextureMenu = document.getElementById("selectTextureMenu");
+  let selectTextureMenuItem;
+  let previewBox;
+  let preview;
+  let itemTitle;
+  selectTextureMenu.innerHTML = "";
+  for (let i = 0; i < textures.length; i++;) {
+    selectTextureMenuItem = document.createElement("div");
+    selectTextureMenuItem.setAttribute("class", "textureMenuItem");
+    previewBox = document.createElement("div");
+    previewBox.setAttribute("class", "smallPreviewBox");
+    preview = document.createElement("img");
+    projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
+      preview.setAttribute("src", await fileToDataURL(file));
+    });
+    preview.setAttribute("id", fileNameEncoded + "_preview");
+    previewBox.appendChild(preview);
+    selectTextureMenuItem.appendChild(previewBox);
+    itemTitle = document.createElement("h3");
+    itemTitle.innerHTML = textures[i];
+    selectTextureMenuItem.appendChild(itemTitle);
+    selectTextureMenu.appendChild(selectTextureMenuItem);
+  }
 }
 function closeSelectTextureDlg() {
   $("#selectTextureDlg").dialog("close");

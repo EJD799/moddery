@@ -134,6 +134,26 @@ input[type="number"] {
   image-rendering: pixelated;
 }
 
+.smallPreviewBox {
+  width: 100px;
+  height: 50px;
+  border: none;
+  overflow: hidden;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Key part */
+.smallPreviewBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 🔹 scales image to fit while preserving aspect ratio */
+  object-position: center; /* centers it nicely */
+  image-rendering: pixelated;
+}
+
 .deleteBtn:hover {
     border-color: #ff837d;
     color: #ff837d;
@@ -160,4 +180,20 @@ input[type="number"] {
     border: 1px solid #ccc;     /* subtle border */
     border-radius: 4px;         /* rounded corners */
     box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* clean shadow */
+}
+
+.textureMenu {
+    width: 100%;
+    height: 400px;
+}
+
+.textureMenuItem {
+    padding: 10px;
+    background: #333333;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    height: 60px;
+    display: block;
+    margin: 10px;
 }

@@ -555,7 +555,7 @@ async function saveElement(elementTab) {
 function fileListInFolder(path) {
   const folder = projZip.folder(path);
   const folderPath = path + "/";
-  let fileNames;
+  let fileNames = [];
   folder.forEach((relativePath, file) => {
     if (!file.dir) {
       fileNames.push(relativePath); // relativePath excludes "myfolder/"

@@ -146,3 +146,14 @@ input[type="number"] {
 .tooltipIcon:hover {
     color: #75abff;
 }
+
+.ui-tooltip {
+    max-width: 200px;           /* smaller width */
+    padding: 5px 8px;           /* less padding */
+    font-size: 12px;            /* smaller text */
+    color: #000;                /* text color */
+    background: #fff;           /* background color */
+    border: 1px solid #ccc;     /* subtle border */
+    border-radius: 4px;         /* rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* clean shadow */
+}

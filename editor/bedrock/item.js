@@ -322,10 +322,12 @@ function createComponent() {
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
                 newComponentDOM.innerHTML = newComponentInputLabel;
                 elementBox.appendChild(newComponentDOM);
+                elementBox.innerHTML = elementBox.innerHTML + " ";
                 newComponentDOM = document.createElement("i");
                 newComponentDOM.setAttribute("class", "fas fa-sliders tooltipIcon");
                 newComponentDOM.setAttribute("title", "Separate items with commas. Do not add spaces.");
                 elementBox.appendChild(newComponentDOM);
+                elementBox.innerHTML = elementBox.innerHTML + " ";
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);

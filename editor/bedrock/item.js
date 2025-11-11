@@ -376,7 +376,12 @@ function createComponent() {
             }
             $(".tooltipIcon").tooltip({
                 show: { effect: "fadeIn", duration: 200, delay: 0 },
-                hide: { effect: "fadeOut", duration: 200, delay: 0 }
+                hide: { effect: "fadeOut", duration: 200, delay: 0 },
+                track: false,             // disables mouse-following logic
+                open: function(event, ui) {
+                    // Cancel the hover-intent timer by forcing immediate position
+                    ui.tooltip.stop(true, true).fadeIn(200);
+                }
             });
             elementBox.appendChild(document.createElement("br"));
             elementBox.appendChild(document.createElement("br"));

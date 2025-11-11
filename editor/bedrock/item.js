@@ -406,7 +406,7 @@ function openSelectTextureDlg() {
     window.parent.projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
       preview.setAttribute("src", await window.parent.fileToDataURL(file));
     });
-    preview.setAttribute("id", fileNameEncoded + "_preview");
+    preview.setAttribute("id", window.parent.encodeText(textures[i]) + "_preview");
     previewBox.appendChild(preview);
     selectTextureMenuItem.appendChild(previewBox);
     itemTitle = document.createElement("h3");

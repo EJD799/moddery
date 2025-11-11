@@ -400,6 +400,12 @@ function openSelectTextureDlg() {
     let itemRadio;
     selectTextureMenuItem = document.createElement("div");
     selectTextureMenuItem.setAttribute("class", "textureMenuItem");
+    itemRadio = document.createElement("input");
+    itemRadio.setAttribute("type", "radio");
+    itemRadio.setAttribute("name", "selectedTexture");
+    itemRadio.setAttribute("class", "textureRadio");
+    itemRadio.setAttribute("value", textures[i]);
+    selectTextureMenuItem.appendChild(itemRadio);
     previewBox = document.createElement("div");
     previewBox.setAttribute("class", "smallPreviewBox");
     preview = document.createElement("img");
@@ -413,12 +419,6 @@ function openSelectTextureDlg() {
     itemTitle.setAttribute("class", "textureMenuTitle");
     itemTitle.innerHTML = textures[i];
     selectTextureMenuItem.appendChild(itemTitle);
-    itemRadio = document.createElement("input");
-    itemRadio.setAttribute("type", "radio");
-    itemRadio.setAttribute("name", "selectedTexture");
-    itemRadio.setAttribute("class", "textureRadio");
-    itemRadio.setAttribute("value", textures[i]);
-    selectTextureMenuItem.appendChild(itemRadio);
     selectTextureMenu.appendChild(selectTextureMenuItem);
   }
 }
@@ -428,6 +428,6 @@ function closeSelectTextureDlg() {
 function selectTexture() {
     $("#selectTextureDlg").dialog("close");
     const selected = document.querySelector('input[name="selectedTexture"]:checked');
-    alert(selected);
+    alert(selected.value);
 }
 $("#addComponentType").selectmenu();

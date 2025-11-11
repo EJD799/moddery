@@ -320,9 +320,11 @@ function createComponent() {
             } else if (newComponentType == "list") {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
-                newComponentDOM.innerHTML = `
-                ${newComponentInputLabel} <i class="fas fa-sliders tooltipIcon" title="Separate items with commas. Do not add spaces."></i> 
-                `;
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("i");
+                newComponentDOM.setAttribute("class", "fas fa-sliders tooltipIcon");
+                newComponentDOM.setAttribute("title", "Separate items with commas. Do not add spaces.");
                 elementBox.appendChild(newComponentDOM);
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);

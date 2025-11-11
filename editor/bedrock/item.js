@@ -18,17 +18,20 @@ const componentDefinitions = {
             {
                 type: "text",
                 name: "block",
-                label: "Block ID"
+                label: "Block ID",
+                tooltip: "The block to place."
             },
             {
                 type: "boolean",
                 name: "replace_block_item",
-                label: "Replace Block Item"
+                label: "Replace Block Item",
+                tooltip: "Whether the item should replace the block."
             },
             {
                 type: "list",
                 name: "use_on",
-                label: "Use On Filter"
+                label: "Use On Filter",
+                tooltip: "The list of items the block can be used on. Separate items with commas. Do not add spaces."
             }
         ],
         requires: false
@@ -295,12 +298,19 @@ function createComponent() {
             newComponentType = componentDefinitions[$("#addComponentType").val()].inputs[i].type;
             newComponentInputName = componentDefinitions[$("#addComponentType").val()].inputs[i].name;
             newComponentInputLabel = componentDefinitions[$("#addComponentType").val()].inputs[i].label;
+            newComponentInputTooltip = componentDefinitions[$("#addComponentType").val()].inputs[i].tooltip;
             newComponentTypeName = componentDefinitions[$("#addComponentType").val()].name;
             if (newComponentType == "number") {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
                 newComponentDOM.innerHTML = newComponentInputLabel + " ";
                 elementBox.appendChild(newComponentDOM);
+                elementBox.innerHTML = elementBox.innerHTML + " ";
+                newComponentDOM = document.createElement("i");
+                newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                elementBox.appendChild(newComponentDOM);
+                elementBox.innerHTML = elementBox.innerHTML + " ";
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
@@ -312,6 +322,12 @@ function createComponent() {
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
                 newComponentDOM.innerHTML = newComponentInputLabel + " ";
                 elementBox.appendChild(newComponentDOM);
+                elementBox.innerHTML = elementBox.innerHTML + " ";
+                newComponentDOM = document.createElement("i");
+                newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                elementBox.appendChild(newComponentDOM);
+                elementBox.innerHTML = elementBox.innerHTML + " ";
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
@@ -325,7 +341,7 @@ function createComponent() {
                 elementBox.innerHTML = elementBox.innerHTML + " ";
                 newComponentDOM = document.createElement("i");
                 newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
-                newComponentDOM.setAttribute("title", "Separate items with commas. Do not add spaces.");
+                newComponentDOM.setAttribute("title", newComponentInputTooltip);
                 elementBox.appendChild(newComponentDOM);
                 elementBox.innerHTML = elementBox.innerHTML + " ";
                 newComponentDOM = document.createElement("input");
@@ -333,25 +349,26 @@ function createComponent() {
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 elementBox.appendChild(newComponentDOM);
-                $(".tooltipIcon").tooltip({
-                    show: null,         // disable animation entirely
-                    hide: false,        // disable fade-out animation
-                    track: false,       // static position (faster)
-                    open: function(event, ui) {
-                    ui.tooltip.css("animation", "none"); // ensure no CSS transitions
-                    }
-                });
             } else {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
                 newComponentDOM.innerHTML = newComponentInputLabel + " ";
                 elementBox.appendChild(newComponentDOM);
+                elementBox.innerHTML = elementBox.innerHTML + " ";
+                newComponentDOM = document.createElement("i");
+                newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                elementBox.appendChild(newComponentDOM);
+                elementBox.innerHTML = elementBox.innerHTML + " ";
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 elementBox.appendChild(newComponentDOM);
             }
+            $(".tooltipIcon").tooltip({
+                show: { delay: 0 }
+            });
             elementBox.appendChild(document.createElement("br"));
             elementBox.appendChild(document.createElement("br"));
         }

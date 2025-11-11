@@ -420,6 +420,12 @@ function openSelectTextureDlg() {
     itemTitle.innerHTML = textures[i];
     selectTextureMenuItem.appendChild(itemTitle);
     selectTextureMenu.appendChild(selectTextureMenuItem);
+    selectTextureMenuItem.addEventListener("click", () => {
+      const itemRadio = selectTextureMenuItem.querySelector('input[type="radio"]');
+      if (itemRadio) {
+        itemRadio.checked = true;  // select this radio
+      }
+    });
   }
 }
 function closeSelectTextureDlg() {

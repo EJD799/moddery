@@ -199,6 +199,10 @@ input[type="number"] {
     text-align: left;
 }
 
+.textureMenuItem:hover {
+    background: #00498f;
+}
+
 /* Title text next to image, vertically centered */
 .textureMenuTitle {
     font-size: 16px;

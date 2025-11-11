@@ -112,9 +112,23 @@ function closeNewProjDlg() {
 }
 function openEditProjDlg() {
   $("#editProjDlg").dialog("open");
+  $("#editProjNameBox").val(projManifest.name);
+  $("#editProjNamespaceBox").val(projManifest.namespace);
+  $("#editProjVersionBox1").val(projManifest.addon_version[0]);
+  $("#editProjVersionBox2").val(projManifest.addon_version[1]);
+  $("#editProjVersionBox3").val(projManifest.addon_version[2]);
+  $("#editProjDescriptionBox").val(projManifest.description);
 }
 function closeEditProjDlg() {
   $("#editProjDlg").dialog("close");
+}
+function saveProjectInfo() {
+  closeEditProjDlg();
+  projManifest.name = $("#editProjNameBox").val();
+  projManifest.namespace = $("#editProjNamespaceBox").val();
+  projManifest.addon_version = [$("#editProjVersionBox1").val(), $("#editProjVersionBox2").val(), $("#editProjVersionBox3").val()];
+  projManifest.description = $("#editProjDescriptionBox").val();
+  projZip.file("manifest.json", JSON.stringify(projManifest));
 }
 function createProject() {
   closeNewProjDlg();
@@ -126,17 +140,16 @@ function createProject() {
     "type": $("#newProjType").val(),
     "namespace": $("#newProjNamespaceBox").val(),
     "bp_uuid": crypto.randomUUID(),
-    "rp_uuid": crypto.randomUUID()
+    "rp_uuid": crypto.randomUUID(),
+    "addon_version": [1, 0, 0],
+    "mc_version": [1, 21, 90],
+    "description": ""
   };
   projZip.file("manifest.json", JSON.stringify(projManifest));
   projZip.folder("elements");
   projZip.folder("assets");
   $("#newProjNameBox").val("");
   $("#newProjNamespaceBox").val("");
-}
-function saveProjectInfo() {
-  alert("Coming Soon!");
-  closeEditProjDlg();
 }
 function openAddElementDlg() {
   $("#addElementDlg").dialog("open");

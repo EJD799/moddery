@@ -552,8 +552,26 @@ async function saveElement(elementTab) {
   }
 }
 
-function getTextures() {
-  return projZip.folder("assets").files;
+function fileListInFolder(path) {
+  const folder = projZip.folder(path);
+  const folderPath = path + "/";
+  const filesInFolder = Object.keys(folder.files).filter(name => {
+    const file = folder.files[name];
+    // Must start with the folder path
+    if (!name.startsWith(folderPath)) return false;
+    // Exclude directories
+    if (file.dir) return false;
+    // Optional: exclude deeper subfolders (only immediate children)
+    const relPath = name.slice(folderPath.length);
+    if (relPath.includes("/")) return false;
+
+    return true;
+  });
+  return filesInFolder;
+}
+
+function getTextureList() {
+  return fileListInFolder("assets");
 }
 
 $("#newProjBtn").button();

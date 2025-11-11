@@ -334,7 +334,12 @@ function createComponent() {
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 elementBox.appendChild(newComponentDOM);
                 $(".tooltipIcon").tooltip({
-                    show: { delay: 0 }
+                    show: null,         // disable animation entirely
+                    hide: false,        // disable fade-out animation
+                    track: false,       // static position (faster)
+                    open: function(event, ui) {
+                    ui.tooltip.css("animation", "none"); // ensure no CSS transitions
+                    }
                 });
             } else {
                 newComponentDOM = document.createElement("label");

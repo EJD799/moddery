@@ -392,12 +392,12 @@ function openSelectTextureDlg() {
   textures = window.parent.getTextureList();
   alert(JSON.stringify(textures));
   let selectTextureMenu = document.getElementById("selectTextureMenu");
-  let selectTextureMenuItem;
-  let previewBox;
-  let preview;
-  let itemTitle;
   selectTextureMenu.innerHTML = "";
   for (let i = 0; i < textures.length; i++) {
+    let selectTextureMenuItem;
+    let previewBox;
+    let preview;
+    let itemTitle;
     selectTextureMenuItem = document.createElement("div");
     selectTextureMenuItem.setAttribute("class", "textureMenuItem");
     previewBox = document.createElement("div");
@@ -409,7 +409,8 @@ function openSelectTextureDlg() {
     preview.setAttribute("id", window.parent.encodeText(textures[i]) + "_preview");
     previewBox.appendChild(preview);
     selectTextureMenuItem.appendChild(previewBox);
-    itemTitle = document.createElement("h3");
+    itemTitle = document.createElement("span");
+    itemTitle.setAttribute("class", "textureMenuTitle");
     itemTitle.innerHTML = textures[i];
     selectTextureMenuItem.appendChild(itemTitle);
     selectTextureMenu.appendChild(selectTextureMenuItem);

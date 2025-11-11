@@ -197,3 +197,9 @@ input[type="number"] {
     display: block;
     margin: 10px;
 }
+
+.textureMenuTitle {
+    font-size: 24px;
+    font-weight: bold;
+    width: 300px;
+}

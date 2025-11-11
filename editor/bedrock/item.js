@@ -403,8 +403,8 @@ function openSelectTextureDlg() {
     previewBox = document.createElement("div");
     previewBox.setAttribute("class", "smallPreviewBox");
     preview = document.createElement("img");
-    projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
-      preview.setAttribute("src", await fileToDataURL(file));
+    window.parent.projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
+      preview.setAttribute("src", await window.parent.fileToDataURL(file));
     });
     preview.setAttribute("id", fileNameEncoded + "_preview");
     previewBox.appendChild(preview);

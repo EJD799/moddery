@@ -1,5 +1,5 @@
 let textures;
-let elementData;
+let elementData = {};
 let selectedTexture;
 
 const componentDefinitions = {

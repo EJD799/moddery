@@ -437,3 +437,21 @@ function selectTexture() {
     alert(selected.value);
 }
 $("#addComponentType").selectmenu();
+
+function saveProject() {
+    return {
+        name: $("#elementIDBox").val(),
+        id: $("#itemIDBox").val(),
+        type: "Item",
+        displayName: $("#nameBox").val(),
+        invCategory: $("#categoryBox").val(),
+        maxStackSize: $("#stackSizeBox").val()
+    };
+}
+function loadProject(data) {
+    $("#elementIDBox").val(data.name);
+    $("#itemIDBox").val(data.id);
+    $("#nameBox").val(data.displayName);
+    $("#categoryBox").val(data.invCategory);
+    $("#stackSizeBox").val(data.maxStackSize);
+}

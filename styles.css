@@ -197,6 +197,7 @@ input[type="number"] {
     width: 90%;
     height: auto;            /* let height expand if needed */
     text-align: left;
+    cursor: pointer;
 }
 
 .textureMenuItem:hover {

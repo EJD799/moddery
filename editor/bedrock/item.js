@@ -1,4 +1,5 @@
 let textures;
+let elementData;
 
 const componentDefinitions = {
     "Allow Off Hand": {
@@ -434,13 +435,16 @@ function closeSelectTextureDlg() {
 function selectTexture() {
     $("#selectTextureDlg").dialog("close");
     const selected = document.querySelector('input[name="selectedTexture"]:checked');
-    alert(selected.value);
+    if (selected.value) {
+        const textureNameText = document.getElementById("textureNameText");
+        textureNameText.innerHTML = selected.value;
+    }
 }
 $("#addComponentType").selectmenu();
 
 function saveProject() {
     return {
-        name: $("#elementIDBox").val(),
+        name: elementData.name,
         id: $("#itemIDBox").val(),
         type: "Item",
         displayName: $("#nameBox").val(),
@@ -449,6 +453,7 @@ function saveProject() {
     };
 }
 function loadProject(data) {
+    elementData = data;
     $("#elementIDBox").val(data.name);
     $("#itemIDBox").val(data.id);
     $("#nameBox").val(data.displayName);

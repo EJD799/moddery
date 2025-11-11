@@ -324,7 +324,7 @@ function createComponent() {
                 elementBox.appendChild(newComponentDOM);
                 elementBox.innerHTML = elementBox.innerHTML + " ";
                 newComponentDOM = document.createElement("i");
-                newComponentDOM.setAttribute("class", "fas fa-sliders tooltipIcon");
+                newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
                 newComponentDOM.setAttribute("title", "Separate items with commas. Do not add spaces.");
                 elementBox.appendChild(newComponentDOM);
                 elementBox.innerHTML = elementBox.innerHTML + " ";

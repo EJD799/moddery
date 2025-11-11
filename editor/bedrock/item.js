@@ -1,5 +1,6 @@
 let textures;
 let elementData;
+let selectedTexture;
 
 const componentDefinitions = {
     "Allow Off Hand": {
@@ -438,6 +439,7 @@ function selectTexture() {
     if (selected.value) {
         const textureNameText = document.getElementById("textureNameText");
         textureNameText.innerHTML = selected.value;
+        selectedTexture = selected.value;
     }
 }
 $("#addComponentType").selectmenu();
@@ -449,7 +451,8 @@ function saveProject() {
         type: "Item",
         displayName: $("#nameBox").val(),
         invCategory: $("#categoryBox").val(),
-        maxStackSize: $("#stackSizeBox").val()
+        maxStackSize: $("#stackSizeBox").val(),
+        texture: selectedTexture
     };
 }
 function loadProject(data) {
@@ -459,4 +462,5 @@ function loadProject(data) {
     $("#nameBox").val(data.displayName);
     $("#categoryBox").val(data.invCategory);
     $("#stackSizeBox").val(data.maxStackSize);
+    selectedTexture = data.texture;
 }

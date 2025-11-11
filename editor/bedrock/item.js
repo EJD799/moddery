@@ -1,3 +1,5 @@
+let textures;
+
 const componentDefinitions = {
     "Allow Off Hand": {
         name: "Allow Off Hand",
@@ -265,12 +267,6 @@ function addComponent() {
 function closeAddComponentDlg() {
   $("#addComponentDlg").dialog("close");
 }
-function openSelectTextureDlg() {
-  $("#selectTextureDlg").dialog("open");
-}
-function closeSelectTextureDlg() {
-  $("#selectTextureDlg").dialog("close");
-}
 function createComponent() {
     let newComponentObj = {};
     let newComponentType;
@@ -391,8 +387,14 @@ function createComponent() {
     }
     $("#addComponentDlg").dialog("close");
 }
+function openSelectTextureDlg() {
+  $("#selectTextureDlg").dialog("open");
+  textures = window.parent.getTextures();
+}
+function closeSelectTextureDlg() {
+  $("#selectTextureDlg").dialog("close");
+}
 function selectTexture() {
-    alert("Coming Soon!");
     $("#selectTextureDlg").dialog("close");
 }
 $("#addComponentType").selectmenu();

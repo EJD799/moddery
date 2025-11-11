@@ -503,7 +503,7 @@ function addTab(role, elementID) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
     } else if ((role == "Item")) {
-      projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
+      projZip.folder("elements").file(elementID + ".data.json").async("string").then(function (data) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
     } else if (role == "Image") {
@@ -543,13 +543,17 @@ async function saveElement(elementTab) {
     projZip.folder("elements").file(elementTab[1] + ".code.json", JSON.stringify(frame.contentWindow.saveProject()));
   } else if ((elementTab[0] == "Item")) {
     var frame = document.getElementById(elementTab[1] + "_frame");
-    projZip.folder("elements").file(elementTab[1] + ".json", JSON.stringify(frame.contentWindow.saveProject()));
+    projZip.folder("elements").file(elementTab[1] + ".data.json", JSON.stringify(frame.contentWindow.saveProject()));
   } else if (elementTab[0] == "Image") {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("assets").file(decodeText(elementTab[1]), dataURItoFile(frame.contentWindow.saveProject(), elementTab[1] + ".png"));
     var preview = document.getElementById(elementTab[1] + "_preview");
     preview.src = frame.contentWindow.saveProject();
   }
+}
+
+function getTextures() {
+  return projZip.folder("assets").files;
 }
 
 $("#newProjBtn").button();

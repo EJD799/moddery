@@ -317,6 +317,9 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 newComponentDOM.setAttribute("type", "number");
+                newComponentDOM.addEventListener("change", event => {
+                    updateInput(newComponentTypeName, newComponentInputName, event.target.value);
+                });
                 elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "boolean") {
                 newComponentDOM = document.createElement("label");
@@ -335,6 +338,9 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("type", "checkbox");
+                newComponentDOM.addEventListener("change", event => {
+                    updateInput(newComponentTypeName, newComponentInputName, event.target.value);
+                });
                 elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "list") {
                 newComponentDOM = document.createElement("label");
@@ -353,6 +359,9 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.addEventListener("change", event => {
+                    updateInput(newComponentTypeName, newComponentInputName, event.target.value);
+                });
                 elementBox.appendChild(newComponentDOM);
             } else {
                 newComponentDOM = document.createElement("label");
@@ -371,6 +380,9 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.addEventListener("change", event => {
+                    updateInput(newComponentTypeName, newComponentInputName, event.target.value);
+                });
                 elementBox.appendChild(newComponentDOM);
             }
             elementBox.appendChild(document.createElement("br"));
@@ -479,4 +491,8 @@ function loadComponents(data) {
             }
         }
     }
+}
+
+function updateInput(type, input, value) {
+    alert(`${type}\n${input}\n${value}`);
 }

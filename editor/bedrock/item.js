@@ -302,7 +302,9 @@ const componentDefinitions = {
                 label: "Color",
                 tooltip: "The color the item name should be when hovered.",
                 options: [
-                    ""
+                    "black",
+                    "dark_blue",
+                    "dark_green"
                 ]
             }
         ],

@@ -309,7 +309,7 @@ function fileToDataURL(file) {
 }
 
 async function addAsset() {
-  if (!fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json")) {
+  if (!fileListInFolder("assets").includes($("#addAssetNameBox").val())) {
     let file = addAssetUploadInput.files[0];
     let fileType = file.name.split(".")[1];
     let fileName = addAssetNameBox.value;

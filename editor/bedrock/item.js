@@ -474,7 +474,7 @@ function loadComponents(data) {
         for (let i = 0; i < Object.keys(data).length; i++) {
             createComponent(Object.keys(data)[i]);
             let componentInputDefs = componentDefinitions[Object.keys(data)[i]].inputs;
-            for (let j = 0; j < componentInputDefs.length; i++) {
+            for (let j = 0; j < componentInputDefs.length; j++) {
                 $(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`).val(data[componentInputDefs[j].name]);
             }
         }

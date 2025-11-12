@@ -165,6 +165,7 @@ const componentDefinitions = {
                 type: "dropdown",
                 name: "slot",
                 label: "Slot",
+                tooltip: "The enchantment category that can be applied to this item.",
                 options: [
                     "armor_feet",
                     "armor_torso",
@@ -189,7 +190,8 @@ const componentDefinitions = {
             {
                 type: "number",
                 name: "value",
-                label: "Enchantability Value"
+                label: "Enchantability Value",
+                tooltip: "How enchantable the item is. See \"Enchanting Mechanics\" on the Minecraft Wiki."
             }
         ],
         requires: false
@@ -201,7 +203,8 @@ const componentDefinitions = {
             {
                 type: "text",
                 name: "entity",
-                label: "Entity"
+                label: "Entity",
+                tooltip: "The entity to place."
             }
         ],
         requires: false
@@ -213,7 +216,8 @@ const componentDefinitions = {
             {
                 type: "boolean",
                 name: "main",
-                label: "Fire Resistant"
+                label: "Fire Resistant",
+                tooltip: "Whether the item is resistant to fire when dropped, like netherite."
             }
         ],
         requires: false
@@ -225,22 +229,26 @@ const componentDefinitions = {
             {
                 type: "boolean",
                 name: "can_always_eat",
-                label: "Can Always Eat"
+                label: "Can Always Eat",
+                tooltip: "Whether the item can be eaten when the hunger bar is full."
             },
             {
                 type: "number",
                 name: "nutrition",
-                label: "Nutrition"
+                label: "Nutrition",
+                tooltip: "The number of hunger points restored."
             },
             {
                 type: "number",
                 name: "saturation_modifier",
-                label: "Saturation"
+                label: "Saturation",
+                tooltip: "The saturation modifier. See \"Saturation\" on the Minecraft Wiki."
             },
             {
                 type: "string",
                 name: "using_converts_to",
-                label: "Using Converts To"
+                label: "Using Converts To",
+                tooltip: "The item the item turns into when it is consumed."
             }
         ],
         requires: false
@@ -252,7 +260,8 @@ const componentDefinitions = {
             {
                 type: "number",
                 name: "duration",
-                label: "Duration"
+                label: "Duration",
+                tooltip: "How long, in seconds, the item will power a furnace."
             }
         ],
         requires: false

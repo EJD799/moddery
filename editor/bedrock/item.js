@@ -316,6 +316,7 @@ function createComponent(type) {
         var elementBoxTitle = document.createElement("h3");
         elementBoxTitle.innerHTML = type;
         elementBox.appendChild(elementBoxTitle);
+        let dropdownsToRegister = [];
         for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
             newComponentType = componentDefinitions[type].inputs[i].type;
             newComponentInputName = componentDefinitions[type].inputs[i].name;
@@ -369,6 +370,53 @@ function createComponent(type) {
                 newComponentDOM.addEventListener("change", event => {
                     updateInput(typeName, inputName, event.target.value);
                 });
+                elementBox.appendChild(newComponentDOM);
+            } else if (newComponentType == "dropdown") {
+                // Create label
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+
+                // Optional tooltip icon
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    const tooltipIcon = document.createElement("i");
+                    tooltipIcon.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    tooltipIcon.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(tooltipIcon);
+                }
+
+                // Add space before the dropdown
+                elementBox.appendChild(document.createTextNode(" "));
+
+                // Create <select> element
+                newComponentDOM = document.createElement("select");
+                newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
+
+                // Retrieve and add options from component definition
+                const newComponentInputOptions = componentDefinitions[type].inputs[i].options;
+                if (Array.isArray(newComponentInputOptions)) {
+                    for (const optVal of newComponentInputOptions) {
+                        const opt = document.createElement("option");
+                        opt.value = optVal;
+                        opt.textContent = optVal;
+                        newComponentDOM.appendChild(opt);
+                    }
+                }
+
+                // Attach event listener
+                const typeName = newComponentTypeName;
+                const inputName = newComponentInputName;
+                newComponentDOM.addEventListener("change", event => {
+                    updateInput(typeName, inputName, event.target.value);
+                });
+
+                // Add to dropdown registration list for jQuery UI
+                dropdownsToRegister.push(removeSpaces(newComponentTypeName + newComponentInputName));
+
+                // Append to the element box
                 elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "boolean") {
                 newComponentDOM = document.createElement("label");
@@ -444,6 +492,9 @@ function createComponent(type) {
             elementBox.appendChild(document.createElement("br"));
         }
         parentDiv.appendChild(elementBox);
+        for (let k = 0; k < dropdownsToRegister.length; k++) {
+            $("#" + dropdownsToRegister[k]).selectmenu();
+        }
         $(".tooltipIcon").tooltip({
             show: { effect: "fadeIn", duration: 200, delay: 0 },
             hide: { effect: "fadeOut", duration: 200, delay: 0 },

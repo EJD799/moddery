@@ -414,7 +414,7 @@ function createComponent(type) {
                 });
 
                 // Add to dropdown registration list for jQuery UI
-                dropdownsToRegister.push(removeSpaces(newComponentTypeName + newComponentInputName));
+                dropdownsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
 
                 // Append to the element box
                 elementBox.appendChild(newComponentDOM);
@@ -493,7 +493,12 @@ function createComponent(type) {
         }
         parentDiv.appendChild(elementBox);
         for (let k = 0; k < dropdownsToRegister.length; k++) {
-            $("#" + dropdownsToRegister[k]).selectmenu();
+            const [typeName, inputName] = dropdownsToRegister[k];
+            $("#" + typeName + inputName).selectmenu({
+                change: function (event, ui) {
+                    updateInput(typeName, inputName, ui.item.value);
+                }
+            });
         }
         $(".tooltipIcon").tooltip({
             show: { effect: "fadeIn", duration: 200, delay: 0 },

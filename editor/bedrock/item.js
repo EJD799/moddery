@@ -266,6 +266,48 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Glint": {
+        name: "Glint",
+        id: "minecraft:glint",
+        inputs: [
+            {
+                type: "boolean",
+                name: "main",
+                label: "Show Glint",
+                tooltip: "Whether the item should have an enchantment glint."
+            }
+        ],
+        requires: false
+    },
+    "Hand Equipped": {
+        name: "Hand Equipped",
+        id: "minecraft:hand_equipped",
+        inputs: [
+            {
+                type: "boolean",
+                name: "main",
+                label: "Tool Rendering",
+                tooltip: "Whether the item should render like a tool when held."
+            }
+        ],
+        requires: false
+    },
+    "Hover Text Color": {
+        name: "Hover Text Color",
+        id: "minecraft:hover_text_color",
+        inputs: [
+            {
+                type: "dropdown",
+                name: "main",
+                label: "Color",
+                tooltip: "The color the item name should be when hovered.",
+                options: [
+                    ""
+                ]
+            }
+        ],
+        requires: false
+    },
 };
 var currentItemComponents = {};
 

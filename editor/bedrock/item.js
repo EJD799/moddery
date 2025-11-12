@@ -471,7 +471,6 @@ function loadProject(data) {
 
 function loadComponents(data) {
     if (data) {
-        currentItemComponents = data;
         for (let i = 0; i < Object.keys(data).length; i++) {
             createComponent(Object.keys(data)[i]);
             let componentInputDefs = componentDefinitions[Object.keys(data)[i]].inputs;

@@ -268,7 +268,7 @@ function createElementDropdown(elementID, type) {
 }
 
 function addElement() {
-  if (fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json")) {
+  if (!fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json")) {
     var elementJSON = {
       "name": $("#addElementNameBox").val(),
       "id": $("#addElementIDBox").val(),
@@ -309,7 +309,7 @@ function fileToDataURL(file) {
 }
 
 async function addAsset() {
-  if (fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json")) {
+  if (!fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json")) {
     let file = addAssetUploadInput.files[0];
     let fileType = file.name.split(".")[1];
     let fileName = addAssetNameBox.value;

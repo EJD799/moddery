@@ -286,9 +286,6 @@ function addElement() {
     <button id="${$("#addElementNameBox").val()}_optionBtn">&#x22EF;</button>
     `;
     parentDiv.appendChild(elementBox);
-    /*if (elementCount % 4 === 0) {
-      parentDiv.appendChild(document.createElement("br"));
-    }*/
     $("#" + $("#addElementNameBox").val() + "_editBtn").button();
     $("#" + $("#addElementNameBox").val() + "_optionBtn").button();
     createElementDropdown($("#addElementNameBox").val(), "element");
@@ -312,49 +309,48 @@ function fileToDataURL(file) {
 }
 
 async function addAsset() {
-  let file = addAssetUploadInput.files[0];
-  let fileType = file.name.split(".")[1];
-  let fileName = addAssetNameBox.value;
-  let fileNameEncoded = encodeText(fileName);
-  let previewBox;
-  let preview;
-  let editBtn;
-  let optionsBtn;
-  if (file) {
-    projZip.folder("assets").file(fileName, file);
-    assetCount++;
-    var parentDiv = document.getElementById("tabs-2");
-    var assetBox = document.createElement("div");
-    var center = document.createElement("center");
-    assetBox.setAttribute("class", "elementbox");
-    center.innerHTML = `<h3>${fileName}</h3>`;
-    if (fileType == "png") {
-      previewBox = document.createElement("div");
-      previewBox.setAttribute("class", "previewBox");
-      preview = document.createElement("img");
-      preview.setAttribute("src", await fileToDataURL(file));
-      preview.setAttribute("id", fileNameEncoded + "_preview");
-      previewBox.appendChild(preview);
+  if (fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json")) {
+    let file = addAssetUploadInput.files[0];
+    let fileType = file.name.split(".")[1];
+    let fileName = addAssetNameBox.value;
+    let fileNameEncoded = encodeText(fileName);
+    let previewBox;
+    let preview;
+    let editBtn;
+    let optionsBtn;
+    if (file) {
+      projZip.folder("assets").file(fileName, file);
+      assetCount++;
+      var parentDiv = document.getElementById("tabs-2");
+      var assetBox = document.createElement("div");
+      var center = document.createElement("center");
+      assetBox.setAttribute("class", "elementbox");
+      center.innerHTML = `<h3>${fileName}</h3>`;
+      if (fileType == "png") {
+        previewBox = document.createElement("div");
+        previewBox.setAttribute("class", "previewBox");
+        preview = document.createElement("img");
+        preview.setAttribute("src", await fileToDataURL(file));
+        preview.setAttribute("id", fileNameEncoded + "_preview");
+        previewBox.appendChild(preview);
+      }
+      center.appendChild(previewBox);
+      center.appendChild(document.createElement("br"));
+      editBtn = document.createElement("button");
+      editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}')`);
+      editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
+      editBtn.innerHTML = "Edit";
+      optionsBtn = document.createElement("button");
+      optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
+      optionsBtn.innerHTML = "&#x22EF;";
+      center.appendChild(editBtn);
+      center.appendChild(optionsBtn);
+      assetBox.appendChild(center);
+      parentDiv.appendChild(assetBox);
+      $(`#${fileNameEncoded}_assetEditBtn`).button();
+      $(`#${fileNameEncoded}_assetOptionBtn`).button();
+      createElementDropdown(fileNameEncoded, "asset");
     }
-    center.appendChild(previewBox);
-    center.appendChild(document.createElement("br"));
-    editBtn = document.createElement("button");
-    editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}')`);
-    editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
-    editBtn.innerHTML = "Edit";
-    optionsBtn = document.createElement("button");
-    optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
-    optionsBtn.innerHTML = "&#x22EF;";
-    center.appendChild(editBtn);
-    center.appendChild(optionsBtn);
-    assetBox.appendChild(center);
-    parentDiv.appendChild(assetBox);
-    $(`#${fileNameEncoded}_assetEditBtn`).button();
-    $(`#${fileNameEncoded}_assetOptionBtn`).button();
-    createElementDropdown(fileNameEncoded, "asset");
-    /*if (assetCount % 4 === 0) {
-      parentDiv.appendChild(document.createElement("br"));
-    }*/
   }
   closeAddAssetDlg();
   addAssetUploadInput.value = "";

@@ -487,7 +487,7 @@ function loadComponents(data) {
             createComponent(Object.keys(data)[i]);
             let componentInputDefs = componentDefinitions[Object.keys(data)[i]].inputs;
             for (let j = 0; j < componentInputDefs.length; j++) {
-                $(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`).val(data[componentInputDefs[j].name]);
+                $(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`).val(data[Object.keys(data)[i]][componentInputDefs[j].name]);
             }
         }
     }

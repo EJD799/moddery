@@ -11,6 +11,7 @@ const componentDefinitions = {
                 type: "boolean",
                 name: "main",
                 label: "Allow Off Hand",
+                tooltip: "Whether the item can be wielded in the off-hand."
             }
         ],
         requires: false
@@ -47,7 +48,8 @@ const componentDefinitions = {
             {
                 type: "number",
                 name: "num_viewable_slots",
-                label: "Number of Viewable Slots"
+                label: "Number of Viewable Slots",
+                tooltip: "The number of slots that can be viewed on hover. Requires the Storage Item component."
             }
         ],
         requires: ["minecraft:storage_item"]
@@ -59,7 +61,8 @@ const componentDefinitions = {
             {
                 type: "boolean",
                 name: "main",
-                label: "Can Break Blocks"
+                label: "Can Break Blocks",
+                tooltip: "Whether the item can break blocks in Creative mode. Example: swords cannot break blocks."
             }
         ],
         requires: false
@@ -72,7 +75,7 @@ const componentDefinitions = {
                 type: "number",
                 name: "composting_chance",
                 label: "Composting Chance (%)",
-                tooltip: "How likely the composter level is to increase"
+                tooltip: "How likely the composter level is to increase."
             }
         ],
         requires: false
@@ -84,7 +87,8 @@ const componentDefinitions = {
             {
                 type: "number",
                 name: "duration",
-                label: "Duration (seconds)"
+                label: "Duration (seconds)",
+                tooltip: "How long the item will be disabled after using it."
             }
         ],
         requires: false
@@ -323,7 +327,7 @@ function createComponent(type) {
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
                 newComponentDOM.addEventListener("change", event => {
-                    updateInput(typeName, inputName, event.target.value);
+                    updateInput(typeName, inputName, Number(event.target.value));
                 });
                 elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "boolean") {
@@ -346,7 +350,7 @@ function createComponent(type) {
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
                 newComponentDOM.addEventListener("change", event => {
-                    updateInput(typeName, inputName, event.target.value);
+                    updateInput(typeName, inputName, event.target.checked);
                 });
                 elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "list") {
@@ -498,7 +502,11 @@ function loadComponents(data) {
             createComponent(Object.keys(data)[i]);
             let componentInputDefs = componentDefinitions[Object.keys(data)[i]].inputs;
             for (let j = 0; j < componentInputDefs.length; j++) {
-                $(removeSpaces(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`)).val(data[Object.keys(data)[i]][componentInputDefs[j].name]);
+                if (componentInputDefs[j].type == "boolean") {
+                    $(removeSpaces(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`)).prop("checked", data[Object.keys(data)[i]][componentInputDefs[j].name]);
+                } else {
+                    $(removeSpaces(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`)).val(data[Object.keys(data)[i]][componentInputDefs[j].name]);
+                }
             }
         }
     }

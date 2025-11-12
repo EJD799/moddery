@@ -582,6 +582,7 @@ function loadProject(data) {
     $("#itemIDBox").val(data.id);
     $("#nameBox").val(data.displayName);
     $("#categoryBox").val(data.invCategory);
+    $("#categoryBox").selectmenu("refresh");
     $("#stackSizeBox").val(data.maxStackSize);
     selectedTexture = data.texture;
     if (selectedTexture) {

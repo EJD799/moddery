@@ -289,10 +289,10 @@ function addElement() {
     $("#" + $("#addElementNameBox").val() + "_editBtn").button();
     $("#" + $("#addElementNameBox").val() + "_optionBtn").button();
     createElementDropdown($("#addElementNameBox").val(), "element");
-    closeAddElementDlg();
-    $("#addElementNameBox").val("");
-    $("#addElementIDBox").val("");
   }
+  closeAddElementDlg();
+  $("#addElementNameBox").val("");
+  $("#addElementIDBox").val("");
 }
 
 addAssetUploadInput.addEventListener("change", (event) => {

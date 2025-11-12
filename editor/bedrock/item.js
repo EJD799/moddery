@@ -269,13 +269,13 @@ function addComponent() {
 function closeAddComponentDlg() {
   $("#addComponentDlg").dialog("close");
 }
-function createComponent() {
+function createComponent(type) {
     let newComponentObj = {};
     let newComponentType;
     let newComponentDefault;
     let newComponentDOM;
-    for (let i = 0; i < componentDefinitions[$("#addComponentType").val()].inputs.length; i++) {
-        newComponentType = componentDefinitions[$("#addComponentType").val()].inputs[i].type
+    for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
+        newComponentType = componentDefinitions[type].inputs[i].type
         if (newComponentType == "number") {
             newComponentDefault = 0;
         } else if (newComponentType == "boolean") {
@@ -283,22 +283,22 @@ function createComponent() {
         } else {
             newComponentDefault = "";
         }
-        newComponentObj[componentDefinitions[$("#addComponentType").val()].inputs[i].name] = newComponentDefault;
+        newComponentObj[componentDefinitions[type].inputs[i].name] = newComponentDefault;
     }
-    if (!Object.keys(currentItemComponents).includes($("#addComponentType").val())) {
-        currentItemComponents[$("#addComponentType").val()] = newComponentObj;
+    if (!Object.keys(currentItemComponents).includes(type)) {
+        currentItemComponents[type] = newComponentObj;
         var parentDiv = document.getElementById("componentsBox");
         var elementBox = document.createElement("div");
         elementBox.setAttribute("class", "componentbox");
         var elementBoxTitle = document.createElement("h3");
-        elementBoxTitle.innerHTML = $("#addComponentType").val();
+        elementBoxTitle.innerHTML = type;
         elementBox.appendChild(elementBoxTitle);
-        for (let i = 0; i < componentDefinitions[$("#addComponentType").val()].inputs.length; i++) {
-            newComponentType = componentDefinitions[$("#addComponentType").val()].inputs[i].type;
-            newComponentInputName = componentDefinitions[$("#addComponentType").val()].inputs[i].name;
-            newComponentInputLabel = componentDefinitions[$("#addComponentType").val()].inputs[i].label;
-            newComponentInputTooltip = componentDefinitions[$("#addComponentType").val()].inputs[i].tooltip;
-            newComponentTypeName = componentDefinitions[$("#addComponentType").val()].name;
+        for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
+            newComponentType = componentDefinitions[type].inputs[i].type;
+            newComponentInputName = componentDefinitions[type].inputs[i].name;
+            newComponentInputLabel = componentDefinitions[type].inputs[i].label;
+            newComponentInputTooltip = componentDefinitions[type].inputs[i].tooltip;
+            newComponentTypeName = componentDefinitions[type].name;
             if (newComponentType == "number") {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
@@ -383,9 +383,6 @@ function createComponent() {
             track: false
         });
         $('input').addClass("ui-widget ui-widget-content ui-corner-all");
-        /*if (Object.keys(currentItemComponents).length % 3 === 0) {
-            parentDiv.appendChild(document.createElement("br"));
-        }*/
     }
     $("#addComponentDlg").dialog("close");
 }
@@ -452,7 +449,8 @@ function saveProject() {
         displayName: $("#nameBox").val(),
         invCategory: $("#categoryBox").val(),
         maxStackSize: $("#stackSizeBox").val(),
-        texture: selectedTexture
+        texture: selectedTexture,
+        components: currentItemComponents
     };
 }
 function loadProject(data) {
@@ -467,5 +465,17 @@ function loadProject(data) {
         document.getElementById("textureNameText").innerHTML = selectedTexture;
     } else {
         document.getElementById("textureNameText").innerHTML = "No texture selected";
+    }
+    loadComponents(data.components);
+}
+
+function loadComponents(data) {
+    currentItemComponents = data;
+    for (let i = 0; i < Object.keys(data).length; i++) {
+        createComponent(Object.keys(data)[i]);
+        let componentInputDefs = componentDefinitions[Object.keys(data)[i]].inputs;
+        for (let j = 0; i < componentInputDefs.length; i++) {
+            $(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`).val(data[componentInputDefs[j].name]);
+        }
     }
 }

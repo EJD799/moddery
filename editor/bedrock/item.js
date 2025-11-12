@@ -305,13 +305,13 @@ function createComponent(type) {
                 newComponentDOM.innerHTML = newComponentInputLabel;
                 elementBox.appendChild(newComponentDOM);
                 if (newComponentInputTooltip) {
-                    elementBox.innerHTML = elementBox.innerHTML + " ";
+                    elementBox.appendChild(document.createTextNode(" "));
                     newComponentDOM = document.createElement("i");
                     newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
                     newComponentDOM.setAttribute("title", newComponentInputTooltip);
                     elementBox.appendChild(newComponentDOM);
                 }
-                elementBox.innerHTML = elementBox.innerHTML + " ";
+                elementBox.appendChild(document.createTextNode(" "));
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
@@ -327,13 +327,13 @@ function createComponent(type) {
                 newComponentDOM.innerHTML = newComponentInputLabel;
                 elementBox.appendChild(newComponentDOM);
                 if (newComponentInputTooltip) {
-                    elementBox.innerHTML = elementBox.innerHTML + " ";
+                    elementBox.appendChild(document.createTextNode(" "));
                     newComponentDOM = document.createElement("i");
                     newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
                     newComponentDOM.setAttribute("title", newComponentInputTooltip);
                     elementBox.appendChild(newComponentDOM);
                 }
-                elementBox.innerHTML = elementBox.innerHTML + " ";
+                elementBox.appendChild(document.createTextNode(" "));
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
@@ -348,13 +348,13 @@ function createComponent(type) {
                 newComponentDOM.innerHTML = newComponentInputLabel;
                 elementBox.appendChild(newComponentDOM);
                 if (newComponentInputTooltip) {
-                    elementBox.innerHTML = elementBox.innerHTML + " ";
+                    elementBox.appendChild(document.createTextNode(" "));
                     newComponentDOM = document.createElement("i");
                     newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
                     newComponentDOM.setAttribute("title", newComponentInputTooltip);
                     elementBox.appendChild(newComponentDOM);
                 }
-                elementBox.innerHTML = elementBox.innerHTML + " ";
+                elementBox.appendChild(document.createTextNode(" "));
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
@@ -369,13 +369,13 @@ function createComponent(type) {
                 newComponentDOM.innerHTML = newComponentInputLabel;
                 elementBox.appendChild(newComponentDOM);
                 if (newComponentInputTooltip) {
-                    elementBox.innerHTML = elementBox.innerHTML + " ";
+                    elementBox.appendChild(document.createTextNode(" "));
                     newComponentDOM = document.createElement("i");
                     newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
                     newComponentDOM.setAttribute("title", newComponentInputTooltip);
                     elementBox.appendChild(newComponentDOM);
                 }
-                elementBox.innerHTML = elementBox.innerHTML + " ";
+                elementBox.appendChild(document.createTextNode(" "));
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
@@ -495,4 +495,5 @@ function loadComponents(data) {
 
 function updateInput(type, input, value) {
     alert(`${type}\n${input}\n${value}`);
+    currentItemComponents[type][input] = value;
 }

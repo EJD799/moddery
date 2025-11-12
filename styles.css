@@ -221,3 +221,7 @@ input[type="number"] {
 .textureRadio {
     margin-left: 10px;
 }
+
+input[type=color] {
+    padding: 3px !important;
+}

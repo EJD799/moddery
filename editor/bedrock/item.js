@@ -100,7 +100,8 @@ const componentDefinitions = {
             {
                 type: "number",
                 name: "main",
-                label: "Damage Points"
+                label: "Damage Points",
+                tooltip: "The amount of damage the item deals on attack."
             }
         ],
         requires: false
@@ -112,7 +113,14 @@ const componentDefinitions = {
             {
                 type: "number",
                 name: "speed",
-                label: "Destroy Speed"
+                label: "Destroy Speed",
+                tooltip: "How fast the item can break blocks, in seconds."
+            },
+            {
+                type: "text",
+                name: "block",
+                label: "Block Type Filter",
+                tooltip: "Which types of blocks can be broken at this speed. Enter a Molang query."
             }
         ],
         requires: false
@@ -124,7 +132,14 @@ const componentDefinitions = {
             {
                 type: "number",
                 name: "max_durability",
-                label: "Durability"
+                label: "Durability",
+                tooltip: "The durability level of the item."
+            },
+            {
+                type: "number",
+                name: "damage_chance",
+                label: "Damage Chance (%)",
+                tooltip: "The chance of the item to take durability damage."
             }
         ],
         requires: false
@@ -134,9 +149,10 @@ const componentDefinitions = {
         id: "minecraft:dyeable",
         inputs: [
             {
-                type: "text",
+                type: "color",
                 name: "default_color",
-                label: "Default Color"
+                label: "Default Color",
+                tooltip: "The default color of the item."
             }
         ],
         requires: false
@@ -328,6 +344,30 @@ function createComponent(type) {
                 let inputName = newComponentInputName;
                 newComponentDOM.addEventListener("change", event => {
                     updateInput(typeName, inputName, Number(event.target.value));
+                });
+                elementBox.appendChild(newComponentDOM);
+            } else if (newComponentType == "color") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("type", "color");
+                let typeName = newComponentTypeName;
+                let inputName = newComponentInputName;
+                newComponentDOM.addEventListener("change", event => {
+                    updateInput(typeName, inputName, event.target.value);
                 });
                 elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "boolean") {

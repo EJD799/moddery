@@ -494,6 +494,6 @@ function loadComponents(data) {
 }
 
 function updateInput(type, input, value) {
-    alert(`${type}\n${input}\n${value}`);
+    //alert(`${type}\n${input}\n${value}`);
     currentItemComponents[type][input] = value;
 }

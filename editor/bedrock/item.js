@@ -318,7 +318,7 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 newComponentDOM.setAttribute("type", "number");
                 newComponentDOM.addEventListener("change", event => {
-                    updateInput(type, newComponentInputName, event.target.value);
+                    updateInput(newComponentTypeName, newComponentInputName, event.target.value);
                 });
                 elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "boolean") {
@@ -339,7 +339,7 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("type", "checkbox");
                 newComponentDOM.addEventListener("change", event => {
-                    updateInput(type, newComponentInputName, event.target.checked);
+                    updateInput(newComponentTypeName, newComponentInputName, event.target.checked);
                 });
                 elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "list") {
@@ -360,7 +360,7 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 newComponentDOM.addEventListener("change", event => {
-                    updateInput(type, newComponentInputName, event.target.value);
+                    updateInput(newComponentTypeName, newComponentInputName, event.target.value);
                 });
                 elementBox.appendChild(newComponentDOM);
             } else {
@@ -381,7 +381,7 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 newComponentDOM.addEventListener("change", event => {
-                    updateInput(type, newComponentInputName, event.target.value);
+                    updateInput(newComponentTypeName, newComponentInputName, event.target.value);
                 });
                 elementBox.appendChild(newComponentDOM);
             }

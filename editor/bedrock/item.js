@@ -269,6 +269,9 @@ function addComponent() {
 function closeAddComponentDlg() {
   $("#addComponentDlg").dialog("close");
 }
+function removeSpaces(str) {
+    return str.replaceAll(" ", "_s_");
+}
 function createComponent(type) {
     let newComponentObj = {};
     let newComponentType;
@@ -314,11 +317,13 @@ function createComponent(type) {
                 elementBox.appendChild(document.createTextNode(" "));
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
-                newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 newComponentDOM.setAttribute("type", "number");
+                let typeName = newComponentTypeName;
+                let inputName = newComponentInputName;
                 newComponentDOM.addEventListener("change", event => {
-                    updateInput(newComponentTypeName, newComponentInputName, event.target.value);
+                    updateInput(typeName, inputName, event.target.value);
                 });
                 elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "boolean") {
@@ -336,10 +341,12 @@ function createComponent(type) {
                 elementBox.appendChild(document.createTextNode(" "));
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
-                newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("type", "checkbox");
+                let typeName = newComponentTypeName;
+                let inputName = newComponentInputName;
                 newComponentDOM.addEventListener("change", event => {
-                    updateInput(newComponentTypeName, newComponentInputName, event.target.checked);
+                    updateInput(typeName, inputName, event.target.value);
                 });
                 elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "list") {
@@ -357,10 +364,12 @@ function createComponent(type) {
                 elementBox.appendChild(document.createTextNode(" "));
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
-                newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                let typeName = newComponentTypeName;
+                let inputName = newComponentInputName;
                 newComponentDOM.addEventListener("change", event => {
-                    updateInput(newComponentTypeName, newComponentInputName, event.target.value);
+                    updateInput(typeName, inputName, event.target.value);
                 });
                 elementBox.appendChild(newComponentDOM);
             } else {
@@ -378,10 +387,12 @@ function createComponent(type) {
                 elementBox.appendChild(document.createTextNode(" "));
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
-                newComponentDOM.setAttribute("id", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                let typeName = newComponentTypeName;
+                let inputName = newComponentInputName;
                 newComponentDOM.addEventListener("change", event => {
-                    updateInput(newComponentTypeName, newComponentInputName, event.target.value);
+                    updateInput(typeName, inputName, event.target.value);
                 });
                 elementBox.appendChild(newComponentDOM);
             }
@@ -487,7 +498,7 @@ function loadComponents(data) {
             createComponent(Object.keys(data)[i]);
             let componentInputDefs = componentDefinitions[Object.keys(data)[i]].inputs;
             for (let j = 0; j < componentInputDefs.length; j++) {
-                $(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`).val(data[Object.keys(data)[i]][componentInputDefs[j].name]);
+                $(removeSpaces(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`)).val(data[Object.keys(data)[i]][componentInputDefs[j].name]);
             }
         }
     }

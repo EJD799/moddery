@@ -198,10 +198,10 @@ function closeAboutDlg() {
 }
 
 function encodeText(text) {
-  return text.replace(" ", "_space_").replace(".", "_dot_").replace("(", "_op_").replace(")", "_cp_");
+  return text.replaceAll(" ", "_space_").replaceAll(".", "_dot_").replaceAll("(", "_op_").replaceAll(")", "_cp_");
 }
 function decodeText(text) {
-  return text.replace("_space_", " ").replace("_dot_", ".").replace("_op_", "(").replace("_cp_", ")");
+  return text.replaceAll("_space_", " ").replaceAll("_dot_", ".").replaceAll("_op_", "(").replaceAll("_cp_", ")");
 }
 
 function createElementDropdown(elementID, type) {

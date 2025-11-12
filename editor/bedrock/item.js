@@ -472,12 +472,12 @@ function loadProject(data) {
 function loadComponents(data) {
     if (data) {
         currentItemComponents = data;
-    }
-    for (let i = 0; i < Object.keys(data).length; i++) {
-        createComponent(Object.keys(data)[i]);
-        let componentInputDefs = componentDefinitions[Object.keys(data)[i]].inputs;
-        for (let j = 0; i < componentInputDefs.length; i++) {
-            $(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`).val(data[componentInputDefs[j].name]);
+        for (let i = 0; i < Object.keys(data).length; i++) {
+            createComponent(Object.keys(data)[i]);
+            let componentInputDefs = componentDefinitions[Object.keys(data)[i]].inputs;
+            for (let j = 0; i < componentInputDefs.length; i++) {
+                $(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`).val(data[componentInputDefs[j].name]);
+            }
         }
     }
 }

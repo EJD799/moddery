@@ -322,7 +322,14 @@ const componentDefinitions = {
                     "material_quartz",
                     "material_iron",
                     "material_netherite",
-                    "material_redstone"
+                    "material_redstone",
+                    "material_copper",
+                    "material_gold",
+                    "material_emerald",
+                    "material_diamond",
+                    "material_lapis",
+                    "material_amethyst",
+                    "material_resin"
                 ]
             }
         ],

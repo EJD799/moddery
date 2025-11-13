@@ -318,7 +318,11 @@ const componentDefinitions = {
                     "light_purple",
                     "yellow",
                     "white",
-                    
+                    "minecoin_gold",
+                    "material_quartz",
+                    "material_iron",
+                    "material_netherite",
+                    "material_redstone"
                 ]
             }
         ],

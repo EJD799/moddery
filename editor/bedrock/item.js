@@ -335,6 +335,95 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Interact Button": {
+        name: "Interact Button",
+        id: "minecraft:interact_button",
+        inputs: [
+            {
+                type: "text",
+                name: "main",
+                label: "Text",
+                tooltip: "The text that should be displayed on the touch controls interact button."
+            }
+        ],
+        requires: false
+    },
+    "Liquid Clipped": {
+        name: "Liquid Clipped",
+        id: "minecraft:liquid_clipped",
+        inputs: [
+            {
+                type: "text",
+                name: "main",
+                label: "Interact with Liquids",
+                tooltip: "Whether the item can interact with liquid blocks."
+            }
+        ],
+        requires: false
+    },
+    "Projectile": {
+        name: "Projectile",
+        id: "minecraft:projectile",
+        inputs: [
+            {
+                type: "number",
+                name: "minimum_critical_power",
+                label: "Minimum Critical Power",
+                tooltip: "The time the projectile needs to charge for a critical hit."
+            },
+            {
+                type: "text",
+                name: "projectile_entity",
+                label: "Projectile Entity",
+                tooltip: "The entity that is fired by this item."
+            }
+        ],
+        requires: false
+    },
+    "Rarity": {
+        name: "Rarity",
+        id: "minecraft:rarity",
+        inputs: [
+            {
+                type: "dropdown",
+                name: "main",
+                label: "Rarity",
+                tooltip: "The rarity of the item.",
+                options: [
+                    "common",
+                    "uncommon",
+                    "rare",
+                    "epic"
+                ]
+            }
+        ],
+        requires: false
+    },
+    "Record": {
+        name: "Record",
+        id: "minecraft:record",
+        inputs: [
+            {
+                type: "number",
+                name: "comparator_signal",
+                label: "Comparator Signal",
+                tooltip: "The signal strength output from a comparator."
+            },
+            {
+                type: "number",
+                name: "duration",
+                label: "Duration",
+                tooltip: "The duration of the disc, in seconds."
+            },
+            {
+                type: "text",
+                name: "sound_event",
+                label: "Sound ID",
+                tooltip: "The sound that is played by this disc."
+            }
+        ],
+        requires: false
+    },
 };
 var currentItemComponents = {};
 

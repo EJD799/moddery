@@ -309,7 +309,16 @@ const componentDefinitions = {
                     "dark_red",
                     "dark_purple",
                     "gold",
-                    "gray"
+                    "gray",
+                    "dark_gray",
+                    "blue",
+                    "green",
+                    "aqua",
+                    "red",
+                    "light_purple",
+                    "yellow",
+                    "white",
+                    
                 ]
             }
         ],

@@ -1084,10 +1084,10 @@ function patchAllDialogsToViewport() {
 
             const $dlg = $(this).dialog("widget");
 
-            // Fixed positioning and center calculation
+            // Fixed positioning and center calculation using viewport
             function centerDialog() {
-                const viewportWidth = $(window).width();
-                const viewportHeight = $(window).height();
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
                 $dlg.css({
                     position: "fixed",
                     top: Math.max((viewportHeight - $dlg.outerHeight()) / 2, 0),
@@ -1106,13 +1106,7 @@ function patchAllDialogsToViewport() {
             // Make draggable compatible with Touch Punch
             $dlg.draggable({
                 handle: ".ui-dialog-titlebar",
-                scroll: false,
-                // Use helper to calculate drag offsets correctly with fixed positioning
-                drag: function (event, ui) {
-                    // Touch Punch sets ui.position relative to page; adjust for fixed
-                    ui.position.top = Math.max(ui.position.top, 0);
-                    ui.position.left = Math.max(ui.position.left, 0);
-                }
+                scroll: false
             });
         });
     });
@@ -1122,3 +1116,4 @@ function patchAllDialogsToViewport() {
 $(function () {
     patchAllDialogsToViewport();
 });
+

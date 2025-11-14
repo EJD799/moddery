@@ -601,56 +601,48 @@ $("#newProjBtn").button();
 $("#closeAboutBtn").button();
 document.getElementById("tabs").hidden = true;
 
-// Call this after all your dialogs are initialized
+function centerDialog($dlg) {
+    const winW = $(window).width();
+    const winH = $(window).height();
+    const dlgW = $dlg.outerWidth();
+    const dlgH = $dlg.outerHeight();
+    $dlg.css({
+        position: "fixed",
+        top: Math.max((winH - dlgH) / 2, 0),
+        left: Math.max((winW - dlgW) / 2, 0),
+        transform: "" // remove transform
+    });
+}
+
+// Patch all dialogs
 function patchAllDialogsToViewport() {
     $(".ui-dialog-content").each(function () {
         const $content = $(this);
-        const instance = $content.dialog("instance");
-        if (!instance) return; // skip uninitialized dialogs
+        if (!$content.dialog("instance")) return;
 
-        // Save original open function
         const originalOpen = $content.dialog("option", "open");
 
-        // Override the open option
         $content.dialog("option", "open", function (event, ui) {
-            if (typeof originalOpen === "function") {
-                originalOpen.call(this, event, ui);
-            }
+            if (typeof originalOpen === "function") originalOpen.call(this, event, ui);
 
             const $dlg = $(this).dialog("widget");
 
-            // Fixed positioning and center
-            $dlg.css({
-                position: "fixed",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)"
-            });
+            // Center initially
+            centerDialog($dlg);
 
-            // Reapply transform on window resize
-            $(window).off("resize.fixedDialog").on("resize.fixedDialog", () => {
-                $dlg.css({ top: "50%", left: "50%" });
-            });
+            // Re-center on window resize
+            $(window).off("resize.fixedDialog").on("resize.fixedDialog", () => centerDialog($dlg));
 
-            // Make draggable compatible with Touch Punch
-            // Destroy previous draggable to prevent double-init
+            // Make draggable / touch punch compatible
             if ($dlg.data("ui-draggable")) $dlg.draggable("destroy");
-
             $dlg.draggable({
                 handle: ".ui-dialog-titlebar",
-                scroll: false,
-                // Adjust calculation for fixed positioning
-                drag: function (e, ui) {
-                    // Keep dialog in viewport (optional)
-                    ui.position.top = Math.max(ui.position.top, 0);
-                    ui.position.left = Math.max(ui.position.left, 0);
-                }
+                scroll: false
             });
         });
     });
 }
 
-// Example usage: call after dialogs are created
 $(function () {
     patchAllDialogsToViewport();
 });

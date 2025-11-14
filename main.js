@@ -29,7 +29,7 @@ function indexInArray(arrayOfArrays, targetArray) {
 $("#toolbar").menu();
 $("#tabs").tabs();
 $("#newProjDlg").dialog({
-  position: { my: "center", at: "center", of: $("body") },
+  position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 400,
   width: 500
@@ -39,7 +39,7 @@ $("#newProjType").selectmenu();
 $("#newProjCancelBtn").button();
 $("#newProjCreateBtn").button();
 $("#editProjDlg").dialog({
-  position: { my: "center", at: "center", of: $("body") },
+  position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 400,
   width: 500
@@ -48,7 +48,7 @@ $("#editProjDlg").dialog("close");
 $("#editProjCancelBtn").button();
 $("#editProjSaveBtn").button();
 $("#addElementDlg").dialog({
-  position: { my: "center", at: "center", of: $("body") },
+  position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 400,
   width: 500
@@ -58,7 +58,7 @@ $("#addElementType").selectmenu();
 $("#addElementCancelBtn").button();
 $("#addElementAddBtn").button();
 $("#addAssetDlg").dialog({
-  position: { my: "center", at: "center", of: $("body") },
+  position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 400,
   width: 500
@@ -68,21 +68,21 @@ $("#addAssetUploadBtn").button();
 $("#addAssetCancelBtn").button();
 $("#addAssetAddBtn").button();
 $("#exportDlg").dialog({
-  position: { my: "center", at: "center", of: $("body") },
+  position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 400,
   width: 500
 });
 $("#exportDlg").dialog("close");
 $("#loaderDlg").dialog({
-  position: { my: "center", at: "center", of: $("body") },
+  position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 150,
   width: 300,
   closeOnEscape: false
 });
 $("#aboutDlg").dialog({
-  position: { my: "center", at: "center", of: $("body") },
+  position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 300,
   width: 300,
@@ -91,7 +91,7 @@ $("#aboutDlg").dialog({
 $("#aboutDlg").dialog("close");
 $("#loaderDlg").dialog("close");
 $("#deleteDlg").dialog({
-  position: { my: "center", at: "center", of: $("body") },
+  position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 150,
   width: 300,
@@ -101,7 +101,7 @@ $("#deleteDlg").dialog("close");
 $("#deleteDlgCancel").button();
 $("#deleteDlgConfirm").button();
 $("#renameDlg").dialog({
-  position: { my: "center", at: "center", of: $("body") },
+  position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 200,
   width: 300,
@@ -111,7 +111,7 @@ $("#renameDlg").dialog("close");
 $("#renameDlgCancel").button();
 $("#renameDlgConfirm").button();
 $("#elementInfoDlg").dialog({
-  position: { my: "center", at: "center", of: $("body") },
+  position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 300,
   width: 300,

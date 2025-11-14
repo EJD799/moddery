@@ -226,7 +226,7 @@ input[type=color] {
     padding: 3px !important;
 }
 
-input[type=color] {
+input[type=color]:hover {
     background: #00498f !important;
 }
 

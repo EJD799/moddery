@@ -513,14 +513,14 @@ $("#selectTextureSelectBtn").button();
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 
 $("#addComponentDlg").dialog({
-  position: { my: "center", at: "center", of: $("body") },
+  position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 200,
   width: 500
 });
 $("#addComponentDlg").dialog("close");
 $("#selectTextureDlg").dialog({
-  position: { my: "center", at: "center", of: $("body") },
+  position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 500,
   width: 500

@@ -233,7 +233,6 @@ input[type=color] {
 
 /* Texture list container */
 .textureMenu {
-    max-height: 300px;
     overflow-y: auto;
     margin-bottom: 15px;
 }
@@ -251,14 +250,4 @@ input[type=color] {
     padding: 6px 16px;
     font-size: 14px;
     cursor: pointer;
-
-    /* Match your jQuery UI theme's button look */
-    border: 1px solid #aaa;
-    background: var(--ui-bg, #e6e6e6);
-    color: var(--ui-fg, #222);
-    border-radius: 4px;
-}
-
-.textureDialogButtons button:hover {
-    background: #d4d4d4;
 }

@@ -30,6 +30,13 @@ $("#toolbar").menu();
 $("#tabs").tabs();
 $("#newProjDlg").dialog({
   position: { my: "center", at: "center", of: window },
+  open: function () {
+        $(this).dialog("option", "position", {
+            my: "center",
+            at: "center",
+            of: window
+        });
+  },
   resizable: false,
   height: 400,
   width: 500
@@ -40,6 +47,13 @@ $("#newProjCancelBtn").button();
 $("#newProjCreateBtn").button();
 $("#editProjDlg").dialog({
   position: { my: "center", at: "center", of: window },
+  open: function () {
+        $(this).dialog("option", "position", {
+            my: "center",
+            at: "center",
+            of: window
+        });
+  },
   resizable: false,
   height: 400,
   width: 500
@@ -49,6 +63,13 @@ $("#editProjCancelBtn").button();
 $("#editProjSaveBtn").button();
 $("#addElementDlg").dialog({
   position: { my: "center", at: "center", of: window },
+  open: function () {
+        $(this).dialog("option", "position", {
+            my: "center",
+            at: "center",
+            of: window
+        });
+  },
   resizable: false,
   height: 400,
   width: 500
@@ -59,6 +80,13 @@ $("#addElementCancelBtn").button();
 $("#addElementAddBtn").button();
 $("#addAssetDlg").dialog({
   position: { my: "center", at: "center", of: window },
+  open: function () {
+        $(this).dialog("option", "position", {
+            my: "center",
+            at: "center",
+            of: window
+        });
+  },
   resizable: false,
   height: 400,
   width: 500
@@ -69,6 +97,13 @@ $("#addAssetCancelBtn").button();
 $("#addAssetAddBtn").button();
 $("#exportDlg").dialog({
   position: { my: "center", at: "center", of: window },
+  open: function () {
+        $(this).dialog("option", "position", {
+            my: "center",
+            at: "center",
+            of: window
+        });
+  },
   resizable: false,
   height: 400,
   width: 500
@@ -76,6 +111,13 @@ $("#exportDlg").dialog({
 $("#exportDlg").dialog("close");
 $("#loaderDlg").dialog({
   position: { my: "center", at: "center", of: window },
+  open: function () {
+        $(this).dialog("option", "position", {
+            my: "center",
+            at: "center",
+            of: window
+        });
+  },
   resizable: false,
   height: 150,
   width: 300,
@@ -83,6 +125,13 @@ $("#loaderDlg").dialog({
 });
 $("#aboutDlg").dialog({
   position: { my: "center", at: "center", of: window },
+  open: function () {
+        $(this).dialog("option", "position", {
+            my: "center",
+            at: "center",
+            of: window
+        });
+  },
   resizable: false,
   height: 300,
   width: 300,
@@ -92,6 +141,13 @@ $("#aboutDlg").dialog("close");
 $("#loaderDlg").dialog("close");
 $("#deleteDlg").dialog({
   position: { my: "center", at: "center", of: window },
+  open: function () {
+        $(this).dialog("option", "position", {
+            my: "center",
+            at: "center",
+            of: window
+        });
+  },
   resizable: false,
   height: 150,
   width: 300,
@@ -102,6 +158,13 @@ $("#deleteDlgCancel").button();
 $("#deleteDlgConfirm").button();
 $("#renameDlg").dialog({
   position: { my: "center", at: "center", of: window },
+  open: function () {
+        $(this).dialog("option", "position", {
+            my: "center",
+            at: "center",
+            of: window
+        });
+  },
   resizable: false,
   height: 200,
   width: 300,
@@ -112,6 +175,13 @@ $("#renameDlgCancel").button();
 $("#renameDlgConfirm").button();
 $("#elementInfoDlg").dialog({
   position: { my: "center", at: "center", of: window },
+  open: function () {
+        $(this).dialog("option", "position", {
+            my: "center",
+            at: "center",
+            of: window
+        });
+  },
   resizable: false,
   height: 300,
   width: 300,

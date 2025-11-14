@@ -677,6 +677,13 @@ $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 
 $("#addComponentDlg").dialog({
   position: { my: "center", at: "center", of: window },
+  open: function () {
+        $(this).dialog("option", "position", {
+            my: "center",
+            at: "center",
+            of: window
+        });
+  },
   resizable: false,
   height: 200,
   width: 500
@@ -684,11 +691,35 @@ $("#addComponentDlg").dialog({
 $("#addComponentDlg").dialog("close");
 $("#selectTextureDlg").dialog({
   position: { my: "center", at: "center", of: window },
+  open: function () {
+        $(this).dialog("option", "position", {
+            my: "center",
+            at: "center",
+            of: window
+        });
+  },
   resizable: false,
   height: 500,
   width: 500
 });
 $("#selectTextureDlg").dialog("close");
+$("#deleteDlg").dialog({
+  position: { my: "center", at: "center", of: window },
+  open: function () {
+        $(this).dialog("option", "position", {
+            my: "center",
+            at: "center",
+            of: window
+        });
+  },
+  resizable: false,
+  height: 150,
+  width: 300,
+  closeOnEscape: false
+});
+$("#deleteDlg").dialog("close");
+$("#deleteDlgCancel").button();
+$("#deleteDlgConfirm").button();
 function addComponent() {
   $("#addComponentDlg").dialog("open");
 }
@@ -724,7 +755,7 @@ function createComponent(type) {
         elementBoxTitle.innerHTML = type + " ";
         var elementBoxDelete = document.createElement("i");
         elementBoxDelete.setAttribute("class", "fas fa-trash deleteIcon");
-        elementBoxDelete.setAttribute("onclick", `deleteComponent('${type}')`);
+        elementBoxDelete.setAttribute("onclick", `openDeleteComponent('${type}')`);
         elementBoxTitle.appendChild(elementBoxDelete);
         elementBox.appendChild(elementBoxTitle);
         let dropdownsToRegister = [];
@@ -1028,4 +1059,17 @@ function updateInput(type, input, value) {
 function deleteComponent(name) {
     delete currentItemComponents[name];
     document.getElementById("componentbox_" + removeSpaces(name)).remove();
+    closeDeleteComponent()
+}
+
+function closeDeleteComponent() {
+    $("#deleteDlg").dialog("close");
+}
+
+function openDeleteComponent(name) {
+    $("#deleteDlg").dialog("open");
+    let deleteDlgText = document.getElementById("deleteDlgText");
+    let deleteDlgConfirm = document.getElementById("deleteDlgConfirm");
+    deleteDlgText.innerHTML = `Are you sure you want to delete the component ${name}?`;
+    deleteDlgConfirm.setAttribute("onclick", `deleteComponent("${name}")`);
 }

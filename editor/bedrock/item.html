@@ -93,10 +93,14 @@
   </center>
 </div>
 <div id="selectTextureDlg" title="Select Texture">
-  <center>
-    <div class="textureMenu" id="selectTextureMenu"></div><br>
-    <button id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
-    <button id="selectTextureSelectBtn" onclick="selectTexture()">Select</button>
-  </center>
+    <div id="textureListContainer">
+        <div class="textureMenu" id="selectTextureMenu"></div>
+    </div>
+
+    <div id="selectTextureFooter">
+        <button id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
+        <button id="selectTextureSelectBtn" onclick="selectTexture()">Select</button>
+    </div>
 </div>
+
 <script src="item.js"></script>

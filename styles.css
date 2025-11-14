@@ -225,3 +225,27 @@ input[type="number"] {
 input[type=color] {
     padding: 3px !important;
 }
+
+#selectTextureDlg {
+    position: relative;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#textureListContainer {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+#selectTextureFooter {
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    background: #f8f8f8;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+}

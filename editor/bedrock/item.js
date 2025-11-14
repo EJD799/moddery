@@ -906,9 +906,9 @@ function createComponent(type) {
         for (let k = 0; k < dropdownsToRegister.length; k++) {
             const [typeName, inputName] = dropdownsToRegister[k];
             $("#" + typeName + inputName).selectmenu({
-                change: function (event, ui) {
+                /*change: function (event, ui) {
                     updateInput(typeName, inputName, ui.item.value);
-                }
+                }*/
             });
         }
         $(".tooltipIcon").tooltip({

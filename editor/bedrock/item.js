@@ -455,24 +455,6 @@ const componentDefinitions = {
             },
             {
                 type: "boolean",
-                name: "use_offhand",
-                label: "Allow Off-hand",
-                tooltip: "Whether the ammunition items can be used in the off-hand."
-            },
-            {
-                type: "boolean",
-                name: "search_inventory",
-                label: "Search Inventory",
-                tooltip: "Whether the inventory should be searched for ammunition."
-            },
-            {
-                type: "boolean",
-                name: "use_in_creative",
-                label: "Use in Creative",
-                tooltip: "Whether the item can be used in creative mode."
-            },
-            {
-                type: "boolean",
                 name: "charge_on_draw",
                 label: "Charge on Draw",
                 tooltip: "Whether the item should charge when drawn."
@@ -872,6 +854,5 @@ function loadComponents(data) {
 }
 
 function updateInput(type, input, value) {
-    alert(`${type}\n${input}\n${value}`);
     currentItemComponents[type][input] = value;
 }

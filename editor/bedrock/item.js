@@ -500,6 +500,169 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Storage Item": {
+        name: "Storage Item",
+        id: "minecraft:storage_item",
+        inputs: [
+            {
+                type: "boolean",
+                name: "allow_nested_storage_items",
+                label: "Allow Nested Storage Items",
+                tooltip: "Whether other storage items can be stored in this item."
+            },
+            {
+                type: "list",
+                name: "allowed_items",
+                label: "Allowed Items",
+                tooltip: "The list of items that can be stored in this item. Separate items with commas. Do not add spaces."
+            },
+            {
+                type: "list",
+                name: "banned_items",
+                label: "Banned Items",
+                tooltip: "The list of items that cannot be stored in this item. Separate items with commas. Do not add spaces."
+            },
+            {
+                type: "number",
+                name: "max_slots",
+                label: "Max Slots",
+                tooltip: "The number of slots the item can hold."
+            }
+        ],
+        requires: false
+    },
+    "Swing Duration": {
+        name: "Swing Duration",
+        id: "minecraft:swing_duration",
+        inputs: [
+            {
+                type: "number",
+                name: "value",
+                label: "Swing Duration",
+                tooltip: "The length of the swing animation, in seconds."
+            }
+        ],
+        requires: false
+    },
+    "Tags": {
+        name: "Tags",
+        id: "minecraft:tags",
+        inputs: [
+            {
+                type: "list",
+                name: "tags",
+                label: "Tags",
+                tooltip: "The list of tags to apply to the item. Separate items with commas."
+            }
+        ],
+        requires: false
+    },
+    "Throwable": {
+        name: "Throwable",
+        id: "minecraft:throwable",
+        inputs: [
+            {
+                type: "boolean",
+                name: "do_swing_animation",
+                label: "Do Swing Animation",
+                tooltip: "Whether the item will show a swing animation when thrown."
+            },
+            {
+                type: "number",
+                name: "launch_power_scale",
+                label: "Launch Power Scale",
+                tooltip: "The scale at which the power of the throw increases."
+            },
+            {
+                type: "number",
+                name: "max_launch_power",
+                label: "Max Launch Power",
+                tooltip: "The maximum power of the throw."
+            }
+        ],
+        requires: ["Projectile"]
+    },
+    "Use Animation": {
+        name: "Use Animation",
+        id: "minecraft:use_animation",
+        inputs: [
+            {
+                type: "dropdown",
+                name: "main",
+                label: "Animation",
+                tooltip: "The animation of the item when used.",
+                options: [
+                    "eat",
+                    "drink",
+                    "bow",
+                    "block",
+                    "camera",
+                    "crossbow",
+                    "none",
+                    "brush",
+                    "spear",
+                    "spyglass"
+                ]
+            }
+        ],
+        requires: false
+    },
+    "Use Modifiers": {
+        name: "Use Modifiers",
+        id: "minecraft:use_modifiers",
+        inputs: [
+            {
+                type: "boolean",
+                name: "emit_vibrations",
+                label: "Emit Vibrations",
+                tooltip: "Whether the item emits vibrations when it is used."
+            },
+            {
+                type: "number",
+                name: "movement_modifier",
+                label: "Movement Modifier",
+                tooltip: "The scale of the player speed while the item is used."
+            },
+            {
+                type: "number",
+                name: "use_duration",
+                label: "Use Duration",
+                tooltip: "How long, in seconds, it takes to use the item."
+            }
+        ],
+        requires: false
+    },
+    "Wearable": {
+        name: "Wearable",
+        id: "minecraft:wearable",
+        inputs: [
+            {
+                type: "dropdown",
+                name: "slot",
+                label: "Slot",
+                tooltip: "The slot that the item can be worn in.",
+                options: [
+                    "slot.armor.head",
+                    "slot.armor.chest",
+                    "slot.armor.legs",
+                    "slot.armor.feet"
+                ]
+            },
+            {
+                type: "number",
+                name: "protection",
+                label: "Protection",
+                tooltip: "The amount of protection the item provides when worn."
+            },
+            {
+                type: "boolean",
+                name: "hides_player_location",
+                label: "Hides Player Location",
+                tooltip: "Whether a player wearing the item is hidden from locator maps and the locator bar."
+            }
+        ],
+        requires: false
+    }
 };
 var currentItemComponents = {};
 

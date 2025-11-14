@@ -666,6 +666,19 @@ const componentDefinitions = {
 };
 var currentItemComponents = {};
 
+function centerDialogViewport(selector) {
+    const $dlg = $(selector).dialog("widget");
+    const w = $dlg.outerWidth();
+    const h = $dlg.outerHeight();
+
+    $dlg.css({
+        position: "fixed",
+        top: `calc(50% - ${h / 2}px)`,
+        left: `calc(50% - ${w / 2}px)`
+    });
+}
+
+
 $("#categoryBox").selectmenu();
 $("#itemTextureBtn").button();
 $("#addComponentBtn").button();
@@ -677,13 +690,7 @@ $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 
 $("#addComponentDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open: function () {
-        $(this).dialog("option", "position", {
-            my: "center",
-            at: "center",
-            of: window
-        });
-  },
+  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 200,
   width: 500
@@ -691,13 +698,7 @@ $("#addComponentDlg").dialog({
 $("#addComponentDlg").dialog("close");
 $("#selectTextureDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open: function () {
-        $(this).dialog("option", "position", {
-            my: "center",
-            at: "center",
-            of: window
-        });
-  },
+  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 500,
   width: 500
@@ -705,13 +706,7 @@ $("#selectTextureDlg").dialog({
 $("#selectTextureDlg").dialog("close");
 $("#deleteDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open: function () {
-        $(this).dialog("option", "position", {
-            my: "center",
-            at: "center",
-            of: window
-        });
-  },
+  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 150,
   width: 300,
@@ -1070,6 +1065,6 @@ function openDeleteComponent(name) {
     $("#deleteDlg").dialog("open");
     let deleteDlgText = document.getElementById("deleteDlgText");
     let deleteDlgConfirm = document.getElementById("deleteDlgConfirm");
-    deleteDlgText.innerHTML = `Are you sure you want to delete the component ${name}?`;
+    deleteDlgText.innerHTML = `Are you sure you want to delete the component "${name}"?`;
     deleteDlgConfirm.setAttribute("onclick", `deleteComponent("${name}")`);
 }

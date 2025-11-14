@@ -1073,18 +1073,25 @@ function patchAllDialogsToViewport() {
         const instance = $content.dialog("instance");
         if (!instance) return; // skip uninitialized dialogs
 
+        const $dlg = $content.dialog("widget");
+
+        // Make draggable once (compatible with Touch Punch)
+        if (!$dlg.data("ui-draggable")) {
+            $dlg.draggable({
+                handle: ".ui-dialog-titlebar",
+                scroll: false
+            });
+        }
+
         // Save original open function
         const originalOpen = $content.dialog("option", "open");
 
-        // Override the open option
+        // Center in viewport on open
         $content.dialog("option", "open", function (event, ui) {
             if (typeof originalOpen === "function") {
                 originalOpen.call(this, event, ui);
             }
 
-            const $dlg = $(this).dialog("widget");
-
-            // Fixed positioning and center calculation using viewport
             function centerDialog() {
                 const viewportWidth = window.innerWidth;
                 const viewportHeight = window.innerHeight;
@@ -1097,17 +1104,8 @@ function patchAllDialogsToViewport() {
 
             centerDialog();
 
-            // Re-center on resize
+            // Recenter on window resize
             $(window).off("resize.fixedDialog").on("resize.fixedDialog", centerDialog);
-
-            // Destroy previous draggable to avoid double-init
-            if ($dlg.data("ui-draggable")) $dlg.draggable("destroy");
-
-            // Make draggable compatible with Touch Punch
-            $dlg.draggable({
-                handle: ".ui-dialog-titlebar",
-                scroll: false
-            });
         });
     });
 }
@@ -1116,4 +1114,3 @@ function patchAllDialogsToViewport() {
 $(function () {
     patchAllDialogsToViewport();
 });
-

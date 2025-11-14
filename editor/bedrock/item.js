@@ -719,8 +719,13 @@ function createComponent(type) {
         var parentDiv = document.getElementById("componentsBox");
         var elementBox = document.createElement("div");
         elementBox.setAttribute("class", "componentbox");
+        elementBox.setAttribute("id", "componentbox_" + removeSpaces(type));
         var elementBoxTitle = document.createElement("h3");
-        elementBoxTitle.innerHTML = type;
+        elementBoxTitle.innerHTML = type + " ";
+        var elementBoxDelete = document.createElement("i");
+        elementBoxDelete.setAttribute("class", "fas fa-trash deleteIcon");
+        elementBoxDelete.setAttribute("onclick", `deleteComponent('${type}')`);
+        elementBoxTitle.appendChild(elementBoxDelete);
         elementBox.appendChild(elementBoxTitle);
         let dropdownsToRegister = [];
         for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
@@ -1018,4 +1023,9 @@ function loadComponents(data) {
 
 function updateInput(type, input, value) {
     currentItemComponents[type][input] = value;
+}
+
+function deleteComponent(name) {
+    delete currentItemComponents[name];
+    document.getElementById("componentbox_" + removeSpaces(name)).remove();
 }

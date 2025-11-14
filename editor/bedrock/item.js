@@ -52,7 +52,7 @@ const componentDefinitions = {
                 tooltip: "The number of slots that can be viewed on hover. Requires the Storage Item component."
             }
         ],
-        requires: ["minecraft:storage_item"]
+        requires: ["Storage Item"]
     },
     "Can Destroy in Creative": {
         name: "Can Destroy in Creative",
@@ -424,6 +424,75 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Repairable": {
+        name: "Repairable",
+        id: "minecraft:repairable",
+        inputs: [
+            {
+                type: "number",
+                name: "repair_amount",
+                label: "Repair Amount",
+                tooltip: "How much durability is repaired."
+            },
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The items that can repair this item. Separate items with commas. Do not add spaces."
+            }
+        ],
+        requires: false
+    },
+    "Shooter": {
+        name: "Shooter",
+        id: "minecraft:shooter",
+        inputs: [
+            {
+                type: "list",
+                name: "item",
+                label: "Ammunition Items",
+                tooltip: "The items that can be used as ammunition. Separate items with commas. Do not add spaces."
+            },
+            {
+                type: "boolean",
+                name: "use_offhand",
+                label: "Allow Off-hand",
+                tooltip: "Whether the ammunition items can be used in the off-hand."
+            },
+            {
+                type: "boolean",
+                name: "search_inventory",
+                label: "Search Inventory",
+                tooltip: "Whether the inventory should be searched for ammunition."
+            },
+            {
+                type: "boolean",
+                name: "use_in_creative",
+                label: "Use in Creative",
+                tooltip: "Whether the item can be used in creative mode."
+            },
+            {
+                type: "boolean",
+                name: "charge_on_draw",
+                label: "Charge on Draw",
+                tooltip: "Whether the item should charge when drawn."
+            },
+            {
+                type: "number",
+                name: "max_draw_duration",
+                label: "Max Draw Duration",
+                tooltip: "How long, in seconds, the item can be drawn before releasing automatically."
+            },
+            {
+                type: "boolean",
+                name: "scale_power_by_draw_duration",
+                label: "Scale Power by Draw Duration",
+                tooltip: "Whether the power should increase when drawn longer."
+            }
+        ],
+        requires: ["Use Modifiers"]
+    },
+
 };
 var currentItemComponents = {};
 

@@ -1066,40 +1066,58 @@ function openDeleteComponent(name) {
     deleteDlgConfirm.setAttribute("onclick", `deleteComponent("${name}")`);
 }
 
-// Function to patch all dialogs on the page
+// CSS needed to ensure dialogs use fixed positioning
+$("<style>")
+    .prop("type", "text/css")
+    .html(`
+        .ui-dialog { 
+            position: fixed !important; 
+            margin: 0 !important; 
+        }
+    `)
+    .appendTo("head");
+
+// Function to center a dialog in the viewport
+function centerDialog($dlg) {
+    const $window = $(window);
+    const w = $dlg.outerWidth();
+    const h = $dlg.outerHeight();
+    const top = Math.max(($window.height() - h) / 2, 0);
+    const left = Math.max(($window.width() - w) / 2, 0);
+    $dlg.css({
+        top: top + "px",
+        left: left + "px"
+    });
+}
+
+// Patch all dialogs on the page
 function fixDialogsToViewport() {
-    // Find all elements with class ui-dialog-content that have been initialized as dialogs
     $(".ui-dialog-content").each(function() {
         const $dlgContent = $(this);
 
-        // Skip if this content has no dialog initialized yet
-        if (!$dlgContent.hasClass("ui-dialog-content") || !$dlgContent.dialog("instance")) {
-            return;
-        }
+        // Skip if this content is not a dialog
+        if (!$dlgContent.dialog("instance")) return;
 
-        // Save the original open function (if any)
+        // Save original open function
         const originalOpen = $dlgContent.dialog("option", "open");
 
-        // Override the open function
+        // Override open function
         $dlgContent.dialog("option", "open", function(event, ui) {
-            // Call the original open function if it exists
+            // Call original open if it exists
             if (typeof originalOpen === "function") {
                 originalOpen.call(this, event, ui);
             }
 
-            // Get the dialog widget
             const $dlg = $(this).dialog("widget");
 
-            // Apply fixed positioning and viewport-centered transform
-            $dlg.css({
-                position: "fixed",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)"
-            });
+            // Center the dialog in the viewport
+            centerDialog($dlg);
+
+            // Recenter on window resize
+            $(window).off("resize.centerDialog").on("resize.centerDialog", () => centerDialog($dlg));
         });
     });
 }
 
-// Call this after your dialogs are initialized
+// Run after dialogs are initialized
 fixDialogsToViewport();

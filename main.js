@@ -601,39 +601,47 @@ $("#newProjBtn").button();
 $("#closeAboutBtn").button();
 document.getElementById("tabs").hidden = true;
 
-function centerDialog($dlg) {
-    const winW = $(window).width();
-    const winH = $(window).height();
-    const dlgW = $dlg.outerWidth();
-    const dlgH = $dlg.outerHeight();
-    $dlg.css({
-        position: "fixed",
-        top: Math.max((winH - dlgH) / 2, 0),
-        left: Math.max((winW - dlgW) / 2, 0),
-        transform: "" // remove transform
-    });
-}
-
-// Patch all dialogs
+// Call this after all your dialogs are initialized
 function patchAllDialogsToViewport() {
     $(".ui-dialog-content").each(function () {
         const $content = $(this);
-        if (!$content.dialog("instance")) return;
+        const instance = $content.dialog("instance");
+        if (!instance) return; // skip uninitialized dialogs
 
+        // Save original open function
         const originalOpen = $content.dialog("option", "open");
 
+        // Override the open option
         $content.dialog("option", "open", function (event, ui) {
-            if (typeof originalOpen === "function") originalOpen.call(this, event, ui);
+            if (typeof originalOpen === "function") {
+                originalOpen.call(this, event, ui);
+            }
 
             const $dlg = $(this).dialog("widget");
 
-            // Center initially
-            centerDialog($dlg);
+            // Get viewport dimensions
+            const viewportWidth = $(window).width();
+            const viewportHeight = $(window).height();
+
+            // Set fixed positioning and pixel-based centering
+            $dlg.css({
+                position: "fixed",
+                top: Math.max((viewportHeight - $dlg.outerHeight()) / 2, 0),
+                left: Math.max((viewportWidth - $dlg.outerWidth()) / 2, 0),
+                transform: "" // remove transform
+            });
 
             // Re-center on window resize
-            $(window).off("resize.fixedDialog").on("resize.fixedDialog", () => centerDialog($dlg));
+            $(window).off("resize.fixedDialog").on("resize.fixedDialog", () => {
+                const vpW = $(window).width();
+                const vpH = $(window).height();
+                $dlg.css({
+                    top: Math.max((vpH - $dlg.outerHeight()) / 2, 0),
+                    left: Math.max((vpW - $dlg.outerWidth()) / 2, 0)
+                });
+            });
 
-            // Make draggable / touch punch compatible
+            // Make draggable compatible with Touch Punch
             if ($dlg.data("ui-draggable")) $dlg.draggable("destroy");
             $dlg.draggable({
                 handle: ".ui-dialog-titlebar",
@@ -643,6 +651,7 @@ function patchAllDialogsToViewport() {
     });
 }
 
+// Example usage: call after dialogs are created
 $(function () {
     patchAllDialogsToViewport();
 });

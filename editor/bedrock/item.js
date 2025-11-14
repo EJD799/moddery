@@ -698,7 +698,6 @@ $("#addComponentDlg").dialog({
 $("#addComponentDlg").dialog("close");
 $("#selectTextureDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 500,
   width: 500
@@ -706,7 +705,6 @@ $("#selectTextureDlg").dialog({
 $("#selectTextureDlg").dialog("close");
 $("#deleteDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 150,
   width: 300,
@@ -1068,3 +1066,41 @@ function openDeleteComponent(name) {
     deleteDlgText.innerHTML = `Are you sure you want to delete the component "${name}"?`;
     deleteDlgConfirm.setAttribute("onclick", `deleteComponent("${name}")`);
 }
+
+// Function to patch all dialogs on the page
+function fixDialogsToViewport() {
+    // Find all elements with class ui-dialog-content that have been initialized as dialogs
+    $(".ui-dialog-content").each(function() {
+        const $dlgContent = $(this);
+
+        // Skip if this content has no dialog initialized yet
+        if (!$dlgContent.hasClass("ui-dialog-content") || !$dlgContent.dialog("instance")) {
+            return;
+        }
+
+        // Save the original open function (if any)
+        const originalOpen = $dlgContent.dialog("option", "open");
+
+        // Override the open function
+        $dlgContent.dialog("option", "open", function(event, ui) {
+            // Call the original open function if it exists
+            if (typeof originalOpen === "function") {
+                originalOpen.call(this, event, ui);
+            }
+
+            // Get the dialog widget
+            const $dlg = $(this).dialog("widget");
+
+            // Apply fixed positioning and viewport-centered transform
+            $dlg.css({
+                position: "fixed",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)"
+            });
+        });
+    });
+}
+
+// Call this after your dialogs are initialized
+fixDialogsToViewport();

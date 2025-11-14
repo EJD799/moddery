@@ -42,7 +42,6 @@ $("#toolbar").menu();
 $("#tabs").tabs();
 $("#newProjDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 400,
   width: 500
@@ -53,7 +52,6 @@ $("#newProjCancelBtn").button();
 $("#newProjCreateBtn").button();
 $("#editProjDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 400,
   width: 500
@@ -63,7 +61,6 @@ $("#editProjCancelBtn").button();
 $("#editProjSaveBtn").button();
 $("#addElementDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 400,
   width: 500
@@ -74,7 +71,6 @@ $("#addElementCancelBtn").button();
 $("#addElementAddBtn").button();
 $("#addAssetDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 400,
   width: 500
@@ -85,7 +81,6 @@ $("#addAssetCancelBtn").button();
 $("#addAssetAddBtn").button();
 $("#exportDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 400,
   width: 500
@@ -93,7 +88,6 @@ $("#exportDlg").dialog({
 $("#exportDlg").dialog("close");
 $("#loaderDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 150,
   width: 300,
@@ -101,7 +95,6 @@ $("#loaderDlg").dialog({
 });
 $("#aboutDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 300,
   width: 300,
@@ -111,7 +104,6 @@ $("#aboutDlg").dialog("close");
 $("#loaderDlg").dialog("close");
 $("#deleteDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 150,
   width: 300,
@@ -122,7 +114,6 @@ $("#deleteDlgCancel").button();
 $("#deleteDlgConfirm").button();
 $("#renameDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 200,
   width: 300,
@@ -133,7 +124,6 @@ $("#renameDlgCancel").button();
 $("#renameDlgConfirm").button();
 $("#elementInfoDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 300,
   width: 300,
@@ -610,3 +600,41 @@ function getTextureList() {
 $("#newProjBtn").button();
 $("#closeAboutBtn").button();
 document.getElementById("tabs").hidden = true;
+
+// Function to patch all dialogs on the page
+function fixDialogsToViewport() {
+    // Find all elements with class ui-dialog-content that have been initialized as dialogs
+    $(".ui-dialog-content").each(function() {
+        const $dlgContent = $(this);
+
+        // Skip if this content has no dialog initialized yet
+        if (!$dlgContent.hasClass("ui-dialog-content") || !$dlgContent.dialog("instance")) {
+            return;
+        }
+
+        // Save the original open function (if any)
+        const originalOpen = $dlgContent.dialog("option", "open");
+
+        // Override the open function
+        $dlgContent.dialog("option", "open", function(event, ui) {
+            // Call the original open function if it exists
+            if (typeof originalOpen === "function") {
+                originalOpen.call(this, event, ui);
+            }
+
+            // Get the dialog widget
+            const $dlg = $(this).dialog("widget");
+
+            // Apply fixed positioning and viewport-centered transform
+            $dlg.css({
+                position: "fixed",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)"
+            });
+        });
+    });
+}
+
+// Call this after your dialogs are initialized
+fixDialogsToViewport();

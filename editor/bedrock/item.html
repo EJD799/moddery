@@ -92,12 +92,11 @@
     <button id="addComponentAddBtn" onclick="createComponent($('#addComponentType').val())">Add</button>
   </center>
 </div>
-<div id="selectTextureDlg" title="Select Texture">
-    <div id="textureListContainer">
-        <div class="textureMenu" id="selectTextureMenu"></div>
-    </div>
 
-    <div id="selectTextureFooter">
+<div id="selectTextureDlg" title="Select Texture">
+    <div class="textureMenu" id="selectTextureMenu"></div>
+
+    <div class="textureDialogButtons">
         <button id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
         <button id="selectTextureSelectBtn" onclick="selectTexture()">Select</button>
     </div>

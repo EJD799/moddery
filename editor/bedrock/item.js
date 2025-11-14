@@ -690,7 +690,6 @@ $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 
 $("#addComponentDlg").dialog({
   position: { my: "center", at: "center", of: window },
-  open() { centerDialogViewport("#selectTextureDlg"); },
   resizable: false,
   height: 200,
   width: 500

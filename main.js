@@ -601,58 +601,56 @@ $("#newProjBtn").button();
 $("#closeAboutBtn").button();
 document.getElementById("tabs").hidden = true;
 
-// CSS needed to ensure dialogs use fixed positioning
-$("<style>")
-    .prop("type", "text/css")
-    .html(`
-        .ui-dialog { 
-            position: fixed !important; 
-            margin: 0 !important; 
-        }
-    `)
-    .appendTo("head");
-
-// Function to center a dialog in the viewport
-function centerDialog($dlg) {
-    const $window = $(window);
-    const w = $dlg.outerWidth();
-    const h = $dlg.outerHeight();
-    const top = Math.max(($window.height() - h) / 2, 0);
-    const left = Math.max(($window.width() - w) / 2, 0);
-    $dlg.css({
-        top: top + "px",
-        left: left + "px"
-    });
-}
-
-// Patch all dialogs on the page
-function fixDialogsToViewport() {
-    $(".ui-dialog-content").each(function() {
-        const $dlgContent = $(this);
-
-        // Skip if this content is not a dialog
-        if (!$dlgContent.dialog("instance")) return;
+// Call this after all your dialogs are initialized
+function patchAllDialogsToViewport() {
+    $(".ui-dialog-content").each(function () {
+        const $content = $(this);
+        const instance = $content.dialog("instance");
+        if (!instance) return; // skip uninitialized dialogs
 
         // Save original open function
-        const originalOpen = $dlgContent.dialog("option", "open");
+        const originalOpen = $content.dialog("option", "open");
 
-        // Override open function
-        $dlgContent.dialog("option", "open", function(event, ui) {
-            // Call original open if it exists
+        // Override the open option
+        $content.dialog("option", "open", function (event, ui) {
             if (typeof originalOpen === "function") {
                 originalOpen.call(this, event, ui);
             }
 
             const $dlg = $(this).dialog("widget");
 
-            // Center the dialog in the viewport
-            centerDialog($dlg);
+            // Fixed positioning and center
+            $dlg.css({
+                position: "fixed",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)"
+            });
 
-            // Recenter on window resize
-            $(window).off("resize.centerDialog").on("resize.centerDialog", () => centerDialog($dlg));
+            // Reapply transform on window resize
+            $(window).off("resize.fixedDialog").on("resize.fixedDialog", () => {
+                $dlg.css({ top: "50%", left: "50%" });
+            });
+
+            // Make draggable compatible with Touch Punch
+            // Destroy previous draggable to prevent double-init
+            if ($dlg.data("ui-draggable")) $dlg.draggable("destroy");
+
+            $dlg.draggable({
+                handle: ".ui-dialog-titlebar",
+                scroll: false,
+                // Adjust calculation for fixed positioning
+                drag: function (e, ui) {
+                    // Keep dialog in viewport (optional)
+                    ui.position.top = Math.max(ui.position.top, 0);
+                    ui.position.left = Math.max(ui.position.left, 0);
+                }
+            });
         });
     });
 }
 
-// Run after dialogs are initialized
-fixDialogsToViewport();
+// Example usage: call after dialogs are created
+$(function () {
+    patchAllDialogsToViewport();
+});

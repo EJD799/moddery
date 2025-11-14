@@ -1066,7 +1066,7 @@ function openDeleteComponent(name) {
     deleteDlgConfirm.setAttribute("onclick", `deleteComponent("${name}")`);
 }
 
-// Call this after all your dialogs are initialized
+// Patch all dialogs to stay fixed in viewport and draggable
 function patchAllDialogsToViewport() {
     $(".ui-dialog-content").each(function () {
         const $content = $(this);
@@ -1084,39 +1084,41 @@ function patchAllDialogsToViewport() {
 
             const $dlg = $(this).dialog("widget");
 
-            // Get viewport dimensions
-            const viewportWidth = $(window).width();
-            const viewportHeight = $(window).height();
-
-            // Set fixed positioning and pixel-based centering
-            $dlg.css({
-                position: "fixed",
-                top: Math.max((viewportHeight - $dlg.outerHeight()) / 2, 0),
-                left: Math.max((viewportWidth - $dlg.outerWidth()) / 2, 0),
-                transform: "" // remove transform
-            });
-
-            // Re-center on window resize
-            $(window).off("resize.fixedDialog").on("resize.fixedDialog", () => {
-                const vpW = $(window).width();
-                const vpH = $(window).height();
+            // Fixed positioning and center calculation
+            function centerDialog() {
+                const viewportWidth = $(window).width();
+                const viewportHeight = $(window).height();
                 $dlg.css({
-                    top: Math.max((vpH - $dlg.outerHeight()) / 2, 0),
-                    left: Math.max((vpW - $dlg.outerWidth()) / 2, 0)
+                    position: "fixed",
+                    top: Math.max((viewportHeight - $dlg.outerHeight()) / 2, 0),
+                    left: Math.max((viewportWidth - $dlg.outerWidth()) / 2, 0)
                 });
-            });
+            }
+
+            centerDialog();
+
+            // Re-center on resize
+            $(window).off("resize.fixedDialog").on("resize.fixedDialog", centerDialog);
+
+            // Destroy previous draggable to avoid double-init
+            if ($dlg.data("ui-draggable")) $dlg.draggable("destroy");
 
             // Make draggable compatible with Touch Punch
-            if ($dlg.data("ui-draggable")) $dlg.draggable("destroy");
             $dlg.draggable({
                 handle: ".ui-dialog-titlebar",
-                scroll: false
+                scroll: false,
+                // Use helper to calculate drag offsets correctly with fixed positioning
+                drag: function (event, ui) {
+                    // Touch Punch sets ui.position relative to page; adjust for fixed
+                    ui.position.top = Math.max(ui.position.top, 0);
+                    ui.position.left = Math.max(ui.position.left, 0);
+                }
             });
         });
     });
 }
 
-// Example usage: call after dialogs are created
+// Call after all dialogs are created
 $(function () {
     patchAllDialogsToViewport();
 });

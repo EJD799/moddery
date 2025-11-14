@@ -492,7 +492,32 @@ const componentDefinitions = {
         ],
         requires: ["Use Modifiers"]
     },
-
+    "Should Despawn": {
+        name: "Should Despawn",
+        id: "minecraft:should_despawn",
+        inputs: [
+            {
+                type: "boolean",
+                name: "main",
+                label: "Should Despawn",
+                tooltip: "Whether the item should despawn when left in the world."
+            }
+        ],
+        requires: false
+    },
+    "Stacked by Data": {
+        name: "Stacked by Data",
+        id: "minecraft:stacked_by_data",
+        inputs: [
+            {
+                type: "boolean",
+                name: "main",
+                label: "Allow Stacking",
+                tooltip: "Whether items with different data can stack together."
+            }
+        ],
+        requires: false
+    },
 };
 var currentItemComponents = {};
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pixel Art Editor</title>
+<title>Moddery Image Editor</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
 <style>
 html, body {
@@ -276,10 +276,17 @@ function getEventPos(e){
     }
 }
 
+// --------------------------
+// Interaction (mouse + touch)
+// --------------------------
 function handleStart(e){
     e.preventDefault();
     const evtPos = getEventPos(e);
-    if(e.button===1){ isPanning=true; lastX=evtPos.clientX; lastY=evtPos.clientY; canvas.style.cursor='move'; return; }
+
+    if(currentTool==='move' || e.button===1){
+        isPanning=true; lastX=evtPos.clientX; lastY=evtPos.clientY; canvas.style.cursor='move'; return;
+    }
+
     const pos = getMousePos(evtPos);
     startX=pos.x; startY=pos.y; isDrawing=true;
     if(['pencil','eraser','fill','rect','hue','text'].includes(currentTool)) saveState();
@@ -302,7 +309,7 @@ function handleStart(e){
 function handleMove(e){
     e.preventDefault();
     const evtPos = getEventPos(e);
-    lastMouseEvent = evtPos;
+
     if(isPanning){
         offsetX += evtPos.clientX - lastX;
         offsetY += evtPos.clientY - lastY;
@@ -330,8 +337,8 @@ function handleMove(e){
     } else if(currentTool==='rect'){
         const x = Math.min(startX,pos.x);
         const y = Math.min(startY,pos.y);
-        const w = Math.abs(pos.x-startX)+1;
-        const h = Math.abs(pos.y-startY)+1;
+        const w = Math.abs(pos.x-startX) + brushSize - 1;
+        const h = Math.abs(pos.y-startY) + brushSize - 1;
         previewRect = {x,y,w,h};
     }
     render();
@@ -360,7 +367,9 @@ canvas.addEventListener('touchmove',handleMove,{passive:false});
 canvas.addEventListener('touchend',handleEnd,{passive:false});
 canvas.addEventListener('touchcancel',handleEnd,{passive:false});
 
-// Toolbar
+// --------------------------
+// Toolbar + move tool
+// --------------------------
 const toolButtons={
     pencil:document.getElementById('toolPencil'),
     rect:document.getElementById('toolRect'),
@@ -368,9 +377,20 @@ const toolButtons={
     eraser:document.getElementById('toolEraser'),
     eyedropper:document.getElementById('toolEyedropper'),
     hue:document.getElementById('toolHueBrush'),
-    text:document.getElementById('toolText')
+    text:document.getElementById('toolText'),
+    move: null // We'll create a move tool dynamically
 };
-function selectTool(tool){currentTool=tool; Object.keys(toolButtons).forEach(t=>toolButtons[t].classList.toggle('active',t===tool));}
+
+// Add Move button
+const moveBtn = document.createElement('button');
+moveBtn.innerHTML = '<i class="fas fa-arrows-alt"></i>Move';
+document.getElementById('toolbar').insertBefore(moveBtn, document.getElementById('undoBtn'));
+toolButtons.move = moveBtn;
+
+function selectTool(tool){
+    currentTool=tool; 
+    Object.keys(toolButtons).forEach(t=>toolButtons[t].classList.toggle('active',t===tool));
+}
 toolButtons.pencil.onclick=()=>selectTool('pencil');
 toolButtons.rect.onclick=()=>selectTool('rect');
 toolButtons.fill.onclick=()=>selectTool('fill');
@@ -378,6 +398,7 @@ toolButtons.eraser.onclick=()=>selectTool('eraser');
 toolButtons.eyedropper.onclick=()=>selectTool('eyedropper');
 toolButtons.hue.onclick=()=>selectTool('hue');
 toolButtons.text.onclick=()=>selectTool('text');
+toolButtons.move.onclick=()=>selectTool('move');
 
 document.getElementById('colorPicker').onchange=e=>currentColor=e.target.value;
 document.getElementById('brushSize').oninput=e=>{brushSize=parseInt(e.target.value);};

@@ -1066,51 +1066,48 @@ function openDeleteComponent(name) {
     deleteDlgConfirm.setAttribute("onclick", `deleteComponent("${name}")`);
 }
 
-// Patch all dialogs to stay fixed in viewport and draggable
+function centerDialogViewport($dlg) {
+    const w = $(window);
+
+    const left = (w.width() - $dlg.outerWidth()) / 2;
+    const top  = (w.height() - $dlg.outerHeight()) / 2;
+
+    $dlg.css({ top, left });
+}
+
 function patchAllDialogsToViewport() {
     $(".ui-dialog-content").each(function () {
         const $content = $(this);
         const instance = $content.dialog("instance");
-        if (!instance) return; // skip uninitialized dialogs
+        if (!instance) return;
 
-        const $dlg = $content.dialog("widget");
-
-        // Make draggable once (compatible with Touch Punch)
-        if (!$dlg.data("ui-draggable")) {
-            $dlg.draggable({
-                handle: ".ui-dialog-titlebar",
-                scroll: false
-            });
-        }
-
-        // Save original open function
         const originalOpen = $content.dialog("option", "open");
 
-        // Center in viewport on open
         $content.dialog("option", "open", function (event, ui) {
             if (typeof originalOpen === "function") {
                 originalOpen.call(this, event, ui);
             }
 
-            function centerDialog() {
-                const viewportWidth = window.innerWidth;
-                const viewportHeight = window.innerHeight;
-                $dlg.css({
-                    position: "fixed",
-                    top: Math.max((viewportHeight - $dlg.outerHeight()) / 2, 0),
-                    left: Math.max((viewportWidth - $dlg.outerWidth()) / 2, 0)
+            const $dlg = $content.dialog("widget");
+
+            // ensure fixed positioning without transform
+            $dlg.css({
+                position: "fixed",
+                transform: ""
+            });
+
+            // center it properly
+            centerDialogViewport($dlg);
+
+            // keep it centered on window resize
+            $(window).off("resize.center-" + $content.attr("id"))
+                .on("resize.center-" + $content.attr("id"), () => {
+                    centerDialogViewport($dlg);
                 });
-            }
-
-            centerDialog();
-
-            // Recenter on window resize
-            $(window).off("resize.fixedDialog").on("resize.fixedDialog", centerDialog);
         });
     });
 }
 
-// Call after all dialogs are created
 $(function () {
     patchAllDialogsToViewport();
 });

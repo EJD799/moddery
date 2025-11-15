@@ -189,9 +189,6 @@ function drawPixel(x, y, color, ctxToUse = bgCtx, center = true) {
     }
 }
 
-
-
-
 // Flood fill
 function floodFill(x,y,color){
     const data=bgCtx.getImageData(0,0,gridWidth,gridHeight);
@@ -260,21 +257,31 @@ function render(){
             ctx.fillRect(previewRect.x, previewRect.y, previewRect.w, previewRect.h);
         }
 
-        // Brush preview
-        /*if(isDrawing && ['pencil','eraser','hue'].includes(currentTool) && lastMouseEvent){
-            const pos=getMousePos(lastMouseEvent);
-            drawPixel(pos.x,pos.y,(currentTool==='hue'?'hue':currentColor),ctx,false);
-        }*/
-
         renderScheduled=false;
     });
 }
 
-// Mouse events
+// --------------------------
+// INTERACTION (mouse + touch)
+// --------------------------
 let isPanning=false, lastX=0,lastY=0;
-canvas.addEventListener('mousedown', e=>{
-    if(e.button===1){isPanning=true;lastX=e.clientX;lastY=e.clientY;canvas.style.cursor='move';return;}
-    const pos=getMousePos(e); startX=pos.x; startY=pos.y; isDrawing=true;
+
+function getEventPos(e){
+    if(e.touches && e.touches.length>0){
+        return { clientX: e.touches[0].clientX, clientY: e.touches[0].clientY };
+    } else if(e.changedTouches && e.changedTouches.length>0){
+        return { clientX: e.changedTouches[0].clientX, clientY: e.changedTouches[0].clientY };
+    } else {
+        return { clientX: e.clientX, clientY: e.clientY };
+    }
+}
+
+function handleStart(e){
+    e.preventDefault();
+    const evtPos = getEventPos(e);
+    if(e.button===1){ isPanning=true; lastX=evtPos.clientX; lastY=evtPos.clientY; canvas.style.cursor='move'; return; }
+    const pos = getMousePos(evtPos);
+    startX=pos.x; startY=pos.y; isDrawing=true;
     if(['pencil','eraser','fill','rect','hue','text'].includes(currentTool)) saveState();
     if(currentTool==='pencil') drawPixel(pos.x,pos.y,currentColor,bgCtx);
     if(currentTool==='eraser') drawPixel(pos.x,pos.y,'eraser',bgCtx);
@@ -290,60 +297,68 @@ canvas.addEventListener('mousedown', e=>{
             render();
         }
     }
-});
-canvas.addEventListener('mousemove', e => {
-    lastMouseEvent = e;
-    if (isPanning) {
-        offsetX += e.movementX;
-        offsetY += e.movementY;
+}
+
+function handleMove(e){
+    e.preventDefault();
+    const evtPos = getEventPos(e);
+    lastMouseEvent = evtPos;
+    if(isPanning){
+        offsetX += evtPos.clientX - lastX;
+        offsetY += evtPos.clientY - lastY;
+        lastX = evtPos.clientX; lastY = evtPos.clientY;
         render();
         return;
     }
-    if (!isDrawing) return;
+    if(!isDrawing) return;
+    const pos = getMousePos(evtPos);
 
-    const pos = getMousePos(e);
-
-    if (['pencil','eraser','hue'].includes(currentTool)) {
-        // Smooth brush interpolation
+    if(['pencil','eraser','hue'].includes(currentTool)){
         const dx = pos.x - startX;
         const dy = pos.y - startY;
         const dist = Math.sqrt(dx*dx + dy*dy);
-        const steps = Math.max(1, Math.ceil(dist * 2)); // more steps = smoother
-
-        for (let i = 0; i <= steps; i++) {
-            const t = i / steps;
-            const ix = Math.round(startX + dx * t);
-            const iy = Math.round(startY + dy * t);
-            if (currentTool === 'pencil') drawPixel(ix, iy, currentColor, bgCtx);
-            else if (currentTool === 'eraser') drawPixel(ix, iy, 'eraser', bgCtx);
-            else if (currentTool === 'hue') drawPixel(ix, iy, 'hue', bgCtx);
+        const steps = Math.max(1, Math.ceil(dist * 2));
+        for(let i=0;i<=steps;i++){
+            const t=i/steps;
+            const ix=Math.round(startX + dx*t);
+            const iy=Math.round(startY + dy*t);
+            if(currentTool==='pencil') drawPixel(ix,iy,currentColor,bgCtx);
+            else if(currentTool==='eraser') drawPixel(ix,iy,'eraser',bgCtx);
+            else if(currentTool==='hue') drawPixel(ix,iy,'hue',bgCtx);
         }
-
-        startX = pos.x;
-        startY = pos.y;
-    } 
-    else if (currentTool === 'rect') {
-        // Rectangle preview only
-        const x = Math.min(startX, pos.x);
-        const y = Math.min(startY, pos.y);
-        const w = Math.abs(pos.x - startX) + 1;
-        const h = Math.abs(pos.y - startY) + 1;
-        previewRect = { x, y, w, h };
+        startX = pos.x; startY = pos.y;
+    } else if(currentTool==='rect'){
+        const x = Math.min(startX,pos.x);
+        const y = Math.min(startY,pos.y);
+        const w = Math.abs(pos.x-startX)+1;
+        const h = Math.abs(pos.y-startY)+1;
+        previewRect = {x,y,w,h};
     }
-
     render();
-});
+}
 
-canvas.addEventListener('mouseup', e => {
-    if (currentTool === 'rect' && previewRect) {
-        const pos = getMousePos(e);
-        drawRect(startX, startY, pos.x, pos.y, currentColor);
-        previewRect = null;
+function handleEnd(e){
+    e.preventDefault();
+    if(currentTool==='rect' && previewRect){
+        const pos = getMousePos(getEventPos(e));
+        drawRect(startX,startY,pos.x,pos.y,currentColor);
+        previewRect=null;
     }
-    isDrawing = false;
+    isDrawing=false;
+    isPanning=false;
     render();
-});
+}
 
+// Mouse
+canvas.addEventListener('mousedown',handleStart);
+canvas.addEventListener('mousemove',handleMove);
+canvas.addEventListener('mouseup',handleEnd);
+
+// Touch
+canvas.addEventListener('touchstart',handleStart,{passive:false});
+canvas.addEventListener('touchmove',handleMove,{passive:false});
+canvas.addEventListener('touchend',handleEnd,{passive:false});
+canvas.addEventListener('touchcancel',handleEnd,{passive:false});
 
 // Toolbar
 const toolButtons={
@@ -387,7 +402,7 @@ canvas.addEventListener('wheel', e=>{
 // Save/load
 function saveProject(){const c=document.createElement('canvas');c.width=gridWidth;c.height=gridHeight;const cx=c.getContext('2d');cx.imageSmoothingEnabled=false;cx.drawImage(bgCanvas,0,0,gridWidth,gridHeight);return c.toDataURL('image/png');}
 function loadProject(base64){const img=new Image();img.onload=()=>{gridWidth=img.width; gridHeight=img.height; bgCanvas.width=gridWidth; bgCanvas.height=gridHeight; bgCtx.clearRect(0,0,gridWidth,gridHeight); bgCtx.drawImage(img,0,0,gridWidth,gridHeight); resizeCanvas();}; img.src=base64;}
-document.getElementById('saveBtn').onclick=()=>{const data=saveProject(); const a=document.createElement('a'); a.href=data; a.download='pixel.png'; a.click();}
+document.getElementById('saveBtn').onclick=()=>{const data=saveProject(); const a=document.createElement('a'); a.href=data; a.download='image.png'; a.click();}
 document.getElementById('loadBtn').onclick=()=>{document.getElementById('fileInput').click();}
 document.getElementById('fileInput').onchange=e=>{const f=e.target.files[0]; if(!f) return; const reader=new FileReader(); reader.onload=evt=>loadProject(evt.target.result); reader.readAsDataURL(f);}
 

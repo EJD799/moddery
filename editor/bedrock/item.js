@@ -1066,48 +1066,116 @@ function openDeleteComponent(name) {
     deleteDlgConfirm.setAttribute("onclick", `deleteComponent("${name}")`);
 }
 
-function centerDialogViewport($dlg) {
-    const w = $(window);
-
-    const left = (w.width() - $dlg.outerWidth()) / 2;
-    const top  = (w.height() - $dlg.outerHeight()) / 2;
-
-    $dlg.css({ top, left });
-}
-
-function patchAllDialogsToViewport() {
-    $(".ui-dialog-content").each(function () {
-        const $content = $(this);
-        const instance = $content.dialog("instance");
-        if (!instance) return;
-
-        const originalOpen = $content.dialog("option", "open");
-
-        $content.dialog("option", "open", function (event, ui) {
-            if (typeof originalOpen === "function") {
-                originalOpen.call(this, event, ui);
-            }
-
-            const $dlg = $content.dialog("widget");
-
-            // ensure fixed positioning without transform
-            $dlg.css({
-                position: "fixed",
-                transform: ""
-            });
-
-            // center it properly
-            centerDialogViewport($dlg);
-
-            // keep it centered on window resize
-            $(window).off("resize.center-" + $content.attr("id"))
-                .on("resize.center-" + $content.attr("id"), () => {
-                    centerDialogViewport($dlg);
-                });
-        });
-    });
-}
-
+// Run after jQuery, jQuery UI and TouchPunch are loaded and after dialogs exist.
 $(function () {
-    patchAllDialogsToViewport();
+
+  // --- Small compatibility patch for draggable + fixed positioning (fixes offsets) ---
+  // This tweak adjusts internal offsets when element is fixed. Run once.
+  (function () {
+    if (!$.ui || !$.ui.draggable) return;
+    const _oldMouseStart = $.ui.draggable.prototype._mouseStart;
+    $.ui.draggable.prototype._mouseStart = function (event) {
+      // If helper/widget is fixed, adjust click offset to page coords so TouchPunch / draggable agree.
+      try {
+        if (this.helper && this.helper.css && this.helper.css("position") === "fixed" && event && event.pageX !== undefined) {
+          const helperOffset = this.helper.offset(); // page coords
+          this.offset.click = {
+            left: event.pageX - helperOffset.left,
+            top: event.pageY - helperOffset.top
+          };
+        }
+      } catch (err) {
+        // swallow harmless errors
+      }
+      return _oldMouseStart.call(this, event);
+    };
+  })();
+
+  // --- Helpers ---
+  function centerWidgetInViewport($widget) {
+    // Use window.innerWidth/innerHeight to ensure viewport values
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const w = $widget.outerWidth();
+    const h = $widget.outerHeight();
+    const top = Math.max(Math.round((vh - h) / 2), 0);
+    const left = Math.max(Math.round((vw - w) / 2), 0);
+    $widget.css({
+      position: "fixed",
+      top: top + "px",
+      left: left + "px",
+      transform: "" // ensure no translate transform interfering
+    });
+  }
+
+  function makeTitlebarTouchable($widget) {
+    $widget.find(".ui-dialog-titlebar").css({
+      "touch-action": "none",
+      "-ms-touch-action": "none"
+    });
+  }
+
+  // --- Main patch routine ---
+  function patchAllDialogsToViewport() {
+    $(".ui-dialog-content").each(function () {
+      const $content = $(this);
+      const inst = $content.dialog("instance");
+      if (!inst) return;
+
+      // Widget is the actual visible .ui-dialog wrapper
+      const $widget = $content.dialog("widget");
+
+      // ensure titlebar allows touch events
+      makeTitlebarTouchable($widget);
+
+      // Initialize draggable once on the widget (do NOT destroy/recreate on open)
+      if (!$widget.data("ui-draggable")) {
+        $widget.draggable({
+          handle: ".ui-dialog-titlebar",
+          scroll: false,
+          // We do not set containment here because containment coords can be tricky with fixed,
+          // but you can enable if you want to restrict dragging:
+          // containment: [0, 0, window.innerWidth - $widget.outerWidth(), window.innerHeight - $widget.outerHeight()]
+        });
+      }
+
+      // Preserve any existing open callback
+      const originalOpen = $content.dialog("option", "open");
+
+      // Replace open to center (but DO NOT re-init draggable)
+      $content.dialog("option", "open", function (event, ui) {
+        if (typeof originalOpen === "function") originalOpen.call(this, event, ui);
+
+        // center the widget in the viewport (pixel-based)
+        centerWidgetInViewport($widget);
+
+        // reapply touchable titlebar (in case UI rebuilt the widget)
+        makeTitlebarTouchable($widget);
+
+        // Re-center on resize (use namespaced handler so we can overwrite safely)
+        $(window).off("resize.centerDialog").on("resize.centerDialog", function () {
+          centerWidgetInViewport($widget);
+        });
+      });
+    });
+  }
+
+  // Run it now:
+  patchAllDialogsToViewport();
+
+  // Optional: watch for future dialogs being added dynamically and patch them
+  const mo = new MutationObserver((mutations) => {
+    let added = false;
+    for (const m of mutations) {
+      for (const node of m.addedNodes) {
+        if (node.nodeType !== 1) continue;
+        if (node.classList && node.classList.contains("ui-dialog-content")) { added = true; break; }
+        if (node.querySelector && node.querySelector(".ui-dialog-content")) { added = true; break; }
+      }
+      if (added) break;
+    }
+    if (added) patchAllDialogsToViewport();
+  });
+  mo.observe(document.body, { childList: true, subtree: true });
+
 });

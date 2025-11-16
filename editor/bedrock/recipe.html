@@ -29,6 +29,7 @@
 <label for="recipeTypeMenu">Recipe Type</label>
 <select id="recipeTypeMenu" name="recipeTypeMenu">
   <option selected>Crafting Table</option>
+  <option>Crafting Table (Shapeless)</option>
   <option>Stonecutter</option>
   <option>Smithing Table</option>
   <option>Furnace</option>
@@ -37,7 +38,6 @@
   <option>Campfire</option>
   <option>Soul Campfire</option>
   <option>Brewing Stand</option>
-  <option>Material Reducer</option>
 </select>
 <br><br>
 <button id="recipeBtn1" class="itemIconBtn" onclick="selectItem(1)"></button>
@@ -49,6 +49,7 @@
 <button id="recipeBtn6" class="itemIconBtn" onclick="selectItem(6)"></button>
 <i class="fas fa-arrow-right largeIcon"></i>
 <button id="recipeBtn10" class="itemIconBtn" onclick="selectItem(10)"></button>
+<input id="outputQuantityBox" class="smallInput" type="number">
 <br>
 <button id="recipeBtn7" class="itemIconBtn" onclick="selectItem(7)"></button>
 <button id="recipeBtn8" class="itemIconBtn" onclick="selectItem(8)"></button>

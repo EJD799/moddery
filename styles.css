@@ -271,3 +271,7 @@ input[type=color]:hover {
     font-size: 30px;
     vertical-align: middle;
 }
+
+.smallInput {
+    width: 65px;
+}

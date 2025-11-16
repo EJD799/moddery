@@ -1,3 +1,5 @@
+var elementData = {};
+
 $("#recipeTypeMenu").selectmenu();
 $("#recipeBtn1").button();
 $("#recipeBtn2").button();
@@ -67,31 +69,41 @@ $("#addComponentType").selectmenu();
 function saveProject() {
     return {
         name: elementData.name,
-        id: $("#itemIDBox").val(),
-        type: "Item",
-        displayName: $("#nameBox").val(),
-        invCategory: $("#categoryBox").val(),
-        maxStackSize: $("#stackSizeBox").val(),
-        texture: selectedTexture,
-        components: currentItemComponents
+        id: $("#recipeIDBox").val(),
+        type: "Recipe",
+        recipeType: $("#recipeTypeMenu").val(),
+        outputQuantity: $("#outputQuantityBox").val(),
+        craftingGrid: saveGrid()
     };
 }
 function loadProject(data) {
     elementData = data;
     $("#elementIDBox").val(data.name);
-    $("#itemIDBox").val(data.id);
-    $("#nameBox").val(data.displayName);
-    $("#categoryBox").val(data.invCategory);
-    $("#categoryBox").selectmenu("refresh");
-    $("#stackSizeBox").val(data.maxStackSize);
-    selectedTexture = data.texture;
-    if (selectedTexture) {
-        document.getElementById("textureNameText").innerHTML = selectedTexture;
-    } else {
-        document.getElementById("textureNameText").innerHTML = "No texture selected";
-    }
-    loadComponents(data.components);
+    $("#recipeIDBox").val(data.id);
+    $("#recipeTypeMenu").val(data.recipeType);
+    $("#recipeTypeMenu").selectmenu("refresh");
+    $("#outputQuantityBox").val(data.outputQuantity);
+    loadGrid(data.craftingGrid);
 }
+
+function saveGrid() {
+
+}
+function loadGrid(data) {
+
+}
+function changeGridType(type) {
+
+}
+
+
+
+
+
+
+
+
+
 
 // Run after jQuery, jQuery UI and TouchPunch are loaded and after dialogs exist.
 $(function () {

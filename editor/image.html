@@ -40,6 +40,49 @@ html, body {
     display: flex; justify-content: center; align-items: center; cursor: crosshair;
 }
 canvas { image-rendering: pixelated; display: block; }
+/* Make the slider thumb reach the very ends */
+input[type=range] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 120px; /* or whatever fits your toolbar */
+    height: 16px;
+    margin: 0;
+    padding: 0;
+    background: #333;
+    border-radius: 6px;
+}
+
+/* Track */
+input[type=range]::-webkit-slider-runnable-track {
+    height: 6px;
+    background: #555;
+    border-radius: 3px;
+}
+input[type=range]::-moz-range-track {
+    height: 6px;
+    background: #555;
+    border-radius: 3px;
+}
+
+/* Thumb */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: -5px; /* center on track */
+    cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 </style>
 </head>
 <body>
@@ -251,9 +294,11 @@ function handleMove(e){
         }
         startX=pos.x; startY=pos.y;
     } else if(currentTool==='rect'){
-        const x=Math.min(startX,pos.x), y=Math.min(startY,pos.y);
-        const w=Math.abs(pos.x-startX)+1, h=Math.abs(pos.y-startY)+1;
-        previewRect={x,y,w,h};
+        const x = Math.min(startX, pos.x);
+        const y = Math.min(startY, pos.y);
+        const w = Math.abs(pos.x - startX);
+        const h = Math.abs(pos.y - startY);
+        previewRect = {x, y, w, h};
     }
     render();
 }
@@ -290,7 +335,7 @@ const toolButtons={
 };
 const moveBtn=document.createElement('button');
 moveBtn.innerHTML='<i class="fas fa-arrows-alt"></i>Move';
-document.getElementById('toolbar').insertBefore(moveBtn, document.getElementById('undoBtn'));
+document.getElementById('toolbar').prepend(moveBtn);
 toolButtons.move=moveBtn;
 
 function selectTool(tool){

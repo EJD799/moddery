@@ -35,7 +35,7 @@ html, body {
     margin-left: 4px;
 }
 #toolbar button.active { background: #555; }
-#toolbar button:hover { background: #00498f; }
+#toolbar button:hover, #toolbar input[type=color]:hover { background: #00498f; }
 #canvasContainer {
     flex: 1; position: relative; overflow: hidden; background: #222;
     display: flex; justify-content: center; align-items: center; cursor: crosshair;
@@ -45,7 +45,7 @@ canvas { image-rendering: pixelated; display: block; }
 /* Remove default appearance for all sliders */
 input[type="range"] {
     -webkit-appearance: none;
-    width: 200px; /* can be any width */
+    width: 120px; /* can be any width */
     height: 8px;
     border-radius: 4px;
     background: #555; /* fallback */

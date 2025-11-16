@@ -93,6 +93,33 @@ function loadGrid(data) {
 
 }
 function changeGridType(type) {
+    if (type == "crafting" || type == "crafting_shapeless") {
+        enableSlot(1);
+        enableSlot(2);
+        enableSlot(3);
+        enableSlot(4);
+        enableSlot(5);
+        enableSlot(6);
+        enableSlot(7);
+        enableSlot(8);
+        enableSlot(9);
+    }
+    if (type == "stonecutter" || type == "furnace" || type == "blast_furnace" || type == "smoker" || type == "campfire" || type == "soul_campfire") {
+        disableSlot(1);
+        disableSlot(2);
+        disableSlot(3);
+        disableSlot(4);
+        disableSlot(5);
+        enableSlot(6);
+        disableSlot(7);
+        disableSlot(8);
+        disableSlot(9);
+    }
+}
+function enableSlot(num) {
+
+}
+function disableSlot(num) {
 
 }
 

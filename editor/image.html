@@ -320,8 +320,8 @@ function handleMove(e){
     } else if(currentTool==='rect'){
         const x = Math.min(startX, pos.x);
         const y = Math.min(startY, pos.y);
-        const w = Math.abs(pos.x - startX);
-        const h = Math.abs(pos.y - startY);
+        const w = Math.abs(pos.x - startX) + 1;
+        const h = Math.abs(pos.y - startY) + 1;
         previewRect = {x, y, w, h};
     }
     render();

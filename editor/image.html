@@ -164,27 +164,33 @@ const checkerPattern = ctx.createPattern(checkerCanvas,'repeat');
 function resizeCanvas(){canvas.width=container.clientWidth; canvas.height=container.clientHeight; render();}
 
 // Draw pixel
-function drawPixel(x, y, color, ctxToUse = bgCtx, center = true) {
-    const half = center ? Math.floor(brushSize / 2) : 0;
+function drawPixel(x, y, color, ctxToUse = bgCtx, center = true, sizeOverride = null) {
+    const size = sizeOverride ?? brushSize;
+    const half = center ? Math.floor(size / 2) : 0;
+
     if (color === 'eraser') {
-        ctxToUse.clearRect(x - half, y - half, brushSize, brushSize);
+        ctxToUse.clearRect(x - half, y - half, size, size);
     } else if (color === 'hue') {
-        const imgData = ctxToUse.getImageData(x - half, y - half, brushSize, brushSize);
+        const imgData = ctxToUse.getImageData(x - half, y - half, size, size);
         const data = imgData.data;
+
+        // Get the hue of the current selected color
         const tmp = document.createElement('canvas').getContext('2d');
         tmp.fillStyle = currentColor;
-        tmp.fillRect(0,0,1,1);
-        const ref = tmp.getImageData(0,0,1,1).data;
+        tmp.fillRect(0, 0, 1, 1);
+        const ref = tmp.getImageData(0, 0, 1, 1).data;
         const [targetHue] = rgbToHsl(ref[0], ref[1], ref[2]);
+
         for (let i = 0; i < data.length; i += 4) {
-            const [h,s,l] = rgbToHsl(data[i], data[i+1], data[i+2]);
-            const [r,g,b] = hslToRgb(targetHue,s,l);
-            data[i]=r; data[i+1]=g; data[i+2]=b;
+            const [h, s, l] = rgbToHsl(data[i], data[i + 1], data[i + 2]);
+            const [r, g, b] = hslToRgb(targetHue, s, l);
+            data[i] = r; data[i + 1] = g; data[i + 2] = b;
         }
-        ctxToUse.putImageData(imgData, x-half, y-half);
+
+        ctxToUse.putImageData(imgData, x - half, y - half);
     } else {
         ctxToUse.fillStyle = color;
-        ctxToUse.fillRect(x - half, y - half, brushSize, brushSize);
+        ctxToUse.fillRect(x - half, y - half, size, size);
     }
 }
 
@@ -215,7 +221,7 @@ function drawRect(x1,y1,x2,y2,color){
     const ymax=Math.max(y1,y2);
     for(let x=xmin;x<=xmax;x++)
         for(let y=ymin;y<=ymax;y++)
-            drawPixel(x,y,color,bgCtx,false);
+            drawPixel(x,y,color,bgCtx,false,1);
 }
 
 // Helpers

@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="../../jquery-ui.min.css">
+<link rel="stylesheet" href="../../jquery-ui.theme.min.css">
+<link rel="stylesheet" href="../../styles.css">
+<script src="../../jquery-3.7.1.min.js"></script>
+<script src="../../jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
+<style>
+    input {
+        padding: 10px;
+    }
+    body {
+        color: white;
+        font-family: Verdana, sans-serif;
+        background: #111111;
+        padding-left: 18px;
+    }
+    .ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
+        z-index: 2000 !important; /* Use !important if necessary to override existing styles */
+    }
+</style>
+
+<label for="elementIDBox">Element Name (Editor)</label>
+<input name="elementIDBox" id="elementIDBox" placeholder="Element ID">
+<br><br>
+<label for="recipeIDBox">Recipe ID</label>
+<input name="recipeIDBox" id="recipeIDBox" placeholder="Recipe ID">
+<br><br>
+<label for="recipeTypeMenu">Recipe Type</label>
+<select id="recipeTypeMenu" name="recipeTypeMenu">
+  <option selected>Crafting Table</option>
+  <option>Stonecutter</option>
+  <option>Smithing Table</option>
+  <option>Furnace</option>
+  <option>Blast Furnace</option>
+  <option>Smoker</option>
+  <option>Campfire</option>
+  <option>Soul Campfire</option>
+  <option>Brewing Stand</option>
+  <option>Material Reducer</option>
+</select>
+<br><br>
+<button id="recipeBtn1" onclick="selectItem(1)"></button>
+<button id="recipeBtn2" onclick="selectItem(2)"></button>
+<button id="recipeBtn3" onclick="selectItem(3)"></button>
+<br>
+<button id="recipeBtn4" onclick="selectItem(4)"></button>
+<button id="recipeBtn5" onclick="selectItem(5)"></button>
+<button id="recipeBtn6" onclick="selectItem(6)"></button>
+<br>
+<button id="recipeBtn7" onclick="selectItem(7)"></button>
+<button id="recipeBtn8" onclick="selectItem(8)"></button>
+<button id="recipeBtn9" onclick="selectItem(9)"></button>
+<br>
+
+<div id="selectTextureDlg" title="Select Texture">
+    <div class="textureMenu" id="selectTextureMenu"></div>
+
+    <div class="textureDialogButtons">
+        <button id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
+        <button id="selectTextureSelectBtn" onclick="selectTexture()">Select</button>
+    </div>
+</div>
+
+<div id="deleteDlg" title="Delete Component?">
+  <center>
+    <span id="deleteDlgText"></span><br><br>
+    <button id="deleteDlgCancel" onclick="closeDeleteComponent()">Cancel</button>
+    <button id="deleteDlgConfirm" class="redBtn">Delete</button>
+  </center>
+</div>
+
+<script src="item.js"></script>

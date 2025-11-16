@@ -35,53 +35,71 @@ html, body {
     margin-left: 4px;
 }
 #toolbar button.active { background: #555; }
+#toolbar button:hover { background: #00498f; }
 #canvasContainer {
     flex: 1; position: relative; overflow: hidden; background: #222;
     display: flex; justify-content: center; align-items: center; cursor: crosshair;
 }
 canvas { image-rendering: pixelated; display: block; }
-/* Make the slider thumb reach the very ends */
-input[type=range] {
+
+/* Remove default appearance for all sliders */
+input[type="range"] {
     -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 120px; /* or whatever fits your toolbar */
-    height: 16px;
-    margin: 0;
-    padding: 0;
-    background: #333;
-    border-radius: 6px;
+    width: 200px; /* can be any width */
+    height: 8px;
+    border-radius: 4px;
+    background: #555; /* fallback */
+    outline: none;
 }
 
-/* Track */
-input[type=range]::-webkit-slider-runnable-track {
-    height: 6px;
-    background: #555;
-    border-radius: 3px;
-}
-input[type=range]::-moz-range-track {
-    height: 6px;
-    background: #555;
-    border-radius: 3px;
+/* WebKit (Chrome, Safari, Edge) */
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #00498f 0%, #00498f var(--value, 0%), #555 var(--value, 0%), #555 100%);
 }
 
-/* Thumb */
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 16px;
     height: 16px;
-    background: #fff;
     border-radius: 50%;
-    margin-top: -5px; /* center on track */
+    background: #fff;
+    border: 2px solid #00498f;
+    margin-top: -4px; /* center thumb on track */
     cursor: pointer;
 }
-input[type=range]::-moz-range-thumb {
+
+/* Firefox */
+input[type="range"]::-moz-range-track {
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #00498f 0%, #00498f var(--value, 0%), #555 var(--value, 0%), #555 100%);
+}
+
+input[type="range"]::-moz-range-thumb {
     width: 16px;
     height: 16px;
-    background: #fff;
     border-radius: 50%;
+    background: #fff;
+    border: 2px solid #00498f;
     cursor: pointer;
 }
+
+/* Safari/Edge fix for value variable fallback */
+input[type="range"]::-ms-track {
+    width: 100%;
+    height: 8px;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+/* Optional: initialize CSS variable for all sliders */
+input[type="range"] {
+    --value: 0%;
+}
+
 
 </style>
 </head>
@@ -388,6 +406,15 @@ document.getElementById('fileInput').onchange=e=>{const f=e.target.files[0]; if(
 resizeCanvas();
 window.addEventListener('resize',resizeCanvas);
 render();
+
+document.querySelectorAll('input[type="range"]').forEach(slider => {
+    slider.addEventListener('input', () => {
+        const val = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+        slider.style.setProperty('--value', val + '%');
+    });
+    // initialize
+    slider.dispatchEvent(new Event('input'));
+});
 </script>
 
 </body>

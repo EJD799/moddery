@@ -82,7 +82,8 @@ function renderVisibleItems() {
                 top: row * rowHeight,
                 left: col * btnSize,
                 backgroundImage: `url(${textureUrl})`
-            });
+            })
+            .tooltip;
 
         scroller.append(btn);
     }
@@ -202,7 +203,15 @@ $("#recipeTypeMenu").on("selectmenuchange", function (e, ui) {
     changeGridType(ui.item.value);
 });
 
-
+$(function () {
+    $("#itemPickerDialog").tooltip({
+        items: ".itemPickBtn",      // apply tooltips to buttons
+        content: function() {
+            return $(this).attr("title"); // use the existing title attribute
+        },
+        track: true                 // tooltip follows the mouse
+    });
+});
 
 
 

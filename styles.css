@@ -288,14 +288,15 @@ input[type=color]:hover {
 }
 
 .itemPickBtn {
-    width: 32px;
-    height: 32px;
+    width: 48px;
+    height: 48px;
     position: absolute;
-    background-size: 16px 16px;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     border: 1px solid transparent;
     cursor: pointer;
+    image-rendering: pixelated;
 }
 
 .itemPickBtn:hover {

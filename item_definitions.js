@@ -1406,7 +1406,7 @@ const itemDefinitions = {
         texture: "@java/item/netherite_scrap.png"
     },
     "minecraft:netherite_upgrade_smithing_template": {
-        name: "Netherite Ingot",
+        name: "Netherite Upgrade",
         texture: "@java/item/netherite_upgrade_smithing_template.png"
     },
     "minecraft:paper": {

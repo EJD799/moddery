@@ -19,7 +19,7 @@ const javaItemCDN = "https://raw.githubusercontent.com/InventivetalentDev/minecr
 let selectedItemId = null;
 let filteredItems = [];   // after search
 let itemsPerRow = 0;
-const btnSize = 34;       // 32px + borders/padding
+const btnSize = 50;       // 32px + borders/padding
 const rowHeight = btnSize;
 
 function openItemPickerDialog() {
@@ -211,6 +211,8 @@ $(function () {
         content: function() {
             return $(this).attr("title"); // use the existing title attribute
         },
+        show: { effect: "fadeIn", duration: 200, delay: 0 },
+        hide: { effect: "fadeOut", duration: 200, delay: 0 },
         track: true                 // tooltip follows the mouse
     });
 });

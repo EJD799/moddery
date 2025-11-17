@@ -420,9 +420,153 @@ const itemDefinitionsCommon = {
         name: "Coal",
         texture: "/item/coal.png"
     },
-    "minecraft:bundle": {
-        name: "Bundle",
-        texture: "/item/bundle.png"
+    "minecraft:compass": {
+        name: "Compass",
+        texture: "/item/compass.png"
+    },
+    "minecraft:cooked_chicken": {
+        name: "Cooked Chicken",
+        texture: "/item/cooked_chicken.png"
+    },
+    "minecraft:cooked_cod": {
+        name: "Cooked Cod",
+        texture: "/item/cooked_cod.png"
+    },
+    "minecraft:cooked_mutton": {
+        name: "Cooked Mutton",
+        texture: "/item/cooked_mutton.png"
+    },
+    "minecraft:cooked_porkchop": {
+        name: "Cooked Porkchop",
+        texture: "/item/cooked_porkchop.png"
+    },
+    "minecraft:cooked_rabbit": {
+        name: "Cooked Rabbit",
+        texture: "/item/cooked_rabbit.png"
+    },
+    "minecraft:cooked_salmon": {
+        name: "Cooked Salmon",
+        texture: "/item/cooked_salmon.png"
+    },
+    "minecraft:cookie": {
+        name: "Cookie",
+        texture: "/item/cookie.png"
+    },
+    "minecraft:copper_axe": {
+        name: "Copper Axe",
+        texture: "/item/copper_axe.png"
+    },
+    "minecraft:copper_boots": {
+        name: "Copper Boots",
+        texture: "/item/copper_boots.png"
+    },
+    "minecraft:copper_chestplate": {
+        name: "Copper Chestplate",
+        texture: "/item/copper_chestplate.png"
+    },
+    "minecraft:copper_helmet": {
+        name: "Copper Helmet",
+        texture: "/item/copper_helmet.png"
+    },
+    "minecraft:copper_hoe": {
+        name: "Copper Hoe",
+        texture: "/item/copper_hoe.png"
+    },
+    "minecraft:copper_horse_armor": {
+        name: "Copper Horse Armor",
+        texture: "/item/copper_horse_armor.png"
+    },
+    "minecraft:copper_leggings": {
+        name: "Copper Leggings",
+        texture: "/item/copper_leggings.png"
+    },
+    "minecraft:copper_pickaxe": {
+        name: "Copper Pickaxe",
+        texture: "/item/copper_pickaxe.png"
+    },
+    "minecraft:copper_shovel": {
+        name: "Copper Shovel",
+        texture: "/item/copper_shovel.png"
+    },
+    "minecraft:copper_sword": {
+        name: "Copper Sword",
+        texture: "/item/copper_sword.png"
+    },
+    "minecraft:cyan_bundle": {
+        name: "Cyan Bundle",
+        texture: "/item/cyan_bundle.png"
+    },
+    "minecraft:cyan_dye": {
+        name: "Cyan Dye",
+        texture: "/item/cyan_dye.png"
+    },
+    "minecraft:cyan_harness": {
+        name: "Cyan Harness",
+        texture: "/item/cyan_harness.png"
+    },
+    "minecraft:diamond_axe": {
+        name: "Diamond Axe",
+        texture: "/item/diamond_axe.png"
+    },
+    "minecraft:diamond_boots": {
+        name: "Diamond Boots",
+        texture: "/item/diamond_boots.png"
+    },
+    "minecraft:diamond_chestplate": {
+        name: "Diamond Chestplate",
+        texture: "/item/diamond_chestplate.png"
+    },
+    "minecraft:diamond_helmet": {
+        name: "Diamond Helmet",
+        texture: "/item/diamond_helmet.png"
+    },
+    "minecraft:diamond_hoe": {
+        name: "Diamond Hoe",
+        texture: "/item/diamond_hoe.png"
+    },
+    "minecraft:diamond_horse_armor": {
+        name: "Diamond Horse Armor",
+        texture: "/item/diamond_horse_armor.png"
+    },
+    "minecraft:diamond_leggings": {
+        name: "Diamond Leggings",
+        texture: "/item/diamond_leggings.png"
+    },
+    "minecraft:diamond_pickaxe": {
+        name: "Diamond Pickaxe",
+        texture: "/item/diamond_pickaxe.png"
+    },
+    "minecraft:diamond_shovel": {
+        name: "Diamond Shovel",
+        texture: "/item/diamond_shovel.png"
+    },
+    "minecraft:diamond_sword": {
+        name: "Diamond Sword",
+        texture: "/item/diamond_sword.png"
+    },
+    "minecraft:dried_kelp": {
+        name: "Dried Kelp",
+        texture: "/item/dried_kelp.png"
+    },
+    "minecraft:elytra": {
+        name: "Elytra",
+        texture: "/item/elytra.png"
+    },
+    "minecraft:enchanted_book": {
+        name: "Enchanted Book",
+        texture: "/item/enchanted_book.png"
+    },
+    "minecraft:enchanted_golden_apple": {
+        name: "Enchanted Golden Apple",
+        texture: "/item/golden_apple.png"
+    },
+    "minecraft:glass_bottle": {
+        name: "Glass Bottle",
+        texture: "/item/glass_bottle.png"
+    },
+    "minecraft:glass_bottle": {
+        name: "Glass Bottle",
+        texture: "/item/glass_bottle.png"
     },
 };
 
@@ -431,8 +575,19 @@ const itemDefinitionsJava = {
         name: "Minecart with Furnace",
         texture: "/item/furnace_minecart.png"
     },
+    "minecraft:debug_stick": {
+        name: "Debug Stick",
+        texture: "/item/stick.png"
+    },
+    "minecraft:map": {
+        name: "Empty Map",
+        texture: "/item/map.png"
+    },
 };
 
 const itemDefinitionsBedrock = {
-
+    "minecraft:empty_map": {
+        name: "Empty Map",
+        texture: "/item/map.png"
+    },
 };

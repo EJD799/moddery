@@ -1189,9 +1189,9 @@ const itemDefinitionsCommon = {
         name: "Blaze Rod",
         texture: "/item/blaze_rod.png"
     },
-    "minecraft:bolt_armor_trim": {
+    "minecraft:bolt_armor_trim_smithing_template": {
         name: "Bolt Armor Trim",
-        texture: "/item/bolt_armor_trim.png"
+        texture: "/item/bolt_armor_trim_smithing_template.png"
     },
     "minecraft:bordure_indented_banner_pattern": {
         name: "Bordure Indented Banner Pattern",
@@ -1221,9 +1221,9 @@ const itemDefinitionsCommon = {
         name: "Clock",
         texture: "/item/clock.png"
     },
-    "minecraft:coast_armor_trim": {
+    "minecraft:coast_armor_trim_smithing_template": {
         name: "Coast Armor Trim",
-        texture: "/item/coast_armor_trim.png"
+        texture: "/item/coast_armor_trim_smithing_template.png"
     },
     "minecraft:copper_ingot": {
         name: "Copper Ingot",
@@ -1253,9 +1253,9 @@ const itemDefinitionsCommon = {
         name: "Dragon's Breath",
         texture: "/item/dragon_breath.png"
     },
-    "minecraft:dune_armor_trim": {
+    "minecraft:dune_armor_trim_smithing_template": {
         name: "Dune Armor Trim",
-        texture: "/item/dune_armor_trim.png"
+        texture: "/item/dune_armor_trim_smithing_template.png"
     },
     "minecraft:echo_shard": {
         name: "Echo Shard",
@@ -1269,9 +1269,9 @@ const itemDefinitionsCommon = {
         name: "Explorer Pottery Sherd",
         texture: "/item/explorer_pottery_sherd.png"
     },
-    "minecraft:eye_armor_trim": {
+    "minecraft:eye_armor_trim_smithing_template": {
         name: "Eye Armor Trim",
-        texture: "/item/eye_armor_trim.png"
+        texture: "/item/eye_armor_trim_smithing_template.png"
     },
     "minecraft:feather": {
         name: "Feather",
@@ -1293,9 +1293,9 @@ const itemDefinitionsCommon = {
         name: "Flint",
         texture: "/item/flint.png"
     },
-    "minecraft:flow_armor_trim": {
+    "minecraft:flow_armor_trim_smithing_template": {
         name: "Flow Armor Trim",
-        texture: "/item/flow_armor_trim.png"
+        texture: "/item/flow_armor_trim_smithing_template.png"
     },
     "minecraft:flow_banner_pattern": {
         name: "Flow Banner Pattern",
@@ -1357,9 +1357,9 @@ const itemDefinitionsCommon = {
         name: "Heartbreak Pottery Sherd",
         texture: "/item/heartbreak_pottery_sherd.png"
     },
-    "minecraft:host_armor_trim": {
+    "minecraft:host_armor_trim_smithing_template": {
         name: "Host Armor Trim",
-        texture: "/item/host_armor_trim.png"
+        texture: "/item/host_armor_trim_smithing_template.png"
     },
     "minecraft:howl_pottery_sherd": {
         name: "Howl Pottery Sherd",
@@ -1400,6 +1400,110 @@ const itemDefinitionsCommon = {
     "minecraft:netherite_ingot": {
         name: "Netherite Ingot",
         texture: "/item/netherite_ingot.png"
+    },
+    "minecraft:netherite_scrap": {
+        name: "Netherite Scrap",
+        texture: "/item/netherite_scrap.png"
+    },
+    "minecraft:netherite_upgrade_smithing_template": {
+        name: "Netherite Ingot",
+        texture: "/item/netherite_upgrade_smithing_template.png"
+    },
+    "minecraft:paper": {
+        name: "Paper",
+        texture: "/item/paper.png"
+    },
+    "minecraft:phantom_membrane": {
+        name: "Phantom Membrane",
+        texture: "/item/phantom_membrane.png"
+    },
+    "minecraft:plenty_pottery_sherd": {
+        name: "Plenty Pottery Sherd",
+        texture: "/item/plenty_pottery_sherd.png"
+    },
+    "minecraft:popped_chorus_fruit": {
+        name: "Popped Chorus Fruit",
+        texture: "/item/popped_chorus_fruit.png"
+    },
+    "minecraft:prismarine_crystals": {
+        name: "Prismarine Crystals",
+        texture: "/item/prismarine_crystals.png"
+    },
+    "minecraft:prismarine_shard": {
+        name: "Prismarine Shard",
+        texture: "/item/prismarine_shard.png"
+    },
+    "minecraft:prize_pottery_sherd": {
+        name: "Prize Pottery Sherd",
+        texture: "/item/prize_pottery_sherd.png"
+    },
+    "minecraft:rabbit_hide": {
+        name: "Rabbit Hide",
+        texture: "/item/rabbit_hide.png"
+    },
+    "minecraft:rabbit_foot": {
+        name: "Rabbit's Foot",
+        texture: "/item/rabbit_foot.png"
+    },
+    "minecraft:raiser_armor_trim_smithing_template": {
+        name: "Raiser Armor Trim",
+        texture: "/item/raiser_armor_trim_smithing_template.png"
+    },
+    "minecraft:raw_copper": {
+        name: "Raw Copper",
+        texture: "/item/raw_copper.png"
+    },
+    "minecraft:raw_gold": {
+        name: "Raw Gold",
+        texture: "/item/raw_gold.png"
+    },
+    "minecraft:raw_iron": {
+        name: "Raw Iron",
+        texture: "/item/raw_iron.png"
+    },
+    "minecraft:recovery_compass": {
+        name: "Recovery Compass",
+        texture: "/item/recovery_compass.png"
+    },
+    "minecraft:resin_brick": {
+        name: "Resin Brick",
+        texture: "/item/resin_brick.png"
+    },
+    "minecraft:rib_armor_trim_smithing_template": {
+        name: "Rib Armor Trim",
+        texture: "/item/rib_armor_trim_smithing_template.png"
+    },
+    "minecraft:scrape_pottery_sherd": {
+        name: "Scrape Pottery Sherd",
+        texture: "/item/scrape_pottery_sherd.png"
+    },
+    "minecraft:sentry_armor_trim_smithing_template": {
+        name: "Sentry Armor Trim",
+        texture: "/item/sentry_armor_trim_smithing_template.png"
+    },
+    "minecraft:shaper_armor_trim_smithing_template": {
+        name: "Shaper Armor Trim",
+        texture: "/item/shaper_armor_trim_smithing_template.png"
+    },
+    "minecraft:sheaf_pottery_sherd": {
+        name: "Sheaf Pottery Sherd",
+        texture: "/item/sheaf_pottery_sherd.png"
+    },
+    "minecraft:shelter_pottery_sherd": {
+        name: "Shelter Pottery Sherd",
+        texture: "/item/shelter_pottery_sherd.png"
+    },
+    "minecraft:shulker_shell": {
+        name: "Shulker Shell",
+        texture: "/item/shulker_shell.png"
+    },
+    "minecraft:silence_armor_trim_smithing_template": {
+        name: "Silence Armor Trim",
+        texture: "/item/silence_armor_trim_smithing_template.png"
+    },
+    "minecraft:skull_charge_banner_pattern": {
+        name: "Skull Charge Banner Pattern",
+        texture: "/item/skull_charge_banner_pattern.png"
     },
 };
 

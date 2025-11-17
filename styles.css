@@ -307,3 +307,13 @@ input[type=color]:hover {
     border-color: #00aaff;
     background-color: rgba(0,170,255,0.15);
 }
+
+.itemIconBtn {
+    padding: 2px;
+}
+
+.itemIconBtnImg {
+    image-rendering: pixelated;
+    height: 100%;
+    width: 100%;
+}

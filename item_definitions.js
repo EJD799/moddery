@@ -1377,6 +1377,30 @@ const itemDefinitionsCommon = {
         name: "Magma Cream",
         texture: "/item/magma_cream.png"
     },
+    "minecraft:miner_pottery_sherd": {
+        name: "Miner Pottery Sherd",
+        texture: "/item/miner_pottery_sherd.png"
+    },
+    "minecraft:mourner_pottery_sherd": {
+        name: "Mourner Pottery Sherd",
+        texture: "/item/mourner_pottery_sherd.png"
+    },
+    "minecraft:nautilus_shell": {
+        name: "Nautilus Shell",
+        texture: "/item/nautilus_shell.png"
+    },
+    "minecraft:nether_brick": {
+        name: "Nether Brick",
+        texture: "/item/nether_brick.png"
+    },
+    "minecraft:nether_quartz": {
+        name: "Nether Quartz",
+        texture: "/item/nether_quartz.png"
+    },
+    "minecraft:netherite_ingot": {
+        name: "Netherite Ingot",
+        texture: "/item/netherite_ingot.png"
+    },
 };
 
 const itemDefinitionsJava = {

@@ -1557,6 +1557,339 @@ const itemDefinitionsCommon = {
         name: "Wild Armor Trim",
         texture: "/item/wild_armor_trim_smithing_template.png"
     },
+
+    "minecraft:armadillo_spawn_egg": {
+        name: "Armadillo Spawn Egg",
+        texture: "/item/armadillo_spawn_egg.png"
+    },
+    "minecraft:allay_spawn_egg": {
+        name: "Allay Spawn Egg",
+        texture: "/item/allay_spawn_egg.png"
+    },
+    "minecraft:axolotl_spawn_egg": {
+        name: "Axolotl Spawn Egg",
+        texture: "/item/axolotl_spawn_egg.png"
+    },
+    "minecraft:bat_spawn_egg": {
+        name: "Bat Spawn Egg",
+        texture: "/item/bat_spawn_egg.png"
+    },
+    "minecraft:bee_spawn_egg": {
+        name: "Bee Spawn Egg",
+        texture: "/item/bee_spawn_egg.png"
+    },
+    "minecraft:blaze_spawn_egg": {
+        name: "Blaze Spawn Egg",
+        texture: "/item/blaze_spawn_egg.png"
+    },
+    "minecraft:bogged_spawn_egg": {
+        name: "Bogged Spawn Egg",
+        texture: "/item/bogged_spawn_egg.png"
+    },
+    "minecraft:breeze_spawn_egg": {
+        name: "Breeze Spawn Egg",
+        texture: "/item/breeze_spawn_egg.png"
+    },
+    "minecraft:camel_spawn_egg": {
+        name: "Camel Spawn Egg",
+        texture: "/item/camel_spawn_egg.png"
+    },
+    "minecraft:cat_spawn_egg": {
+        name: "Cat Spawn Egg",
+        texture: "/item/cat_spawn_egg.png"
+    },
+    "minecraft:cave_spider_spawn_egg": {
+        name: "Cave Spider Spawn Egg",
+        texture: "/item/cave_spider_spawn_egg.png"
+    },
+    "minecraft:chicken_spawn_egg": {
+        name: "Chicken Spawn Egg",
+        texture: "/item/chicken_spawn_egg.png"
+    },
+    "minecraft:cod_spawn_egg": {
+        name: "Cod Spawn Egg",
+        texture: "/item/cod_spawn_egg.png"
+    },
+    "minecraft:copper_golem_spawn_egg": {
+        name: "Copper Golem Spawn Egg",
+        texture: "/item/copper_golem_spawn_egg.png"
+    },
+    "minecraft:cow_spawn_egg": {
+        name: "Cow Spawn Egg",
+        texture: "/item/cow_spawn_egg.png"
+    },
+    "minecraft:creeper_spawn_egg": {
+        name: "Creeper Spawn Egg",
+        texture: "/item/creeper_spawn_egg.png"
+    },
+    "minecraft:creaking_spawn_egg": {
+        name: "Creaking Spawn Egg",
+        texture: "/item/creaking_spawn_egg.png"
+    },
+    "minecraft:dolphin_spawn_egg": {
+        name: "Dolphin Spawn Egg",
+        texture: "/item/dolphin_spawn_egg.png"
+    },
+    "minecraft:donkey_spawn_egg": {
+        name: "Donkey Spawn Egg",
+        texture: "/item/donkey_spawn_egg.png"
+    },
+    "minecraft:drowned_spawn_egg": {
+        name: "Drowned Spawn Egg",
+        texture: "/item/drowned_spawn_egg.png"
+    },
+    "minecraft:elder_guardian_spawn_egg": {
+        name: "Elder Guardian Spawn Egg",
+        texture: "/item/elder_guardian_spawn_egg.png"
+    },
+    "minecraft:ender_dragon_spawn_egg": {
+        name: "Ender Dragon Spawn Egg",
+        texture: "/item/ender_dragon_spawn_egg.png"
+    },
+    "minecraft:enderman_spawn_egg": {
+        name: "Enderman Spawn Egg",
+        texture: "/item/enderman_spawn_egg.png"
+    },
+    "minecraft:endermite_spawn_egg": {
+        name: "Endermite Spawn Egg",
+        texture: "/item/endermite_spawn_egg.png"
+    },
+    "minecraft:evoker_spawn_egg": {
+        name: "Evoker Spawn Egg",
+        texture: "/item/evoker_spawn_egg.png"
+    },
+    "minecraft:fox_spawn_egg": {
+        name: "Fox Spawn Egg",
+        texture: "/item/fox_spawn_egg.png"
+    },
+    "minecraft:frog_spawn_egg": {
+        name: "Frog Spawn Egg",
+        texture: "/item/frog_spawn_egg.png"
+    },
+    "minecraft:ghast_spawn_egg": {
+        name: "Ghast Spawn Egg",
+        texture: "/item/ghast_spawn_egg.png"
+    },
+    "minecraft:glow_squid_spawn_egg": {
+        name: "Glow Squid Spawn Egg",
+        texture: "/item/glow_squid_spawn_egg.png"
+    },
+    "minecraft:goat_spawn_egg": {
+        name: "Goat Spawn Egg",
+        texture: "/item/goat_spawn_egg.png"
+    },
+    "minecraft:guardian_spawn_egg": {
+        name: "Guardian Spawn Egg",
+        texture: "/item/guardian_spawn_egg.png"
+    },
+    "minecraft:happy_ghast_spawn_egg": {
+        name: "Happy Ghast Spawn Egg",
+        texture: "/item/happy_ghast_spawn_egg.png"
+    },
+    "minecraft:hoglin_spawn_egg": {
+        name: "Hoglin Spawn Egg",
+        texture: "/item/hoglin_spawn_egg.png"
+    },
+    "minecraft:horse_spawn_egg": {
+        name: "Horse Spawn Egg",
+        texture: "/item/horse_spawn_egg.png"
+    },
+    "minecraft:husk_spawn_egg": {
+        name: "Husk Spawn Egg",
+        texture: "/item/husk_spawn_egg.png"
+    },
+    "minecraft:iron_golem_spawn_egg": {
+        name: "Iron Golem Spawn Egg",
+        texture: "/item/iron_golem_spawn_egg.png"
+    },
+    "minecraft:llama_spawn_egg": {
+        name: "Llama Spawn Egg",
+        texture: "/item/llama_spawn_egg.png"
+    },
+    "minecraft:magma_cube_spawn_egg": {
+        name: "Magma Cube Spawn Egg",
+        texture: "/item/magma_cube_spawn_egg.png"
+    },
+    "minecraft:mooshroom_spawn_egg": {
+        name: "Mooshroom Spawn Egg",
+        texture: "/item/mooshroom_spawn_egg.png"
+    },
+    "minecraft:mule_spawn_egg": {
+        name: "Mule Spawn Egg",
+        texture: "/item/mule_spawn_egg.png"
+    },
+    "minecraft:ocelot_spawn_egg": {
+        name: "Ocelot Spawn Egg",
+        texture: "/item/ocelot_spawn_egg.png"
+    },
+    "minecraft:panda_spawn_egg": {
+        name: "Panda Spawn Egg",
+        texture: "/item/panda_spawn_egg.png"
+    },
+    "minecraft:parrot_spawn_egg": {
+        name: "Parrot Spawn Egg",
+        texture: "/item/parrot_spawn_egg.png"
+    },
+    "minecraft:phantom_spawn_egg": {
+        name: "Phantom Spawn Egg",
+        texture: "/item/phantom_spawn_egg.png"
+    },
+    "minecraft:pig_spawn_egg": {
+        name: "Pig Spawn Egg",
+        texture: "/item/pig_spawn_egg.png"
+    },
+    "minecraft:piglin_spawn_egg": {
+        name: "Piglin Spawn Egg",
+        texture: "/item/piglin_spawn_egg.png"
+    },
+    "minecraft:piglin_brute_spawn_egg": {
+        name: "Piglin Brute Spawn Egg",
+        texture: "/item/piglin_brute_spawn_egg.png"
+    },
+    "minecraft:pillager_spawn_egg": {
+        name: "Pillager Spawn Egg",
+        texture: "/item/pillager_spawn_egg.png"
+    },
+    "minecraft:polar_bear_spawn_egg": {
+        name: "Polar Bear Spawn Egg",
+        texture: "/item/polar_bear_spawn_egg.png"
+    },
+    "minecraft:pufferfish_spawn_egg": {
+        name: "Pufferfish Spawn Egg",
+        texture: "/item/pufferfish_spawn_egg.png"
+    },
+    "minecraft:rabbit_spawn_egg": {
+        name: "Rabbit Spawn Egg",
+        texture: "/item/rabbit_spawn_egg.png"
+    },
+    "minecraft:ravager_spawn_egg": {
+        name: "Ravager Spawn Egg",
+        texture: "/item/ravager_spawn_egg.png"
+    },
+    "minecraft:salmon_spawn_egg": {
+        name: "Salmon Spawn Egg",
+        texture: "/item/salmon_spawn_egg.png"
+    },
+    "minecraft:sheep_spawn_egg": {
+        name: "Sheep Spawn Egg",
+        texture: "/item/sheep_spawn_egg.png"
+    },
+    "minecraft:shulker_spawn_egg": {
+        name: "Shulker Spawn Egg",
+        texture: "/item/shulker_spawn_egg.png"
+    },
+    "minecraft:silverfish_spawn_egg": {
+        name: "Silverfish Spawn Egg",
+        texture: "/item/silverfish_spawn_egg.png"
+    },
+    "minecraft:skeleton_horse_spawn_egg": {
+        name: "Skeleton Horse Spawn Egg",
+        texture: "/item/skeleton_horse_spawn_egg.png"
+    },
+    "minecraft:skeleton_spawn_egg": {
+        name: "Skeleton Spawn Egg",
+        texture: "/item/skeleton_spawn_egg.png"
+    },
+    "minecraft:slime_spawn_egg": {
+        name: "Slime Spawn Egg",
+        texture: "/item/slime_spawn_egg.png"
+    },
+    "minecraft:sniffer_spawn_egg": {
+        name: "Sniffer Spawn Egg",
+        texture: "/item/sniffer_spawn_egg.png"
+    },
+    "minecraft:snow_golem_spawn_egg": {
+        name: "Snow Golem Spawn Egg",
+        texture: "/item/snow_golem_spawn_egg.png"
+    },
+    "minecraft:spider_spawn_egg": {
+        name: "Spider Spawn Egg",
+        texture: "/item/spider_spawn_egg.png"
+    },
+    "minecraft:squid_spawn_egg": {
+        name: "Squid Spawn Egg",
+        texture: "/item/squid_spawn_egg.png"
+    },
+    "minecraft:stray_spawn_egg": {
+        name: "Stray Spawn Egg",
+        texture: "/item/stray_spawn_egg.png"
+    },
+    "minecraft:strider_spawn_egg": {
+        name: "Strider Spawn Egg",
+        texture: "/item/strider_spawn_egg.png"
+    },
+    "minecraft:tadpole_spawn_egg": {
+        name: "Tadpole Spawn Egg",
+        texture: "/item/tadpole_spawn_egg.png"
+    },
+    "minecraft:trader_llama_spawn_egg": {
+        name: "Trader Llama Spawn Egg",
+        texture: "/item/trader_llama_spawn_egg.png"
+    },
+    "minecraft:tropical_fish_spawn_egg": {
+        name: "Tropical Fish Spawn Egg",
+        texture: "/item/tropical_fish_spawn_egg.png"
+    },
+    "minecraft:turtle_spawn_egg": {
+        name: "Turtle Spawn Egg",
+        texture: "/item/turtle_spawn_egg.png"
+    },
+    "minecraft:vex_spawn_egg": {
+        name: "Vex Spawn Egg",
+        texture: "/item/vex_spawn_egg.png"
+    },
+    "minecraft:villager_spawn_egg": {
+        name: "Vilager Spawn Egg",
+        texture: "/item/villager_spawn_egg.png"
+    },
+    "minecraft:vindicator_spawn_egg": {
+        name: "Vindicator Spawn Egg",
+        texture: "/item/vindicator_spawn_egg.png"
+    },
+    "minecraft:wandering_trader_spawn_egg": {
+        name: "Wandering Trader Spawn Egg",
+        texture: "/item/wandering_trader_spawn_egg.png"
+    },
+    "minecraft:warden_spawn_egg": {
+        name: "Warden Spawn Egg",
+        texture: "/item/warden_spawn_egg.png"
+    },
+    "minecraft:witch_spawn_egg": {
+        name: "Witch Spawn Egg",
+        texture: "/item/witch_spawn_egg.png"
+    },
+    "minecraft:wither_skeleton_spawn_egg": {
+        name: "Wither Skeleton Spawn Egg",
+        texture: "/item/wither_skeleton_spawn_egg.png"
+    },
+    "minecraft:wither_spawn_egg": {
+        name: "Wither Spawn Egg",
+        texture: "/item/wither_spawn_egg.png"
+    },
+    "minecraft:wolf_spawn_egg": {
+        name: "Wolf Spawn Egg",
+        texture: "/item/wolf_spawn_egg.png"
+    },
+    "minecraft:zoglin_spawn_egg": {
+        name: "Zoglin Spawn Egg",
+        texture: "/item/zoglin_spawn_egg.png"
+    },
+    "minecraft:zombie_horse_spawn_egg": {
+        name: "Zombie Horse Spawn Egg",
+        texture: "/item/zombie_horse_spawn_egg.png"
+    },
+    "minecraft:zombie_spawn_egg": {
+        name: "Zombie Spawn Egg",
+        texture: "/item/zombie_spawn_egg.png"
+    },
+    "minecraft:zombie_villager_spawn_egg": {
+        name: "Zombie Villager Spawn Egg",
+        texture: "/item/zombie_villager_spawn_egg.png"
+    },
+    "minecraft:zombified_piglin_spawn_egg": {
+        name: "Zombified Piglin Spawn Egg",
+        texture: "/item/zombified_piglin_spawn_egg.png"
+    },
 };
 
 const itemDefinitionsJava = {
@@ -1586,5 +1919,13 @@ const itemDefinitionsBedrock = {
     "minecraft:empty_map": {
         name: "Empty Map",
         texture: "/item/map.png"
+    },
+    "minecraft:agent_spawn_egg": {
+        name: "Agent Spawn Egg",
+        texture: "/item/agent_spawn_egg.png"
+    },
+    "minecraft:npc_spawn_egg": {
+        name: "NPC Spawn Egg",
+        texture: "/item/npc_spawn_egg.png"
     },
 };

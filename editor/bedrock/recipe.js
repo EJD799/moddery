@@ -1,6 +1,6 @@
 var elementData = {};
 var currentGrid = ["", "", "", "", "", "", "", "", "", ""];
-var currentSlot;
+var currentSlot = 0;
 
 function addItemToBeginning(obj, key, value) {
     return { [key]: value, ...obj };
@@ -70,6 +70,10 @@ function updateLayout() {
     });
 }
 
+function replaceShortURLs(url) {
+    return url.replace("@java", itemCDN);
+}
+
 function renderVisibleItems() {
     const viewport = $("#itemPickerViewport");
     const scrollTop = viewport.scrollTop();
@@ -92,7 +96,7 @@ function renderVisibleItems() {
     for (let i = startIndex; i < endIndex; i++) {
         const item = allItems[i];
         const itemId = item.id;
-        const textureUrl = item.texture.replace?.("@java", javaItemCDN) ?? item.texture;
+        const textureUrl = replaceShortURLs(item.texture);
 
         const row = Math.floor(i / itemsPerRow);
         const col = i % itemsPerRow;
@@ -179,6 +183,18 @@ function setItem(value) {
     }
     alert(itemID);
     currentGrid[currentSlot - 1] = itemID;
+    renderSlot(currentSlot, itemID, value);
+    currentSlot = 0;
+}
+function renderSlot(slot, value, original) {
+    let slotImage = document.getElementById("recipeBtnImg" + slot);
+    if (original == "special_remove") {
+        slotImage.setAttribute("src", "");
+    } else if (original == "special_custom" && !Object.keys(itemDefinitions).includes(value)) {
+        slotImage.setAttribute("src", "/moddery/custom_textures/special_custom.png");
+    } else {
+        slotImage.setAttribute("src", replaceShortURLs(itemDefinitions[value].texture));
+    }
 }
 function selectItem(slot) {
     openItemPickerDialog();

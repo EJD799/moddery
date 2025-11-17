@@ -22,11 +22,11 @@ $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 const actionItems = {
     "special_remove": {
         name: "Remove Item",
-        texture: "/moddery/custom_textures/special_remove.svg"
+        texture: "/moddery/custom_textures/special_remove.png"
     },
     "special_custom": {
         name: "Custom Item",
-        texture: "/moddery/custom_textures/special_custom.svg"
+        texture: "/moddery/custom_textures/special_custom.png"
     }
 };
 
@@ -103,12 +103,18 @@ function renderVisibleItems() {
             .css({
                 top: row * rowHeight,
                 left: col * btnSize,
-                backgroundImage: `url(${textureUrl})`
+                width: btnSize + "px",
+                height: rowHeight + "px",
+                backgroundImage: `url(${textureUrl})`,
+                position: "absolute",
+                imageRendering: "pixelated",
+                cursor: "pointer"
             });
 
         scroller.append(btn);
     }
 }
+
 
 // Scroll handler (re-renders visible rows)
 $("#itemPickerViewport").on("scroll", renderVisibleItems);

@@ -97,7 +97,7 @@ $("#itemPickerScroller").on("click", ".itemPickBtn", function () {
     $(this).addClass("selected");
 
     selectedItemId = $(this).data("id");
-    $("#itemPickerSelectBtn").prop("disabled", false);
+    $("#itemPickerSelectBtn").button("option", "disabled", false);
 });
 
 // Search handler

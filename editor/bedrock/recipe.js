@@ -1,5 +1,6 @@
 var elementData = {};
-var craftingGrid = ["", "", "", "", "", "", "", "", "", ""];
+var currentGrid = ["", "", "", "", "", "", "", "", "", ""];
+var currentSlot;
 
 function addItemToBeginning(obj, key, value) {
     return { [key]: value, ...obj };
@@ -168,10 +169,20 @@ $("#itemPickerCancelBtn").button();
 $("#itemPickerSelectBtn").button();
 
 function setItem(value) {
-    alert(value);
+    let itemID;
+    if (value == "special_custom") {
+        itemID = prompt("Enter the item ID:");
+    } else if (value == "special_remove") {
+        itemID = "";
+    } else {
+        itemID = value;
+    }
+    alert(itemID);
+    currentGrid[currentSlot - 1] = itemID;
 }
 function selectItem(slot) {
     openItemPickerDialog();
+    currentSlot = slot;
 }
 
 

@@ -900,10 +900,10 @@ const itemDefinitions = {
         name: "Netherite Hoe",
         texture: "@java/item/netherite_hoe.png"
     },
-    "minecraft:netherite_horse_armor": {
+    /*"minecraft:netherite_horse_armor": {
         name: "Netherite Horse Armor",
-        texture: "/moddery/custom_textures/netherite_horse_armor.png"
-    },
+        texture: "@java/item/netherite_horse_armor.png"
+    },*/
     "minecraft:netherite_leggings": {
         name: "Netherite Leggings",
         texture: "@java/item/netherite_leggings.png"

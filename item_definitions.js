@@ -1505,6 +1505,58 @@ const itemDefinitionsCommon = {
         name: "Skull Charge Banner Pattern",
         texture: "/item/skull_charge_banner_pattern.png"
     },
+    "minecraft:skull_pottery_sherd": {
+        name: "Skull Pottery Sherd",
+        texture: "/item/skull_pottery_sherd.png"
+    },
+    "minecraft:snort_pottery_sherd": {
+        name: "Snort Pottery Sherd",
+        texture: "/item/snort_pottery_sherd.png"
+    },
+    "minecraft:snout_armor_trim_smithing_template": {
+        name: "Snout Armor Trim",
+        texture: "/item/snout_armor_trim_smithing_template.png"
+    },
+    "minecraft:snout_banner_pattern": {
+        name: "Snout Banner Pattern",
+        texture: "/item/snout_banner_pattern.png"
+    },
+    "minecraft:spire_armor_trim_smithing_template": {
+        name: "Spire Armor Trim",
+        texture: "/item/spire_armor_trim_smithing_template.png"
+    },
+    "minecraft:stick": {
+        name: "Stick",
+        texture: "/item/stick.png"
+    },
+    "minecraft:thing_banner_pattern": {
+        name: "Thing Banner Pattern",
+        texture: "/item/thing_banner_pattern.png"
+    },
+    "minecraft:tide_armor_trim_smithing_template": {
+        name: "Tide Armor Trim",
+        texture: "/item/tide_armor_trim_smithing_template.png"
+    },
+    "minecraft:turtle_scute": {
+        name: "Turtle Scute",
+        texture: "/item/turtle_scute.png"
+    },
+    "minecraft:vex_armor_trim_smithing_template": {
+        name: "Vex Armor Trim",
+        texture: "/item/vex_armor_trim_smithing_template.png"
+    },
+    "minecraft:ward_armor_trim_smithing_template": {
+        name: "Ward Armor Trim",
+        texture: "/item/ward_armor_trim_smithing_template.png"
+    },
+    "minecraft:wayfinder_armor_trim_smithing_template": {
+        name: "Wayfinder Armor Trim",
+        texture: "/item/wayfinder_armor_trim_smithing_template.png"
+    },
+    "minecraft:wild_armor_trim_smithing_template": {
+        name: "Wild Armor Trim",
+        texture: "/item/wild_armor_trim_smithing_template.png"
+    },
 };
 
 const itemDefinitionsJava = {

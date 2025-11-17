@@ -1152,6 +1152,207 @@ const itemDefinitionsCommon = {
         name: "Wooden Sword",
         texture: "/item/wooden_sword.png"
     },
+    "minecraft:yellow_bundle": {
+        name: "Yellow Bundle",
+        texture: "/item/yellow_bundle.png"
+    },
+    "minecraft:yellow_dye": {
+        name: "Yellow Dye",
+        texture: "/item/yellow_dye.png"
+    },
+    "minecraft:yellow_harness": {
+        name: "Yellow Harness",
+        texture: "/item/yellow_harness.png"
+    },
+
+    "minecraft:angler_pottery_sherd": {
+        name: "Angler Pottery Sherd",
+        texture: "/item/angler_pottery_sherd.png"
+    },
+    "minecraft:archer_pottery_sherd": {
+        name: "Archer Pottery Sherd",
+        texture: "/item/archer_pottery_sherd.png"
+    },
+    "minecraft:arms_up_pottery_sherd": {
+        name: "Arms Up Pottery Sherd",
+        texture: "/item/arms_up_pottery_sherd.png"
+    },
+    "minecraft:blade_pottery_sherd": {
+        name: "Blade Pottery Sherd",
+        texture: "/item/blade_pottery_sherd.png"
+    },
+    "minecraft:blaze_powder": {
+        name: "Blaze Powder",
+        texture: "/item/blaze_powder.png"
+    },
+    "minecraft:blaze_rod": {
+        name: "Blaze Rod",
+        texture: "/item/blaze_rod.png"
+    },
+    "minecraft:bolt_armor_trim": {
+        name: "Bolt Armor Trim",
+        texture: "/item/bolt_armor_trim.png"
+    },
+    "minecraft:bordure_indented_banner_pattern": {
+        name: "Bordure Indented Banner Pattern",
+        texture: "/item/bordure_indented_banner_pattern.png"
+    },
+    "minecraft:breeze_rod": {
+        name: "Breeze Rod",
+        texture: "/item/breeze_rod.png"
+    },
+    "minecraft:brewer_pottery_sherd": {
+        name: "Brewer Pottery Sherd",
+        texture: "/item/brewer_pottery_sherd.png"
+    },
+    "minecraft:brick": {
+        name: "Brick",
+        texture: "/item/brick.png"
+    },
+    "minecraft:burn_pottery_sherd": {
+        name: "Burn Pottery Sherd",
+        texture: "/item/burn_pottery_sherd.png"
+    },
+    "minecraft:clay_ball": {
+        name: "Clay Ball",
+        texture: "/item/clay_ball.png"
+    },
+    "minecraft:clock": {
+        name: "Clock",
+        texture: "/item/clock.png"
+    },
+    "minecraft:coast_armor_trim": {
+        name: "Coast Armor Trim",
+        texture: "/item/coast_armor_trim.png"
+    },
+    "minecraft:copper_ingot": {
+        name: "Copper Ingot",
+        texture: "/item/copper_ingot.png"
+    },
+    "minecraft:copper_nugget": {
+        name: "Copper Nugget",
+        texture: "/item/copper_nugget.png"
+    },
+    "minecraft:creeper_charge_banner_pattern": {
+        name: "Creeper Charge Banner Pattern",
+        texture: "/item/creeper_charge_banner_pattern.png"
+    },
+    "minecraft:danger_pottery_sherd": {
+        name: "Danger Pottery Sherd",
+        texture: "/item/danger_pottery_sherd.png"
+    },
+    "minecraft:diamond": {
+        name: "Diamond",
+        texture: "/item/diamond.png"
+    },
+    "minecraft:disc_fragment_5": {
+        name: "Disc Fragment",
+        texture: "/item/disc_fragment_5.png"
+    },
+    "minecraft:dragon_breath": {
+        name: "Dragon's Breath",
+        texture: "/item/dragon_breath.png"
+    },
+    "minecraft:dune_armor_trim": {
+        name: "Dune Armor Trim",
+        texture: "/item/dune_armor_trim.png"
+    },
+    "minecraft:echo_shard": {
+        name: "Echo Shard",
+        texture: "/item/echo_shard.png"
+    },
+    "minecraft:emerald": {
+        name: "Emerald",
+        texture: "/item/emerald.png"
+    },
+    "minecraft:explorer_pottery_sherd": {
+        name: "Explorer Pottery Sherd",
+        texture: "/item/explorer_pottery_sherd.png"
+    },
+    "minecraft:eye_armor_trim": {
+        name: "Eye Armor Trim",
+        texture: "/item/eye_armor_trim.png"
+    },
+    "minecraft:feather": {
+        name: "Feather",
+        texture: "/item/feather.png"
+    },
+    "minecraft:fermented_spider_eye": {
+        name: "Fermented Spider Eye",
+        texture: "/item/fermented_spider_eye.png"
+    },
+    "minecraft:field_masoned_banner_pattern": {
+        name: "Field Masoned Banner Pattern",
+        texture: "/item/field_masoned_banner_pattern.png"
+    },
+    "minecraft:firework_star": {
+        name: "Firework Star",
+        texture: "/item/firework_star.png"
+    },
+    "minecraft:flint": {
+        name: "Flint",
+        texture: "/item/flint.png"
+    },
+    "minecraft:flow_armor_trim": {
+        name: "Flow Armor Trim",
+        texture: "/item/flow_armor_trim.png"
+    },
+    "minecraft:flow_banner_pattern": {
+        name: "Flow Banner Pattern",
+        texture: "/item/flow_banner_pattern.png"
+    },
+    "minecraft:flow_pottery_sherd": {
+        name: "Flow Pottery Sherd",
+        texture: "/item/flow_pottery_sherd.png"
+    },
+    "minecraft:flower_charge_banner_pattern": {
+        name: "Flower Charge Banner Pattern",
+        texture: "/item/flower_charge_banner_pattern.png"
+    },
+    "minecraft:friend_pottery_sherd": {
+        name: "Friend Pottery Sherd",
+        texture: "/item/friend_pottery_sherd.png"
+    },
+    "minecraft:ghast_tear": {
+        name: "Ghast Tear",
+        texture: "/item/ghast_tear.png"
+    },
+    "minecraft:glistering_melon_slice": {
+        name: "Glistering Melon Slice",
+        texture: "/item/glistering_melon_slice.png"
+    },
+    "minecraft:globe_banner_pattern": {
+        name: "Globe Banner Pattern",
+        texture: "/item/globe_banner_pattern.png"
+    },
+    "minecraft:glowstone_dust": {
+        name: "Glowstone Dust",
+        texture: "/item/glowstone_dust.png"
+    },
+    "minecraft:gold_nugget": {
+        name: "Gold Nugget",
+        texture: "/item/gold_nugget.png"
+    },
+    "minecraft:gunpowder": {
+        name: "Gunpowder",
+        texture: "/item/gunpowder.png"
+    },
+    "minecraft:guster_banner_pattern": {
+        name: "Guster Banner Pattern",
+        texture: "/item/guster_banner_pattern.png"
+    },
+    "minecraft:guster_pottery_sherd": {
+        name: "Guster Pottery Sherd",
+        texture: "/item/guster_pottery_sherd.png"
+    },
+    "minecraft:heart_of_the_sea": {
+        name: "Heart of the Sea",
+        texture: "/item/heart_of_the_sea.png"
+    },
+    "minecraft:heart_pottery_sherd": {
+        name: "Firework Star",
+        texture: "/item/firework_star.png"
+    },
 };
 
 const itemDefinitionsJava = {

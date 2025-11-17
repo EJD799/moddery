@@ -28,6 +28,8 @@ function openItemPickerDialog() {
 
     filterItems("");
 
+    $("#itemPickerDialog").dialog("show");
+
     updateLayout();
     renderVisibleItems();
 }
@@ -56,39 +58,21 @@ function renderVisibleItems() {
     const scrollTop = viewport.scrollTop();
     const viewportHeight = viewport.height();
 
-    console.log("Viewport height:", viewportHeight, "Scroll top:", scrollTop);
-    console.log("Items per row:", itemsPerRow, "Row height:", rowHeight);
-    console.log("Total filtered items:", filteredItems.length);
-
     const startRow = Math.floor(scrollTop / rowHeight);
     const endRow = Math.ceil((scrollTop + viewportHeight) / rowHeight);
 
     const startIndex = startRow * itemsPerRow;
     const endIndex = Math.min(filteredItems.length, endRow * itemsPerRow);
 
-    console.log("Rendering items from index", startIndex, "to", endIndex - 1);
-
     const scroller = $("#itemPickerScroller");
-    console.log("Scroller element exists?", scroller.length);
     scroller.empty();
-
-    if (startIndex >= endIndex) {
-        console.warn("No items to render. Check filteredItems and layout calculations.");
-    }
 
     for (let i = startIndex; i < endIndex; i++) {
         const [itemId, data] = filteredItems[i];
-        if (!data) {
-            console.error("Missing data for item at index", i, "ID:", itemId);
-            continue;
-        }
-
         const textureUrl = data.texture.replace("@java", javaItemCDN);
 
         const row = Math.floor(i / itemsPerRow);
         const col = i % itemsPerRow;
-
-        console.log("Rendering item:", itemId, "at row", row, "col", col, "URL:", textureUrl);
 
         const btn = $("<div>")
             .addClass("itemPickBtn")
@@ -97,16 +81,12 @@ function renderVisibleItems() {
             .css({
                 top: row * rowHeight,
                 left: col * btnSize,
-                backgroundImage: `url(${textureUrl})`,
-                position: "absolute",
-                width: "32px",
-                height: "32px"
+                backgroundImage: `url(${textureUrl})`
             });
 
         scroller.append(btn);
     }
 }
-
 
 // Scroll handler (re-renders visible rows)
 $("#itemPickerViewport").on("scroll", renderVisibleItems);
@@ -147,7 +127,7 @@ function setItem(value) {
     alert(value);
 }
 function selectItem(slot) {
-    $("#itemPickerDialog").dialog("open");
+    openItemPickerDialog();
 }
 
 

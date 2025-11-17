@@ -227,6 +227,42 @@ const itemDefinitionsCommon = {
         name: "Pale Oak Boat with Chest",
         texture: "/item/pale_oak_chest_boat.png"
     },
+    "minecraft:pitcher_pod": {
+        name: "Pitcher Pod",
+        texture: "/item/pitcher_pod.png"
+    },
+    "minecraft:potato": {
+        name: "Potato",
+        texture: "/item/potato.png"
+    },
+    "minecraft:powder_snow_bucket": {
+        name: "Powder Snow Bucket",
+        texture: "/item/powder_snow_bucket.png"
+    },
+    "minecraft:pumpkin_seeds": {
+        name: "Pumpkin Seeds",
+        texture: "/item/pumpkin_seeds.png"
+    },
+    "minecraft:redstone": {
+        name: "Redstone Dust",
+        texture: "/item/redstone.png"
+    },
+    "minecraft:snowball": {
+        name: "Snowball",
+        texture: "/item/snowball.png"
+    },
+    "minecraft:splash_potion": {
+        name: "Splash Potion",
+        texture: "/item/splash_potion.png"
+    },
+    "minecraft:spruce_boat": {
+        name: "Spruce Boat",
+        texture: "/item/spruce_boat.png"
+    },
+    "minecraft:spruce_chest_boat": {
+        name: "Spruce Boat with Chest",
+        texture: "/item/spruce_chest_boat.png"
+    },
 };
 
 const itemDefinitionsJava = {

@@ -52,23 +52,99 @@ const itemDefinitionsCommon = {
         texture: "/item/bucket.png"
     },
     "minecraft:axolotl_bucket": {
-        name: "Axolotl Bucket",
+        name: "Bucket of Axolotl",
         texture: "/item/axolotl_bucket.png"
     },
     "minecraft:cod_bucket": {
-        name: "Cod Bucket",
+        name: "Bucket of Cod",
         texture: "/item/cod_bucket.png"
     },
     "minecraft:pufferfish_bucket": {
-        name: "Pufferfish Bucket",
+        name: "Bucket of Pufferfish",
         texture: "/item/pufferfish_bucket.png"
     },
     "minecraft:salmon_bucket": {
-        name: "Salmon Bucket",
+        name: "Bucket of Salmon",
         texture: "/item/salmon_bucket.png"
     },
     "minecraft:tadpole_bucket": {
-        name: "Tadpole Bucket",
+        name: "Bucket of Tadpole",
         texture: "/item/tadpole_bucket.png"
+    },
+    "minecraft:tropical_fish_bucket": {
+        name: "Bucket of Tropical Fish",
+        texture: "/item/tropical_fish_bucket.png"
+    },
+    "minecraft:carrot": {
+        name: "Carrot",
+        texture: "/item/carrot.png"
+    },
+    "minecraft:cherry_boat": {
+        name: "Cherry Boat",
+        texture: "/item/cherry_boat.png"
+    },
+    "minecraft:cherry_chest_boat": {
+        name: "Cherry Boat with Chest",
+        texture: "/item/cherry_chest_boat.png"
+    },
+    "minecraft:cocoa_beans": {
+        name: "Cocoa Beans",
+        texture: "/item/cocoa_beans.png"
+    },
+    "minecraft:crossbow": {
+        name: "Crossbow",
+        texture: "/item/crossbow.png"
+    },
+    "minecraft:dark_oak_boat": {
+        name: "Dark Oak Boat",
+        texture: "/item/dark_oak_boat.png"
+    },
+    "minecraft:dark_oak_chest_boat": {
+        name: "Dark Oak Boat with Chest",
+        texture: "/item/dark_oak_chest_boat.png"
+    },
+    "minecraft:egg": {
+        name: "Egg",
+        texture: "/item/egg.png"
+    },
+    "minecraft:end_crystal": {
+        name: "End Crystal",
+        texture: "/item/end_crystal.png"
+    },
+    "minecraft:ender_pearl": {
+        name: "Ender Pearl",
+        texture: "/item/ender_pearl.png"
+    },
+    "minecraft:ender_eye": {
+        name: "Eye of Ender",
+        texture: "/item/ender_eye.png"
+    },
+    "minecraft:fire_charge": {
+        name: "Fire Charge",
+        texture: "/item/fire_charge.png"
+    },
+    "minecraft:firework_rocket": {
+        name: "Firework Rocket",
+        texture: "/item/firework_rocket.png"
+    },
+    "minecraft:fishing_rod": {
+        name: "Fishing Rod",
+        texture: "/item/fishing_rod.png"
+    },
+    "minecraft:flint_and_steel": {
+        name: "Flint and Steel",
+        texture: "/item/flint_and_steel.png"
+    },
+    "minecraft:glow_berries": {
+        name: "Glow Berries",
+        texture: "/item/glow_berries.png"
+    },
+    "minecraft:glow_item_frame": {
+        name: "Glow Item Frame",
+        texture: "/item/glow_item_frame.png"
+    },
+    "minecraft:item_frame": {
+        name: "Item Frame",
+        texture: "/item/item_frame.png"
     },
 }

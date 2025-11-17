@@ -128,10 +128,10 @@ function changeGridType(type) {
     }
 }
 function enableSlot(num) {
-    document.getElementById(`#recipeBtn${num}`).style.display = "inline-block";
+    document.getElementById(`recipeBtn${num}`).style.display = "inline-block";
 }
 function disableSlot(num) {
-    document.getElementById(`#recipeBtn${num}`).style.display = "none";
+    document.getElementById(`recipeBtn${num}`).style.display = "none";
 }
 document.getElementById("recipeTypeMenu").addEventListener("change", function(e) {
     changeGridType(e.target.value);

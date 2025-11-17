@@ -189,7 +189,7 @@ function setItem(value) {
 function renderSlot(slot, value, original) {
     let slotImage = document.getElementById("recipeBtnImg" + slot);
     if (original == "special_remove") {
-        slotImage.setAttribute("src", "");
+        slotImage.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
     } else if (original == "special_custom" && !Object.keys(itemDefinitions).includes(value)) {
         slotImage.setAttribute("src", "/moddery/custom_textures/special_custom.png");
     } else {
@@ -200,6 +200,17 @@ function selectItem(slot) {
     openItemPickerDialog();
     currentSlot = slot;
 }
+
+renderSlot(1, "", "special_remove");
+renderSlot(2, "", "special_remove");
+renderSlot(3, "", "special_remove");
+renderSlot(4, "", "special_remove");
+renderSlot(5, "", "special_remove");
+renderSlot(6, "", "special_remove");
+renderSlot(7, "", "special_remove");
+renderSlot(8, "", "special_remove");
+renderSlot(9, "", "special_remove");
+renderSlot(10, "", "special_remove");
 
 
 function saveProject() {

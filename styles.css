@@ -316,4 +316,6 @@ input[type=color]:hover {
     image-rendering: pixelated;
     height: 100%;
     width: 100%;
+    border: 0;
+    outline: 0;
 }

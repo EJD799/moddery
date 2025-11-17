@@ -291,6 +291,139 @@ const itemDefinitionsCommon = {
         name: "Wind Charge",
         texture: "/item/wind_charge.png"
     },
+
+    "minecraft:amethyst_shard": {
+        name: "Amethyst Shard",
+        texture: "/item/amethyst_shard.png"
+    },
+    "minecraft:apple": {
+        name: "Apple",
+        texture: "/item/apple.png"
+    },
+    "minecraft:armadillo_scute": {
+        name: "Armadillo Scute",
+        texture: "/item/armadillo_scute.png"
+    },
+    "minecraft:arrow": {
+        name: "Arrow",
+        texture: "/item/arrow.png"
+    },
+    "minecraft:baked_potato": {
+        name: "Baked Potato",
+        texture: "/item/baked_potato.png"
+    },
+    "minecraft:beetroot": {
+        name: "Beetroot",
+        texture: "/item/beetroot.png"
+    },
+    "minecraft:beetroot_soup": {
+        name: "Beetroot Soup",
+        texture: "/item/beetroot_soup.png"
+    },
+    "minecraft:black_bundle": {
+        name: "Black Bundle",
+        texture: "/item/black_bundle.png"
+    },
+    "minecraft:black_dye": {
+        name: "Black Dye",
+        texture: "/item/black_dye.png"
+    },
+    "minecraft:black_harness": {
+        name: "Black Harness",
+        texture: "/item/black_harness.png"
+    },
+    "minecraft:blue_bundle": {
+        name: "Blue Bundle",
+        texture: "/item/blue_bundle.png"
+    },
+    "minecraft:blue_dye": {
+        name: "Blue Dye",
+        texture: "/item/blue_dye.png"
+    },
+    "minecraft:blue_harness": {
+        name: "Blue Harness",
+        texture: "/item/blue_harness.png"
+    },
+    "minecraft:bone": {
+        name: "Bone",
+        texture: "/item/bone.png"
+    },
+    "minecraft:bone_meal": {
+        name: "Bone Meal",
+        texture: "/item/bone_meal.png"
+    },
+    "minecraft:book": {
+        name: "Book",
+        texture: "/item/book.png"
+    },
+    "minecraft:book_and_quill": {
+        name: "Book and Quill",
+        texture: "/item/book_and_quill.png"
+    },
+    "minecraft:bowl": {
+        name: "Bowl",
+        texture: "/item/bowl.png"
+    },
+    "minecraft:bread": {
+        name: "Bread",
+        texture: "/item/bread.png"
+    },
+    "minecraft:brown_bundle": {
+        name: "Brown Bundle",
+        texture: "/item/brown_bundle.png"
+    },
+    "minecraft:brown_dye": {
+        name: "Brown Dye",
+        texture: "/item/brown_dye.png"
+    },
+    "minecraft:brown_harness": {
+        name: "Brown Harness",
+        texture: "/item/brown_harness.png"
+    },
+    "minecraft:brush": {
+        name: "Brush",
+        texture: "/item/brush.png"
+    },
+    "minecraft:bundle": {
+        name: "Bundle",
+        texture: "/item/bundle.png"
+    },
+    "minecraft:carrot_on_a_stick": {
+        name: "Carrot on a Stick",
+        texture: "/item/carrot_on_a_stick.png"
+    },
+    "minecraft:chainmail_boots": {
+        name: "Chainmail Boots",
+        texture: "/item/chainmail_boots.png"
+    },
+    "minecraft:chainmail_chestplate": {
+        name: "Chainmail Chestplate",
+        texture: "/item/chainmail_chestplate.png"
+    },
+    "minecraft:chainmail_helmet": {
+        name: "Chainmail Helmet",
+        texture: "/item/chainmail_helmet.png"
+    },
+    "minecraft:chainmail_leggings": {
+        name: "Chainmail Leggings",
+        texture: "/item/chainmail_leggings.png"
+    },
+    "minecraft:charcoal": {
+        name: "Charcoal",
+        texture: "/item/charcoal.png"
+    },
+    "minecraft:chorus_fruit": {
+        name: "Chorus Fruit",
+        texture: "/item/chorus_fruit.png"
+    },
+    "minecraft:coal": {
+        name: "Coal",
+        texture: "/item/coal.png"
+    },
+    "minecraft:bundle": {
+        name: "Bundle",
+        texture: "/item/bundle.png"
+    },
 };
 
 const itemDefinitionsJava = {

@@ -71,7 +71,7 @@ function updateLayout() {
 }
 
 function replaceShortURLs(url) {
-    return url.replace("@java", itemCDN);
+    return url.replace("@java", javaItemCDN);
 }
 
 function renderVisibleItems() {

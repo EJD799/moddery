@@ -115,13 +115,27 @@ function changeGridType(type) {
         disableSlot(8);
         disableSlot(9);
     }
+    if (type == "brewing") {
+        disableSlot(1);
+        disableSlot(2);
+        disableSlot(3);
+        disableSlot(4);
+        enableSlot(5);
+        enableSlot(6);
+        disableSlot(7);
+        disableSlot(8);
+        disableSlot(9);
+    }
 }
 function enableSlot(num) {
-
+    document.getElementById(`#recipeBtn${num}`).style.display = "inline-block";
 }
 function disableSlot(num) {
-
+    document.getElementById(`#recipeBtn${num}`).style.display = "none";
 }
+document.getElementById("recipeTypeMenu").addEventListener("change", function(e) {
+    changeGridType(e.target.value);
+});
 
 
 

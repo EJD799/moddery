@@ -1092,6 +1092,66 @@ const itemDefinitionsCommon = {
         name: "Totem of Undying",
         texture: "/item/totem_of_undying.png"
     },
+    "minecraft:trial_key": {
+        name: "Trial Key",
+        texture: "/item/trial_key.png"
+    },
+    "minecraft:tropical_fish": {
+        name: "Tropical Fish",
+        texture: "/item/tropical_fish.png"
+    },
+    "minecraft:turtle_shell": {
+        name: "Turtle Shell",
+        texture: "/item/turtle_shell.png"
+    },
+    "minecraft:water_bottle": {
+        name: "Water Bottle",
+        texture: "/item/water_bottle.png"
+    },
+    "minecraft:warped_fungus_on_a_stick": {
+        name: "Warped Fungus on a Stick",
+        texture: "/item/warped_fungus_on_a_stick.png"
+    },
+    "minecraft:wheat": {
+        name: "Wheat",
+        texture: "/item/wheat.png"
+    },
+    "minecraft:white_bundle": {
+        name: "White Bundle",
+        texture: "/item/white_bundle.png"
+    },
+    "minecraft:white_dye": {
+        name: "White Dye",
+        texture: "/item/white_dye.png"
+    },
+    "minecraft:white_harness": {
+        name: "White Harness",
+        texture: "/item/white_harness.png"
+    },
+    "minecraft:wolf_armor": {
+        name: "Wolf Armor",
+        texture: "/item/wolf_armor.png"
+    },
+    "minecraft:wooden_axe": {
+        name: "Wooden Axe",
+        texture: "/item/wooden_axe.png"
+    },
+    "minecraft:wooden_hoe": {
+        name: "Wooden Hoe",
+        texture: "/item/wooden_hoe.png"
+    },
+    "minecraft:wooden_pickaxe": {
+        name: "Wooden Pickaxe",
+        texture: "/item/wooden_pickaxe.png"
+    },
+    "minecraft:wooden_shovel": {
+        name: "Wooden Shovel",
+        texture: "/item/wooden_shovel.png"
+    },
+    "minecraft:wooden_sword": {
+        name: "Wooden Sword",
+        texture: "/item/wooden_sword.png"
+    },
 };
 
 const itemDefinitionsJava = {

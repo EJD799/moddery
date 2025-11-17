@@ -22,11 +22,11 @@ $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 const actionItems = {
     "special_remove": {
         name: "Remove Item",
-        texture: "/moddery/custom_textures/special_remove.png"
+        texture: "/moddery/custom_textures/special_remove.svg"
     },
     "special_custom": {
         name: "Custom Item",
-        texture: "/moddery/custom_textures/special_custom.png"
+        texture: "/moddery/custom_textures/special_custom.svg"
     }
 };
 
@@ -89,15 +89,16 @@ function renderVisibleItems() {
     scroller.empty();
 
     for (let i = startIndex; i < endIndex; i++) {
-        const [itemId, data] = allItems[i];
-        const textureUrl = data.texture.replace("@java", javaItemCDN);
+        const item = allItems[i];
+        const itemId = item.id;
+        const textureUrl = item.texture.replace?.("@java", javaItemCDN) ?? item.texture;
 
         const row = Math.floor(i / itemsPerRow);
         const col = i % itemsPerRow;
 
         const btn = $("<div>")
             .addClass("itemPickBtn")
-            .attr("title", data.name)
+            .attr("title", item.name)
             .data("id", itemId)
             .css({
                 top: row * rowHeight,

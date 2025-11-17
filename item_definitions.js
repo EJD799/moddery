@@ -902,7 +902,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:netherite_horse_armor": {
         name: "Netherite Horse Armor",
-        texture: "@java/item/netherite_horse_armor.png"
+        texture: "/moddery/custom_textures/netherite_horse_armor.png"
     },
     "minecraft:netherite_leggings": {
         name: "Netherite Leggings",

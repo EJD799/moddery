@@ -564,9 +564,221 @@ const itemDefinitionsCommon = {
         name: "Glass Bottle",
         texture: "/item/glass_bottle.png"
     },
-    "minecraft:glass_bottle": {
-        name: "Glass Bottle",
-        texture: "/item/glass_bottle.png"
+    "minecraft:glow_ink_sac": {
+        name: "Glow Ink Sac",
+        texture: "/item/glow_ink_sac.png"
+    },
+    "minecraft:goat_horn": {
+        name: "Goat Horn",
+        texture: "/item/goat_horn.png"
+    },
+    "minecraft:gold_ingot": {
+        name: "Gold Ingot",
+        texture: "/item/gold_ingot.png"
+    },
+    "minecraft:golden_apple": {
+        name: "Golden Apple",
+        texture: "/item/golden_apple.png"
+    },
+    "minecraft:golden_carrot": {
+        name: "Golden Carrot",
+        texture: "/item/golden_carrot.png"
+    },
+    "minecraft:golden_axe": {
+        name: "Golden Axe",
+        texture: "/item/golden_axe.png"
+    },
+    "minecraft:golden_boots": {
+        name: "Golden Boots",
+        texture: "/item/golden_boots.png"
+    },
+    "minecraft:golden_chestplate": {
+        name: "Golden Chestplate",
+        texture: "/item/golden_chestplate.png"
+    },
+    "minecraft:golden_helmet": {
+        name: "Golden Helmet",
+        texture: "/item/golden_helmet.png"
+    },
+    "minecraft:golden_hoe": {
+        name: "Golden Hoe",
+        texture: "/item/golden_hoe.png"
+    },
+    "minecraft:golden_horse_armor": {
+        name: "Golden Horse Armor",
+        texture: "/item/golden_horse_armor.png"
+    },
+    "minecraft:golden_leggings": {
+        name: "Golden Leggings",
+        texture: "/item/golden_leggings.png"
+    },
+    "minecraft:golden_pickaxe": {
+        name: "Golden Pickaxe",
+        texture: "/item/golden_pickaxe.png"
+    },
+    "minecraft:golden_shovel": {
+        name: "Golden Shovel",
+        texture: "/item/golden_shovel.png"
+    },
+    "minecraft:golden_sword": {
+        name: "Golden Sword",
+        texture: "/item/golden_sword.png"
+    },
+    "minecraft:gray_bundle": {
+        name: "Gray Bundle",
+        texture: "/item/gray_bundle.png"
+    },
+    "minecraft:gray_dye": {
+        name: "Gray Dye",
+        texture: "/item/gray_dye.png"
+    },
+    "minecraft:gray_harness": {
+        name: "Gray Harness",
+        texture: "/item/gray_harness.png"
+    },
+    "minecraft:green_bundle": {
+        name: "Green Bundle",
+        texture: "/item/green_bundle.png"
+    },
+    "minecraft:green_dye": {
+        name: "Green Dye",
+        texture: "/item/green_dye.png"
+    },
+    "minecraft:green_harness": {
+        name: "Green Harness",
+        texture: "/item/green_harness.png"
+    },
+    "minecraft:honeycomb": {
+        name: "Honeycomb",
+        texture: "/item/honeycomb.png"
+    },
+    "minecraft:honey_bottle": {
+        name: "Honey Bottle",
+        texture: "/item/honey_bottle.png"
+    },
+    "minecraft:ink_sac": {
+        name: "Ink Sac",
+        texture: "/item/ink_sac.png"
+    },
+    "minecraft:iron_axe": {
+        name: "Iron Axe",
+        texture: "/item/iron_axe.png"
+    },
+    "minecraft:iron_boots": {
+        name: "Iron Boots",
+        texture: "/item/iron_boots.png"
+    },
+    "minecraft:iron_chestplate": {
+        name: "Iron Chestplate",
+        texture: "/item/iron_chestplate.png"
+    },
+    "minecraft:iron_helmet": {
+        name: "Iron Helmet",
+        texture: "/item/iron_helmet.png"
+    },
+    "minecraft:iron_hoe": {
+        name: "Iron Hoe",
+        texture: "/item/iron_hoe.png"
+    },
+    "minecraft:iron_horse_armor": {
+        name: "Iron Horse Armor",
+        texture: "/item/iron_horse_armor.png"
+    },
+    "minecraft:iron_leggings": {
+        name: "Iron Leggings",
+        texture: "/item/iron_leggings.png"
+    },
+    "minecraft:iron_pickaxe": {
+        name: "Iron Pickaxe",
+        texture: "/item/iron_pickaxe.png"
+    },
+    "minecraft:iron_shovel": {
+        name: "Iron Shovel",
+        texture: "/item/iron_shovel.png"
+    },
+    "minecraft:iron_sword": {
+        name: "Iron Sword",
+        texture: "/item/iron_sword.png"
+    },
+    "minecraft:iron_ingot": {
+        name: "Iron Ingot",
+        texture: "/item/iron_ingot.png"
+    },
+    "minecraft:lapis_lazuli": {
+        name: "Lapis Lazuli",
+        texture: "/item/lapis_lazuli.png"
+    },
+    "minecraft:leather_boots": {
+        name: "Leather Boots",
+        texture: "/item/leather_boots.png"
+    },
+    "minecraft:leather_cap": {
+        name: "Leather Cap",
+        texture: "/item/leather_cap.png"
+    },
+    "minecraft:leather_horse_armor": {
+        name: "Leather Horse Armor",
+        texture: "/item/leather_horse_armor.png"
+    },
+    "minecraft:leather_pants": {
+        name: "Leather Pants",
+        texture: "/item/leather_pants.png"
+    },
+    "minecraft:leather_tunic": {
+        name: "Leather Tunic",
+        texture: "/item/leather_tunic.png"
+    },
+    "minecraft:light_blue_bundle": {
+        name: "Light Blue Bundle",
+        texture: "/item/light_blue_bundle.png"
+    },
+    "minecraft:light_blue_dye": {
+        name: "Light Blue Dye",
+        texture: "/item/light_blue_dye.png"
+    },
+    "minecraft:light_blue_harness": {
+        name: "Light Blue Harness",
+        texture: "/item/light_blue_harness.png"
+    },
+    "minecraft:light_gray_bundle": {
+        name: "Light Gray Bundle",
+        texture: "/item/light_gray_bundle.png"
+    },
+    "minecraft:light_gray_dye": {
+        name: "Light Gray Dye",
+        texture: "/item/light_gray_dye.png"
+    },
+    "minecraft:light_gray_harness": {
+        name: "Light Gray Harness",
+        texture: "/item/light_gray_harness.png"
+    },
+    "minecraft:lime_bundle": {
+        name: "Lime Bundle",
+        texture: "/item/lime_bundle.png"
+    },
+    "minecraft:lime_dye": {
+        name: "Lime Dye",
+        texture: "/item/lime_dye.png"
+    },
+    "minecraft:lime_harness": {
+        name: "Lime Harness",
+        texture: "/item/lime_harness.png"
+    },
+    "minecraft:mace": {
+        name: "Mace",
+        texture: "/item/mace.png"
+    },
+    "minecraft:magenta_bundle": {
+        name: "Magenta Bundle",
+        texture: "/item/magenta_bundle.png"
+    },
+    "minecraft:magenta_dye": {
+        name: "Magenta Dye",
+        texture: "/item/magenta_dye.png"
+    },
+    "minecraft:magenta_harness": {
+        name: "Magenta Harness",
+        texture: "/item/magenta_harness.png"
     },
 };
 
@@ -582,6 +794,10 @@ const itemDefinitionsJava = {
     "minecraft:map": {
         name: "Empty Map",
         texture: "/item/map.png"
+    },
+    "minecraft:knowledge_book": {
+        name: "Knowledge Book",
+        texture: "/item/knowledge_book.png"
     },
 };
 

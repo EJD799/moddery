@@ -880,6 +880,218 @@ const itemDefinitionsCommon = {
         name: "Name Tag",
         texture: "/item/name_tag.png"
     },
+    "minecraft:netherite_axe": {
+        name: "Netherite Axe",
+        texture: "/item/netherite_axe.png"
+    },
+    "minecraft:netherite_boots": {
+        name: "Netherite Boots",
+        texture: "/item/netherite_boots.png"
+    },
+    "minecraft:netherite_chestplate": {
+        name: "Netherite Chestplate",
+        texture: "/item/netherite_chestplate.png"
+    },
+    "minecraft:netherite_helmet": {
+        name: "Netherite Helmet",
+        texture: "/item/netherite_helmet.png"
+    },
+    "minecraft:netherite_hoe": {
+        name: "Netherite Hoe",
+        texture: "/item/netherite_hoe.png"
+    },
+    "minecraft:netherite_horse_armor": {
+        name: "Netherite Horse Armor",
+        texture: "/item/netherite_horse_armor.png"
+    },
+    "minecraft:netherite_leggings": {
+        name: "Netherite Leggings",
+        texture: "/item/netherite_leggings.png"
+    },
+    "minecraft:netherite_pickaxe": {
+        name: "Netherite Pickaxe",
+        texture: "/item/netherite_pickaxe.png"
+    },
+    "minecraft:netherite_shovel": {
+        name: "Netherite Shovel",
+        texture: "/item/netherite_shovel.png"
+    },
+    "minecraft:netherite_sword": {
+        name: "Netherite Sword",
+        texture: "/item/netherite_sword.png"
+    },
+    "minecraft:ominous_bottle": {
+        name: "Ominous Bottle",
+        texture: "/item/ominous_bottle.png"
+    },
+    "minecraft:ominous_trial_key": {
+        name: "Ominous Trial Key",
+        texture: "/item/ominous_trial_key.png"
+    },
+    "minecraft:orange_bundle": {
+        name: "Orange Bundle",
+        texture: "/item/orange_bundle.png"
+    },
+    "minecraft:orange_dye": {
+        name: "Orange Dye",
+        texture: "/item/orange_dye.png"
+    },
+    "minecraft:orange_harness": {
+        name: "Orange Harness",
+        texture: "/item/orange_harness.png"
+    },
+    "minecraft:pink_bundle": {
+        name: "Pink Bundle",
+        texture: "/item/pink_bundle.png"
+    },
+    "minecraft:pink_dye": {
+        name: "Pink Dye",
+        texture: "/item/pink_dye.png"
+    },
+    "minecraft:pink_harness": {
+        name: "Pink Harness",
+        texture: "/item/pink_harness.png"
+    },
+    "minecraft:poisonous_potato": {
+        name: "Poisonous Potato",
+        texture: "/item/poisonous_potato.png"
+    },
+    "minecraft:potion": {
+        name: "Potion",
+        texture: "/item/potion.png"
+    },
+    "minecraft:pufferfish": {
+        name: "Pufferfish",
+        texture: "/item/pufferfish.png"
+    },
+    "minecraft:pumpkin_pie": {
+        name: "Pumpkin Pie",
+        texture: "/item/pumpkin_pie.png"
+    },
+    "minecraft:purple_bundle": {
+        name: "Purple Bundle",
+        texture: "/item/purple_bundle.png"
+    },
+    "minecraft:purple_dye": {
+        name: "Purple Dye",
+        texture: "/item/purple_dye.png"
+    },
+    "minecraft:purple_harness": {
+        name: "Purple Harness",
+        texture: "/item/purple_harness.png"
+    },
+    "minecraft:rabbit_stew": {
+        name: "Rabbit Stew",
+        texture: "/item/rabbit_stew.png"
+    },
+    "minecraft:raw_beef": {
+        name: "Raw Beef",
+        texture: "/item/raw_beef.png"
+    },
+    "minecraft:raw_chicken": {
+        name: "Raw Chicken",
+        texture: "/item/raw_chicken.png"
+    },
+    "minecraft:cod": {
+        name: "Raw Cod",
+        texture: "/item/cod.png"
+    },
+    "minecraft:raw_mutton": {
+        name: "Raw Mutton",
+        texture: "/item/raw_mutton.png"
+    },
+    "minecraft:raw_porkchop": {
+        name: "Raw Porkchop",
+        texture: "/item/raw_porkchop.png"
+    },
+    "minecraft:raw_rabbit": {
+        name: "Raw Rabbit",
+        texture: "/item/raw_rabbit.png"
+    },
+    "minecraft:salmon": {
+        name: "Raw Salmon",
+        texture: "/item/salmon.png"
+    },
+    "minecraft:red_bundle": {
+        name: "Red Bundle",
+        texture: "/item/red_bundle.png"
+    },
+    "minecraft:red_dye": {
+        name: "Red Dye",
+        texture: "/item/red_dye.png"
+    },
+    "minecraft:red_harness": {
+        name: "Red Harness",
+        texture: "/item/red_harness.png"
+    },
+    "minecraft:rotten_flesh": {
+        name: "Rotten Flesh",
+        texture: "/item/rotten_flesh.png"
+    },
+    "minecraft:saddle": {
+        name: "Saddle",
+        texture: "/item/saddle.png"
+    },
+    "minecraft:shears": {
+        name: "Shears",
+        texture: "/item/shears.png"
+    },
+    "minecraft:shield": {
+        name: "Shield",
+        texture: "/item/shield.png"
+    },
+    "minecraft:slimeball": {
+        name: "Slimeball",
+        texture: "/item/slimeball.png"
+    },
+    "minecraft:spider_eye": {
+        name: "Spider Eye",
+        texture: "/item/spider_eye.png"
+    },
+    "minecraft:spyglass": {
+        name: "Spyglass",
+        texture: "/item/spyglass.png"
+    },
+    "minecraft:cooked_beef": {
+        name: "Steak",
+        texture: "/item/cooked_beef.png"
+    },
+    "minecraft:stone_axe": {
+        name: "Stone Axe",
+        texture: "/item/stone_axe.png"
+    },
+    "minecraft:stone_hoe": {
+        name: "Stone Hoe",
+        texture: "/item/stone_hoe.png"
+    },
+    "minecraft:stone_pickaxe": {
+        name: "Stone Pickaxe",
+        texture: "/item/stone_pickaxe.png"
+    },
+    "minecraft:stone_shovel": {
+        name: "Stone Shovel",
+        texture: "/item/stone_shovel.png"
+    },
+    "minecraft:stone_sword": {
+        name: "Stone Sword",
+        texture: "/item/stone_sword.png"
+    },
+    "minecraft:sugar": {
+        name: "Sugar",
+        texture: "/item/sugar.png"
+    },
+    "minecraft:suspicious_stew": {
+        name: "Suspicious Stew",
+        texture: "/item/suspicious_stew.png"
+    },
+    "minecraft:tipped_arrow": {
+        name: "Tipped Arrow",
+        texture: "/item/tipped_arrow.png"
+    },
+    "minecraft:totem_of_undying": {
+        name: "Totem of Undying",
+        texture: "/item/totem_of_undying.png"
+    },
 };
 
 const itemDefinitionsJava = {
@@ -898,6 +1110,10 @@ const itemDefinitionsJava = {
     "minecraft:knowledge_book": {
         name: "Knowledge Book",
         texture: "/item/knowledge_book.png"
+    },
+    "minecraft:spectral_arrow": {
+        name: "Spectral Arrow",
+        texture: "/item/spectral_arrow.png"
     },
 };
 

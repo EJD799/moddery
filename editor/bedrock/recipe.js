@@ -124,6 +124,9 @@ $("#itemPickerDialog").dialog({
 });
 $("#itemPickerDialog").dialog("close");
 
+$("#itemPickerCancelBtn").button();
+$("#itemPickerSelectBtn").button();
+
 function setItem(value) {
     alert(value);
 }

@@ -278,7 +278,7 @@ input[type=color]:hover {
 
 #itemPickerViewport {
     position: relative;
-    height: 400px;
+    height: 350px;
     overflow-y: scroll;
     border: 1px solid #666;
 }

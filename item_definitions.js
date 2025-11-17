@@ -147,4 +147,95 @@ const itemDefinitionsCommon = {
         name: "Item Frame",
         texture: "/item/item_frame.png"
     },
-}
+    "minecraft:jungle_boat": {
+        name: "Jungle Boat",
+        texture: "/item/jungle_boat.png"
+    },
+    "minecraft:jungle_chest_boat": {
+        name: "Jungle Boat with Chest",
+        texture: "/item/jungle_chest_boat.png"
+    },
+    "minecraft:kelp": {
+        name: "Kelp",
+        texture: "/item/kelp.png"
+    },
+    "minecraft:lava_bucket": {
+        name: "Lava Bucket",
+        texture: "/item/lava_bucket.png"
+    },
+    "minecraft:lead": {
+        name: "Lead",
+        texture: "/item/lead.png"
+    },
+    "minecraft:lingering_potion": {
+        name: "Lingering Potion",
+        texture: "/item/lingering_potion.png"
+    },
+    "minecraft:mangrove_boat": {
+        name: "Mangrove Boat",
+        texture: "/item/jungle_boat.png"
+    },
+    "minecraft:mangrove_chest_boat": {
+        name: "Mangrove Boat with Chest",
+        texture: "/item/mangrove_chest_boat.png"
+    },
+    "minecraft:melon_seeds": {
+        name: "Melon Seeds",
+        texture: "/item/melon_seeds.png"
+    },
+    "minecraft:minecart": {
+        name: "Minecart",
+        texture: "/item/minecart.png"
+    },
+    "minecraft:chest_minecart": {
+        name: "Minecart with Chest",
+        texture: "/item/chest_minecart.png"
+    },
+    "minecraft:command_block_minecart": {
+        name: "Minecart with Command Block",
+        texture: "/item/command_block_minecart.png"
+    },
+    "minecraft:hopper_minecart": {
+        name: "Minecart with Hopper",
+        texture: "/item/hopper_minecart.png"
+    },
+    "minecraft:tnt_minecart": {
+        name: "Minecart with TNT",
+        texture: "/item/tnt_minecart.png"
+    },
+    "minecraft:nether_wart": {
+        name: "Nether Wart",
+        texture: "/item/nether_wart.png"
+    },
+    "minecraft:oak_boat": {
+        name: "Oak Boat",
+        texture: "/item/oak_boat.png"
+    },
+    "minecraft:oak_chest_boat": {
+        name: "Oak Boat with Chest",
+        texture: "/item/oak_chest_boat.png"
+    },
+    "minecraft:painting": {
+        name: "Painting",
+        texture: "/item/painting.png"
+    },
+    "minecraft:pale_oak_boat": {
+        name: "Pale Oak Boat",
+        texture: "/item/pale_oak_boat.png"
+    },
+    "minecraft:pale_oak_chest_boat": {
+        name: "Pale Oak Boat with Chest",
+        texture: "/item/pale_oak_chest_boat.png"
+    },
+};
+
+const itemDefinitionsJava = {
+    "minecraft:furnace_minecart": {
+        name: "Minecart with Furnace",
+        texture: "/item/furnace_minecart.png"
+    },
+};
+
+const itemDefinitionsBedrock = {
+
+};

@@ -119,6 +119,14 @@ $("#itemPickerSelectBtn").on("click", function () {
     }
 });
 
+$("#itemPickerDlg").dialog({
+  position: { my: "center", at: "center", of: window },
+  resizable: false,
+  height: 500,
+  width: 500
+});
+$("#itemPickerDlg").dialog("close");
+
 
 function saveProject() {
     return {

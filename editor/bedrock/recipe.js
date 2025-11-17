@@ -1,4 +1,9 @@
 var elementData = {};
+var craftingGrid = ["", "", "", "", "", "", "", "", "", ""];
+
+function addItemToBeginning(obj, key, value) {
+    return { [key]: value, ...obj };
+}
 
 $("#recipeTypeMenu").selectmenu();
 $("#recipeBtn1").button();
@@ -13,6 +18,17 @@ $("#recipeBtn9").button();
 $("#recipeBtn10").button();
 
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");
+
+const actionItems = {
+    "special_remove": {
+        name: "Remove Item",
+        texture: "/moddery/custom_textures/special_remove.png"
+    },
+    "special_custom": {
+        name: "Custom Item",
+        texture: "/moddery/custom_textures/special_custom.png"
+    }
+};
 
 const javaItemCDN = "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures";
 
@@ -36,7 +52,7 @@ function openItemPickerDialog() {
 
 function filterItems(query) {
     const q = query.toLowerCase();
-    filteredItems = Object.entries(itemDefinitions).filter(([id, d]) =>
+    return Object.entries(itemDefinitions).filter(([id, d]) =>
         d.name.toLowerCase().includes(q)
     );
 }
@@ -58,17 +74,22 @@ function renderVisibleItems() {
     const scrollTop = viewport.scrollTop();
     const viewportHeight = viewport.height();
 
+    const allItems = [
+        ...filterItems(actionItems).map(([id, data]) => ({ id, ...data })),
+        ...filteredItems.map(([id, data]) => ({ id, ...data }))
+    ];
+
     const startRow = Math.floor(scrollTop / rowHeight);
     const endRow = Math.ceil((scrollTop + viewportHeight) / rowHeight);
 
     const startIndex = startRow * itemsPerRow;
-    const endIndex = Math.min(filteredItems.length, endRow * itemsPerRow);
+    const endIndex = Math.min(allItems.length, endRow * itemsPerRow);
 
     const scroller = $("#itemPickerScroller");
     scroller.empty();
 
     for (let i = startIndex; i < endIndex; i++) {
-        const [itemId, data] = filteredItems[i];
+        const [itemId, data] = allItems[i];
         const textureUrl = data.texture.replace("@java", javaItemCDN);
 
         const row = Math.floor(i / itemsPerRow);
@@ -102,7 +123,7 @@ $("#itemPickerScroller").on("click", ".itemPickBtn", function () {
 
 // Search handler
 $("#itemSearchBox").on("input", function () {
-    filterItems($(this).val());
+    filteredItems = filterItems($(this).val());
     updateLayout();
     renderVisibleItems();
 });

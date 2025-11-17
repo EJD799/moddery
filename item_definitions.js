@@ -1,4 +1,4 @@
-const itemDefinitionsCommon = {
+const itemDefinitions = {
     "minecraft:acacia_boat": {
         name: "Acacia Boat",
         texture: "@java/item/acacia_boat.png"
@@ -1890,42 +1890,46 @@ const itemDefinitionsCommon = {
         name: "Zombified Piglin Spawn Egg",
         texture: "@java/item/zombified_piglin_spawn_egg.png"
     },
-};
 
-const itemDefinitionsJava = {
     "minecraft:furnace_minecart": {
         name: "Minecart with Furnace",
-        texture: "@java/item/furnace_minecart.png"
+        texture: "@java/item/furnace_minecart.png",
+        filter: "java"
     },
     "minecraft:debug_stick": {
         name: "Debug Stick",
-        texture: "@java/item/stick.png"
+        texture: "@java/item/stick.png",
+        filter: "java"
     },
     "minecraft:map": {
         name: "Empty Map",
-        texture: "@java/item/map.png"
+        texture: "@java/item/map.png",
+        filter: "java"
     },
     "minecraft:knowledge_book": {
         name: "Knowledge Book",
-        texture: "@java/item/knowledge_book.png"
+        texture: "@java/item/knowledge_book.png",
+        filter: "java"
     },
     "minecraft:spectral_arrow": {
         name: "Spectral Arrow",
-        texture: "@java/item/spectral_arrow.png"
+        texture: "@java/item/spectral_arrow.png",
+        filter: "java"
     },
-};
 
-const itemDefinitionsBedrock = {
     "minecraft:empty_map": {
         name: "Empty Map",
-        texture: "@bedrock/item/map.png"
+        texture: "@java/item/map.png",
+        filter: "bedrock"
     },
     "minecraft:agent_spawn_egg": {
         name: "Agent Spawn Egg",
-        texture: "@bedrock/item/agent_spawn_egg.png"
+        texture: "/moddery/custom_textures/agent_spawn_egg.png",
+        filter: "bedrock"
     },
     "minecraft:npc_spawn_egg": {
         name: "NPC Spawn Egg",
-        texture: "@bedrock/item/npc_spawn_egg.png"
+        texture: "/moddery/custom_textures/npc_spawn_egg.png",
+        filter: "bedrock"
     },
 };

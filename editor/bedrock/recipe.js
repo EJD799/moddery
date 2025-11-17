@@ -36,7 +36,7 @@ function openItemPickerDialog() {
 
 function filterItems(query) {
     const q = query.toLowerCase();
-    filteredItems = Object.entries(itemDefinitionsCommon).filter(([id, d]) =>
+    filteredItems = Object.entries(itemDefinitions).filter(([id, d]) =>
         d.name.toLowerCase().includes(q)
     );
 }
@@ -111,9 +111,22 @@ $("#itemSearchBox").on("input", function () {
 $("#itemPickerSelectBtn").on("click", function () {
     if (selectedItemId) {
         setItem(selectedItemId);
-        $("#itemPickerDialog").dialog("close");
+        closeItemPicker();
     }
 });
+
+function closeItemPicker() {
+    $("#itemPickerDialog").dialog("close");
+    // --- RESET SELECTION ---
+    selectedItemId = null;                       // clear the selected ID
+    $(".itemPickBtn").removeClass("selected");   // remove visual highlight
+
+    // Disable the select button again (jQuery UI)
+    $("#itemPickerSelectBtn").button("option", "disabled", true);
+
+    // Optional: clear search box
+    $("#itemSearchBox").val("");
+}
 
 $("#itemPickerDialog").dialog({
   position: { my: "center", at: "center", of: window },

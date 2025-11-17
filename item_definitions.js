@@ -93,7 +93,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:crossbow": {
         name: "Crossbow",
-        texture: "@java/item/crossbow.png"
+        texture: "@java/item/crossbow_standby.png"
     },
     "minecraft:dark_oak_boat": {
         name: "Dark Oak Boat",
@@ -358,7 +358,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:book_and_quill": {
         name: "Book and Quill",
-        texture: "@java/item/book_and_quill.png"
+        texture: "@java/item/writable_book.png"
     },
     "minecraft:bowl": {
         name: "Bowl",
@@ -422,7 +422,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:compass": {
         name: "Compass",
-        texture: "@java/item/compass.png"
+        texture: "@java/item/compass_16.png"
     },
     "minecraft:cooked_chicken": {
         name: "Cooked Chicken",
@@ -714,7 +714,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:leather_cap": {
         name: "Leather Cap",
-        texture: "@java/item/leather_cap.png"
+        texture: "@java/item/leather_helmet.png"
     },
     "minecraft:leather_horse_armor": {
         name: "Leather Horse Armor",
@@ -722,11 +722,11 @@ const itemDefinitionsCommon = {
     },
     "minecraft:leather_pants": {
         name: "Leather Pants",
-        texture: "@java/item/leather_pants.png"
+        texture: "@java/item/leather_leggings.png"
     },
     "minecraft:leather_tunic": {
         name: "Leather Tunic",
-        texture: "@java/item/leather_tunic.png"
+        texture: "@java/item/leather_chestplate.png"
     },
     "minecraft:light_blue_bundle": {
         name: "Light Blue Bundle",
@@ -986,11 +986,11 @@ const itemDefinitionsCommon = {
     },
     "minecraft:raw_beef": {
         name: "Raw Beef",
-        texture: "@java/item/raw_beef.png"
+        texture: "@java/item/beef.png"
     },
     "minecraft:raw_chicken": {
         name: "Raw Chicken",
-        texture: "@java/item/raw_chicken.png"
+        texture: "@java/item/chicken.png"
     },
     "minecraft:cod": {
         name: "Raw Cod",
@@ -998,15 +998,15 @@ const itemDefinitionsCommon = {
     },
     "minecraft:raw_mutton": {
         name: "Raw Mutton",
-        texture: "@java/item/raw_mutton.png"
+        texture: "@java/item/mutton.png"
     },
     "minecraft:raw_porkchop": {
         name: "Raw Porkchop",
-        texture: "@java/item/raw_porkchop.png"
+        texture: "@java/item/porkchop.png"
     },
     "minecraft:raw_rabbit": {
         name: "Raw Rabbit",
-        texture: "@java/item/raw_rabbit.png"
+        texture: "@java/item/rabbit.png"
     },
     "minecraft:salmon": {
         name: "Raw Salmon",
@@ -1038,11 +1038,11 @@ const itemDefinitionsCommon = {
     },
     "minecraft:shield": {
         name: "Shield",
-        texture: "@java/item/shield.png"
+        texture: "/moddery/custom_textures/shield.png"
     },
-    "minecraft:slimeball": {
+    "minecraft:slime_ball": {
         name: "Slimeball",
-        texture: "@java/item/slimeball.png"
+        texture: "@java/item/slime_ball.png"
     },
     "minecraft:spider_eye": {
         name: "Spider Eye",
@@ -1086,7 +1086,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:tipped_arrow": {
         name: "Tipped Arrow",
-        texture: "@java/item/tipped_arrow.png"
+        texture: "/moddery/custom_textures/tipped_arrow.png"
     },
     "minecraft:totem_of_undying": {
         name: "Totem of Undying",
@@ -1102,11 +1102,11 @@ const itemDefinitionsCommon = {
     },
     "minecraft:turtle_shell": {
         name: "Turtle Shell",
-        texture: "@java/item/turtle_shell.png"
+        texture: "@java/item/turtle_helmet.png"
     },
     "minecraft:water_bottle": {
         name: "Water Bottle",
-        texture: "@java/item/water_bottle.png"
+        texture: "/moddery/custom_textures/water_bottle.png"
     },
     "minecraft:warped_fungus_on_a_stick": {
         name: "Warped Fungus on a Stick",
@@ -1219,7 +1219,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:clock": {
         name: "Clock",
-        texture: "@java/item/clock.png"
+        texture: "@java/item/clock_16.png"
     },
     "minecraft:coast_armor_trim_smithing_template": {
         name: "Coast Armor Trim",
@@ -1235,7 +1235,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:creeper_charge_banner_pattern": {
         name: "Creeper Charge Banner Pattern",
-        texture: "@java/item/creeper_charge_banner_pattern.png"
+        texture: "@java/item/creeper_banner_pattern.png"
     },
     "minecraft:danger_pottery_sherd": {
         name: "Danger Pottery Sherd",
@@ -1307,7 +1307,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:flower_charge_banner_pattern": {
         name: "Flower Charge Banner Pattern",
-        texture: "@java/item/flower_charge_banner_pattern.png"
+        texture: "@java/item/flower_banner_pattern.png"
     },
     "minecraft:friend_pottery_sherd": {
         name: "Friend Pottery Sherd",
@@ -1395,7 +1395,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:nether_quartz": {
         name: "Nether Quartz",
-        texture: "@java/item/nether_quartz.png"
+        texture: "@java/item/quartz.png"
     },
     "minecraft:netherite_ingot": {
         name: "Netherite Ingot",
@@ -1463,7 +1463,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:recovery_compass": {
         name: "Recovery Compass",
-        texture: "@java/item/recovery_compass.png"
+        texture: "@java/item/recovery_compass_16.png"
     },
     "minecraft:resin_brick": {
         name: "Resin Brick",
@@ -1503,7 +1503,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:skull_charge_banner_pattern": {
         name: "Skull Charge Banner Pattern",
-        texture: "@java/item/skull_charge_banner_pattern.png"
+        texture: "@java/item/skull_banner_pattern.png"
     },
     "minecraft:skull_pottery_sherd": {
         name: "Skull Pottery Sherd",
@@ -1519,7 +1519,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:snout_banner_pattern": {
         name: "Snout Banner Pattern",
-        texture: "@java/item/snout_banner_pattern.png"
+        texture: "@java/item/piglin_banner_pattern.png"
     },
     "minecraft:spire_armor_trim_smithing_template": {
         name: "Spire Armor Trim",
@@ -1531,7 +1531,7 @@ const itemDefinitionsCommon = {
     },
     "minecraft:thing_banner_pattern": {
         name: "Thing Banner Pattern",
-        texture: "@java/item/thing_banner_pattern.png"
+        texture: "@java/item/mojang_banner_pattern.png"
     },
     "minecraft:tide_armor_trim_smithing_template": {
         name: "Tide Armor Trim",

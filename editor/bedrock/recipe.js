@@ -133,8 +133,8 @@ function enableSlot(num) {
 function disableSlot(num) {
     document.getElementById(`recipeBtn${num}`).style.display = "none";
 }
-document.getElementById("recipeTypeMenu").addEventListener("change", function(e) {
-    changeGridType(e.target.value);
+$("#recipeTypeMenu").on("selectmenuchange", function (e, ui) {
+    changeGridType(ui.item.value);
 });
 
 

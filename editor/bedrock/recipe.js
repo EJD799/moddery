@@ -82,8 +82,7 @@ function renderVisibleItems() {
                 top: row * rowHeight,
                 left: col * btnSize,
                 backgroundImage: `url(${textureUrl})`
-            })
-            .tooltip;
+            });
 
         scroller.append(btn);
     }

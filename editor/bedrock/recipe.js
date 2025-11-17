@@ -192,6 +192,8 @@ function renderSlot(slot, value, original) {
         slotImage.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
     } else if (original == "special_custom" && !Object.keys(itemDefinitions).includes(value)) {
         slotImage.setAttribute("src", "/moddery/custom_textures/special_custom.png");
+    } else if (original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) {
+        slotImage.setAttribute("src", replaceShortURLs(itemDefinitions["minecraft:" + value].texture));
     } else {
         slotImage.setAttribute("src", replaceShortURLs(itemDefinitions[value].texture));
     }

@@ -780,6 +780,106 @@ const itemDefinitionsCommon = {
         name: "Magenta Harness",
         texture: "/item/magenta_harness.png"
     },
+    "minecraft:melon_slice": {
+        name: "Melon Slice",
+        texture: "/item/melon_slice.png"
+    },
+    "minecraft:milk_bucket": {
+        name: "Milk Bucket",
+        texture: "/item/milk_bucket.png"
+    },
+    "minecraft:mushroom_stew": {
+        name: "Mushroom Stew",
+        texture: "/item/mushroom_stew.png"
+    },
+    "minecraft:music_disc_5": {
+        name: "Music Disc (5)",
+        texture: "/item/music_disc_5.png"
+    },
+    "minecraft:music_disc_11": {
+        name: "Music Disc (11)",
+        texture: "/item/music_disc_11.png"
+    },
+    "minecraft:music_disc_13": {
+        name: "Music Disc (13)",
+        texture: "/item/music_disc_13.png"
+    },
+    "minecraft:music_disc_blocks": {
+        name: "Music Disc (blocks)",
+        texture: "/item/music_disc_blocks.png"
+    },
+    "minecraft:music_disc_cat": {
+        name: "Music Disc (cat)",
+        texture: "/item/music_disc_cat.png"
+    },
+    "minecraft:music_disc_chirp": {
+        name: "Music Disc (chirp)",
+        texture: "/item/music_disc_chirp.png"
+    },
+    "minecraft:music_disc_creator": {
+        name: "Music Disc (Creator)",
+        texture: "/item/music_disc_creator.png"
+    },
+    "minecraft:music_disc_creator_music_box": {
+        name: "Music Disc (Creator (Music Box))",
+        texture: "/item/music_disc_creator_music_box.png"
+    },
+    "minecraft:music_disc_far": {
+        name: "Music Disc (far)",
+        texture: "/item/music_disc_far.png"
+    },
+    "minecraft:music_disc_lava_chicken": {
+        name: "Music Disc (Lava Chicken)",
+        texture: "/item/music_disc_lava_chicken.png"
+    },
+    "minecraft:music_disc_mall": {
+        name: "Music Disc (mall)",
+        texture: "/item/music_disc_mall.png"
+    },
+    "minecraft:music_disc_mellohi": {
+        name: "Music Disc (mellohi)",
+        texture: "/item/music_disc_mellohi.png"
+    },
+    "minecraft:music_disc_otherside": {
+        name: "Music Disc (otherside)",
+        texture: "/item/music_disc_otherside.png"
+    },
+    "minecraft:music_disc_pigstep": {
+        name: "Music Disc (Pigstep)",
+        texture: "/item/music_disc_pigstep.png"
+    },
+    "minecraft:music_disc_precipice": {
+        name: "Music Disc (Precipice)",
+        texture: "/item/music_disc_precipice.png"
+    },
+    "minecraft:music_disc_relic": {
+        name: "Music Disc (Relic)",
+        texture: "/item/music_disc_relic.png"
+    },
+    "minecraft:music_disc_stal": {
+        name: "Music Disc (stal)",
+        texture: "/item/music_disc_stal.png"
+    },
+    "minecraft:music_disc_strad": {
+        name: "Music Disc (strad)",
+        texture: "/item/music_disc_strad.png"
+    },
+    "minecraft:music_disc_tears": {
+        name: "Music Disc (Tears)",
+        texture: "/item/music_disc_tears.png"
+    },
+    "minecraft:music_disc_wait": {
+        name: "Music Disc (wait)",
+        texture: "/item/music_disc_wait.png"
+    },
+    "minecraft:music_disc_ward": {
+        name: "Music Disc (ward)",
+        texture: "/item/music_disc_ward.png"
+    },
+    "minecraft:name_tag": {
+        name: "Name Tag",
+        texture: "/item/name_tag.png"
+    },
 };
 
 const itemDefinitionsJava = {

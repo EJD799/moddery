@@ -55,21 +55,13 @@
 <button id="recipeBtn9" class="itemIconBtn" onclick="selectItem(9)"></button>
 <br>
 
-<div id="selectTextureDlg" title="Select Texture">
-    <div class="textureMenu" id="selectTextureMenu"></div>
-
-    <div class="textureDialogButtons">
-        <button id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
-        <button id="selectTextureSelectBtn" onclick="selectTexture()">Select</button>
+<div id="itemPickerDialog" title="Select Item" style="display:none;">
+    <input id="itemSearchBox" type="text" placeholder="Search items..." style="width:100%; margin-bottom:8px;">
+    <div id="itemPickerViewport">
+        <div id="itemPickerScroller"></div>
     </div>
-</div>
 
-<div id="deleteDlg" title="Delete Component?">
-  <center>
-    <span id="deleteDlgText"></span><br><br>
-    <button id="deleteDlgCancel" onclick="closeDeleteComponent()">Cancel</button>
-    <button id="deleteDlgConfirm" class="redBtn">Delete</button>
-  </center>
+    <button id="itemPickerSelectBtn" disabled>Select</button>
 </div>
 
 <script src="recipe.js"></script>

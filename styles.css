@@ -275,3 +275,34 @@ input[type=color]:hover {
 .smallInput {
     width: 65px;
 }
+
+#itemPickerViewport {
+    position: relative;
+    height: 400px;
+    overflow-y: scroll;
+    border: 1px solid #666;
+}
+
+#itemPickerScroller {
+    position: relative;
+}
+
+.itemPickBtn {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.itemPickBtn:hover {
+    border-color: #888;
+}
+
+.itemPickBtn.selected {
+    border-color: #00aaff;
+    background-color: rgba(0,170,255,0.15);
+}

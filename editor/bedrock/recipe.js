@@ -11,60 +11,114 @@ $("#recipeBtn7").button();
 $("#recipeBtn8").button();
 $("#recipeBtn9").button();
 $("#recipeBtn10").button();
-$("#selectTextureCancelBtn").button();
-$("#selectTextureSelectBtn").button();
+
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 
-$("#addComponentDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 200,
-  width: 500
-});
-$("#addComponentDlg").dialog("close");
-$("#selectTextureDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 500,
-  width: 500
-});
-$("#selectTextureDlg").dialog("close");
-$("#deleteDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 150,
-  width: 300,
-  closeOnEscape: false
-});
-$("#deleteDlg").dialog("close");
-$("#deleteDlgCancel").button();
-$("#deleteDlgConfirm").button();
-function addComponent() {
-  $("#addComponentDlg").dialog("open");
-}
-function closeAddComponentDlg() {
-  $("#addComponentDlg").dialog("close");
-}
-function removeSpaces(str) {
-    return str.replaceAll(" ", "_s_");
+const javaItemCDN = "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures";
+
+let selectedItemId = null;
+let filteredItems = [];   // after search
+let itemsPerRow = 0;
+const btnSize = 34;       // 32px + borders/padding
+const rowHeight = btnSize;
+
+function openItemPickerDialog() {
+    selectedItemId = null;
+    $("#itemPickerSelectBtn").prop("disabled", true);
+
+    filterItems("");
+
+    $("#itemPickerDialog").dialog({
+        width: 500,
+        height: 600,
+        modal: true
+    });
+
+    updateLayout();
+    renderVisibleItems();
 }
 
-function openSelectTextureDlg() {
-  $("#selectTextureDlg").dialog("open");
+function filterItems(query) {
+    const q = query.toLowerCase();
+    filteredItems = Object.entries(itemDefinitionsCommon).filter(([id, d]) =>
+        d.name.toLowerCase().includes(q)
+    );
 }
-function closeSelectTextureDlg() {
-  $("#selectTextureDlg").dialog("close");
+
+function updateLayout() {
+    const viewportWidth = $("#itemPickerViewport").width();
+    itemsPerRow = Math.floor(viewportWidth / btnSize);
+    if (itemsPerRow < 1) itemsPerRow = 1;
+
+    const rowCount = Math.ceil(filteredItems.length / itemsPerRow);
+
+    $("#itemPickerScroller").css({
+        height: rowCount * rowHeight + "px"
+    });
 }
-function selectTexture() {
-    $("#selectTextureDlg").dialog("close");
-    const selected = document.querySelector('input[name="selectedTexture"]:checked');
-    if (selected.value) {
-        const textureNameText = document.getElementById("textureNameText");
-        textureNameText.innerHTML = selected.value;
-        selectedTexture = selected.value;
+
+function renderVisibleItems() {
+    const viewport = $("#itemPickerViewport");
+    const scrollTop = viewport.scrollTop();
+    const viewportHeight = viewport.height();
+
+    const startRow = Math.floor(scrollTop / rowHeight);
+    const endRow = Math.ceil((scrollTop + viewportHeight) / rowHeight);
+
+    const startIndex = startRow * itemsPerRow;
+    const endIndex = Math.min(filteredItems.length, endRow * itemsPerRow);
+
+    const scroller = $("#itemPickerScroller");
+    scroller.empty();
+
+    for (let i = startIndex; i < endIndex; i++) {
+        const [itemId, data] = filteredItems[i];
+        const textureUrl = data.texture.replace("@java", javaItemCDN);
+
+        const row = Math.floor(i / itemsPerRow);
+        const col = i % itemsPerRow;
+
+        const btn = $("<div>")
+            .addClass("itemPickBtn")
+            .attr("title", data.name)
+            .data("id", itemId)
+            .css({
+                top: row * rowHeight,
+                left: col * btnSize,
+                backgroundImage: `url(${textureUrl})`
+            });
+
+        scroller.append(btn);
     }
 }
-$("#addComponentType").selectmenu();
+
+// Scroll handler (re-renders visible rows)
+$("#itemPickerViewport").on("scroll", renderVisibleItems);
+
+// Click handler
+$("#itemPickerScroller").on("click", ".itemPickBtn", function () {
+    $(".itemPickBtn").removeClass("selected");
+    $(this).addClass("selected");
+
+    selectedItemId = $(this).data("id");
+    $("#itemPickerSelectBtn").prop("disabled", false);
+});
+
+// Search handler
+$("#itemSearchBox").on("input", function () {
+    filterItems($(this).val());
+    updateLayout();
+    renderVisibleItems();
+});
+
+// Select button
+$("#itemPickerSelectBtn").on("click", function () {
+    if (selectedItemId) {
+        setItem(selectedItemId);
+        $("#itemPickerDialog").dialog("close");
+    }
+});
+
 
 function saveProject() {
     return {

@@ -42,7 +42,7 @@ function openItemPickerDialog() {
     selectedItemId = null;
     $("#itemPickerSelectBtn").prop("disabled", true);
 
-    filterItems("");
+    filteredItems = filterItems("");
 
     $("#itemPickerDialog").dialog("open");
 

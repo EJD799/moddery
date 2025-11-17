@@ -75,7 +75,7 @@ function renderVisibleItems() {
     const viewportHeight = viewport.height();
 
     const allItems = [
-        ...filterItems(actionItems).map(([id, data]) => ({ id, ...data })),
+        ...Object.entries(actionItems).map(([id, data]) => ({ id, ...data })),
         ...filteredItems.map(([id, data]) => ({ id, ...data }))
     ];
 

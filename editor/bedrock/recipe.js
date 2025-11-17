@@ -119,19 +119,19 @@ $("#itemPickerSelectBtn").on("click", function () {
     }
 });
 
-$("#itemPickerDlg").dialog({
+$("#itemPickerDialog").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 500,
   width: 500
 });
-$("#itemPickerDlg").dialog("close");
+$("#itemPickerDialog").dialog("close");
 
 function setItem(value) {
     alert(value);
 }
 function selectItem(slot) {
-    $("#itemPickerDlg").dialog("open");
+    $("#itemPickerDialog").dialog("open");
 }
 
 

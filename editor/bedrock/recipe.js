@@ -28,7 +28,7 @@ function openItemPickerDialog() {
 
     filterItems("");
 
-    $("#itemPickerDialog").dialog("show");
+    $("#itemPickerDialog").dialog("open");
 
     updateLayout();
     renderVisibleItems();

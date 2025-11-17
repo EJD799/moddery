@@ -28,12 +28,6 @@ function openItemPickerDialog() {
 
     filterItems("");
 
-    $("#itemPickerDialog").dialog({
-        width: 500,
-        height: 600,
-        modal: true
-    });
-
     updateLayout();
     renderVisibleItems();
 }

@@ -1350,8 +1350,32 @@ const itemDefinitionsCommon = {
         texture: "/item/heart_of_the_sea.png"
     },
     "minecraft:heart_pottery_sherd": {
-        name: "Firework Star",
-        texture: "/item/firework_star.png"
+        name: "Heart Pottery Sherd",
+        texture: "/item/heart_pottery_sherd.png"
+    },
+    "minecraft:heartbreak_pottery_sherd": {
+        name: "Heartbreak Pottery Sherd",
+        texture: "/item/heartbreak_pottery_sherd.png"
+    },
+    "minecraft:host_armor_trim": {
+        name: "Host Armor Trim",
+        texture: "/item/host_armor_trim.png"
+    },
+    "minecraft:howl_pottery_sherd": {
+        name: "Howl Pottery Sherd",
+        texture: "/item/howl_pottery_sherd.png"
+    },
+    "minecraft:iron_nugget": {
+        name: "Iron Nugget",
+        texture: "/item/iron_nugget.png"
+    },
+    "minecraft:leather": {
+        name: "Leather",
+        texture: "/item/leather.png"
+    },
+    "minecraft:magma_cream": {
+        name: "Magma Cream",
+        texture: "/item/magma_cream.png"
     },
 };
 

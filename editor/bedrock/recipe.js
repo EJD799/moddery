@@ -127,6 +127,13 @@ $("#itemPickerDlg").dialog({
 });
 $("#itemPickerDlg").dialog("close");
 
+function setItem(value) {
+    alert(value);
+}
+function selectItem(slot) {
+    $("#itemPickerDlg").dialog("open");
+}
+
 
 function saveProject() {
     return {

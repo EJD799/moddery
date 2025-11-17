@@ -263,6 +263,34 @@ const itemDefinitionsCommon = {
         name: "Spruce Boat with Chest",
         texture: "/item/spruce_chest_boat.png"
     },
+    "minecraft:string": {
+        name: "String",
+        texture: "/item/string.png"
+    },
+    "minecraft:sweet_berries": {
+        name: "Sweet Berries",
+        texture: "/item/sweet_berries.png"
+    },
+    "minecraft:torchflower_seeds": {
+        name: "Torchflower Seeds",
+        texture: "/item/torchflower_seeds.png"
+    },
+    "minecraft:trident": {
+        name: "Trident",
+        texture: "/item/trident.png"
+    },
+    "minecraft:water_bucket": {
+        name: "Water Bucket",
+        texture: "/item/water_bucket.png"
+    },
+    "minecraft:wheat_seeds": {
+        name: "Wheat Seeds",
+        texture: "/item/wheat_seeds.png"
+    },
+    "minecraft:wind_charge": {
+        name: "Wind Charge",
+        texture: "/item/wind_charge.png"
+    },
 };
 
 const itemDefinitionsJava = {

@@ -2271,31 +2271,83 @@ const itemDefinitions = {
     },
     "minecraft:blackstone_stairs": {
         name: "Blackstone Stairs",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Blackstone_Stairs_JE3.png/60px-Blackstone_Stairs_JE3.png?a1b7f"
     },
     "minecraft:blackstone_wall": {
         name: "Blackstone Wall",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Blackstone_Wall_JE3_BE2.png/60px-Blackstone_Wall_JE3_BE2.png?fba33"
     },
     "minecraft:blast_furnace": {
         name: "Blast Furnace",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Blast_Furnace_%28S%29_JE1.png/60px-Blast_Furnace_%28S%29_JE1.png?f1920"
     },
     "minecraft:amethyst_block": {
         name: "Block of Amethyst",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Amethyst_JE3_BE1.png/60px-Block_of_Amethyst_JE3_BE1.png?14501"
     },
     "minecraft:bamboo_block": {
         name: "Block of Bamboo",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Bamboo_JE3_BE2.png/60px-Block_of_Bamboo_JE3_BE2.png?a9d59"
     },
     "minecraft:coal_block": {
-        name: "Coal Block",
-        texture: ""
+        name: "Block of Coal",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Coal_JE3_BE2.png/60px-Block_of_Coal_JE3_BE2.png?ed300"
     },
     "minecraft:copper_block": {
-        name: "",
-        texture: ""
+        name: "Block of Copper",
+        texture: "https://minecraft.wiki/images/thumb/Copper_Block_JE1_BE1.png/60px-Copper_Block_JE1_BE1.png?b75fe"
+    },
+    "minecraft:diamond_block": {
+        name: "Block of Diamond",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Diamond_JE5_BE3.png/60px-Block_of_Diamond_JE5_BE3.png?542ee"
+    },
+    "minecraft:emerald_block": {
+        name: "Block of Emerald",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Emerald_JE4_BE3.png/60px-Block_of_Emerald_JE4_BE3.png?d5a3c"
+    },
+    "minecraft:gold_block": {
+        name: "Block of Gold",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Gold_JE6_BE3.png/60px-Block_of_Gold_JE6_BE3.png?09478"
+    },
+    "minecraft:iron_block": {
+        name: "Block of Iron",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Iron_JE4_BE3.png/60px-Block_of_Iron_JE4_BE3.png?18948"
+    },
+    "minecraft:lapis_block": {
+        name: "Block of Lapis Lazuli",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Lapis_Lazuli_JE3_BE3.png/60px-Block_of_Lapis_Lazuli_JE3_BE3.png?298ce"
+    },
+    "minecraft:netherite_block": {
+        name: "Block of Netherite",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Netherite_JE1_BE1.png/60px-Block_of_Netherite_JE1_BE1.png?7e0a3"
+    },
+    "minecraft:quartz_block": {
+        name: "Block of Quartz",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Quartz_JE4_BE4.png/60px-Block_of_Quartz_JE4_BE4.png?4b4e2"
+    },
+    "minecraft:raw_copper_block": {
+        name: "Block of Raw Copper",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Raw_Copper_JE2_BE2.png/60px-Block_of_Raw_Copper_JE2_BE2.png?a4e9a"
+    },
+    "minecraft:raw_gold_block": {
+        name: "Block of Raw Gold",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Raw_Gold_JE3_BE2.png/60px-Block_of_Raw_Gold_JE3_BE2.png?f4653"
+    },
+    "minecraft:raw_iron_block": {
+        name: "Block of Raw Iron",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Raw_Iron_JE3_BE2.png/60px-Block_of_Raw_Iron_JE3_BE2.png?d82b7"
+    },
+    "minecraft:redstone_block": {
+        name: "Block of Redstone",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Redstone_JE2_BE2.png/60px-Block_of_Redstone_JE2_BE2.png?bb6e3"
+    },
+    "minecraft:resin_block": {
+        name: "Block of Resin",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Resin_JE1_BE1.png/60px-Block_of_Resin_JE1_BE1.png?e9586"
+    },
+    "minecraft:stripped_bamboo_block": {
+        name: "Block of Stripped Bamboo",
+        texture: "https://minecraft.wiki/images/thumb/Block_of_Stripped_Bamboo_JE3_BE2.png/60px-Block_of_Stripped_Bamboo_JE3_BE2.png?f34db"
     },
 
     /*

@@ -1932,4 +1932,124 @@ const itemDefinitions = {
         texture: "/moddery/custom_textures/npc_spawn_egg.png",
         filter: "bedrock"
     },
+
+    "minecraft:acacia_button": {
+        name: "Acacia Button",
+        texture: "https://minecraft.wiki/images/thumb/Acacia_Button_JE4.png/60px-Acacia_Button_JE4.png"
+    },
+    "minecraft:acacia_door": {
+        name: "Acacia Door",
+        texture: "@java/item/acacia_door"
+    },
+    "minecraft:acacia_fence": {
+        name: "Acacia Fence",
+        texture: "https://minecraft.wiki/images/thumb/Acacia_Fence_%28EW%29_JE5.png/60px-Acacia_Fence_%28EW%29_JE5.png"
+    },
+    "minecraft:acacia_fence_gate": {
+        name: "Acacia Fence Gate",
+        texture: "https://minecraft.wiki/images/thumb/Acacia_Fence_Gate_JE3_BE2.png/60px-Acacia_Fence_Gate_JE3_BE2.png"
+    },
+    "minecraft:acacia_hanging_sign": {
+        name: "Acacia Hanging Sign",
+        texture: "@java/item/acacia_hanging_sign"
+    },
+    "minecraft:acacia_leaves": {
+        name: "Acacia Leaves",
+        texture: "https://minecraft.wiki/images/thumb/Acacia_Leaves.png/60px-Acacia_Leaves.png"
+    },
+    "minecraft:acacia_log": {
+        name: "Acacia Log",
+        texture: "https://minecraft.wiki/images/thumb/Acacia_Log_%28UD%29_JE8_BE3.png/60px-Acacia_Log_%28UD%29_JE8_BE3.png"
+    },
+    "minecraft:acacia_planks": {
+        name: "Acacia Planks",
+        texture: "https://minecraft.wiki/images/thumb/Acacia_Planks.png/60px-Acacia_Planks.png"
+    },
+    "minecraft:acacia_pressure_plate": {
+        name: "Acacia Pressure Plate",
+        texture: "https://minecraft.wiki/images/thumb/Acacia_Pressure_Plate_JE3_BE2.png/60px-Acacia_Pressure_Plate_JE3_BE2.png?a0e78"
+    },
+    "minecraft:acacia_sapling": {
+        name: "Acacia Sapling",
+        texture: "@java/item/acacia_sapling"
+    },
+    "minecraft:acacia_shelf": {
+        name: "Acacia Shelf",
+        texture: "https://minecraft.wiki/images/thumb/Acacia_Shelf_JE1_BE2.png/60px-Acacia_Shelf_JE1_BE2.png?feb1c"
+    },
+    "minecraft:acacia_sign": {
+        name: "Acacia Sign",
+        texture: "@java/item/acacia_sign"
+    },
+    "minecraft:acacia_slab": {
+        name: "Acacia Slab",
+        texture: "https://minecraft.wiki/images/thumb/Acacia_Slab.png/60px-Acacia_Slab.png?1b80e"
+    },
+    "minecraft:acacia_stairs": {
+        name: "Acacia Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Acacia_Stairs.png/60px-Acacia_Stairs.png?32c01"
+    },
+    "minecraft:acacia_trapdoor": {
+        name: "Acacia Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Acacia_Trapdoor_JE1_BE1.png/60px-Acacia_Trapdoor_JE1_BE1.png?ee4d7"
+    },
+    "minecraft:acacia_wood": {
+        name: "Acacia Wood",
+        texture: "https://minecraft.wiki/images/thumb/Acacia_Wood.png/60px-Acacia_Wood.png?bc78a"
+    },
+    "minecraft:activator_rail": {
+        name: "Activator Rail",
+        texture: "@java/block/activator_rail.png"
+    },
+    "minecraft:allium": {
+        name: "Allium",
+        texture: "@java/block/allium.png"
+    },
+    "minecraft:amethyst_cluster": {
+        name: "Amethyst Cluster",
+        texture: "@java/block/amethyst_cluster.png"
+    },
+    "minecraft:ancient_debris": {
+        name: "Ancient Debris",
+        texture: "https://minecraft.wiki/images/thumb/Ancient_Debris_JE1_BE1.png/60px-Ancient_Debris_JE1_BE1.png?571c1"
+    },
+    "minecraft:andesite": {
+        name: "Andesite",
+        texture: "https://minecraft.wiki/images/thumb/Andesite.png/60px-Andesite.png?5db9b"
+    },
+    "minecraft:andesite_slab": {
+        name: "Andesite Slab",
+        texture: "https://minecraft.wiki/images/thumb/Andesite_Slab_JE2_BE2.png/60px-Andesite_Slab_JE2_BE2.png?075a2"
+    },
+    "minecraft:andesite_stairs": {
+        name: "Andesite Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Andesite_Stairs_%28N%29_JE2_BE1.png/60px-Andesite_Stairs_%28N%29_JE2_BE1.png?fb984"
+    },
+    "minecraft:andesite_wall": {
+        name: "Andesite Wall",
+        texture: "https://minecraft.wiki/images/thumb/Andesite_Wall_JE2_BE1.png/60px-Andesite_Wall_JE2_BE1.png?5f62d"
+    },
+    "minecraft:anvil": {
+        name: "Anvil",
+        texture: "https://minecraft.wiki/images/thumb/Anvil_%28N%29_JE3.png/60px-Anvil_%28N%29_JE3.png?d438e"
+    },
+    "minecraft:azalea": {
+        name: "Azalea",
+        texture: "https://minecraft.wiki/images/thumb/Azalea_JE2_BE2.png/60px-Azalea_JE2_BE2.png?8e29b"
+    },
+    "minecraft:azalea_leaves": {
+        name: "Azalea Leaves",
+        texture: "https://minecraft.wiki/images/thumb/Azalea_Leaves.png/60px-Azalea_Leaves.png?640a5"
+    },
+    "minecraft:azure_bluet": {
+        name: "Azure Bluet",
+        texture: "@java/block/azure_bluet.png"
+    },
+
+    /*
+    "minecraft:": {
+        name: "",
+        texture: ""
+    },
+    */
 };

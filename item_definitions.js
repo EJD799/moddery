@@ -2634,6 +2634,184 @@ const itemDefinitions = {
         name: "Cherry Wood",
         texture: "https://minecraft.wiki/images/thumb/Cherry_Wood_%28UD%29_JE1_BE1.png/60px-Cherry_Wood_%28UD%29_JE1_BE1.png?14799"
     },
+    "minecraft:chipped_anvil": {
+        name: "Chipped Anvil",
+        texture: "https://minecraft.wiki/images/thumb/Chipped_Anvil_%28N%29_JE3.png/60px-Chipped_Anvil_%28N%29_JE3.png?0b380"
+    },
+    "minecraft:chiseled_bookshelf": {
+        name: "Chiseled Bookshelf",
+        texture: "https://minecraft.wiki/images/thumb/Chiseled_Bookshelf_%28S_0%29_JE2.png/60px-Chiseled_Bookshelf_%28S_0%29_JE2.png?f9f84"
+    },
+    "minecraft:chiseled_copper": {
+        name: "Chiseled Copper",
+        texture: "https://minecraft.wiki/images/thumb/Chiseled_Copper_JE1_BE1.png/60px-Chiseled_Copper_JE1_BE1.png?92b10"
+    },
+    "minecraft:chiseled_deepslate": {
+        name: "Chiseled Deepslate",
+        texture: "https://minecraft.wiki/images/thumb/Chiseled_Deepslate_JE2_BE1.png/60px-Chiseled_Deepslate_JE2_BE1.png?f1cc2"
+    },
+    "minecraft:chiseled_nether_bricks": {
+        name: "Chiseled Nether Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Chiseled_Nether_Bricks_JE3_BE3.png/60px-Chiseled_Nether_Bricks_JE3_BE3.png?96336"
+    },
+    "minecraft:chiseled_polished_blackstone": {
+        name: "Chiseled Polished Blackstone",
+        texture: "https://minecraft.wiki/images/thumb/Chiseled_Polished_Blackstone_JE1_BE1.png/60px-Chiseled_Polished_Blackstone_JE1_BE1.png?2b5ba"
+    },
+    "minecraft:chiseled_quartz_block": {
+        name: "Chiseled Quartz Block",
+        texture: "https://minecraft.wiki/images/thumb/Chiseled_Quartz_Block_%28UD%29_JE2_BE2.png/60px-Chiseled_Quartz_Block_%28UD%29_JE2_BE2.png?3a186"
+    },
+    "minecraft:chiseled_red_sandstone": {
+        name: "Chiseled Red Sandstone",
+        texture: "https://minecraft.wiki/images/thumb/Chiseled_Red_Sandstone_JE4_BE2.png/60px-Chiseled_Red_Sandstone_JE4_BE2.png?3fe71"
+    },
+    "minecraft:chiseled_resin_bricks": {
+        name: "Chiseled Resin Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Chiseled_Resin_Bricks_JE2_BE3.png/60px-Chiseled_Resin_Bricks_JE2_BE3.png?a3c2d"
+    },
+    "minecraft:chiseled_sandstone": {
+        name: "Chiseled Sandstone",
+        texture: "https://minecraft.wiki/images/thumb/Chiseled_Sandstone_JE5_BE2.png/60px-Chiseled_Sandstone_JE5_BE2.png?a6537"
+    },
+    "minecraft:chiseled_stone_bricks": {
+        name: "Chiseled Stone Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Chiseled_Stone_Bricks_JE3_BE2.png/60px-Chiseled_Stone_Bricks_JE3_BE2.png?2dae1"
+    },
+    "minecraft:chiseled_tuff": {
+        name: "Chiseled Tuff",
+        texture: "https://minecraft.wiki/images/thumb/Chiseled_Tuff_JE1_BE1.png/60px-Chiseled_Tuff_JE1_BE1.png?fdcbc"
+    },
+    "minecraft:chiseled_tuff_bricks": {
+        name: "Chiseled Tuff Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Chiseled_Tuff_Bricks_JE1_BE1.png/60px-Chiseled_Tuff_Bricks_JE1_BE1.png?54679"
+    },
+    "minecraft:chorus_flower": {
+        name: "Chorus Flower",
+        texture: "https://minecraft.wiki/images/thumb/Chorus_Flower_JE2_BE2.png/60px-Chorus_Flower_JE2_BE2.png?586dd"
+    },
+    "minecraft:chorus_plant": {
+        name: "Chorus Plant",
+        texture: "https://minecraft.wiki/images/thumb/Chorus_Plant_JE2_BE2.png/60px-Chorus_Plant_JE2_BE2.png?be530"
+    },
+    "minecraft:clay": {
+        name: "Clay",
+        texture: "https://minecraft.wiki/images/thumb/Clay_JE2_BE2.png/60px-Clay_JE2_BE2.png?0c9e3"
+    },
+    "minecraft:closed_eyeblossom": {
+        name: "Closed Eyeblossom",
+        texture: "@java/block/closed_eyeblossom.png"
+    },
+    "minecraft:coal_ore": {
+        name: "Coal Ore",
+        texture: "https://minecraft.wiki/images/thumb/Coal_Ore_JE5_BE4.png/60px-Coal_Ore_JE5_BE4.png?73bee"
+    },
+    "minecraft:coarse_dirt": {
+        name: "Coarse Dirt",
+        texture: "https://minecraft.wiki/images/thumb/Coarse_Dirt.png/60px-Coarse_Dirt.png?9cd99"
+    },
+    "minecraft:cobbled_deepslate": {
+        name: "Cobbled Deepslate",
+        texture: "https://minecraft.wiki/images/thumb/Cobbled_Deepslate.png/60px-Cobbled_Deepslate.png?86523"
+    },
+    "minecraft:cobbled_deepslate_slab": {
+        name: "Cobbled Deepslate Slab",
+        texture: "https://minecraft.wiki/images/thumb/Cobbled_Deepslate_Slab_JE3.png/60px-Cobbled_Deepslate_Slab_JE3.png?d3853"
+    },
+    "minecraft:cobbled_deepslate_stairs": {
+        name: "Cobbled Deepslate Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Cobbled_Deepslate_Stairs_JE3.png/60px-Cobbled_Deepslate_Stairs_JE3.png?c12b2"
+    },
+    "minecraft:cobbled_deepslate_wall": {
+        name: "Cobbled Deepslate Wall",
+        texture: "https://minecraft.wiki/images/thumb/Cobbled_Deepslate_Wall_JE3.png/60px-Cobbled_Deepslate_Wall_JE3.png?0f26d"
+    },
+    "minecraft:cobblestone": {
+        name: "Cobblestone",
+        texture: "https://minecraft.wiki/images/thumb/Cobblestone_JE5_BE3.png/60px-Cobblestone_JE5_BE3.png?29624"
+    },
+    "minecraft:cobblestone_slab": {
+        name: "Cobblestone Slab",
+        texture: "https://minecraft.wiki/images/thumb/Cobblestone_Slab_JE4_BE3.png/60px-Cobblestone_Slab_JE4_BE3.png?38e0e"
+    },
+    "minecraft:cobblestone_stairs": {
+        name: "Cobblestone Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Cobblestone_Stairs_%28N%29_JE6_BE6.png/60px-Cobblestone_Stairs_%28N%29_JE6_BE6.png?99e37"
+    },
+    "minecraft:cobblestone_wall": {
+        name: "Cobblestone Wall",
+        texture: "https://minecraft.wiki/images/thumb/Cobblestone_Wall_%28EWU%29_JE3.png/60px-Cobblestone_Wall_%28EWU%29_JE3.png?461e8"
+    },
+    "minecraft:cobweb": {
+        name: "Cobweb",
+        texture: "@java/block/cobweb.png",
+        filter: "java"
+    },
+    "minecraft:web": {
+        name: "Cobweb",
+        texture: "@java/block/cobweb.png",
+        filter: "bedrock"
+    },
+    "minecraft:command_block": {
+        name: "Command Block",
+        texture: "https://minecraft.wiki/images/thumb/Impulse_Command_Block.gif/60px-Impulse_Command_Block.gif?fb024"
+    },
+    "minecraft:composter": {
+        name: "Composter",
+        texture: "https://minecraft.wiki/images/thumb/Composter_JE1.png/60px-Composter_JE1.png?b2c39"
+    },
+    "minecraft:conduit": {
+        name: "Conduit",
+        texture: "https://minecraft.wiki/images/thumb/Conduit_JE1_BE1.png/60px-Conduit_JE1_BE1.png?c8b8c"
+    },
+    "minecraft:copper_bars": {
+        name: "Copper Bars",
+        texture: "https://minecraft.wiki/images/thumb/Copper_Bars_%28EW%29_JE1.png/60px-Copper_Bars_%28EW%29_JE1.png?45b0b"
+    },
+    "minecraft:copper_bulb": {
+        name: "Copper Bulb",
+        texture: "https://minecraft.wiki/images/thumb/Copper_Bulb_JE1_BE1.png/60px-Copper_Bulb_JE1_BE1.png?0b0da"
+    },
+    "minecraft:copper_chain": {
+        name: "Copper Chain",
+        texture: "https://minecraft.wiki/images/thumb/Copper_Chain_%28UD%29_JE1.png/60px-Copper_Chain_%28UD%29_JE1.png?b436c"
+    },
+    "minecraft:copper_chest": {
+        name: "Copper Chest",
+        texture: "https://minecraft.wiki/images/thumb/Copper_Chest_%28S%29_BE1.png/60px-Copper_Chest_%28S%29_BE1.png?afee7"
+    },
+    "minecraft:copper_door": {
+        name: "Copper Door",
+        texture: "@java/item/copper_door.png"
+    },
+    "minecraft:copper_golem_statue": {
+        name: "Copper Golem Statue",
+        texture: "https://minecraft.wiki/images/thumb/Copper_Golem_Statue_BE1.png/60px-Copper_Golem_Statue_BE1.png?afdf5"
+    },
+    "minecraft:copper_grate": {
+        name: "Copper Grate",
+        texture: "https://minecraft.wiki/images/thumb/Copper_Grate_JE1_BE1.png/60px-Copper_Grate_JE1_BE1.png?2374a"
+    },
+    "minecraft:copper_lantern": {
+        name: "Copper Lantern",
+        texture: "https://minecraft.wiki/images/thumb/Copper_Lantern_JE2.gif/60px-Copper_Lantern_JE2.gif?a4e18"
+    },
+    "minecraft:copper_ore": {
+        name: "Copper Ore",
+        texture: "https://minecraft.wiki/images/thumb/Copper_Ore_JE2_BE2.png/60px-Copper_Ore_JE2_BE2.png?073cd"
+    },
+    "minecraft:copper_torch": {
+        name: "Copper Torch",
+        texture: "@java/block/copper_torch.png"
+    },
+    "minecraft:copper_trapdoor": {
+        name: "Copper Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Copper_Trapdoor_JE2_BE2.png/60px-Copper_Trapdoor_JE2_BE2.png?76b17"
+    },
+    "minecraft:cornflower": {
+        name: "Cornflower",
+        texture: "@java/block/cornflower.png"
+    },
 
     /*
     "minecraft:": {

@@ -181,7 +181,6 @@ function setItem(value) {
     } else {
         itemID = value;
     }
-    alert(itemID);
     currentGrid[currentSlot - 1] = itemID;
     renderSlot(currentSlot, itemID, value);
     currentSlot = 0;

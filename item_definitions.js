@@ -2812,6 +2812,114 @@ const itemDefinitions = {
         name: "Cornflower",
         texture: "@java/block/cornflower.png"
     },
+    "minecraft:cracked_deepslate_bricks": {
+        name: "Cracked Deepslate Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Cracked_Deepslate_Bricks_JE1_BE1.png/60px-Cracked_Deepslate_Bricks_JE1_BE1.png?e7526"
+    },
+    "minecraft:cracked_deepslate_tiles": {
+        name: "Cracked Deepslate Tiles",
+        texture: "https://minecraft.wiki/images/thumb/Cracked_Deepslate_Tiles_JE1_BE1.png/60px-Cracked_Deepslate_Tiles_JE1_BE1.png?4ff39"
+    },
+    "minecraft:cracked_nether_bricks": {
+        name: "Cracked Nether Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Cracked_Nether_Bricks_JE2_BE2.png/60px-Cracked_Nether_Bricks_JE2_BE2.png?c3db4"
+    },
+    "minecraft:cracked_polished_blackstone_bricks": {
+        name: "Cracked Polished Blackstone Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Cracked_Polished_Blackstone_Bricks_JE2_BE2.png/60px-Cracked_Polished_Blackstone_Bricks_JE2_BE2.png?3598e"
+    },
+    "minecraft:cracked_stone_bricks": {
+        name: "Cracked Stone Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Cracked_Stone_Bricks_JE3_BE2.png/60px-Cracked_Stone_Bricks_JE3_BE2.png?2e4f2"
+    },
+    "minecraft:crafter": {
+        name: "Crafter",
+        texture: "https://minecraft.wiki/images/thumb/Crafter_JE4_BE3.png/60px-Crafter_JE4_BE3.png?3996e"
+    },
+    "minecraft:crafting_table": {
+        name: "Crafting Table",
+        texture: "https://minecraft.wiki/images/thumb/Crafting_Table_JE4_BE3.png/60px-Crafting_Table_JE4_BE3.png?5767f"
+    },
+    "minecraft:creaking_heart": {
+        name: "Creaking Heart",
+        texture: "https://minecraft.wiki/images/thumb/Creaking_Heart_JE2_BE2.png/60px-Creaking_Heart_JE2_BE2.png?f1a56"
+    },
+    "minecraft:creeper_head": {
+        name: "Creeper Head",
+        texture: "https://minecraft.wiki/images/thumb/Creeper_Head_%28S%29_JE1.png/60px-Creeper_Head_%28S%29_JE1.png?14d9d"
+    },
+    "minecraft:crimson_button": {
+        name: "Crimson Button",
+        texture: "https://minecraft.wiki/images/thumb/Crimson_Button_JE2.png/60px-Crimson_Button_JE2.png?108fd"
+    },
+    "minecraft:crimson_door": {
+        name: "Crimson Door",
+        texture: "@java/item/crimson_door.png"
+    },
+    "minecraft:crimson_fence": {
+        name: "Crimson Fence",
+        texture: "https://minecraft.wiki/images/thumb/Crimson_Fence_%28EW%29_JE1.png/60px-Crimson_Fence_%28EW%29_JE1.png?87f0e"
+    },
+    "minecraft:crimson_fence_gate": {
+        name: "Crimson Fence Gate",
+        texture: "https://minecraft.wiki/images/thumb/Crimson_Fence_Gate_JE1_BE1.png/60px-Crimson_Fence_Gate_JE1_BE1.png?e27df"
+    },
+    "minecraft:crimson_fungus": {
+        name: "Crimson Fungus",
+        texture: "@java/block/crimson_fungus.png"
+    },
+    "minecraft:crimson_hanging_sign": {
+        name: "Crimson Hanging Sign",
+        texture: "@java/item/crimson_hanging_sign.png"
+    },
+    "minecraft:crimson_hyphae": {
+        name: "Crimson Hyphae",
+        texture: "https://minecraft.wiki/images/thumb/Crimson_Hyphae_%28UD%29_JE1_BE1.gif/60px-Crimson_Hyphae_%28UD%29_JE1_BE1.gif?5d5f9"
+    },
+    "minecraft:crimson_nylium": {
+        name: "Crimson Nylium",
+        texture: "https://minecraft.wiki/images/thumb/Crimson_Nylium_JE1_BE1.png/60px-Crimson_Nylium_JE1_BE1.png?819ad"
+    },
+    "minecraft:crimson_planks": {
+        name: "Crimson Planks",
+        texture: "https://minecraft.wiki/images/thumb/Crimson_Planks_JE1_BE1.png/60px-Crimson_Planks_JE1_BE1.png?04063"
+    },
+    "minecraft:crimson_pressure_plate": {
+        name: "Crimson Pressure Plate",
+        texture: "https://minecraft.wiki/images/thumb/Crimson_Pressure_Plate_JE1_BE1.png/60px-Crimson_Pressure_Plate_JE1_BE1.png?40df0"
+    },
+    "minecraft:crimson_roots": {
+        name: "Crimson Roots",
+        texture: "@java/block/crimson_roots.png"
+    },
+    "minecraft:crimson_shelf": {
+        name: "Crimson Shelf",
+        texture: "https://minecraft.wiki/images/thumb/Crimson_Shelf_JE1_BE2.png/60px-Crimson_Shelf_JE1_BE2.png?93507"
+    },
+    "minecraft:crimson_sign": {
+        name: "Crimson Sign",
+        texture: "@java/item/crimson_sign.png"
+    },
+    "minecraft:crimson_slab": {
+        name: "Crimson Slab",
+        texture: "https://minecraft.wiki/images/thumb/Crimson_Slab_JE1_BE1.png/60px-Crimson_Slab_JE1_BE1.png?4b56c"
+    },
+    "minecraft:crimson_stairs": {
+        name: "Crimson Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Crimson_Stairs_%28N%29_JE1_BE1.png/60px-Crimson_Stairs_%28N%29_JE1_BE1.png?6e664"
+    },
+    "minecraft:crimson_stem": {
+        name: "Crimson Stem",
+        texture: "https://minecraft.wiki/images/thumb/Crimson_Stem_%28UD%29_JE2_BE1.gif/60px-Crimson_Stem_%28UD%29_JE2_BE1.gif?de560"
+    },
+    "minecraft:crimson_trapdoor": {
+        name: "Crimson Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Crimson_Trapdoor_JE1_BE1.png/60px-Crimson_Trapdoor_JE1_BE1.png?d27bb"
+    },
+    "minecraft:crying_obsidian": {
+        name: "Crying Obsidian",
+        texture: "https://minecraft.wiki/images/thumb/Crying_Obsidian_JE1_BE1.png/60px-Crying_Obsidian_JE1_BE1.png?f1f04"
+    },
 
     /*
     "minecraft:": {

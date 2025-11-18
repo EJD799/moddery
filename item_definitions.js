@@ -2215,11 +2215,11 @@ const itemDefinitions = {
     },
     "minecraft:black_banner": {
         name: "Black Banner",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Black_Banner_JE2_BE2.gif/30px-Black_Banner_JE2_BE2.gif?794b0"
     },
     "minecraft:black_bed": {
         name: "Black Bed",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Black_Bed.png/60px-Black_Bed.png?c9cb7"
     },
     "minecraft:black_candle": {
         name: "Black Candle",
@@ -2227,46 +2227,74 @@ const itemDefinitions = {
     },
     "minecraft:black_carpet": {
         name: "Black Carpet",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Black_Carpet_JE2_BE2.png/60px-Black_Carpet_JE2_BE2.png?12e54"
     },
     "minecraft:black_concrete": {
         name: "Black Concrete",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Black_Concrete.png/60px-Black_Concrete.png?448aa"
     },
     "minecraft:black_concrete_powder": {
         name: "Black Concrete Powder",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Black_Concrete_Powder.png/60px-Black_Concrete_Powder.png?6ed2c"
     },
     "minecraft:black_glazed_terracotta": {
         name: "Black Glazed Terracotta",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Black_Glazed_Terracotta_%28S%29_JE1_BE1.png/60px-Black_Glazed_Terracotta_%28S%29_JE1_BE1.png?4b033"
     },
     "minecraft:black_shulker_box": {
         name: "Black Shulker Box",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Black_Shulker_Box_JE2_BE2.png/60px-Black_Shulker_Box_JE2_BE2.png?b6e62"
     },
     "minecraft:black_stained_glass": {
         name: "Black Stained Glass",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Black_Stained_Glass_JE3_BE3.png/60px-Black_Stained_Glass_JE3_BE3.png?31797"
     },
     "minecraft:black_stained_glass_pane": {
         name: "Black Stained Glass Pane",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Black_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Black_Stained_Glass_Pane_%28EW%29_JE9.png?d6053"
     },
     "minecraft:black_terracotta": {
         name: "Black Terracotta",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Black_Terracotta_JE1_BE1.png/60px-Black_Terracotta_JE1_BE1.png?7bbf1"
     },
     "minecraft:black_wool": {
         name: "Black Wool",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Black_Wool_JE3_BE3.png/60px-Black_Wool_JE3_BE3.png?a1c68"
     },
     "minecraft:blackstone": {
         name: "Blackstone",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Blackstone_JE3_BE2.png/60px-Blackstone_JE3_BE2.png?abdc1"
     },
     "minecraft:blackstone_slab": {
         name: "Blackstone Slab",
+        texture: "https://minecraft.wiki/images/thumb/Blackstone_Slab_JE3.png/60px-Blackstone_Slab_JE3.png?bd28e"
+    },
+    "minecraft:blackstone_stairs": {
+        name: "Blackstone Stairs",
+        texture: ""
+    },
+    "minecraft:blackstone_wall": {
+        name: "Blackstone Wall",
+        texture: ""
+    },
+    "minecraft:blast_furnace": {
+        name: "Blast Furnace",
+        texture: ""
+    },
+    "minecraft:amethyst_block": {
+        name: "Block of Amethyst",
+        texture: ""
+    },
+    "minecraft:bamboo_block": {
+        name: "Block of Bamboo",
+        texture: ""
+    },
+    "minecraft:coal_block": {
+        name: "Coal Block",
+        texture: ""
+    },
+    "minecraft:copper_block": {
+        name: "",
         texture: ""
     },
 

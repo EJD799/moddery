@@ -2351,7 +2351,7 @@ const itemDefinitions = {
     },
     "minecraft:blue_banner": {
         name: "Blue Banner",
-        texture: "https://minecraft.wiki/images/thumb/Black_Bue_JE2_BE2.gif/30px-Blue_Banner_JE2_BE2.gif?794b0"
+        texture: "https://minecraft.wiki/images/thumb/Blue_Banner_JE2_BE2.gif/30px-Blue_Banner_JE2_BE2.gif?794b0"
     },
     "minecraft:blue_bed": {
         name: "Blue Bed",
@@ -2396,6 +2396,243 @@ const itemDefinitions = {
     "minecraft:blue_wool": {
         name: "Blue Wool",
         texture: "https://minecraft.wiki/images/thumb/Blue_Wool_JE3_BE3.png/60px-Blue_Wool_JE3_BE3.png?a1c68"
+    },
+    "minecraft:blue_orchid": {
+        name: "Blue Orchid",
+        texture: "@java/block/blue_orchid.png"
+    },
+    "minecraft:bone_block": {
+        name: "Bone Block",
+        texture: "https://minecraft.wiki/images/thumb/Bone_Block_%28UD%29_JE2_BE2.png/60px-Bone_Block_%28UD%29_JE2_BE2.png?21f6b"
+    },
+    "minecraft:bookshelf": {
+        name: "Bookshelf",
+        texture: "https://minecraft.wiki/images/thumb/Bookshelf_JE4_BE2.png/60px-Bookshelf_JE4_BE2.png?9b143"
+    },
+    "minecraft:brain_coral": {
+        name: "Brain Coral",
+        texture: "@java/block/brain_coral.png"
+    },
+    "minecraft:brain_coral_block": {
+        name: "Brain Coral Block",
+        texture: "https://minecraft.wiki/images/thumb/Brain_Coral_Block_JE2_BE1.png/60px-Brain_Coral_Block_JE2_BE1.png?b99c2"
+    },
+    "minecraft:brain_coral_fan": {
+        name: "Brain Coral Fan",
+        texture: "@java/block/brain_coral_fan.png"
+    },
+    "minecraft:brewing_stand": {
+        name: "Brewing Stand",
+        texture: "@java/item/brewing_stand.png"
+    },
+    "minecraft:bricks": {
+        name: "Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Bricks_JE5_BE3.png/60px-Bricks_JE5_BE3.png?54bd8"
+    },
+    "minecraft:brick_slab": {
+        name: "Brick Slab",
+        texture: "https://minecraft.wiki/images/thumb/Brick_Slab_JE3_BE2.png/60px-Brick_Slab_JE3_BE2.png?6d0cd"
+    },
+    "minecraft:brick_stairs": {
+        name: "Brick Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Brick_Stairs_%28N%29_JE5_BE2.png/60px-Brick_Stairs_%28N%29_JE5_BE2.png?884aa"
+    },
+    "minecraft:brick_wall": {
+        name: "Brick Wall",
+        texture: "https://minecraft.wiki/images/thumb/Brick_Wall_JE1_BE2.png/60px-Brick_Wall_JE1_BE2.png?b196a"
+    },
+    "minecraft:brown_banner": {
+        name: "Brown Banner",
+        texture: "https://minecraft.wiki/images/thumb/Brown_Banner_JE2_BE2.gif/30px-Brown_Banner_JE2_BE2.gif?794b0"
+    },
+    "minecraft:brown_bed": {
+        name: "Brown Bed",
+        texture: "https://minecraft.wiki/images/thumb/Brown_Bed.png/60px-Brown_Bed.png?c9cb7"
+    },
+    "minecraft:brown_candle": {
+        name: "Brown Candle",
+        texture: "@java/item/brown_candle.png"
+    },
+    "minecraft:brown_carpet": {
+        name: "Brown Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Brown_Carpet_JE2_BE2.png/60px-Brown_Carpet_JE2_BE2.png?12e54"
+    },
+    "minecraft:brown_concrete": {
+        name: "Brown Concrete",
+        texture: "https://minecraft.wiki/images/thumb/Brown_Concrete.png/60px-Brown_Concrete.png?448aa"
+    },
+    "minecraft:brown_concrete_powder": {
+        name: "Brown Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/Brown_Concrete_Powder.png/60px-Brown_Concrete_Powder.png?6ed2c"
+    },
+    "minecraft:brown_glazed_terracotta": {
+        name: "Brown Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Brown_Glazed_Terracotta_%28S%29_JE1_BE1.png/60px-Brown_Glazed_Terracotta_%28S%29_JE1_BE1.png?4b033"
+    },
+    "minecraft:brown_shulker_box": {
+        name: "Brown Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Brown_Shulker_Box_JE2_BE2.png/60px-Brown_Shulker_Box_JE2_BE2.png?b6e62"
+    },
+    "minecraft:brown_stained_glass": {
+        name: "Brown Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Brown_Stained_Glass_JE3_BE3.png/60px-Brown_Stained_Glass_JE3_BE3.png?31797"
+    },
+    "minecraft:brown_stained_glass_pane": {
+        name: "Brown Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Brown_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Brown_Stained_Glass_Pane_%28EW%29_JE9.png?d6053"
+    },
+    "minecraft:brown_terracotta": {
+        name: "Brown Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Brown_Terracotta_JE1_BE1.png/60px-Brown_Terracotta_JE1_BE1.png?7bbf1"
+    },
+    "minecraft:brown_wool": {
+        name: "Brown Wool",
+        texture: "https://minecraft.wiki/images/thumb/Brown_Wool_JE3_BE3.png/60px-Brown_Wool_JE3_BE3.png?a1c68"
+    },
+    "minecraft:brown_mushroom": {
+        name: "Brown Mushroom",
+        texture: "@java/block/brown_mushroom.png"
+    },
+    "minecraft:brown_mushroom_block": {
+        name: "Brown Mushroom Block",
+        texture: "https://minecraft.wiki/images/thumb/Brown_Mushroom_Block_%28ESU%29_JE2_BE2.png/60px-Brown_Mushroom_Block_%28ESU%29_JE2_BE2.png?e44ea"
+    },
+    "minecraft:bubble_column": {
+        name: "Bubble Column",
+        texture: "/moddery/custom_textures/bubble_column.png",
+        filter: "bedrock"
+    },
+    "minecraft:bubble_coral": {
+        name: "Bubble Coral",
+        texture: "@java/block/bubble_coral.png"
+    },
+    "minecraft:bubble_coral_block": {
+        name: "Bubble Coral Block",
+        texture: "https://minecraft.wiki/images/thumb/Bubble_Coral_Block_JE2_BE1.png/60px-Bubble_Coral_Block_JE2_BE1.png?a6cc6"
+    },
+    "minecraft:bubble_coral_fan": {
+        name: "Bubble Coral Fan",
+        texture: "@java/block/bubble_coral_fan.png"
+    },
+    "minecraft:budding_amethyst": {
+        name: "Budding Amethyst",
+        texture: "https://minecraft.wiki/images/thumb/Budding_Amethyst_JE3_BE1.png/60px-Budding_Amethyst_JE3_BE1.png?a467b"
+    },
+    "minecraft:bush": {
+        name: "Bush",
+        texture: "@java/block/bush.png"
+    },
+    "minecraft:cactus": {
+        name: "Cactus",
+        texture: "https://minecraft.wiki/images/thumb/Cactus_JE4.png/60px-Cactus_JE4.png?12482"
+    },
+    "minecraft:cactus_flower": {
+        name: "Cactus Flower",
+        texture: "@java/block/cactus_flower.png"
+    },
+    "minecraft:cake": {
+        name: "Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_JE4.png/60px-Cake_JE4.png?009f2"
+    },
+    "minecraft:calcite": {
+        name: "Calcite",
+        texture: "https://minecraft.wiki/images/thumb/Calcite_JE4_BE1.png/60px-Calcite_JE4_BE1.png?9cda4"
+    },
+    "minecraft:calibrated_sculk_sensor": {
+        name: "Calibrated Sculk Sensor",
+        texture: "https://minecraft.wiki/images/thumb/Calibrated_Sculk_Sensor_JE2.gif/60px-Calibrated_Sculk_Sensor_JE2.gif?cfb26"
+    },
+    "minecraft:campfire": {
+        name: "Campfire",
+        texture: "https://minecraft.wiki/images/thumb/Campfire_%28S%29_JE2_BE2.gif/60px-Campfire_%28S%29_JE2_BE2.gif?742be"
+    },
+    "minecraft:candle": {
+        name: "Candle",
+        texture: "@java/item/candle.png"
+    },
+    "minecraft:cartography_table": {
+        name: "Cartography Table",
+        texture: "https://minecraft.wiki/images/thumb/Cartography_Table_JE3_BE2.png/60px-Cartography_Table_JE3_BE2.png?519d2"
+    },
+    "minecraft:carved_pumpkin": {
+        name: "Carved Pumpkin",
+        texture: "https://minecraft.wiki/images/thumb/Carved_Pumpkin_%28S%29_JE5.png/60px-Carved_Pumpkin_%28S%29_JE5.png?38be7"
+    },
+    "minecraft:cauldron": {
+        name: "Cauldron",
+        texture: "https://minecraft.wiki/images/thumb/Cauldron_JE8.png/60px-Cauldron_JE8.png?c0cac"
+    },
+    "minecraft:chain_command_block": {
+        name: "Chain Command Block",
+        texture: "https://minecraft.wiki/images/thumb/Chain_Command_Block.gif/60px-Chain_Command_Block.gif?7c365"
+    },
+    "minecraft:chest": {
+        name: "Chest",
+        texture: "https://minecraft.wiki/images/thumb/Chest_%28S%29_JE2.png/60px-Chest_%28S%29_JE2.png?6b608"
+    },
+    "minecraft:cherry_button": {
+        name: "Cherry Button",
+        texture: "https://minecraft.wiki/images/thumb/Cherry_Button_JE2.png/60px-Cherry_Button_JE2.png?7acb5"
+    },
+    "minecraft:cherry_door": {
+        name: "Cherry Door",
+        texture: "@java/item/cherry_door.png"
+    },
+    "minecraft:cherry_fence": {
+        name: "Cherry Fence",
+        texture: "https://minecraft.wiki/images/thumb/Cherry_Fence_%28EW%29_JE1.png/60px-Cherry_Fence_%28EW%29_JE1.png?cc131"
+    },
+    "minecraft:cherry_fence_gate": {
+        name: "Cherry Fence Gate",
+        texture: "https://minecraft.wiki/images/thumb/Cherry_Fence_Gate_JE1_BE1.png/60px-Cherry_Fence_Gate_JE1_BE1.png?30df9"
+    },
+    "minecraft:cherry_hanging_sign": {
+        name: "Cherry Hanging Sign",
+        texture: "@java/item/cherry_hanging_sign.png"
+    },
+    "minecraft:cherry_leaves": {
+        name: "Cherry Leaves",
+        texture: "https://minecraft.wiki/images/thumb/Cherry_Leaves_JE2.png/60px-Cherry_Leaves_JE2.png?7f78f"
+    },
+    "minecraft:cherry_log": {
+        name: "Cherry Log",
+        texture: "https://minecraft.wiki/images/thumb/Cherry_Log_%28UD%29_JE1_BE1.png/60px-Cherry_Log_%28UD%29_JE1_BE1.png?1ba26"
+    },
+    "minecraft:cherry_planks": {
+        name: "Cherry Planks",
+        texture: "https://minecraft.wiki/images/thumb/Cherry_Planks_JE1_BE1.png/60px-Cherry_Planks_JE1_BE1.png?8953c"
+    },
+    "minecraft:cherry_pressure_plate": {
+        name: "Cherry Pressure Plate",
+        texture: "https://minecraft.wiki/images/thumb/Cherry_Pressure_Plate_JE1_BE1.png/60px-Cherry_Pressure_Plate_JE1_BE1.png?50733"
+    },
+    "minecraft:cherry_sapling": {
+        name: "Cherry Sapling",
+        texture: "@java/block/cherry_sapling.png"
+    },
+    "minecraft:cherry_shelf": {
+        name: "Cherry Shelf",
+        texture: "https://minecraft.wiki/images/thumb/Cherry_Shelf_JE1_BE2.png/60px-Cherry_Shelf_JE1_BE2.png?1394a"
+    },
+    "minecraft:cherry_sign": {
+        name: "Cherry Sign",
+        texture: "@java/item/cherry_sign.png"
+    },
+    "minecraft:cherry_slab": {
+        name: "Cherry Slab",
+        texture: "https://minecraft.wiki/images/thumb/Cherry_Slab_JE1_BE1.png/60px-Cherry_Slab_JE1_BE1.png?6d7e5"
+    },
+    "minecraft:cherry_stairs": {
+        name: "Cherry Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Cherry_Stairs_JE1_BE1.png/60px-Cherry_Stairs_JE1_BE1.png?16c84"
+    },
+    "minecraft:cherry_trapdoor": {
+        name: "Cherry Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Cherry_Trapdoor_JE1_BE1.png/60px-Cherry_Trapdoor_JE1_BE1.png?1d5fb"
+    },
+    "minecraft:cherry_wood": {
+        name: "Cherry Wood",
+        texture: "https://minecraft.wiki/images/thumb/Cherry_Wood_%28UD%29_JE1_BE1.png/60px-Cherry_Wood_%28UD%29_JE1_BE1.png?14799"
     },
 
     /*

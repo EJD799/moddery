@@ -1,5 +1,4 @@
 async function makeIsometricCube(topURI, leftURI, rightURI) {
-    // Helper to load an image
     const loadImg = src => new Promise(resolve => {
         const img = new Image();
         img.onload = () => resolve(img);
@@ -7,43 +6,51 @@ async function makeIsometricCube(topURI, leftURI, rightURI) {
     });
 
     const [topImg, leftImg, rightImg] = await Promise.all([
-        loadImg(topURI), loadImg(leftURI), loadImg(rightURI)
+        loadImg(topURI),
+        loadImg(leftURI),
+        loadImg(rightURI)
     ]);
 
     const canvas = document.createElement("canvas");
     canvas.width = 64;
     canvas.height = 64;
     const ctx = canvas.getContext("2d");
-    ctx.imageSmoothingEnabled = false; // Keep pixels sharp
-
-    const centerX = 32;
-    const centerY = 32;
-
-    // Sizes for Minecraft-style cube
-    const topWidth = 32;
-    const topHeight = 16;
-    const sideWidth = 16;
-    const sideHeight = 32;
+    ctx.imageSmoothingEnabled = false;
 
     // --- LEFT FACE ---
     ctx.save();
-    ctx.translate(centerX, centerY);
-    ctx.transform(1, 0.5, 0, 1, -sideWidth, 0); // skew to form parallelogram
-    ctx.drawImage(leftImg, 0, 0, 16, 16, 0, 0, sideWidth * 2, sideHeight);
+    ctx.beginPath();
+    ctx.moveTo(16, 32); // top-left
+    ctx.lineTo(32, 32); // top-right
+    ctx.lineTo(32, 64); // bottom-right
+    ctx.lineTo(16, 64); // bottom-left
+    ctx.closePath();
+    ctx.clip();
+    ctx.drawImage(leftImg, 0, 0, 16, 16, 16, 32, 16, 32);
     ctx.restore();
 
     // --- RIGHT FACE ---
     ctx.save();
-    ctx.translate(centerX, centerY);
-    ctx.transform(1, -0.5, 0, 1, 0, 0); // skew to form parallelogram
-    ctx.drawImage(rightImg, 0, 0, 16, 16, 0, 0, sideWidth * 2, sideHeight);
+    ctx.beginPath();
+    ctx.moveTo(32, 32); // top-left
+    ctx.lineTo(48, 32); // top-right
+    ctx.lineTo(48, 64); // bottom-right
+    ctx.lineTo(32, 64); // bottom-left
+    ctx.closePath();
+    ctx.clip();
+    ctx.drawImage(rightImg, 0, 0, 16, 16, 32, 32, 16, 32);
     ctx.restore();
 
     // --- TOP FACE ---
     ctx.save();
-    ctx.translate(centerX, centerY - sideHeight / 2);
-    ctx.transform(1, 0, -1, 1, 0, 0); // skew diamond
-    ctx.drawImage(topImg, 0, 0, 16, 16, -topWidth/2, -topHeight/2, topWidth, topHeight);
+    ctx.beginPath();
+    ctx.moveTo(16, 16); // top-left
+    ctx.lineTo(48, 16); // top-right
+    ctx.lineTo(48, 32); // bottom-right
+    ctx.lineTo(16, 32); // bottom-left
+    ctx.closePath();
+    ctx.clip();
+    ctx.drawImage(topImg, 0, 0, 16, 16, 16, 16, 32, 16);
     ctx.restore();
 
     return canvas.toDataURL("image/png");

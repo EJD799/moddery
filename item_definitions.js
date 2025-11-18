@@ -2115,7 +2115,7 @@ const itemDefinitions = {
     },
     "minecraft:barrel": {
         name: "Barrel",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Barrel_%28U%29_JE1_BE1.png/60px-Barrel_%28U%29_JE1_BE1.png?4cd93"
     },
     "minecraft:barrier": {
         name: "Barrier",
@@ -2123,23 +2123,23 @@ const itemDefinitions = {
     },
     "minecraft:basalt": {
         name: "Basalt",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Basalt_%28UD%29_JE1_BE1.png/60px-Basalt_%28UD%29_JE1_BE1.png?3adcd"
     },
     "minecraft:beacon": {
         name: "Beacon",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Beacon_JE6_BE2.png/60px-Beacon_JE6_BE2.png?684bf"
     },
     "minecraft:bedrock": {
         name: "Bedrock",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Bedrock_JE2_BE2.png/60px-Bedrock_JE2_BE2.png?feb6c"
     },
     "minecraft:bee_nest": {
         name: "Bee Nest",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Bee_Nest_%28S%29_JE1.png/60px-Bee_Nest_%28S%29_JE1.png?e0b6a"
     },
     "minecraft:beehive": {
         name: "Beehive",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Beehive_%28S%29_JE1.png/60px-Beehive_%28S%29_JE1.png?a2997"
     },
     "minecraft:bell": {
         name: "Bell",
@@ -2147,23 +2147,71 @@ const itemDefinitions = {
     },
     "minecraft:big_dripleaf": {
         name: "Big Dripleaf",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Big_Dripleaf_JE2_BE1.png/60px-Big_Dripleaf_JE2_BE1.png?d212b"
     },
     "minecraft:birch_button": {
         name: "Birch Button",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Birch_Button_JE4.png/60px-Birch_Button_JE4.png?00679"
     },
     "minecraft:birch_door": {
         name: "Birch Door",
-        texture: ""
+        texture: "@java/item/birch_door.png"
     },
     "minecraft:birch_fence": {
         name: "Birch Fence",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Birch_Fence_%28EW%29_JE5.png/60px-Birch_Fence_%28EW%29_JE5.png?48f57"
     },
     "minecraft:birch_fence_gate": {
         name: "Birch Fence Gate",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Birch_Fence_Gate_JE3_BE2.png/60px-Birch_Fence_Gate_JE3_BE2.png?405fd"
+    },
+    "minecraft:birch_hanging_sign": {
+        name: "Birch Hanging Sign",
+        texture: "@java/item/birch_hanging_sign.png"
+    },
+    "minecraft:birch_leaves": {
+        name: "Birch Leaves",
+        texture: "https://minecraft.wiki/images/thumb/Birch_Leaves.png/60px-Birch_Leaves.png?8f4a9"
+    },
+    "minecraft:birch_log": {
+        name: "Birch Log",
+        texture: "https://minecraft.wiki/images/thumb/Birch_Log_%28UD%29_JE8_BE4.png/60px-Birch_Log_%28UD%29_JE8_BE4.png?9d0bb"
+    },
+    "minecraft:birch_planks": {
+        name: "Birch Planks",
+        texture: "https://minecraft.wiki/images/thumb/Birch_Planks.png/60px-Birch_Planks.png?c3c05"
+    },
+    "minecraft:birch_pressure_plate": {
+        name: "Birch Pressure Plate",
+        texture: "https://minecraft.wiki/images/thumb/Birch_Pressure_Plate_JE3_BE2.png/60px-Birch_Pressure_Plate_JE3_BE2.png?9c899"
+    },
+    "minecraft:birch_sapling": {
+        name: "Birch Sapling",
+        texture: "@java/block/birch_sapling.png"
+    },
+    "minecraft:birch_shelf": {
+        name: "Birch Shelf",
+        texture: "https://minecraft.wiki/images/thumb/Birch_Shelf_JE1_BE2.png/60px-Birch_Shelf_JE1_BE2.png?bb5ca"
+    },
+    "minecraft:birch_sign": {
+        name: "Birch Sign",
+        texture: "@java/item/birch_sign.png"
+    },
+    "minecraft:birch_slab": {
+        name: "Birch Slab",
+        texture: "https://minecraft.wiki/images/thumb/Birch_Slab_JE3_BE2.png/60px-Birch_Slab_JE3_BE2.png?c096f"
+    },
+    "minecraft:birch_stairs": {
+        name: "Birch Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Birch_Stairs_%28N%29_JE4_BE2.png/60px-Birch_Stairs_%28N%29_JE4_BE2.png?29ee9"
+    },
+    "minecraft:birch_trapdoor": {
+        name: "Birch Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Birch_Trapdoor_JE1_BE1.png/60px-Birch_Trapdoor_JE1_BE1.png?44622"
+    },
+    "minecraft:birch_wood": {
+        name: "Birch Wood",
+        texture: "https://minecraft.wiki/images/thumb/Birch_Wood_%28UD%29_JE7_BE2.png/60px-Birch_Wood_%28UD%29_JE7_BE2.png?bd883"
     },
 
     /*

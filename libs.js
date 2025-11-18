@@ -1,4 +1,5 @@
 async function makeIsometricCube(topURI, leftURI, rightURI) {
+    // Helper to load an image
     const loadImg = src => new Promise(resolve => {
         const img = new Image();
         img.onload = () => resolve(img);
@@ -13,54 +14,36 @@ async function makeIsometricCube(topURI, leftURI, rightURI) {
     canvas.width = 64;
     canvas.height = 64;
     const ctx = canvas.getContext("2d");
-    ctx.imageSmoothingEnabled = false;
+    ctx.imageSmoothingEnabled = false; // Keep pixels sharp
 
-    // Center of the cube
-    const cx = 32;
-    const cy = 32;
+    const centerX = 32;
+    const centerY = 32;
 
-    // Sizes
-    const cubeSize = 32; // width of top
-    const sideHeight = 16; // height of top and side trapezoids
+    // Sizes for Minecraft-style cube
+    const topWidth = 32;
+    const topHeight = 16;
+    const sideWidth = 16;
+    const sideHeight = 32;
 
     // --- LEFT FACE ---
-    // Map 16x16 texture to quadrilateral: top-left, top-right, bottom-right, bottom-left
     ctx.save();
-    ctx.beginPath();
-    ctx.moveTo(cx - cubeSize / 2, cy);        // top-left
-    ctx.lineTo(cx, cy - sideHeight);         // top-right (inner corner)
-    ctx.lineTo(cx, cy + cubeSize - sideHeight); // bottom-right
-    ctx.lineTo(cx - cubeSize / 2, cy + cubeSize); // bottom-left
-    ctx.closePath();
-    ctx.clip();
-    ctx.drawImage(leftImg, 0, 0, 16, 16,
-                  cx - cubeSize / 2, cy, cubeSize / 2, cubeSize); // stretch to quad
+    ctx.translate(centerX, centerY);
+    ctx.transform(1, 0.5, 0, 1, -sideWidth, 0); // skew to form parallelogram
+    ctx.drawImage(leftImg, 0, 0, 16, 16, 0, 0, sideWidth * 2, sideHeight);
     ctx.restore();
 
     // --- RIGHT FACE ---
     ctx.save();
-    ctx.beginPath();
-    ctx.moveTo(cx, cy - sideHeight);         // top-left (inner corner)
-    ctx.lineTo(cx + cubeSize / 2, cy);       // top-right
-    ctx.lineTo(cx + cubeSize / 2, cy + cubeSize); // bottom-right
-    ctx.lineTo(cx, cy + cubeSize - sideHeight); // bottom-left
-    ctx.closePath();
-    ctx.clip();
-    ctx.drawImage(rightImg, 0, 0, 16, 16,
-                  cx, cy - sideHeight, cubeSize / 2, cubeSize); // stretch to quad
+    ctx.translate(centerX, centerY);
+    ctx.transform(1, -0.5, 0, 1, 0, 0); // skew to form parallelogram
+    ctx.drawImage(rightImg, 0, 0, 16, 16, 0, 0, sideWidth * 2, sideHeight);
     ctx.restore();
 
     // --- TOP FACE ---
     ctx.save();
-    ctx.beginPath();
-    ctx.moveTo(cx, cy - sideHeight);         // top-left
-    ctx.lineTo(cx + cubeSize / 2, cy);       // top-right
-    ctx.lineTo(cx, cy + cubeSize - sideHeight); // bottom-right
-    ctx.lineTo(cx - cubeSize / 2, cy);       // bottom-left
-    ctx.closePath();
-    ctx.clip();
-    ctx.drawImage(topImg, 0, 0, 16, 16,
-                  cx - cubeSize / 2, cy - sideHeight, cubeSize, sideHeight); // stretch
+    ctx.translate(centerX, centerY - sideHeight / 2);
+    ctx.transform(1, 0, -1, 1, 0, 0); // skew diamond
+    ctx.drawImage(topImg, 0, 0, 16, 16, -topWidth/2, -topHeight/2, topWidth, topHeight);
     ctx.restore();
 
     return canvas.toDataURL("image/png");

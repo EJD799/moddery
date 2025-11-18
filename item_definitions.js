@@ -1939,7 +1939,7 @@ const itemDefinitions = {
     },
     "minecraft:acacia_door": {
         name: "Acacia Door",
-        texture: "@java/item/acacia_door"
+        texture: "@java/item/acacia_door.png"
     },
     "minecraft:acacia_fence": {
         name: "Acacia Fence",
@@ -1951,7 +1951,7 @@ const itemDefinitions = {
     },
     "minecraft:acacia_hanging_sign": {
         name: "Acacia Hanging Sign",
-        texture: "@java/item/acacia_hanging_sign"
+        texture: "@java/item/acacia_hanging_sign.png"
     },
     "minecraft:acacia_leaves": {
         name: "Acacia Leaves",
@@ -1971,7 +1971,7 @@ const itemDefinitions = {
     },
     "minecraft:acacia_sapling": {
         name: "Acacia Sapling",
-        texture: "@java/item/acacia_sapling"
+        texture: "@java/item/acacia_sapling.png"
     },
     "minecraft:acacia_shelf": {
         name: "Acacia Shelf",
@@ -1979,7 +1979,7 @@ const itemDefinitions = {
     },
     "minecraft:acacia_sign": {
         name: "Acacia Sign",
-        texture: "@java/item/acacia_sign"
+        texture: "@java/item/acacia_sign.png"
     },
     "minecraft:acacia_slab": {
         name: "Acacia Slab",
@@ -2044,6 +2044,74 @@ const itemDefinitions = {
     "minecraft:azure_bluet": {
         name: "Azure Bluet",
         texture: "@java/block/azure_bluet.png"
+    },
+    "minecraft:bamboo": {
+        name: "Bamboo",
+        texture: "@java/item/bamboo.png"
+    },
+    "minecraft:bamboo_button": {
+        name: "Bamboo Button",
+        texture: "https://minecraft.wiki/images/thumb/Bamboo_Button_JE3.png/60px-Bamboo_Button_JE3.png?e0082"
+    },
+    "minecraft:bamboo_door": {
+        name: "Bamboo Door",
+        texture: "@java/item/bamboo_door.png"
+    },
+    "minecraft:bamboo_fence": {
+        name: "Bamboo Fence",
+        texture: "https://minecraft.wiki/images/thumb/Bamboo_Fence_%28EW%29_JE1.png/60px-Bamboo_Fence_%28EW%29_JE1.png?b1aab"
+    },
+    "minecraft:bamboo_fence_gate": {
+        name: "Bamboo Fence Gate",
+        texture: "https://minecraft.wiki/images/thumb/Bamboo_Fence_Gate_JE1_BE1.png/60px-Bamboo_Fence_Gate_JE1_BE1.png?e54e0"
+    },
+    "minecraft:bamboo_hanging_sign": {
+        name: "Bamboo Hanging Sign",
+        texture: "@java/item/bamboo_hanging_sign.png"
+    },
+    "minecraft:bamboo_mosaic": {
+        name: "Bamboo Mosaic",
+        texture: "https://minecraft.wiki/images/thumb/Bamboo_Mosaic_JE1_BE1.png/60px-Bamboo_Mosaic_JE1_BE1.png?2d702"
+    },
+    "minecraft:bamboo_mosaic_slab": {
+        name: "Bamboo Mosaic Slab",
+        texture: "https://minecraft.wiki/images/thumb/Bamboo_Mosaic_Slab_JE1_BE1.png/60px-Bamboo_Mosaic_Slab_JE1_BE1.png?ea14a"
+    },
+    "minecraft:bamboo_mosaic_stairs": {
+        name: "Bamboo Mosaic Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Bamboo_Mosaic_Stairs_JE1_BE1.png/60px-Bamboo_Mosaic_Stairs_JE1_BE1.png?89a73"
+    },
+    "minecraft:bamboo_planks": {
+        name: "Bamboo Planks",
+        texture: "https://minecraft.wiki/images/thumb/Bamboo_Planks_JE2_BE2.png/60px-Bamboo_Planks_JE2_BE2.png?0cb5e"
+    },
+    "minecraft:bamboo_pressure_plate": {
+        name: "Bamboo Pressure Plate",
+        texture: "https://minecraft.wiki/images/thumb/Bamboo_Pressure_Plate_JE2_BE2.png/60px-Bamboo_Pressure_Plate_JE2_BE2.png?0b70a"
+    },
+    "minecraft:bamboo_shelf": {
+        name: "Bamboo Shelf",
+        texture: "https://minecraft.wiki/images/thumb/Bamboo_Shelf_JE1_BE2.png/60px-Bamboo_Shelf_JE1_BE2.png?e92d2"
+    },
+    "minecraft:bamboo_shoot": {
+        name: "Bamboo Shoot",
+        texture: "https://minecraft.wiki/images/thumb/Bamboo_Shoot_JE1_BE1.png/60px-Bamboo_Shoot_JE1_BE1.png?34e69"
+    },
+    "minecraft:bamboo_sign": {
+        name: "Bamboo Sign",
+        texture: "@java/item/bamboo_sign.png"
+    },
+    "minecraft:bamboo_slab": {
+        name: "Bamboo Slab",
+        texture: "https://minecraft.wiki/images/thumb/Bamboo_Slab_JE2_BE2.png/60px-Bamboo_Slab_JE2_BE2.png?48b40"
+    },
+    "minecraft:bamboo_stairs": {
+        name: "Bamboo Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Bamboo_Stairs_JE2.png/60px-Bamboo_Stairs_JE2.png?41c64"
+    },
+    "minecraft:bamboo_trapdoor": {
+        name: "Bamboo Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Bamboo_Trapdoor_JE1_BE1.png/60px-Bamboo_Trapdoor_JE1_BE1.png?16fec"
     },
 
     /*

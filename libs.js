@@ -1,146 +1,118 @@
-/**
- * Create a 64x64 PNG of a cube whose inner corner is at the center (32,32).
- * topURI  - data URI 16x16 for the top face
- * leftURI - data URI 16x16 for the left face
- * rightURI- data URI 16x16 for the right face
- * Returns Promise<string> -> data:image/png;base64,...
- */
 async function makeIsometricCube(topURI, leftURI, rightURI) {
-  // load data-URI image
-  function loadImg(src) {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => resolve(img);
-      img.onerror = reject;
-      img.src = src;
-    });
-  }
+    // ---- Utility to load a PNG from data URI ----
+    function loadImg(src) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+            img.src = src;
+        });
+    }
 
-  // draw image stretched into a parallelogram using an affine transform
-  function drawImageToParallelogram(ctx, img, w, h, dest0, dest1, dest2) {
-    // compute affine transform mapping (0,0)->dest0, (w,0)->dest1, (0,h)->dest2
-    const a = (dest1.x - dest0.x) / w;
-    const b = (dest1.y - dest0.y) / w;
-    const c = (dest2.x - dest0.x) / h;
-    const d = (dest2.y - dest0.y) / h;
-    const e = dest0.x;
-    const f = dest0.y;
+    // ---- Load all 3 face textures ----
+    const [topImg, leftImg, rightImg] = await Promise.all([
+        loadImg(topURI), loadImg(leftURI), loadImg(rightURI)
+    ]);
 
-    ctx.save();
-    ctx.setTransform(a, b, c, d, e, f);
-    ctx.drawImage(img, 0, 0, w, h);
-    ctx.restore();
-  }
+    // ---- Read pixel data from textures ----
+    function getPixels(img) {
+        const c = document.createElement("canvas");
+        c.width = img.width;
+        c.height = img.height;
+        const ctx = c.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        return ctx.getImageData(0, 0, img.width, img.height);
+    }
 
-  // load images
-  const [topImg, leftImg, rightImg] = await Promise.all([
-    loadImg(topURI),
-    loadImg(leftURI),
-    loadImg(rightURI)
-  ]);
+    const top = getPixels(topImg);
+    const left = getPixels(leftImg);
+    const right = getPixels(rightImg);
 
-  // canvas setup
-  const size = 64;
-  const canvas = document.createElement("canvas");
-  canvas.width = size;
-  canvas.height = size;
-  const ctx = canvas.getContext("2d", { alpha: true });
-  ctx.imageSmoothingEnabled = false;
+    // ---- Output canvas ----
+    const out = document.createElement("canvas");
+    out.width = 64;
+    out.height = 64;
+    const ctx = out.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
 
-  // Parameters you can tweak:
-  const Cx = size / 2; // center x (meeting corner)
-  const Cy = size / 2; // center y (meeting corner)
-  const S = 26;        // projected half-width/size basis for faces (tweak if needed)
-  const depthX = 14;   // horizontal skew for top->right/left
-  const depthY = 8;    // vertical skew for top
+    const outData = ctx.getImageData(0, 0, 64, 64);
 
-  // We'll map each 16x16 source to a parallelogram sized roughly S x S,
-  // positioned so their inner corner is at (Cx,Cy).
+    // ---- 3D → isometric projection ----
+    function iso(x, y, z) {
+        // classic 30° isometric projection
+        return {
+            x: 32 + (x - y) * 0.866,   // cos 30°
+            y: 48 - z + (x + y) * 0.5
+        };
+    }
 
-  // TOP face mapping:
-  // Source coordinates: (0,0) top-left, (w,0) top-right, (0,h) bottom-left.
-  // We want the bottom edge of the top face to meet at center.
-  const top_w = topImg.width;
-  const top_h = topImg.height;
-  const half = S / 2;
+    // ---- Helper: Draw one face from pixel data ----
+    function drawFace(source, faceFunc) {
+        const w = source.width;
+        const h = source.height;
+        const src = source.data;
 
-  // Place the top face above the center, slanted back
-  const topDest0 = { x: Cx - half + depthX, y: Cy - S - depthY };         // mapped (0,0)
-  const topDest1 = { x: Cx + half + depthX, y: Cy - S - depthY };         // mapped (w,0)
-  const topDest2 = { x: Cx - half,             y: Cy - half };            // mapped (0,h)
-  // Note: The bottom-right of the top face will be roughly at center-ish
+        for (let py = 0; py < h; py++) {
+            for (let px = 0; px < w; px++) {
 
-  // LEFT face mapping:
-  const left_w = leftImg.width;
-  const left_h = leftImg.height;
-  // left face has its inner corner at center, extends left-down
-  const leftDest0 = { x: Cx - half,               y: Cy - half };         // (0,0) -> inner corner top
-  const leftDest1 = { x: Cx - half - depthX,      y: Cy - half - depthY }; // (w,0) -> back/top-left
-  const leftDest2 = { x: Cx - half,               y: Cy + half };          // (0,h) -> bottom-left
+                // Get original pixel
+                const i = (py * w + px) * 4;
+                const r = src[i + 0];
+                const g = src[i + 1];
+                const b = src[i + 2];
+                const a = src[i + 3];
+                if (a === 0) continue;
 
-  // RIGHT face mapping:
-  const right_w = rightImg.width;
-  const right_h = rightImg.height;
-  // right face inner corner at center, extends right-down
-  const rightDest0 = { x: Cx + half,              y: Cy - half };         // (0,0)
-  const rightDest1 = { x: Cx + half + depthX,     y: Cy - half - depthY }; // (w,0)
-  const rightDest2 = { x: Cx + half,              y: Cy + half };          // (0,h)
+                // Map pixel to 3D cube coordinate
+                const pos = faceFunc(px, py);
 
-  // clear
-  ctx.clearRect(0, 0, size, size);
+                // Project to screen
+                const p = iso(pos.x, pos.y, pos.z);
 
-  // subtle shadow under top face (gives depth)
-  ctx.fillStyle = "rgba(0,0,0,0.08)";
-  ctx.beginPath();
-  ctx.moveTo(topDest0.x, topDest0.y);
-  ctx.lineTo(topDest1.x, topDest1.y);
-  ctx.lineTo(topDest1.x, topDest1.y + 3);
-  ctx.lineTo(topDest0.x, topDest0.y + 3);
-  ctx.closePath();
-  ctx.fill();
+                const xi = Math.round(p.x);
+                const yi = Math.round(p.y);
+                if (xi < 0 || xi >= 64 || yi < 0 || yi >= 64) continue;
 
-  // draw top
-  drawImageToParallelogram(ctx, topImg, top_w, top_h, topDest0, topDest1, topDest2);
+                const oi = (yi * 64 + xi) * 4;
+                outData.data[oi + 0] = r;
+                outData.data[oi + 1] = g;
+                outData.data[oi + 2] = b;
+                outData.data[oi + 3] = 255;
+            }
+        }
+    }
 
-  // draw left (draw darker overlay to mimic Minecraft shading)
-  drawImageToParallelogram(ctx, leftImg, left_w, left_h, leftDest0, leftDest1, leftDest2);
-  // apply slight darkening for left face
-  ctx.fillStyle = "rgba(0,0,0,0.06)";
-  ctx.beginPath();
-  ctx.moveTo(leftDest0.x, leftDest0.y);
-  ctx.lineTo(leftDest1.x, leftDest1.y);
-  ctx.lineTo(leftDest1.x, leftDest1.y + S);
-  ctx.lineTo(leftDest0.x, leftDest0.y + S);
-  ctx.closePath();
-  ctx.fill();
+    // ---- Define cube dimensions ----
+    const S = 16;      // block size in pixels
+    const H = 16;      // height
+    const half = S / 2;
 
-  // draw right
-  drawImageToParallelogram(ctx, rightImg, right_w, right_h, rightDest0, rightDest1, rightDest2);
-  // slight shading on right face
-  ctx.fillStyle = "rgba(0,0,0,0.04)";
-  ctx.beginPath();
-  ctx.moveTo(rightDest0.x, rightDest0.y);
-  ctx.lineTo(rightDest1.x, rightDest1.y);
-  ctx.lineTo(rightDest1.x, rightDest1.y + S);
-  ctx.lineTo(rightDest0.x, rightDest0.y + S);
-  ctx.closePath();
-  ctx.fill();
+    // ---- Project faces ----
 
-  // crisp outline for clarity
-  ctx.strokeStyle = "rgba(0,0,0,0.28)";
-  ctx.lineWidth = 1;
-  // outline seam around the three faces
-  ctx.beginPath();
-  ctx.moveTo(topDest0.x, topDest0.y);
-  ctx.lineTo(topDest1.x, topDest1.y);
-  ctx.lineTo(rightDest1.x + 0.5, rightDest1.y + 0.5);
-  ctx.lineTo(rightDest2.x + 0.5, rightDest2.y + 0.5);
-  ctx.lineTo(rightDest0.x + 0.5, rightDest0.y + 0.5);
-  ctx.lineTo(leftDest2.x - 0.5, leftDest2.y + 0.5);
-  ctx.lineTo(leftDest0.x - 0.5, leftDest0.y - 0.5);
-  ctx.closePath();
-  ctx.stroke();
+    // TOP FACE (tex coords px,py → world coords)
+    drawFace(top, (px, py) => ({
+        x: px,
+        y: py,
+        z: H
+    }));
 
-  // Return PNG data URI
-  return canvas.toDataURL("image/png");
+    // LEFT FACE
+    // maps 16×16 texture to left vertical face
+    drawFace(left, (px, py) => ({
+        x: 0,
+        y: px,
+        z: H - py
+    }));
+
+    // RIGHT FACE
+    drawFace(right, (px, py) => ({
+        x: px,
+        y: 0,
+        z: H - py
+    }));
+
+    // ---- Draw final image ----
+    ctx.putImageData(outData, 0, 0);
+
+    return out.toDataURL("image/png");
 }

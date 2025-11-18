@@ -13,31 +13,30 @@ async function makeIsometricCube(topURI, leftURI, rightURI) {
     canvas.width = 64;
     canvas.height = 64;
     const ctx = canvas.getContext("2d");
-    ctx.imageSmoothingEnabled = false; // keep pixelated
+    ctx.imageSmoothingEnabled = false;
 
-    // Coordinates and sizes
-    const cx = 32; // center
+    const cx = 32;
     const cy = 32;
 
-    const faceWidth = 32;
-    const faceHeight = 16;
+    const faceW = 32;
+    const faceH = 16;
 
-    // Draw left face
+    // ----- LEFT FACE -----
     ctx.save();
-    ctx.setTransform(1, 0.5, 0, 1, cx - 32, cy); // skew for left
-    ctx.drawImage(leftImg, 0, 0, 16, 16, 0, 0, faceWidth, faceHeight);
+    ctx.setTransform(1, 0.5, 0, 1, cx - faceW, cy);
+    ctx.drawImage(leftImg, 0, 0, 16, 16, 0, 0, faceW, faceW); // 32x32
     ctx.restore();
 
-    // Draw right face
+    // ----- RIGHT FACE -----
     ctx.save();
-    ctx.setTransform(1, -0.5, 0, 1, cx, cy); // skew for right
-    ctx.drawImage(rightImg, 0, 0, 16, 16, 0, 0, faceWidth, faceHeight);
+    ctx.setTransform(1, -0.5, 0, 1, cx, cy);
+    ctx.drawImage(rightImg, 0, 0, 16, 16, 0, 0, faceW, faceW); // 32x32
     ctx.restore();
 
-    // Draw top face
+    // ----- TOP FACE -----
     ctx.save();
-    ctx.setTransform(1, 0, -1, 1, cx, cy - 16); // rotate/skew top
-    ctx.drawImage(topImg, 0, 0, 16, 16, -16, -16, 32, 32);
+    ctx.setTransform(1, 0, -1, 1, cx, cy - faceH);
+    ctx.drawImage(topImg, 0, 0, 16, 16, -faceW / 2, -faceH / 2, faceW, faceH); // 32x16 diamond
     ctx.restore();
 
     return canvas.toDataURL("image/png");

@@ -1971,7 +1971,7 @@ const itemDefinitions = {
     },
     "minecraft:acacia_sapling": {
         name: "Acacia Sapling",
-        texture: "@java/item/acacia_sapling.png"
+        texture: "@java/block/acacia_sapling.png"
     },
     "minecraft:acacia_shelf": {
         name: "Acacia Shelf",
@@ -2112,6 +2112,58 @@ const itemDefinitions = {
     "minecraft:bamboo_trapdoor": {
         name: "Bamboo Trapdoor",
         texture: "https://minecraft.wiki/images/thumb/Bamboo_Trapdoor_JE1_BE1.png/60px-Bamboo_Trapdoor_JE1_BE1.png?16fec"
+    },
+    "minecraft:barrel": {
+        name: "Barrel",
+        texture: ""
+    },
+    "minecraft:barrier": {
+        name: "Barrier",
+        texture: "@java/item/barrier.png"
+    },
+    "minecraft:basalt": {
+        name: "Basalt",
+        texture: ""
+    },
+    "minecraft:beacon": {
+        name: "Beacon",
+        texture: ""
+    },
+    "minecraft:bedrock": {
+        name: "Bedrock",
+        texture: ""
+    },
+    "minecraft:bee_nest": {
+        name: "Bee Nest",
+        texture: ""
+    },
+    "minecraft:beehive": {
+        name: "Beehive",
+        texture: ""
+    },
+    "minecraft:bell": {
+        name: "Bell",
+        texture: "@java/item/bell.png"
+    },
+    "minecraft:big_dripleaf": {
+        name: "Big Dripleaf",
+        texture: ""
+    },
+    "minecraft:birch_button": {
+        name: "Birch Button",
+        texture: ""
+    },
+    "minecraft:birch_door": {
+        name: "Birch Door",
+        texture: ""
+    },
+    "minecraft:birch_fence": {
+        name: "Birch Fence",
+        texture: ""
+    },
+    "minecraft:birch_fence_gate": {
+        name: "Birch Fence Gate",
+        texture: ""
     },
 
     /*

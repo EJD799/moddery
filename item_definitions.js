@@ -2349,6 +2349,54 @@ const itemDefinitions = {
         name: "Block of Stripped Bamboo",
         texture: "https://minecraft.wiki/images/thumb/Block_of_Stripped_Bamboo_JE3_BE2.png/60px-Block_of_Stripped_Bamboo_JE3_BE2.png?f34db"
     },
+    "minecraft:blue_banner": {
+        name: "Blue Banner",
+        texture: "https://minecraft.wiki/images/thumb/Black_Bue_JE2_BE2.gif/30px-Blue_Banner_JE2_BE2.gif?794b0"
+    },
+    "minecraft:blue_bed": {
+        name: "Blue Bed",
+        texture: "https://minecraft.wiki/images/thumb/Blue_Bed.png/60px-Blue_Bed.png?c9cb7"
+    },
+    "minecraft:blue_candle": {
+        name: "Blue Candle",
+        texture: "@java/item/blue_candle.png"
+    },
+    "minecraft:blue_carpet": {
+        name: "Blue Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Blue_Carpet_JE2_BE2.png/60px-Blue_Carpet_JE2_BE2.png?12e54"
+    },
+    "minecraft:blue_concrete": {
+        name: "Blue Concrete",
+        texture: "https://minecraft.wiki/images/thumb/Blue_Concrete.png/60px-Blue_Concrete.png?448aa"
+    },
+    "minecraft:blue_concrete_powder": {
+        name: "Blue Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/Blue_Concrete_Powder.png/60px-Blue_Concrete_Powder.png?6ed2c"
+    },
+    "minecraft:blue_glazed_terracotta": {
+        name: "Blue Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Blue_Glazed_Terracotta_%28S%29_JE1_BE1.png/60px-Blue_Glazed_Terracotta_%28S%29_JE1_BE1.png?4b033"
+    },
+    "minecraft:blue_shulker_box": {
+        name: "Blue Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Blue_Shulker_Box_JE2_BE2.png/60px-Blue_Shulker_Box_JE2_BE2.png?b6e62"
+    },
+    "minecraft:blue_stained_glass": {
+        name: "Blue Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Blue_Stained_Glass_JE3_BE3.png/60px-Blue_Stained_Glass_JE3_BE3.png?31797"
+    },
+    "minecraft:blue_stained_glass_pane": {
+        name: "Blue Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Blue_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Blue_Stained_Glass_Pane_%28EW%29_JE9.png?d6053"
+    },
+    "minecraft:blue_terracotta": {
+        name: "Blue Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Blue_Terracotta_JE1_BE1.png/60px-Blue_Terracotta_JE1_BE1.png?7bbf1"
+    },
+    "minecraft:blue_wool": {
+        name: "Blue Wool",
+        texture: "https://minecraft.wiki/images/thumb/Blue_Wool_JE3_BE3.png/60px-Blue_Wool_JE3_BE3.png?a1c68"
+    },
 
     /*
     "minecraft:": {

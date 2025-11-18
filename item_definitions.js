@@ -2213,6 +2213,62 @@ const itemDefinitions = {
         name: "Birch Wood",
         texture: "https://minecraft.wiki/images/thumb/Birch_Wood_%28UD%29_JE7_BE2.png/60px-Birch_Wood_%28UD%29_JE7_BE2.png?bd883"
     },
+    "minecraft:black_banner": {
+        name: "Black Banner",
+        texture: ""
+    },
+    "minecraft:black_bed": {
+        name: "Black Bed",
+        texture: ""
+    },
+    "minecraft:black_candle": {
+        name: "Black Candle",
+        texture: "@java/item/black_candle.png"
+    },
+    "minecraft:black_carpet": {
+        name: "Black Carpet",
+        texture: ""
+    },
+    "minecraft:black_concrete": {
+        name: "Black Concrete",
+        texture: ""
+    },
+    "minecraft:black_concrete_powder": {
+        name: "Black Concrete Powder",
+        texture: ""
+    },
+    "minecraft:black_glazed_terracotta": {
+        name: "Black Glazed Terracotta",
+        texture: ""
+    },
+    "minecraft:black_shulker_box": {
+        name: "Black Shulker Box",
+        texture: ""
+    },
+    "minecraft:black_stained_glass": {
+        name: "Black Stained Glass",
+        texture: ""
+    },
+    "minecraft:black_stained_glass_pane": {
+        name: "Black Stained Glass Pane",
+        texture: ""
+    },
+    "minecraft:black_terracotta": {
+        name: "Black Terracotta",
+        texture: ""
+    },
+    "minecraft:black_wool": {
+        name: "Black Wool",
+        texture: ""
+    },
+    "minecraft:blackstone": {
+        name: "Blackstone",
+        texture: ""
+    },
+    "minecraft:blackstone_slab": {
+        name: "Blackstone Slab",
+        texture: ""
+    },
 
     /*
     "minecraft:": {

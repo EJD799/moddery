@@ -1,3 +1,7 @@
+// Minecraft Item DB (Modified Build)
+// 2025 EJD799
+// https://github.com/ejd799/minecraft-item-db
+
 const itemDefinitions = {
     "minecraft:acacia_boat": {
         name: "Acacia Boat",
@@ -2920,10 +2924,124 @@ const itemDefinitions = {
         name: "Crying Obsidian",
         texture: "https://minecraft.wiki/images/thumb/Crying_Obsidian_JE1_BE1.png/60px-Crying_Obsidian_JE1_BE1.png?f1f04"
     },
+    "minecraft:cut_red_sandstone": {
+        name: "Cut Red Sandstone",
+        texture: ""
+    },
+    "minecraft:cut_red_sandstone_slab": {
+        name: "Cut Red Sandstone Slab",
+        texture: ""
+    },
+    "minecraft:cut_sandstone": {
+        name: "Cut Sandstone",
+        texture: ""
+    },
+    "minecraft:cut_sandstone_slab": {
+        name: "Cut Sandstone Slab",
+        texture: ""
+    },
+    "minecraft:cyan_banner": {
+        name: "Cyan Banner",
+        texture: ""
+    },
+    "minecraft:cyan_bed": {
+        name: "Cyan Bed",
+        texture: ""
+    },
+    "minecraft:cyan_candle": {
+        name: "Cyan Candle",
+        texture: ""
+    },
+    "minecraft:cyan_carpet": {
+        name: "Cyan Carpet",
+        texture: ""
+    },
+    "minecraft:cyan_concrete": {
+        name: "Cyan Concrete",
+        texture: ""
+    },
+    "minecraft:cyan_concrete_powder": {
+        name: "Cyan Concrete Powder",
+        texture: ""
+    },
+    "minecraft:_glazed_terracotta": {
+        name: " Glazed Terracotta",
+        texture: ""
+    },
+    "minecraft:_shulker_box": {
+        name: " Shulker Box",
+        texture: ""
+    },
+    "minecraft:_stained_glass": {
+        name: " Stained Glass",
+        texture: ""
+    },
+    "minecraft:_stained_glass_pane": {
+        name: " Stained Glass Pane",
+        texture: ""
+    },
+    "minecraft:_terracotta": {
+        name: " Terracotta",
+        texture: ""
+    },
+    "minecraft:_wool": {
+        name: " Wool",
+        texture: ""
+    },
+    
 
     /*
     "minecraft:": {
         name: "",
+        texture: ""
+    },
+
+    "minecraft:_banner": {
+        name: " Banner",
+        texture: ""
+    },
+    "minecraft:_bed": {
+        name: " Bed",
+        texture: ""
+    },
+    "minecraft:_candle": {
+        name: " Candle",
+        texture: ""
+    },
+    "minecraft:_carpet": {
+        name: " Carpet",
+        texture: ""
+    },
+    "minecraft:_concrete": {
+        name: " Concrete",
+        texture: ""
+    },
+    "minecraft:_concrete_powder": {
+        name: " Concrete Powder",
+        texture: ""
+    },
+    "minecraft:_glazed_terracotta": {
+        name: " Glazed Terracotta",
+        texture: ""
+    },
+    "minecraft:_shulker_box": {
+        name: " Shulker Box",
+        texture: ""
+    },
+    "minecraft:_stained_glass": {
+        name: " Stained Glass",
+        texture: ""
+    },
+    "minecraft:_stained_glass_pane": {
+        name: " Stained Glass Pane",
+        texture: ""
+    },
+    "minecraft:_terracotta": {
+        name: " Terracotta",
+        texture: ""
+    },
+    "minecraft:_wool": {
+        name: " Wool",
         texture: ""
     },
     */

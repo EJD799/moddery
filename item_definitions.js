@@ -2926,67 +2926,67 @@ const itemDefinitions = {
     },
     "minecraft:cut_red_sandstone": {
         name: "Cut Red Sandstone",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Cut_Red_Sandstone_JE4_BE2.png/60px-Cut_Red_Sandstone_JE4_BE2.png?8e172"
     },
     "minecraft:cut_red_sandstone_slab": {
         name: "Cut Red Sandstone Slab",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Cut_Red_Sandstone_Slab_JE1_BE1.png/60px-Cut_Red_Sandstone_Slab_JE1_BE1.png?d7a3e"
     },
     "minecraft:cut_sandstone": {
         name: "Cut Sandstone",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Cut_Sandstone_JE5_BE2.png/60px-Cut_Sandstone_JE5_BE2.png?2eb93"
     },
     "minecraft:cut_sandstone_slab": {
         name: "Cut Sandstone Slab",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Cut_Sandstone_Slab_JE1_BE1.png/60px-Cut_Sandstone_Slab_JE1_BE1.png?cc29c"
     },
     "minecraft:cyan_banner": {
         name: "Cyan Banner",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Cyan_Banner_JE2_BE2.gif/30px-Cyan_Banner_JE2_BE2.gif?11768"
     },
     "minecraft:cyan_bed": {
         name: "Cyan Bed",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Cyan_Bed.png/60px-Cyan_Bed.png?6a1b1"
     },
     "minecraft:cyan_candle": {
         name: "Cyan Candle",
-        texture: ""
+        texture: "@java/item/cyan_candle.png"
     },
     "minecraft:cyan_carpet": {
         name: "Cyan Carpet",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Cyan_Carpet_JE2_BE2.png/60px-Cyan_Carpet_JE2_BE2.png?18d2f"
     },
     "minecraft:cyan_concrete": {
         name: "Cyan Concrete",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Cyan_Concrete.png/60px-Cyan_Concrete.png?9ed74"
     },
     "minecraft:cyan_concrete_powder": {
         name: "Cyan Concrete Powder",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Cyan_Concrete_Powder.png/60px-Cyan_Concrete_Powder.png?b656c"
     },
-    "minecraft:_glazed_terracotta": {
-        name: " Glazed Terracotta",
-        texture: ""
+    "minecraft:cyan_glazed_terracotta": {
+        name: "Cyan Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Cyan_Glazed_Terracotta_%28S%29_JE2_BE2.png/60px-Cyan_Glazed_Terracotta_%28S%29_JE2_BE2.png?bac6f"
     },
-    "minecraft:_shulker_box": {
-        name: " Shulker Box",
-        texture: ""
+    "minecraft:cyan_shulker_box": {
+        name: "Cyan Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Cyan_Shulker_Box_JE2_BE2.png/60px-Cyan_Shulker_Box_JE2_BE2.png?f9778"
     },
-    "minecraft:_stained_glass": {
-        name: " Stained Glass",
-        texture: ""
+    "minecraft:cyan_stained_glass": {
+        name: "Cyan Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Cyan_Stained_Glass_JE3_BE3.png/60px-Cyan_Stained_Glass_JE3_BE3.png?d472d"
     },
-    "minecraft:_stained_glass_pane": {
-        name: " Stained Glass Pane",
-        texture: ""
+    "minecraft:cyan_stained_glass_pane": {
+        name: "Cyan Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Cyan_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Cyan_Stained_Glass_Pane_%28EW%29_JE9.png?4fbb7"
     },
-    "minecraft:_terracotta": {
-        name: " Terracotta",
-        texture: ""
+    "minecraft:cyan_terracotta": {
+        name: "Cyan Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Cyan_Terracotta_JE1_BE1.png/60px-Cyan_Terracotta_JE1_BE1.png?c9997"
     },
-    "minecraft:_wool": {
-        name: " Wool",
-        texture: ""
+    "minecraft:cyan_wool": {
+        name: "Cyan Wool",
+        texture: "https://minecraft.wiki/images/thumb/Cyan_Wool_JE3_BE3.png/60px-Cyan_Wool_JE3_BE3.png?49522"
     },
     
 

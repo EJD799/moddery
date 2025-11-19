@@ -3848,6 +3848,62 @@ const itemDefinitions = {
         name: "Light Blue Wool",
         texture: "https://minecraft.wiki/images/thumb/Light_Blue_Wool_JE3_BE3.png/60px-Light_Blue_Wool_JE3_BE3.png?ac9b7"
     },
+    "minecraft:light_gray_banner": {
+        name: "Light Gray Banner",
+        texture: "https://minecraft.wiki/images/thumb/Light_Gray_Banner_JE2_BE2.gif/30px-Light_Gray_Banner_JE2_BE2.gif?22aed"
+    },
+    "minecraft:light_gray_bed": {
+        name: "Light Gray Bed",
+        texture: "https://minecraft.wiki/images/thumb/Light_Gray_Bed.png/60px-Light_Gray_Bed.png?361ae"
+    },
+    "minecraft:light_gray_candle": {
+        name: "Light Gray Candle",
+        texture: "@java/item/light_gray_candle.png"
+    },
+    "minecraft:light_gray_carpet": {
+        name: "Light Gray Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Light_Gray_Carpet_JE2_BE2.png/60px-Light_Gray_Carpet_JE2_BE2.png?f6bb6"
+    },
+    "minecraft:light_gray_concrete": {
+        name: "Light Gray Concrete",
+        texture: "https://minecraft.wiki/images/thumb/Light_Gray_Concrete.png/60px-Light_Gray_Concrete.png?8cc78"
+    },
+    "minecraft:light_gray_concrete_powder": {
+        name: "Light Gray Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/Light_Gray_Concrete_Powder.png/60px-Light_Gray_Concrete_Powder.png?d7ca6"
+    },
+    "minecraft:light_gray_glazed_terracotta": {
+        name: "Light Gray Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Light_Gray_Glazed_Terracotta_%28S%29_JE1_BE1.png/60px-Light_Gray_Glazed_Terracotta_%28S%29_JE1_BE1.png?47d98"
+    },
+    "minecraft:light_gray_shulker_box": {
+        name: "Light Gray Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Light_Gray_Shulker_Box_JE2_BE2.png/60px-Light_Gray_Shulker_Box_JE2_BE2.png?165b3"
+    },
+    "minecraft:light_gray_stained_glass": {
+        name: "Light Gray Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Light_Gray_Stained_Glass_JE3_BE3.png/60px-Light_Gray_Stained_Glass_JE3_BE3.png?60f9f"
+    },
+    "minecraft:light_gray_stained_glass_pane": {
+        name: "Light Gray Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Light_Gray_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Light_Gray_Stained_Glass_Pane_%28EW%29_JE9.png?fe624"
+    },
+    "minecraft:light_gray_terracotta": {
+        name: "Light Gray Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Light_Gray_Terracotta_JE1_BE1.png/60px-Light_Gray_Terracotta_JE1_BE1.png?c469c"
+    },
+    "minecraft:light_gray_wool": {
+        name: "Light Gray Wool",
+        texture: "https://minecraft.wiki/images/thumb/Light_Gray_Wool_JE3_BE3.png/60px-Light_Gray_Wool_JE3_BE3.png?b75ee"
+    },
+    "minecraft:light_weighted_pressure_plate": {
+        name: "Light Weighted Pressure Plate",
+        texture: "https://minecraft.wiki/images/thumb/Light_Weighted_Pressure_Plate_JE3_BE2.png/60px-Light_Weighted_Pressure_Plate_JE3_BE2.png?f48d2"
+    },
+    "minecraft:lightning_rod": {
+        name: "Lightning Rod",
+        texture: "https://minecraft.wiki/images/thumb/Lightning_Rod_%28U%29_JE3.png/60px-Lightning_Rod_%28U%29_JE3.png?6db91"
+    },
     
     
     

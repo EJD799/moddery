@@ -3451,7 +3451,7 @@ const itemDefinitions = {
     },
     "minecraft:glow_lichen": {
         name: "Glow Lichen",
-        texture: "https://minecraft.wiki/images/thumb/Glow_Lichen_%28N%29_JE1.png/60px-Glow_Lichen_%28N%29_JE1.png?2ff5a"
+        texture: "@java/block/glow_lichen.png"
     },
     "minecraft:glowstone": {
         name: "Glowstone",

@@ -2778,7 +2778,7 @@ const itemDefinitions = {
     },
     "minecraft:copper_chain": {
         name: "Copper Chain",
-        texture: "https://minecraft.wiki/images/thumb/Copper_Chain_%28UD%29_JE1.png/60px-Copper_Chain_%28UD%29_JE1.png?b436c"
+        texture: "@java/block/copper_chain.png"
     },
     "minecraft:copper_chest": {
         name: "Copper Chest",
@@ -3170,7 +3170,7 @@ const itemDefinitions = {
     },
     "minecraft:deepslate_copper_ore": {
         name: "Deepslate Copper Ore",
-        texture: "https://minecraft.wiki/images/thumb/Deepslate_Copper_Ore_JE1_BE2.png/60px-Deepslate_Copper_Ore_JE1_BE2.png?30fe4"
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Copper_Ore_JE2_BE2.png/60px-Deepslate_Copper_Ore_JE2_BE2.png?35b66"
     },
     "minecraft:deepslate_diamond_ore": {
         name: "Deepslate Diamond Ore",
@@ -3338,7 +3338,7 @@ const itemDefinitions = {
     },
     "minecraft:exposed_copper_chain": {
         name: "Exposed Copper Chain",
-        texture: "https://minecraft.wiki/images/thumb/Exposed_Copper_Chain_%28UD%29_JE1.png/60px-Exposed_Copper_Chain_%28UD%29_JE1.png?55df5"
+        texture: "@java/block/exposed_copper_chain.png"
     },
     "minecraft:exposed_copper_chest": {
         name: "Exposed Copper Chest",
@@ -3599,6 +3599,82 @@ const itemDefinitions = {
     "minecraft:heavy_weighted_pressure_plate": {
         name: "Heavy Weighted Pressure Plate",
         texture: "https://minecraft.wiki/images/thumb/Heavy_Weighted_Pressure_Plate_JE2_BE2.png/60px-Heavy_Weighted_Pressure_Plate_JE2_BE2.png?89c22"
+    },
+    "minecraft:honey_block": {
+        name: "Honey Block",
+        texture: "https://minecraft.wiki/images/thumb/Honey_Block_JE1_BE2.png/60px-Honey_Block_JE1_BE2.png?94b6b"
+    },
+    "minecraft:honeycomb_block": {
+        name: "Honeycomb Block",
+        texture: "https://minecraft.wiki/images/thumb/Honeycomb_Block_JE1_BE1.png/60px-Honeycomb_Block_JE1_BE1.png?ff510"
+    },
+    "minecraft:hopper": {
+        name: "Hopper",
+        texture: "@java/item/hopper.png"
+    },
+    "minecraft:horn_coral": {
+        name: "Horn Coral",
+        texture: "@java/block/horn_coral.png"
+    },
+    "minecraft:horn_coral_block": {
+        name: "Horn Coral Block",
+        texture: "https://minecraft.wiki/images/thumb/Horn_Coral_Block_JE2_BE2.png/60px-Horn_Coral_Block_JE2_BE2.png?bada9"
+    },
+    "minecraft:horn_coral_fan": {
+        name: "Horn Coral Fan",
+        texture: "@java/block/horn_coral_fan.png"
+    },
+    "minecraft:ice": {
+        name: "Ice",
+        texture: "https://minecraft.wiki/images/thumb/Ice_JE4_BE6.png/60px-Ice_JE4_BE6.png?b2bcc"
+    },
+    "minecraft:infested_chiseled_stone_bricks": {
+        name: "Infested Chiseled Stone Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Chiseled_Stone_Bricks_JE3_BE2.png/60px-Chiseled_Stone_Bricks_JE3_BE2.png?2dae1"
+    },
+    "minecraft:infested_cobblestone": {
+        name: "Infested Cobblestone",
+        texture: "https://minecraft.wiki/images/thumb/Cobblestone_JE5_BE3.png/60px-Cobblestone_JE5_BE3.png?29624"
+    },
+    "minecraft:infested_cracked_stone_bricks": {
+        name: "Infested Cracked Stone Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Cracked_Stone_Bricks_JE3_BE2.png/60px-Cracked_Stone_Bricks_JE3_BE2.png?2e4f2"
+    },
+    "minecraft:infested_deepslate": {
+        name: "Infested Deepslate",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate.png/60px-Deepslate.png?7b6d7"
+    },
+    "minecraft:infested_mossy_stone_bricks": {
+        name: "Infested Mossy Stone Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Mossy_Stone_Bricks_JE3_BE2.png/60px-Mossy_Stone_Bricks_JE3_BE2.png?1c53c"
+    },
+    "minecraft:infested_stone": {
+        name: "Infested Stone",
+        texture: "https://minecraft.wiki/images/thumb/Stone_JE8.png/60px-Stone_JE8.png?b5028"
+    },
+    "minecraft:infested_stone_bricks": {
+        name: "Infested Stone Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Stone_Bricks_JE3_BE2.png/60px-Stone_Bricks_JE3_BE2.png?4e67a"
+    },
+    "minecraft:iron_bars": {
+        name: "Iron Bars",
+        texture: "https://minecraft.wiki/images/thumb/Iron_Bars_%28EW%29_JE7.png/60px-Iron_Bars_%28EW%29_JE7.png?17b79"
+    },
+    "minecraft:iron_chain": {
+        name: "Iron Chain",
+        texture: "@java/block/iron_chain.png"
+    },
+    "minecraft:iron_door": {
+        name: "Iron Door",
+        texture: "@java/item/iron_door.png"
+    },
+    "minecraft:iron_ore": {
+        name: "Iron Ore",
+        texture: "https://minecraft.wiki/images/thumb/Iron_Ore_JE6_BE4.png/60px-Iron_Ore_JE6_BE4.png?b1fb3"
+    },
+    "minecraft:iron_trapdoor": {
+        name: "Iron Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Iron_Trapdoor_JE3_BE2.png/60px-Iron_Trapdoor_JE3_BE2.png?f2a4f"
     },
     
     

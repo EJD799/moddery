@@ -3166,11 +3166,11 @@ const itemDefinitions = {
     },
     "minecraft:deepslate_coal_ore": {
         name: "Deepslate Coal Ore",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Coal_Ore_JE1_BE2.png/60px-Deepslate_Coal_Ore_JE1_BE2.png?30fe4"
     },
     "minecraft:deepslate_copper_ore": {
         name: "Deepslate Copper Ore",
-        texture: "https://minecraft.wiki/images/thumb/Deepslate_Coal_Ore_JE1_BE2.png/60px-Deepslate_Coal_Ore_JE1_BE2.png?30fe4"
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Copper_Ore_JE1_BE2.png/60px-Deepslate_Copper_Ore_JE1_BE2.png?30fe4"
     },
     "minecraft:deepslate_diamond_ore": {
         name: "Deepslate Diamond Ore",
@@ -3392,6 +3392,99 @@ const itemDefinitions = {
         name: "Fire",
         texture: "https://minecraft.wiki/images/thumb/Fire.gif/60px-Fire.gif?69f99"
     },
+    "minecraft:fire_coral": {
+        name: "Fire Coral",
+        texture: "@java/block/fire_coral.png"
+    },
+    "minecraft:fire_coral_block": {
+        name: "Fire Coral Block",
+        texture: "https://minecraft.wiki/images/thumb/Fire_Coral_Block_JE2_BE1.png/60px-Fire_Coral_Block_JE2_BE1.png?81af7"
+    },
+    "minecraft:fire_coral_fan": {
+        name: "Fire Coral Fan",
+        texture: "@java/block/fire_coral_fan.png"
+    },
+    "minecraft:firefly_bush": {
+        name: "Firefly Bush",
+        texture: "@java/block/firefly_bush.png"
+    },
+    "minecraft:fletching_table": {
+        name: "Fletching Table",
+        texture: "https://minecraft.wiki/images/thumb/Fletching_Table_JE2_BE1.png/60px-Fletching_Table_JE2_BE1.png?2f09d"
+    },
+    "minecraft:flower_pot": {
+        name: "Flower Pot",
+        texture: "@java/item/flower_pot.png"
+    },
+    "minecraft:flowering_azalea": {
+        name: "Flowering Azalea",
+        texture: "https://minecraft.wiki/images/thumb/Flowering_Azalea_JE2_BE2.png/60px-Flowering_Azalea_JE2_BE2.png?766e0"
+    },
+    "minecraft:flowering_azalea_leaves": {
+        name: "Flowering Azalea Leaves",
+        texture: "https://minecraft.wiki/images/thumb/Flowering_Azalea_Leaves.png/60px-Flowering_Azalea_Leaves.png?04e46"
+    },
+    "minecraft:frogspawn": {
+        name: "Frogspawn",
+        texture: "@java/block/frogspawn.png"
+    },
+    "minecraft:frosted_ice": {
+        name: "Frosted Ice",
+        texture: "https://minecraft.wiki/images/thumb/Frosted_Ice_1_JE2_BE2.png/60px-Frosted_Ice_1_JE2_BE2.png?e3f27"
+    },
+    "minecraft:furnace": {
+        name: "Furnace",
+        texture: "https://minecraft.wiki/images/thumb/Furnace_%28S%29_JE4.png/60px-Furnace_%28S%29_JE4.png?93891"
+    },
+    "minecraft:gilded_blackstone": {
+        name: "Gilded Blackstone",
+        texture: "https://minecraft.wiki/images/thumb/Gilded_Blackstone_JE2_BE2.png/60px-Gilded_Blackstone_JE2_BE2.png?d9d7d"
+    },
+    "minecraft:glass": {
+        name: "Glass",
+        texture: "https://minecraft.wiki/images/thumb/Glass_JE4_BE2.png/60px-Glass_JE4_BE2.png?fb219"
+    },
+    "minecraft:glass_pane": {
+        name: "Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Glass_Pane_%28EW%29_JE12.png/60px-Glass_Pane_%28EW%29_JE12.png?ee014"
+    },
+    "minecraft:glow_lichen": {
+        name: "Glow Lichen",
+        texture: "https://minecraft.wiki/images/thumb/Glow_Lichen_%28N%29_JE1.png/60px-Glow_Lichen_%28N%29_JE1.png?2ff5a"
+    },
+    "minecraft:glowstone": {
+        name: "Glowstone",
+        texture: "https://minecraft.wiki/images/thumb/Glowstone_JE4_BE2.png/60px-Glowstone_JE4_BE2.png?0d5b0"
+    },
+    "minecraft:gold_ore": {
+        name: "Gold Ore",
+        texture: "https://minecraft.wiki/images/thumb/Gold_Ore_JE7_BE4.png/60px-Gold_Ore_JE7_BE4.png?9817a"
+    },
+    "minecraft:granite": {
+        name: "Granite",
+        texture: "https://minecraft.wiki/images/thumb/Granite.png/60px-Granite.png?9cb6d"
+    },
+    "minecraft:granite_slab": {
+        name: "Granite Slab",
+        texture: "https://minecraft.wiki/images/thumb/Granite_Slab_JE1_BE1.png/60px-Granite_Slab_JE1_BE1.png?44cbf"
+    },
+    "minecraft:granite_stairs": {
+        name: "Granite Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Granite_Stairs_%28N%29_JE1_BE1.png/60px-Granite_Stairs_%28N%29_JE1_BE1.png?d935c"
+    },
+    "minecraft:granite_wall": {
+        name: "Granite Wall",
+        texture: "https://minecraft.wiki/images/thumb/Granite_Wall_JE1_BE1.png/60px-Granite_Wall_JE1_BE1.png?c756e"
+    },
+    "minecraft:grass_block": {
+        name: "Grass Block",
+        texture: "https://minecraft.wiki/images/thumb/Grass_Block_JE7_BE6.png/60px-Grass_Block_JE7_BE6.png?8cc1b"
+    },
+    "minecraft:gravel": {
+        name: "Gravel",
+        texture: "https://minecraft.wiki/images/thumb/Gravel_JE5_BE4.png/60px-Gravel_JE5_BE4.png?bb814"
+    },
+    
     
 
     /*

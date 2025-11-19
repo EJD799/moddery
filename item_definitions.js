@@ -3060,6 +3060,86 @@ const itemDefinitions = {
         name: "Dark Oak Wood",
         texture: ""
     },
+    "minecraft:dark_prismarine": {
+        name: "Dark Prismarine",
+        texture: ""
+    },
+    "minecraft:dark_prismarine_slab": {
+        name: "Dark Prismarine Slab",
+        texture: ""
+    },
+    "minecraft:dark_prismarine_stairs": {
+        name: "Dark Prismarine Stairs",
+        texture: ""
+    },
+    "minecraft:daylight_detector": {
+        name: "Daylight Detector",
+        texture: ""
+    },
+    "minecraft:dead_brain_coral": {
+        name: "Dead Brain Coral",
+        texture: "@java/block/dead_brain_coral.png"
+    },
+    "minecraft:dead_brain_coral_block": {
+        name: "Dead Brain Coral Block",
+        texture: ""
+    },
+    "minecraft:dead_brain_coral_fan": {
+        name: "Dead Brain Coral Fan",
+        texture: "@java/block/dead_brain_coral_fan.png"
+    },
+    "minecraft:dead_bubble_coral": {
+        name: "Dead Bubble Coral",
+        texture: "@java/block/dead_bubble_coral.png"
+    },
+    "minecraft:dead_bubble_coral_block": {
+        name: "Dead Bubble Coral Block",
+        texture: ""
+    },
+    "minecraft:dead_bubble_coral_fan": {
+        name: "Dead Bubble Coral Fan",
+        texture: "@java/block/dead_bubble_coral_fan.png"
+    },
+    "minecraft:dead_bush": {
+        name: "Dead Bush",
+        texture: "@java/block/dead_bush.png"
+    },
+    "minecraft:dead_fire_coral": {
+        name: "Dead Fire Coral",
+        texture: "@java/block/dead_fire_coral.png"
+    },
+    "minecraft:dead_fire_coral_block": {
+        name: "Dead Fire Coral Block",
+        texture: ""
+    },
+    "minecraft:dead_fire_coral_fan": {
+        name: "Dead Fire Coral Fan",
+        texture: "@java/block/dead_fire_coral_fan.png"
+    },
+    "minecraft:dead_horn_coral": {
+        name: "Dead Horn Coral",
+        texture: "@java/block/dead_horn_coral.png"
+    },
+    "minecraft:dead_horn_coral_block": {
+        name: "Dead Horn Coral Block",
+        texture: ""
+    },
+    "minecraft:dead_horn_coral_fan": {
+        name: "Dead Horn Coral Fan",
+        texture: "@java/block/dead_horn_coral_fan.png"
+    },
+    "minecraft:dead_tube_coral": {
+        name: "Dead Tube Coral",
+        texture: "@java/block/dead_tube_coral.png"
+    },
+    "minecraft:dead_tube_coral_block": {
+        name: "Dead Tube Coral Block",
+        texture: ""
+    },
+    "minecraft:dead_tube_coral_fan": {
+        name: "Dead Tube Coral Fan",
+        texture: "@java/block/dead_tube_coral_fan.png"
+    },
     
 
     /*

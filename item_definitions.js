@@ -3042,7 +3042,7 @@ const itemDefinitions = {
     },
     "minecraft:dark_oak_sign": {
         name: "Dark Oak Sign",
-        texture: "@java/block/dark_oak_sign.png"
+        texture: "@java/item/dark_oak_sign.png"
     },
     "minecraft:dark_oak_slab": {
         name: "Dark Oak Slab",
@@ -3758,10 +3758,6 @@ const itemDefinitions = {
     "minecraft:jungle_wood": {
         name: "Jungle Wood",
         texture: "https://minecraft.wiki/images/thumb/Jungle_Wood_%28UD%29_JE6_BE2.png/60px-Jungle_Wood_%28UD%29_JE6_BE2.png?51428"
-    },
-    "minecraft:kelp": {
-        name: "Kelp",
-        texture: "@java/block/kelp.png"
     },
     "minecraft:ladder": {
         name: "Ladder",

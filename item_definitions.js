@@ -2988,6 +2988,22 @@ const itemDefinitions = {
         name: "Cyan Wool",
         texture: "https://minecraft.wiki/images/thumb/Cyan_Wool_JE3_BE3.png/60px-Cyan_Wool_JE3_BE3.png?49522"
     },
+    "minecraft:damaged_anvil": {
+        name: "Damaged Anvil",
+        texture: ""
+    },
+    "minecraft:dandelion": {
+        name: "Dandelion",
+        texture: "@java/block/dandelion.png"
+    },
+    "minecraft:dark_oak_button": {
+        name: "Dark Oak Button",
+        texture: ""
+    },
+    "minecraft:dark_oak_door": {
+        name: "Dark Oak Door",
+        texture: "@java/item/dark_oak_door.png"
+    },
     
 
     /*

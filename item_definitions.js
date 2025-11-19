@@ -3484,6 +3484,123 @@ const itemDefinitions = {
         name: "Gravel",
         texture: "https://minecraft.wiki/images/thumb/Gravel_JE5_BE4.png/60px-Gravel_JE5_BE4.png?bb814"
     },
+    "minecraft:gray_banner": {
+        name: "Gray Banner",
+        texture: "https://minecraft.wiki/images/thumb/Gray_Banner_JE2_BE2.gif/30px-Gray_Banner_JE2_BE2.gif?7fa20"
+    },
+    "minecraft:gray_bed": {
+        name: "Gray Bed",
+        texture: "https://minecraft.wiki/images/thumb/Gray_Bed.png/60px-Gray_Bed.png?c70aa"
+    },
+    "minecraft:gray_candle": {
+        name: "Gray Candle",
+        texture: "@java/item/gray_candle.png"
+    },
+    "minecraft:gray_carpet": {
+        name: "Gray Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Gray_Carpet_JE2_BE2.png/60px-Gray_Carpet_JE2_BE2.png?99ae7"
+    },
+    "minecraft:gray_concrete": {
+        name: "Gray Concrete",
+        texture: "https://minecraft.wiki/images/thumb/Gray_Concrete.png/60px-Gray_Concrete.png?dcde1"
+    },
+    "minecraft:gray_concrete_powder": {
+        name: "Gray Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/Gray_Concrete_Powder.png/60px-Gray_Concrete_Powder.png?de9b0"
+    },
+    "minecraft:gray_glazed_terracotta": {
+        name: "Gray Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Gray_Glazed_Terracotta_%28S%29_JE1_BE1.png/60px-Gray_Glazed_Terracotta_%28S%29_JE1_BE1.png?9fd16"
+    },
+    "minecraft:gray_shulker_box": {
+        name: "Gray Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Gray_Shulker_Box_JE2_BE2.png/60px-Gray_Shulker_Box_JE2_BE2.png?713f2"
+    },
+    "minecraft:gray_stained_glass": {
+        name: "Gray Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Gray_Stained_Glass_JE3_BE3.png/60px-Gray_Stained_Glass_JE3_BE3.png?b5d1e"
+    },
+    "minecraft:gray_stained_glass_pane": {
+        name: "Gray Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Gray_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Gray_Stained_Glass_Pane_%28EW%29_JE9.png?d1373"
+    },
+    "minecraft:gray_terracotta": {
+        name: "Gray Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Gray_Terracotta_JE1_BE1.png/60px-Gray_Terracotta_JE1_BE1.png?37778"
+    },
+    "minecraft:gray_wool": {
+        name: "Gray Wool",
+        texture: "https://minecraft.wiki/images/thumb/Gray_Wool_JE3_BE3.png/60px-Gray_Wool_JE3_BE3.png?b6d9d"
+    },
+    "minecraft:green_banner": {
+        name: "Green Banner",
+        texture: "https://minecraft.wiki/images/thumb/Green_Banner_JE2_BE2.gif/30px-Green_Banner_JE2_BE2.gif?150f5"
+    },
+    "minecraft:green_bed": {
+        name: "Green Bed",
+        texture: "https://minecraft.wiki/images/thumb/Green_Bed.png/60px-Green_Bed.png?5dc44"
+    },
+    "minecraft:green_candle": {
+        name: "Green Candle",
+        texture: "@java/item/green_candle.png"
+    },
+    "minecraft:green_carpet": {
+        name: "Green Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Green_Carpet_JE2_BE2.png/60px-Green_Carpet_JE2_BE2.png?f4acc"
+    },
+    "minecraft:green_concrete": {
+        name: "Green Concrete",
+        texture: "https://minecraft.wiki/images/thumb/Green_Concrete.png/60px-Green_Concrete.png?90f82"
+    },
+    "minecraft:green_concrete_powder": {
+        name: "Green Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/Green_Concrete_Powder.png/60px-Green_Concrete_Powder.png?4d52c"
+    },
+    "minecraft:green_glazed_terracotta": {
+        name: "Green Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Green_Glazed_Terracotta_%28S%29_JE1_BE1.png/60px-Green_Glazed_Terracotta_%28S%29_JE1_BE1.png?aa1bd"
+    },
+    "minecraft:green_shulker_box": {
+        name: "Green Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Green_Shulker_Box_JE2_BE2.png/60px-Green_Shulker_Box_JE2_BE2.png?d7d1d"
+    },
+    "minecraft:green_stained_glass": {
+        name: "Green Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Green_Stained_Glass_JE3_BE3.png/60px-Green_Stained_Glass_JE3_BE3.png?101b7"
+    },
+    "minecraft:green_stained_glass_pane": {
+        name: "Green Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Green_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Green_Stained_Glass_Pane_%28EW%29_JE9.png?4c3c1"
+    },
+    "minecraft:green_terracotta": {
+        name: "Green Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Green_Terracotta_JE1_BE1.png/60px-Green_Terracotta_JE1_BE1.png?f9679"
+    },
+    "minecraft:green_wool": {
+        name: "Green Wool",
+        texture: "https://minecraft.wiki/images/thumb/Green_Wool_JE3_BE3.png/60px-Green_Wool_JE3_BE3.png?53595"
+    },
+    "minecraft:grindstone": {
+        name: "Grindstone",
+        texture: "https://minecraft.wiki/images/thumb/Grindstone_%28floor%29_%28N%29.png/60px-Grindstone_%28floor%29_%28N%29.png?6c72b"
+    },
+    "minecraft:hanging_roots": {
+        name: "Hanging Roots",
+        texture: "https://minecraft.wiki/images/thumb/Hanging_Roots_JE2_BE1.png/60px-Hanging_Roots_JE2_BE1.png?45d53"
+    },
+    "minecraft:hay_block": {
+        name: "Hay Bale",
+        texture: "https://minecraft.wiki/images/thumb/Hay_Bale_%28UD%29_JE2_BE2.png/60px-Hay_Bale_%28UD%29_JE2_BE2.png?310e1"
+    },
+    "minecraft:heavy_core": {
+        name: "Heavy Core",
+        texture: "https://minecraft.wiki/images/thumb/Heavy_Core_JE1_BE1.png/60px-Heavy_Core_JE1_BE1.png?57df9"
+    },
+    "minecraft:heavy_weighted_pressure_plate": {
+        name: "Heavy Weighted Pressure Plate",
+        texture: "https://minecraft.wiki/images/thumb/Heavy_Weighted_Pressure_Plate_JE2_BE2.png/60px-Heavy_Weighted_Pressure_Plate_JE2_BE2.png?89c22"
+    },
+    
     
     
 

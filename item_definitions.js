@@ -2778,7 +2778,7 @@ const itemDefinitions = {
     },
     "minecraft:copper_chain": {
         name: "Copper Chain",
-        texture: "@java/block/copper_chain.png"
+        texture: "@java/item/copper_chain.png"
     },
     "minecraft:copper_chest": {
         name: "Copper Chest",
@@ -3338,7 +3338,7 @@ const itemDefinitions = {
     },
     "minecraft:exposed_copper_chain": {
         name: "Exposed Copper Chain",
-        texture: "@java/block/exposed_copper_chain.png"
+        texture: "@java/item/exposed_copper_chain.png"
     },
     "minecraft:exposed_copper_chest": {
         name: "Exposed Copper Chest",
@@ -3663,7 +3663,7 @@ const itemDefinitions = {
     },
     "minecraft:iron_chain": {
         name: "Iron Chain",
-        texture: "@java/block/iron_chain.png"
+        texture: "@java/item/iron_chain.png"
     },
     "minecraft:iron_door": {
         name: "Iron Door",
@@ -3781,7 +3781,7 @@ const itemDefinitions = {
     },
     "minecraft:large_fern": {
         name: "Large Fern",
-        texture: "@java/block/large_fern.png"
+        texture: "@java/block/large_fern_top.png"
     },
     "minecraft:lava": {
         name: "Lava",

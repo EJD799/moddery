@@ -3676,6 +3676,89 @@ const itemDefinitions = {
         name: "Iron Trapdoor",
         texture: "https://minecraft.wiki/images/thumb/Iron_Trapdoor_JE3_BE2.png/60px-Iron_Trapdoor_JE3_BE2.png?f2a4f"
     },
+    "minecraft:jack_o_lantern": {
+        name: "Jack o'Lantern",
+        texture: "https://minecraft.wiki/images/thumb/Jack_o%27Lantern_%28S%29_JE4.png/60px-Jack_o%27Lantern_%28S%29_JE4.png?fbeb0",
+        filter: "java"
+    },
+    "minecraft:lit_pumpkin": {
+        name: "Jack o'Lantern",
+        texture: "https://minecraft.wiki/images/thumb/Jack_o%27Lantern_%28S%29_JE4.png/60px-Jack_o%27Lantern_%28S%29_JE4.png?fbeb0",
+        filter: "bedrock"
+    },
+    "minecraft:jigsaw": {
+        name: "Jigsaw",
+        texture: "https://minecraft.wiki/images/thumb/Jigsaw_Block_%28S%29_JE3_BE2.png/60px-Jigsaw_Block_%28S%29_JE3_BE2.png?9e6a3"
+    },
+    "minecraft:jukebox": {
+        name: "Jukebox",
+        texture: "https://minecraft.wiki/images/thumb/Jukebox_JE2_BE2.png/60px-Jukebox_JE2_BE2.png?50367"
+    },
+    "minecraft:jungle_button": {
+        name: "Jungle Button",
+        texture: "https://minecraft.wiki/images/thumb/Jungle_Button_JE4.png/60px-Jungle_Button_JE4.png?f004c"
+    },
+    "minecraft:jungle_door": {
+        name: "Jungle Door",
+        texture: "@java/item/jungle_door.png"
+    },
+    "minecraft:jungle_fence": {
+        name: "Jungle Fence",
+        texture: "https://minecraft.wiki/images/thumb/Jungle_Fence_%28EW%29_JE5.png/60px-Jungle_Fence_%28EW%29_JE5.png?44e2f"
+    },
+    "minecraft:jungle_fence_gate": {
+        name: "Jungle Fence Gate",
+        texture: "https://minecraft.wiki/images/thumb/Jungle_Fence_Gate_JE3_BE2.png/60px-Jungle_Fence_Gate_JE3_BE2.png?a74d7"
+    },
+    "minecraft:jungle_hanging_sign": {
+        name: "Jungle Hanging Sign",
+        texture: "@java/item/jungle_hanging_sign.png"
+    },
+    "minecraft:jungle_leaves": {
+        name: "Jungle Leaves",
+        texture: "https://minecraft.wiki/images/thumb/Jungle_Leaves.png/60px-Jungle_Leaves.png?fe8d3"
+    },
+    "minecraft:jungle_log": {
+        name: "Jungle Log",
+        texture: "https://minecraft.wiki/images/thumb/Jungle_Log_%28UD%29_JE9_BE4.png/60px-Jungle_Log_%28UD%29_JE9_BE4.png?a69e4"
+    },
+    "minecraft:jungle_planks": {
+        name: "Jungle Planks",
+        texture: "https://minecraft.wiki/images/thumb/Jungle_Planks_JE3_BE2.png/60px-Jungle_Planks_JE3_BE2.png?adaef"
+    },
+    "minecraft:jungle_pressure_plate": {
+        name: "Jungle Pressure Plate",
+        texture: "https://minecraft.wiki/images/thumb/Jungle_Pressure_Plate_JE3_BE2.png/60px-Jungle_Pressure_Plate_JE3_BE2.png?1e795"
+    },
+    "minecraft:jungle_sapling": {
+        name: "Jungle Sapling",
+        texture: "@java/block/jungle_sapling.png"
+    },
+    "minecraft:jungle_shelf": {
+        name: "Jungle Shelf",
+        texture: "https://minecraft.wiki/images/thumb/Jungle_Shelf_JE1_BE2.png/60px-Jungle_Shelf_JE1_BE2.png?f3c01"
+    },
+    "minecraft:jungle_sign": {
+        name: "Jungle Sign",
+        texture: "@java/item/jungle_sign.png"
+    },
+    "minecraft:jungle_slab": {
+        name: "Jungle Slab",
+        texture: "https://minecraft.wiki/images/thumb/Jungle_Slab_JE3_BE2.png/60px-Jungle_Slab_JE3_BE2.png?a13de"
+    },
+    "minecraft:jungle_stairs": {
+        name: "Jungle Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Jungle_Stairs_%28N%29_JE4_BE2.png/60px-Jungle_Stairs_%28N%29_JE4_BE2.png?d6da4"
+    },
+    "minecraft:jungle_trapdoor": {
+        name: "Jungle Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Jungle_Trapdoor_JE1_BE1.png/60px-Jungle_Trapdoor_JE1_BE1.png?1252f"
+    },
+    "minecraft:jungle_wood": {
+        name: "Jungle Wood",
+        texture: "https://minecraft.wiki/images/thumb/Jungle_Wood_%28UD%29_JE6_BE2.png/60px-Jungle_Wood_%28UD%29_JE6_BE2.png?51428"
+    },
+    
     
     
     

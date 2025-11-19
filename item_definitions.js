@@ -2770,7 +2770,7 @@ const itemDefinitions = {
     },
     "minecraft:copper_bars": {
         name: "Copper Bars",
-        texture: "https://minecraft.wiki/images/thumb/Copper_Bars_%28EW%29_JE1.png/60px-Copper_Bars_%28EW%29_JE1.png?45b0b"
+        texture: "@java/block/copper_bars.png"
     },
     "minecraft:copper_bulb": {
         name: "Copper Bulb",
@@ -2798,7 +2798,7 @@ const itemDefinitions = {
     },
     "minecraft:copper_lantern": {
         name: "Copper Lantern",
-        texture: "https://minecraft.wiki/images/thumb/Copper_Lantern_JE2.gif/60px-Copper_Lantern_JE2.gif?a4e18"
+        texture: "@java/item/copper_lantern.png"
     },
     "minecraft:copper_ore": {
         name: "Copper Ore",
@@ -3330,7 +3330,7 @@ const itemDefinitions = {
     },
     "minecraft:exposed_copper_bars": {
         name: "Exposed Copper Bars",
-        texture: "https://minecraft.wiki/images/thumb/Exposed_Copper_Bars_%28EW%29_JE1.png/60px-Exposed_Copper_Bars_%28EW%29_JE1.png?7d09d"
+        texture: "@java/block/exposed_copper_bars.png"
     },
     "minecraft:exposed_copper_bulb": {
         name: "Exposed Copper Bulb",
@@ -3358,7 +3358,7 @@ const itemDefinitions = {
     },
     "minecraft:exposed_copper_lantern": {
         name: "Exposed Copper Lantern",
-        texture: "https://minecraft.wiki/images/thumb/Exposed_Copper_Lantern_JE2.gif/60px-Exposed_Copper_Lantern_JE2.gif?a4e18"
+        texture: "@java/item/exposed_copper_lantern.png"
     },
     "minecraft:exposed_copper_trapdoor": {
         name: "Exposed Copper Trapdoor",
@@ -3390,7 +3390,8 @@ const itemDefinitions = {
     },
     "minecraft:fire": {
         name: "Fire",
-        texture: "https://minecraft.wiki/images/thumb/Fire.gif/60px-Fire.gif?69f99"
+        texture: "https://minecraft.wiki/images/thumb/Fire.gif/60px-Fire.gif?69f99",
+        filter: "bedrock"
     },
     "minecraft:fire_coral": {
         name: "Fire Coral",
@@ -3658,7 +3659,7 @@ const itemDefinitions = {
     },
     "minecraft:iron_bars": {
         name: "Iron Bars",
-        texture: "https://minecraft.wiki/images/thumb/Iron_Bars_%28EW%29_JE7.png/60px-Iron_Bars_%28EW%29_JE7.png?17b79"
+        texture: "@java/block/iron_bars.png"
     },
     "minecraft:iron_chain": {
         name: "Iron Chain",
@@ -3758,6 +3759,97 @@ const itemDefinitions = {
         name: "Jungle Wood",
         texture: "https://minecraft.wiki/images/thumb/Jungle_Wood_%28UD%29_JE6_BE2.png/60px-Jungle_Wood_%28UD%29_JE6_BE2.png?51428"
     },
+    "minecraft:kelp": {
+        name: "Kelp",
+        texture: "@java/block/kelp.png"
+    },
+    "minecraft:ladder": {
+        name: "Ladder",
+        texture: "@java/block/ladder.png"
+    },
+    "minecraft:lantern": {
+        name: "Lantern",
+        texture: "@java/item/lantern.png"
+    },
+    "minecraft:lapis_ore": {
+        name: "Lapis Lazuli Ore",
+        texture: "https://minecraft.wiki/images/thumb/Lapis_Lazuli_Ore_JE4_BE4.png/60px-Lapis_Lazuli_Ore_JE4_BE4.png?73194"
+    },
+    "minecraft:large_amethyst_bud": {
+        name: "Large Amethyst Bud",
+        texture: "@java/block/large_amethyst_bud.png"
+    },
+    "minecraft:large_fern": {
+        name: "Large Fern",
+        texture: "@java/block/large_fern.png"
+    },
+    "minecraft:lava": {
+        name: "Lava",
+        texture: "https://minecraft.wiki/images/thumb/Lava_JE19.gif/60px-Lava_JE19.gif?792cb",
+        filter: "bedrock"
+    },
+    "minecraft:leaf_litter": {
+        name: "Leaf Litter",
+        texture: "@java/block/leaf_litter.png"
+    },
+    "minecraft:lectern": {
+        name: "Lectern",
+        texture: "https://minecraft.wiki/images/thumb/Lectern_JE2_BE1.png/60px-Lectern_JE2_BE1.png?10cbd"
+    },
+    "minecraft:lever": {
+        name: "Lever",
+        texture: "@java/block/lever.png"
+    },
+    "minecraft:light_blue_banner": {
+        name: "Light Blue Banner",
+        texture: "https://minecraft.wiki/images/thumb/Light_Blue_Banner_JE2_BE2.gif/30px-Light_Blue_Banner_JE2_BE2.gif?9e340"
+    },
+    "minecraft:light_blue_bed": {
+        name: "Light Blue Bed",
+        texture: "https://minecraft.wiki/images/thumb/Light_Blue_Bed.png/60px-Light_Blue_Bed.png?6f711"
+    },
+    "minecraft:light_blue_candle": {
+        name: "Light Blue Candle",
+        texture: "@java/item/light_blue_candle.png"
+    },
+    "minecraft:light_blue_carpet": {
+        name: "Light Blue Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Light_Blue_Carpet_JE2_BE2.png/60px-Light_Blue_Carpet_JE2_BE2.png?0849e"
+    },
+    "minecraft:light_blue_concrete": {
+        name: "Light Blue Concrete",
+        texture: "https://minecraft.wiki/images/thumb/Light_Blue_Concrete.png/60px-Light_Blue_Concrete.png?80b60"
+    },
+    "minecraft:light_blue_concrete_powder": {
+        name: "Light Blue Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/Light_Blue_Concrete_Powder.png/60px-Light_Blue_Concrete_Powder.png?e53e7"
+    },
+    "minecraft:light_blue_glazed_terracotta": {
+        name: "Light Blue Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Light_Blue_Glazed_Terracotta_%28S%29_JE1_BE1.png/60px-Light_Blue_Glazed_Terracotta_%28S%29_JE1_BE1.png?22f43"
+    },
+    "minecraft:light_blue_shulker_box": {
+        name: "Light Blue Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Light_Blue_Shulker_Box_JE2_BE2.png/60px-Light_Blue_Shulker_Box_JE2_BE2.png?54b37"
+    },
+    "minecraft:light_blue_stained_glass": {
+        name: "Light Blue Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Light_Blue_Stained_Glass_JE3_BE3.png/60px-Light_Blue_Stained_Glass_JE3_BE3.png?676af"
+    },
+    "minecraft:light_blue_stained_glass_pane": {
+        name: "Light Blue Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Light_Blue_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Light_Blue_Stained_Glass_Pane_%28EW%29_JE9.png?90095"
+    },
+    "minecraft:light_blue_terracotta": {
+        name: "Light Blue Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Light_Blue_Terracotta_JE1_BE1.png/60px-Light_Blue_Terracotta_JE1_BE1.png?8bc8d"
+    },
+    "minecraft:light_blue_wool": {
+        name: "Light Blue Wool",
+        texture: "https://minecraft.wiki/images/thumb/Light_Blue_Wool_JE3_BE3.png/60px-Light_Blue_Wool_JE3_BE3.png?ac9b7"
+    },
+    
+    
     
     
     

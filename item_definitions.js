@@ -3900,6 +3900,124 @@ const itemDefinitions = {
         name: "Lightning Rod",
         texture: "https://minecraft.wiki/images/thumb/Lightning_Rod_%28U%29_JE3.png/60px-Lightning_Rod_%28U%29_JE3.png?6db91"
     },
+    "minecraft:lilac": {
+        name: "Lilac",
+        texture: "@java/block/lilac_top.png"
+    },
+    "minecraft:lily_of_the_valley": {
+        name: "Lily of the Valley",
+        texture: "@java/block/lily_of_the_valley.png"
+    },
+    "minecraft:lily_pad": {
+        name: "Lily Pad",
+        texture: "@java/block/lily_pad.png"
+    },
+    "minecraft:lime_banner": {
+        name: "Lime Banner",
+        texture: "https://minecraft.wiki/images/thumb/Lime_Banner_JE2_BE2.gif/30px-Lime_Banner_JE2_BE2.gif?8ba85"
+    },
+    "minecraft:lime_bed": {
+        name: "Lime Bed",
+        texture: "https://minecraft.wiki/images/thumb/Lime_Bed.png/60px-Lime_Bed.png?26f46"
+    },
+    "minecraft:lime_candle": {
+        name: "Lime Candle",
+        texture: "@java/item/lime_candle.png"
+    },
+    "minecraft:lime_carpet": {
+        name: "Lime Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Lime_Carpet_JE2_BE2.png/60px-Lime_Carpet_JE2_BE2.png?68f1d"
+    },
+    "minecraft:lime_concrete": {
+        name: "Lime Concrete",
+        texture: "https://minecraft.wiki/images/thumb/Lime_Concrete.png/60px-Lime_Concrete.png?0236d"
+    },
+    "minecraft:lime_concrete_powder": {
+        name: "Lime Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/Lime_Concrete_Powder.png/60px-Lime_Concrete_Powder.png?8d463"
+    },
+    "minecraft:lime_glazed_terracotta": {
+        name: "Lime Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Lime_Glazed_Terracotta_%28S%29_JE1_BE1.png/60px-Lime_Glazed_Terracotta_%28S%29_JE1_BE1.png?9e9cf"
+    },
+    "minecraft:lime_shulker_box": {
+        name: "Lime Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Lime_Shulker_Box_JE2_BE2.png/60px-Lime_Shulker_Box_JE2_BE2.png?595bd"
+    },
+    "minecraft:lime_stained_glass": {
+        name: "Lime Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Lime_Stained_Glass_JE3_BE3.png/60px-Lime_Stained_Glass_JE3_BE3.png?4394d"
+    },
+    "minecraft:lime_stained_glass_pane": {
+        name: "Lime Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Lime_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Lime_Stained_Glass_Pane_%28EW%29_JE9.png?65a11"
+    },
+    "minecraft:lime_terracotta": {
+        name: "Lime Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Lime_Terracotta_JE1_BE1.png/60px-Lime_Terracotta_JE1_BE1.png?b6ad0"
+    },
+    "minecraft:lime_wool": {
+        name: "Lime Wool",
+        texture: "https://minecraft.wiki/images/thumb/Lime_Wool_JE3_BE3.png/60px-Lime_Wool_JE3_BE3.png?17e98"
+    },
+    "minecraft:lodestone": {
+        name: "Lodestone",
+        texture: "https://minecraft.wiki/images/thumb/Lodestone_JE1_BE1.png/60px-Lodestone_JE1_BE1.png?3348f"
+    },
+    "minecraft:loom": {
+        name: "Loom",
+        texture: "https://minecraft.wiki/images/thumb/Loom_%28S%29_JE1_BE1.png/60px-Loom_%28S%29_JE1_BE1.png?29567"
+    },
+    "minecraft:magenta_banner": {
+        name: "Magenta Banner",
+        texture: "https://minecraft.wiki/images/thumb/Magenta_Banner_JE2_BE2.gif/30px-Magenta_Banner_JE2_BE2.gif?0c0d4"
+    },
+    "minecraft:magenta_bed": {
+        name: "Magenta Bed",
+        texture: "https://minecraft.wiki/images/thumb/Magenta_Bed.png/60px-Magenta_Bed.png?57cee"
+    },
+    "minecraft:magenta_candle": {
+        name: "Magenta Candle",
+        texture: "@java/item/magenta_candle.png"
+    },
+    "minecraft:magenta_carpet": {
+        name: "Magenta Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Magenta_Carpet_JE2_BE2.png/60px-Magenta_Carpet_JE2_BE2.png?13219"
+    },
+    "minecraft:magenta_concrete": {
+        name: "Magenta Concrete",
+        texture: "https://minecraft.wiki/images/thumb/Magenta_Concrete.png/60px-Magenta_Concrete.png?2efe1"
+    },
+    "minecraft:magenta_concrete_powder": {
+        name: "Magenta Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/Magenta_Concrete_Powder.png/60px-Magenta_Concrete_Powder.png?c820e"
+    },
+    "minecraft:magenta_glazed_terracotta": {
+        name: "Magenta Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Magenta_Glazed_Terracotta_%28S%29_JE2_BE2.png/60px-Magenta_Glazed_Terracotta_%28S%29_JE2_BE2.png?c2f23"
+    },
+    "minecraft:magenta_shulker_box": {
+        name: "Magenta Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Magenta_Shulker_Box_JE2_BE2.png/60px-Magenta_Shulker_Box_JE2_BE2.png?84878"
+    },
+    "minecraft:magenta_stained_glass": {
+        name: "Magenta Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Magenta_Stained_Glass_JE3_BE3.png/60px-Magenta_Stained_Glass_JE3_BE3.png?3225e"
+    },
+    "minecraft:magenta_stained_glass_pane": {
+        name: "Magenta Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Magenta_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Magenta_Stained_Glass_Pane_%28EW%29_JE9.png?ac9bf"
+    },
+    "minecraft:magenta_terracotta": {
+        name: "Magenta Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Magenta_Terracotta_JE1_BE1.png/60px-Magenta_Terracotta_JE1_BE1.png?56401"
+    },
+    "minecraft:magenta_wool": {
+        name: "Magenta Wool",
+        texture: "https://minecraft.wiki/images/thumb/Magenta_Wool_JE3_BE3.png/60px-Magenta_Wool_JE3_BE3.png?e1183"
+    },
+    
+    
     
     
     

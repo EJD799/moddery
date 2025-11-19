@@ -3004,6 +3004,62 @@ const itemDefinitions = {
         name: "Dark Oak Door",
         texture: "@java/item/dark_oak_door.png"
     },
+    "minecraft:dark_oak_fence": {
+        name: "Dark Oak Fence",
+        texture: ""
+    },
+    "minecraft:dark_oak_fence_gate": {
+        name: "Dark Oak Fence Gate",
+        texture: ""
+    },
+    "minecraft:dark_oak_hanging_sign": {
+        name: "Dark Oak Hanging Sign",
+        texture: "@java/item/dark_oak_hanging_sign.png"
+    },
+    "minecraft:dark_oak_leaves": {
+        name: "Dark Oak Leaves",
+        texture: ""
+    },
+    "minecraft:dark_oak_log": {
+        name: "Dark Oak Log",
+        texture: ""
+    },
+    "minecraft:dark_oak_planks": {
+        name: "Dark Oak Planks",
+        texture: ""
+    },
+    "minecraft:dark_oak_pressure_plate": {
+        name: "Dark Oak Pressure Plate",
+        texture: ""
+    },
+    "minecraft:dark_oak_sapling": {
+        name: "Dark Oak Sapling",
+        texture: "@java/block/dark_oak_sapling.png"
+    },
+    "minecraft:dark_oak_shelf": {
+        name: "Dark Oak Shelf",
+        texture: ""
+    },
+    "minecraft:dark_oak_sign": {
+        name: "Dark Oak Sign",
+        texture: "@java/block/dark_oak_sign.png"
+    },
+    "minecraft:dark_oak_slab": {
+        name: "Dark Oak Slab",
+        texture: ""
+    },
+    "minecraft:dark_oak_stairs": {
+        name: "Dark Oak Stairs",
+        texture: ""
+    },
+    "minecraft:dark_oak_trapdoor": {
+        name: "Dark Oak Trapdoor",
+        texture: ""
+    },
+    "minecraft:dark_oak_wood": {
+        name: "Dark Oak Wood",
+        texture: ""
+    },
     
 
     /*

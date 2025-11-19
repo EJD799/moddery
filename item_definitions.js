@@ -3220,6 +3220,178 @@ const itemDefinitions = {
         name: "Diamond Ore",
         texture: "https://minecraft.wiki/images/thumb/Diamond_Ore_JE5_BE5.png/60px-Diamond_Ore_JE5_BE5.png?fa2f4"
     },
+    "minecraft:diorite": {
+        name: "Diorite",
+        texture: "https://minecraft.wiki/images/thumb/Diorite.png/60px-Diorite.png?58334"
+    },
+    "minecraft:diorite_slab": {
+        name: "Diorite Slab",
+        texture: "https://minecraft.wiki/images/thumb/Diorite_Slab_JE3_BE2.png/60px-Diorite_Slab_JE3_BE2.png?41e11"
+    },
+    "minecraft:diorite_stairs": {
+        name: "Diorite Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Diorite_Stairs_%28N%29_JE3_BE2.png/60px-Diorite_Stairs_%28N%29_JE3_BE2.png?f8295"
+    },
+    "minecraft:diorite_wall": {
+        name: "Diorite Wall",
+        texture: "https://minecraft.wiki/images/thumb/Diorite_Wall_JE3_BE1.png/60px-Diorite_Wall_JE3_BE1.png?6d225"
+    },
+    "minecraft:dirt": {
+        name: "Dirt",
+        texture: "https://minecraft.wiki/images/thumb/Dirt.png/60px-Dirt.png?89d72"
+    },
+    "minecraft:dirt_path": {
+        name: "Dirt Path",
+        texture: "https://minecraft.wiki/images/thumb/Dirt_Path_JE4_BE3.png/60px-Dirt_Path_JE4_BE3.png?0309b"
+    },
+    "minecraft:dispenser": {
+        name: "Dispenser",
+        texture: "https://minecraft.wiki/images/thumb/Dispenser_%28S%29_JE4.png/60px-Dispenser_%28S%29_JE4.png?a8e35"
+    },
+    "minecraft:dragon_egg": {
+        name: "Dragon Egg",
+        texture: "https://minecraft.wiki/images/thumb/Dragon_Egg_JE5.png/60px-Dragon_Egg_JE5.png?07921"
+    },
+    "minecraft:dragon_head": {
+        name: "Dragon Head",
+        texture: "https://minecraft.wiki/images/thumb/Dragon_Head_%28S%29_JE1.png/60px-Dragon_Head_%28S%29_JE1.png?66f9a"
+    },
+    "minecraft:dried_ghast": {
+        name: "Dried Ghast",
+        texture: "https://minecraft.wiki/images/thumb/Dried_Ghast_JE1_BE1.png/60px-Dried_Ghast_JE1_BE1.png?04b9a"
+    },
+    "minecraft:dried_kelp_block": {
+        name: "Dried Kelp Block",
+        texture: "https://minecraft.wiki/images/thumb/Dried_Kelp_Block_JE1_BE2.png/60px-Dried_Kelp_Block_JE1_BE2.png?8ef70"
+    },
+    "minecraft:dripstone_block": {
+        name: "Dripstone Block",
+        texture: "https://minecraft.wiki/images/thumb/Dripstone_Block_JE1_BE1.png/60px-Dripstone_Block_JE1_BE1.png?0e08d"
+    },
+    "minecraft:dropper": {
+        name: "Dropper",
+        texture: "https://minecraft.wiki/images/thumb/Dropper_%28S%29_JE3.png/60px-Dropper_%28S%29_JE3.png?d892d"
+    },
+    "minecraft:emerald_ore": {
+        name: "Emerald Ore",
+        texture: "https://minecraft.wiki/images/thumb/Emerald_Ore_JE4_BE3.png/60px-Emerald_Ore_JE4_BE3.png?02ea7"
+    },
+    "minecraft:enchanting_table": {
+        name: "Enchanting Table",
+        texture: "https://minecraft.wiki/images/thumb/Enchanting_Table_JE4_BE2.png/60px-Enchanting_Table_JE4_BE2.png?7a922"
+    },
+    "minecraft:end_gateway": {
+        name: "End Gateway",
+        texture: "https://minecraft.wiki/images/thumb/End_Gateway.gif/60px-End_Gateway.gif?00b00"
+    },
+    "minecraft:end_portal": {
+        name: "End Portal",
+        texture: "https://minecraft.wiki/images/thumb/End_Portal_%28block%29.gif/60px-End_Portal_%28block%29.gif?70b39"
+    },
+    "minecraft:end_portal_frame": {
+        name: "End Portal Frame",
+        texture: "https://minecraft.wiki/images/thumb/End_Portal_Frame_%28S%29_JE7.png/60px-End_Portal_Frame_%28S%29_JE7.png?2fb6d"
+    },
+    "minecraft:end_rod": {
+        name: "End Rod",
+        texture: "https://minecraft.wiki/images/thumb/End_Rod_%28U%29_JE2_BE2.png/60px-End_Rod_%28U%29_JE2_BE2.png?705c1"
+    },
+    "minecraft:end_stone": {
+        name: "End Stone",
+        texture: "https://minecraft.wiki/images/thumb/End_Stone_JE3_BE2.png/60px-End_Stone_JE3_BE2.png?8f71b"
+    },
+    "minecraft:end_stone_brick_slab": {
+        name: "End Stone Brick Slab",
+        texture: "https://minecraft.wiki/images/thumb/End_Stone_Brick_Slab_JE1_BE2.png/60px-End_Stone_Brick_Slab_JE1_BE2.png?680aa"
+    },
+    "minecraft:end_stone_brick_stairs": {
+        name: "End Stone Brick Stairs",
+        texture: "https://minecraft.wiki/images/thumb/End_Stone_Brick_Stairs_%28N%29_JE1_BE2.png/60px-End_Stone_Brick_Stairs_%28N%29_JE1_BE2.png?3464b"
+    },
+    "minecraft:end_stone_brick_wall": {
+        name: "End Stone Brick Wall",
+        texture: "https://minecraft.wiki/images/thumb/End_Stone_Brick_Wall_JE1_BE2.png/60px-End_Stone_Brick_Wall_JE1_BE2.png?19ee5"
+    },
+    "minecraft:end_stone_bricks": {
+        name: "End Stone Bricks",
+        texture: "https://minecraft.wiki/images/thumb/End_Stone_Bricks_JE2_BE2.png/60px-End_Stone_Bricks_JE2_BE2.png?2d8bb"
+    },
+    "minecraft:ender_chest": {
+        name: "Ender Chest",
+        texture: "https://minecraft.wiki/images/thumb/Ender_Chest.png/60px-Ender_Chest.png?b0011"
+    },
+    "minecraft:exposed_chiseled_copper": {
+        name: "Exposed Chiseled Copper",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Chiseled_Copper_JE1_BE1.png/60px-Exposed_Chiseled_Copper_JE1_BE1.png?d7e0a"
+    },
+    "minecraft:exposed_copper": {
+        name: "Exposed Copper",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Copper_Block_JE1_BE1.png/60px-Exposed_Copper_Block_JE1_BE1.png?8b625"
+    },
+    "minecraft:exposed_copper_bars": {
+        name: "Exposed Copper Bars",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Copper_Bars_%28EW%29_JE1.png/60px-Exposed_Copper_Bars_%28EW%29_JE1.png?7d09d"
+    },
+    "minecraft:exposed_copper_bulb": {
+        name: "Exposed Copper Bulb",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Copper_Bulb_JE1_BE1.png/60px-Exposed_Copper_Bulb_JE1_BE1.png?0b0da"
+    },
+    "minecraft:exposed_copper_chain": {
+        name: "Exposed Copper Chain",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Copper_Chain_%28UD%29_JE1.png/60px-Exposed_Copper_Chain_%28UD%29_JE1.png?55df5"
+    },
+    "minecraft:exposed_copper_chest": {
+        name: "Exposed Copper Chest",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Copper_Chest_%28S%29_BE1.png/60px-Exposed_Copper_Chest_%28S%29_BE1.png?9955f"
+    },
+    "minecraft:exposed_copper_door": {
+        name: "Exposed Copper Door",
+        texture: "@java/item/exposed_copper_door.png"
+    },
+    "minecraft:exposed_copper_golem_statue": {
+        name: "Exposed Copper Golem Statue",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Copper_Golem_Statue_BE1.png/60px-Exposed_Copper_Golem_Statue_BE1.png?a7cdd"
+    },
+    "minecraft:exposed_copper_grate": {
+        name: "Exposed Copper Grate",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Copper_Grate_JE1_BE1.png/60px-Exposed_Copper_Grate_JE1_BE1.png?cf3e4"
+    },
+    "minecraft:exposed_copper_lantern": {
+        name: "Exposed Copper Lantern",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Copper_Lantern_JE2.gif/60px-Exposed_Copper_Lantern_JE2.gif?a4e18"
+    },
+    "minecraft:exposed_copper_trapdoor": {
+        name: "Exposed Copper Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Copper_Trapdoor_JE2_BE2.png/60px-Exposed_Copper_Trapdoor_JE2_BE2.png?390a9"
+    },
+    "minecraft:exposed_cut_copper": {
+        name: "Exposed Cut Copper",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Cut_Copper_JE1_BE1.png/60px-Exposed_Cut_Copper_JE1_BE1.png?1981a"
+    },
+    "minecraft:exposed_cut_copper_slab": {
+        name: "Exposed Cut Copper Slab",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Cut_Copper_Slab_JE1_BE1.png/60px-Exposed_Cut_Copper_Slab_JE1_BE1.png?8a542"
+    },
+    "minecraft:exposed_cut_copper_stairs": {
+        name: "Exposed Cut Copper Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Cut_Copper_Stairs_%28N%29_JE1_BE1.png/60px-Exposed_Cut_Copper_Stairs_%28N%29_JE1_BE1.png?c529b"
+    },
+    "minecraft:exposed_lightning_rod": {
+        name: "Exposed Lightning Rod",
+        texture: "https://minecraft.wiki/images/thumb/Exposed_Lightning_Rod_%28U%29_JE1.png/60px-Exposed_Lightning_Rod_%28U%29_JE1.png?63b1b"
+    },
+    "minecraft:farmland": {
+        name: "Farmland",
+        texture: "https://minecraft.wiki/images/thumb/Farmland_JE4_BE6.png/60px-Farmland_JE4_BE6.png?16bd6"
+    },
+    "minecraft:fern": {
+        name: "Fern",
+        texture: "@java/block/fern.png"
+    },
+    "minecraft:fire": {
+        name: "Fire",
+        texture: "https://minecraft.wiki/images/thumb/Fire.gif/60px-Fire.gif?69f99"
+    },
     
 
     /*

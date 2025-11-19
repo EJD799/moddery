@@ -2990,7 +2990,7 @@ const itemDefinitions = {
     },
     "minecraft:damaged_anvil": {
         name: "Damaged Anvil",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Damaged_Anvil_%28N%29_JE3.png/60px-Damaged_Anvil_%28N%29_JE3.png?335fc"
     },
     "minecraft:dandelion": {
         name: "Dandelion",
@@ -2998,7 +2998,7 @@ const itemDefinitions = {
     },
     "minecraft:dark_oak_button": {
         name: "Dark Oak Button",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Oak_Button_JE4.png/60px-Dark_Oak_Button_JE4.png?0e743"
     },
     "minecraft:dark_oak_door": {
         name: "Dark Oak Door",
@@ -3006,11 +3006,11 @@ const itemDefinitions = {
     },
     "minecraft:dark_oak_fence": {
         name: "Dark Oak Fence",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Oak_Fence_%28EW%29_JE5.png/60px-Dark_Oak_Fence_%28EW%29_JE5.png?625ce"
     },
     "minecraft:dark_oak_fence_gate": {
         name: "Dark Oak Fence Gate",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Oak_Fence_Gate_JE3_BE2.png/60px-Dark_Oak_Fence_Gate_JE3_BE2.png?44fc0"
     },
     "minecraft:dark_oak_hanging_sign": {
         name: "Dark Oak Hanging Sign",
@@ -3018,19 +3018,19 @@ const itemDefinitions = {
     },
     "minecraft:dark_oak_leaves": {
         name: "Dark Oak Leaves",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Oak_Leaves.png/60px-Dark_Oak_Leaves.png?36253"
     },
     "minecraft:dark_oak_log": {
         name: "Dark Oak Log",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Oak_Log_%28UD%29_JE9_BE4.png/60px-Dark_Oak_Log_%28UD%29_JE9_BE4.png?611f7"
     },
     "minecraft:dark_oak_planks": {
         name: "Dark Oak Planks",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Oak_Planks_JE3_BE2.png/60px-Dark_Oak_Planks_JE3_BE2.png?8d0a8"
     },
     "minecraft:dark_oak_pressure_plate": {
         name: "Dark Oak Pressure Plate",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Oak_Pressure_Plate_JE3_BE2.png/60px-Dark_Oak_Pressure_Plate_JE3_BE2.png?c3d89"
     },
     "minecraft:dark_oak_sapling": {
         name: "Dark Oak Sapling",
@@ -3038,7 +3038,7 @@ const itemDefinitions = {
     },
     "minecraft:dark_oak_shelf": {
         name: "Dark Oak Shelf",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Oak_Shelf_JE1_BE2.png/60px-Dark_Oak_Shelf_JE1_BE2.png?36233"
     },
     "minecraft:dark_oak_sign": {
         name: "Dark Oak Sign",
@@ -3046,35 +3046,35 @@ const itemDefinitions = {
     },
     "minecraft:dark_oak_slab": {
         name: "Dark Oak Slab",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Oak_Slab_JE3_BE2.png/60px-Dark_Oak_Slab_JE3_BE2.png?15a13"
     },
     "minecraft:dark_oak_stairs": {
         name: "Dark Oak Stairs",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Oak_Stairs_%28N%29_JE4_BE2.png/60px-Dark_Oak_Stairs_%28N%29_JE4_BE2.png?80911"
     },
     "minecraft:dark_oak_trapdoor": {
         name: "Dark Oak Trapdoor",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Oak_Trapdoor_JE1_BE1.png/60px-Dark_Oak_Trapdoor_JE1_BE1.png?82663"
     },
     "minecraft:dark_oak_wood": {
         name: "Dark Oak Wood",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Oak_Wood_%28UD%29_JE8_BE2.png/60px-Dark_Oak_Wood_%28UD%29_JE8_BE2.png?88038"
     },
     "minecraft:dark_prismarine": {
         name: "Dark Prismarine",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Prismarine_JE2_BE2.png/60px-Dark_Prismarine_JE2_BE2.png?06713"
     },
     "minecraft:dark_prismarine_slab": {
         name: "Dark Prismarine Slab",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Prismarine_Slab_JE2_BE2.png/60px-Dark_Prismarine_Slab_JE2_BE2.png?8323a"
     },
     "minecraft:dark_prismarine_stairs": {
         name: "Dark Prismarine Stairs",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dark_Prismarine_Stairs_%28N%29_JE2_BE2.png/60px-Dark_Prismarine_Stairs_%28N%29_JE2_BE2.png?73686"
     },
     "minecraft:daylight_detector": {
         name: "Daylight Detector",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Daylight_Detector_JE1_BE1.png/60px-Daylight_Detector_JE1_BE1.png?c5bbc"
     },
     "minecraft:dead_brain_coral": {
         name: "Dead Brain Coral",
@@ -3082,7 +3082,7 @@ const itemDefinitions = {
     },
     "minecraft:dead_brain_coral_block": {
         name: "Dead Brain Coral Block",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dead_Brain_Coral_Block_JE1_BE1.png/60px-Dead_Brain_Coral_Block_JE1_BE1.png?6f4f0"
     },
     "minecraft:dead_brain_coral_fan": {
         name: "Dead Brain Coral Fan",
@@ -3094,7 +3094,7 @@ const itemDefinitions = {
     },
     "minecraft:dead_bubble_coral_block": {
         name: "Dead Bubble Coral Block",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dead_Bubble_Coral_Block_JE1_BE1.png/60px-Dead_Bubble_Coral_Block_JE1_BE1.png?140fb"
     },
     "minecraft:dead_bubble_coral_fan": {
         name: "Dead Bubble Coral Fan",
@@ -3110,7 +3110,7 @@ const itemDefinitions = {
     },
     "minecraft:dead_fire_coral_block": {
         name: "Dead Fire Coral Block",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dead_Fire_Coral_Block_JE1_BE1.png/60px-Dead_Fire_Coral_Block_JE1_BE1.png?5eae0"
     },
     "minecraft:dead_fire_coral_fan": {
         name: "Dead Fire Coral Fan",
@@ -3122,7 +3122,7 @@ const itemDefinitions = {
     },
     "minecraft:dead_horn_coral_block": {
         name: "Dead Horn Coral Block",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dead_Horn_Coral_Block_JE1_BE1.png/60px-Dead_Horn_Coral_Block_JE1_BE1.png?7b182"
     },
     "minecraft:dead_horn_coral_fan": {
         name: "Dead Horn Coral Fan",
@@ -3134,11 +3134,91 @@ const itemDefinitions = {
     },
     "minecraft:dead_tube_coral_block": {
         name: "Dead Tube Coral Block",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Dead_Tube_Coral_Block_JE1_BE1.png/60px-Dead_Tube_Coral_Block_JE1_BE1.png?e65c2"
     },
     "minecraft:dead_tube_coral_fan": {
         name: "Dead Tube Coral Fan",
         texture: "@java/block/dead_tube_coral_fan.png"
+    },
+    "minecraft:decorated_pot": {
+        name: "Decorated Pot",
+        texture: "https://minecraft.wiki/images/thumb/Decorated_Pot_%28N%29_JE2_BE2.png/60px-Decorated_Pot_%28N%29_JE2_BE2.png?1209f"
+    },
+    "minecraft:deepslate": {
+        name: "Deepslate",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate.png/60px-Deepslate.png?7b6d7"
+    },
+    "minecraft:deepslate_bricks": {
+        name: "Deepslate Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Bricks_JE2_BE1.png/60px-Deepslate_Bricks_JE2_BE1.png?31b40"
+    },
+    "minecraft:deepslate_brick_slab": {
+        name: "Deepslate Brick Slab",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Brick_Slab_JE2.png/60px-Deepslate_Brick_Slab_JE2.png?ce816"
+    },
+    "minecraft:deepslate_brick_stairs": {
+        name: "Deepslate Brick Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Brick_Stairs_JE2.png/60px-Deepslate_Brick_Stairs_JE2.png?e4bb6"
+    },
+    "minecraft:deepslate_brick_wall": {
+        name: "Deepslate Brick Wall",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Brick_Wall_JE2.png/60px-Deepslate_Brick_Wall_JE2.png?216f0"
+    },
+    "minecraft:deepslate_coal_ore": {
+        name: "Deepslate Coal Ore",
+        texture: ""
+    },
+    "minecraft:deepslate_copper_ore": {
+        name: "Deepslate Copper Ore",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Coal_Ore_JE1_BE2.png/60px-Deepslate_Coal_Ore_JE1_BE2.png?30fe4"
+    },
+    "minecraft:deepslate_diamond_ore": {
+        name: "Deepslate Diamond Ore",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Diamond_Ore_JE2_BE1.png/60px-Deepslate_Diamond_Ore_JE2_BE1.png?ce0d8"
+    },
+    "minecraft:deepslate_emerald_ore": {
+        name: "Deepslate Emerald Ore",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Emerald_Ore_JE1_BE1.png/60px-Deepslate_Emerald_Ore_JE1_BE1.png?4ca93"
+    },
+    "minecraft:deepslate_gold_ore": {
+        name: "Deepslate Gold Ore",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Gold_Ore_JE2_BE1.png/60px-Deepslate_Gold_Ore_JE2_BE1.png?c965d"
+    },
+    "minecraft:deepslate_iron_ore": {
+        name: "Deepslate Iron Ore",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Iron_Ore_JE2_BE1.png/60px-Deepslate_Iron_Ore_JE2_BE1.png?f4fb9"
+    },
+    "minecraft:deepslate_lapis_ore": {
+        name: "Deepslate Lapis Lazuli Ore",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Lapis_Lazuli_Ore_JE3_BE2.png/60px-Deepslate_Lapis_Lazuli_Ore_JE3_BE2.png?7c96d"
+    },
+    "minecraft:deepslate_redstone_ore": {
+        name: "Deepslate Redstone Ore",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Redstone_Ore_JE2_BE1.png/60px-Deepslate_Redstone_Ore_JE2_BE1.png?b1835"
+    },
+    "minecraft:deepslate_tiles": {
+        name: "Deepslate Tiles",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Tiles_JE2_BE1.png/60px-Deepslate_Tiles_JE2_BE1.png?fe479"
+    },
+    "minecraft:deepslate_tile_slab": {
+        name: "Deepslate Tile Slab",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Tile_Slab_JE2.png/60px-Deepslate_Tile_Slab_JE2.png?9237b"
+    },
+    "minecraft:deepslate_tile_stairs": {
+        name: "Deepslate Tile Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Tile_Stairs_JE2.png/60px-Deepslate_Tile_Stairs_JE2.png?4b9ed"
+    },
+    "minecraft:deepslate_tile_wall": {
+        name: "Deepslate Tile Wall",
+        texture: "https://minecraft.wiki/images/thumb/Deepslate_Tile_Wall_JE2.png/60px-Deepslate_Tile_Wall_JE2.png?3f46e"
+    },
+    "minecraft:detector_rail": {
+        name: "Detector Rail",
+        texture: "@java/block/detector_rail.png"
+    },
+    "minecraft:diamond_ore": {
+        name: "Diamond Ore",
+        texture: "https://minecraft.wiki/images/thumb/Diamond_Ore_JE5_BE5.png/60px-Diamond_Ore_JE5_BE5.png?fa2f4"
     },
     
 

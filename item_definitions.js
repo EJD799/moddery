@@ -4375,6 +4375,67 @@ const itemDefinitions = {
         name: "Oxeye Daisy",
         texture: "@java/block/oxeye_daisy.png"
     },
+    "minecraft:oxidized_chiseled_copper": {
+        name: "Oxidized Chiseled Copper",
+        texture: "https://minecraft.wiki/images/thumb/Oxidized_Chiseled_Copper_JE1_BE1.png/60px-Oxidized_Chiseled_Copper_JE1_BE1.png?9fff6"
+    },
+    "minecraft:oxidized_copper": {
+        name: "Oxidized Copper",
+        texture: "https://minecraft.wiki/images/thumb/Oxidized_Copper_Block_JE1_BE1.png/60px-Oxidized_Copper_Block_JE1_BE1.png?60d84"
+    },
+    "minecraft:oxidized_copper_bars": {
+        name: "Oxidized Copper Bars",
+        texture: "@java/block/oxidized_copper_bars.png"
+    },
+    "minecraft:oxidized_copper_bulb": {
+        name: "Oxidized Copper Bulb",
+        texture: "https://minecraft.wiki/images/thumb/Oxidized_Copper_Bulb_JE1_BE1.png/60px-Oxidized_Copper_Bulb_JE1_BE1.png?8338c"
+    },
+    "minecraft:oxidized_copper_chain": {
+        name: "Oxidized Copper Chain",
+        texture: "@java/item/oxidized_copper_chain.png"
+    },
+    "minecraft:oxidized_copper_chest": {
+        name: "Oxidized Copper Chest",
+        texture: "https://minecraft.wiki/images/thumb/Oxidized_Copper_Chest_%28S%29_BE1.png/60px-Oxidized_Copper_Chest_%28S%29_BE1.png?249f5"
+    },
+    "minecraft:oxidized_copper_door": {
+        name: "Oxidized Copper Door",
+        texture: "@java/item/oxidized_copper_door.png"
+    },
+    "minecraft:oxidized_copper_golem_statue": {
+        name: "Oxidized Copper Golem Statue",
+        texture: "https://minecraft.wiki/images/thumb/Oxidized_Copper_Golem_Statue_BE1.png/60px-Oxidized_Copper_Golem_Statue_BE1.png?afd3d"
+    },
+    "minecraft:oxidized_copper_grate": {
+        name: "Oxidized Copper Grate",
+        texture: "https://minecraft.wiki/images/thumb/Oxidized_Copper_Grate_JE1_BE1.png/60px-Oxidized_Copper_Grate_JE1_BE1.png?baff6"
+    },
+    "minecraft:oxidized_copper_lantern": {
+        name: "Oxidized Copper Lantern",
+        texture: "@java/item/oxidized_copper_lantern.png"
+    },
+    "minecraft:oxidized_copper_trapdoor": {
+        name: "Oxidized Copper Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Oxidized_Copper_Trapdoor_JE2_BE2.png/60px-Oxidized_Copper_Trapdoor_JE2_BE2.png?c1923"
+    },
+    "minecraft:oxidized_cut_copper": {
+        name: "Oxidized Cut Copper",
+        texture: "https://minecraft.wiki/images/thumb/Oxidized_Cut_Copper_JE1_BE1.png/60px-Oxidized_Cut_Copper_JE1_BE1.png?f475d"
+    },
+    "minecraft:oxidized_cut_copper_slab": {
+        name: "Oxidized Cut Copper Slab",
+        texture: "https://minecraft.wiki/images/thumb/Oxidized_Cut_Copper_Slab_JE1_BE1.png/60px-Oxidized_Cut_Copper_Slab_JE1_BE1.png?9b913"
+    },
+    "minecraft:oxidized_cut_copper_stairs": {
+        name: "Oxidized Cut Copper Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Oxidized_Cut_Copper_Stairs_%28N%29_JE1_BE1.png/60px-Oxidized_Cut_Copper_Stairs_%28N%29_JE1_BE1.png?6d78c"
+    },
+    "minecraft:oxidized_lightning_rod": {
+        name: "Oxidized Lightning Rod",
+        texture: "https://minecraft.wiki/images/thumb/Oxidized_Lightning_Rod_%28U%29_JE1.png/60px-Oxidized_Lightning_Rod_%28U%29_JE1.png?f7d43"
+    },
+    
     
     
     

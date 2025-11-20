@@ -4948,6 +4948,54 @@ const itemDefinitions = {
         name: "Red Tulip",
         texture: "@java/block/red_tulip.png"
     },
+    "minecraft:comparator": {
+        name: "Redstone Comparator",
+        texture: "@java/item/comparator.png"
+    },
+    "minecraft:redstone_lamp": {
+        name: "Redstone Lamp",
+        texture: "https://minecraft.wiki/images/thumb/Redstone_Lamp_JE3_BE2.png/60px-Redstone_Lamp_JE3_BE2.png?02b8b"
+    },
+    "minecraft:redstone_ore": {
+        name: "Redstone Ore",
+        texture: "https://minecraft.wiki/images/thumb/Redstone_Ore_JE4_BE3.png/60px-Redstone_Ore_JE4_BE3.png?69549"
+    },
+    "minecraft:repeater": {
+        name: "Redstone Repeater",
+        texture: "@java/item/repeater.png"
+    },
+    "minecraft:redstone_torch": {
+        name: "Redstone Torch",
+        texture: "@java/block/redstone_torch.png"
+    },
+    "minecraft:reinforced_deepslate": {
+        name: "Reinforced Deepslate",
+        texture: "https://minecraft.wiki/images/thumb/Reinforced_Deepslate_JE1.png/60px-Reinforced_Deepslate_JE1.png?96376"
+    },
+    "minecraft:repeating_command_block": {
+        name: "Repeating Command Block",
+        texture: "https://minecraft.wiki/images/thumb/Repeating_Command_Block.gif/60px-Repeating_Command_Block.gif?7ab3a"
+    },
+    "minecraft:respawn_anchor": {
+        name: "Respawn Anchor",
+        texture: "https://minecraft.wiki/images/thumb/Respawn_Anchor_%280%29_JE1.png/60px-Respawn_Anchor_%280%29_JE1.png?23b57"
+    },
+    "minecraft:resin_bricks": {
+        name: "Resin Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Resin_Bricks_JE1_BE2.png/60px-Resin_Bricks_JE1_BE2.png?31227"
+    },
+    "minecraft:resin_brick_slab": {
+        name: "Resin Brick Slab",
+        texture: "https://minecraft.wiki/images/thumb/Resin_Brick_Slab_JE1_BE2.png/60px-Resin_Brick_Slab_JE1_BE2.png?7ad43"
+    },
+    "minecraft:resin_brick_stairs": {
+        name: "Resin Brick Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Resin_Brick_Stairs_JE1_BE2.png/60px-Resin_Brick_Stairs_JE1_BE2.png?034ef"
+    },
+    "minecraft:resin_brick_wall": {
+        name: "Resin Brick Wall",
+        texture: "https://minecraft.wiki/images/thumb/Resin_Brick_Wall_JE1_BE2.png/60px-Resin_Brick_Wall_JE1_BE2.png?9dc75"
+    },
     
     
     

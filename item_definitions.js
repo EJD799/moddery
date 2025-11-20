@@ -5080,6 +5080,82 @@ const itemDefinitions = {
         name: "Shulker Box",
         texture: "https://minecraft.wiki/images/thumb/Shulker_Box_JE1_BE1.png/60px-Shulker_Box_JE1_BE1.png?3cfa4"
     },
+    "minecraft:skeleton_skull": {
+        name: "Skeleton Skull",
+        texture: "https://minecraft.wiki/images/thumb/Skeleton_Skull_%28S%29_JE2.png/60px-Skeleton_Skull_%28S%29_JE2.png?9795b"
+    },
+    "minecraft:slime_block": {
+        name: "Slime Block",
+        texture: "https://minecraft.wiki/images/thumb/Slime_Block_JE2_BE3.png/60px-Slime_Block_JE2_BE3.png?57b93"
+    },
+    "minecraft:small_amethyst_bud": {
+        name: "Small Amethyst Bud",
+        texture: "@java/block/small_amethyst_bud.png"
+    },
+    "minecraft:small_dripleaf": {
+        name: "Small Dripleaf",
+        texture: "https://minecraft.wiki/images/thumb/Small_Dripleaf_JE4.png/60px-Small_Dripleaf_JE4.png?247f6"
+    },
+    "minecraft:smithing_table": {
+        name: "Smithing Table",
+        texture: "https://minecraft.wiki/images/thumb/Smithing_Table_JE2_BE2.png/60px-Smithing_Table_JE2_BE2.png?9d5a7"
+    },
+    "minecraft:smoker": {
+        name: "Smoker",
+        texture: "https://minecraft.wiki/images/thumb/Smoker_%28S%29_JE2.png/60px-Smoker_%28S%29_JE2.png?81064"
+    },
+    "minecraft:smooth_basalt": {
+        name: "Smooth Basalt",
+        texture: "https://minecraft.wiki/images/thumb/Smooth_Basalt_JE1_BE1.png/60px-Smooth_Basalt_JE1_BE1.png?e9359"
+    },
+    "minecraft:smooth_quartz_block": {
+        name: "Smooth Quartz Block",
+        texture: "https://minecraft.wiki/images/thumb/Smooth_Quartz_Block_JE3_BE2.png/60px-Smooth_Quartz_Block_JE3_BE2.png?17050"
+    },
+    "minecraft:smooth_quartz_slab": {
+        name: "Smooth Quartz Slab",
+        texture: "https://minecraft.wiki/images/thumb/Smooth_Quartz_Slab_JE2_BE2.png/60px-Smooth_Quartz_Slab_JE2_BE2.png?68576"
+    },
+    "minecraft:smooth_quartz_stairs": {
+        name: "Smooth Quartz Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Smooth_Quartz_Stairs_%28N%29_JE2_BE1.png/60px-Smooth_Quartz_Stairs_%28N%29_JE2_BE1.png?85b9c"
+    },
+    "minecraft:smooth_red_sandstone": {
+        name: "Smooth Red Sandstone",
+        texture: "https://minecraft.wiki/images/thumb/Smooth_Red_Sandstone_JE4_BE2.png/60px-Smooth_Red_Sandstone_JE4_BE2.png?b1bda"
+    },
+    "minecraft:smooth_red_sandstone_slab": {
+        name: "Smooth Red Sandstone Slab",
+        texture: "https://minecraft.wiki/images/thumb/Smooth_Red_Sandstone_Slab_JE3_BE2.png/60px-Smooth_Red_Sandstone_Slab_JE3_BE2.png?9233e"
+    },
+    "minecraft:smooth_red_sandstone_stairs": {
+        name: "Smooth Red Sandstone Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Smooth_Red_Sandstone_Stairs_%28N%29_JE3_BE1.png/60px-Smooth_Red_Sandstone_Stairs_%28N%29_JE3_BE1.png?1a99b"
+    },
+    "minecraft:smooth_sandstone": {
+        name: "Smooth Sandstone",
+        texture: "https://minecraft.wiki/images/thumb/Smooth_Sandstone_JE7_BE2.png/60px-Smooth_Sandstone_JE7_BE2.png?8420e"
+    },
+    "minecraft:smooth_sandstone_slab": {
+        name: "Smooth Sandstone Slab",
+        texture: "https://minecraft.wiki/images/thumb/Smooth_Sandstone_Slab_JE3_BE2.png/60px-Smooth_Sandstone_Slab_JE3_BE2.png?53658"
+    },
+    "minecraft:smooth_sandstone_stairs": {
+        name: "Smooth Sandstone Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Smooth_Sandstone_Stairs_%28N%29_JE4_BE2.png/60px-Smooth_Sandstone_Stairs_%28N%29_JE4_BE2.png?0a442"
+    },
+    "minecraft:smooth_stone": {
+        name: "Smooth Stone",
+        texture: "https://minecraft.wiki/images/thumb/Smooth_Stone_JE2_BE2.png/60px-Smooth_Stone_JE2_BE2.png?52fd2"
+    },
+    "minecraft:smooth_stone_slab": {
+        name: "Smooth Stone Slab",
+        texture: "https://minecraft.wiki/images/thumb/Smooth_Stone_Slab_JE2_BE2.png/60px-Smooth_Stone_Slab_JE2_BE2.png?0a025"
+    },
+    "minecraft:sniffer_egg": {
+        name: "Sniffer Egg",
+        texture: "@java/item/sniffer_egg.png"
+    },
     
     
     

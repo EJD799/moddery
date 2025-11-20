@@ -4856,6 +4856,54 @@ const itemDefinitions = {
         name: "Rail",
         texture: "@java/block/rail.png"
     },
+    "minecraft:red_banner": {
+        name: "Red Banner",
+        texture: "https://minecraft.wiki/images/thumb/Red_Banner_JE2_BE2.gif/30px-Red_Banner_JE2_BE2.gif?f8653"
+    },
+    "minecraft:red_bed": {
+        name: "Red Bed",
+        texture: "https://minecraft.wiki/images/thumb/Red_Bed_%28N%29.png/60px-Red_Bed_%28N%29.png?1f37e"
+    },
+    "minecraft:red_candle": {
+        name: "Red Candle",
+        texture: "@java/item/red_candle.png"
+    },
+    "minecraft:red_carpet": {
+        name: "Red Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Red_Carpet_JE2_BE2.png/60px-Red_Carpet_JE2_BE2.png?539d3"
+    },
+    "minecraft:red_concrete": {
+        name: "Red Concrete",
+        texture: "https://minecraft.wiki/images/thumb/Red_Concrete.png/60px-Red_Concrete.png?463c1"
+    },
+    "minecraft:red_concrete_powder": {
+        name: "Red Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/Red_Concrete_Powder.png/60px-Red_Concrete_Powder.png?0ec06"
+    },
+    "minecraft:red_glazed_terracotta": {
+        name: "Red Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Red_Glazed_Terracotta_%28S%29_JE1_BE1.png/60px-Red_Glazed_Terracotta_%28S%29_JE1_BE1.png?a7d9d"
+    },
+    "minecraft:red_shulker_box": {
+        name: "Red Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Red_Shulker_Box_JE2_BE2.png/60px-Red_Shulker_Box_JE2_BE2.png?f7e33"
+    },
+    "minecraft:red_stained_glass": {
+        name: "Red Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Red_Stained_Glass_JE4_BE4.png/60px-Red_Stained_Glass_JE4_BE4.png?6e005"
+    },
+    "minecraft:red_stained_glass_pane": {
+        name: "Red Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Red_Stained_Glass_Pane_%28EW%29_JE10.png/60px-Red_Stained_Glass_Pane_%28EW%29_JE10.png?18c46"
+    },
+    "minecraft:red_terracotta": {
+        name: "Red Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Red_Terracotta_JE1_BE1.png/60px-Red_Terracotta_JE1_BE1.png?a06f5"
+    },
+    "minecraft:red_wool": {
+        name: "Red Wool",
+        texture: "https://minecraft.wiki/images/thumb/Red_Wool_JE3_BE3.png/60px-Red_Wool_JE3_BE3.png?9b442"
+    },
     
     
     

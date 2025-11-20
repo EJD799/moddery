@@ -4614,115 +4614,127 @@ const itemDefinitions = {
     },
     "minecraft:polished_andesite": {
         name: "Polished Andesite",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Andesite_JE2_BE2.png/60px-Polished_Andesite_JE2_BE2.png?07d85"
     },
     "minecraft:polished_andesite_slab": {
         name: "Polished Andesite Slab",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Andesite_Slab_JE2_BE2.png/60px-Polished_Andesite_Slab_JE2_BE2.png?ca27e"
     },
     "minecraft:polished_andesite_stairs": {
         name: "Polished Andesite Stairs",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Andesite_Stairs_%28N%29_JE2_BE1.png/60px-Polished_Andesite_Stairs_%28N%29_JE2_BE1.png?3a25d"
     },
     "minecraft:polished_basalt": {
         name: "Polished Basalt",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Basalt_%28UD%29_JE1_BE1.png/60px-Polished_Basalt_%28UD%29_JE1_BE1.png?ae3ec"
     },
     "minecraft:polished_blackstone": {
         name: "Polished Blackstone",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Blackstone_JE1_BE1.png/60px-Polished_Blackstone_JE1_BE1.png?33b33"
     },
     "minecraft:polished_blackstone_bricks": {
         name: "Polished Blackstone Bricks",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Blackstone_Brick_Slab_JE1_BE1.png/60px-Polished_Blackstone_Brick_Slab_JE1_BE1.png?75587"
     },
     "minecraft:polished_blackstone_brick_slab": {
         name: "Polished Blackstone Brick Slab",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Blackstone_Brick_Slab_JE1_BE1.png/60px-Polished_Blackstone_Brick_Slab_JE1_BE1.png?75587"
     },
     "minecraft:polished_blackstone_brick_stairs": {
         name: "Polished Blackstone Brick Stairs",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Blackstone_Brick_Stairs_%28N%29_JE1_BE1.png/60px-Polished_Blackstone_Brick_Stairs_%28N%29_JE1_BE1.png?b1944"
     },
     "minecraft:polished_blackstone_brick_wall": {
         name: "Polished Blackstone Brick Wall",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Blackstone_Brick_Wall_JE2.png/60px-Polished_Blackstone_Brick_Wall_JE2.png?0fbe9"
     },
     "minecraft:polished_blackstone_button": {
         name: "Polished Blackstone Button",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Blackstone_Button_JE2.png/60px-Polished_Blackstone_Button_JE2.png?500cb"
     },
     "minecraft:polished_blackstone_pressure_plate": {
         name: "Polished Blackstone Pressure Plate",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Blackstone_Pressure_Plate_JE1_BE1.png/60px-Polished_Blackstone_Pressure_Plate_JE1_BE1.png?916b8"
     },
     "minecraft:polished_blackstone_slab": {
         name: "Polished Blackstone Slab",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Blackstone_Slab_JE1_BE1.png/60px-Polished_Blackstone_Slab_JE1_BE1.png?7167f"
     },
     "minecraft:polished_blackstone_stairs": {
         name: "Polished Blackstone Stairs",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Blackstone_Stairs_%28N%29_JE1_BE1.png/60px-Polished_Blackstone_Stairs_%28N%29_JE1_BE1.png?b5fdc"
     },
     "minecraft:polished_blackstone_wall": {
         name: "Polished Blackstone Wall",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Blackstone_Wall_JE1_BE1.png/60px-Polished_Blackstone_Wall_JE1_BE1.png?aed26"
     },
     "minecraft:polished_diorite": {
         name: "Polished Diorite",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Diorite_JE2_BE2.png/60px-Polished_Diorite_JE2_BE2.png?ee5af"
     },
     "minecraft:polished_diorite_slab": {
         name: "Polished Diorite Slab",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Diorite_Slab_JE2_BE2.png/60px-Polished_Diorite_Slab_JE2_BE2.png?00e59"
     },
     "minecraft:polished_diorite_stairs": {
         name: "Polished Diorite Stairs",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Diorite_Stairs_%28N%29_JE2_BE2.png/60px-Polished_Diorite_Stairs_%28N%29_JE2_BE2.png?09cff"
     },
     "minecraft:polished_granite": {
         name: "Polished Granite",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Granite_JE2_BE2.png/60px-Polished_Granite_JE2_BE2.png?e2a03"
     },
     "minecraft:polished_granite_slab": {
         name: "Polished Granite Slab",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Granite_Slab_JE1_BE1.png/60px-Polished_Granite_Slab_JE1_BE1.png?80b25"
     },
     "minecraft:polished_granite_stairs": {
         name: "Polished Granite Stairs",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Granite_Stairs_%28N%29_JE1_BE1.png/60px-Polished_Granite_Stairs_%28N%29_JE1_BE1.png?b5c5d"
     },
     "minecraft:polished_deepslate": {
         name: "Polished Deepslate",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Deepslate_JE2_BE1.png/60px-Polished_Deepslate_JE2_BE1.png?10719"
     },
     "minecraft:polished_deepslate_slab": {
         name: "Polished Deepslate Slab",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Deepslate_Slab_JE2.png/60px-Polished_Deepslate_Slab_JE2.png?cfdee"
     },
     "minecraft:polished_deepslate_stairs": {
         name: "Polished Deepslate Stairs",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Deepslate_Stairs_JE2.png/60px-Polished_Deepslate_Stairs_JE2.png?fc1f0"
     },
     "minecraft:polished_deepslate_wall": {
         name: "Polished Deepslate Wall",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Deepslate_Wall_JE2.png/60px-Polished_Deepslate_Wall_JE2.png?ed130"
     },
     "minecraft:polished_tuff": {
         name: "Polished Tuff",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Tuff_JE1_BE1.png/60px-Polished_Tuff_JE1_BE1.png?c1b53"
     },
     "minecraft:polished_tuff_slab": {
         name: "Polished Tuff Slab",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Tuff_Slab_JE1_BE1.png/60px-Polished_Tuff_Slab_JE1_BE1.png?825a6"
     },
     "minecraft:polished_tuff_stairs": {
         name: "Polished Tuff Stairs",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Tuff_Stairs_JE1_BE1.png/60px-Polished_Tuff_Stairs_JE1_BE1.png?da019"
     },
     "minecraft:polished_tuff_wall": {
         name: "Polished Tuff Wall",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Polished_Tuff_Wall_JE1_BE1.png/60px-Polished_Tuff_Wall_JE1_BE1.png?6034d"
+    },
+    "minecraft:poppy": {
+        name: "Poppy",
+        texture: "@java/block/poppy.png"
+    },
+    "minecraft:powder_snow": {
+        name: "Powder Snow",
+        texture: "https://minecraft.wiki/images/thumb/Powder_Snow_JE1_BE1.png/60px-Powder_Snow_JE1_BE1.png?261ff"
+    },
+    "minecraft:powered_rail": {
+        name: "Powered Rail",
+        texture: "@java/block/powered_rail.png"
     },
     
     

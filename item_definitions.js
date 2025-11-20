@@ -4435,6 +4435,90 @@ const itemDefinitions = {
         name: "Oxidized Lightning Rod",
         texture: "https://minecraft.wiki/images/thumb/Oxidized_Lightning_Rod_%28U%29_JE1.png/60px-Oxidized_Lightning_Rod_%28U%29_JE1.png?f7d43"
     },
+    "minecraft:packed_ice": {
+        name: "Packed Ice",
+        texture: "https://minecraft.wiki/images/thumb/Packed_Ice_JE2_BE3.png/60px-Packed_Ice_JE2_BE3.png?b444d"
+    },
+    "minecraft:packed_mud": {
+        name: "Packed Mud",
+        texture: "https://minecraft.wiki/images/thumb/Packed_Mud_JE1_BE1.png/60px-Packed_Mud_JE1_BE1.png?cfe7d"
+    },
+    "minecraft:pale_hanging_moss": {
+        name: "Pale Hanging Moss",
+        texture: "@java/block/pale_hanging_moss.png"
+    },
+    "minecraft:pale_moss_block": {
+        name: "Pale Moss Block",
+        texture: "https://minecraft.wiki/images/thumb/Pale_Moss_Block_JE1_BE1.png/60px-Pale_Moss_Block_JE1_BE1.png?4ed9c"
+    },
+    "minecraft:pale_moss_carpet": {
+        name: "Pale Moss Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Pale_Moss_Carpet_JE1_BE1.png/60px-Pale_Moss_Carpet_JE1_BE1.png?25d36"
+    },
+    "minecraft:pale_oak_button": {
+        name: "Pale Oak Button",
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Button_JE5.png/60px-Pale_Oak_Button_JE5.png?79e9c"
+    },
+    "minecraft:pale_oak_door": {
+        name: "Pale Oak Door",
+        texture: "@java/item/pale_oak_door.png"
+    },
+    "minecraft:pale_oak_fence": {
+        name: "Pale Oak Fence",
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Fence_JE4_BE2.png/60px-Pale_Oak_Fence_JE4_BE2.png?7bb92"
+    },
+    "minecraft:pale_oak_fence_gate": {
+        name: "Pale Oak Fence Gate",
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Fence_Gate_JE4_BE3.png/60px-Pale_Oak_Fence_Gate_JE4_BE3.png?04baf"
+    },
+    "minecraft:pale_oak_hanging_sign": {
+        name: "Pale Oak Hanging Sign",
+        texture: "@java/item/pale_oak_hanging_sign.png"
+    },
+    "minecraft:pale_oak_leaves": {
+        name: "Pale Oak Leaves",
+        texture: "https://minecraft.wiki/images/thumb/Oak_Leaves.png/60px-Pale_Oak_Leaves.png?80d73"
+    },
+    "minecraft:pale_oak_log": {
+        name: "Pale Oak Log",
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Log_%28UD%29_JE8_BE3.png/60px-Pale_Oak_Log_%28UD%29_JE8_BE3.png?8a080"
+    },
+    "minecraft:pale_oak_planks": {
+        name: "Pale Oak Planks",
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Planks.png/60px-Pale_Oak_Planks.png?d9efa"
+    },
+    "minecraft:pale_oak_pressure_plate": {
+        name: "Pale Oak Pressure Plate",
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Pressure_Plate_JE5_BE2.png/60px-Pale_Oak_Pressure_Plate_JE5_BE2.png?40671"
+    },
+    "minecraft:pale_oak_sapling": {
+        name: "Pale Oak Sapling",
+        texture: "@java/block/pale_oak_sapling.png"
+    },
+    "minecraft:pale_oak_shelf": {
+        name: "Pale Oak Shelf",
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Shelf_JE1_BE2.png/60px-Pale_Oak_Shelf_JE1_BE2.png?b1719"
+    },
+    "minecraft:pale_oak_sign": {
+        name: "Pale Oak Sign",
+        texture: "@java/item/pale_oak_sign.png"
+    },
+    "minecraft:pale_oak_slab": {
+        name: "Pale Oak Slab",
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Slab_JE5_BE2.png/60px-Pale_Oak_Slab_JE5_BE2.png?ddf28"
+    },
+    "minecraft:pale_oak_stairs": {
+        name: "Pale Oak Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Stairs_%28N%29_JE7_BE6.png/60px-Pale_Oak_Stairs_%28N%29_JE7_BE6.png?6c0aa"
+    },
+    "minecraft:pale_oak_trapdoor": {
+        name: "Pale Oak Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Trapdoor_JE4_BE2.png/60px-Pale_Oak_Trapdoor_JE4_BE2.png?5c6d0"
+    },
+    "minecraft:pale_oak_wood": {
+        name: "Pale Oak Wood",
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Wood_%28UD%29_JE7_BE2.png/60px-Pale_Oak_Wood_%28UD%29_JE7_BE2.png?74743"
+    },
     
     
     

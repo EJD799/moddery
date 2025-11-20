@@ -4154,6 +4154,67 @@ const itemDefinitions = {
         name: "Mud",
         texture: "https://minecraft.wiki/images/thumb/Mud_JE1_BE1.png/60px-Mud_JE1_BE1.png?e483b"
     },
+    "minecraft:mud_brick_slab": {
+        name: "Mud Brick Slab",
+        texture: "https://minecraft.wiki/images/thumb/Mud_Brick_Slab_JE1_BE1.png/60px-Mud_Brick_Slab_JE1_BE1.png?ee928"
+    },
+    "minecraft:mud_brick_stairs": {
+        name: "Mud Brick Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Mud_Brick_Stairs_JE1_BE1.png/60px-Mud_Brick_Stairs_JE1_BE1.png?98f34"
+    },
+    "minecraft:mud_brick_wall": {
+        name: "Mud Brick Wall",
+        texture: "https://minecraft.wiki/images/thumb/Mud_Brick_Wall_JE1_BE1.png/60px-Mud_Brick_Wall_JE1_BE1.png?469d1"
+    },
+    "minecraft:mud_bricks": {
+        name: "Mud Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Mud_Bricks_JE1_BE1.png/60px-Mud_Bricks_JE1_BE1.png?aab68"
+    },
+    "minecraft:muddy_mangrove_roots": {
+        name: "Muddy Mangrove Roots",
+        texture: "https://minecraft.wiki/images/thumb/Muddy_Mangrove_Roots_JE1_BE1.png/60px-Muddy_Mangrove_Roots_JE1_BE1.png?14614"
+    },
+    "minecraft:mushroom_stem": {
+        name: "Mushroom Stem",
+        texture: "https://minecraft.wiki/images/thumb/Mushroom_Stem_%28ESU%29_JE2_BE2.png/60px-Mushroom_Stem_%28ESU%29_JE2_BE2.png?a1315"
+    },
+    "minecraft:mycelium": {
+        name: "Mycelium",
+        texture: "https://minecraft.wiki/images/thumb/Mycelium_JE5_BE3.png/60px-Mycelium_JE5_BE3.png?4d3fa"
+    },
+    "minecraft:nether_brick_fence": {
+        name: "Nether Brick Fence",
+        texture: "https://minecraft.wiki/images/thumb/Nether_Brick_Fence_%28EW%29_JE8.png/60px-Nether_Brick_Fence_%28EW%29_JE8.png?82f28"
+    },
+    "minecraft:nether_brick_slab": {
+        name: "Nether Brick Slab",
+        texture: "https://minecraft.wiki/images/thumb/Nether_Brick_Slab_JE4_BE5.png/60px-Nether_Brick_Slab_JE4_BE5.png?074fb"
+    },
+    "minecraft:nether_brick_stairs": {
+        name: "Nether Brick Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Nether_Brick_Stairs_%28N%29_JE6_BE5.png/60px-Nether_Brick_Stairs_%28N%29_JE6_BE5.png?b6222"
+    },
+    "minecraft:nether_brick_wall": {
+        name: "Nether Brick Wall",
+        texture: "https://minecraft.wiki/images/thumb/Nether_Brick_Wall_JE3_BE4.png/60px-Nether_Brick_Wall_JE3_BE4.png?66c03"
+    },
+    "minecraft:nether_bricks": {
+        name: "Nether Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Nether_Bricks_JE4_BE5.png/60px-Nether_Bricks_JE4_BE5.png?4b270"
+    },
+    "minecraft:nether_gold_ore": {
+        name: "Nether Gold Ore",
+        texture: "https://minecraft.wiki/images/thumb/Nether_Gold_Ore_JE2_BE1.png/60px-Nether_Gold_Ore_JE2_BE1.png?c7842"
+    },
+    "minecraft:portal": {
+        name: "Nether Portal",
+        texture: "https://minecraft.wiki/images/Nether_Portal_%28EW%29_BE.gif?1ac06",
+        filter: "bedrock"
+    },
+    "minecraft:nether_quartz_ore": {
+        name: "Nether Quartz Ore",
+        texture: "https://minecraft.wiki/images/thumb/Nether_Quartz_Ore_JE3_BE2.png/60px-Nether_Quartz_Ore_JE3_BE2.png?f3464"
+    },
     
     
     

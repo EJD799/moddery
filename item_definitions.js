@@ -4736,6 +4736,122 @@ const itemDefinitions = {
         name: "Powered Rail",
         texture: "@java/block/powered_rail.png"
     },
+    "minecraft:prismarine": {
+        name: "Prismarine",
+        texture: "https://minecraft.wiki/images/thumb/Prismarine_JE2_BE2.gif/60px-Prismarine_JE2_BE2.gif?655fd"
+    },
+    "minecraft:prismarine_brick_slab": {
+        name: "Prismarine Brick Slab",
+        texture: "https://minecraft.wiki/images/thumb/Prismarine_Brick_Slab_JE2_BE2.png/60px-Prismarine_Brick_Slab_JE2_BE2.png?d8e2b"
+    },
+    "minecraft:prismarine_brick_stairs": {
+        name: "Prismarine Brick Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Prismarine_Brick_Stairs_%28N%29_JE2_BE2.png/60px-Prismarine_Brick_Stairs_%28N%29_JE2_BE2.png?02a88"
+    },
+    "minecraft:prismarine_bricks": {
+        name: "Prismarine Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Prismarine_Bricks_JE2_BE2.png/60px-Prismarine_Bricks_JE2_BE2.png?e9b46"
+    },
+    "minecraft:prismarine_slab": {
+        name: "Prismarine Slab",
+        texture: "https://minecraft.wiki/images/thumb/Prismarine_Slab_JE2_BE2.gif/60px-Prismarine_Slab_JE2_BE2.gif?cb29f"
+    },
+    "minecraft:prismarine_stairs": {
+        name: "Prismarine Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Prismarine_Stairs_%28N%29_JE2_BE2.gif/60px-Prismarine_Stairs_%28N%29_JE2_BE2.gif?49c0c"
+    },
+    "minecraft:prismarine_wall": {
+        name: "Prismarine Wall",
+        texture: "https://minecraft.wiki/images/thumb/Prismarine_Wall_JE1_BE1.gif/60px-Prismarine_Wall_JE1_BE1.gif?4c58a"
+    },
+    "minecraft:pumpkin": {
+        name: "Pumpkin",
+        texture: "https://minecraft.wiki/images/thumb/Carved_Pumpkin_%28N%29_JE5.png/60px-Carved_Pumpkin_%28N%29_JE5.png?32a4a"
+    },
+    "minecraft:pumpkin_stem": {
+        name: "Pumpkin Stem",
+        texture: "@java/block/pumpkin_stem.png"
+    },
+    "minecraft:purple_banner": {
+        name: "Purple Banner",
+        texture: "https://minecraft.wiki/images/thumb/Purple_Banner_JE2_BE2.gif/30px-Purple_Banner_JE2_BE2.gif?d1caa"
+    },
+    "minecraft:purple_bed": {
+        name: "Purple Bed",
+        texture: "https://minecraft.wiki/images/thumb/Purple_Bed.png/60px-Purple_Bed.png?e0365"
+    },
+    "minecraft:purple_candle": {
+        name: "Purple Candle",
+        texture: "@java/item/purple_candle.png"
+    },
+    "minecraft:purple_carpet": {
+        name: "Purple Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Purple_Carpet_JE2_BE2.png/60px-Purple_Carpet_JE2_BE2.png?20d46"
+    },
+    "minecraft:purple_concrete": {
+        name: "Purple Concrete",
+        texture: "https://minecraft.wiki/images/thumb/Purple_Concrete.png/60px-Purple_Concrete.png?5bbbe"
+    },
+    "minecraft:purple_concrete_powder": {
+        name: "Purple Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/Purple_Concrete_Powder.png/60px-Purple_Concrete_Powder.png?7dfb0"
+    },
+    "minecraft:purple_glazed_terracotta": {
+        name: "Purple Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Purple_Glazed_Terracotta_%28S%29_JE2.png/60px-Purple_Glazed_Terracotta_%28S%29_JE2.png?015e5"
+    },
+    "minecraft:purple_shulker_box": {
+        name: "Purple Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Purple_Shulker_Box_JE4_BE2.png/60px-Purple_Shulker_Box_JE4_BE2.png?cdfb4"
+    },
+    "minecraft:purple_stained_glass": {
+        name: "Purple Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Purple_Stained_Glass_JE3_BE3.png/60px-Purple_Stained_Glass_JE3_BE3.png?9c723"
+    },
+    "minecraft:purple_stained_glass_pane": {
+        name: "Purple Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Purple_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Purple_Stained_Glass_Pane_%28EW%29_JE9.png?bcc3a"
+    },
+    "minecraft:purple_terracotta": {
+        name: "Purple Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Purple_Terracotta_JE1_BE1.png/60px-Purple_Terracotta_JE1_BE1.png?2ec1c"
+    },
+    "minecraft:purple_wool": {
+        name: "Purple Wool",
+        texture: "https://minecraft.wiki/images/thumb/Purple_Wool_JE3_BE3.png/60px-Purple_Wool_JE3_BE3.png?243a3"
+    },
+    "minecraft:purpur_block": {
+        name: "Purpur Block",
+        texture: "https://minecraft.wiki/images/thumb/Purpur_Block_JE2_BE2.png/60px-Purpur_Block_JE2_BE2.png?f2101"
+    },
+    "minecraft:purpur_pillar": {
+        name: "Purpur Pillar",
+        texture: "https://minecraft.wiki/images/thumb/Purpur_Pillar_%28UD%29_JE3_BE2.png/60px-Purpur_Pillar_%28UD%29_JE3_BE2.png?f6294"
+    },
+    "minecraft:purpur_slab": {
+        name: "Purpur Slab",
+        texture: "https://minecraft.wiki/images/thumb/Purpur_Slab_JE2_BE2.png/60px-Purpur_Slab_JE2_BE2.png?3a545"
+    },
+    "minecraft:purpur_stairs": {
+        name: "Purpur Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Purpur_Stairs_%28N%29_JE2_BE2.png/60px-Purpur_Stairs_%28N%29_JE2_BE2.png?841d3"
+    },
+    "minecraft:quartz_bricks": {
+        name: "Quartz Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Quartz_Bricks_JE2_BE2.png/60px-Quartz_Bricks_JE2_BE2.png?f2101"
+    },
+    "minecraft:quartz_pillar": {
+        name: "Quartz Pillar",
+        texture: "https://minecraft.wiki/images/thumb/Quartz_Pillar_%28UD%29_JE3_BE2.png/60px-Quartz_Pillar_%28UD%29_JE3_BE2.png?f6294"
+    },
+    "minecraft:quartz_slab": {
+        name: "Quartz Slab",
+        texture: "https://minecraft.wiki/images/thumb/Quartz_Slab_JE2_BE2.png/60px-Quartz_Slab_JE2_BE2.png?3a545"
+    },
+    "minecraft:quartz_stairs": {
+        name: "Quartz Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Quartz_Stairs_%28N%29_JE2_BE2.png/60px-Quartz_Stairs_%28N%29_JE2_BE2.png?841d3"
+    },
     
     
     

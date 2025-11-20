@@ -4457,7 +4457,7 @@ const itemDefinitions = {
     },
     "minecraft:pale_oak_button": {
         name: "Pale Oak Button",
-        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Button_JE5.png/60px-Pale_Oak_Button_JE5.png?79e9c"
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Button_JE1_BE1.png/60px-Pale_Oak_Button_JE1_BE1.png?d2979"
     },
     "minecraft:pale_oak_door": {
         name: "Pale Oak Door",
@@ -4465,11 +4465,11 @@ const itemDefinitions = {
     },
     "minecraft:pale_oak_fence": {
         name: "Pale Oak Fence",
-        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Fence_JE4_BE2.png/60px-Pale_Oak_Fence_JE4_BE2.png?7bb92"
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Fence_%28EW%29_JE1.png/60px-Pale_Oak_Fence_%28EW%29_JE1.png?13103"
     },
     "minecraft:pale_oak_fence_gate": {
         name: "Pale Oak Fence Gate",
-        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Fence_Gate_JE4_BE3.png/60px-Pale_Oak_Fence_Gate_JE4_BE3.png?04baf"
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Fence_Gate_JE1_BE1.png/60px-Pale_Oak_Fence_Gate_JE1_BE1.png?6b4ee"
     },
     "minecraft:pale_oak_hanging_sign": {
         name: "Pale Oak Hanging Sign",
@@ -4477,19 +4477,19 @@ const itemDefinitions = {
     },
     "minecraft:pale_oak_leaves": {
         name: "Pale Oak Leaves",
-        texture: "https://minecraft.wiki/images/thumb/Oak_Leaves.png/60px-Pale_Oak_Leaves.png?80d73"
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Leaves_JE1.png/60px-Pale_Oak_Leaves_JE1.png?dca64"
     },
     "minecraft:pale_oak_log": {
         name: "Pale Oak Log",
-        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Log_%28UD%29_JE8_BE3.png/60px-Pale_Oak_Log_%28UD%29_JE8_BE3.png?8a080"
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Log_%28UD%29_JE1_BE1.png/60px-Pale_Oak_Log_%28UD%29_JE1_BE1.png?355d2"
     },
     "minecraft:pale_oak_planks": {
         name: "Pale Oak Planks",
-        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Planks.png/60px-Pale_Oak_Planks.png?d9efa"
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Planks_JE1_BE1.png/60px-Pale_Oak_Planks_JE1_BE1.png?be6ae"
     },
     "minecraft:pale_oak_pressure_plate": {
         name: "Pale Oak Pressure Plate",
-        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Pressure_Plate_JE5_BE2.png/60px-Pale_Oak_Pressure_Plate_JE5_BE2.png?40671"
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Pressure_Plate_JE1_BE1.png/60px-Pale_Oak_Pressure_Plate_JE1_BE1.png?b8b71"
     },
     "minecraft:pale_oak_sapling": {
         name: "Pale Oak Sapling",
@@ -4497,7 +4497,7 @@ const itemDefinitions = {
     },
     "minecraft:pale_oak_shelf": {
         name: "Pale Oak Shelf",
-        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Shelf_JE1_BE2.png/60px-Pale_Oak_Shelf_JE1_BE2.png?b1719"
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Shelf_JE1_BE2.png/60px-Pale_Oak_Shelf_JE1_BE2.png?01b82"
     },
     "minecraft:pale_oak_sign": {
         name: "Pale Oak Sign",
@@ -4505,20 +4505,227 @@ const itemDefinitions = {
     },
     "minecraft:pale_oak_slab": {
         name: "Pale Oak Slab",
-        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Slab_JE5_BE2.png/60px-Pale_Oak_Slab_JE5_BE2.png?ddf28"
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Slab_JE1_BE1.png/60px-Pale_Oak_Slab_JE1_BE1.png?6958c"
     },
     "minecraft:pale_oak_stairs": {
         name: "Pale Oak Stairs",
-        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Stairs_%28N%29_JE7_BE6.png/60px-Pale_Oak_Stairs_%28N%29_JE7_BE6.png?6c0aa"
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Stairs_JE1_BE1.png/60px-Pale_Oak_Stairs_JE1_BE1.png?a0dda"
     },
     "minecraft:pale_oak_trapdoor": {
         name: "Pale Oak Trapdoor",
-        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Trapdoor_JE4_BE2.png/60px-Pale_Oak_Trapdoor_JE4_BE2.png?5c6d0"
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Trapdoor_JE1_BE1.png/60px-Pale_Oak_Trapdoor_JE1_BE1.png?64efd"
     },
     "minecraft:pale_oak_wood": {
         name: "Pale Oak Wood",
-        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Wood_%28UD%29_JE7_BE2.png/60px-Pale_Oak_Wood_%28UD%29_JE7_BE2.png?74743"
+        texture: "https://minecraft.wiki/images/thumb/Pale_Oak_Wood_%28UD%29_JE1_BE1.png/60px-Pale_Oak_Wood_%28UD%29_JE1_BE1.png?6d47f"
     },
+    "minecraft:pearlescent_froglight": {
+        name: "Pearlescent Froglight",
+        texture: "https://minecraft.wiki/images/thumb/Pearlescent_Froglight_%28UD%29_JE1.png/60px-Pearlescent_Froglight_%28UD%29_JE1.png?9b741"
+    },
+    "minecraft:peony": {
+        name: "Peony",
+        texture: "@java/block/peony_top.png"
+    },
+    "minecraft:petrified_oak_slab": {
+        name: "Petrified Oak Slab",
+        texture: "https://minecraft.wiki/images/thumb/Oak_Slab_JE5_BE2.png/60px-Oak_Slab_JE5_BE2.png?ddf28",
+        filter: "java"
+    },
+    "minecraft:piglin_head": {
+        name: "Piglin Head",
+        texture: "https://minecraft.wiki/images/thumb/Piglin_Head_%28S%29_JE1.png/60px-Piglin_Head_%28S%29_JE1.png?13269"
+    },
+    "minecraft:pink_banner": {
+        name: "Pink Banner",
+        texture: "https://minecraft.wiki/images/thumb/Pink_Banner_JE2_BE2.gif/30px-Pink_Banner_JE2_BE2.gif?e05c6"
+    },
+    "minecraft:pink_bed": {
+        name: "Pink Bed",
+        texture: "https://minecraft.wiki/images/thumb/Pink_Bed.png/60px-Pink_Bed.png?6f839"
+    },
+    "minecraft:pink_candle": {
+        name: "Pink Candle",
+        texture: "@java/item/pink_candle.png"
+    },
+    "minecraft:pink_carpet": {
+        name: "Pink Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Pink_Carpet_JE2_BE2.png/60px-Pink_Carpet_JE2_BE2.png?81a45"
+    },
+    "minecraft:pink_concrete": {
+        name: "Pink Concrete",
+        texture: "https://minecraft.wiki/images/thumb/Pink_Concrete.png/60px-Pink_Concrete.png?746dc"
+    },
+    "minecraft:pink_concrete_powder": {
+        name: "Pink Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/Pink_Concrete_Powder.png/60px-Pink_Concrete_Powder.png?0b3f8"
+    },
+    "minecraft:pink_glazed_terracotta": {
+        name: "Pink Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Pink_Glazed_Terracotta_%28S%29_JE1_BE1.png/60px-Pink_Glazed_Terracotta_%28S%29_JE1_BE1.png?54514"
+    },
+    "minecraft:pink_shulker_box": {
+        name: "Pink Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Pink_Shulker_Box_JE2_BE2.png/60px-Pink_Shulker_Box_JE2_BE2.png?cea2c"
+    },
+    "minecraft:pink_stained_glass": {
+        name: "Pink Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Pink_Stained_Glass_JE3_BE3.png/60px-Pink_Stained_Glass_JE3_BE3.png?68c81"
+    },
+    "minecraft:pink_stained_glass_pane": {
+        name: "Pink Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Pink_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Pink_Stained_Glass_Pane_%28EW%29_JE9.png?7905f"
+    },
+    "minecraft:pink_terracotta": {
+        name: "Pink Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Pink_Terracotta_JE1_BE1.png/60px-Pink_Terracotta_JE1_BE1.png?f6a99"
+    },
+    "minecraft:pink_wool": {
+        name: "Pink Wool",
+        texture: "https://minecraft.wiki/images/thumb/Pink_Wool_JE3_BE3.png/60px-Pink_Wool_JE3_BE3.png?27231"
+    },
+    "minecraft:pink_petals": {
+        name: "Pink Petals",
+        texture: "@java/item/pink_petals.png"
+    },
+    "minecraft:pink_tulip": {
+        name: "Pink Tulip",
+        texture: "@java/block/pink_tulip.png"
+    },
+    "minecraft:piston": {
+        name: "Piston",
+        texture: "https://minecraft.wiki/images/thumb/Piston_%28U%29_JE3.png/60px-Piston_%28U%29_JE3.png?edd22"
+    },
+    "minecraft:pitcher_plant": {
+        name: "Pitcher Plant",
+        texture: "@java/item/pitcher_plant.png"
+    },
+    "minecraft:player_head": {
+        name: "Player Head",
+        texture: "https://minecraft.wiki/images/thumb/Player_Head_%28S%29_JE2.png/60px-Player_Head_%28S%29_JE2.png?6f81f"
+    },
+    "minecraft:podzol": {
+        name: "Podzol",
+        texture: "https://minecraft.wiki/images/thumb/Podzol_JE2_BE2.png/60px-Podzol_JE2_BE2.png?72707"
+    },
+    "minecraft:pointed_dripstone": {
+        name: "Pointed Dripstone",
+        texture: "@java/block/pointed_dripstone.png"
+    },
+    "minecraft:polished_andesite": {
+        name: "Polished Andesite",
+        texture: ""
+    },
+    "minecraft:polished_andesite_slab": {
+        name: "Polished Andesite Slab",
+        texture: ""
+    },
+    "minecraft:polished_andesite_stairs": {
+        name: "Polished Andesite Stairs",
+        texture: ""
+    },
+    "minecraft:polished_basalt": {
+        name: "Polished Basalt",
+        texture: ""
+    },
+    "minecraft:polished_blackstone": {
+        name: "Polished Blackstone",
+        texture: ""
+    },
+    "minecraft:polished_blackstone_bricks": {
+        name: "Polished Blackstone Bricks",
+        texture: ""
+    },
+    "minecraft:polished_blackstone_brick_slab": {
+        name: "Polished Blackstone Brick Slab",
+        texture: ""
+    },
+    "minecraft:polished_blackstone_brick_stairs": {
+        name: "Polished Blackstone Brick Stairs",
+        texture: ""
+    },
+    "minecraft:polished_blackstone_brick_wall": {
+        name: "Polished Blackstone Brick Wall",
+        texture: ""
+    },
+    "minecraft:polished_blackstone_button": {
+        name: "Polished Blackstone Button",
+        texture: ""
+    },
+    "minecraft:polished_blackstone_pressure_plate": {
+        name: "Polished Blackstone Pressure Plate",
+        texture: ""
+    },
+    "minecraft:polished_blackstone_slab": {
+        name: "Polished Blackstone Slab",
+        texture: ""
+    },
+    "minecraft:polished_blackstone_stairs": {
+        name: "Polished Blackstone Stairs",
+        texture: ""
+    },
+    "minecraft:polished_blackstone_wall": {
+        name: "Polished Blackstone Wall",
+        texture: ""
+    },
+    "minecraft:polished_diorite": {
+        name: "Polished Diorite",
+        texture: ""
+    },
+    "minecraft:polished_diorite_slab": {
+        name: "Polished Diorite Slab",
+        texture: ""
+    },
+    "minecraft:polished_diorite_stairs": {
+        name: "Polished Diorite Stairs",
+        texture: ""
+    },
+    "minecraft:polished_granite": {
+        name: "Polished Granite",
+        texture: ""
+    },
+    "minecraft:polished_granite_slab": {
+        name: "Polished Granite Slab",
+        texture: ""
+    },
+    "minecraft:polished_granite_stairs": {
+        name: "Polished Granite Stairs",
+        texture: ""
+    },
+    "minecraft:polished_deepslate": {
+        name: "Polished Deepslate",
+        texture: ""
+    },
+    "minecraft:polished_deepslate_slab": {
+        name: "Polished Deepslate Slab",
+        texture: ""
+    },
+    "minecraft:polished_deepslate_stairs": {
+        name: "Polished Deepslate Stairs",
+        texture: ""
+    },
+    "minecraft:polished_deepslate_wall": {
+        name: "Polished Deepslate Wall",
+        texture: ""
+    },
+    "minecraft:polished_tuff": {
+        name: "Polished Tuff",
+        texture: ""
+    },
+    "minecraft:polished_tuff_slab": {
+        name: "Polished Tuff Slab",
+        texture: ""
+    },
+    "minecraft:polished_tuff_stairs": {
+        name: "Polished Tuff Stairs",
+        texture: ""
+    },
+    "minecraft:polished_tuff_wall": {
+        name: "Polished Tuff Wall",
+        texture: ""
+    },
+    
+    
     
     
     
@@ -4580,6 +4787,19 @@ const itemDefinitions = {
     },
     "minecraft:_wool": {
         name: " Wool",
+        texture: ""
+    },
+
+    "minecraft:polished_": {
+        name: "Polished ",
+        texture: ""
+    },
+    "minecraft:polished__slab": {
+        name: "Polished  Slab",
+        texture: ""
+    },
+    "minecraft:polished__stairs": {
+        name: "Polished  Stairs",
         texture: ""
     },
     */

@@ -5193,7 +5193,15 @@ const itemDefinitions = {
     },
     "minecraft:soul_torch": {
         name: "Soul Torch",
-        texture: "@java/item/soul_torch.png"
+        texture: "@java/block/soul_torch.png"
+    },
+    "minecraft:sponge": {
+        name: "Sponge",
+        texture: "https://minecraft.wiki/images/thumb/Sponge_JE3_BE3.png/60px-Sponge_JE3_BE3.png?ded7d"
+    },
+    "minecraft:spore_blossom": {
+        name: "Spore Blossom",
+        texture: "https://minecraft.wiki/images/thumb/Spore_Blossom_JE1.png/60px-Spore_Blossom_JE1.png?65c9d"
     },
     
     

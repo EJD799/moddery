@@ -4237,7 +4237,7 @@ const itemDefinitions = {
     },
     "minecraft:oak_button": {
         name: "Oak Button",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Oak_Button_JE5.png/60px-Oak_Button_JE5.png?79e9c"
     },
     "minecraft:oak_door": {
         name: "Oak Door",
@@ -4245,11 +4245,11 @@ const itemDefinitions = {
     },
     "minecraft:oak_fence": {
         name: "Oak Fence",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Oak_Fence_JE4_BE2.png/60px-Oak_Fence_JE4_BE2.png?7bb92"
     },
     "minecraft:oak_fence_gate": {
         name: "Oak Fence Gate",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Oak_Fence_Gate_JE4_BE3.png/60px-Oak_Fence_Gate_JE4_BE3.png?04baf"
     },
     "minecraft:oak_hanging_sign": {
         name: "Oak Hanging Sign",
@@ -4257,19 +4257,19 @@ const itemDefinitions = {
     },
     "minecraft:oak_leaves": {
         name: "Oak Leaves",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Oak_Leaves.png/60px-Oak_Leaves.png?80d73"
     },
     "minecraft:oak_log": {
         name: "Oak Log",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Oak_Log_%28UD%29_JE8_BE3.png/60px-Oak_Log_%28UD%29_JE8_BE3.png?8a080"
     },
     "minecraft:oak_planks": {
         name: "Oak Planks",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Oak_Planks.png/60px-Oak_Planks.png?d9efa"
     },
     "minecraft:oak_pressure_plate": {
         name: "Oak Pressure Plate",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Oak_Pressure_Plate_JE5_BE2.png/60px-Oak_Pressure_Plate_JE5_BE2.png?40671"
     },
     "minecraft:oak_sapling": {
         name: "Oak Sapling",
@@ -4277,7 +4277,7 @@ const itemDefinitions = {
     },
     "minecraft:oak_shelf": {
         name: "Oak Shelf",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Oak_Shelf_JE1_BE2.png/60px-Oak_Shelf_JE1_BE2.png?b1719"
     },
     "minecraft:oak_sign": {
         name: "Oak Sign",
@@ -4285,19 +4285,95 @@ const itemDefinitions = {
     },
     "minecraft:oak_slab": {
         name: "Oak Slab",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Oak_Slab_JE5_BE2.png/60px-Oak_Slab_JE5_BE2.png?ddf28"
     },
     "minecraft:oak_stairs": {
         name: "Oak Stairs",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Oak_Stairs_%28N%29_JE7_BE6.png/60px-Oak_Stairs_%28N%29_JE7_BE6.png?6c0aa"
     },
     "minecraft:oak_trapdoor": {
         name: "Oak Trapdoor",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Oak_Trapdoor_JE4_BE2.png/60px-Oak_Trapdoor_JE4_BE2.png?5c6d0"
     },
     "minecraft:oak_wood": {
         name: "Oak Wood",
-        texture: ""
+        texture: "https://minecraft.wiki/images/thumb/Oak_Wood_%28UD%29_JE7_BE2.png/60px-Oak_Wood_%28UD%29_JE7_BE2.png?74743"
+    },
+    "minecraft:observer": {
+        name: "Observer",
+        texture: "https://minecraft.wiki/images/thumb/Observer_JE4_BE3.png/60px-Observer_JE4_BE3.png?39c33"
+    },
+    "minecraft:obsidian": {
+        name: "Obsidian",
+        texture: "https://minecraft.wiki/images/thumb/Obsidian_JE3_BE2.png/60px-Obsidian_JE3_BE2.png?0a8ae"
+    },
+    "minecraft:ochre_froglight": {
+        name: "Ochre Froglight",
+        texture: "https://minecraft.wiki/images/thumb/Ochre_Froglight_%28UD%29_JE1.png/60px-Ochre_Froglight_%28UD%29_JE1.png?fcdea"
+    },
+    "minecraft:ominous_banner": {
+        name: "Ominous Banner",
+        texture: "https://minecraft.wiki/images/thumb/Ominous_Banner.gif/30px-Ominous_Banner.gif?d5f1b"
+    },
+    "minecraft:open_eyeblossom": {
+        name: "Open Eyeblossom",
+        texture: "@java/block/open_eyeblossom"
+    },
+    "minecraft:orange_banner": {
+        name: "Orange Banner",
+        texture: "https://minecraft.wiki/images/thumb/Orange_Banner_JE2_BE2.gif/30px-Orange_Banner_JE2_BE2.gif?f67b1"
+    },
+    "minecraft:orange_bed": {
+        name: "Orange Bed",
+        texture: "https://minecraft.wiki/images/thumb/Orange_Bed.png/60px-Orange_Bed.png?21697"
+    },
+    "minecraft:orange_candle": {
+        name: "Orange Candle",
+        texture: "@java/item/orange_candle.png"
+    },
+    "minecraft:orange_carpet": {
+        name: "Orange Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Orange_Carpet_JE2_BE2.png/60px-Orange_Carpet_JE2_BE2.png?dec9b"
+    },
+    "minecraft:orange_concrete": {
+        name: "Orange Concrete",
+        texture: "https://minecraft.wiki/images/thumb/Orange_Concrete.png/60px-Orange_Concrete.png?1bb56"
+    },
+    "minecraft:orange_concrete_powder": {
+        name: "Orange Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/Orange_Concrete_Powder.png/60px-Orange_Concrete_Powder.png?ac577"
+    },
+    "minecraft:orange_glazed_terracotta": {
+        name: "Orange Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Orange_Glazed_Terracotta_%28S%29_JE2_BE2.png/60px-Orange_Glazed_Terracotta_%28S%29_JE2_BE2.png?d4b87"
+    },
+    "minecraft:orange_shulker_box": {
+        name: "Orange Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Orange_Shulker_Box_JE2_BE2.png/60px-Orange_Shulker_Box_JE2_BE2.png?205aa"
+    },
+    "minecraft:orange_stained_glass": {
+        name: "Orange Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Orange_Stained_Glass_JE3_BE3.png/60px-Orange_Stained_Glass_JE3_BE3.png?d4716"
+    },
+    "minecraft:orange_stained_glass_pane": {
+        name: "Orange Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Orange_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Orange_Stained_Glass_Pane_%28EW%29_JE9.png?431d7"
+    },
+    "minecraft:orange_terracotta": {
+        name: "Orange Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Orange_Terracotta_JE1_BE1.png/60px-Orange_Terracotta_JE1_BE1.png?0f49c"
+    },
+    "minecraft:orange_wool": {
+        name: "Orange Wool",
+        texture: "https://minecraft.wiki/images/thumb/Orange_Wool_JE3_BE3.png/60px-Orange_Wool_JE3_BE3.png?c3436"
+    },
+    "minecraft:orange_tulip": {
+        name: "Orange Tulip",
+        texture: "@java/block/orange_tulip.png"
+    },
+    "minecraft:oxeye_daisy": {
+        name: "Oxeye Daisy",
+        texture: "@java/block/oxeye_daisy.png"
     },
     
     

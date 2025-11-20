@@ -4215,6 +4215,90 @@ const itemDefinitions = {
         name: "Nether Quartz Ore",
         texture: "https://minecraft.wiki/images/thumb/Nether_Quartz_Ore_JE3_BE2.png/60px-Nether_Quartz_Ore_JE3_BE2.png?f3464"
     },
+    "minecraft:nether_sprouts": {
+        name: "Nether Sprouts",
+        texture: "@java/block/nether_sprouts.png"
+    },
+    "minecraft:nether_wart": {
+        name: "Nether Wart",
+        texture: "@java/item/nether_wart.png"
+    },
+    "minecraft:nether_wart_block": {
+        name: "Nether Wart Block",
+        texture: "https://minecraft.wiki/images/thumb/Nether_Wart_Block_JE3.png/60px-Nether_Wart_Block_JE3.png?2555f"
+    },
+    "minecraft:netherrack": {
+        name: "Netherrack",
+        texture: "https://minecraft.wiki/images/thumb/Netherrack_JE4_BE2.png/60px-Netherrack_JE4_BE2.png?8a940"
+    },
+    "minecraft:note_block": {
+        name: "Note Block",
+        texture: "https://minecraft.wiki/images/thumb/Note_Block_JE2_BE2.png/60px-Note_Block_JE2_BE2.png?0bf0f"
+    },
+    "minecraft:oak_button": {
+        name: "Oak Button",
+        texture: ""
+    },
+    "minecraft:oak_door": {
+        name: "Oak Door",
+        texture: "@java/item/oak_door.png"
+    },
+    "minecraft:oak_fence": {
+        name: "Oak Fence",
+        texture: ""
+    },
+    "minecraft:oak_fence_gate": {
+        name: "Oak Fence Gate",
+        texture: ""
+    },
+    "minecraft:oak_hanging_sign": {
+        name: "Oak Hanging Sign",
+        texture: "@java/item/oak_hanging_sign.png"
+    },
+    "minecraft:oak_leaves": {
+        name: "Oak Leaves",
+        texture: ""
+    },
+    "minecraft:oak_log": {
+        name: "Oak Log",
+        texture: ""
+    },
+    "minecraft:oak_planks": {
+        name: "Oak Planks",
+        texture: ""
+    },
+    "minecraft:oak_pressure_plate": {
+        name: "Oak Pressure Plate",
+        texture: ""
+    },
+    "minecraft:oak_sapling": {
+        name: "Oak Sapling",
+        texture: "@java/block/oak_sapling.png"
+    },
+    "minecraft:oak_shelf": {
+        name: "Oak Shelf",
+        texture: ""
+    },
+    "minecraft:oak_sign": {
+        name: "Oak Sign",
+        texture: "@java/item/oak_sign.png"
+    },
+    "minecraft:oak_slab": {
+        name: "Oak Slab",
+        texture: ""
+    },
+    "minecraft:oak_stairs": {
+        name: "Oak Stairs",
+        texture: ""
+    },
+    "minecraft:oak_trapdoor": {
+        name: "Oak Trapdoor",
+        texture: ""
+    },
+    "minecraft:oak_wood": {
+        name: "Oak Wood",
+        texture: ""
+    },
     
     
     

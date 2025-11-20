@@ -4016,7 +4016,144 @@ const itemDefinitions = {
         name: "Magenta Wool",
         texture: "https://minecraft.wiki/images/thumb/Magenta_Wool_JE3_BE3.png/60px-Magenta_Wool_JE3_BE3.png?e1183"
     },
-    
+    "minecraft:magma_block": {
+        name: "Magma Block",
+        texture: "https://minecraft.wiki/images/thumb/Magma_Block_JE2_BE2.png/60px-Magma_Block_JE2_BE2.png?93af8"
+    },
+    "minecraft:mangrove_button": {
+        name: "Mangrove Button",
+        texture: "https://minecraft.wiki/images/thumb/Mangrove_Button_JE2.png/60px-Mangrove_Button_JE2.png?9aebe"
+    },
+    "minecraft:mangrove_door": {
+        name: "Mangrove Door",
+        texture: "@java/item/mangrove_door.png"
+    },
+    "minecraft:mangrove_fence": {
+        name: "Mangrove Fence",
+        texture: "https://minecraft.wiki/images/thumb/Mangrove_Fence_%28EW%29_JE1.png/60px-Mangrove_Fence_%28EW%29_JE1.png?8e339"
+    },
+    "minecraft:mangrove_fence_gate": {
+        name: "Mangrove Fence Gate",
+        texture: "https://minecraft.wiki/images/thumb/Mangrove_Fence_Gate_JE1_BE1.png/60px-Mangrove_Fence_Gate_JE1_BE1.png?0b1b5"
+    },
+    "minecraft:mangrove_hanging_sign": {
+        name: "Mangrove Hanging Sign",
+        texture: "@java/item/mangrove_hanging_sign.png"
+    },
+    "minecraft:mangrove_leaves": {
+        name: "Mangrove Leaves",
+        texture: "https://minecraft.wiki/images/thumb/Mangrove_Leaves.png/60px-Mangrove_Leaves.png?bcba5"
+    },
+    "minecraft:mangrove_log": {
+        name: "Mangrove Log",
+        texture: "https://minecraft.wiki/images/thumb/Mangrove_Log_%28UD%29_JE1_BE1.png/60px-Mangrove_Log_%28UD%29_JE1_BE1.png?27582"
+    },
+    "minecraft:mangrove_pressure_plate": {
+        name: "Mangrove Pressure Plate",
+        texture: "https://minecraft.wiki/images/thumb/Mangrove_Pressure_Plate_JE1_BE1.png/60px-Mangrove_Pressure_Plate_JE1_BE1.png?5bd4a"
+    },
+    "minecraft:mangrove_propagule": {
+        name: "Mangrove Propagule",
+        texture: "@java/item/mangrove_propagule.png"
+    },
+    "minecraft:mangrove_planks": {
+        name: "Mangrove Planks",
+        texture: "https://minecraft.wiki/images/thumb/Mangrove_Planks_JE1_BE1.png/60px-Mangrove_Planks_JE1_BE1.png?7e1aa"
+    },
+    "minecraft:mangrove_roots": {
+        name: "Mangrove Roots",
+        texture: "https://minecraft.wiki/images/thumb/Mangrove_Roots_JE2.png/60px-Mangrove_Roots_JE2.png?405b3"
+    },
+    "minecraft:mangrove_shelf": {
+        name: "Mangrove Shelf",
+        texture: "https://minecraft.wiki/images/thumb/Mangrove_Shelf_JE1_BE2.png/60px-Mangrove_Shelf_JE1_BE2.png?662e3"
+    },
+    "minecraft:mangrove_sign": {
+        name: "Mangrove Sign",
+        texture: "@java/item/mangrove_sign.png"
+    },
+    "minecraft:mangrove_slab": {
+        name: "Mangrove Slab",
+        texture: "https://minecraft.wiki/images/thumb/Mangrove_Slab_JE1_BE1.png/60px-Mangrove_Slab_JE1_BE1.png?c2466"
+    },
+    "minecraft:mangrove_stairs": {
+        name: "Mangrove Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Mangrove_Stairs_JE1_BE1.png/60px-Mangrove_Stairs_JE1_BE1.png?ab35b"
+    },
+    "minecraft:mangrove_trapdoor": {
+        name: "Mangrove Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Mangrove_Trapdoor_JE1_BE1.png/60px-Mangrove_Trapdoor_JE1_BE1.png?478ea"
+    },
+    "minecraft:mangrove_wood": {
+        name: "Mangrove Wood",
+        texture: "https://minecraft.wiki/images/thumb/Mangrove_Wood_%28UD%29_JE1_BE1.png/60px-Mangrove_Wood_%28UD%29_JE1_BE1.png?5ef7e"
+    },
+    "minecraft:medium_amethyst_bud": {
+        name: "Medium Amethyst Bud",
+        texture: "@java/block/medium_amethyst_bud.png"
+    },
+    "minecraft:melon": {
+        name: "Melon",
+        texture: "https://minecraft.wiki/images/thumb/Melon_JE2_BE2.png/60px-Melon_JE2_BE2.png?1ff8e"
+    },
+    "minecraft:melon_stem": {
+        name: "Melon Stem",
+        texture: "@java/block/melon_stem.png"
+    },
+    "minecraft:spawner": {
+        name: "Monster Spawner",
+        texture: "https://minecraft.wiki/images/thumb/Monster_Spawner_JE4.png/60px-Monster_Spawner_JE4.png?64df6",
+        filter: "java"
+    },
+    "minecraft:mob_spawner": {
+        name: "Monster Spawner",
+        texture: "https://minecraft.wiki/images/thumb/Monster_Spawner_JE4.png/60px-Monster_Spawner_JE4.png?64df6",
+        filter: "bedrock"
+    },
+    "minecraft:moss_block": {
+        name: "Moss Block",
+        texture: "https://minecraft.wiki/images/thumb/Moss_Block_JE1_BE1.png/60px-Moss_Block_JE1_BE1.png?ad2d5"
+    },
+    "minecraft:moss_carpet": {
+        name: "Moss Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Moss_Carpet.png/60px-Moss_Carpet.png?d10d5"
+    },
+    "minecraft:mossy_cobblestone": {
+        name: "Mossy Cobblestone",
+        texture: "https://minecraft.wiki/images/thumb/Mossy_Cobblestone_JE4_BE2.png/60px-Mossy_Cobblestone_JE4_BE2.png?a2694"
+    },
+    "minecraft:mossy_cobblestone_slab": {
+        name: "Mossy Cobblestone Slab",
+        texture: "https://minecraft.wiki/images/thumb/Mossy_Cobblestone_Slab_JE2_BE2.png/60px-Mossy_Cobblestone_Slab_JE2_BE2.png?924c1"
+    },
+    "minecraft:mossy_cobblestone_stairs": {
+        name: "Mossy Cobblestone Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Mossy_Cobblestone_Stairs_%28N%29_JE2_BE1.png/60px-Mossy_Cobblestone_Stairs_%28N%29_JE2_BE1.png?cebc9"
+    },
+    "minecraft:mossy_cobblestone_wall": {
+        name: "Mossy Cobblestone Wall",
+        texture: "https://minecraft.wiki/images/thumb/Mossy_Cobblestone_Wall_%28EWU%29_JE3.png/60px-Mossy_Cobblestone_Wall_%28EWU%29_JE3.png?707ce"
+    },
+    "minecraft:mossy_stone_brick_slab": {
+        name: "Mossy Stone Brick Slab",
+        texture: "https://minecraft.wiki/images/thumb/Mossy_Stone_Brick_Slab_JE2_BE2.png/60px-Mossy_Stone_Brick_Slab_JE2_BE2.png?104ce"
+    },
+    "minecraft:mossy_stone_brick_stairs": {
+        name: "Mossy Stone Brick Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Mossy_Stone_Brick_Stairs_%28N%29_JE2_BE1.png/60px-Mossy_Stone_Brick_Stairs_%28N%29_JE2_BE1.png?1a689"
+    },
+    "minecraft:mossy_stone_brick_wall": {
+        name: "Mossy Stone Brick Wall",
+        texture: "https://minecraft.wiki/images/thumb/Mossy_Stone_Brick_Wall_JE2_BE1.png/60px-Mossy_Stone_Brick_Wall_JE2_BE1.png?ea173"
+    },
+    "minecraft:mossy_stone_bricks": {
+        name: "Mossy Stone Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Mossy_Stone_Bricks_JE3_BE2.png/60px-Mossy_Stone_Bricks_JE3_BE2.png?1c53c"
+    },
+    "minecraft:mud": {
+        name: "Mud",
+        texture: "https://minecraft.wiki/images/thumb/Mud_JE1_BE1.png/60px-Mud_JE1_BE1.png?e483b"
+    },
     
     
     

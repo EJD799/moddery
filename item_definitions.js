@@ -4317,7 +4317,7 @@ const itemDefinitions = {
     },
     "minecraft:open_eyeblossom": {
         name: "Open Eyeblossom",
-        texture: "@java/block/open_eyeblossom"
+        texture: "@java/block/open_eyeblossom.png"
     },
     "minecraft:orange_banner": {
         name: "Orange Banner",
@@ -4610,7 +4610,7 @@ const itemDefinitions = {
     },
     "minecraft:pointed_dripstone": {
         name: "Pointed Dripstone",
-        texture: "@java/block/pointed_dripstone.png"
+        texture: "@java/item/pointed_dripstone.png"
     },
     "minecraft:polished_andesite": {
         name: "Polished Andesite",
@@ -4838,7 +4838,7 @@ const itemDefinitions = {
     },
     "minecraft:quartz_bricks": {
         name: "Quartz Bricks",
-        texture: "https://minecraft.wiki/images/thumb/Quartz_Bricks_JE2_BE2.png/60px-Quartz_Bricks_JE2_BE2.png?f2101"
+        texture: "https://minecraft.wiki/images/thumb/Quartz_Bricks_JE2.png/60px-Quartz_Bricks_JE2.png?42e63"
     },
     "minecraft:quartz_pillar": {
         name: "Quartz Pillar",
@@ -4846,11 +4846,15 @@ const itemDefinitions = {
     },
     "minecraft:quartz_slab": {
         name: "Quartz Slab",
-        texture: "https://minecraft.wiki/images/thumb/Quartz_Slab_JE2_BE2.png/60px-Quartz_Slab_JE2_BE2.png?3a545"
+        texture: "https://minecraft.wiki/images/thumb/Quartz_Slab_JE3_BE3.png/60px-Quartz_Slab_JE3_BE3.png?346eb"
     },
     "minecraft:quartz_stairs": {
         name: "Quartz Stairs",
-        texture: "https://minecraft.wiki/images/thumb/Quartz_Stairs_%28N%29_JE2_BE2.png/60px-Quartz_Stairs_%28N%29_JE2_BE2.png?841d3"
+        texture: "https://minecraft.wiki/images/thumb/Quartz_Stairs_%28N%29_JE3.png/60px-Quartz_Stairs_%28N%29_JE3.png?7aade"
+    },
+    "minecraft:rail": {
+        name: "Rail",
+        texture: "@java/block/rail.png"
     },
     
     

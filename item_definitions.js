@@ -4996,6 +4996,90 @@ const itemDefinitions = {
         name: "Resin Brick Wall",
         texture: "https://minecraft.wiki/images/thumb/Resin_Brick_Wall_JE1_BE2.png/60px-Resin_Brick_Wall_JE1_BE2.png?9dc75"
     },
+    "minecraft:resin_clump": {
+        name: "Resin Clump",
+        texture: "@java/item/resin_clump.png"
+    },
+    "minecraft:rooted_dirt": {
+        name: "Rooted Dirt",
+        texture: "https://minecraft.wiki/images/thumb/Rooted_Dirt_JE1_BE1.png/60px-Rooted_Dirt_JE1_BE1.png?83182"
+    },
+    "minecraft:rose_bush": {
+        name: "Rose Bush",
+        texture: "@java/block/rose_bush_top.png"
+    },
+    "minecraft:sand": {
+        name: "Sand",
+        texture: "https://minecraft.wiki/images/thumb/Sand_JE5_BE3.png/60px-Sand_JE5_BE3.png?ae2df"
+    },
+    "minecraft:sandstone": {
+        name: "Sandstone",
+        texture: "https://minecraft.wiki/images/thumb/Sandstone_JE6_BE3.png/60px-Sandstone_JE6_BE3.png?20bd9"
+    },
+    "minecraft:sandstone_slab": {
+        name: "Sandstone Slab",
+        texture: "https://minecraft.wiki/images/thumb/Sandstone_Slab_JE5_BE6.png/60px-Sandstone_Slab_JE5_BE6.png?c65e4"
+    },
+    "minecraft:sandstone_stairs": {
+        name: "Sandstone Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Sandstone_Stairs_%28N%29_JE6_BE3.png/60px-Sandstone_Stairs_%28N%29_JE6_BE3.png?8c7d8"
+    },
+    "minecraft:sandstone_wall": {
+        name: "Sandstone Wall",
+        texture: "https://minecraft.wiki/images/thumb/Sandstone_Wall_JE2_BE1.png/60px-Sandstone_Wall_JE2_BE1.png?69382"
+    },
+    "minecraft:scaffolding": {
+        name: "Scaffolding",
+        texture: "https://minecraft.wiki/images/thumb/Standing_Scaffolding_JE3.png/60px-Standing_Scaffolding_JE3.png?2537c"
+    },
+    "minecraft:sculk": {
+        name: "Sculk",
+        texture: "https://minecraft.wiki/images/thumb/Sculk_JE1_BE1.gif/60px-Sculk_JE1_BE1.gif?e168f"
+    },
+    "minecraft:sculk_catalyst": {
+        name: "Sculk Catalyst",
+        texture: "https://minecraft.wiki/images/thumb/Sculk_Catalyst_JE1_BE1.png/60px-Sculk_Catalyst_JE1_BE1.png?5639e"
+    },
+    "minecraft:sculk_sensor": {
+        name: "Sculk Sensor",
+        texture: "https://minecraft.wiki/images/thumb/Sculk_Sensor_JE1.gif/60px-Sculk_Sensor_JE1.gif?e98f3"
+    },
+    "minecraft:sculk_shrieker": {
+        name: "Sculk Shrieker",
+        texture: "https://minecraft.wiki/images/thumb/Sculk_Shrieker_JE2_BE3.gif/60px-Sculk_Shrieker_JE2_BE3.gif?2c4b9"
+    },
+    "minecraft:sculk_vein": {
+        name: "Sculk Vein",
+        texture: "@java/block/sculk_vein.png"
+    },
+    "minecraft:sea_lantern": {
+        name: "Sea Lantern",
+        texture: "https://minecraft.wiki/images/thumb/Sea_Lantern_JE1.gif/60px-Sea_Lantern_JE1.gif?62a76"
+    },
+    "minecraft:sea_pickle": {
+        name: "Sea Pickle",
+        texture: "@java/item/sea_pickle.png"
+    },
+    "minecraft:seagrass": {
+        name: "Seagrass",
+        texture: "@java/item/seagrass.png"
+    },
+    "minecraft:short_dry_grass": {
+        name: "Short Dry Grass",
+        texture: "@java/block/short_dry_grass.png"
+    },
+    "minecraft:short_grass": {
+        name: "Short Grass",
+        texture: "@java/block/short_grass.png"
+    },
+    "minecraft:shroomlight": {
+        name: "Shroomlight",
+        texture: "https://minecraft.wiki/images/thumb/Shroomlight_JE1.png/60px-Shroomlight_JE1.png?5c263"
+    },
+    "minecraft:shulker_box": {
+        name: "Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Shulker_Box_JE1_BE1.png/60px-Shulker_Box_JE1_BE1.png?3cfa4"
+    },
     
     
     

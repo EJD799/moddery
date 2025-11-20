@@ -2548,7 +2548,7 @@ const itemDefinitions = {
     },
     "minecraft:campfire": {
         name: "Campfire",
-        texture: "https://minecraft.wiki/images/thumb/Campfire_%28S%29_JE2_BE2.gif/60px-Campfire_%28S%29_JE2_BE2.gif?742be"
+        texture: "@java/item/campfire.png"
     },
     "minecraft:candle": {
         name: "Candle",
@@ -3390,7 +3390,7 @@ const itemDefinitions = {
     },
     "minecraft:fire": {
         name: "Fire",
-        texture: "https://minecraft.wiki/images/thumb/Fire.gif/60px-Fire.gif?69f99",
+        texture: "https://minecraft.wiki/images/Fire_1_%28texture%29_JE2-a2.gif?32d7f",
         filter: "bedrock"
     },
     "minecraft:fire_coral": {
@@ -5155,6 +5155,45 @@ const itemDefinitions = {
     "minecraft:sniffer_egg": {
         name: "Sniffer Egg",
         texture: "@java/item/sniffer_egg.png"
+    },
+    "minecraft:snow": {
+        name: "Snow",
+        texture: "https://minecraft.wiki/images/thumb/Snow_%28layers_1%29_JE3_BE3.png/60px-Snow_%28layers_1%29_JE3_BE3.png?bf2e0",
+        filter: "java"
+    },
+    "minecraft:snow_layer": {
+        name: "Snow",
+        texture: "https://minecraft.wiki/images/thumb/Snow_%28layers_1%29_JE3_BE3.png/60px-Snow_%28layers_1%29_JE3_BE3.png?bf2e0",
+        filter: "bedrock"
+    },
+    "minecraft:snow_block": {
+        name: "Snow Block",
+        texture: "https://minecraft.wiki/images/thumb/Snow_Block_JE2_BE2.png/60px-Snow_Block_JE2_BE2.png?e7ace"
+    },
+    "minecraft:soul_campfire": {
+        name: "Soul Campfire",
+        texture: "@java/item/soul_campfire.png"
+    },
+    "minecraft:soul_fire": {
+        name: "Soul Fire",
+        texture: "https://minecraft.wiki/images/Invicon_Soul_Fire.gif?527a1",
+        filter: "bedrock"
+    },
+    "minecraft:soul_lantern": {
+        name: "Soul Lantern",
+        texture: "@java/item/soul_lantern.png"
+    },
+    "minecraft:soul_sand": {
+        name: "Soul Sand",
+        texture: "https://minecraft.wiki/images/thumb/Soul_Sand_JE2_BE2.png/60px-Soul_Sand_JE2_BE2.png?2334d"
+    },
+    "minecraft:soul_soil": {
+        name: "Soul Soil",
+        texture: "https://minecraft.wiki/images/thumb/Soul_Soil_JE1_BE1.png/60px-Soul_Soil_JE1_BE1.png?b79a3"
+    },
+    "minecraft:soul_torch": {
+        name: "Soul Torch",
+        texture: "@java/item/soul_torch.png"
     },
     
     

@@ -4904,6 +4904,50 @@ const itemDefinitions = {
         name: "Red Wool",
         texture: "https://minecraft.wiki/images/thumb/Red_Wool_JE3_BE3.png/60px-Red_Wool_JE3_BE3.png?9b442"
     },
+    "minecraft:red_mushroom": {
+        name: "Red Mushroom",
+        texture: "@java/block/red_mushroom.png"
+    },
+    "minecraft:red_nether_brick_slab": {
+        name: "Red Nether Brick Slab",
+        texture: "https://minecraft.wiki/images/thumb/Red_Nether_Brick_Slab_JE3_BE3.png/60px-Red_Nether_Brick_Slab_JE3_BE3.png?b1c73"
+    },
+    "minecraft:red_nether_brick_stairs": {
+        name: "Red Nether Brick Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Red_Nether_Brick_Stairs_%28N%29_JE3_BE3.png/60px-Red_Nether_Brick_Stairs_%28N%29_JE3_BE3.png?cbe64"
+    },
+    "minecraft:red_nether_brick_wall": {
+        name: "Red Nether Brick Wall",
+        texture: "https://minecraft.wiki/images/thumb/Red_Nether_Brick_Wall_JE3_BE3.png/60px-Red_Nether_Brick_Wall_JE3_BE3.png?c354a"
+    },
+    "minecraft:red_nether_bricks": {
+        name: "Red Nether Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Red_Nether_Bricks_JE4_BE3.png/60px-Red_Nether_Bricks_JE4_BE3.png?8f477"
+    },
+    "minecraft:red_sand": {
+        name: "Red Sand",
+        texture: "https://minecraft.wiki/images/thumb/Red_Sand_JE3_BE2.png/60px-Red_Sand_JE3_BE2.png?19111"
+    },
+    "minecraft:red_sandstone": {
+        name: "Red Sandstone",
+        texture: "https://minecraft.wiki/images/thumb/Red_Sandstone_JE4_BE2.png/60px-Red_Sandstone_JE4_BE2.png?0c36f"
+    },
+    "minecraft:red_sandstone_slab": {
+        name: "Red Sandstone Slab",
+        texture: "https://minecraft.wiki/images/thumb/Red_Sandstone_Slab_JE4_BE2.png/60px-Red_Sandstone_Slab_JE4_BE2.png?6ecc5"
+    },
+    "minecraft:red_sandstone_stairs": {
+        name: "Red Sandstone Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Red_Sandstone_Stairs_%28N%29_JE4_BE2.png/60px-Red_Sandstone_Stairs_%28N%29_JE4_BE2.png?c7951"
+    },
+    "minecraft:red_sandstone_wall": {
+        name: "Red Sandstone Wall",
+        texture: "https://minecraft.wiki/images/thumb/Red_Sandstone_Wall_JE2_BE1.png/60px-Red_Sandstone_Wall_JE2_BE1.png?b27e6"
+    },
+    "minecraft:red_tulip": {
+        name: "Red Tulip",
+        texture: "@java/block/red_tulip.png"
+    },
     
     
     

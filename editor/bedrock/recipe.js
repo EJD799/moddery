@@ -172,7 +172,7 @@ function closeItemPicker() {
 $("#itemPickerDialog").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
-  height: 500,
+  height: 510,
   width: 500
 });
 $("#itemPickerDialog").dialog("close");

@@ -6540,6 +6540,120 @@ const itemDefinitions = {
         texture: "https://minecraft.wiki/images/Invicon_Underwater_Torch.png?0c913",
         filter: "bedrock"
     },
+
+    "minecraft:black_candle_cake": {
+        name: "Black Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Black_Candle_JE1.png/60px-Cake_with_Black_Candle_JE1.png?fc254",
+        filter: "bedrock"
+    },
+    "minecraft:blue_candle_cake": {
+        name: "Blue Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Blue_Candle_JE1.png/60px-Cake_with_Blue_Candle_JE1.png?aeafb",
+        filter: "bedrock"
+    },
+    "minecraft:brown_candle_cake": {
+        name: "Brown Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Brown_Candle_JE1.png/60px-Cake_with_Brown_Candle_JE1.png?fd781",
+        filter: "bedrock"
+    },
+    "minecraft:candle_cake": {
+        name: "Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Candle_JE1_BE1.png/60px-Cake_with_Candle_JE1_BE1.png?0b806",
+        filter: "bedrock"
+    },
+    "minecraft:cyan_candle_cake": {
+        name: "Cyan Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Cyan_Candle_JE1.png/60px-Cake_with_Cyan_Candle_JE1.png?55cb3",
+        filter: "bedrock"
+    },
+    "minecraft:gray_candle_cake": {
+        name: "Gray Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Gray_Candle_JE1.png/60px-Cake_with_Gray_Candle_JE1.png?067ef",
+        filter: "bedrock"
+    },
+    "minecraft:green_candle_cake": {
+        name: "Green Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Green_Candle_JE1.png/60px-Cake_with_Green_Candle_JE1.png?f9f29",
+        filter: "bedrock"
+    },
+    "minecraft:light_blue_candle_cake": {
+        name: "Light Blue Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Light_Blue_Candle_JE1.png/60px-Cake_with_Light_Blue_Candle_JE1.png?097d3",
+        filter: "bedrock"
+    },
+    "minecraft:light_gray_candle_cake": {
+        name: "Light Gray Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Light_Gray_Candle_JE1.png/60px-Cake_with_Light_Gray_Candle_JE1.png?a83ef",
+        filter: "bedrock"
+    },
+    "minecraft:lime_candle_cake": {
+        name: "Lime Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Lime_Candle_JE1.png/60px-Cake_with_Lime_Candle_JE1.png?9a938",
+        filter: "bedrock"
+    },
+    "minecraft:magenta_candle_cake": {
+        name: "Magenta Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Magenta_Candle_JE1.png/60px-Cake_with_Magenta_Candle_JE1.png?5a7fe",
+        filter: "bedrock"
+    },
+    "minecraft:orange_candle_cake": {
+        name: "Orange Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Orange_Candle_JE1.png/60px-Cake_with_Orange_Candle_JE1.png?c91fa",
+        filter: "bedrock"
+    },
+    "minecraft:pink_candle_cake": {
+        name: "Pink Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Pink_Candle_JE1.png/60px-Cake_with_Pink_Candle_JE1.png?4bb9a",
+        filter: "bedrock"
+    },
+    "minecraft:purple_candle_cake": {
+        name: "Purple Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Purple_Candle_JE1.png/60px-Cake_with_Purple_Candle_JE1.png?db41a",
+        filter: "bedrock"
+    },
+    "minecraft:red_candle_cake": {
+        name: "Red Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Red_Candle_JE1.png/60px-Cake_with_Red_Candle_JE1.png?2b2bf",
+        filter: "bedrock"
+    },
+    "minecraft:white_candle_cake": {
+        name: "White Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_White_Candle_JE1.png/60px-Cake_with_White_Candle_JE1.png?6283e",
+        filter: "bedrock"
+    },
+    "minecraft:yellow_candle_cake": {
+        name: "Yellow Candle Cake",
+        texture: "https://minecraft.wiki/images/thumb/Cake_with_Yellow_Candle_JE1.png/60px-Cake_with_Yellow_Candle_JE1.png?2473a",
+        filter: "bedrock"
+    },
+    "minecraft:chiseled_purpur": {
+        name: "Chiseled Purpur",
+        texture: "https://minecraft.wiki/images/thumb/Purpur_Block_JE2_BE2.png/60px-Purpur_Block_JE2_BE2.png?f2101",
+        filter: "bedrock"
+    },
+    "minecraft:glowingobsidian": {
+        name: "Glowing Obsidian",
+        texture: "https://minecraft.wiki/images/thumb/Glowing_Obsidian_BE1.png/60px-Glowing_Obsidian_BE1.png?7d39b",
+        filter: "bedrock"
+    },
+    "minecraft:piston_arm_collision": {
+        name: "Piston Arm Collision",
+        texture: "https://minecraft.wiki/images/thumb/Piston_Head_%28U%29_JE3.png/60px-Piston_Head_%28U%29_JE3.png?0999e",
+        filter: "bedrock"
+    },
+    "minecraft:sticky_piston_arm_collision": {
+        name: "Sticky Piston Arm Collision",
+        texture: "https://minecraft.wiki/images/thumb/Piston_Head_%28U%29_JE3.png/60px-Piston_Head_%28U%29_JE3.png?0999e",
+        filter: "bedrock"
+    },
+    "minecraft:deprecated_purpur_block_2": {
+        name: "deprecated_purpur_block_2",
+        texture: "https://minecraft.wiki/images/thumb/Purpur_Block_JE2_BE2.png/60px-Purpur_Block_JE2_BE2.png?f2101",
+        filter: "bedrock"
+    },
+    
+
+
     
     
 
@@ -6553,6 +6667,12 @@ const itemDefinitions = {
 
     "minecraft:": {
         name: "",
+        texture: "",
+        filter: "bedrock"
+    },
+
+    "minecraft:_candle_cake": {
+        name: " Candle Cake",
         texture: "",
         filter: "bedrock"
     },

@@ -531,7 +531,7 @@ function addTab(role, elementID) {
       projZip.folder("elements").file(elementID + ".code.json").async("string").then(function (data) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
-    } else if ((role == "Item")) {
+    } else if ((role == "Item") || (role == "Recipe")) {
       projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
@@ -570,7 +570,7 @@ async function saveElement(elementTab) {
   if ((elementTab[0] == "Function") || (elementTab[0] == "Script")) {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("elements").file(elementTab[1] + ".code.json", JSON.stringify(frame.contentWindow.saveProject()));
-  } else if ((elementTab[0] == "Item")) {
+  } else if ((elementTab[0] == "Item") || (elementTab[0] == "Recipe")) {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("elements").file(elementTab[1] + ".json", JSON.stringify(frame.contentWindow.saveProject()));
   } else if (elementTab[0] == "Image") {

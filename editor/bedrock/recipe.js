@@ -1,5 +1,5 @@
 var elementData = {};
-var currentGrid = [["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0]];
+var currentGrid = [["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0]];
 var currentSlot = 0;
 
 function addItemToBeginning(obj, key, value) {

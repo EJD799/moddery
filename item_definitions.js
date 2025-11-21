@@ -5407,6 +5407,22 @@ const itemDefinitions = {
         name: "Structure Void",
         texture: "@java/item/structure_void.png"
     },
+    "minecraft:sugar_cane": {
+        name: "Sugar Cane",
+        texture: "@java/item/sugar_cane.png"
+    },
+    "minecraft:sunflower": {
+        name: "Sunflower",
+        texture: "@java/block/sunflower_front.png"
+    },
+    "minecraft:suspicious_gravel": {
+        name: "Suspicious Gravel",
+        texture: "https://minecraft.wiki/images/thumb/Suspicious_Gravel_BE1_%28dusted_0%29.png/60px-Suspicious_Gravel_BE1_%28dusted_0%29.png?ff854"
+    },
+    "minecraft:suspicious_sand": {
+        name: "Suspicious Sand",
+        texture: "https://minecraft.wiki/images/thumb/Suspicious_Sand_%28dusted_0%29_JE1_BE1.png/60px-Suspicious_Sand_%28dusted_0%29_JE1_BE1.png?651c6"
+    },
     
     
     

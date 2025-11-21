@@ -5423,6 +5423,76 @@ const itemDefinitions = {
         name: "Suspicious Sand",
         texture: "https://minecraft.wiki/images/thumb/Suspicious_Sand_%28dusted_0%29_JE1_BE1.png/60px-Suspicious_Sand_%28dusted_0%29_JE1_BE1.png?651c6"
     },
+    "minecraft:tall_dry_grass": {
+        name: "Tall Dry Grass",
+        texture: "@java/block/tall_dry_grass.png"
+    },
+    "minecraft:tall_grass": {
+        name: "Tall Grass",
+        texture: "@java/block/tall_grass_top.png"
+    },
+    "minecraft:tall_seagrass": {
+        name: "Tall Seagrass",
+        texture: "@java/block/tall_seagrass_top.png"
+    },
+    "minecraft:target": {
+        name: "Target",
+        texture: "https://minecraft.wiki/images/thumb/Target_JE1_BE1.png/60px-Target_JE1_BE1.png?68c73"
+    },
+    "minecraft:terracotta": {
+        name: "Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Terracotta_JE2_BE2.png/60px-Terracotta_JE2_BE2.png?b946d"
+    },
+    "minecraft:test_block": {
+        name: "Test Block",
+        texture: "https://minecraft.wiki/images/thumb/Test_Block_start_JE2.png/60px-Test_Block_start_JE2.png?e7622",
+        filter: "java"
+    },
+    "minecraft:test_instance_block": {
+        name: "Test Instance Block",
+        texture: "https://minecraft.wiki/images/thumb/Test_Instance_Block_JE2.png/60px-Test_Instance_Block_JE2.png?9dd98",
+        filter: "java"
+    },
+    "minecraft:tinted_glass": {
+        name: "Tinted Glass",
+        texture: "https://minecraft.wiki/images/thumb/Tinted_Glass_JE2_BE1.png/60px-Tinted_Glass_JE2_BE1.png?7eaed"
+    },
+    "minecraft:tnt": {
+        name: "TNT",
+        texture: "https://minecraft.wiki/images/thumb/TNT_JE3_BE2.png/60px-TNT_JE3_BE2.png?62989"
+    },
+    "minecraft:torch": {
+        name: "Torch",
+        texture: "@java/block/torch.png"
+    },
+    "minecraft:torchflower": {
+        name: "Torchflower",
+        texture: "@java/block/torchflower.png"
+    },
+    "minecraft:trapped_chest": {
+        name: "Trapped Chest",
+        texture: "https://minecraft.wiki/images/thumb/Trapped_Chest.png/60px-Trapped_Chest.png?e10c0"
+    },
+    "minecraft:trial_spawner": {
+        name: "Trial Spawner",
+        texture: "https://minecraft.wiki/images/thumb/Trial_Spawner_JE4_BE3.png/60px-Trial_Spawner_JE4_BE3.png?a33d8"
+    },
+    "minecraft:tripwire_hook": {
+        name: "Tripwire Hook",
+        texture: "@java/item/tripwire_hook.png"
+    },
+    "minecraft:tube_coral": {
+        name: "Tube Coral",
+        texture: "@java/block/tube_coral.png"
+    },
+    "minecraft:tube_coral_block": {
+        name: "Tube Coral Block",
+        texture: "https://minecraft.wiki/images/thumb/Tube_Coral_Block_JE2_BE1.png/60px-Tube_Coral_Block_JE2_BE1.png?cc8d4"
+    },
+    "minecraft:tube_coral_fan": {
+        name: "Tube Coral Fan",
+        texture: "@java/block/tube_coral_fan.png"
+    },
     
     
     

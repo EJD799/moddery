@@ -5431,10 +5431,6 @@ const itemDefinitions = {
         name: "Tall Grass",
         texture: "@java/block/tall_grass_top.png"
     },
-    "minecraft:tall_seagrass": {
-        name: "Tall Seagrass",
-        texture: "@java/block/tall_seagrass_top.png"
-    },
     "minecraft:target": {
         name: "Target",
         texture: "https://minecraft.wiki/images/thumb/Target_JE1_BE1.png/60px-Target_JE1_BE1.png?68c73"
@@ -5479,7 +5475,7 @@ const itemDefinitions = {
     },
     "minecraft:tripwire_hook": {
         name: "Tripwire Hook",
-        texture: "@java/item/tripwire_hook.png"
+        texture: "@java/block/tripwire_hook.png"
     },
     "minecraft:tube_coral": {
         name: "Tube Coral",
@@ -5543,7 +5539,84 @@ const itemDefinitions = {
     },
     "minecraft:vines": {
         name: "Vines",
-        texture: "@java/block/vines.png"
+        texture: "@java/block/vine.png"
+    },
+    "minecraft:warped_button": {
+        name: "Warped Button",
+        texture: "https://minecraft.wiki/images/thumb/Warped_Button_JE2.png/60px-Warped_Button_JE2.png?fd83a"
+    },
+    "minecraft:warped_door": {
+        name: "Warped Door",
+        texture: "@java/item/warped_door.png"
+    },
+    "minecraft:warped_fence": {
+        name: "Warped Fence",
+        texture: "https://minecraft.wiki/images/thumb/Warped_Fence_%28EW%29_JE1.png/60px-Warped_Fence_%28EW%29_JE1.png?1e318"
+    },
+    "minecraft:warped_fence_gate": {
+        name: "Warped Fence Gate",
+        texture: "https://minecraft.wiki/images/thumb/Warped_Fence_Gate_JE1_BE1.png/60px-Warped_Fence_Gate_JE1_BE1.png?a8741"
+    },
+    "minecraft:warped_fungus": {
+        name: "Warped Fungus",
+        texture: "@java/block/warped_fungus.png"
+    },
+    "minecraft:warped_hanging_sign": {
+        name: "Warped Hanging Sign",
+        texture: "@java/item/warped_hanging_sign.png"
+    },
+    "minecraft:warped_hyphae": {
+        name: "Warped Hyphae",
+        texture: "https://minecraft.wiki/images/thumb/Warped_Hyphae_%28UD%29_JE1_BE1.png/60px-Warped_Hyphae_%28UD%29_JE1_BE1.png?10c5d"
+    },
+    "minecraft:warped_nylium": {
+        name: "Warped Nylium",
+        texture: "https://minecraft.wiki/images/thumb/Warped_Nylium_JE1_BE1.png/60px-Warped_Nylium_JE1_BE1.png?50e47"
+    },
+    "minecraft:warped_planks": {
+        name: "Warped Planks",
+        texture: "https://minecraft.wiki/images/thumb/Warped_Planks_JE1_BE1.png/60px-Warped_Planks_JE1_BE1.png?9ea67"
+    },
+    "minecraft:warped_pressure_plate": {
+        name: "Warped Pressure Plate",
+        texture: "https://minecraft.wiki/images/thumb/Warped_Pressure_Plate_JE1_BE1.png/60px-Warped_Pressure_Plate_JE1_BE1.png?f5776"
+    },
+    "minecraft:warped_roots": {
+        name: "Warped Roots",
+        texture: "@java/block/warped_roots.png"
+    },
+    "minecraft:warped_shelf": {
+        name: "Warped Shelf",
+        texture: "https://minecraft.wiki/images/thumb/Warped_Shelf_JE1_BE2.png/60px-Warped_Shelf_JE1_BE2.png?aee19"
+    },
+    "minecraft:warped_sign": {
+        name: "Warped Sign",
+        texture: "@java/item/warped_sign.png"
+    },
+    "minecraft:warped_slab": {
+        name: "Warped Slab",
+        texture: "https://minecraft.wiki/images/thumb/Warped_Slab_JE1_BE1.png/60px-Warped_Slab_JE1_BE1.png?19e92"
+    },
+    "minecraft:warped_stairs": {
+        name: "Warped Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Warped_Stairs_%28N%29_JE1_BE1.png/60px-Warped_Stairs_%28N%29_JE1_BE1.png?cea9f"
+    },
+    "minecraft:warped_stem": {
+        name: "Warped Stem",
+        texture: "https://minecraft.wiki/images/thumb/Warped_Stem_%28UD%29_JE2_BE1.png/60px-Warped_Stem_%28UD%29_JE2_BE1.png?41943"
+    },
+    "minecraft:warped_trapdoor": {
+        name: "Warped Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Warped_Trapdoor_JE1_BE1.png/60px-Warped_Trapdoor_JE1_BE1.png?57ba7"
+    },
+    "minecraft:warped_wart_block": {
+        name: "Warped Wart Block",
+        texture: "https://minecraft.wiki/images/thumb/Warped_Wart_Block_JE1_BE1.png/60px-Warped_Wart_Block_JE1_BE1.png?aff14"
+    },
+    "minecraft:water": {
+        name: "Water",
+        texture: "https://minecraft.wiki/images/Water_BE_%28animated%29.png?6589f",
+        filter: "bedrock"
     },
     
     

@@ -5932,6 +5932,122 @@ const itemDefinitions = {
         name: "Wet Sponge",
         texture: "https://minecraft.wiki/images/thumb/Wet_Sponge_JE2_BE2.png/60px-Wet_Sponge_JE2_BE2.png?ed533"
     },
+    "minecraft:white_banner": {
+        name: " Banner",
+        texture: "https://minecraft.wiki/images/thumb/White_Banner_JE2_BE2.gif/30px-White_Banner_JE2_BE2.gif?2287d"
+    },
+    "minecraft:white_bed": {
+        name: "White Bed",
+        texture: "https://minecraft.wiki/images/thumb/White_Bed_%28N%29.png/60px-White_Bed_%28N%29.png?4df42"
+    },
+    "minecraft:white_candle": {
+        name: "White Candle",
+        texture: "@java/item/white_candle.png"
+    },
+    "minecraft:white_carpet": {
+        name: "White Carpet",
+        texture: "https://minecraft.wiki/images/thumb/White_Carpet_JE2_BE2.png/60px-White_Carpet_JE2_BE2.png?ec488"
+    },
+    "minecraft:white_concrete": {
+        name: "White Concrete",
+        texture: "https://minecraft.wiki/images/thumb/White_Concrete.png/60px-White_Concrete.png?ba07f"
+    },
+    "minecraft:white_concrete_powder": {
+        name: "White Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/White_Concrete_Powder.png/60px-White_Concrete_Powder.png?3cb83"
+    },
+    "minecraft:white_glazed_terracotta": {
+        name: "White Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/White_Glazed_Terracotta_%28S%29_JE2_BE2.png/60px-White_Glazed_Terracotta_%28S%29_JE2_BE2.png?5aaa5"
+    },
+    "minecraft:white_shulker_box": {
+        name: "White Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/White_Shulker_Box_JE2_BE2.png/60px-White_Shulker_Box_JE2_BE2.png?bd6dd"
+    },
+    "minecraft:white_stained_glass": {
+        name: "White Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/White_Stained_Glass_JE3_BE3.png/60px-White_Stained_Glass_JE3_BE3.png?097af"
+    },
+    "minecraft:white_stained_glass_pane": {
+        name: "White Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/White_Stained_Glass_Pane_%28EW%29_JE9.png/60px-White_Stained_Glass_Pane_%28EW%29_JE9.png?148e1"
+    },
+    "minecraft:white_terracotta": {
+        name: "White Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/White_Terracotta_JE1_BE1.png/60px-White_Terracotta_JE1_BE1.png?a6300"
+    },
+    "minecraft:white_wool": {
+        name: "White Wool",
+        texture: "https://minecraft.wiki/images/thumb/White_Wool_JE2_BE2.png/60px-White_Wool_JE2_BE2.png?2bcdc"
+    },
+    "minecraft:white_tulip": {
+        name: "White Tulip",
+        texture: "@java/block/white_tulip.png"
+    },
+    "minecraft:wildflowers": {
+        name: "Wildflowers",
+        texture: "@java/block/wildflowers.png"
+    },
+    "minecraft:wither_rose": {
+        name: "Wither Rose",
+        texture: "@java/block/wither_rose.png"
+    },
+    "minecraft:wither_skeleton_skull": {
+        name: "Wither Skeleton Skull",
+        texture: "https://minecraft.wiki/images/thumb/Wither_Skeleton_Skull_%28S%29_JE2.png/60px-Wither_Skeleton_Skull_%28S%29_JE2.png?0a739"
+    },
+    "minecraft:yellow_banner": {
+        name: "Yellow Banner",
+        texture: "https://minecraft.wiki/images/thumb/Yellow_Banner_JE2_BE2.gif/30px-Yellow_Banner_JE2_BE2.gif?1a729"
+    },
+    "minecraft:yellow_bed": {
+        name: "Yellow Bed",
+        texture: "https://minecraft.wiki/images/thumb/Yellow_Bed.png/60px-Yellow_Bed.png?bbf7c"
+    },
+    "minecraft:yellow_candle": {
+        name: "Yellow Candle",
+        texture: "@java/item/yellow_candle.png"
+    },
+    "minecraft:yellow_carpet": {
+        name: "Yellow Carpet",
+        texture: "https://minecraft.wiki/images/thumb/Yellow_Carpet_JE2_BE2.png/60px-Yellow_Carpet_JE2_BE2.png?f4717"
+    },
+    "minecraft:yellow_concrete": {
+        name: "Yellow Concrete",
+        texture: "https://minecraft.wiki/images/thumb/Yellow_Concrete.png/60px-Yellow_Concrete.png?1bdd0"
+    },
+    "minecraft:yellow_concrete_powder": {
+        name: "Yellow Concrete Powder",
+        texture: "https://minecraft.wiki/images/thumb/Yellow_Concrete_Powder.png/60px-Yellow_Concrete_Powder.png?68720"
+    },
+    "minecraft:yellow_glazed_terracotta": {
+        name: "Yellow Glazed Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Yellow_Glazed_Terracotta_%28S%29_JE1_BE1.png/60px-Yellow_Glazed_Terracotta_%28S%29_JE1_BE1.png?03e29"
+    },
+    "minecraft:yellow_shulker_box": {
+        name: "Yellow Shulker Box",
+        texture: "https://minecraft.wiki/images/thumb/Yellow_Shulker_Box_JE2_BE2.png/60px-Yellow_Shulker_Box_JE2_BE2.png?91dbb"
+    },
+    "minecraft:yellow_stained_glass": {
+        name: "Yellow Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Yellow_Stained_Glass_JE3_BE3.png/60px-Yellow_Stained_Glass_JE3_BE3.png?8436c"
+    },
+    "minecraft:yellow_stained_glass_pane": {
+        name: "Yellow Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Yellow_Stained_Glass_Pane_%28EW%29_JE9.png/60px-Yellow_Stained_Glass_Pane_%28EW%29_JE9.png?ab959"
+    },
+    "minecraft:yellow_terracotta": {
+        name: "Yellow Terracotta",
+        texture: "https://minecraft.wiki/images/thumb/Yellow_Terracotta_JE1_BE1.png/60px-Yellow_Terracotta_JE1_BE1.png?9e78e"
+    },
+    "minecraft:yellow_wool": {
+        name: "Yellow Wool",
+        texture: "https://minecraft.wiki/images/thumb/Yellow_Wool_JE3_BE3.png/60px-Yellow_Wool_JE3_BE3.png?35702"
+    },
+    "minecraft:zombie_head": {
+        name: "Zombie Head",
+        texture: "https://minecraft.wiki/images/thumb/Zombie_Head_%28S%29_JE2.png/60px-Zombie_Head_%28S%29_JE2.png?af5c1"
+    },
     
     
     

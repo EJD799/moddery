@@ -1928,12 +1928,12 @@ const itemDefinitions = {
     },
     "minecraft:agent_spawn_egg": {
         name: "Agent Spawn Egg",
-        texture: "/moddery/custom_textures/agent_spawn_egg.png",
+        texture: "https://minecraft.wiki/images/ItemSprite_agent-spawn-egg.png?ea2ef",
         filter: "bedrock"
     },
     "minecraft:npc_spawn_egg": {
         name: "NPC Spawn Egg",
-        texture: "/moddery/custom_textures/npc_spawn_egg.png",
+        texture: "https://minecraft.wiki/images/ItemSprite_npc-spawn-egg.png?a70a1",
         filter: "bedrock"
     },
 
@@ -6048,6 +6048,7 @@ const itemDefinitions = {
         name: "Zombie Head",
         texture: "https://minecraft.wiki/images/thumb/Zombie_Head_%28S%29_JE2.png/60px-Zombie_Head_%28S%29_JE2.png?af5c1"
     },
+    
     
     
     

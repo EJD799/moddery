@@ -5533,6 +5533,18 @@ const itemDefinitions = {
         name: "Twisting Vines",
         texture: "@java/block/twisting_vines.png"
     },
+    "minecraft:vault": {
+        name: "Vault",
+        texture: "https://minecraft.wiki/images/thumb/Vault_JE6_BE5.png/60px-Vault_JE6_BE5.png?3c766"
+    },
+    "minecraft:verdant_froglight": {
+        name: "Verdant Froglight",
+        texture: "https://minecraft.wiki/images/thumb/Verdant_Froglight_%28UD%29_JE1.png/60px-Verdant_Froglight_%28UD%29_JE1.png?2f5b5"
+    },
+    "minecraft:vines": {
+        name: "Vines",
+        texture: "@java/block/vines.png"
+    },
     
     
     

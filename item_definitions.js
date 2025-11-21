@@ -6051,99 +6051,239 @@ const itemDefinitions = {
 
     "minecraft:antidote": {
         name: "Antidote",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_antidote.png?45f81",
         filter: "bedrock"
     },
     "minecraft:black_balloon": {
         name: "Black Balloon",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_black-balloon.png?21e5c",
         filter: "bedrock"
     },
     "minecraft:bleach": {
         name: "Bleach",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_bleach.png?eca9c",
         filter: "bedrock"
     },
     "minecraft:blue_balloon": {
         name: "Blue Balloon",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_blue-balloon.png?6d3c8",
         filter: "bedrock"
     },
     "minecraft:blue_glow_stick": {
         name: "Blue Glow Stick",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_blue-glow-stick.png?5d13b",
         filter: "bedrock"
     },
     "minecraft:blue_sparkler": {
         name: "Blue Sparkler",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_blue-sparkler.png?55650",
         filter: "bedrock"
     },
     "minecraft:board": {
         name: "Board",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_board.png?9bd74",
         filter: "bedrock"
     },
     "minecraft:brown_balloon": {
         name: "Brown Balloon",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_brown-balloon.png?c421d",
         filter: "bedrock",
         data: true
     },
     "minecraft:brown_glow_stick": {
         name: "Brown Glow Stick",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_brown-glow-stick.png?ec414",
         filter: "bedrock"
     },
     "minecraft:camera": {
         name: "Camera",
-        texture: "",
+        texture: "https://minecraft.wiki/images/EntitySprite_camera.png?561fd",
         filter: "bedrock"
     },
     "minecraft:compound": {
         name: "Compound",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_compound.png?109fd",
         filter: "bedrock",
         data: true
     },
     "minecraft:cyan_balloon": {
         name: "Cyan Ballooon",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_cyan-balloon.png?4d850",
         filter: "bedrock"
     },
     "minecraft:cyan_glow_stick": {
         name: "Cyan Glow Stick",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_cyan-glow-stick.png?5aea7",
         filter: "bedrock"
     },
     "minecraft:elixir": {
         name: "Elixir",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_elixir.png?a1eda",
         filter: "bedrock"
     },
     "minecraft:eye_drops": {
         name: "Eye Drops",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_eye-drops.png?0012c",
         filter: "bedrock"
     },
     "minecraft:gray_balloon": {
         name: "Gray Balloon",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_gray-balloon.png?d3bc6",
         filter: "bedrock"
     },
     "minecraft:gray_glow_stick": {
         name: "Gray Glow Stick",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_gray-glow-stick.png?18d65",
         filter: "bedrock"
     },
     "minecraft:green_balloon": {
         name: "Green Balloon",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_green-balloon.png?de837",
         filter: "bedrock"
     },
     "minecraft:green_glow_stick": {
         name: "Green Glow Stick",
-        texture: "",
+        texture: "https://minecraft.wiki/images/ItemSprite_green-glow-stick.png?f0355",
+        filter: "bedrock"
+    },
+    "minecraft:green_sparkler": {
+        name: "Green Sparkler",
+        texture: "https://minecraft.wiki/images/ItemSprite_green-sparkler.png?d6104",
+        filter: "bedrock"
+    },
+    "minecraft:ice_bomb": {
+        name: "Ice Bomb",
+        texture: "https://minecraft.wiki/images/ItemSprite_ice-bomb.png?e6930",
+        filter: "bedrock"
+    },
+    "minecraft:light_blue_balloon": {
+        name: "Light Blue Balloon",
+        texture: "https://minecraft.wiki/images/ItemSprite_light-blue-balloon.png?163ce",
+        filter: "bedrock"
+    },
+    "minecraft:light_blue_glow_stick": {
+        name: "Light Blue Glow Stick",
+        texture: "https://minecraft.wiki/images/ItemSprite_light-blue-glow-stick.png?81e1b",
+        filter: "bedrock"
+    },
+    "minecraft:lime_balloon": {
+        name: "Lime Balloon",
+        texture: "https://minecraft.wiki/images/ItemSprite_lime-balloon.png?62cae",
+        filter: "bedrock"
+    },
+    "minecraft:lime_glow_stick": {
+        name: "Lime Glow Stick",
+        texture: "https://minecraft.wiki/images/ItemSprite_lime-glow-stick.png?57213",
+        filter: "bedrock"
+    },
+    "minecraft:magenta_balloon": {
+        name: "Magenta Balloon",
+        texture: "https://minecraft.wiki/images/ItemSprite_magenta-balloon.png?6d836",
+        filter: "bedrock"
+    },
+    "minecraft:magenta_glow_stick": {
+        name: "Magenta Glow Stick",
+        texture: "https://minecraft.wiki/images/ItemSprite_magenta-glow-stick.png?1e417",
+        filter: "bedrock"
+    },
+    "minecraft:orange_balloon": {
+        name: "Orange Balloon",
+        texture: "https://minecraft.wiki/images/ItemSprite_orange-balloon.png?cdba1",
+        filter: "bedrock"
+    },
+    "minecraft:orange_glow_stick": {
+        name: "Orange Glow Stick",
+        texture: "https://minecraft.wiki/images/ItemSprite_orange-glow-stick.png?2cf26",
+        filter: "bedrock"
+    },
+    "minecraft:orange_sparkler": {
+        name: "Orange Sparkler",
+        texture: "https://minecraft.wiki/images/ItemSprite_all-sparklers.png?cd15e",
+        filter: "bedrock"
+    },
+    "minecraft:photo": {
+        name: "Photo",
+        texture: "https://minecraft.wiki/images/ItemSprite_photo.png?cb36f",
+        filter: "bedrock"
+    },
+    "minecraft:pink_balloon": {
+        name: "Pink Balloon",
+        texture: "https://minecraft.wiki/images/ItemSprite_pink-balloon.png?57675",
+        filter: "bedrock"
+    },
+    "minecraft:pink_glow_stick": {
+        name: "Pink Glow Stick",
+        texture: "https://minecraft.wiki/images/ItemSprite_pink-glow-stick.png?c4814",
+        filter: "bedrock"
+    },
+    "minecraft:portfolio": {
+        name: "Portfolio",
+        texture: "https://minecraft.wiki/images/ItemSprite_portfolio.png?76595",
+        filter: "bedrock"
+    },
+    "minecraft:purple_balloon": {
+        name: "Purple Balloon",
+        texture: "https://minecraft.wiki/images/ItemSprite_purple-balloon.png?c2292",
+        filter: "bedrock"
+    },
+    "minecraft:purple_glow_stick": {
+        name: "Purple Glow Stick",
+        texture: "https://minecraft.wiki/images/ItemSprite_purple-glow-stick.png?e4d0c",
+        filter: "bedrock"
+    },
+    "minecraft:purple_sparkler": {
+        name: "Purple Sparkler",
+        texture: "https://minecraft.wiki/images/ItemSprite_purple-sparkler.png?84c91",
+        filter: "bedrock"
+    },
+    "minecraft:red_balloon": {
+        name: "Red Balloon",
+        texture: "https://minecraft.wiki/images/ItemSprite_red-balloon.png?43048",
+        filter: "bedrock"
+    },
+    "minecraft:red_glow_stick": {
+        name: "Red Glow Stick",
+        texture: "https://minecraft.wiki/images/ItemSprite_red-glow-stick.png?1d597",
+        filter: "bedrock"
+    },
+    "minecraft:red_sparkler": {
+        name: "Red Sparkler",
+        texture: "https://minecraft.wiki/images/ItemSprite_red-sparkler.png?dc7bb",
+        filter: "bedrock"
+    },
+    "minecraft:silver_balloon": {
+        name: "Silver Balloon",
+        texture: "https://minecraft.wiki/images/ItemSprite_light-gray-balloon.png?6f4ec",
+        filter: "bedrock"
+    },
+    "minecraft:super_fertilizer": {
+        name: "Super Fertilizer",
+        texture: "https://minecraft.wiki/images/ItemSprite_super-fertilizer.png?5cb29",
+        filter: "bedrock"
+    },
+    "minecraft:tonic": {
+        name: "Tonic",
+        texture: "https://minecraft.wiki/images/ItemSprite_tonic.png?651f3",
+        filter: "bedrock"
+    },
+    "minecraft:white_balloon": {
+        name: "White Balloon",
+        texture: "https://minecraft.wiki/images/ItemSprite_white-balloon.png?69c2d",
+        filter: "bedrock"
+    },
+    "minecraft:white_glow_stick": {
+        name: "White Glow Stick",
+        texture: "https://minecraft.wiki/images/ItemSprite_all-glow-sticks.png?1df2e",
+        filter: "bedrock"
+    },
+    "minecraft:yellow_balloon": {
+        name: "Yellow Balloon",
+        texture: "https://minecraft.wiki/images/ItemSprite_yellow-balloon.png?58394",
+        filter: "bedrock"
+    },
+    "minecraft:yellow_glow_stick": {
+        name: "Yellow Glow Stick",
+        texture: "https://minecraft.wiki/images/ItemSprite_yellow-glow-stick.png?db27a",
         filter: "bedrock"
     },
     

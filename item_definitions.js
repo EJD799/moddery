@@ -6048,17 +6048,107 @@ const itemDefinitions = {
         name: "Zombie Head",
         texture: "https://minecraft.wiki/images/thumb/Zombie_Head_%28S%29_JE2.png/60px-Zombie_Head_%28S%29_JE2.png?af5c1"
     },
+
+    "minecraft:antidote": {
+        name: "Antidote",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:black_balloon": {
+        name: "Black Balloon",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:bleach": {
+        name: "Bleach",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:blue_balloon": {
+        name: "Blue Balloon",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:blue_glow_stick": {
+        name: "Blue Glow Stick",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:blue_sparkler": {
+        name: "Blue Sparkler",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:board": {
+        name: "Board",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:brown_balloon": {
+        name: "Brown Balloon",
+        texture: "",
+        filter: "bedrock",
+        data: true
+    },
+    "minecraft:brown_glow_stick": {
+        name: "Brown Glow Stick",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:camera": {
+        name: "Camera",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:compound": {
+        name: "Compound",
+        texture: "",
+        filter: "bedrock",
+        data: true
+    },
+    "minecraft:cyan_balloon": {
+        name: "Cyan Ballooon",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:cyan_glow_stick": {
+        name: "Cyan Glow Stick",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:elixir": {
+        name: "Elixir",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:eye_drops": {
+        name: "Eye Drops",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:gray_balloon": {
+        name: "Gray Balloon",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:gray_glow_stick": {
+        name: "Gray Glow Stick",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:green_balloon": {
+        name: "Green Balloon",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:green_glow_stick": {
+        name: "Green Glow Stick",
+        texture: "",
+        filter: "bedrock"
+    },
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
 
     /*
     "minecraft:": {
@@ -6066,75 +6156,10 @@ const itemDefinitions = {
         texture: ""
     },
 
-    "minecraft:stripped__log": {
-        name: "Stripped  Log",
-        texture: ""
-    },
-    "minecraft:stripped__wood": {
-        name: "Stripped  Wood",
-        texture: ""
-    },
-
-    "minecraft:_banner": {
-        name: " Banner",
-        texture: ""
-    },
-    "minecraft:_bed": {
-        name: " Bed",
-        texture: ""
-    },
-    "minecraft:_candle": {
-        name: " Candle",
-        texture: ""
-    },
-    "minecraft:_carpet": {
-        name: " Carpet",
-        texture: ""
-    },
-    "minecraft:_concrete": {
-        name: " Concrete",
-        texture: ""
-    },
-    "minecraft:_concrete_powder": {
-        name: " Concrete Powder",
-        texture: ""
-    },
-    "minecraft:_glazed_terracotta": {
-        name: " Glazed Terracotta",
-        texture: ""
-    },
-    "minecraft:_shulker_box": {
-        name: " Shulker Box",
-        texture: ""
-    },
-    "minecraft:_stained_glass": {
-        name: " Stained Glass",
-        texture: ""
-    },
-    "minecraft:_stained_glass_pane": {
-        name: " Stained Glass Pane",
-        texture: ""
-    },
-    "minecraft:_terracotta": {
-        name: " Terracotta",
-        texture: ""
-    },
-    "minecraft:_wool": {
-        name: " Wool",
-        texture: ""
-    },
-
-    "minecraft:polished_": {
-        name: "Polished ",
-        texture: ""
-    },
-    "minecraft:polished__slab": {
-        name: "Polished  Slab",
-        texture: ""
-    },
-    "minecraft:polished__stairs": {
-        name: "Polished  Stairs",
-        texture: ""
+    "minecraft:": {
+        name: "",
+        texture: "",
+        filter: "bedrock"
     },
     */
 };

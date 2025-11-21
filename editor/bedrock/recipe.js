@@ -31,6 +31,19 @@ const actionItems = {
     }
 };
 
+let customItems = {};
+let customItemList = window.parent.getCustomItems();
+for (let i = 0; i < customItemList.length; i++) {
+    let item = customItemList[i];
+    projZip.folder("assets").file(item.texture).async("blob").then(async function (data) {
+        let texture = await fileToDataURL(data);
+        customItems[item.id] = {
+            name: item.displayName,
+            texture: makeIsometricCube(texture, texture, texture)
+        }
+    });
+}
+
 const javaItemCDN = "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures";
 
 let selectedItemId = null;
@@ -83,6 +96,7 @@ function renderVisibleItems() {
 
     const allItems = [
         ...Object.entries(actionItems).map(([id, data]) => ({ id, ...data })),
+        ...Object.entries(customItems).map(([id, data]) => ({ id, ...data })),
         ...filteredItems.map(([id, data]) => ({ id, ...data }))
     ];
 

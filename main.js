@@ -517,7 +517,7 @@ function getCustomItems(mode) {
     projZip.folder("elements").file(elementsList[i]).async("string").then(async function (data) {
       let elementObj = JSON.parse(data);
       if ((elementObj.type == "Item" && mode != "Block") || (elementObj.type == "Block" && mode != "Item")) {
-        itemsList.push(elementsList[i]);
+        itemsList.push(elementObj);
       }
     });
   }

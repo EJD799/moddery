@@ -1,5 +1,5 @@
 var elementData = {};
-var currentGrid = ["", "", "", "", "", "", "", "", "", ""];
+var currentGrid = [["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0]];
 var currentSlot = 0;
 
 function addItemToBeginning(obj, key, value) {
@@ -42,6 +42,8 @@ const rowHeight = btnSize;
 function openItemPickerDialog() {
     selectedItemId = null;
     $("#itemPickerSelectBtn").prop("disabled", true);
+    $("#itemDataBox").val("0");
+    $("#itemDataBox").hide();
 
     filteredItems = filterItems("");
 
@@ -130,6 +132,12 @@ $("#itemPickerScroller").on("click", ".itemPickBtn", function () {
     $(this).addClass("selected");
 
     selectedItemId = $(this).data("id");
+    if (itemDefinitions[selectedItemId].data) {
+        $("#itemDataBox").show();
+    } else {
+        $("#itemDataBox").hide();
+        $("#itemDataBox").val("0");
+    }
     $("#itemPickerSelectBtn").button("option", "disabled", false);
 });
 
@@ -181,7 +189,7 @@ function setItem(value) {
     } else {
         itemID = value;
     }
-    currentGrid[currentSlot - 1] = itemID;
+    currentGrid[currentSlot - 1] = [itemID, Number($("#itemDataBox").val())];
     renderSlot(currentSlot, itemID, value);
     currentSlot = 0;
 }
@@ -221,7 +229,7 @@ function saveProject() {
         type: "Recipe",
         recipeType: $("#recipeTypeMenu").val(),
         outputQuantity: $("#outputQuantityBox").val(),
-        craftingGrid: saveGrid()
+        craftingGrid: currentGrid
     };
 }
 function loadProject(data) {
@@ -234,11 +242,8 @@ function loadProject(data) {
     loadGrid(data.craftingGrid);
 }
 
-function saveGrid() {
-
-}
 function loadGrid(data) {
-
+    currentGrid = data;
 }
 function changeGridType(type) {
     if (type == "crafting" || type == "crafting_shapeless") {

@@ -245,7 +245,9 @@ function loadProject(data) {
 }
 
 function loadGrid(data) {
-    currentGrid = data;
+    if (data) {
+        currentGrid = data;
+    }
     for (let i = 0; i < 10; i++) {
         if (currentGrid[i][0] == "") {
             renderSlot(i + 1, "", "special_remove");

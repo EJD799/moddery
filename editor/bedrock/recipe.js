@@ -209,6 +209,8 @@ function renderSlot(slot, value, original) {
         slotBtn.setAttribute("title", "");
     } else if ((original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) || (itemDefinitions["minecraft:" + value]?.name ?? false)) {
         slotBtn.setAttribute("title", itemDefinitions["minecraft:" + value].name);
+    } else if ((itemDefinitions[value]?.name ?? false)) {
+        slotBtn.setAttribute("title", itemDefinitions[value].name);
     } else {
         slotBtn.setAttribute("title", value);
     }

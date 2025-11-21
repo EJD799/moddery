@@ -204,6 +204,22 @@ function renderSlot(slot, value, original) {
     } else {
         slotImage.setAttribute("src", replaceShortURLs(itemDefinitions[value].texture));
     }
+    let slotBtn = document.getElementById("recipeBtn" + slot);
+    if (original == "special_remove") {
+        slotBtn.setAttribute("title", "");
+    } else if (original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) {
+        slotBtn.setAttribute("title", itemDefinitions["minecraft:" + value].name);
+    } else {
+        slotBtn.setAttribute("title", value);
+    }
+    $("#recipeBtn" + slot).tooltip({
+        content: function() {
+            return $(this).attr("title");
+        },
+        show: { effect: "fadeIn", duration: 200, delay: 0 },
+        hide: { effect: "fadeOut", duration: 200, delay: 0 },
+        track: true
+    });
 }
 function selectItem(slot) {
     openItemPickerDialog();

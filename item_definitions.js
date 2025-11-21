@@ -6082,13 +6082,13 @@ const itemDefinitions = {
     "minecraft:board": {
         name: "Board",
         texture: "https://minecraft.wiki/images/ItemSprite_board.png?9bd74",
-        filter: "bedrock"
+        filter: "bedrock",
+        data: true
     },
     "minecraft:brown_balloon": {
         name: "Brown Balloon",
         texture: "https://minecraft.wiki/images/ItemSprite_brown-balloon.png?c421d",
-        filter: "bedrock",
-        data: true
+        filter: "bedrock"
     },
     "minecraft:brown_glow_stick": {
         name: "Brown Glow Stick",

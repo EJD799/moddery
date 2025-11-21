@@ -6307,7 +6307,7 @@ const itemDefinitions = {
     },
     "minecraft:blue_torch": {
         name: "Blue Torch",
-        texture: "https://minecraft.wiki/images/thumb/Blue_Torch_BE1.png/60px-Blue_Torch_BE1.png?d14fc",
+        texture: "https://minecraft.wiki/images/BlockSprite_blue-torch.png?590e9",
         filter: "bedrock"
     },
     "minecraft:border": {
@@ -6332,7 +6332,7 @@ const itemDefinitions = {
     },
     "minecraft:green_torch": {
         name: "Green Torch",
-        texture: "https://minecraft.wiki/images/thumb/Green_Torch_BE1.png/60px-Green_Torch_BE1.png?d4ec2",
+        texture: "https://minecraft.wiki/images/Invicon_Green_Torch.png?f0a79",
         filter: "bedrock"
     },
     "minecraft:hardened_black_stained_glass": {
@@ -6425,6 +6425,122 @@ const itemDefinitions = {
         texture: "https://minecraft.wiki/images/thumb/Hardened_Light_Gray_Stained_Glass_Pane_BE1.png/60px-Hardened_Light_Gray_Stained_Glass_Pane_BE1.png?3fef5",
         filter: "bedrock"
     },
+    "minecraft:hardened_lime_stained_glass": {
+        name: "Hardened Lime Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Lime_Stained_Glass_BE1.png/60px-Hardened_Lime_Stained_Glass_BE1.png?c62d6",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_lime_stained_glass_pane": {
+        name: "Hardened Lime Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Lime_Stained_Glass_Pane_BE1.png/60px-Hardened_Lime_Stained_Glass_Pane_BE1.png?e109f",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_magenta_stained_glass": {
+        name: "Hardened Magenta Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Magenta_Stained_Glass_BE1.png/60px-Hardened_Magenta_Stained_Glass_BE1.png?e57a5",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_magenta_stained_glass_pane": {
+        name: "Hardened Magenta Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Magenta_Stained_Glass_Pane_BE1.png/60px-Hardened_Magenta_Stained_Glass_Pane_BE1.png?1ba1d",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_orange_stained_glass": {
+        name: "Hardened Orange Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Orange_Stained_Glass_BE1.png/60px-Hardened_Orange_Stained_Glass_BE1.png?a1ef6",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_orange_stained_glass_pane": {
+        name: "Hardened Orange Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Orange_Stained_Glass_Pane_BE1.png/60px-Hardened_Orange_Stained_Glass_Pane_BE1.png?50527",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_pink_stained_glass": {
+        name: "Hardened Pink Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Pink_Stained_Glass_BE1.png/60px-Hardened_Pink_Stained_Glass_BE1.png?89027",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_pink_stained_glass_pane": {
+        name: "Hardened Pink Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Pink_Stained_Glass_Pane_BE1.png/60px-Hardened_Pink_Stained_Glass_Pane_BE1.png?fe830",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_purple_stained_glass": {
+        name: "Hardened Purple Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Purple_Stained_Glass_BE1.png/60px-Hardened_Purple_Stained_Glass_BE1.png?cd1e5",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_purple_stained_glass_pane": {
+        name: "Hardened Purple Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Purple_Stained_Glass_Pane_BE1.png/60px-Hardened_Purple_Stained_Glass_Pane_BE1.png?75980",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_red_stained_glass": {
+        name: "Hardened Red Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Red_Stained_Glass_BE1.png/60px-Hardened_Red_Stained_Glass_BE1.png?d4566",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_red_stained_glass_pane": {
+        name: "Hardened Red Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Red_Stained_Glass_Pane_BE1.png/60px-Hardened_Red_Stained_Glass_Pane_BE1.png?2c58a",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_white_stained_glass": {
+        name: "Hardened White Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_White_Stained_Glass_BE1.png/60px-Hardened_White_Stained_Glass_BE1.png?bb140",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_white_stained_glass_pane": {
+        name: "Hardened White Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_White_Stained_Glass_Pane_BE1.png/60px-Hardened_White_Stained_Glass_Pane_BE1.png?bbef4",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_yellow_stained_glass": {
+        name: "Hardened Yellow Stained Glass",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Yellow_Stained_Glass_BE1.png/60px-Hardened_Yellow_Stained_Glass_BE1.png?aa3a2",
+        filter: "bedrock"
+    },
+    "minecraft:hardened_yellow_stained_glass_pane": {
+        name: "Hardened Yellow Stained Glass Pane",
+        texture: "https://minecraft.wiki/images/thumb/Hardened_Yellow_Stained_Glass_Pane_BE1.png/60px-Hardened_Yellow_Stained_Glass_Pane_BE1.png?c8d93",
+        filter: "bedrock"
+    },
+    "minecraft:heat_block": {
+        name: "Heat Block",
+        texture: "https://minecraft.wiki/images/thumb/Heat_Block_BE1.gif/60px-Heat_Block_BE1.gif?6b0bc",
+        filter: "bedrock"
+    },
+    "minecraft:lab_table": {
+        name: "Lab Table",
+        texture: "https://minecraft.wiki/images/thumb/Lab_Table_%28S%29_BE1.png/60px-Lab_Table_%28S%29_BE1.png?b5334",
+        filter: "bedrock"
+    },
+    "minecraft:material_reducer": {
+        name: "Material Reducer",
+        texture: "https://minecraft.wiki/images/thumb/Material_Reducer_%28S%29_BE1.png/60px-Material_Reducer_%28S%29_BE1.png?dc773",
+        filter: "bedrock"
+    },
+    "minecraft:purple_torch": {
+        name: "Purple Torch",
+        texture: "https://minecraft.wiki/images/Invicon_Purple_Torch.png?b612d",
+        filter: "bedrock"
+    },
+    "minecraft:red_torch": {
+        name: "Red Torch",
+        texture: "https://minecraft.wiki/images/Invicon_Red_Torch.png?9a230",
+        filter: "bedrock"
+    },
+    "minecraft:underwater_tnt": {
+        name: "Underwater TNT",
+        texture: "https://minecraft.wiki/images/thumb/Underwater_TNT_BE1.png/60px-Underwater_TNT_BE1.png?8032b",
+        filter: "bedrock"
+    },
+    "minecraft:underwater_torch": {
+        name: "Underwater Torch",
+        texture: "https://minecraft.wiki/images/Invicon_Underwater_Torch.png?0c913",
+        filter: "bedrock"
+    },
+    
     
 
 

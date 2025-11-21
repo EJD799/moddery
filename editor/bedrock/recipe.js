@@ -246,8 +246,12 @@ function loadProject(data) {
 
 function loadGrid(data) {
     currentGrid = data;
-    for (let i = 1; i < 11; i++) {
-        renderSlot(i, currentGrid[i][1], "special_custom");
+    for (let i = 0; i < 10; i++) {
+        if (currentGrid[i][0] == "") {
+            renderSlot(i + 1, "", "special_remove");
+        } else {
+            renderSlot(i + 1, currentGrid[i][0], "special_custom");
+        }
     }
 }
 function changeGridType(type) {

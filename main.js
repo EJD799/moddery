@@ -391,6 +391,8 @@ function getTabContent(role, elementID) {
     return '<iframe src="editor/bedrock/script.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else if (role == "Item") {
     return '<iframe src="editor/bedrock/item.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
+  } else if (role == "Recipe") {
+    return '<iframe src="editor/bedrock/recipe.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else if (role == "Image") {
     return '<iframe src="editor/image.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else {

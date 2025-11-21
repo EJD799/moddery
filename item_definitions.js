@@ -5050,7 +5050,7 @@ const itemDefinitions = {
     },
     "minecraft:sculk_vein": {
         name: "Sculk Vein",
-        texture: "@java/block/sculk_vein.png"
+        texture: "https://minecraft.wiki/images/Invicon_Sculk_Vein.gif?44ee5"
     },
     "minecraft:sea_lantern": {
         name: "Sea Lantern",
@@ -5202,6 +5202,70 @@ const itemDefinitions = {
     "minecraft:spore_blossom": {
         name: "Spore Blossom",
         texture: "https://minecraft.wiki/images/thumb/Spore_Blossom_JE1.png/60px-Spore_Blossom_JE1.png?65c9d"
+    },
+    "minecraft:spruce_button": {
+        name: "Spruce Button",
+        texture: "https://minecraft.wiki/images/thumb/Spruce_Button_JE5.png/60px-Spruce_Button_JE5.png?55a92"
+    },
+    "minecraft:spruce_door": {
+        name: "Spruce Door",
+        texture: "@java/item/spruce_door.png"
+    },
+    "minecraft:spruce_fence": {
+        name: "Spruce Fence",
+        texture: "https://minecraft.wiki/images/thumb/Spruce_Fence_%28EW%29_JE7.png/60px-Spruce_Fence_%28EW%29_JE7.png?b5864"
+    },
+    "minecraft:spruce_fence_gate": {
+        name: "Spruce Fence Gate",
+        texture: "https://minecraft.wiki/images/thumb/Spruce_Fence_Gate_JE4_BE2.png/60px-Spruce_Fence_Gate_JE4_BE2.png?7dbe4"
+    },
+    "minecraft:spruce_hanging_sign": {
+        name: "Spruce Hanging Sign",
+        texture: "@java/item/spruce_hanging_sign.png"
+    },
+    "minecraft:spruce_leaves": {
+        name: "Spruce Leaves",
+        texture: "https://minecraft.wiki/images/thumb/Spruce_Leaves.png/60px-Spruce_Leaves.png?705a3"
+    },
+    "minecraft:spruce_log": {
+        name: "Spruce Log",
+        texture: "https://minecraft.wiki/images/thumb/Spruce_Log_%28UD%29_JE8_BE4.png/60px-Spruce_Log_%28UD%29_JE8_BE4.png?e8bbe"
+    },
+    "minecraft:spruce_planks": {
+        name: "Spruce Planks",
+        texture: "https://minecraft.wiki/images/thumb/Spruce_Planks_JE4_BE2.png/60px-Spruce_Planks_JE4_BE2.png?5270b"
+    },
+    "minecraft:spruce_pressure_plate": {
+        name: "Spruce Pressure Plate",
+        texture: "https://minecraft.wiki/images/thumb/Spruce_Pressure_Plate_JE4_BE2.png/60px-Spruce_Pressure_Plate_JE4_BE2.png?e6a7a"
+    },
+    "minecraft:spruce_sapling": {
+        name: "Spruce Sapling",
+        texture: "@java/block/spruce_sapling.png"
+    },
+    "minecraft:spruce_shelf": {
+        name: "Spruce Shelf",
+        texture: "https://minecraft.wiki/images/thumb/Spruce_Shelf_JE1_BE2.png/60px-Spruce_Shelf_JE1_BE2.png?8ef92"
+    },
+    "minecraft:spruce_sign": {
+        name: "Spruce Sign",
+        texture: "@java/item/spruce_sign.png"
+    },
+    "minecraft:spruce_slab": {
+        name: "Spruce Slab",
+        texture: "https://minecraft.wiki/images/thumb/Spruce_Slab_JE4_BE2.png/60px-Spruce_Slab_JE4_BE2.png?c9730"
+    },
+    "minecraft:spruce_stairs": {
+        name: "Spruce Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Spruce_Stairs_%28N%29_JE5_BE2.png/60px-Spruce_Stairs_%28N%29_JE5_BE2.png?4b665"
+    },
+    "minecraft:spruce_trapdoor": {
+        name: "Spruce Trapdoor",
+        texture: "https://minecraft.wiki/images/thumb/Spruce_Trapdoor_JE2_BE2.png/60px-Spruce_Trapdoor_JE2_BE2.png?f8d5b"
+    },
+    "minecraft:spruce_wood": {
+        name: "Spruce Wood",
+        texture: "https://minecraft.wiki/images/thumb/Spruce_Wood_%28UD%29_JE7_BE2.png/60px-Spruce_Wood_%28UD%29_JE7_BE2.png?87d0b"
     },
     
     

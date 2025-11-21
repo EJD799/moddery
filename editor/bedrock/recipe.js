@@ -236,14 +236,19 @@ function loadProject(data) {
     elementData = data;
     $("#elementIDBox").val(data.name);
     $("#recipeIDBox").val(data.id);
-    $("#recipeTypeMenu").val(data.recipeType);
-    $("#recipeTypeMenu").selectmenu("refresh");
+    if (data.recipeType) {
+        $("#recipeTypeMenu").val(data.recipeType);
+        $("#recipeTypeMenu").selectmenu("refresh");
+    }
     $("#outputQuantityBox").val(data.outputQuantity);
     loadGrid(data.craftingGrid);
 }
 
 function loadGrid(data) {
     currentGrid = data;
+    for (let i = 1; i < 11; i++) {
+        renderSlot(i, currentGrid[i][1], "special_custom");
+    }
 }
 function changeGridType(type) {
     if (type == "crafting" || type == "crafting_shapeless") {

@@ -5618,6 +5618,237 @@ const itemDefinitions = {
         texture: "https://minecraft.wiki/images/Water_BE_%28animated%29.png?6589f",
         filter: "bedrock"
     },
+    "minecraft:waxed_copper_block": {
+        name: "Waxed Block of Copper",
+        texture: "",
+        filter: "java"
+    },
+    "minecraft:waxed_copper": {
+        name: "Waxed Block of Copper",
+        texture: "",
+        filter: "bedrock"
+    },
+    "minecraft:waxed_chiseled_copper": {
+        name: "Waxed Chiseled Copper",
+        texture: ""
+    },
+    "minecraft:waxed_copper_bars": {
+        name: "Waxed Copper Bars",
+        texture: "@java/block/copper_bars.png"
+    },
+    "minecraft:waxed_copper_bulb": {
+        name: "Waxed Copper Bulb",
+        texture: ""
+    },
+    "minecraft:waxed_copper_chain": {
+        name: "Waxed Copper Chain",
+        texture: "@java/item/copper_chain.png"
+    },
+    "minecraft:waxed_copper_chest": {
+        name: "Waxed Copper Chest",
+        texture: ""
+    },
+    "minecraft:waxed_copper_door": {
+        name: "Waxed Copper Door",
+        texture: "@java/item/copper_door.png"
+    },
+    "minecraft:waxed_copper_golem_statue": {
+        name: "Waxed Copper Golem Statue",
+        texture: ""
+    },
+    "minecraft:waxed_copper_grate": {
+        name: "Waxed Copper Grate",
+        texture: ""
+    },
+    "minecraft:waxed_copper_lantern": {
+        name: "Waxed Copper Lantern",
+        texture: "@java/item/copper_lantern.png"
+    },
+    "minecraft:waxed_copper_trapdoor": {
+        name: "Waxed Copper Trapdoor",
+        texture: ""
+    },
+    "minecraft:waxed_cut_copper": {
+        name: "Waxed Cut Copper",
+        texture: ""
+    },
+    "minecraft:waxed_cut_copper_slab": {
+        name: "Waxed Cut Copper Slab",
+        texture: ""
+    },
+    "minecraft:waxed_cut_copper_stairs": {
+        name: "Waxed Cut Copper Stairs",
+        texture: ""
+    },
+    "minecraft:waxed_exposed_copper": {
+        name: "Waxed Exposed Block of Copper",
+        texture: ""
+    },
+    "minecraft:waxed_exposed_chiseled_copper": {
+        name: "Waxed Exposed Chiseled Copper",
+        texture: ""
+    },
+    "minecraft:waxed_exposed_copper_bars": {
+        name: "Waxed Exposed Copper Bars",
+        texture: "@java/block/exposed_copper_bars.png"
+    },
+    "minecraft:waxed_exposed_copper_bulb": {
+        name: "Waxed Exposed Copper Bulb",
+        texture: ""
+    },
+    "minecraft:waxed_exposed_copper_chain": {
+        name: "Waxed Exposed Copper Chain",
+        texture: "@java/item/exposed_copper_chain.png"
+    },
+    "minecraft:waxed_exposed_copper_chest": {
+        name: "Waxed Exposed Copper Chest",
+        texture: ""
+    },
+    "minecraft:waxed_exposed_copper_door": {
+        name: "Waxed Exposed Copper Door",
+        texture: "@java/item/exposed_copper_door.png"
+    },
+    "minecraft:waxed_exposed_copper_golem_statue": {
+        name: "Waxed Exposed Copper Golem Statue",
+        texture: ""
+    },
+    "minecraft:waxed_exposed_copper_grate": {
+        name: "Waxed Exposed Copper Grate",
+        texture: ""
+    },
+    "minecraft:waxed_exposed_copper_lantern": {
+        name: "Waxed Exposed Copper Lantern",
+        texture: "@java/item/exposed_copper_lantern.png"
+    },
+    "minecraft:waxed_exposed_copper_trapdoor": {
+        name: "Waxed Exposed Copper Trapdoor",
+        texture: ""
+    },
+    "minecraft:waxed_exposed_cut_copper": {
+        name: "Waxed Exposed Cut Copper",
+        texture: ""
+    },
+    "minecraft:waxed_exposed_cut_copper_slab": {
+        name: "Waxed Exposed Cut Copper Slab",
+        texture: ""
+    },
+    "minecraft:waxed_exposed_cut_copper_stairs": {
+        name: "Waxed Exposed Cut Copper Stairs",
+        texture: ""
+    },
+    "minecraft:waxed_oxidized_copper": {
+        name: "Waxed Oxidized Block of Copper",
+        texture: ""
+    },
+    "minecraft:waxed_oxidized_chiseled_copper": {
+        name: "Waxed Oxidized Chiseled Copper",
+        texture: ""
+    },
+    "minecraft:waxed_oxidized_copper_bars": {
+        name: "Waxed Oxidized Copper Bars",
+        texture: "@java/block/oxidized_copper_bars.png"
+    },
+    "minecraft:waxed_oxidized_copper_bulb": {
+        name: "Waxed Oxidized Copper Bulb",
+        texture: ""
+    },
+    "minecraft:waxed_oxidized_copper_chain": {
+        name: "Waxed Oxidized Copper Chain",
+        texture: "@java/item/oxidized_copper_chain.png"
+    },
+    "minecraft:waxed_oxidized_copper_chest": {
+        name: "Waxed Oxidized Copper Chest",
+        texture: ""
+    },
+    "minecraft:waxed_oxidized_copper_door": {
+        name: "Waxed Oxidized Copper Door",
+        texture: "@java/item/oxidized_copper_door.png"
+    },
+    "minecraft:waxed_oxidized_copper_golem_statue": {
+        name: "Waxed Oxidized Copper Golem Statue",
+        texture: ""
+    },
+    "minecraft:waxed_oxidized_copper_grate": {
+        name: "Waxed Oxidized Copper Grate",
+        texture: ""
+    },
+    "minecraft:waxed_oxidized_copper_lantern": {
+        name: "Waxed Oxidized Copper Lantern",
+        texture: "@java/item/oxidized_copper_lantern.png"
+    },
+    "minecraft:waxed_oxidized_copper_trapdoor": {
+        name: "Waxed Oxidized Copper Trapdoor",
+        texture: ""
+    },
+    "minecraft:waxed_oxidized_cut_copper": {
+        name: "Waxed Oxidized Cut Copper",
+        texture: ""
+    },
+    "minecraft:waxed_oxidized_cut_copper_slab": {
+        name: "Waxed Oxidized Cut Copper Slab",
+        texture: ""
+    },
+    "minecraft:waxed_oxidized_cut_copper_stairs": {
+        name: "Waxed Oxidized Cut Copper Stairs",
+        texture: ""
+    },
+    "minecraft:waxed_weathered_copper": {
+        name: "Waxed Oxidized Block of Copper",
+        texture: ""
+    },
+    "minecraft:waxed_weathered_chiseled_copper": {
+        name: "Waxed Oxidized Chiseled Copper",
+        texture: ""
+    },
+    "minecraft:waxed_weathered_copper_bars": {
+        name: "Waxed Oxidized Copper Bars",
+        texture: "@java/block/weathered_copper_bars.png"
+    },
+    "minecraft:waxed_weathered_copper_bulb": {
+        name: "Waxed Oxidized Copper Bulb",
+        texture: ""
+    },
+    "minecraft:waxed_weathered_copper_chain": {
+        name: "Waxed Oxidized Copper Chain",
+        texture: "@java/item/weathered_copper_chain.png"
+    },
+    "minecraft:waxed_weathered_copper_chest": {
+        name: "Waxed Oxidized Copper Chest",
+        texture: ""
+    },
+    "minecraft:waxed_weathered_copper_door": {
+        name: "Waxed Oxidized Copper Door",
+        texture: "@java/item/weathered_copper_door.png"
+    },
+    "minecraft:waxed_weathered_copper_golem_statue": {
+        name: "Waxed Oxidized Copper Golem Statue",
+        texture: ""
+    },
+    "minecraft:waxed_weathered_copper_grate": {
+        name: "Waxed Oxidized Copper Grate",
+        texture: ""
+    },
+    "minecraft:waxed_weathered_copper_lantern": {
+        name: "Waxed Oxidized Copper Lantern",
+        texture: "@java/item/weathered_copper_lantern.png"
+    },
+    "minecraft:waxed_weathered_copper_trapdoor": {
+        name: "Waxed Oxidized Copper Trapdoor",
+        texture: ""
+    },
+    "minecraft:waxed_weathered_cut_copper": {
+        name: "Waxed Oxidized Cut Copper",
+        texture: ""
+    },
+    "minecraft:waxed_weathered_cut_copper_slab": {
+        name: "Waxed Oxidized Cut Copper Slab",
+        texture: ""
+    },
+    "minecraft:waxed_weathered_cut_copper_stairs": {
+        name: "Waxed Oxidized Cut Copper Stairs",
+        texture: ""
+    },
+    
     
     
     

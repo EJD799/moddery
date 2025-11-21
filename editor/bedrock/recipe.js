@@ -132,7 +132,7 @@ $("#itemPickerScroller").on("click", ".itemPickBtn", function () {
     $(this).addClass("selected");
 
     selectedItemId = $(this).data("id");
-    if (itemDefinitions[selectedItemId].data) {
+    if (itemDefinitions[selectedItemId].data ?? false) {
         $("#itemDataBox").show();
     } else {
         $("#itemDataBox").hide();
@@ -207,7 +207,7 @@ function renderSlot(slot, value, original) {
     let slotBtn = document.getElementById("recipeBtn" + slot);
     if (original == "special_remove") {
         slotBtn.setAttribute("title", "");
-    } else if (original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) {
+    } else if ((original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) || (itemDefinitions["minecraft:" + value].name ?? false)) {
         slotBtn.setAttribute("title", itemDefinitions["minecraft:" + value].name);
     } else {
         slotBtn.setAttribute("title", value);

@@ -5267,6 +5267,147 @@ const itemDefinitions = {
         name: "Spruce Wood",
         texture: "https://minecraft.wiki/images/thumb/Spruce_Wood_%28UD%29_JE7_BE2.png/60px-Spruce_Wood_%28UD%29_JE7_BE2.png?87d0b"
     },
+    "minecraft:sticky_piston": {
+        name: "Sticky Piston",
+        texture: "https://minecraft.wiki/images/thumb/Sticky_Piston_%28U%29_JE3.png/60px-Sticky_Piston_%28U%29_JE3.png?66d2b"
+    },
+    "minecraft:stone": {
+        name: "Stone",
+        texture: "https://minecraft.wiki/images/thumb/Stone_JE8.png/60px-Stone_JE8.png?b5028"
+    },
+    "minecraft:stone_brick_slab": {
+        name: "Stone Brick Slab",
+        texture: "https://minecraft.wiki/images/thumb/Stone_Brick_Slab_JE3_BE2.png/60px-Stone_Brick_Slab_JE3_BE2.png?a7b7a"
+    },
+    "minecraft:stone_brick_stairs": {
+        name: "Stone Brick Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Stone_Brick_Stairs_%28N%29_JE5_BE2.png/60px-Stone_Brick_Stairs_%28N%29_JE5_BE2.png?b03ba"
+    },
+    "minecraft:stone_brick_wall": {
+        name: "Stone Brick Wall",
+        texture: "https://minecraft.wiki/images/thumb/Stone_Brick_Wall_JE2_BE1.png/60px-Stone_Brick_Wall_JE2_BE1.png?7405b"
+    },
+    "minecraft:stone_bricks": {
+        name: "Stone Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Stone_Bricks_JE3_BE2.png/60px-Stone_Bricks_JE3_BE2.png?4e67a"
+    },
+    "minecraft:stone_button": {
+        name: "Stone Button",
+        texture: "https://minecraft.wiki/images/thumb/Stone_Button_JE6.png/60px-Stone_Button_JE6.png?00686"
+    },
+    "minecraft:stone_pressure_plate": {
+        name: "Stone Pressure Plate",
+        texture: "https://minecraft.wiki/images/thumb/Stone_Pressure_Plate_JE5_BE2.png/60px-Stone_Pressure_Plate_JE5_BE2.png?dd131"
+    },
+    "minecraft:stone_slab": {
+        name: "Stone Slab",
+        texture: "https://minecraft.wiki/images/thumb/Stone_Slab_JE2_BE1.png/60px-Stone_Slab_JE2_BE1.png?088de"
+    },
+    "minecraft:stone_stairs": {
+        name: "Stone Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Stone_Stairs_%28N%29_JE2_BE2.png/60px-Stone_Stairs_%28N%29_JE2_BE2.png?3691c"
+    },
+    "minecraft:stonecutter": {
+        name: "Stonecutter",
+        texture: "https://minecraft.wiki/images/thumb/Stonecutter_JE2_BE1.gif/60px-Stonecutter_JE2_BE1.gif?bb269"
+    },
+    "minecraft:stripped_acacia_log": {
+        name: "Stripped Acacia Log",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Acacia_Log_%28UD%29_JE2_BE2.png/60px-Stripped_Acacia_Log_%28UD%29_JE2_BE2.png?7e999"
+    },
+    "minecraft:stripped_acacia_wood": {
+        name: "Stripped Acacia Wood",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Acacia_Wood_%28UD%29_JE1_BE1.png/60px-Stripped_Acacia_Wood_%28UD%29_JE1_BE1.png?66364"
+    },
+    "minecraft:stripped_birch_log": {
+        name: "Stripped Birch Log",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Birch_Log_%28UD%29_JE2_BE2.png/60px-Stripped_Birch_Log_%28UD%29_JE2_BE2.png?fad23"
+    },
+    "minecraft:stripped_birch_wood": {
+        name: "Stripped Birch Wood",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Birch_Wood_%28UD%29_JE1_BE1.png/60px-Stripped_Birch_Wood_%28UD%29_JE1_BE1.png?5e5c5"
+    },
+    "minecraft:stripped_cherry_log": {
+        name: "Stripped Cherry Log",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Cherry_Log_%28UD%29_JE1_BE1.png/60px-Stripped_Cherry_Log_%28UD%29_JE1_BE1.png?834f9"
+    },
+    "minecraft:stripped_cherry_wood": {
+        name: "Stripped Cherry Wood",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Cherry_Wood_%28UD%29_JE1_BE1.png/60px-Stripped_Cherry_Wood_%28UD%29_JE1_BE1.png?e0839"
+    },
+    "minecraft:stripped_crimson_hyphae": {
+        name: "Stripped Crimson Hyphae",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Crimson_Hyphae_%28UD%29_JE1_BE1.png/60px-Stripped_Crimson_Hyphae_%28UD%29_JE1_BE1.png?853b7"
+    },
+    "minecraft:stripped_crimson_stem": {
+        name: "Stripped Crimson Stem",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Crimson_Stem_%28UD%29_JE2_BE1.png/60px-Stripped_Crimson_Stem_%28UD%29_JE2_BE1.png?f35c5"
+    },
+    "minecraft:stripped_dark_oak_log": {
+        name: "Stripped Dark Oak Log",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Dark_Oak_Log_%28UD%29_JE4_BE4.png/60px-Stripped_Dark_Oak_Log_%28UD%29_JE4_BE4.png?df59e"
+    },
+    "minecraft:stripped_dark_oak_wood": {
+        name: "Stripped Dark Oak Wood",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Dark_Oak_Wood_%28UD%29_JE3_BE2.png/60px-Stripped_Dark_Oak_Wood_%28UD%29_JE3_BE2.png?ab596"
+    },
+    "minecraft:stripped_jungle_log": {
+        name: "Stripped Jungle Log",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Jungle_Log_%28UD%29_JE4_BE3.png/60px-Stripped_Jungle_Log_%28UD%29_JE4_BE3.png?383df"
+    },
+    "minecraft:stripped_jungle_wood": {
+        name: "Stripped Jungle Wood",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Jungle_Wood_%28UD%29_JE1_BE1.png/60px-Stripped_Jungle_Wood_%28UD%29_JE1_BE1.png?9244c"
+    },
+    "minecraft:stripped_mangrove_log": {
+        name: "Stripped Mangrove Log",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Mangrove_Log_%28UD%29_JE1_BE1.png/60px-Stripped_Mangrove_Log_%28UD%29_JE1_BE1.png?29997"
+    },
+    "minecraft:stripped_mangrove_wood": {
+        name: "Stripped Mangrove Wood",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Mangrove_Wood_%28UD%29_JE1_BE1.png/60px-Stripped_Mangrove_Wood_%28UD%29_JE1_BE1.png?ef667"
+    },
+    "minecraft:stripped_oak_log": {
+        name: "Stripped Oak Log",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Oak_Log_%28UD%29_JE2_BE2.png/60px-Stripped_Oak_Log_%28UD%29_JE2_BE2.png?2f50d"
+    },
+    "minecraft:stripped_oak_wood": {
+        name: "Stripped Oak Wood",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Oak_Wood_%28UD%29_JE1_BE1.png/60px-Stripped_Oak_Wood_%28UD%29_JE1_BE1.png?0563f"
+    },
+    "minecraft:stripped_pale_oak_log": {
+        name: "Stripped Pale Oak Log",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Pale_Oak_Log_%28UD%29_JE1_BE2.png/60px-Stripped_Pale_Oak_Log_%28UD%29_JE1_BE2.png?8fa4b"
+    },
+    "minecraft:stripped_pale_oak_wood": {
+        name: "Stripped Pale Oak Wood",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Pale_Oak_Wood_%28UD%29_JE1_BE2.png/60px-Stripped_Pale_Oak_Wood_%28UD%29_JE1_BE2.png?db7b6"
+    },
+    "minecraft:stripped_spruce_log": {
+        name: "Stripped Spruce Log",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Spruce_Log_%28UD%29_JE2.png/60px-Stripped_Spruce_Log_%28UD%29_JE2.png?23699"
+    },
+    "minecraft:stripped_spruce_wood": {
+        name: "Stripped Spruce Wood",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Spruce_Wood_%28UD%29_JE1.png/60px-Stripped_Spruce_Wood_%28UD%29_JE1.png?e7eb4"
+    },
+    "minecraft:stripped_warped_hyphae": {
+        name: "Stripped Warped Hyphae",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Warped_Hyphae_%28UD%29_JE1_BE1.png/60px-Stripped_Warped_Hyphae_%28UD%29_JE1_BE1.png?9abb5"
+    },
+    "minecraft:stripped_warped_stem": {
+        name: "Stripped Warped Stem",
+        texture: "https://minecraft.wiki/images/thumb/Stripped_Warped_Stem_%28UD%29_JE2_BE1.png/60px-Stripped_Warped_Stem_%28UD%29_JE2_BE1.png?3f73f"
+    },
+    "minecraft:structure_block": {
+        name: "Structure Block",
+        texture: "https://minecraft.wiki/images/thumb/Structure_Block_JE2_BE1.png/60px-Structure_Block_JE2_BE1.png?559c6"
+    },
+    "minecraft:structure_void": {
+        name: "Structure Void",
+        texture: "@java/item/structure_void.png"
+    },
+    
     
     
     
@@ -5281,6 +5422,15 @@ const itemDefinitions = {
     /*
     "minecraft:": {
         name: "",
+        texture: ""
+    },
+
+    "minecraft:stripped__log": {
+        name: "Stripped  Log",
+        texture: ""
+    },
+    "minecraft:stripped__wood": {
+        name: "Stripped  Wood",
         texture: ""
     },
 

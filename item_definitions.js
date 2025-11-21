@@ -5924,8 +5924,14 @@ const itemDefinitions = {
         name: "Waxed Oxidized Lightning Rod",
         texture: "https://minecraft.wiki/images/thumb/Oxidized_Lightning_Rod_%28U%29_JE1.png/60px-Oxidized_Lightning_Rod_%28U%29_JE1.png?f7d43"
     },
-    
-    
+    "minecraft:weeping_vines": {
+        name: "Weeping Vines",
+        texture: "@java/block/weeping_vines.png"
+    },
+    "minecraft:wet_sponge": {
+        name: "Wet Sponge",
+        texture: "https://minecraft.wiki/images/thumb/Wet_Sponge_JE2_BE2.png/60px-Wet_Sponge_JE2_BE2.png?ed533"
+    },
     
     
     

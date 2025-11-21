@@ -5493,6 +5493,46 @@ const itemDefinitions = {
         name: "Tube Coral Fan",
         texture: "@java/block/tube_coral_fan.png"
     },
+    "minecraft:tuff": {
+        name: "Tuff",
+        texture: "https://minecraft.wiki/images/thumb/Tuff.png/60px-Tuff.png?cd2f1"
+    },
+    "minecraft:tuff_brick_slab": {
+        name: "Tuff Brick Slab",
+        texture: "https://minecraft.wiki/images/thumb/Tuff_Brick_Slab_JE3_BE3.png/60px-Tuff_Brick_Slab_JE3_BE3.png?a876d"
+    },
+    "minecraft:tuff_brick_stairs": {
+        name: "Tuff Brick Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Tuff_Brick_Stairs_JE3_BE3.png/60px-Tuff_Brick_Stairs_JE3_BE3.png?f511b"
+    },
+    "minecraft:tuff_brick_wall": {
+        name: "Tuff Brick Wall",
+        texture: "https://minecraft.wiki/images/thumb/Tuff_Brick_Wall_JE3_BE3.png/60px-Tuff_Brick_Wall_JE3_BE3.png?e8168"
+    },
+    "minecraft:tuff_bricks": {
+        name: "Tuff Bricks",
+        texture: "https://minecraft.wiki/images/thumb/Tuff_Bricks_JE3_BE3.png/60px-Tuff_Bricks_JE3_BE3.png?92062"
+    },
+    "minecraft:tuff_slab": {
+        name: "Tuff Slab",
+        texture: "https://minecraft.wiki/images/thumb/Tuff_Slab_JE1_BE1.png/60px-Tuff_Slab_JE1_BE1.png?d6c8f"
+    },
+    "minecraft:tuff_stairs": {
+        name: "Tuff Stairs",
+        texture: "https://minecraft.wiki/images/thumb/Tuff_Stairs_JE1_BE1.png/60px-Tuff_Stairs_JE1_BE1.png?24622"
+    },
+    "minecraft:tuff_wall": {
+        name: "Tuff Wall",
+        texture: "https://minecraft.wiki/images/thumb/Tuff_Wall_JE1_BE1.png/60px-Tuff_Wall_JE1_BE1.png?13830"
+    },
+    "minecraft:turtle_egg": {
+        name: "Turtle Egg",
+        texture: "@java/item/turtle_egg.png"
+    },
+    "minecraft:twisting_vines": {
+        name: "Twisting Vines",
+        texture: "@java/block/twisting_vines.png"
+    },
     
     
     

@@ -2503,7 +2503,7 @@ const itemDefinitions = {
     },
     "minecraft:bubble_column": {
         name: "Bubble Column",
-        texture: "/moddery/custom_textures/bubble_column.png",
+        texture: "https://minecraft.wiki/images/Invicon_Bubble_Column.gif?75c87",
         filter: "bedrock"
     },
     "minecraft:bubble_coral": {

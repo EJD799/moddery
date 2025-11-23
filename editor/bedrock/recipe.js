@@ -31,10 +31,9 @@ const actionItems = {
     }
 };
 
+let customItems = {};
+let customItemList = window?.parent?.getCustomItems?.() ?? [];
 (async function() {
-    let customItems = {};
-    let customItemList = window?.parent?.getCustomItems?.() ?? [];
-
     await Promise.all(customItemList.map(async (item) => {
         let blob = await projZip.folder("assets").file(item.texture).async("blob");
         let texture = await fileToDataURL(blob);

@@ -35,8 +35,8 @@ let customItems = {};
 let customItemList = window?.parent?.getCustomItems?.() ?? [];
 (async function() {
     await Promise.all(customItemList.map(async (item) => {
-        let blob = await projZip.folder("assets").file(item.texture).async("blob");
-        let texture = await fileToDataURL(blob);
+        let blob = await window.parent.projZip.folder("assets").file(item.texture).async("blob");
+        let texture = await window.parent.fileToDataURL(blob);
 
         let isoTexture = await makeIsometricCube(texture, texture, texture);
 

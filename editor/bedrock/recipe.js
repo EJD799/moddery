@@ -33,7 +33,7 @@ const actionItems = {
 
 let customItems = {};
 let customItemList = window?.parent?.getCustomItems?.() ?? [];
-(async function() {
+window.onload = async function() {
     await Promise.all(customItemList.map(async (item) => {
         let blob = await window.parent.projZip.folder("assets").file(item.texture).async("blob");
         let texture = await window.parent.fileToDataURL(blob);
@@ -45,7 +45,7 @@ let customItemList = window?.parent?.getCustomItems?.() ?? [];
             texture: isoTexture
         };
     }));
-})();
+};
 
 const javaItemCDN = "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures";
 

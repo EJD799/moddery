@@ -39,9 +39,11 @@ const actionItems = {
         let blob = await projZip.folder("assets").file(item.texture).async("blob");
         let texture = await fileToDataURL(blob);
 
+        let isoTexture = await makeIsometricCube(texture, texture, texture);
+
         customItems[item.id] = {
             name: item.displayName,
-            texture: makeIsometricCube(texture, texture, texture)
+            texture: isoTexture
         };
     }));
 })();

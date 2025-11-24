@@ -223,8 +223,7 @@ function openProj(file) {
           for (let i = 0; i < assetFolderList.length; i++) {
             projZip.folder("assets").file(assetFolderList[i]).async("blob").then(function(file) {
               $("#addAssetNameBox").val(beforeLastDot(assetFolderList[i]));
-              addAssetUploadInput.files[0] = file;
-              addAsset(true);
+              addAsset(true, file);
             });
           }
         } else {
@@ -339,15 +338,17 @@ function createElementDropdown(elementID, type) {
   }
 }
 
-function addElement(ignoreSafeguards) {
-  if (!fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json") || ignoreSafeguards) {
+function addElement(loadingProj) {
+  if (!fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json") || loadingProj) {
     var elementJSON = {
       "name": $("#addElementNameBox").val(),
       "id": $("#addElementIDBox").val(),
       "type": $("#addElementType").val()
     };
     projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
-    addTab($("#addElementType").val(), $("#addElementNameBox").val());
+    if (!loadingProj) {
+      addTab($("#addElementType").val(), $("#addElementNameBox").val());
+    }
     elementCount++;
     var parentDiv = document.getElementById("tabs-1");
     var elementBox = document.createElement("div");
@@ -380,9 +381,14 @@ function fileToDataURL(file) {
   });
 }
 
-async function addAsset(ignoreSafeguards) {
-  if (!fileListInFolder("assets").includes($("#addAssetNameBox").val()) || ignoreSafeguards) {
-    let file = addAssetUploadInput.files[0];
+async function addAsset(loadingProj, fileToLoad) {
+  if (!fileListInFolder("assets").includes($("#addAssetNameBox").val()) || loadingProj) {
+    let file;
+    if (loadingProj) {
+      file = fileToLoad;
+    } else {
+      file = addAssetUploadInput.files[0];
+    }
     let fileType = file.name.split(".")[1];
     let fileName = addAssetNameBox.value;
     let fileNameEncoded = encodeText(fileName);

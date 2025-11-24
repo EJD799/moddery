@@ -184,6 +184,40 @@ function createProject() {
     $("#newProjNamespaceBox").val("");
   }
 }
+
+
+let fileInput = document.getElementById("openFileInput");
+fileInput.addEventListener("change", function(e) {
+  openProj(fileInput.files[0]);
+});
+
+function openProjDlg() {
+  fileInput.click();
+}
+
+function openProj(file) {
+  try {
+    JSZip.loadAsync(file).then(function (zip) {
+      let manifest;
+      zip.file("manifest.json").async("string").then(function(data) {
+        manifest = JSON.parse(data);
+        if (manifest?.type ?? false) {
+          projZip = zip;
+          projManifest = manifest;
+          console.log("Loaded project");
+          document.getElementById("tabs").hidden = false;
+          document.getElementById("welcome").hidden = true;
+        } else {
+          alert("The uploaded file is not a valid Moddery project!");
+        }
+      });
+    });
+  } catch(err) {
+    alert("The uploaded file is not a valid Moddery project!");
+  }
+}
+
+
 function openAddElementDlg() {
   $("#addElementDlg").dialog("open");
 }
@@ -623,30 +657,6 @@ $("#newProjBtn").button();
 $("#openProjBtn").button();
 $("#closeAboutBtn").button();
 document.getElementById("tabs").hidden = true;
-
-let fileInput = document.getElementById("openFileInput");
-fileInput.addEventListener("change", function(e) {
-  openProj(fileInput.files[0]);
-});
-
-function openProjDlg() {
-  fileInput.click();
-}
-
-function openProj(file) {
-  JSZip.loadAsync(file).then(function (zip) {
-    let manifest;
-    zip.file("manifest.json").async("string").then(function(data) {
-      manifest = JSON.parse(data);
-      if (manifest?.type ?? false) {
-        projZip = zip;
-        console.log("Loaded project");
-      } else {
-        alert("The uploaded file is not a valid Moddery project!");
-      }
-    });
-  });
-}
 
 
 

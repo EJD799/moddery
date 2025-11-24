@@ -188,7 +188,11 @@ function createProject() {
 
 let fileInput = document.getElementById("openFileInput");
 fileInput.addEventListener("change", function(e) {
-  openProj(fileInput.files[0]);
+  try {
+    openProj(fileInput.files[0]);
+  } catch(err) {
+    alert("An error occurred during the import process. Is the uploaded file a valid Moddery project?");
+  }
 });
 
 function openProjDlg() {
@@ -196,7 +200,6 @@ function openProjDlg() {
 }
 
 function openProj(file) {
-  try {
     JSZip.loadAsync(file).then(function (zip) {
       let manifest;
       zip.file("manifest.json").async("string").then(function(data) {
@@ -231,9 +234,6 @@ function openProj(file) {
         }
       });
     });
-  } catch(err) {
-    alert("An error occurred during the import process. Is the uploaded file a valid Moddery project?");
-  }
 }
 
 

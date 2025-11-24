@@ -623,9 +623,17 @@ $("#newProjBtn").button();
 $("#closeAboutBtn").button();
 document.getElementById("tabs").hidden = true;
 
-function openProj() {
-  let fileInput = document.getElementById("openFileInput");
+let fileInput = document.getElementById("openFileInput");
+fileInput.addEventListener("change", function(e) {
+  openProj(fileInput.files);
+});
+
+function openProjDlg() {
   fileInput.click();
+}
+
+function openProj(file) {
+  // File handling here
 }
 
 

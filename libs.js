@@ -70,5 +70,5 @@ function beforeLastDot(str) {
 }
 function afterLastDot(str) {
     const i = str.lastIndexOf(".");
-    return i === -1 ? str : str.slice(i, str.length - 1);
+    return i === -1 ? str : str.slice(i + 1, str.length);
 }

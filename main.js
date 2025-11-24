@@ -201,7 +201,7 @@ function openProj(file) {
       let manifest;
       zip.file("manifest.json").async("string").then(function(data) {
         manifest = JSON.parse(data);
-        if (manifest?.type ?? false) {
+        if (manifest?.type != null) {
           projZip = zip;
           projManifest = manifest;
           console.log("Loaded project");

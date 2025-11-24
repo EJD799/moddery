@@ -1212,11 +1212,28 @@ const bedrockScriptToolbox = {
             AT: { shadow: { type: 'math_number' } }
           }
         },
-        { kind: 'block', type: 'text_getSubstring' },
-        { kind: 'block', type: 'text_changeCase' },
-        { kind: 'block', type: 'text_trim' },
-        { kind: 'block', type: 'text_print' },
-        { kind: 'block', type: 'text_prompt_ext' }
+        { kind: 'block', type: 'text_getSubstring',
+          inputs: {
+            STRING: { shadow: { type: 'text' } },
+            AT1: { shadow: { type: 'math_number' } },
+            AT2: { shadow: { type: 'math_number' } }
+          }
+        },
+        { kind: 'block', type: 'text_changeCase',
+          inputs: {
+            TEXT: { shadow: { type: 'text' } }
+          }
+        },
+        { kind: 'block', type: 'text_trim',
+          inputs: {
+            TEXT: { shadow: { type: 'text' } }
+          }
+        },
+        { kind: 'block', type: 'text_print',
+          inputs: {
+            TEXT: {shadow:{type:'text'}}
+          }
+        }
       ]
     },
     // Lists
@@ -1226,15 +1243,38 @@ const bedrockScriptToolbox = {
       colour: '%{BKY_LISTS_HUE}',
       contents: [
         { kind: 'block', type: 'lists_create_with' },
-        { kind: 'block', type: 'lists_repeat', inputs: { NUM: { shadow: { type: 'math_number', fields: { NUM: 5 } } } } },
+        { kind: 'block', type: 'lists_repeat', inputs: { ITEM:{shadow:{type:'text'}}, NUM: { shadow: { type: 'math_number', fields: { NUM: 5 } } } } },
         { kind: 'block', type: 'lists_length' },
         { kind: 'block', type: 'lists_isEmpty' },
-        { kind: 'block', type: 'lists_indexOf' },
-        { kind: 'block', type: 'lists_getIndex' },
-        { kind: 'block', type: 'lists_setIndex' },
-        { kind: 'block', type: 'lists_getSublist' },
+        { kind: 'block', type: 'lists_indexOf',
+          inputs: {
+            FIND: {shadow:{type:'text'}}
+          }
+        },
+        { kind: 'block', type: 'lists_getIndex',
+          inputs: {
+            AT: {shadow:{type:'math_number'}}
+          }
+        },
+        { kind: 'block', type: 'lists_setIndex',
+          inputs: {
+            AT: {shadow:{type:'math_number'}},
+            TO: {shadow:{type:'text'}}
+          }
+        },
+        { kind: 'block', type: 'lists_getSublist',
+          inputs: {
+            AT1: {shadow:{type:'math_number'}},
+            AT2: {shadow:{type:'math_number'}}
+          }
+        },
         { kind: 'block', type: 'lists_sort' },
-        { kind: 'block', type: 'lists_split' },
+        { kind: 'block', type: 'lists_split',
+          inputs: {
+            TEXT: {shadow:{type:'text'}},
+            DELIM: {shadow:{type:'text'}}
+          }
+        },
         { kind: 'block', type: 'lists_reverse' }
       ]
     },

@@ -1271,7 +1271,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'lists_sort' },
         { kind: 'block', type: 'lists_split',
           inputs: {
-            TEXT: {shadow:{type:'text'}},
+            INPUT: {shadow:{type:'text'}},
             DELIM: {shadow:{type:'text'}}
           }
         },

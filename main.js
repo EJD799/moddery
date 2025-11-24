@@ -233,7 +233,7 @@ function openProj(file) {
       });
     });
   } catch(err) {
-    alert("The uploaded file is not a valid Moddery project!");
+    alert("An error occurred during the import process. Is the uploaded file a valid Moddery project?");
   }
 }
 

@@ -158,7 +158,7 @@ function saveProjectInfo() {
   projZip.file("manifest.json", JSON.stringify(projManifest));
 }
 function createProject() {
-  if ($("#newProjNamespaceBox").val() == "minecraft") {
+  if ($("#newProjNamespaceBox").val() != "minecraft") {
     closeNewProjDlg();
     document.getElementById("tabs").hidden = false;
     document.getElementById("welcome").hidden = true;

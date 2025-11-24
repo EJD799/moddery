@@ -222,8 +222,8 @@ function openProj(file) {
           assetFolderList = fileListInFolder("assets");
           for (let i = 0; i < assetFolderList.length; i++) {
             projZip.folder("assets").file(assetFolderList[i]).async("blob").then(function(file) {
-              $("#addAssetNameBox").val(beforeLastDot(assetFolderList[i]));
-              addAsset(true, file, beforeLastDot(assetFolderList[i]));
+              $("#addAssetNameBox").val(assetFolderList[i]);
+              addAsset(true, file, assetFolderList));
             });
           }
         } else {

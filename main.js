@@ -623,6 +623,19 @@ $("#newProjBtn").button();
 $("#closeAboutBtn").button();
 document.getElementById("tabs").hidden = true;
 
+function openProj() {
+  let fileInput = document.getElementById("openFileInput");
+  fileInput.click();
+}
+
+
+
+
+
+
+
+
+
 // Patch all dialogs to stay fixed in viewport and draggable
 function patchAllDialogsToViewport() {
     $(".ui-dialog-content").each(function () {

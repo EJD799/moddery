@@ -31,7 +31,7 @@
         <div onclick="openNewProjDlg()"><i class="fas fa-file"></i> New</div>
       </li>
       <li class="subitem">
-        <div onclick="openOpenProjDlg()"><i class="fas fa-folder-open"></i> Open...</div>
+        <div onclick="openProj()"><i class="fas fa-folder-open"></i> Open...</div>
       </li>
       <li class="subitem">
         <div onclick="saveProject();"><i class="fas fa-floppy-disk"></i> Save</div>
@@ -81,7 +81,7 @@
     <h1>Moddery</h1>
     <p>An open-source, web-based mod builder for Minecraft</p><br><br>
     <button onclick="openNewProjDlg()" id="newProjBtn"><i class="fas fa-file"></i> New Project</button>
-    <button onclick="openOpenProjDlg()" id="openProjBtn"><i class="fas fa-folder-open"></i> Open Project</button>
+    <button onclick="openProj()" id="openProjBtn"><i class="fas fa-folder-open"></i> Open Project</button>
   </center>
 </div>
 
@@ -225,6 +225,8 @@
     <button id="closeAboutBtn" onclick="closeAboutDlg()">OK</button>
   </center>
 </div>
+
+<input id="openFileInput">
 
 <script src="libs.js"></script>
 <script src="main.js"></script>

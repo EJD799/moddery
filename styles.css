@@ -319,3 +319,7 @@ input[type=color]:hover {
     border: 0;
     outline: 0;
 }
+
+#openFileInput {
+    display: none;
+}

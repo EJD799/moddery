@@ -389,11 +389,11 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
     if (loadingProj) {
       file = fileToLoad;
       fileName = fileToLoadName;
-      fileType = beforeLastDot(fileName);
+      fileType = afterLastDot(fileName);
     } else {
       file = addAssetUploadInput.files[0];
       fileName = addAssetNameBox.value;
-      fileType = fileName.split(".")[1];
+      fileType = afterLastDot(fileName);
     }
     let fileNameEncoded = encodeText(fileName);
     let previewBox;

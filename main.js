@@ -633,7 +633,7 @@ function openProjDlg() {
 }
 
 function openProj(file) {
-  // File handling here
+  console.log(file);
 }
 
 

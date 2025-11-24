@@ -31,7 +31,7 @@
         <div onclick="openNewProjDlg()"><i class="fas fa-file"></i> New</div>
       </li>
       <li class="subitem">
-        <div><i class="fas fa-folder-open"></i> Open...</div>
+        <div onclick="openOpenProjDlg()"><i class="fas fa-folder-open"></i> Open...</div>
       </li>
       <li class="subitem">
         <div onclick="saveProject();"><i class="fas fa-floppy-disk"></i> Save</div>
@@ -80,7 +80,8 @@
   <center>
     <h1>Moddery</h1>
     <p>An open-source, web-based mod builder for Minecraft</p><br><br>
-    <button onclick="openNewProjDlg()" id="newProjBtn">+ New Project</button>
+    <button onclick="openNewProjDlg()" id="newProjBtn"><i class="fas fa-file"></i> New Project</button>
+    <button onclick="openOpenProjDlg()" id="openProjBtn"><i class="fas fa-folder-open"></i> Open Project</button>
   </center>
 </div>
 
@@ -93,15 +94,19 @@
     <select name="newProjType" id="newProjType">
       <optgroup label="Bedrock Edition">
         <option value="be_addon" selected>Addon</option>
-        <option value="be_rp">Resource Pack</option>
+        <option value="be_rp" disabled>Resource Pack</option>
       </optgroup>
       <optgroup label="Java Edition">
-        <option value="je_dp">Datapack</option>
-        <option value="je_rp">Resource Pack</option>
-        <option value="je_forge">Forge Mod</option>
-        <option value="je_fabric">Fabric Mod</option>
-        <option value="je_shader">Shader Pack</option>
-        <option value="je_spigot">Spigot Plugin</option>
+        <option value="je_dp" disabled>Datapack</option>
+        <option value="je_rp" disabled>Resource Pack</option>
+        <option value="je_forge" disabled>Forge Mod</option>
+        <option value="je_fabric" disabled>Fabric Mod</option>
+        <option value="je_shader" disabled>Shader Pack</option>
+        <option value="je_spigot" disabled>Spigot Plugin</option>
+      </optgroup>
+      <optgroup label="Other">
+        <option value="mtr_je" disabled>MTR Content (Java)</option>
+        <option value="mtr_be" disabled>MTR Content (Bedrock)</option>
       </optgroup>
     </select>
     <br><br>

@@ -340,13 +340,13 @@ function createElementDropdown(elementID, type) {
 
 function addElement(loadingProj) {
   if (!fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json") || loadingProj) {
-    var elementJSON = {
-      "name": $("#addElementNameBox").val(),
-      "id": $("#addElementIDBox").val(),
-      "type": $("#addElementType").val()
-    };
-    projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
     if (!loadingProj) {
+      var elementJSON = {
+        "name": $("#addElementNameBox").val(),
+        "id": $("#addElementIDBox").val(),
+        "type": $("#addElementType").val()
+      };
+      projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
       addTab($("#addElementType").val(), $("#addElementNameBox").val());
     }
     elementCount++;

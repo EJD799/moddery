@@ -207,6 +207,26 @@ function openProj(file) {
           console.log("Loaded project");
           document.getElementById("tabs").hidden = false;
           document.getElementById("welcome").hidden = true;
+          elementFolderList = fileListInFolder("elements");
+          for (let i = 0; i < elementFolderList.length; i++) {
+            if (!elementFolderList[i].endsWith(".code.json")) {
+              projZip.folder("elements").file(elementFolderList[i]).async("string").then(function(file) {
+                data = JSON.parse(file);
+                $("#addElementNameBox").val(data.name);
+                $("#addElementIDBox").val(data.id);
+                $("#addElementType").val(data.type);
+                addElement(true);
+              });
+            }
+          }
+          assetFolderList = fileListInFolder("assets");
+          for (let i = 0; i < assetFolderList.length; i++) {
+            projZip.folder("assets").file(assetFolderList[i]).async("blob").then(function(file) {
+              $("#addAssetNameBox").val(beforeLastDot(assetFolderList[i]));
+              addAssetUploadInput.files[0] = file;
+              addAsset(true);
+            });
+          }
         } else {
           alert("The uploaded file is not a valid Moddery project!");
         }
@@ -319,8 +339,8 @@ function createElementDropdown(elementID, type) {
   }
 }
 
-function addElement() {
-  if (!fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json")) {
+function addElement(ignoreSafeguards) {
+  if (!fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json") || ignoreSafeguards) {
     var elementJSON = {
       "name": $("#addElementNameBox").val(),
       "id": $("#addElementIDBox").val(),
@@ -360,8 +380,8 @@ function fileToDataURL(file) {
   });
 }
 
-async function addAsset() {
-  if (!fileListInFolder("assets").includes($("#addAssetNameBox").val())) {
+async function addAsset(ignoreSafeguards) {
+  if (!fileListInFolder("assets").includes($("#addAssetNameBox").val()) || ignoreSafeguards) {
     let file = addAssetUploadInput.files[0];
     let fileType = file.name.split(".")[1];
     let fileName = addAssetNameBox.value;

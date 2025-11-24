@@ -63,3 +63,8 @@ async function makeIsometricCube(topURI, leftURI, rightURI, scale = 16) {
 
     return canvas.toDataURL("image/png");
 }
+
+function beforeLastDot(str) {
+    const i = str.lastIndexOf(".");
+    return i === -1 ? str : str.slice(0, i);
+}

@@ -158,7 +158,11 @@ function saveProjectInfo() {
   projZip.file("manifest.json", JSON.stringify(projManifest));
 }
 function createProject() {
-  if ($("#newProjNamespaceBox").val() != "minecraft") {
+  if ($("#newProjNamespaceBox").val() == "minecraft") {
+    alert("The project namespace cannot be \"minecraft\"!");
+  } else if (($("#newProjNameBox").val() == "") || ($("#newProjType").val() == "") || ($("#newProjNamespaceBox").val() == "")) {
+    alert("All boxes must be filled in!")
+  } else {
     closeNewProjDlg();
     document.getElementById("tabs").hidden = false;
     document.getElementById("welcome").hidden = true;
@@ -178,8 +182,6 @@ function createProject() {
     projZip.folder("assets");
     $("#newProjNameBox").val("");
     $("#newProjNamespaceBox").val("");
-  } else {
-    alert("The project namespace cannot be \"minecraft\"!");
   }
 }
 function openAddElementDlg() {

@@ -620,6 +620,7 @@ function getTextureList() {
 }
 
 $("#newProjBtn").button();
+$("#openProjBtn").button();
 $("#closeAboutBtn").button();
 document.getElementById("tabs").hidden = true;
 

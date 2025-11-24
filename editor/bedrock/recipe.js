@@ -225,7 +225,11 @@ function renderSlot(slot, value, original) {
     } else if (original == "special_custom" && !Object.keys(itemDefinitions).includes(value)) {
         slotImage.setAttribute("src", "/moddery/custom_textures/special_custom.png");
     } else {
-        slotImage.setAttribute("src", replaceShortURLs(itemDefinitions[value].texture));
+        if (Object.keys(customItems).includes(value)) {
+            slotImage.setAttribute("src", customItems[value].texture);
+        } else {
+            slotImage.setAttribute("src", replaceShortURLs(itemDefinitions[value].texture));
+        }
     }
     let slotBtn = document.getElementById("recipeBtn" + slot);
     if (original == "special_remove") {
@@ -233,7 +237,11 @@ function renderSlot(slot, value, original) {
     } else if ((original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) || (itemDefinitions["minecraft:" + value]?.name ?? false)) {
         slotBtn.setAttribute("title", itemDefinitions["minecraft:" + value].name);
     } else if ((itemDefinitions[value]?.name ?? false)) {
-        slotBtn.setAttribute("title", itemDefinitions[value].name);
+        if (Object.keys(customItems).includes(value)) {
+            slotBtn.setAttribute("title", customItems[value].name);
+        } else {
+            slotBtn.setAttribute("title", itemDefinitions[value].name);
+        }
     } else {
         slotBtn.setAttribute("title", value);
     }

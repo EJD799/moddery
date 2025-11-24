@@ -223,7 +223,7 @@ function openProj(file) {
           for (let i = 0; i < assetFolderList.length; i++) {
             projZip.folder("assets").file(assetFolderList[i]).async("blob").then(function(file) {
               $("#addAssetNameBox").val(beforeLastDot(assetFolderList[i]));
-              addAsset(true, file);
+              addAsset(true, file, beforeLastDot(assetFolderList[i]));
             });
           }
         } else {
@@ -381,16 +381,20 @@ function fileToDataURL(file) {
   });
 }
 
-async function addAsset(loadingProj, fileToLoad) {
+async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
   if (!fileListInFolder("assets").includes($("#addAssetNameBox").val()) || loadingProj) {
     let file;
+    let fileType;
+    let fileName;
     if (loadingProj) {
       file = fileToLoad;
+      fileName = fileToLoadName;
+      fileType = beforeLastDot(fileName);
     } else {
       file = addAssetUploadInput.files[0];
+      fileName = addAssetNameBox.value;
+      fileType = fileName.split(".")[1];
     }
-    let fileType = file.name.split(".")[1];
-    let fileName = addAssetNameBox.value;
     let fileNameEncoded = encodeText(fileName);
     let previewBox;
     let preview;

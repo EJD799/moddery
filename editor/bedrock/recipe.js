@@ -37,13 +37,19 @@ window.setTimeout(async function() {
     await Promise.all(customItemList.map(async (item) => {
         let blob = await window.parent.projZip.folder("assets").file(item.texture).async("blob");
         let texture = await window.parent.fileToDataURL(blob);
+        if (item.type == "Block") {
+            let isoTexture = await makeIsometricCube(texture, texture, texture);
 
-        let isoTexture = await makeIsometricCube(texture, texture, texture);
-
-        customItems[item.id] = {
-            name: item.displayName,
-            texture: isoTexture
-        };
+            customItems[item.id] = {
+                name: item.displayName,
+                texture: isoTexture
+            };
+        } else {
+            customItems[item.id] = {
+                name: item.displayName,
+                texture: texture
+            };
+        }
     }));
 }, 500);
 

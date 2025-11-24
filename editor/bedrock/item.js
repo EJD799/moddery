@@ -1015,8 +1015,10 @@ function loadProject(data) {
     $("#elementIDBox").val(data.name);
     $("#itemIDBox").val(data.id);
     $("#nameBox").val(data.displayName);
-    $("#categoryBox").val(data.invCategory);
-    $("#categoryBox").selectmenu("refresh");
+    if ((data?.invCategory ?? false)) {
+        $("#categoryBox").val(data.invCategory);
+        $("#categoryBox").selectmenu("refresh");
+    }
     $("#stackSizeBox").val(data.maxStackSize);
     selectedTexture = data.texture;
     if (selectedTexture) {

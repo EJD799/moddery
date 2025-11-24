@@ -158,25 +158,29 @@ function saveProjectInfo() {
   projZip.file("manifest.json", JSON.stringify(projManifest));
 }
 function createProject() {
-  closeNewProjDlg();
-  document.getElementById("tabs").hidden = false;
-  document.getElementById("welcome").hidden = true;
-  projZip = new JSZip();
-  projManifest = {
-    "name": $("#newProjNameBox").val(),
-    "type": $("#newProjType").val(),
-    "namespace": $("#newProjNamespaceBox").val(),
-    "bp_uuid": crypto.randomUUID(),
-    "rp_uuid": crypto.randomUUID(),
-    "addon_version": [1, 0, 0],
-    "mc_version": [1, 21, 90],
-    "description": ""
-  };
-  projZip.file("manifest.json", JSON.stringify(projManifest));
-  projZip.folder("elements");
-  projZip.folder("assets");
-  $("#newProjNameBox").val("");
-  $("#newProjNamespaceBox").val("");
+  if ($("#newProjNamespaceBox").val() == "minecraft") {
+    closeNewProjDlg();
+    document.getElementById("tabs").hidden = false;
+    document.getElementById("welcome").hidden = true;
+    projZip = new JSZip();
+    projManifest = {
+      "name": $("#newProjNameBox").val(),
+      "type": $("#newProjType").val(),
+      "namespace": $("#newProjNamespaceBox").val(),
+      "bp_uuid": crypto.randomUUID(),
+      "rp_uuid": crypto.randomUUID(),
+      "addon_version": [1, 0, 0],
+      "mc_version": [1, 21, 90],
+      "description": ""
+    };
+    projZip.file("manifest.json", JSON.stringify(projManifest));
+    projZip.folder("elements");
+    projZip.folder("assets");
+    $("#newProjNameBox").val("");
+    $("#newProjNamespaceBox").val("");
+  } else {
+    alert("The project namespace cannot be \"minecraft\"!");
+  }
 }
 function openAddElementDlg() {
   $("#addElementDlg").dialog("open");

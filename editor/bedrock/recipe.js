@@ -243,7 +243,11 @@ function renderSlot(slot, value, original) {
             slotBtn.setAttribute("title", itemDefinitions[value].name);
         }
     } else {
-        slotBtn.setAttribute("title", value);
+        if (Object.keys(customItems).includes(value)) {
+            slotBtn.setAttribute("title", customItems[value].name);
+        } else {
+            slotBtn.setAttribute("title", value);
+        }
     }
     $("#recipeBtn" + slot).tooltip({
         content: function() {

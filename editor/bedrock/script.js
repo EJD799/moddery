@@ -1551,9 +1551,64 @@ Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
 
 
-/**********************************************
- * 1. PARAMETER SUB-BLOCK (mutator block)
- **********************************************/
+/****************************************************
+ * MUTATOR DEFINITION (The "correct" Blockly 10 way)
+ ****************************************************/
+Blockly.defineMutator('register_command_mutator', {
+  // These blocks appear in the mutator editor
+  blocks: [
+    {
+      type: 'register_command_param',
+    }
+  ],
+
+  /**
+   * Creates the mutator dialog’s root block.
+   */
+  createEditorBlock: function(workspace) {
+    const container = workspace.newBlock('register_command_param_container');
+    container.initSvg();
+    return container;
+  },
+
+  /**
+   * Populate container block with parameter blocks.
+   */
+  populateEditor: function(containerBlock) {
+    let connection = containerBlock.getInput('STACK').connection;
+
+    for (let i = 0; i < this.sourceBlock_.paramCount; i++) {
+      const b = containerBlock.workspace.newBlock('register_command_param');
+      b.initSvg();
+      connection.connect(b.previousConnection);
+      connection = b.nextConnection;
+    }
+  },
+
+  /**
+   * Apply changes from the editor back onto the source block.
+   */
+  applyEditor: function(containerBlock) {
+    const newParams = [];
+    let b = containerBlock.getInput('STACK').connection.targetBlock();
+
+    while (b) {
+      newParams.push({
+        name: b.getFieldValue('NAME'),
+        type: b.getFieldValue('TYPE')
+      });
+      b = b.getNextBlock();
+    }
+
+    this.sourceBlock_.paramCount = newParams.length;
+    this.sourceBlock_.updateParams_(newParams);
+  }
+});
+
+
+/****************************************************
+ * PARAMETER BLOCK (Inside mutator)
+ ****************************************************/
 Blockly.Blocks['register_command_param'] = {
   init: function () {
     this.appendDummyInput()
@@ -1571,126 +1626,78 @@ Blockly.Blocks['register_command_param'] = {
   }
 };
 
-/**********************************************
- * 2. MAIN BLOCK WITH MUTATOR ATTACHED
- **********************************************/
+
+/****************************************************
+ * MAIN COMMAND BLOCK (With dynamic inputs)
+ ****************************************************/
 Blockly.Blocks['register_command'] = {
   init: function () {
-    this.appendDummyInput()
-      .appendField("Register Command");
+    this.appendDummyInput().appendField("Register Command");
 
-    // The main custom inputs (your existing JSON inputs)
-    this.appendDummyInput().appendField("Base input A:");
-    this.appendValueInput("BASE_A");
+    this.appendValueInput("BASE_A").appendField("Base A:");
+    this.appendValueInput("BASE_B").appendField("Base B:");
 
-    this.appendDummyInput().appendField("Base input B:");
-    this.appendValueInput("BASE_B");
-
-    // Initial parameter counter
     this.paramCount = 0;
 
-    // Mutator menu
-    this.setMutator([
-      "register_command_param"
-    ]);
+    // Attach the mutator definition
+    this.setMutator("register_command_mutator");
 
     this.setColour(160);
   },
 
-  /**********************************************
-   * 3. MUTATION → XML
-   **********************************************/
+  /**
+   * Save mutation to XML
+   */
   mutationToDom: function () {
-    const container = Blockly.utils.xml.createElement("mutation");
-    container.setAttribute("params", this.paramCount);
-    return container;
+    const xml = Blockly.utils.xml.createElement("mutation");
+    xml.setAttribute("params", this.paramCount);
+    return xml;
   },
 
-  /**********************************************
-   * 4. XML → MUTATION
-   **********************************************/
+  /**
+   * Load mutation from XML
+   */
   domToMutation: function (xml) {
     this.paramCount = Number(xml.getAttribute("params")) || 0;
     this.rebuildParams_();
   },
 
-  /**********************************************
-   * 5. GENERATE MUTATOR FLYOUT BLOCKS
-   **********************************************/
-  decompose: function (workspace) {
-    const container = workspace.newBlock('register_command_param_container');
-    container.initSvg();
-    container.render();
-
-    let connection = container.getInput("STACK").connection;
-
-    for (let i = 0; i < this.paramCount; i++) {
-      const param = workspace.newBlock("register_command_param");
-      param.initSvg();
-      param.render();
-      connection.connect(param.previousConnection);
-      connection = param.nextConnection;
-    }
-
-    return container;
-  },
-
-  /**********************************************
-   * 6. APPLY MUTATOR CHANGES
-   **********************************************/
-  compose: function (container) {
-    let paramBlock = container.getInput("STACK").connection.targetBlock();
-    const newParams = [];
-
-    while (paramBlock) {
-      newParams.push({
-        name: paramBlock.getFieldValue("NAME"),
-        type: paramBlock.getFieldValue("TYPE"),
-      });
-      paramBlock = paramBlock.getNextBlock();
-    }
-
-    this.paramCount = newParams.length;
-
-    // Remove old inputs then rebuild
-    this.updateParams_(newParams);
-  },
-
-  /**********************************************
-   * 7. REMOVE OLD PARAMETER INPUTS AND ADD NEW ONES
-   **********************************************/
+  /**
+   * Remove old parameter inputs and rebuild them.
+   */
   rebuildParams_: function () {
     const params = [];
     for (let i = 0; i < this.paramCount; i++) {
-      params.push({
-        name: "param" + i,
-        type: "TYPE1"
-      });
+      params.push({ name: "param" + i, type: "TYPE1" });
     }
     this.updateParams_(params);
   },
 
+  /**
+   * Actually add parameter inputs to the block.
+   */
   updateParams_: function (params) {
-    // Remove old parameter inputs
+    // Remove old param inputs
     let i = 0;
     while (this.getInput("PARAM_" + i)) {
       this.removeInput("PARAM_" + i);
       i++;
     }
 
-    // Re-add parameter inputs
-    params.forEach((p, index) => {
-      this.appendDummyInput("PARAM_" + index)
+    // Add new param inputs
+    params.forEach((p, i) => {
+      this.appendDummyInput("PARAM_" + i)
         .appendField("Param:")
-        .appendField(new Blockly.FieldTextInput(p.name), "P_NAME_" + index)
-        .appendField(new Blockly.FieldLabelSerializable("(" + p.type + ")"), "P_TYPE_" + index);
+        .appendField(new Blockly.FieldTextInput(p.name), "P_NAME_" + i)
+        .appendField("(" + p.type + ")");
     });
   }
 };
 
-/**********************************************
- * 8. MUTATOR CONTAINER BLOCK (Required)
- **********************************************/
+
+/****************************************************
+ * REQUIRED Container block for the mutator editor
+ ****************************************************/
 Blockly.Blocks['register_command_param_container'] = {
   init: function () {
     this.appendDummyInput().appendField("Parameters");
@@ -1698,6 +1705,7 @@ Blockly.Blocks['register_command_param_container'] = {
     this.setColour(160);
   }
 };
+
 
 
 

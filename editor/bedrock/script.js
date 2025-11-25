@@ -938,6 +938,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       }
     ],
+    previousStatement: null,
+    nextStatement: null,
     inputsInline: true
   },
   {
@@ -984,7 +986,9 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         type: "input_statement",
         name: "CODE"
       }
-    ]
+    ],
+    previousStatement: null,
+    nextStatement: null,
   },
 ]);
 

@@ -1551,6 +1551,24 @@ Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
 
 
+// CSS to style the add/remove labels as buttons
+const style = document.createElement("style");
+style.innerHTML = `
+  .param-button {
+    cursor: pointer;
+    user-select: none;
+    padding: 0 4px;
+    border: 1px solid #888;
+    border-radius: 2px;
+    background: #eee;
+    margin-left: 2px;
+  }
+  .param-button:hover {
+    background: #ddd;
+  }
+`;
+document.head.appendChild(style);
+
 Blockly.common.defineBlocks({
   register_command: {
     init: function () {
@@ -1576,7 +1594,11 @@ Blockly.common.defineBlocks({
       const addBtn = new Blockly.FieldLabel("+", undefined, "param-button");
       this.appendDummyInput("ADD_PARAM").appendField(addBtn, "ADD_PARAM_BTN");
 
-      addBtn.setTooltip("Add a parameter");
+      addBtn.onMouseDown_ = (e) => {
+        this.parameterCount_++;
+        this.updateParameters_();
+        e.stopPropagation();
+      };
 
       // Statement input
       this.appendStatementInput("CODE").appendField("code");
@@ -1621,33 +1643,19 @@ Blockly.common.defineBlocks({
 
         // REMOVE BUTTON
         const removeBtn = new Blockly.FieldLabel("x", undefined, "param-button");
-        removeBtn.setTooltip("Remove this parameter");
         input.appendField(removeBtn, "REMOVE_BTN_" + i);
 
-        // Listen for mousedown and remove parameter
-        removeBtn.onMouseDown_ = ((index) => {
-          return (e) => {
-            e.stopPropagation();
-            this.parameterCount_--;
-            this.updateParameters_();
-          };
-        })(i);
+        removeBtn.onMouseDown_ = (e) => {
+          this.parameterCount_--;
+          this.updateParameters_();
+          e.stopPropagation();
+        };
 
         this.moveInputBefore("PARAM" + i, "CODE");
       }
     },
   }
 });
-
-// Add listener to the ADD button after defining the block
-Blockly.Extensions.register('register_command_add_btn', function() {
-  this.getInput("ADD_PARAM").fieldRow[0].onMouseDown_ = (e) => {
-    e.stopPropagation();
-    this.parameterCount_++;
-    this.updateParameters_();
-  };
-});
-
 
 
 

@@ -959,6 +959,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "register_command",
     message0: "register command with name %1 description %2 permission level %3",
+    message1: "%1"
     colour: 180,
     args0: [
       {
@@ -983,6 +984,12 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         ]
       }
     ],
+    args1: [
+      {
+        type: "input_statement",
+        name: "CODE"
+      }
+    ]
     previousStatement: null,
     nextStatement: null,
     inputsInline: true
@@ -1550,6 +1557,11 @@ Blockly.Blocks['text'].init = function() {
 Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
 
+Blockly.Blocks['register_command'].init = function() {
+  this.parameterCount_ = 0;
+  this.updateParameters_();
+};
+
 Blockly.Blocks['register_command'].mutationToDom = function() {
   const container = document.createElement('mutation');
   if (this.parameterCount_ > 0) {
@@ -1571,45 +1583,16 @@ Blockly.Blocks['register_command'].updateParameters_ = function() {
     i++;
   }
 
-  // Add new PARAM inputs **after existing JSON-defined inputs** but before statement
-  let lastInputIndex = this.inputList.length - 1; // CODE is last
+  // Add new PARAM inputs **before CODE input**
+  const codeInputExists = !!this.getInput('CODE');
   for (let i = 0; i < this.parameterCount_; i++) {
     this.appendValueInput('PARAM' + i)
         .setCheck(null)
         .appendField('param ' + (i + 1));
-    this.moveInputBefore('PARAM' + i, 'CODE'); // move before statement input
+    if (codeInputExists) this.moveInputBefore('PARAM' + i, 'CODE');
   }
-};
-Blockly.Blocks['register_command'].mutationToDom = function() {
-  const container = document.createElement('mutation');
-  if (this.parameterCount_ > 0) {
-    container.setAttribute('parameters', this.parameterCount_);
-  }
-  return container;
 };
 
-Blockly.Blocks['register_command'].domToMutation = function(xmlElement) {
-  this.parameterCount_ = parseInt(xmlElement.getAttribute('parameters') || 0);
-  this.updateParameters_();
-};
-
-Blockly.Blocks['register_command'].updateParameters_ = function() {
-  // Remove old PARAM inputs
-  let i = 0;
-  while (this.getInput('PARAM' + i)) {
-    this.removeInput('PARAM' + i);
-    i++;
-  }
-
-  // Add new PARAM inputs **after existing JSON-defined inputs** but before statement
-  let lastInputIndex = this.inputList.length - 1; // CODE is last
-  for (let i = 0; i < this.parameterCount_; i++) {
-    this.appendValueInput('PARAM' + i)
-        .setCheck(null)
-        .appendField('param ' + (i + 1));
-    this.moveInputBefore('PARAM' + i, 'CODE'); // move before statement input
-  }
-};
 
 
 var workspace = Blockly.inject('blocklyDiv', {

@@ -29,6 +29,16 @@
   .blocklyDragging .blocklyPath {
     opacity: 0.95;
   }
+
+  /* Only remove outline when clicking with mouse */
+  *:focus {
+    outline: none; /* Remove default blue outline */
+  }
+
+  *:focus-visible {
+    outline: auto; /* Keep for keyboard navigation */
+  }
+
 </style>
 
 <div id="blocklyDiv" style="height: 100%; width: 100%;"></div>

@@ -1556,7 +1556,7 @@ Blockly.common.defineBlocks({
     init: function () {
       this.parameterCount_ = 0;
 
-      // Fixed inputs
+      // Static fields
       this.appendValueInput("NAME")
         .appendField("register command with name");
 
@@ -1573,9 +1573,8 @@ Blockly.common.defineBlocks({
           ["Owner", "Owner"]
         ]), "PERMISSION_LEVEL");
 
-      // Add button — uses a clickable label
+      // ADD PARAM BUTTON
       const addBtn = new Blockly.FieldLabel("+");
-      addBtn.setSerializable(false);
       addBtn.onClick_ = () => {
         this.parameterCount_++;
         this.updateParameters_();
@@ -1592,7 +1591,6 @@ Blockly.common.defineBlocks({
       this.setInputsInline(false);
     },
 
-    // -------------- MUTATION SERIALIZATION --------------
     mutationToDom: function () {
       const m = document.createElement("mutation");
       m.setAttribute("parameters", String(this.parameterCount_));
@@ -1604,9 +1602,8 @@ Blockly.common.defineBlocks({
       this.updateParameters_();
     },
 
-    // -------------- PARAMETER REBUILDING --------------
     updateParameters_: function () {
-      // Remove all existing PARAM inputs
+      // Remove all old parameter inputs
       let i = 0;
       while (this.getInput("PARAM" + i)) {
         this.removeInput("PARAM" + i);
@@ -1615,7 +1612,7 @@ Blockly.common.defineBlocks({
 
       // Rebuild parameter inputs
       for (let i = 0; i < this.parameterCount_; i++) {
-        const input = this.appendDummyInput("PARAM" + i)
+        const row = this.appendDummyInput("PARAM" + i)
           .appendField("param " + (i + 1))
           .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i)
           .appendField(
@@ -1626,20 +1623,15 @@ Blockly.common.defineBlocks({
             "PARAM_DROPDOWN_" + i
           );
 
-        // Remove button
+        // REMOVE BUTTON
         const removeBtn = new Blockly.FieldLabel("x");
-        removeBtn.setSerializable(false);
-
         removeBtn.onClick_ = () => {
-          // Remove this parameter
           this.parameterCount_--;
-          // Collapse indexes (simple strategy: rebuild without this one)
           this.updateParameters_();
         };
 
-        input.appendField(removeBtn, "REMOVE_" + i);
+        row.appendField(removeBtn, "REMOVE_BTN_" + i);
 
-        // Make sure parameters come before code input
         this.moveInputBefore("PARAM" + i, "CODE");
       }
     },

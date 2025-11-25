@@ -42,20 +42,23 @@
 
 <div id="blocklyDiv" style="height: 100%; width: 100%;"></div>
 <script>
-  // Save reference to the original method
-  const originalHighlightConnection = Blockly.zelos.Renderer.prototype.highlightConnection_;
+// Save original function
+const originalUpdateConnectionHighlight =
+  Blockly.zelos.Drawer.prototype.updateConnectionHighlight_;
 
-  Blockly.zelos.Renderer.prototype.highlightConnection_ = function(conn, addHighlight) {
-    // Call original method first
-    originalHighlightConnection.call(this, conn, addHighlight);
+// Override highlight function
+Blockly.zelos.Drawer.prototype.updateConnectionHighlight_ = function(conn, isConnected) {
+  // Call original
+  originalUpdateConnectionHighlight.call(this, conn, isConnected);
 
-    // Grab the path element created for the highlight
-    if (conn.highlightedPath) {
-      conn.highlightedPath.setAttribute('stroke', '#ffffff');  // make it white
-      conn.highlightedPath.setAttribute('stroke-width', '1');  // consistent thickness
-      conn.highlightedPath.setAttribute('opacity', '0.5');     // subtle, Scratch-like
-    }
-  };
+  // The highlight path is stored inside the drawer, not the connection
+  const path = this.connectionHighlightPath_;
+  if (path) {
+    path.setAttribute('stroke', '#ffffff');   // <-- CHANGE COLOR TO WHITE
+    path.setAttribute('stroke-width', '1');   // <-- CONSISTENT WIDTH
+    path.setAttribute('opacity', '0.5');      // <-- SCRATCH-LIKE
+  }
+};
 
 </script>
 <script src="script.js" defer></script>

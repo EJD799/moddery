@@ -959,7 +959,6 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "register_command",
     message0: "register command with name %1 description %2 permission level %3",
-    message1: "%1",
     colour: 180,
     args0: [
       {
@@ -982,12 +981,6 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
           ["Host", "Host"],
           ["Owner", "Owner"]
         ]
-      }
-    ],
-    args1: [
-      {
-        type: "input_statement",
-        name: "CODE"
       }
     ],
     previousStatement: null,
@@ -1557,41 +1550,63 @@ Blockly.Blocks['text'].init = function() {
 Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
 
-Blockly.Blocks['register_command'].init = function() {
-  this.parameterCount_ = 0;
-  this.updateParameters_();
-};
+Blockly.Blocks['register_command'] = {
+  init: function() {
+    this.parameterCount_ = 0;
 
-Blockly.Blocks['register_command'].mutationToDom = function() {
-  const container = document.createElement('mutation');
-  if (this.parameterCount_ > 0) {
-    container.setAttribute('parameters', this.parameterCount_);
+    // JSON-defined inputs
+    this.appendValueInput("NAME").setCheck(null).appendField("name");
+    this.appendValueInput("DESCRIPTION").setCheck(null).appendField("description");
+    this.appendField("permission level")
+        .appendField(new Blockly.FieldDropdown([
+          ["Any", "Any"],
+          ["GameDirectors", "GameDirectors"],
+          ["Admin", "Admin"],
+          ["Host", "Host"],
+          ["Owner", "Owner"]
+        ]), "PERMISSION_LEVEL");
+
+    // Statement input
+    this.appendStatementInput("CODE").setCheck(null);
+
+    this.setColour(180);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setInputsInline(true);
+  },
+
+  mutationToDom: function() {
+    const container = document.createElement('mutation');
+    if (this.parameterCount_ > 0) {
+      container.setAttribute('parameters', this.parameterCount_);
+    }
+    return container;
+  },
+
+  domToMutation: function(xmlElement) {
+    this.parameterCount_ = parseInt(xmlElement.getAttribute('parameters') || 0);
+    // defer update until after init is done
+    setTimeout(() => this.updateParameters_(), 0);
+  },
+
+  updateParameters_: function() {
+    // Remove old PARAM inputs
+    let i = 0;
+    while (this.getInput('PARAM' + i)) {
+      this.removeInput('PARAM' + i);
+      i++;
+    }
+
+    // Add new PARAM inputs before CODE statement
+    for (let i = 0; i < this.parameterCount_; i++) {
+      this.appendValueInput('PARAM' + i)
+          .setCheck(null)
+          .appendField('param ' + (i + 1));
+      this.moveInputBefore('PARAM' + i, 'CODE');
+    }
   }
-  return container;
 };
 
-Blockly.Blocks['register_command'].domToMutation = function(xmlElement) {
-  this.parameterCount_ = parseInt(xmlElement.getAttribute('parameters') || 0);
-  this.updateParameters_();
-};
-
-Blockly.Blocks['register_command'].updateParameters_ = function() {
-  // Remove old PARAM inputs
-  let i = 0;
-  while (this.getInput('PARAM' + i)) {
-    this.removeInput('PARAM' + i);
-    i++;
-  }
-
-  // Add new PARAM inputs **before CODE input**
-  const codeInputExists = !!this.getInput('CODE');
-  for (let i = 0; i < this.parameterCount_; i++) {
-    this.appendValueInput('PARAM' + i)
-        .setCheck(null)
-        .appendField('param ' + (i + 1));
-    if (codeInputExists) this.moveInputBefore('PARAM' + i, 'CODE');
-  }
-};
 
 
 

@@ -1556,7 +1556,7 @@ Blockly.common.defineBlocks({
     init: function () {
       this.parameterCount_ = 0;
 
-      // Static inputs
+      // Fixed inputs
       this.appendValueInput("NAME")
         .appendField("register command with name");
 
@@ -1573,74 +1573,78 @@ Blockly.common.defineBlocks({
           ["Owner", "Owner"]
         ]), "PERMISSION_LEVEL");
 
-      // + button
-      const addParamBtn = new Blockly.FieldLabelSerializable("+");
-      addParamBtn.setOnClickHandler(() => {
+      // Add button — uses a clickable label
+      const addBtn = new Blockly.FieldLabel("+");
+      addBtn.setSerializable(false);
+      addBtn.onClick_ = () => {
         this.parameterCount_++;
         this.updateParameters_();
-      });
+      };
 
       this.appendDummyInput("ADD_PARAM")
-        .appendField(addParamBtn, "ADD_PARAM_BUTTON");
+        .appendField(addBtn, "ADD_PARAM_BTN");
 
-      // Statement input
-      this.appendStatementInput("CODE")
-        .appendField("code");
+      this.appendStatementInput("CODE").appendField("code");
 
       this.setPreviousStatement(true);
       this.setNextStatement(true);
       this.setColour(180);
-      this.setInputsInline(true);
+      this.setInputsInline(false);
     },
 
+    // -------------- MUTATION SERIALIZATION --------------
     mutationToDom: function () {
-      const container = document.createElement('mutation');
-      container.setAttribute('parameters', this.parameterCount_);
-      return container;
+      const m = document.createElement("mutation");
+      m.setAttribute("parameters", String(this.parameterCount_));
+      return m;
     },
 
-    domToMutation: function (xmlElement) {
-      this.parameterCount_ = parseInt(xmlElement.getAttribute('parameters') || "0");
+    domToMutation: function (xml) {
+      this.parameterCount_ = parseInt(xml.getAttribute("parameters") || "0", 10);
       this.updateParameters_();
     },
 
+    // -------------- PARAMETER REBUILDING --------------
     updateParameters_: function () {
-      // Remove previous parameter inputs
+      // Remove all existing PARAM inputs
       let i = 0;
       while (this.getInput("PARAM" + i)) {
         this.removeInput("PARAM" + i);
         i++;
       }
 
-      // Rebuild
+      // Rebuild parameter inputs
       for (let i = 0; i < this.parameterCount_; i++) {
-
-        // Remove button
-        const removeBtn = new Blockly.FieldLabelSerializable("x");
-        removeBtn.setOnClickHandler(() => {
-          this.parameterCount_--;
-          this.updateParameters_();
-        });
-
-        const input = this.appendValueInput("PARAM" + i)
+        const input = this.appendDummyInput("PARAM" + i)
           .appendField("param " + (i + 1))
           .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i)
-          .appendField(new Blockly.FieldDropdown([
-            ["option1", "OPTION1"],
-            ["option2", "OPTION2"]
-          ]), "PARAM_DROPDOWN_" + i)
-          .appendField(removeBtn, "REMOVE_BTN_" + i);
+          .appendField(
+            new Blockly.FieldDropdown([
+              ["option1", "OPTION1"],
+              ["option2", "OPTION2"]
+            ]),
+            "PARAM_DROPDOWN_" + i
+          );
 
+        // Remove button
+        const removeBtn = new Blockly.FieldLabel("x");
+        removeBtn.setSerializable(false);
+
+        removeBtn.onClick_ = () => {
+          // Remove this parameter
+          this.parameterCount_--;
+          // Collapse indexes (simple strategy: rebuild without this one)
+          this.updateParameters_();
+        };
+
+        input.appendField(removeBtn, "REMOVE_" + i);
+
+        // Make sure parameters come before code input
         this.moveInputBefore("PARAM" + i, "CODE");
       }
-    }
+    },
   }
 });
-
-
-
-
-
 
 
 

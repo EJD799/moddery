@@ -1573,8 +1573,7 @@ Blockly.common.defineBlocks({
         );
 
       // ADD PARAM BUTTON
-      const addBtn = new Blockly.FieldLabel("+");
-      addBtn.addClass("param-button");
+      const addBtn = new Blockly.FieldLabel("+", undefined, "param-button");
       this.appendDummyInput("ADD_PARAM").appendField(addBtn, "ADD_PARAM_BTN");
 
       addBtn.setTooltip("Add a parameter");
@@ -1621,8 +1620,7 @@ Blockly.common.defineBlocks({
           );
 
         // REMOVE BUTTON
-        const removeBtn = new Blockly.FieldLabel("x");
-        removeBtn.addClass("param-button");
+        const removeBtn = new Blockly.FieldLabel("x", undefined, "param-button");
         removeBtn.setTooltip("Remove this parameter");
         input.appendField(removeBtn, "REMOVE_BTN_" + i);
 

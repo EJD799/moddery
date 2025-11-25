@@ -1016,7 +1016,6 @@ const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
   }
 ]);
 
-
 // --- 2. Add dynamic parameters via mutation ---
 Blockly.Blocks['register_command'].init = function() {
   this.parameterCount_ = 0;
@@ -1072,7 +1071,6 @@ Blockly.Blocks['register_command'].updateParameters_ = function() {
 // let block = workspace.getBlockById('your_block_id');
 // block.parameterCount_++;
 // block.updateParameters_();
-
 
 
 

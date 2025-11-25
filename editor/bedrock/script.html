@@ -8,22 +8,11 @@
     padding: 0;
     margin: 0;
   }
-  /* Remove the yellow selection outline in Zelos renderer */
-  .blocklyPathSelected {
-    stroke: none !important;       /* remove the yellow stroke */
-    stroke-width: 0 !important;
-  }
-
-  /* Optional: remove shadow on selection */
-  .blocklySelected .blocklyPath {
-    stroke: none !important;
-    stroke-width: 0 !important;
-  }
-
-  /* Optional: remove glow for editing */
-  .blocklyEditableText.focused {
-    outline: none !important;
-  }
+/* Keep the normal block outlines, remove Zelos yellow highlight */
+.blocklyPathSelected {
+  stroke: none !important;       /* removes the yellow outline */
+  stroke-width: 0 !important;
+}
 
 </style>
 

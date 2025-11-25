@@ -1551,19 +1551,15 @@ Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
 
 
-/*Blockly.common.defineBlocks({
+Blockly.common.defineBlocks({
   register_command: {
     init: function () {
       this.parameterCount_ = 0;
 
-      // --- Static Inputs ---
-      this.appendValueInput("NAME")
-        .appendField("register command with name");
-
-      this.appendValueInput("DESCRIPTION")
-        .appendField("description");
-
-      this.appendDummyInput("PERMISSION")
+      // Static fields
+      this.appendValueInput("NAME").appendField("register command with name");
+      this.appendValueInput("DESCRIPTION").appendField("description");
+      this.appendDummyInput("PERMISSION_INPUT")
         .appendField("permission level")
         .appendField(
           new Blockly.FieldDropdown([
@@ -1576,94 +1572,73 @@ Blockly.common.defineBlocks(colourDefinitions);
           "PERMISSION_LEVEL"
         );
 
-      // --- Add Parameter Button ---
-      const addBtn = new Blockly.FieldButton("+", () => {
+      // ADD PARAM BUTTON
+      const addBtn = new Blockly.FieldLabel("+");
+      this.appendDummyInput("ADD_PARAM").appendField(addBtn, "ADD_PARAM_BTN");
+
+      // Listen for mouse down events on the label
+      addBtn.onMouseDown_ = (e) => {
         this.parameterCount_++;
         this.updateParameters_();
-      });
-      addBtn.setTooltip("Add parameter");
+        e.stopPropagation();
+      };
 
-      this.appendDummyInput("ADD_PARAM")
-        .appendField(addBtn, "ADD_PARAM_BUTTON");
+      // Statement input
+      this.appendStatementInput("CODE").appendField("code");
 
-      // --- CODE Statement Input ---
-      this.appendStatementInput("CODE")
-        .appendField("code");
-
-      this.setColour(180);
       this.setPreviousStatement(true);
       this.setNextStatement(true);
+      this.setColour(180);
+      this.setInputsInline(false);
     },
 
-    // Save mutation
     mutationToDom: function () {
-      const container = document.createElement("mutation");
-      container.setAttribute("count", this.parameterCount_);
-      return container;
+      const m = document.createElement("mutation");
+      m.setAttribute("parameters", String(this.parameterCount_));
+      return m;
     },
 
-    // Load mutation
-    domToMutation: function (xmlElement) {
-      this.parameterCount_ = parseInt(xmlElement.getAttribute("count")) || 0;
+    domToMutation: function (xml) {
+      this.parameterCount_ = parseInt(xml.getAttribute("parameters") || "0", 10);
       this.updateParameters_();
     },
 
-    // Rebuild all parameter inputs
     updateParameters_: function () {
-      // Remove old parameter inputs
+      // Remove old PARAM inputs
       let i = 0;
       while (this.getInput("PARAM" + i)) {
         this.removeInput("PARAM" + i);
         i++;
       }
 
-      // Re-add parameters
-      for (let idx = 0; idx < this.parameterCount_; idx++) {
-        const input = this.appendDummyInput("PARAM" + idx);
+      // Add new PARAM inputs before CODE
+      for (let i = 0; i < this.parameterCount_; i++) {
+        const input = this.appendDummyInput("PARAM" + i)
+          .appendField("param " + (i + 1))
+          .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i)
+          .appendField(
+            new Blockly.FieldDropdown([
+              ["option1", "OPTION1"],
+              ["option2", "OPTION2"]
+            ]),
+            "PARAM_DROPDOWN_" + i
+          );
 
-        // Label + name
-        input.appendField("param " + (idx + 1) + ":");
-        input.appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + idx);
+        // REMOVE BUTTON
+        const removeBtn = new Blockly.FieldLabel("x");
+        input.appendField(removeBtn, "REMOVE_BTN_" + i);
 
-        // Type
-        input.appendField(
-          new Blockly.FieldDropdown([
-            ["option1", "OPTION1"],
-            ["option2", "OPTION2"]
-          ]),
-          "PARAM_TYPE_" + idx
-        );
+        removeBtn.onMouseDown_ = (e) => {
+          this.parameterCount_--;
+          this.updateParameters_();
+          e.stopPropagation();
+        };
 
-        // Remove Button (×)
-        const removeBtn = new Blockly.FieldButton("×", () => {
-          if (this.parameterCount_ > 0) {
-            this.parameterCount_--;
-            this.reindexParameters_(idx);
-            this.updateParameters_();
-          }
-        });
-        removeBtn.setTooltip("Remove this parameter");
-
-        input.appendField(removeBtn, "REMOVE_PARAM_" + idx);
-
-        // Ensure they appear before CODE
-        this.moveInputBefore("PARAM" + idx, "CODE");
+        this.moveInputBefore("PARAM" + i, "CODE");
       }
     },
-
-    // Shift parameters after removing one
-    reindexParameters_: function (removedIndex) {
-      // Shift text input values + dropdown values downward
-      for (let i = removedIndex; i < this.parameterCount_; i++) {
-        const nextName = this.getFieldValue("PARAM_NAME_" + (i + 1));
-        const nextType = this.getFieldValue("PARAM_TYPE_" + (i + 1));
-
-        this.setFieldValue(nextName, "PARAM_NAME_" + i);
-        this.setFieldValue(nextType, "PARAM_TYPE_" + i);
-      }
-    }
   }
-});*/
+});
 
 
 

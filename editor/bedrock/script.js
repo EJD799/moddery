@@ -1551,11 +1551,10 @@ Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
 
 
-// === Define the dynamic register_command block ===
 Blockly.common.defineBlocks({
   register_command: {
     init: function() {
-      this.parameterCount_ = 0; // Track dynamic parameters
+      this.parameterCount_ = 0; 
       this.setColour(180);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -1584,38 +1583,35 @@ Blockly.common.defineBlocks({
           .appendField("code");
 
       // --- Add parameter button ---
-      const addButton = new Blockly.FieldLabel("+");
-      addButton.setClickHandler(() => {
-        this.parameterCount_++;
-        this.updateParameters_();
-      });
       this.appendDummyInput("ADD_PARAM")
-          .appendField(addButton);
+          .appendField(new Blockly.FieldLabel("+", () => {
+            this.parameterCount_++;
+            this.updateParameters_();
+          }));
+
+      this.updateParameters_();
     },
 
-    // Save parameters to XML
     mutationToDom: function() {
       const container = document.createElement('mutation');
       container.setAttribute('parameters', this.parameterCount_);
       return container;
     },
 
-    // Restore parameters from XML
     domToMutation: function(xmlElement) {
       this.parameterCount_ = parseInt(xmlElement.getAttribute('parameters') || 0);
       this.updateParameters_();
     },
 
-    // Add/remove parameter inputs dynamically
     updateParameters_: function() {
-      // --- Remove old PARAM inputs ---
+      // Remove old PARAM inputs
       let i = 0;
       while (this.getInput('PARAM' + i)) {
         this.removeInput('PARAM' + i);
         i++;
       }
 
-      // --- Add new PARAM inputs before CODE input ---
+      // Add new PARAM inputs before CODE input
       for (let i = 0; i < this.parameterCount_; i++) {
         const input = this.appendValueInput('PARAM' + i)
           .setCheck(null)
@@ -1624,22 +1620,19 @@ Blockly.common.defineBlocks({
           .appendField(new Blockly.FieldDropdown([
             ["option1", "OPTION1"],
             ["option2", "OPTION2"]
-          ]), "PARAM_DROPDOWN_" + i);
+          ]), "PARAM_DROPDOWN_" + i)
+          // Remove button using FieldLabel constructor callback
+          .appendField(new Blockly.FieldLabel("x", () => {
+            this.parameterCount_--;
+            this.updateParameters_();
+          }));
 
-        // Add remove button
-        const removeButton = new Blockly.FieldLabel("x");
-        removeButton.setClickHandler(() => {
-          this.parameterCount_--;
-          this.updateParameters_();
-        });
-        input.appendField(removeButton);
-
-        // Move input before statement input
         this.moveInputBefore('PARAM' + i, 'CODE');
       }
     }
   }
 });
+
 
 
 

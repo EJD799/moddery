@@ -922,6 +922,70 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: "Boolean",
     inputsInline: true
   },
+  {
+    type: "set_dynamic_property",
+    message0: "set dynamic property %1 to %2",
+    colour: 180,
+    args0: [
+      {
+        type: "input_value",
+        name: "PROPERTY",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "VALUE",
+        check: null
+      }
+    ],
+    inputsInline: true
+  },
+  {
+    type: "get_dynamic_property",
+    message0: "get dynamic property %1",
+    colour: 180,
+    args0: [
+      {
+        type: "input_value",
+        name: "PROPERTY",
+        check: null
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "register_command",
+    message0: "register command with name %1 description %2 permission level %3 %4",
+    colour: 180,
+    args0: [
+      {
+        type: "input_value",
+        name: "NAME",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "DESCRIPTION",
+        check: null
+      },
+      {
+        type: "field_dropdown",
+        name: "PERMISSION_LEVEL",
+        options: [
+          ["Any", "Any"],
+          ["GameDirectors", "GameDirectors"],
+          ["Admin", "Admin"],
+          ["Host", "Host"],
+          ["Owner", "Owner"]
+        ]
+      },
+      {
+        type: "input_statement",
+        name: "CODE"
+      }
+    ]
+  },
 ]);
 
 const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -1335,12 +1399,17 @@ const bedrockScriptToolbox = {
         { kind: 'label', text: 'Commands'},
         { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'register_command', inputs: { NAME: { shadow: { type: 'text', fields: { TEXT: "" } } }, DESCRIPTION: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'sep'},
         { kind: 'label', text: 'Settings'},
         { kind: 'block', type: 'set_gamerule' },
         { kind: 'block', type: 'get_gamerule' },
         { kind: 'block', type: 'get_gamerule_boolean' },
         { kind: 'block', type: 'is_hardcore' },
+        { kind: 'sep'},
+        { kind: 'label', text: 'Dynamic Properties'},
+        { kind: 'block', type: 'set_dynamic_property', inputs: { PROPERTY: { shadow: { type: 'text', fields: { TEXT: "" } } }, VALUE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'get_dynamic_property', inputs: { PROPERTY: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'sep'},
         { kind: 'label', text: 'Players'},
         { kind: 'block', type: 'player_list' },

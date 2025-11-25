@@ -1551,19 +1551,26 @@ Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
 
 
-// === Define the dynamic block with add/remove parameters ===
+// === Define the dynamic "register_command" block ===
 Blockly.common.defineBlocks({
   register_command: {
     init: function() {
       this.parameterCount_ = 0; // track dynamic parameters
 
-      // Static fields
-      this.appendValueInput("NAME")
-          .setCheck(null)
+      // --- Static inputs ---
+      // NAME
+      this.appendDummyInput()
           .appendField("register command with name");
-      this.appendValueInput("DESCRIPTION")
-          .setCheck(null)
+      this.appendValueInput("NAME")
+          .setCheck(null);
+
+      // DESCRIPTION
+      this.appendDummyInput()
           .appendField("description");
+      this.appendValueInput("DESCRIPTION")
+          .setCheck(null);
+
+      // PERMISSION LEVEL
       this.appendDummyInput("PERMISSION_INPUT")
           .appendField("permission level")
           .appendField(new Blockly.FieldDropdown([
@@ -1574,20 +1581,25 @@ Blockly.common.defineBlocks({
             ["Owner", "Owner"]
           ]), "PERMISSION_LEVEL");
 
-      // Button to add a parameter
-      this.appendDummyInput("ADD_PARAM")
+      // --- Dynamic parameter controls ---
+      this.appendDummyInput("PARAM_CONTROLS")
           .appendField(new Blockly.FieldLabel("➕ Add parameter", () => {
             this.parameterCount_++;
             this.updateParameters_();
-          }), "ADD_PARAM_FIELD");
+          }), "ADD_PARAM_FIELD")
+          .appendField(new Blockly.FieldLabel("➖ Remove parameter", () => {
+            if (this.parameterCount_ > 0) {
+              this.parameterCount_--;
+              this.updateParameters_();
+            }
+          }), "REMOVE_PARAM_FIELD");
 
-      // Statement input at the end
+      // CODE statement
       this.appendStatementInput("CODE")
-          .setCheck(null)
-          .appendField("code");
+          .setCheck(null);
 
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
+      this.setPreviousStatement(true);
+      this.setNextStatement(true);
       this.setColour(180);
       this.setInputsInline(true);
     },
@@ -1606,35 +1618,31 @@ Blockly.common.defineBlocks({
     },
 
     updateParameters_: function() {
-      // Remove existing PARAM inputs
+      // Remove old PARAM inputs
       let i = 0;
       while (this.getInput('PARAM' + i)) {
         this.removeInput('PARAM' + i);
         i++;
       }
 
-      // Add new PARAM inputs before the statement input
+      // Add new PARAM inputs before CODE statement
       for (let i = 0; i < this.parameterCount_; i++) {
-        const inputName = 'PARAM' + i;
-        const input = this.appendValueInput(inputName)
+        const input = this.appendValueInput('PARAM' + i)
           .setCheck(null)
           .appendField("param " + (i + 1))
           .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i)
           .appendField(new Blockly.FieldDropdown([
             ["option1", "OPTION1"],
             ["option2", "OPTION2"]
-          ]), "PARAM_DROPDOWN_" + i)
-          .appendField(new Blockly.FieldLabel("❌", () => {
-            this.parameterCount_--;
-            this.updateParameters_();
-          }), "PARAM_REMOVE_" + i);
+          ]), "PARAM_DROPDOWN_" + i);
 
         // Move input before statement input
-        this.moveInputBefore(inputName, 'CODE');
+        this.moveInputBefore('PARAM' + i, 'CODE');
       }
     }
   }
 });
+
 
 
 

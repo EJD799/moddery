@@ -958,7 +958,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "register_command",
-    message0: "register command with name %1 description %2 permission level %3 %4",
+    message0: "register command with name %1 description %2 permission level %3 code to run %4",
     colour: 180,
     args0: [
       {

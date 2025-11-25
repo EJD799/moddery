@@ -1647,10 +1647,10 @@ Blockly.common.defineBlocks({
         input.appendField(removeBtn, "REMOVE_BTN_" + i);
 
         removeBtn.onMouseDown_ = (e) => {
+          console.log("remove");
           this.parameterCount_--;
           this.updateParameters_();
           e.stopPropagation();
-          console.log("remove");
         };
 
         this.moveInputBefore("PARAM" + i, "CODE");

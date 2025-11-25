@@ -31,46 +31,61 @@
   }
 
   /* Make the connection highlight white and thick */
-.blocklyConnectionHighlightPath {
+  .blocklyConnectionHighlightPath {
     stroke: #ffffff !important;
     stroke-width: 4px !important;
-}
+  }
 
-/* Override the insertion marker path (the thin one) */
-.blocklyInsertionMarker>.blocklyPath {
+  /* Override the insertion marker path */
+  .blocklyInsertionMarker > .blocklyPath {
     stroke: #ffffff !important;
     stroke-width: 4px !important;
     fill: none !important;
-}
-
+  }
 </style>
 
-
 <div id="blocklyDiv" style="height: 100%; width: 100%;"></div>
-<script src="script.js" defer></script>
+
+<script src="script.js"></script>
+
 <script>
-// Make highlight color white
-Blockly.blockRendering.ConstantProvider.prototype.HIGHLIGHT_COLOUR = '#ffffff';
-Blockly.zelos.ConstantProvider.prototype.HIGHLIGHT_COLOUR = '#ffffff';
+// -------------------------
+// Override highlight renderer
+// -------------------------
 
-// Make insertion marker white
-Blockly.blockRendering.ConstantProvider.prototype.INSERTION_MARKER_COLOUR = '#ffffff';
-Blockly.zelos.ConstantProvider.prototype.INSERTION_MARKER_COLOUR = '#ffffff';
+const originalHighlight = Blockly.zelos.Renderer.prototype.highlightConnection_;
 
-// Make insertion marker thick
-Blockly.blockRendering.ConstantProvider.prototype.INSERTION_MARKER_STROKE_WIDTH = 4;
-Blockly.zelos.ConstantProvider.prototype.INSERTION_MARKER_STROKE_WIDTH = 4;
+Blockly.zelos.Renderer.prototype.highlightConnection_ = function(conn, addHighlight) {
+  // Let Blockly draw the highlight
+  originalHighlight.call(this, conn, addHighlight);
 
-// Ensure internal highlight curves also match width
-Blockly.zelos.ConstantProvider.prototype.OUTSIDE_CORNERS = 4;
-Blockly.zelos.ConstantProvider.prototype.INSIDE_CORNERS = 4;
-
-// Refresh workspace after applying patches
-setTimeout(() => {
-  const ws = Blockly.getMainWorkspace();
-  ws.refreshToolboxSelection();
-  ws.render();
-}, 0);
+  // Now restyle it
+  if (conn.highlightedPath) {
+    conn.highlightedPath.setAttribute("stroke", "#ffffff");
+    conn.highlightedPath.setAttribute("stroke-width", "4");
+    conn.highlightedPath.setAttribute("opacity", "1");
+    conn.highlightedPath.setAttribute("fill", "none");
+  }
+};
 
 
+// -------------------------
+// Override insertion marker renderer
+// -------------------------
+
+const originalDrawInsertionMarker = Blockly.zelos.Renderer.prototype.drawInsertionMarker;
+
+Blockly.zelos.Renderer.prototype.drawInsertionMarker = function(block, sourceBlock) {
+  // Let Blockly create the marker
+  originalDrawInsertionMarker.call(this, block, sourceBlock);
+
+  // Modify the rendered insertion marker path
+  const path = block.getSvgRoot().querySelector(".blocklyPath");
+  if (path) {
+    path.setAttribute("stroke", "#ffffff");
+    path.setAttribute("stroke-width", "4");
+    path.setAttribute("fill", "none");
+    path.setAttribute("opacity", "1");
+  }
+};
 </script>

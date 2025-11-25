@@ -1574,14 +1574,10 @@ Blockly.common.defineBlocks({
 
       // ADD PARAM BUTTON
       const addBtn = new Blockly.FieldLabel("+");
+      addBtn.addClass("param-button");
       this.appendDummyInput("ADD_PARAM").appendField(addBtn, "ADD_PARAM_BTN");
 
-      // Listen for mouse down events on the label
-      addBtn.onMouseDown_ = (e) => {
-        this.parameterCount_++;
-        this.updateParameters_();
-        e.stopPropagation();
-      };
+      addBtn.setTooltip("Add a parameter");
 
       // Statement input
       this.appendStatementInput("CODE").appendField("code");
@@ -1626,19 +1622,34 @@ Blockly.common.defineBlocks({
 
         // REMOVE BUTTON
         const removeBtn = new Blockly.FieldLabel("x");
+        removeBtn.addClass("param-button");
+        removeBtn.setTooltip("Remove this parameter");
         input.appendField(removeBtn, "REMOVE_BTN_" + i);
 
-        removeBtn.onMouseDown_ = (e) => {
-          this.parameterCount_--;
-          this.updateParameters_();
-          e.stopPropagation();
-        };
+        // Listen for mousedown and remove parameter
+        removeBtn.onMouseDown_ = ((index) => {
+          return (e) => {
+            e.stopPropagation();
+            this.parameterCount_--;
+            this.updateParameters_();
+          };
+        })(i);
 
         this.moveInputBefore("PARAM" + i, "CODE");
       }
     },
   }
 });
+
+// Add listener to the ADD button after defining the block
+Blockly.Extensions.register('register_command_add_btn', function() {
+  this.getInput("ADD_PARAM").fieldRow[0].onMouseDown_ = (e) => {
+    e.stopPropagation();
+    this.parameterCount_++;
+    this.updateParameters_();
+  };
+});
+
 
 
 

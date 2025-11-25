@@ -8,41 +8,54 @@
     padding: 0;
     margin: 0;
   }
-/* 1. Remove yellow block selection outline */
-.blocklyPathSelected {
-  stroke: none !important;
-  stroke-width: 0 !important;
-}
 
-/* 2. Keep normal fill for selected block */
-.blocklySelected .blocklyPath {
-  fill-opacity: 1 !important;
-}
+  /* 1. Remove yellow block selection outline */
+  .blocklyPathSelected {
+    stroke: none !important;
+    stroke-width: 0 !important;
+  }
 
-/* 3. Dark drop shadow on dragging blocks */
-.blocklyDragging {
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-}
+  /* 2. Keep normal fill for selected block */
+  .blocklySelected .blocklyPath {
+    fill-opacity: 1 !important;
+  }
 
-/* 4. Subtle opacity on dragged block paths */
-.blocklyDragging .blocklyPath {
-  opacity: 0.95;
-}
+  /* 3. Dark drop shadow on dragging blocks */
+  .blocklyDragging {
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+  }
 
-/* 5. White highlight for input slots, including reporters */
-.blocklyHighlightedConnectionPath {
-  stroke: #ffffff !important;
-  stroke-width: 1 !important;
-  fill: none !important;
-  opacity: 0.5 !important;
-}
+  /* 4. Subtle opacity on dragged block paths */
+  .blocklyDragging .blocklyPath {
+    opacity: 0.95;
+  }
 
-
-
-
-
+  /* 5. White highlight for input slots, including reporters */
+  .blocklyHighlightedConnectionPath {
+    stroke: #ffffff !important;
+    stroke-width: 1 !important;
+    fill: none !important;
+    opacity: 0.5 !important;
+  }
 </style>
 
 
 <div id="blocklyDiv" style="height: 100%; width: 100%;"></div>
+<script>
+  // Save reference to the original method
+  const originalHighlightConnection = Blockly.zelos.Renderer.prototype.highlightConnection_;
+
+  Blockly.zelos.Renderer.prototype.highlightConnection_ = function(conn, addHighlight) {
+    // Call original method first
+    originalHighlightConnection.call(this, conn, addHighlight);
+
+    // Grab the path element created for the highlight
+    if (conn.highlightedPath) {
+      conn.highlightedPath.setAttribute('stroke', '#ffffff');  // make it white
+      conn.highlightedPath.setAttribute('stroke-width', '1');  // consistent thickness
+      conn.highlightedPath.setAttribute('opacity', '0.5');     // subtle, Scratch-like
+    }
+  };
+
+</script>
 <script src="script.js" defer></script>

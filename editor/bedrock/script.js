@@ -1551,16 +1551,13 @@ Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
 
 
+// === Define the dynamic register_command block ===
 Blockly.common.defineBlocks({
   register_command: {
     init: function() {
-      this.parameterCount_ = 0; 
-      this.setColour(180);
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setInputsInline(true);
+      this.parameterCount_ = 0; // track dynamic parameters
 
-      // --- Static fields ---
+      // Static fields
       this.appendValueInput("NAME")
           .setCheck(null)
           .appendField("register command with name");
@@ -1570,68 +1567,82 @@ Blockly.common.defineBlocks({
       this.appendDummyInput("PERMISSION_INPUT")
           .appendField("permission level")
           .appendField(new Blockly.FieldDropdown([
-            ["Any", "Any"],
-            ["GameDirectors", "GameDirectors"],
-            ["Admin", "Admin"],
-            ["Host", "Host"],
-            ["Owner", "Owner"]
+              ["Any", "Any"],
+              ["GameDirectors", "GameDirectors"],
+              ["Admin", "Admin"],
+              ["Host", "Host"],
+              ["Owner", "Owner"]
           ]), "PERMISSION_LEVEL");
 
-      // --- Statement input ---
+      // Button to add a parameter
+      this.appendDummyInput("ADD_PARAM")
+          .appendField(new Blockly.FieldLabel("+", function() {
+              const block = this.sourceBlock_;
+              block.parameterCount_++;
+              block.updateParameters_();
+          }));
+
+      // Statement input at the end
       this.appendStatementInput("CODE")
           .setCheck(null)
           .appendField("code");
 
-      // --- Add parameter button ---
-      this.appendDummyInput("ADD_PARAM")
-          .appendField(new Blockly.FieldLabel("+", () => {
-            this.parameterCount_++;
-            this.updateParameters_();
-          }));
-
-      this.updateParameters_();
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(180);
+      this.setInputsInline(true);
     },
 
+    // Save dynamic parameters to XML
     mutationToDom: function() {
       const container = document.createElement('mutation');
-      container.setAttribute('parameters', this.parameterCount_);
+      if (this.parameterCount_ > 0) {
+        container.setAttribute('parameters', this.parameterCount_);
+      }
       return container;
     },
 
+    // Load dynamic parameters from XML
     domToMutation: function(xmlElement) {
       this.parameterCount_ = parseInt(xmlElement.getAttribute('parameters') || 0);
       this.updateParameters_();
     },
 
+    // Update dynamic parameter inputs
     updateParameters_: function() {
-      // Remove old PARAM inputs
+      // Remove existing PARAM inputs
       let i = 0;
       while (this.getInput('PARAM' + i)) {
         this.removeInput('PARAM' + i);
         i++;
       }
 
-      // Add new PARAM inputs before CODE input
+      // Add new PARAM inputs before the statement input
       for (let i = 0; i < this.parameterCount_; i++) {
         const input = this.appendValueInput('PARAM' + i)
           .setCheck(null)
           .appendField("param " + (i + 1))
           .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i)
           .appendField(new Blockly.FieldDropdown([
-            ["option1", "OPTION1"],
-            ["option2", "OPTION2"]
+              ["option1", "OPTION1"],
+              ["option2", "OPTION2"]
           ]), "PARAM_DROPDOWN_" + i)
-          // Remove button using FieldLabel constructor callback
-          .appendField(new Blockly.FieldLabel("x", () => {
-            this.parameterCount_--;
-            this.updateParameters_();
+          .appendField(new Blockly.FieldLabel("x", function() {
+              const block = this.sourceBlock_;
+              // Remove this parameter
+              if (block.parameterCount_ > 0) {
+                block.parameterCount_--;
+                block.updateParameters_();
+              }
           }));
 
+        // Move input before the statement input
         this.moveInputBefore('PARAM' + i, 'CODE');
       }
     }
   }
 });
+
 
 
 

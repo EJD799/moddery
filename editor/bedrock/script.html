@@ -4,44 +4,37 @@
 <script src="https://unpkg.com/blockly/msg/en.js"></script>
 
 <style>
-  body {
-    padding: 0;
-    margin: 0;
-  }
-/* 1. Remove the yellow selection outline on blocks */
+/* 1. Keep normal block outlines, remove yellow highlight */
 .blocklyPathSelected {
   stroke: none !important;
   stroke-width: 0 !important;
 }
 
-/* 2. Keep subtle selected block fill (optional) */
 .blocklySelected .blocklyPath {
   fill-opacity: 1 !important;
 }
 
-/* 3. White highlight for input slots instead of yellow */
+/* 2. White highlight for input slots */
 .blocklyInputHighlightedRect {
-  fill: #ffffff !important;       /* white fill */
-  stroke: #999999 !important;     /* subtle border */
+  fill: #ffffff !important;
+  stroke: #999999 !important;
   stroke-width: 1 !important;
-  opacity: 0.5 !important;        /* transparent like Scratch */
-  rx: 4 !important;               /* rounded corners like Scratch */
+  opacity: 0.5 !important;
+  rx: 4 !important;
   ry: 4 !important;
 }
 
-/* 4. Dark drop shadow when dragging blocks */
+/* 3. Dark drop shadow for dragging blocks (Scratch style) */
 .blocklyDragging {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-  /* optional: slightly scale the block for better visual */
-  transform: scale(1.02);
-  transform-origin: center center;
-  transition: transform 0.05s ease;
+  /* DO NOT use transform here — it breaks the drag position */
 }
 
-/* 5. Optional: smooth opacity for dragging block */
+/* Optional: slightly reduce opacity during drag */
 .blocklyDragging .blocklyPath {
   opacity: 0.95;
 }
+
 
 
 

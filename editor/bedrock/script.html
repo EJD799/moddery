@@ -49,57 +49,28 @@
 <script src="script.js"></script>
 
 <script>
-// 1. Force Zelos constants: white + thick highlight stroke
-class WhiteHighlight extends Blockly.zelos.HighlightConstantProvider {
-  constructor() {
-    super();
-    this.HIGHLIGHT_COLOR = '#ffffff';
-    this.HIGHLIGHT_SIZE = 4;  // Thickness
-  }
-}
-Blockly.zelos.Renderer.prototype.makeHighlightConstants_ = function() {
-  return new WhiteHighlight();
-};
+// MutationObserver that forces white & thick highlight lines
+const observer = new MutationObserver(() => {
+    // Highlight (connection) path
+    document.querySelectorAll(".blocklyConnectionHighlightPath").forEach(p => {
+        p.setAttribute("stroke", "#ffffff");
+        p.setAttribute("stroke-width", "4");
+        p.setAttribute("opacity", "1");
+        p.setAttribute("fill", "none");
+    });
 
+    // Insertion marker (the thin path)
+    document.querySelectorAll(".blocklyInsertionMarker > .blocklyPath").forEach(p => {
+        p.setAttribute("stroke", "#ffffff");
+        p.setAttribute("stroke-width", "4");
+        p.setAttribute("opacity", "1");
+        p.setAttribute("fill", "none");
+    });
+});
 
-// 2. Override connection highlight drawing
-const originalHighlight = Blockly.zelos.Renderer.prototype.highlightConnection_;
-
-Blockly.zelos.Renderer.prototype.highlightConnection_ = function(conn, add) {
-  originalHighlight.call(this, conn, add);
-
-  if (conn.highlightedPath) {
-    conn.highlightedPath.setAttribute("stroke", "#ffffff");
-    conn.highlightedPath.setAttribute("stroke-width", "4");
-    conn.highlightedPath.setAttribute("opacity", "1");
-    conn.highlightedPath.setAttribute("fill", "none");
-  }
-};
-
-
-// 3. Override insertion marker creation (the thin white line problem)
-Blockly.zelos.Renderer.prototype.makeInsertionMarker_ = function(block) {
-  const marker = Blockly.zelos.Renderer.superClass_.makeInsertionMarker_.call(this, block);
-
-  const path = marker.getSvgRoot().querySelector(".blocklyPath");
-  if (path) {
-    path.setAttribute("stroke", "#ffffff");
-    path.setAttribute("stroke-width", "4");
-    path.setAttribute("fill", "none");
-    path.setAttribute("opacity", "1");
-  }
-
-  return marker;
-};
-
-
-// 4. Prevent Blockly from restoring yellow outline on shadow inputs
-Blockly.zelos.Renderer.prototype.updateConnectionHighlight_ = function(conn) {
-  if (conn.highlightedPath) {
-    conn.highlightedPath.setAttribute("stroke", "#ffffff");
-    conn.highlightedPath.setAttribute("stroke-width", "4");
-    conn.highlightedPath.setAttribute("opacity", "1");
-    conn.highlightedPath.setAttribute("fill", "none");
-  }
-};
+// Observe the entire Blockly workspace for new SVG paths
+observer.observe(document.body, {
+    childList: true,
+    subtree: true
+});
 </script>

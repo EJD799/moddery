@@ -958,7 +958,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "register_command",
-    message0: "register command with name %1 description %2 permission level %3 %4",
+    message0: "register command with name %1 description %2 permission level %3",
     colour: 180,
     args0: [
       {
@@ -981,10 +981,6 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
           ["Host", "Host"],
           ["Owner", "Owner"]
         ]
-      },
-      {
-        type: "input_statement",
-        name: "CODE"
       }
     ],
     previousStatement: null,
@@ -1019,6 +1015,63 @@ const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
     colour: 20
   }
 ]);
+
+
+// --- 2. Add dynamic parameters via mutation ---
+Blockly.Blocks['register_command'].init = function() {
+  this.parameterCount_ = 0;
+
+  // Statement input on a separate line
+  this.appendStatementInput("CODE")
+      .setCheck(null)
+      .appendField("code");
+
+  // Optional: add mutator UI (here we just allow programmatic mutation)
+  // this.setMutator(new Blockly.Mutator([]));
+};
+
+// Save dynamic inputs to XML
+Blockly.Blocks['register_command'].mutationToDom = function() {
+  const container = document.createElement('mutation');
+  if (this.parameterCount_ > 0) {
+    container.setAttribute('parameters', this.parameterCount_);
+  }
+  return container;
+};
+
+// Restore dynamic inputs from XML
+Blockly.Blocks['register_command'].domToMutation = function(xmlElement) {
+  this.parameterCount_ = parseInt(xmlElement.getAttribute('parameters') || 0);
+  this.updateParameters_();
+};
+
+// Add/remove parameter inputs dynamically
+Blockly.Blocks['register_command'].updateParameters_ = function() {
+  // Remove old parameter inputs
+  let i = 0;
+  while (this.getInput('PARAM' + i)) {
+    this.removeInput('PARAM' + i);
+    i++;
+  }
+
+  // Add new parameter inputs inline (after main value inputs, before statement input)
+  for (let i = 0; i < this.parameterCount_; i++) {
+    this.appendValueInput('PARAM' + i)
+        .setCheck(null)
+        .appendField('param ' + (i + 1));
+  }
+
+  // Move statement input to the end (to ensure it's always on a separate line)
+  if (this.getInput('CODE')) {
+    const codeInput = this.getInput('CODE');
+    this.moveInputBefore('CODE', null);
+  }
+};
+
+// Example: programmatically add a parameter
+// let block = workspace.getBlockById('your_block_id');
+// block.parameterCount_++;
+// block.updateParameters_();
 
 
 

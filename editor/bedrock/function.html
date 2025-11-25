@@ -10,6 +10,39 @@
     padding: 0;
     margin: 0;
   }
+    /* 1. Remove yellow block selection outline */
+  .blocklyPathSelected {
+    stroke: none !important;
+    stroke-width: 0 !important;
+  }
+
+  /* 2. Keep normal fill for selected block */
+  .blocklySelected .blocklyPath {
+    fill-opacity: 1 !important;
+  }
+
+  /* 3. Dark drop shadow on dragging blocks */
+  .blocklyDragging {
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+  }
+
+  /* 4. Subtle opacity on dragged block paths */
+  .blocklyDragging .blocklyPath {
+    opacity: 0.95;
+  }
+
+  /* Make the connection highlight white and thick */
+  .blocklyConnectionHighlightPath {
+    stroke: #ffffff !important;
+    stroke-width: 4px !important;
+  }
+
+  /* Override the insertion marker path */
+  .blocklyInsertionMarker > .blocklyPath {
+    stroke: #ffffff !important;
+    stroke-width: 4px !important;
+    fill: none !important;
+  }
 </style>
 
 <div id="blocklyDiv" style="height: 100%; width: 100%;"></div>

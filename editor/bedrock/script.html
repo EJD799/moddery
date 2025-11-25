@@ -47,34 +47,3 @@
 <div id="blocklyDiv" style="height: 100%; width: 100%;"></div>
 
 <script src="script.js"></script>
-
-<script>
-// Save original function
-const originalHighlightConnection = Blockly.zelos.Renderer.prototype.highlightConnection_;
-Blockly.zelos.Renderer.prototype.highlightConnection_ = function(conn, addHighlight) {
-  originalHighlightConnection.call(this, conn, addHighlight);
-  if (conn.highlightedPath) {
-    conn.highlightedPath.setAttribute('stroke', '#ffffff');
-    conn.highlightedPath.setAttribute('stroke-width', '6'); // Scratch-style thickness
-    conn.highlightedPath.setAttribute('fill', 'none');
-    conn.highlightedPath.setAttribute('opacity', '1');
-  }
-};
-
-// Patch insertion marker creation
-const originalCreateInsertionMarker = Blockly.zelos.Drawer.prototype.createInsertionMarker_;
-Blockly.zelos.Drawer.prototype.createInsertionMarker_ = function() {
-  const marker = originalCreateInsertionMarker.call(this);
-  if (marker && marker.getSvgRoot) {
-    const path = marker.getSvgRoot().querySelector('.blocklyPath');
-    if (path) {
-      path.setAttribute('stroke', '#ffffff');
-      path.setAttribute('stroke-width', '6');
-      path.setAttribute('fill', 'none');
-      path.setAttribute('opacity', '1');
-    }
-  }
-  return marker;
-};
-
-</script>

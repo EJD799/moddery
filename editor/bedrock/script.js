@@ -1551,145 +1551,87 @@ Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
 
 
-// -----------------------------
-// Parameter block (used in mutator)
-Blockly.Blocks['register_command_param'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Parameter name")
-        .appendField(new Blockly.FieldTextInput("param"), "PARAM_NAME")
-        .appendField("type")
-        .appendField(new Blockly.FieldDropdown([["Option 1","OPTION1"], ["Option 2","OPTION2"]]), "PARAM_TYPE");
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(200);
-    this.setTooltip("Command parameter");
-    this.setHelpUrl("");
-  }
-};
+// === Define the dynamic block ===
+Blockly.common.defineBlocks({
+  register_command: {
+    init: function() {
+      this.parameterCount_ = 0; // track dynamic parameters
 
-// -----------------------------
-// Main block
-Blockly.Blocks['register_command'] = {
-  init: function() {
-    this.parameterCount_ = 0;
-
-    this.appendValueInput("NAME")
-        .setCheck(null)
-        .appendField("register command with name");
-
-    this.appendValueInput("DESCRIPTION")
-        .setCheck(null)
-        .appendField("description");
-
-    this.appendDummyInput()
-        .appendField("permission level")
-        .appendField(new Blockly.FieldDropdown([
-          ["Any", "Any"],
-          ["GameDirectors", "GameDirectors"],
-          ["Admin", "Admin"],
-          ["Host", "Host"],
-          ["Owner", "Owner"]
-        ]), "PERMISSION_LEVEL");
-
-    this.appendStatementInput("CODE")
-        .setCheck(null)
-        .appendField("code");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(180);
-    this.setInputsInline(true);
-    this.setTooltip("Registers a command");
-    this.setHelpUrl("");
-
-    // Attach mutator
-    this.setMutator(new Blockly.Mutator(['register_command_param']));
-  },
-
-  // -----------------------------
-  // Serialize parameters
-  mutationToDom: function() {
-    const container = document.createElement('mutation');
-    if (this.parameterCount_ > 0) {
-      container.setAttribute('parameters', this.parameterCount_);
-    }
-    return container;
-  },
-
-  domToMutation: function(xmlElement) {
-    this.parameterCount_ = parseInt(xmlElement.getAttribute('parameters') || 0);
-    this.updateParameters_();
-  },
-
-  // -----------------------------
-  // Add/remove PARAM inputs dynamically
-  updateParameters_: function() {
-    // Remove old PARAM inputs
-    let i = 0;
-    while (this.getInput('PARAM' + i)) {
-      this.removeInput('PARAM' + i);
-      i++;
-    }
-
-    // Add new PARAM inputs before the CODE statement
-    for (let i = 0; i < this.parameterCount_; i++) {
-      this.appendValueInput('PARAM' + i)
+      // Static fields
+      this.appendValueInput("NAME")
           .setCheck(null)
-          .appendField('param ' + (i + 1));
-      this.moveInputBefore('PARAM' + i, 'CODE');
+          .appendField("register command with name");
+      this.appendValueInput("DESCRIPTION")
+          .setCheck(null)
+          .appendField("description");
+      this.appendField("permission level")
+          .appendField(new Blockly.FieldDropdown([
+            ["Any", "Any"],
+            ["GameDirectors", "GameDirectors"],
+            ["Admin", "Admin"],
+            ["Host", "Host"],
+            ["Owner", "Owner"]
+          ]), "PERMISSION_LEVEL");
+
+      // Button to add a parameter
+      this.appendDummyInput("ADD_PARAM")
+          .appendField(new Blockly.FieldLabel("➕ Add parameter", () => {
+            this.parameterCount_++;
+            this.updateParameters_();
+          }), "ADD_PARAM_FIELD");
+
+      // Statement input at the end
+      this.appendStatementInput("CODE")
+          .setCheck(null)
+          .appendField("code");
+
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(180);
+      this.setInputsInline(true);
+    },
+
+    mutationToDom: function() {
+      const container = document.createElement('mutation');
+      if (this.parameterCount_ > 0) {
+        container.setAttribute('parameters', this.parameterCount_);
+      }
+      return container;
+    },
+
+    domToMutation: function(xmlElement) {
+      this.parameterCount_ = parseInt(xmlElement.getAttribute('parameters') || 0);
+      this.updateParameters_();
+    },
+
+    updateParameters_: function() {
+      // Remove existing PARAM inputs
+      let i = 0;
+      while (this.getInput('PARAM' + i)) {
+        this.removeInput('PARAM' + i);
+        i++;
+      }
+
+      // Add new PARAM inputs before the statement input
+      for (let i = 0; i < this.parameterCount_; i++) {
+        const input = this.appendValueInput('PARAM' + i)
+          .setCheck(null)
+          .appendField("param " + (i + 1))
+          .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i)
+          .appendField(new Blockly.FieldDropdown([
+            ["option1", "OPTION1"],
+            ["option2", "OPTION2"]
+          ]), "PARAM_DROPDOWN_" + i);
+
+        // Simulated reporter output
+        input.connection.setCheck(null); // allow anything to connect
+        input.connection.outputConnection = new Blockly.Connection(
+          input.sourceBlock_.workspace, Blockly.Connection.OUTPUT_VALUE);
+        this.moveInputBefore('PARAM' + i, 'CODE');
+      }
     }
-  },
-
-  // -----------------------------
-  // Mutator callbacks
-  decompose: function(workspace) {
-    const containerBlock = workspace.newBlock('register_command_mutator_container');
-    containerBlock.initSvg();
-    let connection = containerBlock.getInput('STACK').connection;
-
-    for (let i = 0; i < this.parameterCount_; i++) {
-      const paramBlock = workspace.newBlock('register_command_param');
-      paramBlock.initSvg();
-      connection.connect(paramBlock.previousConnection);
-      connection = paramBlock.nextConnection;
-    }
-
-    return containerBlock;
-  },
-
-  compose: function(containerBlock) {
-    let paramBlock = containerBlock.getInputTargetBlock('STACK');
-    this.parameterCount_ = 0;
-
-    while (paramBlock) {
-      this.parameterCount_++;
-      paramBlock = paramBlock.nextConnection && paramBlock.nextConnection.targetBlock();
-    }
-
-    this.updateParameters_();
   }
-};
-
-// -----------------------------
-// Mutator container
-Blockly.Blocks['register_command_mutator_container'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Parameters");
-    this.appendStatementInput('STACK');
-    this.setColour(220);
-    this.setTooltip("Add, remove, or reorder parameters.");
-    this.contextMenu = false;
-  }
-};
-
-
-
-
-
-
-
+});
 
 
 var workspace = Blockly.inject('blocklyDiv', {
@@ -1725,13 +1667,14 @@ workspace.addChangeListener(function(event) {
   isAdjustingReporters = true;
   try {
     // Parent block types that should spawn reporters
-    const parentTypes = ['show_form', 'after_event', 'before_event'];
+    const parentTypes = ['show_form', 'after_event', 'before_event', 'register_command'];
 
     // Map each parent type to its corresponding reporter type
     const reporterMap = {
       'show_form': 'show_form_var',
       'after_event': 'event_data',
-      'before_event': 'event_data'
+      'before_event': 'event_data',
+      'register_command': 'parameter_reporter' // change to your reporter type
     };
 
     // Find all parent blocks of interest
@@ -1739,24 +1682,44 @@ workspace.addChangeListener(function(event) {
       .filter(b => parentTypes.includes(b.type));
 
     for (const parentBlock of allParentBlocks) {
-      const input = parentBlock.getInput('CALLBACK');
-      if (!input) continue;
+      if (parentBlock.type === 'register_command') {
+        // Loop through each dynamic parameter input
+        const paramCount = parentBlock.parameterCount_ || 0;
+        for (let i = 0; i < paramCount; i++) {
+          const input = parentBlock.getInput('PARAM' + i);
+          if (!input) continue;
 
-      const connected = input.connection.targetBlock();
+          const connected = input.connection.targetBlock();
 
-      // If nothing is connected, spawn a new reporter block
-      if (!connected) {
-        const reporterType = reporterMap[parentBlock.type];
-        const newReporter = workspace.newBlock(reporterType);
-        newReporter.initSvg();
-        newReporter.render();
-        input.connection.connect(newReporter.outputConnection);
+          // If nothing is connected, spawn a new reporter block
+          if (!connected) {
+            const reporterType = reporterMap[parentBlock.type];
+            const newReporter = workspace.newBlock(reporterType);
+            newReporter.initSvg();
+            newReporter.render();
+            input.connection.connect(newReporter.outputConnection);
+          }
+        }
+      } else {
+        // Existing behavior for CALLBACK inputs
+        const input = parentBlock.getInput('CALLBACK');
+        if (!input) continue;
+
+        const connected = input.connection.targetBlock();
+        if (!connected) {
+          const reporterType = reporterMap[parentBlock.type];
+          const newReporter = workspace.newBlock(reporterType);
+          newReporter.initSvg();
+          newReporter.render();
+          input.connection.connect(newReporter.outputConnection);
+        }
       }
     }
   } finally {
     isAdjustingReporters = false;
   }
 });
+
 
 
 const startBlock = workspace.newBlock('on_start');

@@ -1624,10 +1624,7 @@ Blockly.common.defineBlocks({
             ["option2", "OPTION2"]
           ]), "PARAM_DROPDOWN_" + i);
 
-        // Simulated reporter output
-        input.connection.setCheck(null); // allow anything to connect
-        input.connection.outputConnection = new Blockly.Connection(
-          input.sourceBlock_.workspace, Blockly.Connection.OUTPUT_VALUE);
+        // Move input before statement input
         this.moveInputBefore('PARAM' + i, 'CODE');
       }
     }

@@ -1551,7 +1551,7 @@ Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
 
 
-Blockly.common.defineBlocks({
+/*Blockly.common.defineBlocks({
   register_command: {
     init: function () {
       this.parameterCount_ = 0;
@@ -1663,7 +1663,7 @@ Blockly.common.defineBlocks({
       }
     }
   }
-});
+});*/
 
 
 

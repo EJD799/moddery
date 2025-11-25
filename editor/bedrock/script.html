@@ -8,36 +8,35 @@
     padding: 0;
     margin: 0;
   }
-/* 1. Keep normal block outlines, remove yellow highlight */
+/* 1. Remove yellow block selection outline */
 .blocklyPathSelected {
   stroke: none !important;
   stroke-width: 0 !important;
 }
 
+/* 2. Keep normal fill for selected block */
 .blocklySelected .blocklyPath {
   fill-opacity: 1 !important;
 }
 
-/* 2. White highlight for input slots */
-.blocklyInputHighlightedRect {
-  fill: #ffffff !important;
-  stroke: #999999 !important;
-  stroke-width: 1 !important;
-  opacity: 0.5 !important;
-  rx: 4 !important;
-  ry: 4 !important;
-}
-
-/* 3. Dark drop shadow for dragging blocks (Scratch style) */
+/* 3. Dark drop shadow on dragging blocks */
 .blocklyDragging {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-  /* DO NOT use transform here — it breaks the drag position */
 }
 
-/* Optional: slightly reduce opacity during drag */
+/* 4. Subtle opacity on dragged block paths */
 .blocklyDragging .blocklyPath {
   opacity: 0.95;
 }
+
+/* 5. White highlight for input slots, including reporters */
+.blocklyHighlightedConnectionPath {
+  stroke: #ffffff !important;
+  stroke-width: 1 !important;
+  fill: none !important;
+  opacity: 0.5 !important;
+}
+
 
 
 

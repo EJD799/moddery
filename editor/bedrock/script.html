@@ -8,11 +8,25 @@
     padding: 0;
     margin: 0;
   }
-/* Keep the normal block outlines, remove Zelos yellow highlight */
+/* 1. Remove Zelos yellow selection outline */
 .blocklyPathSelected {
-  stroke: none !important;       /* removes the yellow outline */
+  stroke: none !important;
   stroke-width: 0 !important;
 }
+
+/* 2. Remove yellow highlight for selected blocks */
+.blocklySelected .blocklyPath {
+  fill-opacity: 1 !important; /* normal fill */
+}
+
+/* 3. Change the highlight of reporter blocks when dropped into inputs */
+.blocklyInputHighlightedRect {
+  fill: #ffffff !important;       /* white background for input highlight */
+  stroke: #cccccc !important;     /* optional: subtle border */
+  stroke-width: 1 !important;
+  opacity: 0.5 !important;        /* slightly transparent like Scratch */
+}
+
 
 </style>
 

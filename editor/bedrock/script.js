@@ -1564,13 +1564,14 @@ Blockly.common.defineBlocks({
       this.appendValueInput("DESCRIPTION")
           .setCheck(null)
           .appendField("description");
-      this.appendField("permission level")
+      this.appendDummyInput("PERMISSION_INPUT")
+          .appendField("permission level")
           .appendField(new Blockly.FieldDropdown([
-            ["Any", "Any"],
-            ["GameDirectors", "GameDirectors"],
-            ["Admin", "Admin"],
-            ["Host", "Host"],
-            ["Owner", "Owner"]
+              ["Any", "Any"],
+              ["GameDirectors", "GameDirectors"],
+              ["Admin", "Admin"],
+              ["Host", "Host"],
+              ["Owner", "Owner"]
           ]), "PERMISSION_LEVEL");
 
       // Button to add a parameter

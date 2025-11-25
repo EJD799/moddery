@@ -1598,6 +1598,7 @@ Blockly.common.defineBlocks({
         this.parameterCount_++;
         this.updateParameters_();
         e.stopPropagation();
+        console.log("add");
       };
 
       // Statement input
@@ -1649,6 +1650,7 @@ Blockly.common.defineBlocks({
           this.parameterCount_--;
           this.updateParameters_();
           e.stopPropagation();
+          console.log("remove");
         };
 
         this.moveInputBefore("PARAM" + i, "CODE");

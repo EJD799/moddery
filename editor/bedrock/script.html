@@ -49,28 +49,32 @@
 <script src="script.js"></script>
 
 <script>
-// MutationObserver that forces white & thick highlight lines
-const observer = new MutationObserver(() => {
-    // Highlight (connection) path
-    document.querySelectorAll(".blocklyConnectionHighlightPath").forEach(p => {
-        p.setAttribute("stroke", "#ffffff");
-        p.setAttribute("stroke-width", "4");
-        p.setAttribute("opacity", "1");
-        p.setAttribute("fill", "none");
-    });
+// Save original function
+const originalHighlightConnection = Blockly.zelos.Renderer.prototype.highlightConnection_;
+Blockly.zelos.Renderer.prototype.highlightConnection_ = function(conn, addHighlight) {
+  originalHighlightConnection.call(this, conn, addHighlight);
+  if (conn.highlightedPath) {
+    conn.highlightedPath.setAttribute('stroke', '#ffffff');
+    conn.highlightedPath.setAttribute('stroke-width', '6'); // Scratch-style thickness
+    conn.highlightedPath.setAttribute('fill', 'none');
+    conn.highlightedPath.setAttribute('opacity', '1');
+  }
+};
 
-    // Insertion marker (the thin path)
-    document.querySelectorAll(".blocklyInsertionMarker > .blocklyPath").forEach(p => {
-        p.setAttribute("stroke", "#ffffff");
-        p.setAttribute("stroke-width", "4");
-        p.setAttribute("opacity", "1");
-        p.setAttribute("fill", "none");
-    });
-});
+// Patch insertion marker creation
+const originalCreateInsertionMarker = Blockly.zelos.Drawer.prototype.createInsertionMarker_;
+Blockly.zelos.Drawer.prototype.createInsertionMarker_ = function() {
+  const marker = originalCreateInsertionMarker.call(this);
+  if (marker && marker.getSvgRoot) {
+    const path = marker.getSvgRoot().querySelector('.blocklyPath');
+    if (path) {
+      path.setAttribute('stroke', '#ffffff');
+      path.setAttribute('stroke-width', '6');
+      path.setAttribute('fill', 'none');
+      path.setAttribute('opacity', '1');
+    }
+  }
+  return marker;
+};
 
-// Observe the entire Blockly workspace for new SVG paths
-observer.observe(document.body, {
-    childList: true,
-    subtree: true
-});
 </script>

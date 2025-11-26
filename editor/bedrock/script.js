@@ -1617,7 +1617,7 @@ Blockly.common.defineBlocks({
         ["option2", "OPTION2"]
       ], function (val) {
         data.type = val;
-      }), "PARAM_DROPDOWN_" + i)
+      }, data.type), "PARAM_DROPDOWN_" + i)  // <-- pass data.type as initial value
       .appendField(new Blockly.FieldCheckbox(data.optional ? "TRUE" : "FALSE", function (val) {
         data.optional = val === "TRUE";
       }), "PARAM_OPTIONAL_" + i)
@@ -1672,14 +1672,13 @@ workspace.addChangeListener(function(event) {
   isAdjustingReporters = true;
   try {
     // Parent block types that should spawn reporters
-    const parentTypes = ['show_form', 'after_event', 'before_event', 'register_command'];
+    const parentTypes = ['show_form', 'after_event', 'before_event'];
 
     // Map each parent type to its corresponding reporter type
     const reporterMap = {
       'show_form': 'show_form_var',
       'after_event': 'event_data',
-      'before_event': 'event_data',
-      'register_command': 'parameter_reporter' // change to your reporter type
+      'before_event': 'event_data'
     };
 
     // Find all parent blocks of interest

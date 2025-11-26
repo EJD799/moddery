@@ -1569,12 +1569,13 @@ Blockly.common.defineBlocks({
       addBtn.CLICKABLE = true;
       this.appendDummyInput("ADD_PARAM").appendField(addBtn, "ADD_PARAM_BTN");
 
+      addBtn.getClickTarget_.classList.add("param-button");
       addBtn.onMouseDown_ = (e) => {
-  e.stopPropagation();
-  if (!this.parameterData_) this.parameterData_ = [];
-  this.parameterData_.push({ name: "name", type: "OPTION1", optional: false });
-  this.updateParameters_();
-};
+        e.stopPropagation();
+        if (!this.parameterData_) this.parameterData_ = [];
+        this.parameterData_.push({ name: "name", type: "OPTION1", optional: false });
+        this.updateParameters_();
+      };
 
 
       // Statement input
@@ -1598,58 +1599,58 @@ Blockly.common.defineBlocks({
     },
 
     updateParameters_: function () {
-  // Initialize storage if it doesn't exist
-  if (!this.parameterData_) this.parameterData_ = [];
+      // Initialize storage if it doesn't exist
+      if (!this.parameterData_) this.parameterData_ = [];
 
-  // Remove all existing PARAM inputs
-  let i = 0;
-  while (this.getInput("PARAM" + i)) {
-    this.removeInput("PARAM" + i);
-    i++;
-  }
+      // Remove all existing PARAM inputs
+      let i = 0;
+      while (this.getInput("PARAM" + i)) {
+        this.removeInput("PARAM" + i);
+        i++;
+      }
 
-  // Rebuild PARAM inputs from parameterData_
-  for (let i = 0; i < this.parameterData_.length; i++) {
-    const data = this.parameterData_[i];
+      // Rebuild PARAM inputs from parameterData_
+      for (let i = 0; i < this.parameterData_.length; i++) {
+        const data = this.parameterData_[i];
 
-    const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
-    removeBtn.CLICKABLE = true;
+        const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
+        removeBtn.CLICKABLE = true;
 
-    // Create the dropdown
-    const typeDropdown = new Blockly.FieldDropdown([
-      ["option1", "OPTION1"],
-      ["option2", "OPTION2"]
-    ]);
-    typeDropdown.setValue(data.type); // <-- set initial value
-    typeDropdown.setValidator(function (val) {
-      data.type = val;
-      return val;
-    });
+        // Create the dropdown
+        const typeDropdown = new Blockly.FieldDropdown([
+          ["option1", "OPTION1"],
+          ["option2", "OPTION2"]
+        ]);
+        typeDropdown.setValue(data.type); // <-- set initial value
+        typeDropdown.setValidator(function (val) {
+          data.type = val;
+          return val;
+        });
 
-    const input = this.appendDummyInput("PARAM" + i)
-      .appendField("param " + (i + 1))
-      .appendField(new Blockly.FieldTextInput(data.name, function (val) {
-        data.name = val;
-      }), "PARAM_NAME_" + i)
-      .appendField(typeDropdown, "PARAM_DROPDOWN_" + i)
-      .appendField(new Blockly.FieldCheckbox(data.optional ? "TRUE" : "FALSE", function (val) {
-        data.optional = val === "TRUE";
-      }), "PARAM_OPTIONAL_" + i)
-      .appendField(removeBtn, "REMOVE_BTN_" + i);
+        const input = this.appendDummyInput("PARAM" + i)
+          .appendField("param " + (i + 1))
+          .appendField(new Blockly.FieldTextInput(data.name, function (val) {
+            data.name = val;
+          }), "PARAM_NAME_" + i)
+          .appendField(typeDropdown, "PARAM_DROPDOWN_" + i)
+          .appendField(new Blockly.FieldCheckbox(data.optional ? "TRUE" : "FALSE", function (val) {
+            data.optional = val === "TRUE";
+          }), "PARAM_OPTIONAL_" + i)
+          .appendField(removeBtn, "REMOVE_BTN_" + i);
 
-    // Remove button removes this parameter from the array
-    removeBtn.getClickTarget_().onclick = ((index) => {
-      return (e) => {
-        e.stopPropagation();
-        this.parameterData_.splice(index, 1);
-        this.updateParameters_();
-      };
-    })(i);
+        // Remove button removes this parameter from the array
+        removeBtn.getClickTarget_.classList.add("param-button");
+        removeBtn.getClickTarget_().onclick = ((index) => {
+          return (e) => {
+            e.stopPropagation();
+            this.parameterData_.splice(index, 1);
+            this.updateParameters_();
+          };
+        })(i);
 
-    this.moveInputBefore("PARAM" + i, "CODE");
-  }
-},
-
+        this.moveInputBefore("PARAM" + i, "CODE");
+      }
+    },
   },
 });
 

@@ -1592,28 +1592,16 @@ Blockly.common.defineBlocks({
   // Preserve current parameter names and dropdown values
   const oldNames = [];
   const oldOptions = [];
-  let i = 0;
-  while (this.getInput("PARAM" + i)) {
-    const input = this.getInput("PARAM" + i);
-    let name = "name";
-    let option = "OPTION1";
+  for (let i = 0; i < this.parameterCount_; i++) {
+    const nameField = this.getFieldValue("PARAM_NAME_" + i);
+    const optionField = this.getFieldValue("PARAM_DROPDOWN_" + i);
+    oldNames.push(nameField || "name");
+    oldOptions.push(optionField || "OPTION1");
 
-    if (input) {
-      const nameField = input.getField("PARAM_NAME_" + i);
-      if (nameField) {
-        name = nameField.getValue();
-      }
-      const dropdownField = input.getField("PARAM_DROPDOWN_" + i);
-      if (dropdownField) {
-        option = dropdownField.getValue();
-      }
+    // Remove old input
+    if (this.getInput("PARAM" + i)) {
+      this.removeInput("PARAM" + i);
     }
-
-    oldNames.push(name);
-    oldOptions.push(option);
-
-    this.removeInput("PARAM" + i);
-    i++;
   }
 
   // Add new PARAM inputs before CODE
@@ -1624,7 +1612,7 @@ Blockly.common.defineBlocks({
     const input = this.appendDummyInput("PARAM" + i)
       .appendField("param " + (i + 1))
       .appendField(
-        new Blockly.FieldTextInput(oldNames[i] || "name"),
+        new Blockly.FieldTextInput(oldNames[i]),
         "PARAM_NAME_" + i
       )
       .appendField(

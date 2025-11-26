@@ -1576,6 +1576,7 @@ Blockly.common.defineBlocks({
 
       // ADD PARAM BUTTON
       const addBtn = new Blockly.FieldLabel("+", undefined, "param-button");
+      addBtn.CLICKABLE = true;
       this.appendDummyInput("ADD_PARAM").appendField(addBtn, "ADD_PARAM_BTN");
 
       addBtn.onMouseDown_ = (e) => {
@@ -1627,6 +1628,7 @@ Blockly.common.defineBlocks({
 
         // REMOVE BUTTON
         const removeBtn = new Blockly.FieldLabel("x", undefined, "param-button");
+        removeBtn.CLICKABLE = true;
         input.appendField(removeBtn, "REMOVE_BTN_" + i);
 
         // Capture index for closure

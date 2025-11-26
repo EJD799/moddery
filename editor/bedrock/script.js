@@ -1593,10 +1593,8 @@ Blockly.common.defineBlocks({
   const oldNames = [];
   const oldOptions = [];
   for (let i = 0; i < this.parameterCount_; i++) {
-    const nameField = this.getFieldValue("PARAM_NAME_" + i);
-    const optionField = this.getFieldValue("PARAM_DROPDOWN_" + i);
-    oldNames.push(nameField || "name");
-    oldOptions.push(optionField || "OPTION1");
+    oldNames.push(this.getFieldValue("PARAM_NAME_" + i) || "name");
+    oldOptions.push(this.getFieldValue("PARAM_DROPDOWN_" + i) || "OPTION1");
 
     // Remove old input
     if (this.getInput("PARAM" + i)) {
@@ -1624,12 +1622,14 @@ Blockly.common.defineBlocks({
       )
       .appendField(removeBtn, "REMOVE_BTN_" + i);
 
-    // Remove button click
-    removeBtn.getClickTarget_().onclick = (e) => {
+    // Remove button click: capture correct index
+    removeBtn.getClickTarget_().onclick = ((index) => (e) => {
       e.stopPropagation();
+      oldNames.splice(index, 1);
+      oldOptions.splice(index, 1);
       this.parameterCount_--;
       this.updateParameters_();
-    };
+    })(i);
 
     this.moveInputBefore("PARAM" + i, "CODE");
   }

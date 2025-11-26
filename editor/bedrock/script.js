@@ -1389,7 +1389,7 @@ const bedrockScriptToolbox = {
         { kind: 'label', text: 'Commands'},
         { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'register_command', inputs: { NAME: { shadow: { type: 'text', fields: { TEXT: "" } } }, DESCRIPTION: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'register_command' },
         { kind: 'block', type: 'command_parameter' },
         { kind: 'block', type: 'command_origin' },
         { kind: 'sep'},

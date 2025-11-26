@@ -1609,10 +1609,11 @@ Blockly.common.defineBlocks({
               ["option2", "OPTION2"]
             ]),
             "PARAM_DROPDOWN_" + i
-          );
-          
-        this.appendDummyInput("REMOVE_PARAM_BOX_" + i).appendField(removeBtn, "REMOVE_BTN_" + i);
+          )
+          .appendField(removeBtn, "REMOVE_BTN_" + i);
 
+        removeBtn.init();
+        
         removeBtn.onMouseDown_ = (e) => {
           console.log("remove");
           e.stopPropagation();

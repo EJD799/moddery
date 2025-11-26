@@ -1535,24 +1535,6 @@ Blockly.common.defineBlocks(bedrockScriptDefinitions);
 Blockly.common.defineBlocks(colourDefinitions);
 
 
-// CSS to style the add/remove labels as buttons
-const style = document.createElement("style");
-style.innerHTML = `
-  .param-button {
-    cursor: pointer;
-    user-select: none;
-    padding: 0 4px;
-    border: 1px solid #888;
-    border-radius: 2px;
-    background: #eee;
-    margin-left: 2px;
-  }
-  .param-button:hover {
-    background: #ddd;
-  }
-`;
-document.head.appendChild(style);
-
 Blockly.common.defineBlocks({
   register_command: {
     init: function () {
@@ -1580,6 +1562,7 @@ Blockly.common.defineBlocks({
       this.appendDummyInput("ADD_PARAM").appendField(addBtn, "ADD_PARAM_BTN");
 
       addBtn.onMouseDown_ = (e) => {
+        console.log("add");
         this.parameterCount_++;
         this.updateParameters_();
         e.stopPropagation();
@@ -1637,6 +1620,7 @@ Blockly.common.defineBlocks({
           if (clickTarget) {
             clickTarget.style.cursor = "pointer";
             clickTarget.addEventListener("mousedown", (e) => {
+              console.log("remove");
               e.stopPropagation();
               this.parameterCount_--;
               this.updateParameters_();
@@ -1649,9 +1633,6 @@ Blockly.common.defineBlocks({
     },
   },
 });
-
-
-
 
 
 var workspace = Blockly.inject('blocklyDiv', {

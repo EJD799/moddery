@@ -37,13 +37,13 @@
     outline: none; /* Remove default blue outline */
   }
 
-  .param-button {
+  .blocklyField[data-name^="REMOVE_BTN_"] text, .blocklyField[data-name="ADD_PARAM_BTN"] text {
     height: 33;
     stroke: rgb(68, 124, 124);
     fill: transparent;
     cursor: default;
   }
-  .param-button:hover {
+  .blocklyField[data-name^="REMOVE_BTN_"] text:hover, .blocklyField[data-name="ADD_PARAM_BTN"] text:hover {
     stroke: white;
   }
 

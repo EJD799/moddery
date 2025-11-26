@@ -1646,15 +1646,18 @@ Blockly.common.defineBlocks({
         const removeBtn = new Blockly.FieldLabel("x", undefined, "param-button");
         input.appendField(removeBtn, "REMOVE_BTN_" + i);
 
-        removeBtn.onMouseDown_ = (e) => {
-          console.log("remove");
-          this.parameterCount_--;
-          this.updateParameters_();
-          e.stopPropagation();
-        };
+        // Capture current index with a closure
+        ((idx) => {
+          removeBtn.setClickHandler(() => {
+            // Remove this specific parameter
+            this.parameterCount_--;
+            this.updateParameters_();
+          });
+        })(i);
 
         this.moveInputBefore("PARAM" + i, "CODE");
       }
+
     },
   }
 });

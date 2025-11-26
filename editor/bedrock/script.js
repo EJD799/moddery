@@ -1598,7 +1598,7 @@ Blockly.common.defineBlocks({
 
       // Add new PARAM inputs before CODE
       for (let i = 0; i < this.parameterCount_; i++) {
-        const removeBtn = new Blockly.FieldLabel("x", undefined, "param-button");
+        const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
         removeBtn.CLICKABLE = true;
         const input = this.appendDummyInput("PARAM" + i)
           .appendField("param " + (i + 1))
@@ -1609,8 +1609,9 @@ Blockly.common.defineBlocks({
               ["option2", "OPTION2"]
             ]),
             "PARAM_DROPDOWN_" + i
-          )
-          .appendField(removeBtn, "REMOVE_BTN_" + i);
+          );
+          
+        this.appendDummyInput("REMOVE_PARAM_BOX_" + i).appendField(removeBtn, "REMOVE_BTN_" + i);
 
         removeBtn.onMouseDown_ = (e) => {
           console.log("remove");

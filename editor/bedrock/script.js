@@ -1589,6 +1589,16 @@ Blockly.common.defineBlocks({
     },
 
     updateParameters_: function () {
+      // Save current parameter values
+      const oldValues = [];
+      for (let i = 0; i < this.parameterCount_; i++) {
+        const input = this.getInput("PARAM" + i);
+        if (input) {
+          const textField = input.fieldRow.find(f => f.name && f.name.startsWith("PARAM_NAME_"));
+          oldValues[i] = textField ? textField.getValue() : "name";
+        }
+      }
+
       // Remove old PARAM inputs
       let i = 0;
       while (this.getInput("PARAM" + i)) {
@@ -1596,35 +1606,34 @@ Blockly.common.defineBlocks({
         i++;
       }
 
-      // Add new PARAM inputs before CODE
+      // Rebuild parameter inputs
       for (let i = 0; i < this.parameterCount_; i++) {
-        const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
-        removeBtn.CLICKABLE = true;
         const input = this.appendDummyInput("PARAM" + i)
           .appendField("param " + (i + 1))
-          .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i)
+          .appendField(
+            new Blockly.FieldTextInput(oldValues[i] || "name"),
+            "PARAM_NAME_" + i
+          )
           .appendField(
             new Blockly.FieldDropdown([
               ["option1", "OPTION1"],
               ["option2", "OPTION2"]
             ]),
             "PARAM_DROPDOWN_" + i
-          )
-          .appendField(removeBtn, "REMOVE_BTN_" + i);
-        
-        console.log(removeBtn.getClickTarget_());
-        //removeBtn.getClickTarget_().addEventListener("mousedown", (e) => {
+          );
+
+        // REMOVE BUTTON
+        const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
         removeBtn.getClickTarget_().onclick = (e) => {
-          console.log("remove");
           e.stopPropagation();
           this.parameterCount_--;
           this.updateParameters_();
         };
-        //});
+        input.appendField(removeBtn, "REMOVE_BTN_" + i);
 
         this.moveInputBefore("PARAM" + i, "CODE");
       }
-    },
+    }
   },
 });
 

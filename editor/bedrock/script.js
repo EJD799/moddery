@@ -1588,12 +1588,33 @@ Blockly.common.defineBlocks({
 
     mutationToDom: function () {
       const m = document.createElement("mutation");
-      m.setAttribute("parameters", String(this.parameterCount_));
+      
+      // Ensure parameterData_ exists
+      if (!this.parameterData_) this.parameterData_ = [];
+
+      m.setAttribute("count", this.parameterData_.length);
+
+      // Save each parameter as <param ... />
+      this.parameterData_.forEach((p) => {
+        const el = document.createElement("param");
+        el.setAttribute("name", p.name);
+        el.setAttribute("type", p.type);
+        el.setAttribute("optional", p.optional ? "true" : "false");
+        m.appendChild(el);
+      });
+
       return m;
     },
 
     domToMutation: function (xml) {
-      this.parameterCount_ = parseInt(xml.getAttribute("parameters") || "0", 10);
+      const params = [...xml.getElementsByTagName("param")];
+
+      this.parameterData_ = params.map((el) => ({
+        name: el.getAttribute("name") || "name",
+        type: el.getAttribute("type") || "OPTION1",
+        optional: el.getAttribute("optional") === "true"
+      }));
+
       this.updateParameters_();
     },
 

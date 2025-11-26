@@ -1547,10 +1547,19 @@ Blockly.common.defineBlocks({
   register_command: {
     init: function () {
       this.parameterCount_ = 0;
+      this.parameterData_ = this.parameterData_ || [];
 
-      // Static fields
-      this.appendValueInput("NAME").appendField("register command with name");
-      this.appendValueInput("DESCRIPTION").appendField("description");
+      // ----- NAME (FieldInput instead of appendValueInput) -----
+      this.appendDummyInput("NAME_INPUT")
+          .appendField("register command with name")
+          .appendField(new Blockly.FieldTextInput(""), "NAME");
+
+      // ----- DESCRIPTION (FieldInput instead of appendValueInput) -----
+      this.appendDummyInput("DESCRIPTION_INPUT")
+          .appendField("description")
+          .appendField(new Blockly.FieldTextInput(""), "DESCRIPTION");
+
+      // ----- PERMISSION LEVEL -----
       this.appendDummyInput("PERMISSION_INPUT")
         .appendField("permission level")
         .appendField(
@@ -1564,27 +1573,31 @@ Blockly.common.defineBlocks({
           "PERMISSION_LEVEL"
         );
 
-      // ADD PARAM BUTTON
+      // ----- ADD PARAM BUTTON -----
       const addBtn = new Blockly.FieldLabel("+", undefined, "param-button");
       addBtn.CLICKABLE = true;
-      this.appendDummyInput("ADD_PARAM").appendField(addBtn, "ADD_PARAM_BTN");
+
+      this.appendDummyInput("ADD_PARAM")
+        .appendField(addBtn, "ADD_PARAM_BTN");
 
       addBtn.onMouseDown_ = (e) => {
         e.stopPropagation();
-        if (!this.parameterData_) this.parameterData_ = [];
-        this.parameterData_.push({ name: "name", type: "OPTION1", optional: false });
+        this.parameterData_.push({
+          name: "name",
+          type: "OPTION1",
+          optional: false
+        });
         this.updateParameters_();
       };
 
-
-      // Statement input
+      // ----- CODE STATEMENTS -----
       this.appendStatementInput("CODE").appendField("code");
 
       this.setPreviousStatement(true);
       this.setNextStatement(true);
       this.setColour(180);
-      this.setInputsInline(false);
     },
+
 
     mutationToDom: function () {
       const m = document.createElement("mutation");

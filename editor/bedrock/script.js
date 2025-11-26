@@ -1631,12 +1631,18 @@ Blockly.common.defineBlocks({
         removeBtn.CLICKABLE = true;
         input.appendField(removeBtn, "REMOVE_BTN_" + i);
 
-        // Capture index for closure
-        removeBtn.onMouseDown_ = ((index) => (e) => {
-          this.parameterCount_--;
-          this.updateParameters_();
-          e.stopPropagation();
-        })(i);
+        // Attach DOM event after render
+        setTimeout(() => {
+          const clickTarget = removeBtn.getClickTarget && removeBtn.getClickTarget();
+          if (clickTarget) {
+            clickTarget.style.cursor = "pointer";
+            clickTarget.addEventListener("mousedown", (e) => {
+              e.stopPropagation();
+              this.parameterCount_--;
+              this.updateParameters_();
+            });
+          }
+        }, 0);
 
         this.moveInputBefore("PARAM" + i, "CODE");
       }

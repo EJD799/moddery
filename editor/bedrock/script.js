@@ -1614,7 +1614,7 @@ Blockly.common.defineBlocks({
         
         console.log(removeBtn.getClickTarget_());
         //removeBtn.getClickTarget_().addEventListener("mousedown", (e) => {
-        removeBtn.getClickTarget_().onclick = function(){
+        removeBtn.getClickTarget_().onclick = (e) => {
           console.log("remove");
           e.stopPropagation();
           this.parameterCount_--;

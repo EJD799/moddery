@@ -970,6 +970,13 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
+  {
+    type: "command_origin",
+    message0: "command origin",
+    colour: 180,
+    output: null,
+    inputsInline: true
+  },
 ]);
 
 const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -1384,6 +1391,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'register_command', inputs: { NAME: { shadow: { type: 'text', fields: { TEXT: "" } } }, DESCRIPTION: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'command_parameter' },
+        { kind: 'block', type: 'command_origin' },
         { kind: 'sep'},
         { kind: 'label', text: 'Settings'},
         { kind: 'block', type: 'set_gamerule' },
@@ -1590,18 +1598,32 @@ Blockly.common.defineBlocks({
     },
 
     updateParameters_: function () {
-  // Initialize storage if it doesn't exist
   if (!this.parameterData_) this.parameterData_ = [];
 
-  // Remove all existing PARAM inputs
+  // 1️⃣ Save current values
+  for (let i = 0; i < this.parameterData_.length; i++) {
+    const input = this.getInput("PARAM" + i);
+    if (!input) continue;
+    const nameField = input.getField("PARAM_NAME_" + i);
+    const typeField = input.getField("PARAM_DROPDOWN_" + i);
+    const optionalField = input.getField("PARAM_OPTIONAL_" + i);
+    if (nameField) this.parameterData_[i].name = nameField.getValue();
+    if (typeField) this.parameterData_[i].type = typeField.getValue();
+    if (optionalField) this.parameterData_[i].optional = optionalField.getValue() === "TRUE";
+  }
+
+  // 2️⃣ Remove old PARAM inputs
   let i = 0;
   while (this.getInput("PARAM" + i)) {
     this.removeInput("PARAM" + i);
     i++;
   }
 
-  // Rebuild PARAM inputs from parameterData_
-  for (let i = 0; i < this.parameterData_.length; i++) {
+  // 3️⃣ Rebuild PARAM inputs
+  for (let i = 0; i < this.parameterCount_; i++) {
+    if (!this.parameterData_[i]) {
+      this.parameterData_[i] = { name: "name", type: "OPTION1", optional: false };
+    }
     const data = this.parameterData_[i];
 
     const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
@@ -1609,32 +1631,28 @@ Blockly.common.defineBlocks({
 
     const input = this.appendDummyInput("PARAM" + i)
       .appendField("param " + (i + 1))
-      .appendField(new Blockly.FieldTextInput(data.name, function (val) {
-        data.name = val;
-      }), "PARAM_NAME_" + i)
-      .appendField(new Blockly.FieldDropdown([
-        ["option1", "OPTION1"],
-        ["option2", "OPTION2"]
-      ], function (val) {
-        data.type = val;
-      }, data.type), "PARAM_DROPDOWN_" + i)  // <-- pass data.type as initial value
-      .appendField(new Blockly.FieldCheckbox(data.optional ? "TRUE" : "FALSE", function (val) {
-        data.optional = val === "TRUE";
-      }), "PARAM_OPTIONAL_" + i)
+      .appendField(new Blockly.FieldTextInput(data.name, val => data.name = val), "PARAM_NAME_" + i)
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["option1", "OPTION1"],
+          ["option2", "OPTION2"]
+        ], val => data.type = val, data.type),
+        "PARAM_DROPDOWN_" + i
+      )
+      .appendField(new Blockly.FieldCheckbox(data.optional ? "TRUE" : "FALSE", val => data.optional = val === "TRUE"), "PARAM_OPTIONAL_" + i)
       .appendField(removeBtn, "REMOVE_BTN_" + i);
 
-    // Remove button removes this parameter from the array
-    removeBtn.getClickTarget_().onclick = ((index) => {
-      return (e) => {
-        e.stopPropagation();
-        this.parameterData_.splice(index, 1);
-        this.updateParameters_();
-      };
-    })(i);
+    removeBtn.getClickTarget_().onclick = e => {
+      e.stopPropagation();
+      this.parameterCount_--;
+      this.parameterData_.splice(i, 1); // remove the correct parameter data
+      this.updateParameters_();
+    };
 
     this.moveInputBefore("PARAM" + i, "CODE");
   }
-},
+}
+
   },
 });
 

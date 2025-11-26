@@ -1611,15 +1611,14 @@ Blockly.common.defineBlocks({
             "PARAM_DROPDOWN_" + i
           )
           .appendField(removeBtn, "REMOVE_BTN_" + i);
-
-        removeBtn.init();
         
-        removeBtn.onMouseDown_ = (e) => {
+        console.log(removeBtn.getClickTarget_());
+        removeBtn.getClickTarget_().addEventListener("mousedown", (e) => {
           console.log("remove");
           e.stopPropagation();
           this.parameterCount_--;
           this.updateParameters_();
-        };
+        });
 
         this.moveInputBefore("PARAM" + i, "CODE");
       }

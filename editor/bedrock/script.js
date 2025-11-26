@@ -1607,13 +1607,21 @@ Blockly.common.defineBlocks({
     },
 
     domToMutation: function (xml) {
-      const params = [...xml.getElementsByTagName("param")];
+      const count = parseInt(xml.getAttribute("parameters") || "0", 10);
 
-      this.parameterData_ = params.map((el) => ({
-        name: el.getAttribute("name") || "name",
-        type: el.getAttribute("type") || "OPTION1",
-        optional: el.getAttribute("optional") === "true"
-      }));
+      if (!this.parameterData_) this.parameterData_ = [];
+
+      // Make sure the array has the correct number of items
+      while (this.parameterData_.length < count) {
+        this.parameterData_.push({
+          name: "name",
+          type: "OPTION1",
+          optional: false
+        });
+      }
+      while (this.parameterData_.length > count) {
+        this.parameterData_.pop();
+      }
 
       this.updateParameters_();
     },

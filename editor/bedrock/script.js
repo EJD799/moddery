@@ -1569,7 +1569,7 @@ Blockly.common.defineBlocks({
       addBtn.CLICKABLE = true;
       this.appendDummyInput("ADD_PARAM").appendField(addBtn, "ADD_PARAM_BTN");
 
-      addBtn.getClickTarget_.classList.add("param-button");
+      addBtn.getClickTarget_().classList.add("param-button");
       addBtn.onMouseDown_ = (e) => {
         e.stopPropagation();
         if (!this.parameterData_) this.parameterData_ = [];
@@ -1639,7 +1639,7 @@ Blockly.common.defineBlocks({
           .appendField(removeBtn, "REMOVE_BTN_" + i);
 
         // Remove button removes this parameter from the array
-        removeBtn.getClickTarget_.classList.add("param-button");
+        removeBtn.getClickTarget_().classList.add("param-button");
         removeBtn.getClickTarget_().onclick = ((index) => {
           return (e) => {
             e.stopPropagation();

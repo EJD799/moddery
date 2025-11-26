@@ -956,37 +956,20 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
-  /*{
-    type: "register_command",
-    message0: "register command with name %1 description %2 permission level %3",
+  {
+    type: "command_parameter",
+    message0: "command parameter %1",
     colour: 180,
     args0: [
       {
         type: "input_value",
-        name: "NAME",
+        name: "PARAM",
         check: null
-      },
-      {
-        type: "input_value",
-        name: "DESCRIPTION",
-        check: null
-      },
-      {
-        type: "field_dropdown",
-        name: "PERMISSION_LEVEL",
-        options: [
-          ["Any", "Any"],
-          ["GameDirectors", "GameDirectors"],
-          ["Admin", "Admin"],
-          ["Host", "Host"],
-          ["Owner", "Owner"]
-        ]
       }
     ],
-    previousStatement: null,
-    nextStatement: null,
+    output: null,
     inputsInline: true
-  },*/
+  },
 ]);
 
 const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -1400,6 +1383,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'register_command', inputs: { NAME: { shadow: { type: 'text', fields: { TEXT: "" } } }, DESCRIPTION: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'command_parameter', inputs: { PARAM: { shadow: { type: 'text' } } } },
         { kind: 'sep'},
         { kind: 'label', text: 'Settings'},
         { kind: 'block', type: 'set_gamerule' },
@@ -1631,33 +1615,21 @@ Blockly.common.defineBlocks({
 
       // Add new PARAM inputs before CODE
       for (let i = 0; i < this.parameterCount_; i++) {
-        const input = this.appendDummyInput("PARAM" + i)
-          .appendField("param " + (i + 1))
-          .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i)
-          .appendField(
-            new Blockly.FieldDropdown([
-              ["option1", "OPTION1"],
-              ["option2", "OPTION2"]
-            ]),
-            "PARAM_DROPDOWN_" + i
-          );
-
-        // REMOVE BUTTON
-        const removeBtn = new Blockly.FieldLabel("x", undefined, "param-button");
-        input.appendField(removeBtn, "REMOVE_BTN_" + i);
-
-        // Capture current index with a closure
-        ((idx) => {
-          removeBtn.setClickHandler(() => {
-            // Remove this specific parameter
-            this.parameterCount_--;
-            this.updateParameters_();
-          });
-        })(i);
-
-        this.moveInputBefore("PARAM" + i, "CODE");
+        const input = this.appendDummyInput("PARAM" + i) 
+        .appendField("param " + (i + 1)) 
+        .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i) 
+        .appendField( new Blockly.FieldDropdown([ ["option1", "OPTION1"], ["option2", "OPTION2"] ]), "PARAM_DROPDOWN_" + i ); 
+        // REMOVE BUTTON 
+        const removeBtn = new Blockly.FieldLabel("x", undefined, "param-button"); 
+        input.appendField(removeBtn, "REMOVE_BTN_" + i); 
+        removeBtn.onMouseDown_ = (e) => { 
+          console.log("remove"); 
+          this.parameterCount_--; 
+          this.updateParameters_();
+          e.stopPropagation(); 
+        }; 
+        this.moveInputBefore("PARAM" + i, "CODE"); 
       }
-
     },
   }
 });

@@ -1589,12 +1589,9 @@ Blockly.common.defineBlocks({
     },
 
     updateParameters_: function () {
-      // Preserve current parameter names
-      const oldValues = [];
+      // Remove old PARAM inputs
       let i = 0;
       while (this.getInput("PARAM" + i)) {
-        const field = this.getInput("PARAM" + i).getField("PARAM_NAME_" + i);
-        oldValues.push(field ? field.getValue() : "name");
         this.removeInput("PARAM" + i);
         i++;
       }
@@ -1603,13 +1600,9 @@ Blockly.common.defineBlocks({
       for (let i = 0; i < this.parameterCount_; i++) {
         const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
         removeBtn.CLICKABLE = true;
-
         const input = this.appendDummyInput("PARAM" + i)
           .appendField("param " + (i + 1))
-          .appendField(
-            new Blockly.FieldTextInput(oldValues[i] || "name"),
-            "PARAM_NAME_" + i
-          )
+          .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i)
           .appendField(
             new Blockly.FieldDropdown([
               ["option1", "OPTION1"],
@@ -1618,18 +1611,20 @@ Blockly.common.defineBlocks({
             "PARAM_DROPDOWN_" + i
           )
           .appendField(removeBtn, "REMOVE_BTN_" + i);
-
-        // Use onclick since onMouseDown wasn't working
+        
+        console.log(removeBtn.getClickTarget_());
+        //removeBtn.getClickTarget_().addEventListener("mousedown", (e) => {
         removeBtn.getClickTarget_().onclick = (e) => {
+          console.log("remove");
           e.stopPropagation();
           this.parameterCount_--;
           this.updateParameters_();
         };
+        //});
 
         this.moveInputBefore("PARAM" + i, "CODE");
       }
-    }
-
+    },
   },
 });
 

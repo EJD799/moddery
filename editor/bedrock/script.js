@@ -1589,50 +1589,75 @@ Blockly.common.defineBlocks({
     },
 
     updateParameters_: function () {
-  // Preserve current parameter names and dropdown values
-  const oldNames = [];
-  const oldOptions = [];
-  for (let i = 0; i < this.parameterCount_; i++) {
-    oldNames.push(this.getFieldValue("PARAM_NAME_" + i) || "name");
-    oldOptions.push(this.getFieldValue("PARAM_DROPDOWN_" + i) || "OPTION1");
+  // Initialize storage for parameter values if needed
+  if (!this.parameterData_) {
+    this.parameterData_ = [];
+  }
 
-    // Remove old input
-    if (this.getInput("PARAM" + i)) {
-      this.removeInput("PARAM" + i);
-    }
+  // Save current values before removing inputs
+  for (let i = 0; i < this.parameterData_.length; i++) {
+    const input = this.getInput("PARAM" + i);
+    if (!input) continue;
+    const nameField = input.getField("PARAM_NAME_" + i);
+    const dropdownField = input.getField("PARAM_DROPDOWN_" + i);
+    if (nameField) this.parameterData_[i].name = nameField.getValue();
+    if (dropdownField) this.parameterData_[i].option = dropdownField.getValue();
+  }
+
+  // Remove old PARAM inputs
+  let i = 0;
+  while (this.getInput("PARAM" + i)) {
+    this.removeInput("PARAM" + i);
+    i++;
+  }
+
+  // Ensure parameterData_ has correct length
+  while (this.parameterData_.length < this.parameterCount_) {
+    this.parameterData_.push({name: "name", option: "OPTION1"});
+  }
+  while (this.parameterData_.length > this.parameterCount_) {
+    this.parameterData_.pop();
   }
 
   // Add new PARAM inputs before CODE
-  for (let i = 0; i < this.parameterCount_; i++) {
+  this.parameterData_.forEach((param, i) => {
     const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
     removeBtn.CLICKABLE = true;
 
     const input = this.appendDummyInput("PARAM" + i)
       .appendField("param " + (i + 1))
       .appendField(
-        new Blockly.FieldTextInput(oldNames[i]),
+        new Blockly.FieldTextInput(param.name, (newValue) => {
+          param.name = newValue;
+          return newValue;
+        }),
         "PARAM_NAME_" + i
       )
       .appendField(
         new Blockly.FieldDropdown([
           ["option1", "OPTION1"],
           ["option2", "OPTION2"]
-        ]),
+        ], (newValue) => {
+          param.option = newValue;
+          return newValue;
+        }),
         "PARAM_DROPDOWN_" + i
       )
       .appendField(removeBtn, "REMOVE_BTN_" + i);
 
-    // Remove button click: capture correct index
-    removeBtn.getClickTarget_().onclick = ((index) => (e) => {
+    // Remove button captures param object
+    removeBtn.getClickTarget_().onclick = (e) => {
       e.stopPropagation();
-      oldNames.splice(index, 1);
-      oldOptions.splice(index, 1);
-      this.parameterCount_--;
-      this.updateParameters_();
-    })(i);
+      const index = this.parameterData_.indexOf(param);
+      if (index > -1) {
+        this.parameterData_.splice(index, 1);
+        this.parameterCount_--;
+        this.updateParameters_();
+      }
+    };
 
     this.moveInputBefore("PARAM" + i, "CODE");
-  }
+  });
 },
 
   },

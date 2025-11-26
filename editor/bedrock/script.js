@@ -1613,12 +1613,14 @@ Blockly.common.defineBlocks({
           .appendField(removeBtn, "REMOVE_BTN_" + i);
         
         console.log(removeBtn.getClickTarget_());
-        removeBtn.getClickTarget_().addEventListener("mousedown", (e) => {
+        //removeBtn.getClickTarget_().addEventListener("mousedown", (e) => {
+        removeBtn.getClickTarget_().onclick = {
           console.log("remove");
           e.stopPropagation();
           this.parameterCount_--;
           this.updateParameters_();
-        });
+        };
+        //});
 
         this.moveInputBefore("PARAM" + i, "CODE");
       }

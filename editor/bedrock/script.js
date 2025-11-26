@@ -1569,7 +1569,6 @@ Blockly.common.defineBlocks({
       addBtn.CLICKABLE = true;
       this.appendDummyInput("ADD_PARAM").appendField(addBtn, "ADD_PARAM_BTN");
 
-      addBtn.setCssClass("param-button");
       addBtn.onMouseDown_ = (e) => {
         e.stopPropagation();
         if (!this.parameterData_) this.parameterData_ = [];
@@ -1618,8 +1617,9 @@ Blockly.common.defineBlocks({
 
         // Create the dropdown
         const typeDropdown = new Blockly.FieldDropdown([
-          ["option1", "OPTION1"],
-          ["option2", "OPTION2"]
+          ["BlockType", "BlockType"],
+          ["Boolean", "Boolean"],
+          ["EntitySelector", "EntitySelector"]
         ]);
         typeDropdown.setValue(data.type); // <-- set initial value
         typeDropdown.setValidator(function (val) {
@@ -1639,7 +1639,6 @@ Blockly.common.defineBlocks({
           .appendField(removeBtn, "REMOVE_BTN_" + i);
 
         // Remove button removes this parameter from the array
-        removeBtn.setCssClass("param-button");
         removeBtn.getClickTarget_().onclick = ((index) => {
           return (e) => {
             e.stopPropagation();

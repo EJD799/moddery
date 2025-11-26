@@ -1589,14 +1589,19 @@ Blockly.common.defineBlocks({
     },
 
     updateParameters_: function () {
-  // Save current parameter values
+  // Initialize parameter data if not present
   if (!this.parameterData_) this.parameterData_ = [];
+
+  // Save current parameter values
   for (let i = 0; i < this.parameterCount_; i++) {
     const nameField = this.getField("PARAM_NAME_" + i);
     const dropdownField = this.getField("PARAM_DROPDOWN_" + i);
+    const optionalField = this.getField("PARAM_OPTIONAL_" + i);
+
     this.parameterData_[i] = {
       name: nameField ? nameField.getValue() : "name",
-      option: dropdownField ? dropdownField.getValue() : "OPTION1"
+      option: dropdownField ? dropdownField.getValue() : "OPTION1",
+      optional: optionalField ? optionalField.getValue() : false
     };
   }
 
@@ -1608,20 +1613,15 @@ Blockly.common.defineBlocks({
   }
 
   // Add new PARAM inputs before CODE
-  for (let i = 0; i < this.parameterCount_; i++) {
-    const param = this.parameterData_[i] || { name: "name", option: "OPTION1" };
-
-    const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
-    removeBtn.CLICKABLE = true;
-
-    const input = this.appendDummyInput("PARAM" + i)
-      .appendField("param " + (i + 1))
+  for (let param of this.parameterData_) {
+    const input = this.appendDummyInput("PARAM" + this.parameterData_.indexOf(param))
+      .appendField("param " + (this.parameterData_.indexOf(param) + 1))
       .appendField(
         new Blockly.FieldTextInput(param.name, (newValue) => {
           param.name = newValue;
           return newValue;
         }),
-        "PARAM_NAME_" + i
+        "PARAM_NAME_" + this.parameterData_.indexOf(param)
       )
       .appendField(
         new Blockly.FieldDropdown([
@@ -1631,24 +1631,34 @@ Blockly.common.defineBlocks({
           param.option = newValue;
           return newValue;
         }),
-        "PARAM_DROPDOWN_" + i
+        "PARAM_DROPDOWN_" + this.parameterData_.indexOf(param)
       )
-      .appendField(removeBtn, "REMOVE_BTN_" + i);
+      .appendField(
+        new Blockly.FieldCheckbox(param.optional ? "TRUE" : "FALSE"),
+        "PARAM_OPTIONAL_" + this.parameterData_.indexOf(param)
+      );
 
-    // Capture the current index
-    const removeIndex = i;
+    // REMOVE BUTTON
+    const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
+    removeBtn.CLICKABLE = true;
+    input.appendField(removeBtn, "REMOVE_BTN_" + this.parameterData_.indexOf(param));
 
-    // Use onclick for remove button
+    // Remove the specific parameter object when clicked
     removeBtn.getClickTarget_().onclick = (e) => {
       e.stopPropagation();
-      // Remove the correct parameter
-      this.parameterData_.splice(removeIndex, 1);
-      this.parameterCount_--;
-      this.updateParameters_();
+      const index = this.parameterData_.indexOf(param);
+      if (index > -1) {
+        this.parameterData_.splice(index, 1);
+        this.parameterCount_--;
+        this.updateParameters_();
+      }
     };
 
-    this.moveInputBefore("PARAM" + i, "CODE");
+    this.moveInputBefore(input.name, "CODE");
   }
+
+  // Sync parameterCount_ with actual array length
+  this.parameterCount_ = this.parameterData_.length;
 },
 
   },

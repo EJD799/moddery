@@ -1441,6 +1441,14 @@ const bedrockScriptToolbox = {
     },
     {
         "kind": "category",
+        "name": "Structures",
+        "colour": 100,
+        "contents": [
+
+        ]
+    },
+    {
+        "kind": "category",
         "name": "Scoreboard",
         "colour": 320,
         "contents": [

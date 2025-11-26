@@ -1617,15 +1617,16 @@ Blockly.common.defineBlocks({
         // Attach DOM event after render
         setTimeout(() => {
           const clickTarget = removeBtn.getClickTarget && removeBtn.getClickTarget();
-          if (clickTarget) {
+          /*if (clickTarget) {
             clickTarget.style.cursor = "pointer";
-            clickTarget.addEventListener("mousedown", (e) => {
+            clickTarget.addEventListener("mousedown", (e) => {*/
+            removeBtn.onMouseDown_ = (e) => {
               console.log("remove");
               e.stopPropagation();
               this.parameterCount_--;
               this.updateParameters_();
-            });
-          }
+            }/*)*/;
+          //}
         }, 0);
 
         this.moveInputBefore("PARAM" + i, "CODE");

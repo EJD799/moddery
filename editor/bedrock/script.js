@@ -1619,7 +1619,13 @@ Blockly.common.defineBlocks({
         const typeDropdown = new Blockly.FieldDropdown([
           ["BlockType", "BlockType"],
           ["Boolean", "Boolean"],
-          ["EntitySelector", "EntitySelector"]
+          ["EntitySelector", "EntitySelector"],
+          ["Float", "Float"],
+          ["Integer", "Integer"],
+          ["ItemType", "ItemType"],
+          ["Location", "Location"],
+          ["PlayerSelector", "PlayerSelector"],
+          ["String", "String"]
         ]);
         typeDropdown.setValue(data.type); // <-- set initial value
         typeDropdown.setValidator(function (val) {

@@ -1589,42 +1589,64 @@ Blockly.common.defineBlocks({
     },
 
     updateParameters_: function () {
-      // Remove old PARAM inputs
-      let i = 0;
-      while (this.getInput("PARAM" + i)) {
-        this.removeInput("PARAM" + i);
-        i++;
-      }
+  // Preserve current parameter names and dropdown values
+  const oldNames = [];
+  const oldOptions = [];
+  let i = 0;
+  while (this.getInput("PARAM" + i)) {
+    const input = this.getInput("PARAM" + i);
+    let name = "name";
+    let option = "OPTION1";
 
-      // Add new PARAM inputs before CODE
-      for (let i = 0; i < this.parameterCount_; i++) {
-        const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
-        removeBtn.CLICKABLE = true;
-        const input = this.appendDummyInput("PARAM" + i)
-          .appendField("param " + (i + 1))
-          .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i)
-          .appendField(
-            new Blockly.FieldDropdown([
-              ["option1", "OPTION1"],
-              ["option2", "OPTION2"]
-            ]),
-            "PARAM_DROPDOWN_" + i
-          )
-          .appendField(removeBtn, "REMOVE_BTN_" + i);
-        
-        console.log(removeBtn.getClickTarget_());
-        //removeBtn.getClickTarget_().addEventListener("mousedown", (e) => {
-        removeBtn.getClickTarget_().onclick = (e) => {
-          console.log("remove");
-          e.stopPropagation();
-          this.parameterCount_--;
-          this.updateParameters_();
-        };
-        //});
-
-        this.moveInputBefore("PARAM" + i, "CODE");
+    if (input) {
+      const nameField = input.getField("PARAM_NAME_" + i);
+      if (nameField) {
+        name = nameField.getValue();
       }
-    },
+      const dropdownField = input.getField("PARAM_DROPDOWN_" + i);
+      if (dropdownField) {
+        option = dropdownField.getValue();
+      }
+    }
+
+    oldNames.push(name);
+    oldOptions.push(option);
+
+    this.removeInput("PARAM" + i);
+    i++;
+  }
+
+  // Add new PARAM inputs before CODE
+  for (let i = 0; i < this.parameterCount_; i++) {
+    const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
+    removeBtn.CLICKABLE = true;
+
+    const input = this.appendDummyInput("PARAM" + i)
+      .appendField("param " + (i + 1))
+      .appendField(
+        new Blockly.FieldTextInput(oldNames[i] || "name"),
+        "PARAM_NAME_" + i
+      )
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["option1", "OPTION1"],
+          ["option2", "OPTION2"]
+        ]),
+        "PARAM_DROPDOWN_" + i
+      )
+      .appendField(removeBtn, "REMOVE_BTN_" + i);
+
+    // Remove button click
+    removeBtn.getClickTarget_().onclick = (e) => {
+      e.stopPropagation();
+      this.parameterCount_--;
+      this.updateParameters_();
+    };
+
+    this.moveInputBefore("PARAM" + i, "CODE");
+  }
+},
+
   },
 });
 

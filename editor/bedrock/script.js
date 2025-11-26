@@ -1635,7 +1635,8 @@ Blockly.common.defineBlocks({
       )
       .appendField(removeBtn, "REMOVE_BTN_" + i);
 
-    removeBtn.onMouseDown_ = (e) => {
+    // Use onclick instead of onMouseDown_ for remove button
+    removeBtn.getClickTarget_().onclick = (e) => {
       e.stopPropagation();
       this.parameterData_.splice(i, 1);
       this.parameterCount_--;

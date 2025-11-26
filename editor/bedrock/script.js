@@ -564,7 +564,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "form_textfield",
-    message0: "add textfield with label %1 placeholder %2 default value %3 to form %4",
+    message0: "add text field with label %1 placeholder %2 default value %3 to form %4",
     colour: 210,
     args0: [
       {

@@ -1589,37 +1589,28 @@ Blockly.common.defineBlocks({
     },
 
     updateParameters_: function () {
-  // Save current values
+  // Save current parameter values
   if (!this.parameterData_) this.parameterData_ = [];
-
-  for (let i = 0; i < this.parameterData_.length; i++) {
-    const prevInput = this.getInput("PARAM" + i);
-    if (!prevInput) continue;
-
-    const nameField = prevInput.fieldRow.find(f => f.name === "PARAM_NAME_" + i);
-    const dropdownField = prevInput.fieldRow.find(f => f.name === "PARAM_DROPDOWN_" + i);
-
-    if (nameField) this.parameterData_[i].name = nameField.getValue();
-    if (dropdownField) this.parameterData_[i].option = dropdownField.getValue();
+  for (let i = 0; i < this.parameterCount_; i++) {
+    const nameField = this.getField("PARAM_NAME_" + i);
+    const dropdownField = this.getField("PARAM_DROPDOWN_" + i);
+    this.parameterData_[i] = {
+      name: nameField ? nameField.getValue() : "name",
+      option: dropdownField ? dropdownField.getValue() : "OPTION1"
+    };
   }
 
-  // Remove old inputs
+  // Remove old PARAM inputs
   let i = 0;
   while (this.getInput("PARAM" + i)) {
     this.removeInput("PARAM" + i);
     i++;
   }
 
-  // Ensure parameterData_ matches parameterCount_
-  while (this.parameterData_.length < this.parameterCount_) {
-    this.parameterData_.push({ name: "name", option: "OPTION1" });
-  }
-  while (this.parameterData_.length > this.parameterCount_) {
-    this.parameterData_.pop();
-  }
+  // Add new PARAM inputs before CODE
+  for (let i = 0; i < this.parameterCount_; i++) {
+    const param = this.parameterData_[i] || { name: "name", option: "OPTION1" };
 
-  // Add new inputs
-  this.parameterData_.forEach((param, i) => {
     const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
     removeBtn.CLICKABLE = true;
 
@@ -1644,7 +1635,7 @@ Blockly.common.defineBlocks({
       )
       .appendField(removeBtn, "REMOVE_BTN_" + i);
 
-    removeBtn.getClickTarget_().onclick = (e) => {
+    removeBtn.onMouseDown_ = (e) => {
       e.stopPropagation();
       this.parameterData_.splice(i, 1);
       this.parameterCount_--;
@@ -1652,7 +1643,7 @@ Blockly.common.defineBlocks({
     };
 
     this.moveInputBefore("PARAM" + i, "CODE");
-  });
+  }
 },
 
   },

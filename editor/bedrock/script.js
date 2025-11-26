@@ -1635,10 +1635,14 @@ Blockly.common.defineBlocks({
       )
       .appendField(removeBtn, "REMOVE_BTN_" + i);
 
-    // Use onclick instead of onMouseDown_ for remove button
+    // Capture the current index
+    const removeIndex = i;
+
+    // Use onclick for remove button
     removeBtn.getClickTarget_().onclick = (e) => {
       e.stopPropagation();
-      this.parameterData_.splice(i, 1);
+      // Remove the correct parameter
+      this.parameterData_.splice(removeIndex, 1);
       this.parameterCount_--;
       this.updateParameters_();
     };

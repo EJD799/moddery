@@ -1598,6 +1598,8 @@ Blockly.common.defineBlocks({
 
       // Add new PARAM inputs before CODE
       for (let i = 0; i < this.parameterCount_; i++) {
+        const removeBtn = new Blockly.FieldLabel("x", undefined, "param-button");
+        removeBtn.CLICKABLE = true;
         const input = this.appendDummyInput("PARAM" + i)
           .appendField("param " + (i + 1))
           .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i)
@@ -1607,27 +1609,15 @@ Blockly.common.defineBlocks({
               ["option2", "OPTION2"]
             ]),
             "PARAM_DROPDOWN_" + i
-          );
+          )
+          .appendField(removeBtn, "REMOVE_BTN_" + i);
 
-        // REMOVE BUTTON
-        const removeBtn = new Blockly.FieldLabel("x", undefined, "param-button");
-        removeBtn.CLICKABLE = true;
-        input.appendField(removeBtn, "REMOVE_BTN_" + i);
-
-        // Attach DOM event after render
-        setTimeout(() => {
-          const clickTarget = removeBtn.getClickTarget && removeBtn.getClickTarget();
-          /*if (clickTarget) {
-            clickTarget.style.cursor = "pointer";
-            clickTarget.addEventListener("mousedown", (e) => {*/
-            removeBtn.onMouseDown_ = (e) => {
-              console.log("remove");
-              e.stopPropagation();
-              this.parameterCount_--;
-              this.updateParameters_();
-            }/*)*/;
-          //}
-        }, 0);
+        removeBtn.onMouseDown_ = (e) => {
+          console.log("remove");
+          e.stopPropagation();
+          this.parameterCount_--;
+          this.updateParameters_();
+        };
 
         this.moveInputBefore("PARAM" + i, "CODE");
       }

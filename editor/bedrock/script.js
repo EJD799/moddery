@@ -1589,32 +1589,31 @@ Blockly.common.defineBlocks({
     },
 
     updateParameters_: function () {
-  // Initialize persistent array
   if (!this.parameterData_) this.parameterData_ = [];
 
-  // If array is shorter than parameterCount_, fill in new defaults
+  // Add missing parameters if parameterCount_ increased
   while (this.parameterData_.length < this.parameterCount_) {
     this.parameterData_.push({ name: "name", option: "OPTION1", optional: false });
   }
 
-  // Save current values before rebuilding
-  for (let i = 0; i < this.parameterData_.length; i++) {
+  // Save current field values before removing old inputs
+  this.parameterData_.forEach((param, i) => {
     const nameField = this.getField("PARAM_NAME_" + i);
     const dropdownField = this.getField("PARAM_DROPDOWN_" + i);
     const optionalField = this.getField("PARAM_OPTIONAL_" + i);
-    if (nameField) this.parameterData_[i].name = nameField.getValue();
-    if (dropdownField) this.parameterData_[i].option = dropdownField.getValue();
-    if (optionalField) this.parameterData_[i].optional = optionalField.getValue() === "TRUE";
-  }
+    if (nameField) param.name = nameField.getValue();
+    if (dropdownField) param.option = dropdownField.getValue();
+    if (optionalField) param.optional = optionalField.getValue() === "TRUE";
+  });
 
-  // Remove old PARAM inputs
+  // Remove old inputs
   let i = 0;
   while (this.getInput("PARAM" + i)) {
     this.removeInput("PARAM" + i);
     i++;
   }
 
-  // Rebuild all PARAM inputs
+  // Rebuild inputs
   this.parameterData_.forEach((param, i) => {
     const input = this.appendDummyInput("PARAM" + i)
       .appendField("param " + (i + 1))
@@ -1648,18 +1647,20 @@ Blockly.common.defineBlocks({
     removeBtn.CLICKABLE = true;
     input.appendField(removeBtn, "REMOVE_BTN_" + i);
 
-    // Remove **this specific parameter**
+    // Remove **this specific parameter object**
     removeBtn.getClickTarget_().onclick = (e) => {
       e.stopPropagation();
-      this.parameterData_.splice(i, 1);
-      this.parameterCount_ = this.parameterData_.length;
-      this.updateParameters_();
+      const index = this.parameterData_.indexOf(param);
+      if (index >= 0) {
+        this.parameterData_.splice(index, 1);
+        this.parameterCount_ = this.parameterData_.length;
+        this.updateParameters_();
+      }
     };
 
     this.moveInputBefore("PARAM" + i, "CODE");
   });
 }
-
   },
 });
 

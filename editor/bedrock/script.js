@@ -962,9 +962,9 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     colour: 180,
     args0: [
       {
-        type: "input_value",
+        type: "field_input",
         name: "PARAM",
-        check: null
+        spellcheck: false
       }
     ],
     output: null,
@@ -1383,7 +1383,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'register_command', inputs: { NAME: { shadow: { type: 'text', fields: { TEXT: "" } } }, DESCRIPTION: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'command_parameter', inputs: { PARAM: { shadow: { type: 'text' } } } },
+        { kind: 'block', type: 'command_parameter' },
         { kind: 'sep'},
         { kind: 'label', text: 'Settings'},
         { kind: 'block', type: 'set_gamerule' },
@@ -1582,7 +1582,6 @@ Blockly.common.defineBlocks({
         this.parameterCount_++;
         this.updateParameters_();
         e.stopPropagation();
-        console.log("add");
       };
 
       // Statement input
@@ -1615,24 +1614,34 @@ Blockly.common.defineBlocks({
 
       // Add new PARAM inputs before CODE
       for (let i = 0; i < this.parameterCount_; i++) {
-        const input = this.appendDummyInput("PARAM" + i) 
-        .appendField("param " + (i + 1)) 
-        .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i) 
-        .appendField( new Blockly.FieldDropdown([ ["option1", "OPTION1"], ["option2", "OPTION2"] ]), "PARAM_DROPDOWN_" + i ); 
-        // REMOVE BUTTON 
-        const removeBtn = new Blockly.FieldLabel("x", undefined, "param-button"); 
-        input.appendField(removeBtn, "REMOVE_BTN_" + i); 
-        removeBtn.onMouseDown_ = (e) => { 
-          console.log("remove"); 
-          this.parameterCount_--; 
+        const input = this.appendDummyInput("PARAM" + i)
+          .appendField("param " + (i + 1))
+          .appendField(new Blockly.FieldTextInput("name"), "PARAM_NAME_" + i)
+          .appendField(
+            new Blockly.FieldDropdown([
+              ["option1", "OPTION1"],
+              ["option2", "OPTION2"]
+            ]),
+            "PARAM_DROPDOWN_" + i
+          );
+
+        // REMOVE BUTTON
+        const removeBtn = new Blockly.FieldLabel("x", undefined, "param-button");
+        input.appendField(removeBtn, "REMOVE_BTN_" + i);
+
+        // Capture index for closure
+        removeBtn.onMouseDown_ = ((index) => (e) => {
+          this.parameterCount_--;
           this.updateParameters_();
-          e.stopPropagation(); 
-        }; 
-        this.moveInputBefore("PARAM" + i, "CODE"); 
+          e.stopPropagation();
+        })(i);
+
+        this.moveInputBefore("PARAM" + i, "CODE");
       }
     },
-  }
+  },
 });
+
 
 
 

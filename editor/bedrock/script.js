@@ -1476,6 +1476,24 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
+  {
+    type: "get_players_dimension",
+    message0: "get list of players in dimension %1",
+    colour: 100,
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "DIMENSION",
+        options: [
+          ["overworld", "overworld"],
+          ["nether", "nether"],
+          ["the end", "the_end"]
+        ]
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
 ]);
 
 const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -2117,6 +2135,7 @@ const bedrockScriptToolbox = {
         { kind: 'label', text: 'Entities'},
         { kind: 'block', type: 'get_entities'},
         { kind: 'block', type: 'get_entities_at_location', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
+        { kind: 'block', type: 'get_players_dimension'},
       ]
     },
     {

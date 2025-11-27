@@ -1703,6 +1703,14 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
           ["z position", "location.z"],
           ["name", "nameTag"],
           ["type id", "typeId"],
+          ["list of effects", "getEffects()"],
+          ["current head location", "getHeadLocation()"],
+          ["current rotation", "getRotation()"],
+          ["list of tags", "getTags()"],
+          ["current velocity", "getVelocity()"],
+          ["current view direction x", "getViewDirection().x"],
+          ["current view direction y", "getViewDirection().y"],
+          ["current view direction z", "getViewDirection().z"],
         ]
       },
       {

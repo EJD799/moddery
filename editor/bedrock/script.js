@@ -1484,8 +1484,6 @@ const bedrockScriptToolbox = {
       colour: 100,
       contents: [
         { kind: 'block', type: 'set_block', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BLOCK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'sep'},
-        { kind: 'label', text: 'Structures'},
       ]
     },
     {

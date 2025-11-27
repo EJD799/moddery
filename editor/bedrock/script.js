@@ -1742,6 +1742,41 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     nextStatement: null,
     inputsInline: true
   },
+  {
+    type: "entity_add_effect",
+    message0: "add effect %1 to entity %2 duration %3 amplifier %4 hide particles %5",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "EFFECT",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "DURATION",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "AMPLIFIER",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "HIDE_PARTICLES",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
 ]);
 
 const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -2389,6 +2424,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'spawn_item', inputs: { ITEM: { shadow: { type: 'text', fields: { TEXT: "" } } }, QUANTITY: { shadow: { type: 'math_number', fields: { NUM: "" } } }, X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'spawn_particle', inputs: { PARTICLE: { shadow: { type: 'text', fields: { TEXT: "" } } }, X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'get_players_dimension'},
+        { kind: 'block', type: 'entity_add_effect', inputs: { EFFECT: { shadow: { type: 'text', fields: { TEXT: "" } } }, DURATION: { shadow: { type: 'math_number', fields: { NUM: "" } } }, AMPLIFIER: { shadow: { type: 'math_number', fields: { NUM: "" } } }, HIDE_PARTICLES: { shadow: { type: 'logic_boolean', fields: { BOOL: "" } } } } },
         { kind: 'sep' },
         { kind: 'label', text: 'Other'},
         { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },

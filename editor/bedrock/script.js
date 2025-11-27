@@ -2081,6 +2081,42 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     nextStatement: null,
     inputsInline: true
   },
+  {
+    type: "player_get_property",
+    message0: "get property %1 of player %2",
+    colour: 100,
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "PROPERTY",
+        options: [
+          ["max render distance", "clientSystemInfo.maxRenderDistance"],
+          ["platform type", "clientSystemInfo.platformType"],
+          ["command permission level", "commandPermissionLevel"],
+          ["graphics mode", "graphicsMode"],
+          ["last input mode used", "inputInfo.lastInputModeUsed"],
+          ["is emoting", "isEmoting"],
+          ["is flying", "isFlying"],
+          ["is gliding", "isGliding"],
+          ["is jumping", "isJumping"],
+          ["xp level", "level"],
+          ["name", "name"],
+          ["player permission level", "playerPermissionLevel"],
+          ["selected hotbar slot", "selectedSlotIndex"],
+          ["total xp needed for next level", "totalXpNeededForNextLevel"],
+          ["xp earned at current level", "xpEarnedAtCurrentLevel"]
+        ]
+      },
+      {
+        type: "input_value",
+        name: "PLAYER",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
 ]);
 
 const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -2743,6 +2779,9 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'entity_remove_tag', inputs: { TAG: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
         { kind: 'block', type: 'entity_set_rotation', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } }},
         { kind: 'block', type: 'entity_teleport', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
+        { kind: 'sep' },
+        { kind: 'label', text: 'Players'},
+        { kind: 'block', type: 'player_get_property'},
         { kind: 'sep' },
         { kind: 'label', text: 'Other'},
         { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },

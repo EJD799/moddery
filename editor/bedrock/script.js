@@ -1244,7 +1244,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     inputsInline: true
   },
   {
-    type: "create explosion",
+    type: "create_explosion",
     message0: "create explosion at x %1 y %2 z %3 radius %4 in %5 break blocks %6 cause fire %7 allow underwater %8",
     colour: 100,
     args0: [

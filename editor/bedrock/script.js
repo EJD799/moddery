@@ -1091,6 +1091,104 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
+  {
+    type: "world_play_music",
+    message0: "play music track %1 to all players",
+    colour: 180,
+    args0: [
+      {
+        type: "input_value",
+        name: "TRACK",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "world_queue_music",
+    message0: "queue music track %1 to all players",
+    colour: 180,
+    args0: [
+      {
+        type: "input_value",
+        name: "TRACK",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "set_time",
+    message0: "set time of day to %1 ticks",
+    colour: 180,
+    args0: [
+      {
+        type: "input_value",
+        name: "TIME",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "set_default_spawn",
+    message0: "set default spawn point to x %1 y %2 z %3",
+    colour: 180,
+    args0: [
+      {
+        type: "input_value",
+        name: "X_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Y_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Z_POS",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "set_difficulty",
+    message0: "set difficulty to %1",
+    colour: 180,
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "DIFFICULTY",
+        options: [
+          ["peaceful", "peaceful"],
+          ["easy", "easy"],
+          ["normal", "normal"],
+          ["hard", "hard"]
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "world_stop_music",
+    message0: "stop music track for all players",
+    colour: 180,
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
 ]);
 
 const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -1513,7 +1611,9 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'get_gamerule_boolean' },
         { kind: 'block', type: 'is_hardcore' },
         { kind: 'block', type: 'get_default_spawn' },
+        { kind: 'block', type: 'set_default_spawn', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'get_difficulty' },
+        { kind: 'block', type: 'set_difficulty' },
         { kind: 'sep'},
         { kind: 'label', text: 'Dynamic Properties'},
         { kind: 'block', type: 'set_dynamic_property', inputs: { PROPERTY: { shadow: { type: 'text', fields: { TEXT: "" } } }, VALUE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
@@ -1527,12 +1627,16 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'player_property_reporter' },
         { kind: 'block', type: 'player_property_boolean' },
         { kind: 'block', type: 'send_message', inputs: { MESSAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'world_play_music', inputs: { TRACK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'world_queue_music', inputs: { TRACK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'world_stop_music' },
         { kind: 'sep'},
         { kind: 'label', text: 'Time'},
         { kind: 'block', type: 'get_absolute_time' },
         { kind: 'block', type: 'get_day' },
         { kind: 'block', type: 'get_moon_phase' },
         { kind: 'block', type: 'get_time' },
+        { kind: 'block', type: 'set_time', inputs: { TIME: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
       ]
     },
     {

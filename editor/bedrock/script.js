@@ -1714,6 +1714,33 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
+  {
+    type: "set_entity_property",
+    message0: "set property %1 of entity %2 to %3",
+    colour: 100,
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "PROPERTY",
+        options: [
+          ["is sneaking", "isSneaking"],
+          ["name", "nameTag"],
+        ]
+      },
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "VALUE",
+        check: null
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
 ]);
 
 const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -2356,6 +2383,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'get_entities'},
         { kind: 'block', type: 'get_entities_at_location', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'get_entity_property'},
+        { kind: 'block', type: 'set_entity_property', inputs: { VALUE: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
         { kind: 'block', type: 'spawn_entity', inputs: { ENTITY: { shadow: { type: 'text', fields: { TEXT: "" } } }, X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'spawn_item', inputs: { ITEM: { shadow: { type: 'text', fields: { TEXT: "" } } }, QUANTITY: { shadow: { type: 'math_number', fields: { NUM: "" } } }, X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'spawn_particle', inputs: { PARTICLE: { shadow: { type: 'text', fields: { TEXT: "" } } }, X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },

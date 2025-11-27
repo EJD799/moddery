@@ -1189,6 +1189,114 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     nextStatement: null,
     inputsInline: true
   },
+  {
+    type: "fill_blocks",
+    message0: "fill blocks from x %1 y %2 z %3 to x %4 y %5 z %6 in %7 with %8",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "X_POS1",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Y_POS1",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Z_POS1",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "X_POS2",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Y_POS2",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Z_POS2",
+        check: null
+      },
+      {
+        type: "field_dropdown",
+        name: "DIMENSION",
+        options: [
+          ["overworld", "overworld"],
+          ["nether", "nether"],
+          ["the end", "the_end"]
+        ]
+      },
+      {
+        type: "input_value",
+        name: "BLOCK",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "create explosion",
+    message0: "create explosion at x %1 y %2 z %3 radius %4 in %5 break blocks %6 cause fire %7 allow underwater %8",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "X_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Y_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Z_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "RADIUS",
+        check: null
+      },
+      {
+        type: "field_dropdown",
+        name: "DIMENSION",
+        options: [
+          ["overworld", "overworld"],
+          ["nether", "nether"],
+          ["the end", "the_end"]
+        ]
+      },
+      {
+        type: "input_value",
+        name: "BREAK_BLOCKS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "CAUSE_FIRE",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "ALLOW_UNDERWATER",
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
 ]);
 
 const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -1670,10 +1778,13 @@ const bedrockScriptToolbox = {
     },
     {
       kind: 'category',
-      name: 'Blocks',
+      name: 'Dimension',
       colour: 100,
       contents: [
+        { kind: 'label', text: 'Blocks'},
         { kind: 'block', type: 'set_block', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BLOCK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'fill_blocks', inputs: { X_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, X_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BLOCK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'create_explosion', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, RADIUS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BREAKS_BLOCKS: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } }, CAUSES_FIRE: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } }, ALLOW_UNDERWATER: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } } } },
       ]
     },
     {

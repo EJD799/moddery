@@ -1879,8 +1879,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       }
     ],
-    previousStatement: null,
-    nextStatement: null,
+    output: null,
     inputsInline: true
   },
   {
@@ -2595,12 +2594,6 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'spawn_particle', inputs: { PARTICLE: { shadow: { type: 'text', fields: { TEXT: "" } } }, X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'get_players_dimension'},
         { kind: 'block', type: 'entity_add_effect', inputs: { EFFECT: { shadow: { type: 'text', fields: { TEXT: "" } } }, DURATION: { shadow: { type: 'math_number', fields: { NUM: "" } } }, AMPLIFIER: { shadow: { type: 'math_number', fields: { NUM: "" } } }, HIDE_PARTICLES: { shadow: { type: 'logic_boolean', fields: { BOOL: "" } } } } },
-        { kind: 'sep' },
-        { kind: 'label', text: 'Other'},
-        { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
-        { kind: 'block', type: 'play_sound_all', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'set_weather', inputs: { DURATION: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'entity_add_tag', inputs: { TAG: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
         { kind: 'block', type: 'entity_apply_damage', inputs: { DAMAGE: { shadow: { type: 'math_number', fields: { NUM: "" } } } }},
         { kind: 'block', type: 'entity_clear_velocity'},
@@ -2609,6 +2602,12 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'entity_has_tag', inputs: { TAG: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
         { kind: 'block', type: 'entity_kill'},
         { kind: 'block', type: 'entity_look_at', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
+        { kind: 'sep' },
+        { kind: 'label', text: 'Other'},
+        { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
+        { kind: 'block', type: 'play_sound_all', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'set_weather', inputs: { DURATION: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
       ]
     },
     {

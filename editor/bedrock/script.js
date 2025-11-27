@@ -2204,7 +2204,7 @@ const bedrockScriptToolbox = {
         { kind: 'label', text: 'Other'},
         { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'play_sound_all', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'run_command_dimension', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
       ]
     },
     {

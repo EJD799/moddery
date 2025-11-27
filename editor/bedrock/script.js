@@ -1063,6 +1063,20 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
+  {
+    type: "dynamic_property_list",
+    message0: "get list of dynamic property ids",
+    colour: 180,
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "dynamic_property_size",
+    message0: "get total dynamic property byte count",
+    colour: 180,
+    output: null,
+    inputsInline: true
+  },
 ]);
 
 const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -1484,17 +1498,25 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'get_gamerule' },
         { kind: 'block', type: 'get_gamerule_boolean' },
         { kind: 'block', type: 'is_hardcore' },
+        { kind: 'block', type: 'get_default_spawn' },
+        { kind: 'block', type: 'get_difficulty' },
         { kind: 'sep'},
         { kind: 'label', text: 'Dynamic Properties'},
         { kind: 'block', type: 'set_dynamic_property', inputs: { PROPERTY: { shadow: { type: 'text', fields: { TEXT: "" } } }, VALUE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'get_dynamic_property', inputs: { PROPERTY: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'clear_dynamic_properties' },
+        { kind: 'block', type: 'dynamic_property_list' },
+        { kind: 'block', type: 'dynamic_property_size' },
         { kind: 'sep'},
         { kind: 'label', text: 'Players'},
         { kind: 'block', type: 'player_list' },
         { kind: 'block', type: 'player_property_reporter' },
         { kind: 'block', type: 'player_property_boolean' },
         { kind: 'block', type: 'send_message', inputs: { MESSAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'sep'},
+        { kind: 'label', text: 'Time'},
+        { kind: 'block', type: 'get_absolute_time' },
+        { kind: 'block', type: 'get_day' },
       ]
     },
     {

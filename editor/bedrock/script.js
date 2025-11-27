@@ -2104,7 +2104,12 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
           ["player permission level", "playerPermissionLevel"],
           ["selected hotbar slot", "selectedSlotIndex"],
           ["total xp needed for next level", "totalXpNeededForNextLevel"],
-          ["xp earned at current level", "xpEarnedAtCurrentLevel"]
+          ["xp earned at current level", "xpEarnedAtCurrentLevel"],
+          ["gamemode", "getGameMode()"],
+          ["spawn point x", "getSpawnPoint().x"],
+          ["spawn point y", "getSpawnPoint().y"],
+          ["spawn point z", "getSpawnPoint().z"],
+          ["total xp", "getTotalXp()"],
         ]
       },
       {

@@ -342,20 +342,6 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         options: [
           ['maxCommandChainLength', 'maxCommandChainLength'],
           ['randomTickSpeed', 'randomTickSpeed'],
-        ]
-      }
-    ],
-    output: null,
-  },
-  {
-    type: 'get_gamerule_boolean',
-    message0: 'get gamerule %1',
-    colour: 180,
-    args0: [
-      {
-        type: 'field_dropdown',
-        name: 'RULE',
-        options: [
           ['commandBlockOutput', 'commandBlockOutput'],
           ['commandBlocksEnabled', 'commandBlocksEnabled'],
           ['doDaylightCycle', 'doDaylightCycle'],
@@ -381,7 +367,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         ]
       }
     ],
-    output: "Boolean",
+    output: null,
   },
   {
     type: "new_form",
@@ -866,7 +852,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     inputsInline: true
   },
   {
-    type: "player_property_reporter",
+    type: "get_player_property",
     message0: "get property %1 of player %2",
     colour: 180,
     args0: [
@@ -887,26 +873,6 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
           ['selectedSlotIndex', 'selectedSlotIndex'],
           ['totalXpNeededForNextLevel', 'totalXpNeededForNextLevel'],
           ['xpEarnedAtCurrentLevel', 'xpEarnedAtCurrentLevel'],
-        ]
-      },
-      {
-        type: "input_value",
-        name: "PLAYER",
-        check: null
-      }
-    ],
-    output: null,
-    inputsInline: true
-  },
-  {
-    type: "player_property_boolean",
-    message0: "get property %1 of player %2",
-    colour: 180,
-    args0: [
-      {
-        type: "field_dropdown",
-        name: "PROPERTY",
-        options: [
           ['isEmoting', 'isEmoting'],
           ['isFlying', 'isFlying'],
           ['isGliding', 'isGliding'],
@@ -919,7 +885,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       }
     ],
-    output: "Boolean",
+    output: null,
     inputsInline: true
   },
   {
@@ -1295,6 +1261,77 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "get_biome",
+    message0: "get biome at x %1 y %2 z %3",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "X_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Y_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Z_POS",
+        check: null
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "get_block",
+    message0: "get block at x %1 y %2 z %3",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "X_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Y_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Z_POS",
+        check: null
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "get_block_property",
+    message0: "get property %1 of block %2",
+    colour: 100,
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "PROPERTY",
+        options: [
+          ["dimension", "dimension"],
+          ["isAir", "isAir"],
+          [""]
+        ]
+      },
+      {
+        type: "input_value",
+        name: "BLOCK",
+        check: null
+      }
+    ],
+    output: null,
     inputsInline: true
   },
 ]);
@@ -1716,7 +1753,6 @@ const bedrockScriptToolbox = {
         { kind: 'label', text: 'Settings'},
         { kind: 'block', type: 'set_gamerule' },
         { kind: 'block', type: 'get_gamerule' },
-        { kind: 'block', type: 'get_gamerule_boolean' },
         { kind: 'block', type: 'is_hardcore' },
         { kind: 'block', type: 'get_default_spawn' },
         { kind: 'block', type: 'set_default_spawn', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
@@ -1732,8 +1768,7 @@ const bedrockScriptToolbox = {
         { kind: 'sep'},
         { kind: 'label', text: 'Players'},
         { kind: 'block', type: 'player_list' },
-        { kind: 'block', type: 'player_property_reporter' },
-        { kind: 'block', type: 'player_property_boolean' },
+        { kind: 'block', type: 'get_player_property' },
         { kind: 'block', type: 'send_message', inputs: { MESSAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'world_play_music', inputs: { TRACK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'world_queue_music', inputs: { TRACK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
@@ -1784,7 +1819,7 @@ const bedrockScriptToolbox = {
         { kind: 'label', text: 'Blocks'},
         { kind: 'block', type: 'set_block', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BLOCK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'fill_blocks', inputs: { X_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, X_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BLOCK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'create_explosion', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, RADIUS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BREAK_BLOCKS: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } }, CAUSES_FIRE: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } }, ALLOW_UNDERWATER: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } } } },
+        { kind: 'block', type: 'create_explosion', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, RADIUS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BREAK_BLOCKS: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } }, CAUSE_FIRE: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } }, ALLOW_UNDERWATER: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } } } },
       ]
     },
     {

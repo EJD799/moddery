@@ -1374,9 +1374,37 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
+  {
+    type: "json_stringify",
+    message0: "stringify array/object %1",
+    colour: 260,
+    args0: [
+      {
+        type: "input_value",
+        name: "OBJECT",
+        check: null
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "json_parse",
+    message0: "parse stringified array/object %1",
+    colour: 260,
+    args0: [
+      {
+        type: "input_value",
+        name: "OBJECT",
+        check: null
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
 ]);
 
-const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
+const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
     type: 'colour_picker',
     message0: 'color from hex code %1',
@@ -1400,7 +1428,115 @@ const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
     ],
     output: null,
     colour: 20
-  }
+  },
+  {
+    "type": "json_create",
+    "message0": "new object",
+    "output": null,
+    "colour": 260
+  },
+  {
+    "type": "json_get_prop",
+    "message0": "get property %1 from object %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "OBJ"
+      }
+    ],
+    "output": null,
+    "colour": 260
+  },
+  {
+    "type": "json_set_prop",
+    "message0": "set property in object %1 key %2 value %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "OBJ"
+      },
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 260
+  },
+  {
+    "type": "json_delete_prop",
+    "message0": "delete property in object %1 key %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "OBJ"
+      },
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 260
+  },
+  {
+    "type": "json_has_prop",
+    "message0": "object %1 has key %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "OBJ"
+      },
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      }
+    ],
+    "output": "Boolean",
+    "colour": 260
+  },
+  {
+    "type": "json_keys",
+    "message0": "keys of object %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "OBJ"
+      }
+    ],
+    "output": null,
+    "colour": 260
+  },
+  {
+    "type": "json_merge",
+    "message0": "merge object %1 with %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "A"
+      },
+      {
+        "type": "input_value",
+        "name": "B"
+      }
+    ],
+    "output": null,
+    "colour": 260
+  },
 ]);
 
 
@@ -1693,6 +1829,7 @@ const bedrockScriptToolbox = {
       name: 'Lists',
       colour: '%{BKY_LISTS_HUE}',
       contents: [
+        { kind: 'label', text: 'Arrays'},
         { kind: 'block', type: 'lists_create_with' },
         { kind: 'block', type: 'lists_repeat', inputs: { ITEM:{shadow:{type:'text'}}, NUM: { shadow: { type: 'math_number', fields: { NUM: 5 } } } } },
         { kind: 'block', type: 'lists_length' },
@@ -1726,7 +1863,37 @@ const bedrockScriptToolbox = {
             DELIM: {shadow:{type:'text'}}
           }
         },
-        { kind: 'block', type: 'lists_reverse' }
+        { kind: 'block', type: 'lists_reverse' },
+        { kind: 'sep'},
+        { kind: 'label', text: 'Objects'},
+        { kind: 'block', type: 'json_create' },
+        { kind: 'block', type: 'json_get_prop',
+          inputs: {
+            KEY: {shadow:{type:'text'}}
+          }
+        },
+        { kind: 'block', type: 'json_set_prop',
+          inputs: {
+            KEY: {shadow:{type:'text'}},
+            VALUE: {shadow:{type:'text'}}
+          }
+        },
+        { kind: 'block', type: 'json_delete_prop',
+          inputs: {
+            KEY: {shadow:{type:'text'}}
+          }
+        },
+        { kind: 'block', type: 'json_has_prop',
+          inputs: {
+            KEY: {shadow:{type:'text'}}
+          }
+        },
+        { kind: 'block', type: 'json_keys' },
+        { kind: 'block', type: 'json_merge' },
+        { kind: 'sep'},
+        { kind: 'label', text: 'JSON'},
+        { kind: 'block', type: 'json_stringify' },
+        { kind: 'block', type: 'json_parse' },
       ]
     },
     // Colour
@@ -1967,7 +2134,7 @@ Blockly.Blocks['text'].init = function() {
 
 
 Blockly.common.defineBlocks(bedrockScriptDefinitions);
-Blockly.common.defineBlocks(colourDefinitions);
+Blockly.common.defineBlocks(additionalDefinitions);
 
 
 Blockly.common.defineBlocks({

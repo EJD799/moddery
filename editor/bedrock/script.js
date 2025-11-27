@@ -943,6 +943,14 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     inputsInline: true
   },
   {
+    type: "clear_dynamic_properties",
+    message0: "clear dynamic properties",
+    colour: 180,
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
     type: "get_dynamic_property",
     message0: "get dynamic property %1",
     colour: 180,
@@ -1441,6 +1449,7 @@ const bedrockScriptToolbox = {
         { kind: 'label', text: 'Dynamic Properties'},
         { kind: 'block', type: 'set_dynamic_property', inputs: { PROPERTY: { shadow: { type: 'text', fields: { TEXT: "" } } }, VALUE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'get_dynamic_property', inputs: { PROPERTY: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'clear_dynamic_properties' },
         { kind: 'sep'},
         { kind: 'label', text: 'Players'},
         { kind: 'block', type: 'player_list' },

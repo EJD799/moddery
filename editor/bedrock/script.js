@@ -1494,6 +1494,39 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
+  {
+    type: "is_chunk_loaded",
+    message0: "is chunk at x %1 y %2 z %3 in %4 loaded?",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "X_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Y_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Z_POS",
+        check: null
+      },
+      {
+        type: "field_dropdown",
+        name: "DIMENSION",
+        options: [
+          ["overworld", "overworld"],
+          ["nether", "nether"],
+          ["the end", "the_end"]
+        ]
+      }
+    ],
+    output: "Boolean",
+    inputsInline: true
+  },
 ]);
 
 const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -2136,6 +2169,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'get_entities'},
         { kind: 'block', type: 'get_entities_at_location', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'get_players_dimension'},
+        { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
       ]
     },
     {

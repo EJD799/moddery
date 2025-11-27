@@ -1321,9 +1321,49 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         name: "PROPERTY",
         options: [
           ["dimension", "dimension"],
-          ["isAir", "isAir"],
-          [""]
+          ["is air", "isAir"],
+          ["is liquid", "isLiquid"],
+          ["is valid", "isValid"],
+          ["is waterlogged", "isWaterlogged"],
+          ["localizationKey", "localizationKey"],
+          ["x position", "x"],
+          ["y position", "y"],
+          ["z position", "z"],
+          ["type id", "typeId"],
+          ["above", "above()"],
+          ["below", "below()"],
+          ["can be destroyed by liquid spread", "canBeDestroyedByLiquidSpread()"],
+          ["can contain liquid", "canContainLiquid()"],
+          ["is liquid blocking", "isLiquidBlocking()"],
+          ["liquid can flow from direction", "liquidCanFlowFromDirection()"],
+          ["liquid spread causes spawn", "liquidSpreadCausesSpawn()"],
+          ["north", "north()"],
+          ["east", "east()"],
+          ["south", "south()"],
+          ["west", "west()"],
+          ["light level", "getLightLevel()"],
+          ["sky light level", "getSkyLightLevel()"],
+          ["redstone power", "getRedstonePower()"]
         ]
+      },
+      {
+        type: "input_value",
+        name: "BLOCK",
+        check: null
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "get_block_component",
+    message0: "get component %1 of block %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "COMPONENT",
+        check: null
       },
       {
         type: "input_value",
@@ -1820,6 +1860,10 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'set_block', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BLOCK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'fill_blocks', inputs: { X_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, X_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BLOCK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'create_explosion', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, RADIUS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BREAK_BLOCKS: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } }, CAUSE_FIRE: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } }, ALLOW_UNDERWATER: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } } } },
+        { kind: 'block', type: 'get_biome', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
+        { kind: 'block', type: 'get_block', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
+        { kind: 'block', type: 'get_block_property'},
+        { kind: 'block', type: 'get_block_component', inputs: { COMPONENT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
       ]
     },
     {

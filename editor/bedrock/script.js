@@ -988,7 +988,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "set_block",
     message0: "set block at x %1 y %2 z %3 in %4 to %5",
-    colour: 180,
+    colour: 100,
     args0: [
       {
         type: "input_value",
@@ -1022,6 +1022,38 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "get_absolute_time",
+    message0: "absolute time since start of world",
+    colour: 180,
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "get_day",
+    message0: "get world day counter",
+    colour: 180,
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "get_default_spawn",
+    message0: "get default spawn location %1",
+    colour: 180,
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "POS",
+        options: [
+          ["x", "x"],
+          ["y", "y"],
+          ["z", "z"]
+        ]
+      }
+    ],
+    output: null,
     inputsInline: true
   },
 ]);

@@ -1402,6 +1402,49 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
+  {
+    type: "set_block_type",
+    message0: "set type of block %1 to %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "BLOCK",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "TYPE",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "set_block_waterlogged",
+    message0: "set block %1 to %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "BLOCK",
+        check: null
+      },
+      {
+        type: "field_dropdown",
+        name: "TYPE",
+        options: [
+          ["waterlogged", "true"],
+          ["not waterlogged", "false"]
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
 ]);
 
 const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -2037,6 +2080,8 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'get_block', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'get_block_property'},
         { kind: 'block', type: 'get_block_component', inputs: { COMPONENT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'set_block_type', inputs: { TYPE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'set_block_waterlogged'},
       ]
     },
     {

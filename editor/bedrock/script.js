@@ -1785,6 +1785,158 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     nextStatement: null,
     inputsInline: true
   },
+  {
+    type: "entity_add_tag",
+    message0: "add tag %1 to entity %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "TAG",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "entity_apply_damage",
+    message0: "apply %1 damage to entity %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "DAMAGE",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "entity_clear_velocity",
+    message0: "clear velocity of entity %1",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "entity_set_fire",
+    message0: "%1 entity %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "MODE",
+        options: [
+          ["set on fire", "setOnFire()"],
+          ["extinguish fire", "extinguishFire()"]
+        ]
+      },
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "entity_get_component",
+    message0: "get component %1 of entity %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "COMPONENT",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "entity_has_tag",
+    message0: "entity %1 has tag %2?",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "TAG",
+        check: null
+      },
+    ],
+    output: "Boolean",
+    inputsInline: true
+  },
+  {
+    type: "entity_kill",
+    message0: "kill entity %1",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "entity_look_at",
+    message0: "make entity %1 look at x %2 y %3 z %4",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "TAG",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
 ]);
 
 const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([

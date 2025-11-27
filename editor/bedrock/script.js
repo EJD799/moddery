@@ -1842,7 +1842,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "entity_set_fire",
-    message0: "%1 entity %2",
+    message0: "%1 entity %2 for %3 seconds",
     colour: 100,
     args0: [
       {
@@ -1856,6 +1856,11 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
       {
         type: "input_value",
         name: "ENTITY",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "DURATION",
         check: null
       }
     ],
@@ -1941,6 +1946,106 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         name: "Z_POS",
         check: null
       }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "entity_play_animation",
+    message0: "play animation %1 on entity %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "ANIMATION",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "entity_remove",
+    message0: "remove entity %1",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "entity_remove_effect",
+    message0: "remove effect %1 from entity %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "EFFECT",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "entity_remove_tag",
+    message0: "remove tag %1 from entity %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "TAG",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "entity_set_rotation",
+    message0: "set rotation of entity %1 to x %2 y %3",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "X_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Y_POS",
+        check: null
+      },
     ],
     previousStatement: null,
     nextStatement: null,
@@ -2597,11 +2702,16 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'entity_add_tag', inputs: { TAG: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
         { kind: 'block', type: 'entity_apply_damage', inputs: { DAMAGE: { shadow: { type: 'math_number', fields: { NUM: "" } } } }},
         { kind: 'block', type: 'entity_clear_velocity'},
-        { kind: 'block', type: 'entity_set_fire'},
+        { kind: 'block', type: 'entity_set_fire', inputs: { DURATION: { shadow: { type: 'math_number', fields: { NUM: "" } } } }},
         { kind: 'block', type: 'entity_get_component', inputs: { COMPONENT: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
         { kind: 'block', type: 'entity_has_tag', inputs: { TAG: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
         { kind: 'block', type: 'entity_kill'},
         { kind: 'block', type: 'entity_look_at', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
+        { kind: 'block', type: 'entity_play_animation', inputs: { ANIMATION: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
+        { kind: 'block', type: 'entity_remove'},
+        { kind: 'block', type: 'entity_remove_effect', inputs: { EFFECT: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
+        { kind: 'block', type: 'entity_remove_tag', inputs: { TAG: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
+        { kind: 'block', type: 'entity_set_rotation', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } }},
         { kind: 'sep' },
         { kind: 'label', text: 'Other'},
         { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },

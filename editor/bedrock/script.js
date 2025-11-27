@@ -1077,6 +1077,20 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
+  {
+    type: "get_time",
+    message0: "get time of day",
+    colour: 180,
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "get_moon_phase",
+    message0: "get moon phase",
+    colour: 180,
+    output: null,
+    inputsInline: true
+  },
 ]);
 
 const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -1517,6 +1531,8 @@ const bedrockScriptToolbox = {
         { kind: 'label', text: 'Time'},
         { kind: 'block', type: 'get_absolute_time' },
         { kind: 'block', type: 'get_day' },
+        { kind: 'block', type: 'get_moon_phase' },
+        { kind: 'block', type: 'get_time' },
       ]
     },
     {

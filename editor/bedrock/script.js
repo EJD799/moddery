@@ -2051,6 +2051,36 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     nextStatement: null,
     inputsInline: true
   },
+  {
+    type: "entity_teleport",
+    message0: "teleport entity %1 to x %2 y %3 z %4",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "ENTITY",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "X_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Y_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Z_POS",
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
 ]);
 
 const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -2712,6 +2742,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'entity_remove_effect', inputs: { EFFECT: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
         { kind: 'block', type: 'entity_remove_tag', inputs: { TAG: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
         { kind: 'block', type: 'entity_set_rotation', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } }},
+        { kind: 'block', type: 'entity_teleport', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'sep' },
         { kind: 'label', text: 'Other'},
         { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },

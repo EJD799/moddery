@@ -1558,6 +1558,30 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
+  {
+    type: "set_weather",
+    message0: "set weather to %1 for %2 seconds",
+    colour: 100,
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "WEATHER",
+        options: [
+          ["clear", "clear"],
+          ["rain", "rain"],
+          ["thunder", "thunder"]
+        ]
+      },
+      {
+        type: "input_value",
+        name: "DURATION",
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
 ]);
 
 const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -2205,6 +2229,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'play_sound_all', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'set_weather', inputs: { DURATION: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
       ]
     },
     {

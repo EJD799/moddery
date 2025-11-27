@@ -977,6 +977,45 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: null,
     inputsInline: true
   },
+  {
+    type: "set_block",
+    message0: "set block at x %1 y %2 z %3 in %4 to %5",
+    colour: 180,
+    args0: [
+      {
+        type: "input_value",
+        name: "X_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Y_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Z_POS",
+        check: null
+      },
+      {
+        type: "field_dropdown",
+        name: "DIMENSION",
+        options: [
+          ["overworld", "overworld"],
+          ["nether", "nether"],
+          ["the end", "the_end"]
+        ]
+      },
+      {
+        type: "input_value",
+        name: "BLOCK",
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
 ]);
 
 const colourDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -1440,12 +1479,14 @@ const bedrockScriptToolbox = {
       ]
     },
     {
-        "kind": "category",
-        "name": "Structures",
-        "colour": 100,
-        "contents": [
-
-        ]
+      kind: 'category',
+      name: 'Blocks',
+      colour: 100,
+      contents: [
+        { kind: 'block', type: 'set_block', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BLOCK: { shadow: { type: 'text', fields: { TEXT: "" } } } } }
+        { kind: 'sep'},
+        { kind: 'label', text: 'Structures'},
+      ]
     },
     {
         "kind": "category",

@@ -1924,12 +1924,22 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     args0: [
       {
         type: "input_value",
-        name: "TAG",
+        name: "ENTITY",
         check: null
       },
       {
         type: "input_value",
-        name: "ENTITY",
+        name: "X_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Y_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Z_POS",
         check: null
       }
     ],
@@ -2591,6 +2601,14 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'play_sound_all', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'set_weather', inputs: { DURATION: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
+        { kind: 'block', type: 'entity_add_tag', inputs: { TAG: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
+        { kind: 'block', type: 'entity_apply_damage', inputs: { DAMAGE: { shadow: { type: 'math_number', fields: { NUM: "" } } } }},
+        { kind: 'block', type: 'entity_clear_velocity'},
+        { kind: 'block', type: 'entity_set_fire'},
+        { kind: 'block', type: 'entity_get_component', inputs: { COMPONENT: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
+        { kind: 'block', type: 'entity_has_tag', inputs: { TAG: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
+        { kind: 'block', type: 'entity_kill'},
+        { kind: 'block', type: 'entity_look_at', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
       ]
     },
     {

@@ -226,7 +226,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "run_command_dimension",
     message0: "run command %1 in dimension %2",
-    colour: 180,
+    colour: 100,
     args0: [
       {
         type: 'input_value',
@@ -1527,6 +1527,37 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     output: "Boolean",
     inputsInline: true
   },
+  {
+    type: "play_sound_all",
+    message0: "play sound %1 to all players in %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "SOUND",
+        check: null
+      },
+      {
+        type: "field_dropdown",
+        name: "DIMENSION",
+        options: [
+          ["overworld", "overworld"],
+          ["nether", "nether"],
+          ["the end", "the_end"]
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "get_entities",
+    message0: "get entities",
+    colour: 100,
+    output: null,
+    inputsInline: true
+  },
 ]);
 
 const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -2169,7 +2200,11 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'get_entities'},
         { kind: 'block', type: 'get_entities_at_location', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'get_players_dimension'},
+        { kind: 'sep' },
+        { kind: 'label', text: 'Other'},
         { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
+        { kind: 'block', type: 'play_sound_all', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'run_command_dimension', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
       ]
     },
     {

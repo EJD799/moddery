@@ -1450,7 +1450,8 @@ const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray
       }
     ],
     "output": null,
-    "colour": 260
+    "colour": 260,
+    inputsInline: true
   },
   {
     "type": "json_set_prop",
@@ -1472,7 +1473,8 @@ const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 260
+    "colour": 260,
+    inputsInline: true
   },
   {
     "type": "json_delete_prop",
@@ -1490,7 +1492,8 @@ const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 260
+    "colour": 260,
+    inputsInline: true
   },
   {
     "type": "json_has_prop",
@@ -1507,7 +1510,8 @@ const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray
       }
     ],
     "output": "Boolean",
-    "colour": 260
+    "colour": 260,
+    inputsInline: true
   },
   {
     "type": "json_keys",
@@ -1519,7 +1523,8 @@ const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray
       }
     ],
     "output": null,
-    "colour": 260
+    "colour": 260,
+    inputsInline: true
   },
   {
     "type": "json_merge",
@@ -1535,7 +1540,8 @@ const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray
       }
     ],
     "output": null,
-    "colour": 260
+    "colour": 260,
+    inputsInline: true
   },
 ]);
 

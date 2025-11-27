@@ -1846,7 +1846,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     colour: 100,
     args0: [
       {
-        type: "input_value",
+        type: "field_dropdown",
         name: "MODE",
         options: [
           ["set on fire", "setOnFire()"],

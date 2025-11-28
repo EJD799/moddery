@@ -4,6 +4,9 @@ body {
     margin: 0 !important;
 }
 
+#toolbar {
+    display: flex !important;
+}
 /* Clearfix for the menu */
 .ui-menu:after {
     content: ".";

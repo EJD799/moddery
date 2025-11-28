@@ -2122,6 +2122,94 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     nextStatement: null,
     inputsInline: true
   },
+  {
+    type: "player_give_xp",
+    message0: "give %1 xp %2 to player %3",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "AMOUNT",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "MODE",
+        options: [
+          ["points", "addExperience"],
+          ["levels", "addLevels"]
+        ]
+      },
+      {
+        type: "input_value",
+        name: "PLAYER",
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "player_play_sound",
+    message0: "play sound %1 to player %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "SOUND",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "PLAYER",
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "player_play_music",
+    message0: "play music track %1 to player %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "TRACK",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "PLAYER",
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "player_queue_music",
+    message0: "queue music track %1 for player %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "TRACK",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "PLAYER",
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
 ]);
 
 const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -2787,6 +2875,10 @@ const bedrockScriptToolbox = {
         { kind: 'sep' },
         { kind: 'label', text: 'Players'},
         { kind: 'block', type: 'player_get_property'},
+        { kind: 'block', type: 'player_give_xp', inputs: { AMOUNT: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
+        { kind: 'block', type: 'player_play_sound', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'player_play_music', inputs: { TRACK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'player_queue_music', inputs: { TRACK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'sep' },
         { kind: 'label', text: 'Other'},
         { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },

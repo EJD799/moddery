@@ -204,6 +204,8 @@ function openProjDlg() {
 function openProj(file) {
   openLoader();
   loaderText.innerHTML = "Opening Project... (0%)";
+  loaderProgress.setAttribute("max", "0"),
+  loaderProgress.value = "0";
   JSZip.loadAsync(file).then(function (zip) {
     let manifest;
     zip.file("manifest.json").async("string").then(function(data) {
@@ -238,8 +240,12 @@ function openProj(file) {
           loaderProgress.value = Number(loaderProgress.value + 1);
           loaderText.innerHTML = `Opening Project... (${(progressBarMax / loaderProgress.value) * 100}%)`;
         }
+        setTimeout(function() {
+          closeLoader();
+        }, 500);
       } else {
         alert("The uploaded file is not a valid Moddery project!");
+        closeLoader();
       }
     });
   });

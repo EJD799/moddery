@@ -216,6 +216,8 @@ function openProj(file) {
     zip.file("manifest.json").async("string").then(function(data) {
       manifest = JSON.parse(data);
       if (manifest?.type != null) {
+        document.getElementById("tabs-1").innerHTML = `<p>Press the "+ <i class="fas fa-cubes"></i>" button to add an element.</p>`;
+        document.getElementById("tabs-2").innerHTML = `<p>Press the "+ <i class="fas fa-image"></i>" button to add an asset.</p>`;
         projZip = zip;
         projManifest = manifest;
         document.getElementById("tabs").hidden = false;

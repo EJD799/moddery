@@ -2172,6 +2172,76 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     nextStatement: null,
     inputsInline: true
   },
+  {
+    type: "player_set_gamemode",
+    message0: "set gamemode of player %1 to %2",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "PLAYER",
+        check: null
+      },
+      {
+        type: "field_dropdown",
+        name: "GAMEMODE",
+        options: [
+          ["creative", "creative"],
+          ["survival", "survival"],
+          ["adventure", "adventure"],
+          ["spectator", "spectator"]
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "player_set_spawn_point",
+    message0: "set spawn point of player %1 to x %2 y %3 z %4",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "PLAYER",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "X_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Y_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Z_POS",
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: "player_stop_music",
+    message0: "stop music for player %1",
+    colour: 100,
+    args0: [
+      {
+        type: "input_value",
+        name: "PLAYER",
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
 ]);
 
 const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -2838,10 +2908,13 @@ const bedrockScriptToolbox = {
         { kind: 'label', text: 'Players'},
         { kind: 'block', type: 'player_get_property'},
         { kind: 'block', type: 'send_message', inputs: { MESSAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'player_set_gamemode' },
+        { kind: 'block', type: 'player_set_spawn_point', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'player_give_xp', inputs: { AMOUNT: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'player_play_sound', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'player_play_music', inputs: { TRACK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'player_queue_music', inputs: { TRACK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'player_stop_music'},
         { kind: 'sep' },
         { kind: 'label', text: 'Other'},
         { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },

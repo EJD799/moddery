@@ -481,12 +481,49 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
   addAssetNameBox.value = "";
 }
 
+/*
 function saveProject() {
   projZip.generateAsync({type:"blob"})
   .then(function(content) {
       saveAs(content, projManifest.name + ".zip");
   });
 }
+*/
+
+async function saveProject() {
+  // If no file is opened, fall back to Save As
+  if (!projFileHandle) {
+    return await saveProjectAs();
+  }
+
+  const blob = await projZip.generateAsync({ type: "blob" });
+
+  // Ensure we have write permission
+  const perm = await projFileHandle.requestPermission({ mode: "readwrite" });
+  if (perm !== "granted") {
+    // If permission denied, fallback to Save As as well
+    return await saveProjectAs();
+  }
+
+  const writable = await projFileHandle.createWritable();
+  await writable.write(blob);
+  await writable.close();
+
+  console.log("Project saved!");
+}
+async function saveProjectAs() {
+  projFileHandle = await window.showSaveFilePicker({
+    suggestedName: (projManifest?.name || "project") + ".zip",
+    types: [{
+      description: "Moddery Project",
+      accept: { "application/zip": [".zip"] }
+    }]
+  });
+
+  // After choosing location, save normally
+  return await saveProject();
+}
+
 $("#editProjBtn").button();
 $("#addElementBtn").button();
 $("#addAssetBtn").button();

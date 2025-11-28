@@ -250,7 +250,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "run_command_player",
     message0: "run command %1 as player %2",
-    colour: 180,
+    colour: 100,
     args0: [
       {
         type: 'input_value',
@@ -270,7 +270,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   {
     type: "send_message",
     message0: "send message %1 to player %2",
-    colour: 180,
+    colour: 100,
     args0: [
       {
         type: 'input_value',
@@ -848,43 +848,6 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     type: "player_list",
     message0: "list of players",
     colour: 180,
-    output: null,
-    inputsInline: true
-  },
-  {
-    type: "get_player_property",
-    message0: "get property %1 of player %2",
-    colour: 180,
-    args0: [
-      {
-        type: "field_dropdown",
-        name: "PROPERTY",
-        options: [
-          ["camera", "camera"],
-          ["clientSystemInfo", "clientSystemInfo"],
-          ["commandPermissionLevel", "commandPermissionLevel"],
-          ["graphicsMode", "graphicsMode"],
-          ["inputInfo", "inputInfo"],
-          ["inputPermissions", "inputPermissions"],
-          ['level', 'level'],
-          ['name', 'name'],
-          ['onScreenDisplay', 'onScreenDisplay'],
-          ['playerPermissionLevel', 'playerPermissionLevel'],
-          ['selectedSlotIndex', 'selectedSlotIndex'],
-          ['totalXpNeededForNextLevel', 'totalXpNeededForNextLevel'],
-          ['xpEarnedAtCurrentLevel', 'xpEarnedAtCurrentLevel'],
-          ['isEmoting', 'isEmoting'],
-          ['isFlying', 'isFlying'],
-          ['isGliding', 'isGliding'],
-          ['isJumping', 'isJumping'],
-        ]
-      },
-      {
-        type: "input_value",
-        name: "PLAYER",
-        check: null
-      }
-    ],
     output: null,
     inputsInline: true
   },
@@ -2118,8 +2081,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       }
     ],
-    previousStatement: null,
-    nextStatement: null,
+    output: null,
     inputsInline: true
   },
   {
@@ -2789,7 +2751,7 @@ const bedrockScriptToolbox = {
         { kind: 'sep'},
         { kind: 'label', text: 'Players'},
         { kind: 'block', type: 'player_list' },
-        { kind: 'block', type: 'get_player_property' },
+        { kind: 'block', type: 'player_get_property' },
         { kind: 'block', type: 'send_message', inputs: { MESSAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'world_play_music', inputs: { TRACK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'world_queue_music', inputs: { TRACK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
@@ -2875,6 +2837,7 @@ const bedrockScriptToolbox = {
         { kind: 'sep' },
         { kind: 'label', text: 'Players'},
         { kind: 'block', type: 'player_get_property'},
+        { kind: 'block', type: 'send_message', inputs: { MESSAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'player_give_xp', inputs: { AMOUNT: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'player_play_sound', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'player_play_music', inputs: { TRACK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },

@@ -93,7 +93,8 @@ $("#loaderDlg").dialog({
   width: 300,
   closeOnEscape: false,
   draggable: false,
-  modal: true
+  modal: true,
+  dialogClass: "no-close"
 });
 $("#aboutDlg").dialog({
   position: { my: "center", at: "center", of: window },

@@ -200,40 +200,47 @@ function openProjDlg() {
 }
 
 function openProj(file) {
-    JSZip.loadAsync(file).then(function (zip) {
-      let manifest;
-      zip.file("manifest.json").async("string").then(function(data) {
-        manifest = JSON.parse(data);
-        if (manifest?.type != null) {
-          projZip = zip;
-          projManifest = manifest;
-          console.log("Loaded project");
-          document.getElementById("tabs").hidden = false;
-          document.getElementById("welcome").hidden = true;
-          elementFolderList = fileListInFolder("elements");
-          for (let i = 0; i < elementFolderList.length; i++) {
-            if (!elementFolderList[i].endsWith(".code.json")) {
-              projZip.folder("elements").file(elementFolderList[i]).async("string").then(function(file) {
-                data = JSON.parse(file);
-                $("#addElementNameBox").val(data.name);
-                $("#addElementIDBox").val(data.id);
-                $("#addElementType").val(data.type);
-                addElement(true);
-              });
-            }
-          }
-          assetFolderList = fileListInFolder("assets");
-          for (let i = 0; i < assetFolderList.length; i++) {
-            projZip.folder("assets").file(assetFolderList[i]).async("blob").then(function(file) {
-              $("#addAssetNameBox").val(assetFolderList[i]);
-              addAsset(true, file, assetFolderList[i]);
+  openLoader();
+  loaderText.innerHTML = "Opening Project... (0%)";
+  JSZip.loadAsync(file).then(function (zip) {
+    let manifest;
+    zip.file("manifest.json").async("string").then(function(data) {
+      manifest = JSON.parse(data);
+      if (manifest?.type != null) {
+        projZip = zip;
+        projManifest = manifest;
+        document.getElementById("tabs").hidden = false;
+        document.getElementById("welcome").hidden = true;
+        elementFolderList = fileListInFolder("elements");
+        assetFolderList = fileListInFolder("assets");
+        let progressBarMax = elementFolderList.length + assetFolderList.length;
+        loaderProgress.setAttribute("max", progressBarMax.toString());
+        for (let i = 0; i < elementFolderList.length; i++) {
+          if (!elementFolderList[i].endsWith(".code.json")) {
+            projZip.folder("elements").file(elementFolderList[i]).async("string").then(function(file) {
+              data = JSON.parse(file);
+              $("#addElementNameBox").val(data.name);
+              $("#addElementIDBox").val(data.id);
+              $("#addElementType").val(data.type);
+              addElement(true);
             });
           }
-        } else {
-          alert("The uploaded file is not a valid Moddery project!");
+          loaderProgress.value = Number(loaderProgress.value + 1);
+          loaderText.innerHTML = `Opening Project... (${(progressBarMax / loaderProgress.value) * 100}%)`;
         }
-      });
+        for (let i = 0; i < assetFolderList.length; i++) {
+          projZip.folder("assets").file(assetFolderList[i]).async("blob").then(function(file) {
+            $("#addAssetNameBox").val(assetFolderList[i]);
+            addAsset(true, file, assetFolderList[i]);
+          });
+          loaderProgress.value = Number(loaderProgress.value + 1);
+          loaderText.innerHTML = `Opening Project... (${(progressBarMax / loaderProgress.value) * 100}%)`;
+        }
+      } else {
+        alert("The uploaded file is not a valid Moddery project!");
+      }
     });
+  });
 }
 
 

@@ -91,7 +91,9 @@ $("#loaderDlg").dialog({
   resizable: false,
   height: 150,
   width: 300,
-  closeOnEscape: false
+  closeOnEscape: false,
+  draggable: false,
+  modal: true
 });
 $("#aboutDlg").dialog({
   position: { my: "center", at: "center", of: window },

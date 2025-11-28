@@ -323,3 +323,8 @@ input[type=color]:hover {
 #openFileInput {
     display: none;
 }
+
+
+.no-close .ui-dialog-titlebar-close {
+  display: none;
+}

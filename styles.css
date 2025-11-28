@@ -326,5 +326,5 @@ input[type=color]:hover {
 
 
 .no-close .ui-dialog-titlebar-close {
-  display: none;
+  display: none !important;
 }

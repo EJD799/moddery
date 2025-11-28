@@ -94,7 +94,11 @@ $("#loaderDlg").dialog({
   closeOnEscape: false,
   draggable: false,
   modal: true,
-  dialogClass: "no-close"
+  dialogClass: "no-close",
+  create: function () {
+    // hide the close button on the dialog wrapper
+    $(this).closest(".ui-dialog").find(".ui-dialog-titlebar-close").hide();
+  }
 });
 $("#aboutDlg").dialog({
   position: { my: "center", at: "center", of: window },

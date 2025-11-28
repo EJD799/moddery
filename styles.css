@@ -328,3 +328,8 @@ input[type=color]:hover {
 .no-close .ui-dialog-titlebar-close {
   display: none !important;
 }
+
+/* target the ui-dialog element that has the no-close class */
+.ui-dialog.no-close .ui-dialog-titlebar-close {
+  display: none !important;
+}

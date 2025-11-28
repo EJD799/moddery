@@ -11,6 +11,8 @@ var renameElementType;
 var deleteElementID;
 var deleteElementType;
 
+document.getElementById("savingBox").hidden = true;
+
 function arraysEqual(a, b) {
   if (!Array.isArray(a) || !Array.isArray(b)) return false;
   if (a.length !== b.length) return false;
@@ -173,6 +175,7 @@ function createProject() {
     closeNewProjDlg();
     document.getElementById("tabs").hidden = false;
     document.getElementById("welcome").hidden = true;
+    document.getElementById("savingBox").hidden = false;
     projZip = new JSZip();
     projManifest = {
       "name": $("#newProjNameBox").val(),
@@ -242,6 +245,7 @@ function openProj(file) {
         projManifest = manifest;
         document.getElementById("tabs").hidden = false;
         document.getElementById("welcome").hidden = true;
+        document.getElementById("savingBox").hidden = false;
         elementFolderList = fileListInFolder("elements");
         assetFolderList = fileListInFolder("assets");
         let progressBarMax = elementFolderList.length + assetFolderList.length;

@@ -193,7 +193,7 @@ function createProject() {
 }
 
 
-let fileInput = document.getElementById("openFileInput");
+/*let fileInput = document.getElementById("openFileInput");
 fileInput.addEventListener("change", function(e) {
   try {
     openProj(fileInput.files[0]);
@@ -204,7 +204,27 @@ fileInput.addEventListener("change", function(e) {
 
 function openProjDlg() {
   fileInput.click();
-}
+}*/
+
+let projFileHandle = null;
+
+async function openProjDlg() {
+  try {
+    const [handle] = await window.showOpenFilePicker({
+      types: [{
+        description: "Moddery Project",
+        accept: { "application/zip": [".zip"] }
+      }]
+    });
+
+    projFileHandle = handle;    
+    const file = await handle.getFile();
+    openProj(file); // your existing function
+  } catch (err) {
+    alert("Error opening project.");
+  }
+};
+
 
 function openProj(file) {
   openLoader();

@@ -419,6 +419,9 @@ function addElement(loadingProj) {
   closeAddElementDlg();
   $("#addElementNameBox").val("");
   $("#addElementIDBox").val("");
+  if (projFileHandle) {
+    saveProject();
+  }
 }
 
 addAssetUploadInput.addEventListener("change", (event) => {
@@ -490,6 +493,9 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
   closeAddAssetDlg();
   addAssetUploadInput.value = "";
   addAssetNameBox.value = "";
+  if (projFileHandle) {
+    saveProject();
+  }
 }
 
 /*

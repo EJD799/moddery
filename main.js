@@ -176,6 +176,7 @@ function createProject() {
     document.getElementById("tabs").hidden = false;
     document.getElementById("welcome").hidden = true;
     document.getElementById("savingBox").hidden = false;
+    savingText.innerHTML = "Saved";
     projZip = new JSZip();
     projManifest = {
       "name": $("#newProjNameBox").val(),
@@ -246,6 +247,7 @@ function openProj(file) {
         document.getElementById("tabs").hidden = false;
         document.getElementById("welcome").hidden = true;
         document.getElementById("savingBox").hidden = false;
+        savingText.innerHTML = "Saved";
         elementFolderList = fileListInFolder("elements");
         assetFolderList = fileListInFolder("assets");
         let progressBarMax = elementFolderList.length + assetFolderList.length;

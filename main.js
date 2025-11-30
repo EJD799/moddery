@@ -728,6 +728,9 @@ tabs.on( "click", "span.ui-icon-close", function() {
   delete openElements[panelId];
   $( "#" + panelId ).remove();
   tabs.tabs( "refresh" );
+  if (projFileHandle) {
+    saveProject();
+  }
 });
 
 function dataURItoFile(dataURI, filename) {

@@ -11,7 +11,9 @@ var renameElementType;
 var deleteElementID;
 var deleteElementType;
 
-document.getElementById("savingBox").hidden = true;
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById("savingBox").hidden = true;
+});
 
 function arraysEqual(a, b) {
   if (!Array.isArray(a) || !Array.isArray(b)) return false;

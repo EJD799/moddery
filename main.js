@@ -228,6 +228,7 @@ async function openProjDlg() {
     openProj(file); // your existing function
   } catch (err) {
     alert("Error opening project.");
+    document.getElementById("savingBox").style.display = "none";
   }
 };
 
@@ -501,6 +502,8 @@ function saveProject() {
 */
 
 async function saveProject() {
+  document.getElementById("savingBox").innerHTML = "Saving...";
+
   // If no file is opened, fall back to Save As
   if (!projFileHandle) {
     return await saveProjectAs();
@@ -520,6 +523,7 @@ async function saveProject() {
   await writable.close();
 
   console.log("Project saved!");
+  document.getElementById("savingBox").innerHTML = "Saved";
 }
 async function saveProjectAs() {
   projFileHandle = await window.showSaveFilePicker({

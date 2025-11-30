@@ -502,7 +502,7 @@ function saveProject() {
 */
 
 async function saveProject() {
-  document.getElementById("savingBox").innerHTML = "Saving...";
+  document.getElementById("savingText").innerHTML = "Saving...";
 
   // If no file is opened, fall back to Save As
   if (!projFileHandle) {
@@ -523,7 +523,7 @@ async function saveProject() {
   await writable.close();
 
   console.log("Project saved!");
-  document.getElementById("savingBox").innerHTML = "Saved";
+  document.getElementById("savingText").innerHTML = "Saved";
 }
 async function saveProjectAs() {
   projFileHandle = await window.showSaveFilePicker({

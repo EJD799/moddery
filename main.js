@@ -178,7 +178,7 @@ function createProject() {
     document.getElementById("tabs").hidden = false;
     document.getElementById("welcome").hidden = true;
     document.getElementById("savingBox").style.display = "block";
-    savingText.innerHTML = "Saved";
+    savingText.innerHTML = "<i class='fa-solid fa-circle-check'></i> Saved";
     projZip = new JSZip();
     projManifest = {
       "name": $("#newProjNameBox").val(),
@@ -250,7 +250,7 @@ function openProj(file) {
         document.getElementById("tabs").hidden = false;
         document.getElementById("welcome").hidden = true;
         document.getElementById("savingBox").style.display = "block";
-        savingText.innerHTML = "Opening Project...";
+        savingText.innerHTML = "<i class='fa-solid fa-spinner'></i> Opening Project...";
         elementFolderList = fileListInFolder("elements");
         assetFolderList = fileListInFolder("assets");
         let progressBarMax = elementFolderList.length + assetFolderList.length;
@@ -278,7 +278,7 @@ function openProj(file) {
         }
         setTimeout(function() {
           closeLoader();
-          savingText.innerHTML = "Saved";
+          savingText.innerHTML = "<i class='fa-solid fa-circle-check'></i> Saved";
         }, 500);
       } else {
         alert("The uploaded file is not a valid Moddery project!");
@@ -502,7 +502,7 @@ function saveProject() {
 */
 
 async function saveProject() {
-  document.getElementById("savingText").innerHTML = "Saving...";
+  document.getElementById("savingText").innerHTML = "<i class='fa-solid fa-spinner'></i> Saving...";
 
   // If no file is opened, fall back to Save As
   if (!projFileHandle) {
@@ -523,7 +523,7 @@ async function saveProject() {
   await writable.close();
 
   console.log("Project saved!");
-  document.getElementById("savingText").innerHTML = "Saved";
+  document.getElementById("savingText").innerHTML = "<i class='fa-solid fa-circle-check'></i> Saved";
 }
 async function saveProjectAs() {
   projFileHandle = await window.showSaveFilePicker({

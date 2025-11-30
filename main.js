@@ -249,7 +249,7 @@ function openProj(file) {
         document.getElementById("tabs").hidden = false;
         document.getElementById("welcome").hidden = true;
         document.getElementById("savingBox").style.display = "block";
-        savingText.innerHTML = "Saved";
+        savingText.innerHTML = "Opening Project...";
         elementFolderList = fileListInFolder("elements");
         assetFolderList = fileListInFolder("assets");
         let progressBarMax = elementFolderList.length + assetFolderList.length;
@@ -277,10 +277,12 @@ function openProj(file) {
         }
         setTimeout(function() {
           closeLoader();
+          savingText.innerHTML = "Saved";
         }, 500);
       } else {
         alert("The uploaded file is not a valid Moddery project!");
         closeLoader();
+        document.getElementById("savingBox").style.display = "none";
       }
     });
   });

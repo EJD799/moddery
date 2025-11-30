@@ -12,7 +12,7 @@ var deleteElementID;
 var deleteElementType;
 
 document.addEventListener("DOMContentLoaded", function(){
-  document.getElementById("savingBox").hidden = true;
+  document.getElementById("savingBox").style.display = "none";
 });
 
 function arraysEqual(a, b) {
@@ -177,7 +177,7 @@ function createProject() {
     closeNewProjDlg();
     document.getElementById("tabs").hidden = false;
     document.getElementById("welcome").hidden = true;
-    document.getElementById("savingBox").hidden = false;
+    document.getElementById("savingBox").style.display = "block";
     savingText.innerHTML = "Saved";
     projZip = new JSZip();
     projManifest = {
@@ -248,7 +248,7 @@ function openProj(file) {
         projManifest = manifest;
         document.getElementById("tabs").hidden = false;
         document.getElementById("welcome").hidden = true;
-        document.getElementById("savingBox").hidden = false;
+        document.getElementById("savingBox").style.display = "block";
         savingText.innerHTML = "Saved";
         elementFolderList = fileListInFolder("elements");
         assetFolderList = fileListInFolder("assets");

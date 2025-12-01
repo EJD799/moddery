@@ -1515,13 +1515,6 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     inputsInline: true
   },
   {
-    type: "get_entities",
-    message0: "get entities",
-    colour: 100,
-    output: null,
-    inputsInline: true
-  },
-  {
     type: "set_weather",
     message0: "set weather to %1 for %2 seconds",
     colour: 100,

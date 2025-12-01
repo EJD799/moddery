@@ -268,3 +268,119 @@ Blockly.JavaScript.forBlock['get_entities'] = function() {
 Blockly.JavaScript.forBlock['get_entities_at_location'] = function() {
 
 };
+
+Blockly.JavaScript.forBlock['get_players_dimension'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['is_chunk_loaded'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['play_sound_all'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['set_weather'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['spawn_entity'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['spawn_item'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['spawn_particle'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['get_entity_property'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['set_entity_property'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_add_effect'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_add_tag'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_apply_damage'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_clear_velocity'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_set_fire'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_get_component'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_has_tag'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_kill'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_look_at'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_play_animation'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_remove'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_remove_effect'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_remove_tag'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_set_rotation'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['entity_teleport'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['player_get_property'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['player_give_xp'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['player_play_sound'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['player_play_music'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['player_queue_music'] = function() {
+
+};

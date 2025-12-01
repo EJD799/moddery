@@ -62,7 +62,8 @@ Blockly.JavaScript.forBlock['get_event_data'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['cancel_event'] = function(block) {
-    let code = `${getInput(block, "DATA")}.cancel = true;`;
+    let code = `${getInput(block, "DATA")}.cancel = true;
+`;
     return code;
 };
 

@@ -2,6 +2,10 @@ function getInput(block, name) {
     return Blockly.JavaScript.valueToCode(block, name, Blockly.JavaScript.ORDER_NONE) || '0';
 }
 
+function getStatement(block, name) {
+    return Blockly.JavaScript.statementToCode(block, name);
+}
+
 // Override the built-in 'text' block generator
 Blockly.JavaScript['text'] = function(block) {
   const text = block.getFieldValue('TEXT'); // get the raw text field
@@ -35,7 +39,12 @@ Blockly.JavaScript.forBlock['on_start'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['before_event'] = function(block) {
-
+    let code = `
+    world.beforeEvents.${block.getFieldValue("EVENT")}.subscribe((e) => {
+        ${getStatement(block, "DO")}
+    });
+    `;
+    return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript.forBlock['after_event'] = function(block) {
@@ -43,7 +52,8 @@ Blockly.JavaScript.forBlock['after_event'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['event_data'] = function(block) {
-
+    let code = 'e';
+    return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript.forBlock['get_event_data'] = function(block) {
@@ -83,7 +93,8 @@ Blockly.JavaScript.forBlock['show_form'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['show_form_var'] = function(block) {
-
+    let code = 'r';
+    return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript.forBlock['form_title'] = function(block) {

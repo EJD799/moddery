@@ -1,4 +1,8 @@
 Blockly.JavaScript.forBlock['before_event'] = function() {
+    return "";
+};
+
+Blockly.JavaScript.forBlock['before_event'] = function() {
 
 };
 
@@ -42,6 +46,14 @@ Blockly.JavaScript.forBlock['new_form'] = function() {
 
 };
 
-Blockly.JavaScript.forBlock['before_event'] = function() {
+Blockly.JavaScript.forBlock['show_form'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['show_form_var'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['form_title'] = function() {
 
 };

@@ -537,8 +537,7 @@ Blockly.JavaScript.forBlock['run_js_statement'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['run_js_reporter'] = function(block) {
-    let code = `${trimQuotes(getInput(block, "CODE"))}
-`;
+    let code = `${trimQuotes(getInput(block, "CODE"))}`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 

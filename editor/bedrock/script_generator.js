@@ -215,30 +215,48 @@ Blockly.JavaScript.forBlock['removeobjective'] = function(block) {
 
 Blockly.JavaScript.forBlock['objectivedisplay'] = function(block) {
     if (block.getFieldValue("DISPLAY").includes("Sidebar")) {
+        if (block.getFieldValue("DISPLAY") == "SidebarAscending") {
         let code = `world.scoreboard.setObjectiveAtDisplaySlot('Sidebar', {
+    objective: ${getInput(block, "OBJECTIVE")},
+    sortOrder: ObjectiveSortOrder.Ascending
+});
+`;
+        } else {
+            let code = `world.scoreboard.setObjectiveAtDisplaySlot('Sidebar', {
+    objective: ${getInput(block, "OBJECTIVE")},
+    sortOrder: ObjectiveSortOrder.Descending
+});
+`;
+        }
+    } else {
+        let code = `world.scoreboard.setObjectiveAtDisplaySlot('${block.getFieldValue("DISPLAY")}', {
 objective: ${getInput(block, "OBJECTIVE")}
 });
 `;
     }
-    let code = `world.scoreboard.setObjectiveAtDisplaySlot(${getInput(block, "DISPLAY")}, ${getInput(block, "OBJECTIVE")});
+    let code = `world.scoreboard.setObjectiveAtDisplaySlot(${block.getFieldValue("DISPLAY")}, ${getInput(block, "OBJECTIVE")});
 `;
     return code;
 };
 
 Blockly.JavaScript.forBlock['hidedisplay'] = function(block) {
-
+    let code = `world.scoreboard.clearObjectiveAtDisplaySlot(${block.getFieldValue("DISPLAY")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['operatescore'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_slider'] = function(block) {
-
+Blockly.JavaScript.forBlock['getscore'] = function(block) {
+    let code = `world.scoreboard.getObjective(${getInput(block, "OBJECTIVE")}).getScore(${getInput(block, "PLAYER")})`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['objective_list'] = function(block) {
-
+    let code = `world.scoreboard.getObjectives()`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['player_list'] = function(block) {

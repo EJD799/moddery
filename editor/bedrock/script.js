@@ -839,6 +839,25 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     inputsInline: true
   },
   {
+    type: "getscore",
+    message0: "get score of player %1 on objective %2",
+    colour: 320,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'PLAYER',
+        spellcheck: false
+      },
+      {
+        type: 'input_value',
+        name: 'OBJECTIVE',
+        spellcheck: false
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
     type: "objective_list",
     message0: "list of objectives",
     colour: 320,
@@ -3033,6 +3052,20 @@ const bedrockScriptToolbox = {
                   }
                 }
               },
+              "OBJECTIVE": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": ""
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "getscore",
+            "inputs": {
               "OBJECTIVE": {
                 "shadow": {
                   "type": "text",

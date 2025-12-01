@@ -846,3 +846,13 @@ function patchAllDialogsToViewport() {
 $(function () {
     patchAllDialogsToViewport();
 });
+
+var hasUnsavedChanges = true;
+window.addEventListener('beforeunload', (event) => {
+  if (hasUnsavedChanges) {
+    // Cancel the event
+    event.preventDefault();
+    // Chrome requires returnValue to be set
+    event.returnValue = ''; 
+  }
+});

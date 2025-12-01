@@ -398,7 +398,7 @@ Blockly.JavaScript.forBlock['player_stop_music'] = function() {
 };
 
 Blockly.JavaScript.forBlock['colour_picker'] = function() {
-    
+    let code = `'${block.getFieldValue("COLOUR")}'`
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 

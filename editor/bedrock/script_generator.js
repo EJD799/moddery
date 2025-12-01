@@ -68,13 +68,13 @@ Blockly.JavaScript.forBlock['cancel_event'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['run_command_dimension'] = function(block) {
-    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').runCommand('${getInput(block, "COMMAND")}');
+    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').runCommand(${getInput(block, "COMMAND")});
 `;
     return code;
 };
 
 Blockly.JavaScript.forBlock['run_command_player'] = function(block) {
-    let code = `${getInput(block, "PLAYER")}.runCommand('${getInput(block, "COMMAND")}');
+    let code = `${getInput(block, "PLAYER")}.runCommand(${getInput(block, "COMMAND")});
 `;
     return code;
 };

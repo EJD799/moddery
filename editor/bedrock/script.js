@@ -772,7 +772,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         name: 'DISPLAY',
         options: [
           ['sidebar ascending', 'SidebarAscending'],
-          ['sidebar descending', 'SidebarDescending']
+          ['sidebar descending', 'SidebarDescending'],
           ['below name', 'BelowName'],
           ['list', 'List']
         ]
@@ -796,8 +796,9 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         type: 'field_dropdown',
         name: 'DISPLAY',
         options: [
-          ['sidebar', 'sidebar'],
-          ['below name', 'belowname']
+          ['sidebar', 'Sidebar'],
+          ['below name', 'BelowName'],
+          ['list', 'List']
         ]
       }
     ],

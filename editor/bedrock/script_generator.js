@@ -144,11 +144,15 @@ Blockly.JavaScript.forBlock['form_submit'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['form_button'] = function(block) {
-
+    let code = `${block.getFieldValue("FORM")}.button(${getInput(block, "TEXT")}, ${getInput(block, "IMAGE")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['form_textfield'] = function(block) {
-
+    let code = `${block.getFieldValue("FORM")}.textField(${getInput(block, "LABEL")}, ${getInput(block, "PLACEHOLDER")}, ${getInput(block, "DEFAULT")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['form_dropdown'] = function(block) {

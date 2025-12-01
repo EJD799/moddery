@@ -214,28 +214,27 @@ Blockly.JavaScript.forBlock['removeobjective'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['objectivedisplay'] = function(block) {
+    let code;
     if (block.getFieldValue("DISPLAY").includes("Sidebar")) {
         if (block.getFieldValue("DISPLAY") == "SidebarAscending") {
-        let code = `world.scoreboard.setObjectiveAtDisplaySlot('Sidebar', {
+            code = `world.scoreboard.setObjectiveAtDisplaySlot('Sidebar', {
     objective: ${getInput(block, "OBJECTIVE")},
     sortOrder: ObjectiveSortOrder.Ascending
 });
 `;
         } else {
-            let code = `world.scoreboard.setObjectiveAtDisplaySlot('Sidebar', {
+            code = `world.scoreboard.setObjectiveAtDisplaySlot('Sidebar', {
     objective: ${getInput(block, "OBJECTIVE")},
     sortOrder: ObjectiveSortOrder.Descending
 });
 `;
         }
     } else {
-        let code = `world.scoreboard.setObjectiveAtDisplaySlot('${block.getFieldValue("DISPLAY")}', {
+        code = `world.scoreboard.setObjectiveAtDisplaySlot('${block.getFieldValue("DISPLAY")}', {
 objective: ${getInput(block, "OBJECTIVE")}
 });
 `;
     }
-    let code = `world.scoreboard.setObjectiveAtDisplaySlot(${block.getFieldValue("DISPLAY")}, ${getInput(block, "OBJECTIVE")});
-`;
     return code;
 };
 
@@ -246,7 +245,22 @@ Blockly.JavaScript.forBlock['hidedisplay'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['operatescore'] = function(block) {
-
+    let mode = block.getFieldValue("MODE");
+    let quantity = getInput(block, "QUANTITY");
+    let player = getInput(block, "PLAYER");
+    let objective = getInput(block, "OBJECTIVE");
+    let code;
+    if (mode == "add") {
+        code = `world.scoreboard.getObjective(${objective}).addScore(${player}, ${quantity});
+`;
+    } else if (mode == "remove") {
+        code = `world.scoreboard.getObjective(${objective}).addScore(${player}, ${0 - quantity});
+`;
+    } else {
+        code = `world.scoreboard.getObjective(${objective}).setScore(${player}, ${quantity});
+`;
+    }
+    return code;
 };
 
 Blockly.JavaScript.forBlock['getscore'] = function(block) {

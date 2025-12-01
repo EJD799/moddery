@@ -68,7 +68,9 @@ Blockly.JavaScript.forBlock['cancel_event'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['run_command_dimension'] = function(block) {
-
+    let code = `modderyLibs.runCommand('${getInput(block, "COMMAND")}', ${block.getFieldValue("DIMENSION")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['run_command_player'] = function(block) {

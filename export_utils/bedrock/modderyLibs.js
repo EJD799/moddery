@@ -1,3 +1,5 @@
+import { world, system } from "@minecraft/server";
+
 export function randomInt(min, max) {
   min = Math.ceil(min); // round min up
   max = Math.floor(max); // round max down
@@ -21,5 +23,8 @@ export function rgbToHex(r, g, b) {
 export const modderyLibs = {
     randomColor: function() {
         return rgbToHex(randomInt(0, 255), randomInt(0, 255), randomInt(0, 255));
+    },
+    runCommand: function(cmd, dimension) {
+        world.getDimension(dimension).runCommand(cmd);
     }
 }

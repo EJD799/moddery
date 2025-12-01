@@ -274,15 +274,25 @@ Blockly.JavaScript.forBlock['objective_list'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['player_list'] = function(block) {
-
+    let code = `world.getPlayers()`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['set_dynamic_property'] = function(block) {
-
+    let code = `world.setDynamicProperty(${getInput(block, "PROPERTY")}, ${getInput(block, "VALUE")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['clear_dynamic_properties'] = function(block) {
+    let code = `world.clearDynamicProperties();
+`;
+    return code;
+};
 
+Blockly.JavaScript.forBlock['get_dynamic_property'] = function(block) {
+    let code = `world.getDynamicProperty(${getInput(block, "PROPERTY")})`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['command_parameter'] = function(block) {

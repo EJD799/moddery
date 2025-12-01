@@ -28,6 +28,14 @@ function rgbToHex(r, g, b) {
   return `#${rh}${gh}${bh}`;
 }
 
+function trimQuotes(str) {
+    if (str.length >= 2 && str.startsWith("'") && str.endsWith("'")) {
+        return str.slice(1, -1);
+    }
+    return str;
+}
+
+
 
 
 Blockly.JavaScript.forBlock['on_start'] = function(block) {
@@ -523,19 +531,19 @@ Blockly.JavaScript.forBlock['json_merge'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['run_js_statement'] = function(block) {
-    let code = `${getInput(block, "CODE")};
+    let code = `${trimQuotes(getInput(block, "CODE"))};
 `;
     return code;
 };
 
 Blockly.JavaScript.forBlock['run_js_reporter'] = function(block) {
-    let code = `${getInput(block, "CODE")}
+    let code = `${trimQuotes(getInput(block, "CODE"))}
 `;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['comment_block'] = function(block) {
-    let code = `// ${getInput(block, "COMMENT")}
+    let code = `// ${trimQuotes(getInput(block, "COMMENT"))}
 `;
     return code;
 };

@@ -3054,11 +3054,11 @@ const bedrockScriptToolbox = {
       colour: "#808080",
       contents: [
         { kind: 'label', text: 'JavaScript'},
-        { kind: 'block', type: 'run_js_statement'},
-        { kind: 'block', type: 'run_js_reporter'},
+        { kind: 'block', type: 'run_js_statement', inputs: { CODE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'run_js_reporter', inputs: { CODE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'sep' },
-        { kind: 'label', text: 'Entities'},
-        { kind: 'block', type: 'comment_block'},
+        { kind: 'label', text: 'Comments'},
+        { kind: 'block', type: 'comment_block', inputs: { CODE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
       ]
     }
   ]

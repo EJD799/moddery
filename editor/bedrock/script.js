@@ -755,7 +755,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
       {
         type: 'input_value',
         name: 'OBJECTIVE',
-        spellcheck: false
+        check: null
       }
     ],
     previousStatement: null,
@@ -2235,6 +2235,50 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     nextStatement: null,
     inputsInline: true
   },
+  {
+    type: 'run_js_statement',
+    message0: 'run js %1;',
+    colour: "#808080",
+    args0: [
+      {
+        type: 'input_value',
+        name: 'CODE',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: 'run_js_reporter',
+    message0: 'run js %1',
+    colour: "#808080",
+    args0: [
+      {
+        type: 'input_value',
+        name: 'CODE',
+        check: null
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: 'comment_block',
+    message0: 'comment %1',
+    colour: "#808080",
+    args0: [
+      {
+        type: 'input_value',
+        name: 'COMMENT',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
 ]);
 
 const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -3003,6 +3047,19 @@ const bedrockScriptToolbox = {
             "type": "objective_list"
           }
         ]
+    },
+    {
+      kind: 'category',
+      name: 'Other',
+      colour: "#808080",
+      contents: [
+        { kind: 'label', text: 'JavaScript'},
+        { kind: 'block', type: 'run_js_statement'},
+        { kind: 'block', type: 'run_js_reporter'},
+        { kind: 'sep' },
+        { kind: 'label', text: 'Entities'},
+        { kind: 'block', type: 'comment_block'},
+      ]
     }
   ]
 };

@@ -176,19 +176,19 @@ Blockly.JavaScript.forBlock['form_toggle'] = function(block) {
 Blockly.JavaScript.forBlock['form_response_action'] = function(block) {
     let code = `${getInput(block, "RESPONSE")}.selection
 `;
-    return code;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['form_response_message'] = function(block) {
     let code = `${getInput(block, "RESPONSE")}.selection
 `;
-    return code;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['form_response_modal'] = function(block) {
     let code = `${getInput(block, "RESPONSE")}.formValues[${getInput(block, "FIELD")}]
 `;
-    return code;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['is_hardcore'] = function(block) {
@@ -520,4 +520,22 @@ Blockly.JavaScript.forBlock['json_keys'] = function(block) {
 
 Blockly.JavaScript.forBlock['json_merge'] = function(block) {
 
+};
+
+Blockly.JavaScript.forBlock['run_js_statement'] = function(block) {
+    let code = `${getInput(block, "CODE")};
+`;
+    return code;
+};
+
+Blockly.JavaScript.forBlock['run_js_reporter'] = function(block) {
+    let code = `${getInput(block, "CODE")}
+`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript.forBlock['comment_block'] = function(block) {
+    let code = `// ${getInput(block, "COMMENT")}
+`;
+    return code;
 };

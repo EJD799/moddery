@@ -30,6 +30,7 @@ Blockly.JavaScript.forBlock['on_start'] = function(block) {
     return `
     import { world, system } from "@minecraft/server";
     import { ModalFormData, MessageFormData, ActionFormData } from "@minecraft/server-ui";
+    import { modderyLibs } from "modderyLibs.js";
     `;
 };
 
@@ -431,7 +432,8 @@ Blockly.JavaScript.forBlock['colour_picker'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['colour_random'] = function(block) {
-
+    let code = `modderyLibs.randomColor()`;
+    return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript.forBlock['colour_rgb'] = function(block) {

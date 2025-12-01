@@ -114,73 +114,81 @@ Blockly.JavaScript.forBlock['show_form_var'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['form_title'] = function(block) {
-    let code = `${block.getFieldValue("FORM")}.title(${getInput(block, "TEXT")});
+    let code = `${getInput(block, "FORM")}.title(${getInput(block, "TEXT")});
 `;
     return code;
 };
 
 Blockly.JavaScript.forBlock['form_body'] = function(block) {
-    let code = `${block.getFieldValue("FORM")}.body(${getInput(block, "TEXT")});
+    let code = `${getInput(block, "FORM")}.body(${getInput(block, "TEXT")});
 `;
     return code;
 };
 
 Blockly.JavaScript.forBlock['form_cancel'] = function(block) {
-    let code = `${block.getFieldValue("FORM")}.button1(${getInput(block, "TEXT")});
+    let code = `${getInput(block, "FORM")}.button1(${getInput(block, "TEXT")});
 `;
     return code;
 };
 
 Blockly.JavaScript.forBlock['form_confirm'] = function(block) {
-    let code = `${block.getFieldValue("FORM")}.button2(${getInput(block, "TEXT")});
+    let code = `${getInput(block, "FORM")}.button2(${getInput(block, "TEXT")});
 `;
     return code;
 };
 
 Blockly.JavaScript.forBlock['form_submit'] = function(block) {
-    let code = `${block.getFieldValue("FORM")}.submitButton(${getInput(block, "TEXT")});
+    let code = `${getInput(block, "FORM")}.submitButton(${getInput(block, "TEXT")});
 `;
     return code;
 };
 
 Blockly.JavaScript.forBlock['form_button'] = function(block) {
-    let code = `${block.getFieldValue("FORM")}.button(${getInput(block, "TEXT")}, ${getInput(block, "IMAGE")});
+    let code = `${getInput(block, "FORM")}.button(${getInput(block, "TEXT")}, ${getInput(block, "IMAGE")});
 `;
     return code;
 };
 
 Blockly.JavaScript.forBlock['form_textfield'] = function(block) {
-    let code = `${block.getFieldValue("FORM")}.textField(${getInput(block, "LABEL")}, ${getInput(block, "PLACEHOLDER")}, ${getInput(block, "DEFAULT")});
+    let code = `${getInput(block, "FORM")}.textField(${getInput(block, "LABEL")}, ${getInput(block, "PLACEHOLDER")}, ${getInput(block, "DEFAULT")});
 `;
     return code;
 };
 
 Blockly.JavaScript.forBlock['form_dropdown'] = function(block) {
-    let code = `${block.getFieldValue("FORM")}.textField(${getInput(block, "LABEL")}, ${getInput(block, "OPTIONS")}, ${getInput(block, "DEFAULT")});
+    let code = `${getInput(block, "FORM")}.dropdown(${getInput(block, "LABEL")}, ${getInput(block, "OPTIONS")}, ${getInput(block, "DEFAULT")});
 `;
     return code;
 };
 
 Blockly.JavaScript.forBlock['form_slider'] = function(block) {
-    let code = `${block.getFieldValue("FORM")}.textField(${getInput(block, "LABEL")}, ${getInput(block, "MIN")}, ${getInput(block, "MAX")}, ${getInput(block, "STEP")}, ${getInput(block, "DEFAULT")});
+    let code = `${getInput(block, "FORM")}.slider(${getInput(block, "LABEL")}, ${getInput(block, "MIN")}, ${getInput(block, "MAX")}, ${getInput(block, "STEP")}, ${getInput(block, "DEFAULT")});
 `;
     return code;
 };
 
 Blockly.JavaScript.forBlock['form_toggle'] = function(block) {
-
+    let code = `${getInput(block, "FORM")}.toggle(${getInput(block, "LABEL")}, ${getInput(block, "DEFAULT")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['form_response_action'] = function(block) {
-
+    let code = `${getInput(block, "RESPONSE")}.selection
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['form_response_message'] = function(block) {
-
+    let code = `${getInput(block, "RESPONSE")}.selection
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['form_response_modal'] = function(block) {
-
+    let code = `${getInput(block, "RESPONSE")}.formValues[${getInput(block, "FIELD")}]
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['is_hardcore'] = function(block) {

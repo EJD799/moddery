@@ -1,439 +1,453 @@
-Blockly.JavaScript.forBlock['on_start'] = function() {
+function getInput(block, name) {
+    return Blockly.JavaScript.valueToCode(block, name, Blockly.JavaScript.ORDER_NONE) || '0';
+}
+
+// Override the built-in 'text' block generator
+Blockly.JavaScript['text'] = function(block) {
+  const text = block.getFieldValue('TEXT'); // get the raw text field
+  // Wrap in quotes for JS
+  const code = JSON.stringify(text);
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+
+
+Blockly.JavaScript.forBlock['on_start'] = function(block) {
     return `
     import { world, system } from "@minecraft/server";
     import { ModalFormData, MessageFormData, ActionFormData } from "@minecraft/server-ui";
     `;
 };
 
-Blockly.JavaScript.forBlock['before_event'] = function() {
+Blockly.JavaScript.forBlock['before_event'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['after_event'] = function() {
+Blockly.JavaScript.forBlock['after_event'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['event_data'] = function() {
+Blockly.JavaScript.forBlock['event_data'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_event_data'] = function() {
+Blockly.JavaScript.forBlock['get_event_data'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['cancel_event'] = function() {
+Blockly.JavaScript.forBlock['cancel_event'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['run_command_dimension'] = function() {
+Blockly.JavaScript.forBlock['run_command_dimension'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['run_command_player'] = function() {
+Blockly.JavaScript.forBlock['run_command_player'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['send_message'] = function() {
+Blockly.JavaScript.forBlock['send_message'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['set_gamerule'] = function() {
+Blockly.JavaScript.forBlock['set_gamerule'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_gamerule'] = function() {
+Blockly.JavaScript.forBlock['get_gamerule'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['new_form'] = function() {
+Blockly.JavaScript.forBlock['new_form'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['show_form'] = function() {
+Blockly.JavaScript.forBlock['show_form'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['show_form_var'] = function() {
+Blockly.JavaScript.forBlock['show_form_var'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_title'] = function() {
+Blockly.JavaScript.forBlock['form_title'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_body'] = function() {
+Blockly.JavaScript.forBlock['form_body'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_cancel'] = function() {
+Blockly.JavaScript.forBlock['form_cancel'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_confirm'] = function() {
+Blockly.JavaScript.forBlock['form_confirm'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_submit'] = function() {
+Blockly.JavaScript.forBlock['form_submit'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_button'] = function() {
+Blockly.JavaScript.forBlock['form_button'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_textfield'] = function() {
+Blockly.JavaScript.forBlock['form_textfield'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_dropdown'] = function() {
+Blockly.JavaScript.forBlock['form_dropdown'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_slider'] = function() {
+Blockly.JavaScript.forBlock['form_slider'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_toggle'] = function() {
+Blockly.JavaScript.forBlock['form_toggle'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_response_action'] = function() {
+Blockly.JavaScript.forBlock['form_response_action'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_response_message'] = function() {
+Blockly.JavaScript.forBlock['form_response_message'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_response_modal'] = function() {
+Blockly.JavaScript.forBlock['form_response_modal'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['is_hardcore'] = function() {
+Blockly.JavaScript.forBlock['is_hardcore'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['addobjective'] = function() {
+Blockly.JavaScript.forBlock['addobjective'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['removeobjective'] = function() {
+Blockly.JavaScript.forBlock['removeobjective'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['objectivedisplay'] = function() {
+Blockly.JavaScript.forBlock['objectivedisplay'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['hidedisplay'] = function() {
+Blockly.JavaScript.forBlock['hidedisplay'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['operatescore'] = function() {
+Blockly.JavaScript.forBlock['operatescore'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['form_slider'] = function() {
+Blockly.JavaScript.forBlock['form_slider'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['objective_list'] = function() {
+Blockly.JavaScript.forBlock['objective_list'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['player_list'] = function() {
+Blockly.JavaScript.forBlock['player_list'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['set_dynamic_property'] = function() {
+Blockly.JavaScript.forBlock['set_dynamic_property'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['clear_dynamic_properties'] = function() {
+Blockly.JavaScript.forBlock['clear_dynamic_properties'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['command_parameter'] = function() {
+Blockly.JavaScript.forBlock['command_parameter'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['command_origin'] = function() {
+Blockly.JavaScript.forBlock['command_origin'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['register_command'] = function() {
+Blockly.JavaScript.forBlock['register_command'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['set_block'] = function() {
+Blockly.JavaScript.forBlock['set_block'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_absolute_time'] = function() {
+Blockly.JavaScript.forBlock['get_absolute_time'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_day'] = function() {
+Blockly.JavaScript.forBlock['get_day'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_default_spawn'] = function() {
+Blockly.JavaScript.forBlock['get_default_spawn'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_difficulty'] = function() {
+Blockly.JavaScript.forBlock['get_difficulty'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['dynamic_property_list'] = function() {
+Blockly.JavaScript.forBlock['dynamic_property_list'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['dynamic_property_size'] = function() {
+Blockly.JavaScript.forBlock['dynamic_property_size'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_time'] = function() {
+Blockly.JavaScript.forBlock['get_time'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_moon_phase'] = function() {
+Blockly.JavaScript.forBlock['get_moon_phase'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['world_play_music'] = function() {
+Blockly.JavaScript.forBlock['world_play_music'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['world_queue_music'] = function() {
+Blockly.JavaScript.forBlock['world_queue_music'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['set_time'] = function() {
+Blockly.JavaScript.forBlock['set_time'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['set_default_spawn'] = function() {
+Blockly.JavaScript.forBlock['set_default_spawn'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['set_difficulty'] = function() {
+Blockly.JavaScript.forBlock['set_difficulty'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['world_stop_music'] = function() {
+Blockly.JavaScript.forBlock['world_stop_music'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['fill_blocks'] = function() {
+Blockly.JavaScript.forBlock['fill_blocks'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['create_explosion'] = function() {
+Blockly.JavaScript.forBlock['create_explosion'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_biome'] = function() {
+Blockly.JavaScript.forBlock['get_biome'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_block'] = function() {
+Blockly.JavaScript.forBlock['get_block'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_block_property'] = function() {
+Blockly.JavaScript.forBlock['get_block_property'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['json_stringify'] = function() {
+Blockly.JavaScript.forBlock['json_stringify'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['json_parse'] = function() {
+Blockly.JavaScript.forBlock['json_parse'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['set_block_type'] = function() {
+Blockly.JavaScript.forBlock['set_block_type'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['set_block_waterlogged'] = function() {
+Blockly.JavaScript.forBlock['set_block_waterlogged'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_entities'] = function() {
+Blockly.JavaScript.forBlock['get_entities'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_entities_at_location'] = function() {
+Blockly.JavaScript.forBlock['get_entities_at_location'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_players_dimension'] = function() {
+Blockly.JavaScript.forBlock['get_players_dimension'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['is_chunk_loaded'] = function() {
+Blockly.JavaScript.forBlock['is_chunk_loaded'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['play_sound_all'] = function() {
+Blockly.JavaScript.forBlock['play_sound_all'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['set_weather'] = function() {
+Blockly.JavaScript.forBlock['set_weather'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['spawn_entity'] = function() {
+Blockly.JavaScript.forBlock['spawn_entity'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['spawn_item'] = function() {
+Blockly.JavaScript.forBlock['spawn_item'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['spawn_particle'] = function() {
+Blockly.JavaScript.forBlock['spawn_particle'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['get_entity_property'] = function() {
+Blockly.JavaScript.forBlock['get_entity_property'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['set_entity_property'] = function() {
+Blockly.JavaScript.forBlock['set_entity_property'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_add_effect'] = function() {
+Blockly.JavaScript.forBlock['entity_add_effect'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_add_tag'] = function() {
+Blockly.JavaScript.forBlock['entity_add_tag'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_apply_damage'] = function() {
+Blockly.JavaScript.forBlock['entity_apply_damage'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_clear_velocity'] = function() {
+Blockly.JavaScript.forBlock['entity_clear_velocity'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_set_fire'] = function() {
+Blockly.JavaScript.forBlock['entity_set_fire'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_get_component'] = function() {
+Blockly.JavaScript.forBlock['entity_get_component'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_has_tag'] = function() {
+Blockly.JavaScript.forBlock['entity_has_tag'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_kill'] = function() {
+Blockly.JavaScript.forBlock['entity_kill'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_look_at'] = function() {
+Blockly.JavaScript.forBlock['entity_look_at'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_play_animation'] = function() {
+Blockly.JavaScript.forBlock['entity_play_animation'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_remove'] = function() {
+Blockly.JavaScript.forBlock['entity_remove'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_remove_effect'] = function() {
+Blockly.JavaScript.forBlock['entity_remove_effect'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_remove_tag'] = function() {
+Blockly.JavaScript.forBlock['entity_remove_tag'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_set_rotation'] = function() {
+Blockly.JavaScript.forBlock['entity_set_rotation'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['entity_teleport'] = function() {
+Blockly.JavaScript.forBlock['entity_teleport'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['player_get_property'] = function() {
+Blockly.JavaScript.forBlock['player_get_property'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['player_give_xp'] = function() {
+Blockly.JavaScript.forBlock['player_give_xp'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['player_play_sound'] = function() {
+Blockly.JavaScript.forBlock['player_play_sound'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['player_play_music'] = function() {
+Blockly.JavaScript.forBlock['player_play_music'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['player_queue_music'] = function() {
+Blockly.JavaScript.forBlock['player_queue_music'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['player_set_gamemode'] = function() {
+Blockly.JavaScript.forBlock['player_set_gamemode'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['player_set_spawn_point'] = function() {
+Blockly.JavaScript.forBlock['player_set_spawn_point'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['player_stop_music'] = function() {
+Blockly.JavaScript.forBlock['player_stop_music'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['colour_picker'] = function() {
-    let code = `'${block.getFieldValue("COLOUR")}'`
+Blockly.JavaScript.forBlock['colour_picker'] = function(block) {
+    let code = getInput(block, "COLOUR");
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript.forBlock['colour_random'] = function() {
+Blockly.JavaScript.forBlock['colour_random'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['colour_rgb'] = function() {
+Blockly.JavaScript.forBlock['colour_rgb'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['json_create'] = function() {
+Blockly.JavaScript.forBlock['json_create'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['json_get_prop'] = function() {
+Blockly.JavaScript.forBlock['json_get_prop'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['json_set_prop'] = function() {
+Blockly.JavaScript.forBlock['json_set_prop'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['json_delete_prop'] = function() {
+Blockly.JavaScript.forBlock['json_delete_prop'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['json_has_prop'] = function() {
+Blockly.JavaScript.forBlock['json_has_prop'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['json_keys'] = function() {
+Blockly.JavaScript.forBlock['json_keys'] = function(block) {
 
 };
 
-Blockly.JavaScript.forBlock['json_merge'] = function() {
+Blockly.JavaScript.forBlock['json_merge'] = function(block) {
 
 };

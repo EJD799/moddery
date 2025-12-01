@@ -114,7 +114,9 @@ Blockly.JavaScript.forBlock['show_form_var'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['form_title'] = function(block) {
-
+    let code = `${block.getFieldValue("FORM")}.title(${getInput(block, "TEXT")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['form_body'] = function(block) {

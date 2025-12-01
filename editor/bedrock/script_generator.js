@@ -80,23 +80,32 @@ Blockly.JavaScript.forBlock['run_command_player'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['send_message'] = function(block) {
-
+    let code = `${getInput(block, "PLAYER")}.sendMessage(${getInput(block, "MESSAGE")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['set_gamerule'] = function(block) {
-
+    let code = `world.gameRules.${block.getFieldValue("RULE")} = ${getInput(block, "VALUE")};
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['get_gamerule'] = function(block) {
-
+    let code = `world.gameRules.${block.getFieldValue("RULE")}`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['new_form'] = function(block) {
-
+    let code = `new ${block.getFieldValue("TYPE")}()`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['show_form'] = function(block) {
-
+    let code = `${getInput(block, "FORM")}.show(${getInput(block, "PLAYER")}).then((r) => {
+${getStatement(block, "DO")}});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['show_form_var'] = function(block) {

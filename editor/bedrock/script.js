@@ -2839,6 +2839,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'form_title', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
         { kind: 'sep'},
         { kind: 'label', text: 'Action Forms'},
+        { kind: 'block', type: 'form_body', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'form_button', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } }, IMAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
         { kind: 'block', type: 'form_response_action'},
         { kind: 'sep'},

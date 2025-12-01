@@ -120,19 +120,27 @@ Blockly.JavaScript.forBlock['form_title'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['form_body'] = function(block) {
-
+    let code = `${block.getFieldValue("FORM")}.body(${getInput(block, "TEXT")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['form_cancel'] = function(block) {
-
+    let code = `${block.getFieldValue("FORM")}.button1(${getInput(block, "TEXT")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['form_confirm'] = function(block) {
-
+    let code = `${block.getFieldValue("FORM")}.button2(${getInput(block, "TEXT")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['form_submit'] = function(block) {
-
+    let code = `${block.getFieldValue("FORM")}.submitButton(${getInput(block, "TEXT")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['form_button'] = function(block) {

@@ -396,3 +396,44 @@ Blockly.JavaScript.forBlock['player_set_spawn_point'] = function() {
 Blockly.JavaScript.forBlock['player_stop_music'] = function() {
 
 };
+
+Blockly.JavaScript.forBlock['colour_picker'] = function() {
+    
+    return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript.forBlock['colour_random'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['colour_rgb'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['json_create'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['json_get_prop'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['json_set_prop'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['json_delete_prop'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['json_has_prop'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['json_keys'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['json_merge'] = function() {
+
+};

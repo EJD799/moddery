@@ -156,11 +156,15 @@ Blockly.JavaScript.forBlock['form_textfield'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['form_dropdown'] = function(block) {
-
+    let code = `${block.getFieldValue("FORM")}.textField(${getInput(block, "LABEL")}, ${getInput(block, "OPTIONS")}, ${getInput(block, "DEFAULT")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['form_slider'] = function(block) {
-
+    let code = `${block.getFieldValue("FORM")}.textField(${getInput(block, "LABEL")}, ${getInput(block, "MIN")}, ${getInput(block, "MAX")}, ${getInput(block, "STEP")}, ${getInput(block, "DEFAULT")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['form_toggle'] = function(block) {

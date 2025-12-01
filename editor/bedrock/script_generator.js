@@ -68,13 +68,15 @@ Blockly.JavaScript.forBlock['cancel_event'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['run_command_dimension'] = function(block) {
-    let code = `modderyLibs.runCommand('${getInput(block, "COMMAND")}', ${block.getFieldValue("DIMENSION")});
+    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').runCommand('${getInput(block, "COMMAND")}');
 `;
     return code;
 };
 
 Blockly.JavaScript.forBlock['run_command_player'] = function(block) {
-
+    let code = `${block.getFieldValue("PLAYER")}.runCommand('${getInput(block, "COMMAND")}');
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['send_message'] = function(block) {

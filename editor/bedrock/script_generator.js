@@ -435,7 +435,7 @@ Blockly.JavaScript.forBlock['colour_random'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['colour_rgb'] = function(block) {
-    let code = rgbToHex(getInput(block, "RED"), getInput(block, "GREEN"), getInput(block, "BLUE"));
+    let code = `'${rgbToHex(Number(getInput(block, "RED")), Number(getInput(block, "GREEN")), Number(getInput(block, "BLUE")))}'`;
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 

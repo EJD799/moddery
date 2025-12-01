@@ -2237,7 +2237,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: 'run_js_statement',
-    message0: 'run js %1;',
+    message0: 'run javascript %1;',
     colour: "#808080",
     args0: [
       {
@@ -2252,7 +2252,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: 'run_js_reporter',
-    message0: 'run js %1',
+    message0: 'run javascript %1',
     colour: "#808080",
     args0: [
       {

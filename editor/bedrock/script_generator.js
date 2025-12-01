@@ -182,29 +182,29 @@ Blockly.JavaScript.forBlock['form_toggle'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['form_response_action'] = function(block) {
-    let code = `${getInput(block, "RESPONSE")}.selection
-`;
+    let code = `${getInput(block, "RESPONSE")}.selection`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['form_response_message'] = function(block) {
-    let code = `${getInput(block, "RESPONSE")}.selection
-`;
+    let code = `${getInput(block, "RESPONSE")}.selection`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['form_response_modal'] = function(block) {
-    let code = `${getInput(block, "RESPONSE")}.formValues[${getInput(block, "FIELD")}]
-`;
+    let code = `${getInput(block, "RESPONSE")}.formValues[${getInput(block, "FIELD")}]`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['is_hardcore'] = function(block) {
-
+    let code = `world.isHardcore`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['addobjective'] = function(block) {
-
+    let code = `world.scoreboard.addObjective(${getInput(block, "OBJECTIVE")}, ${getInput(block, "DISPLAY_NAME")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['removeobjective'] = function(block) {

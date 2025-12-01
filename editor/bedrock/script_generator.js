@@ -74,7 +74,7 @@ Blockly.JavaScript.forBlock['run_command_dimension'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['run_command_player'] = function(block) {
-    let code = `${block.getFieldValue("PLAYER")}.runCommand('${getInput(block, "COMMAND")}');
+    let code = `${getInput(block, "PLAYER")}.runCommand('${getInput(block, "COMMAND")}');
 `;
     return code;
 };

@@ -384,3 +384,15 @@ Blockly.JavaScript.forBlock['player_play_music'] = function() {
 Blockly.JavaScript.forBlock['player_queue_music'] = function() {
 
 };
+
+Blockly.JavaScript.forBlock['player_set_gamemode'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['player_set_spawn_point'] = function() {
+
+};
+
+Blockly.JavaScript.forBlock['player_stop_music'] = function() {
+
+};

@@ -167,6 +167,7 @@ function saveProjectInfo() {
   projManifest.addon_version = [$("#editProjVersionBox1").val(), $("#editProjVersionBox2").val(), $("#editProjVersionBox3").val()];
   projManifest.description = $("#editProjDescriptionBox").val();
   projZip.file("manifest.json", JSON.stringify(projManifest));
+  saveProject();
 }
 function createProject() {
   if ($("#newProjNamespaceBox").val() == "minecraft") {

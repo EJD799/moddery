@@ -37,7 +37,8 @@ import { modderyLibs } from "modderyLibs.js";`;
 };
 
 Blockly.JavaScript.forBlock['before_event'] = function(block) {
-    let code = `world.beforeEvents.${block.getFieldValue("EVENT")}.subscribe((e) => {${getStatement(block, "DO")}});`;
+    let code = `world.beforeEvents.${block.getFieldValue("EVENT")}.subscribe((e) => {
+${getStatement(block, "DO")}});`;
     return code;
 };
 

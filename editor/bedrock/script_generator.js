@@ -542,7 +542,7 @@ Blockly.JavaScript.forBlock['run_js_reporter'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['comment_block'] = function(block) {
-    let code = `// ${trimQuotes(getInput(block, "COMMENT"))}
+    let code = `// ${block.getFieldValue("COMMENT")}
 `;
     return code;
 };

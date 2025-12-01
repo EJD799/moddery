@@ -10,6 +10,20 @@ Blockly.JavaScript['text'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
+function rgbToHex(r, g, b) {
+  // Clamp values between 0 and 255
+  r = Math.max(0, Math.min(255, r));
+  g = Math.max(0, Math.min(255, g));
+  b = Math.max(0, Math.min(255, b));
+
+  // Convert each component to two-digit hex
+  const rh = r.toString(16).padStart(2, '0');
+  const gh = g.toString(16).padStart(2, '0');
+  const bh = b.toString(16).padStart(2, '0');
+
+  return `#${rh}${gh}${bh}`;
+}
+
 
 
 Blockly.JavaScript.forBlock['on_start'] = function(block) {
@@ -421,7 +435,8 @@ Blockly.JavaScript.forBlock['colour_random'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['colour_rgb'] = function(block) {
-
+    let code = rgbToHex(getInput(block, "RED"), getInput(block, "GREEN"), getInput(block, "BLUE"));
+    return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript.forBlock['json_create'] = function(block) {

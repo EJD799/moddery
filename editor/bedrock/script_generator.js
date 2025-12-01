@@ -1,5 +1,5 @@
 function getInput(block, name) {
-    return Blockly.JavaScript.valueToCode(block, name, Blockly.JavaScript.ORDER_NONE) || '0';
+    return Blockly.JavaScript.valueToCode(block, name, Blockly.JavaScript.ORDER_ATOMIC) || '0';
 }
 
 function getStatement(block, name) {
@@ -33,33 +33,37 @@ function rgbToHex(r, g, b) {
 Blockly.JavaScript.forBlock['on_start'] = function(block) {
     return `import { world, system } from "@minecraft/server";
 import { ModalFormData, MessageFormData, ActionFormData } from "@minecraft/server-ui";
-import { modderyLibs } from "modderyLibs.js";`;
+import { modderyLibs } from "modderyLibs.js";
+`;
 };
 
 Blockly.JavaScript.forBlock['before_event'] = function(block) {
     let code = `world.beforeEvents.${block.getFieldValue("EVENT")}.subscribe((e) => {
-${getStatement(block, "DO")}});`;
+${getStatement(block, "DO")}});
+`;
     return code;
 };
 
 Blockly.JavaScript.forBlock['after_event'] = function(block) {
     let code = `world.afterEvents.${block.getFieldValue("EVENT")}.subscribe((e) => {
-${getStatement(block, "DO")}});`;
+${getStatement(block, "DO")}});
+`;
     return code;
 };
 
 Blockly.JavaScript.forBlock['event_data'] = function(block) {
     let code = 'e';
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['get_event_data'] = function(block) {
     let code = `${getInput(block, "DATA")}.${block.getFieldValue("TYPE")}`;
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['cancel_event'] = function(block) {
-
+    let code = `${getInput(block, "DATA")}.cancel = true;`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['run_command_dimension'] = function(block) {
@@ -92,7 +96,7 @@ Blockly.JavaScript.forBlock['show_form'] = function(block) {
 
 Blockly.JavaScript.forBlock['show_form_var'] = function(block) {
     let code = 'r';
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['form_title'] = function(block) {
@@ -437,17 +441,17 @@ Blockly.JavaScript.forBlock['player_stop_music'] = function(block) {
 
 Blockly.JavaScript.forBlock['colour_picker'] = function(block) {
     let code = getInput(block, "COLOUR");
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['colour_random'] = function(block) {
     let code = `modderyLibs.randomColor()`;
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['colour_rgb'] = function(block) {
     let code = `'${rgbToHex(Number(getInput(block, "RED")), Number(getInput(block, "GREEN")), Number(getInput(block, "BLUE")))}'`;
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['json_create'] = function(block) {

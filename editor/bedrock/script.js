@@ -3058,7 +3058,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'run_js_reporter', inputs: { CODE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'sep' },
         { kind: 'label', text: 'Comments'},
-        { kind: 'block', type: 'comment_block', inputs: { CODE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'comment_block', inputs: { COMMENT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
       ]
     }
   ]

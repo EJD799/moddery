@@ -43,7 +43,9 @@ ${getStatement(block, "DO")}});`;
 };
 
 Blockly.JavaScript.forBlock['after_event'] = function(block) {
-
+    let code = `world.afterEvents.${block.getFieldValue("EVENT")}.subscribe((e) => {
+${getStatement(block, "DO")}});`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['event_data'] = function(block) {
@@ -52,7 +54,8 @@ Blockly.JavaScript.forBlock['event_data'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['get_event_data'] = function(block) {
-
+    let code = `${getInput(block, "DATA")}.${block.getFieldValue("TYPE")}`;
+    return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript.forBlock['cancel_event'] = function(block) {

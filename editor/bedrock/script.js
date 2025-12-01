@@ -2270,9 +2270,9 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     colour: "#808080",
     args0: [
       {
-        type: 'input_value',
+        type: 'field_input',
         name: 'COMMENT',
-        check: null
+        spellcheck: false
       }
     ],
     previousStatement: null,
@@ -3058,7 +3058,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'run_js_reporter', inputs: { CODE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'sep' },
         { kind: 'label', text: 'Comments'},
-        { kind: 'block', type: 'comment_block', inputs: { COMMENT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'comment_block' },
       ]
     }
   ]

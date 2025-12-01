@@ -31,19 +31,13 @@ function rgbToHex(r, g, b) {
 
 
 Blockly.JavaScript.forBlock['on_start'] = function(block) {
-    return `
-    import { world, system } from "@minecraft/server";
-    import { ModalFormData, MessageFormData, ActionFormData } from "@minecraft/server-ui";
-    import { modderyLibs } from "modderyLibs.js";
-    `;
+    return `import { world, system } from "@minecraft/server";
+import { ModalFormData, MessageFormData, ActionFormData } from "@minecraft/server-ui";
+import { modderyLibs } from "modderyLibs.js";`;
 };
 
 Blockly.JavaScript.forBlock['before_event'] = function(block) {
-    let code = `
-    world.beforeEvents.${block.getFieldValue("EVENT")}.subscribe((e) => {
-        ${getStatement(block, "DO")}
-    });
-    `;
+    let code = `world.beforeEvents.${block.getFieldValue("EVENT")}.subscribe((e) => {${getStatement(block, "DO")}});`;
     return code;
 };
 

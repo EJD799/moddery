@@ -44,7 +44,7 @@ Blockly.JavaScript.forBlock['before_event'] = function(block) {
         ${getStatement(block, "DO")}
     });
     `;
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return code;
 };
 
 Blockly.JavaScript.forBlock['after_event'] = function(block) {

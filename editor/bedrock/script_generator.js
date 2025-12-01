@@ -208,11 +208,21 @@ Blockly.JavaScript.forBlock['addobjective'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['removeobjective'] = function(block) {
-
+    let code = `world.scoreboard.removeObjective(${getInput(block, "OBJECTIVE")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['objectivedisplay'] = function(block) {
-
+    if (block.getFieldValue("DISPLAY").includes("Sidebar")) {
+        let code = `world.scoreboard.setObjectiveAtDisplaySlot('Sidebar', {
+objective: ${getInput(block, "OBJECTIVE")}
+});
+`;
+    }
+    let code = `world.scoreboard.setObjectiveAtDisplaySlot(${getInput(block, "DISPLAY")}, ${getInput(block, "OBJECTIVE")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['hidedisplay'] = function(block) {

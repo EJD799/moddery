@@ -525,19 +525,45 @@ Blockly.JavaScript.forBlock['play_sound_all'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['set_weather'] = function(block) {
-
+    let weather = block.getFieldValue("WEATHER");
+    let duration = getInput(block, "DURATION")
+    let code = `world.getDimension('overworld').setWeather(${weather}, ${duration});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['spawn_entity'] = function(block) {
-
+    let dimension = block.getFieldValue("DIMENSION");
+    let entity = getInput(block, "ENTITY");
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let z = getInput(block, "Z_POS");
+    let code = `world.getDimension('${dimension}').spawnEntity(${entity}, {x: ${x}, y: ${y}, z: ${z}});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['spawn_item'] = function(block) {
-
+    let dimension = block.getFieldValue("DIMENSION");
+    let item = getInput(block, "ITEM");
+    let quantity = getInput(block, "QUANTITY");
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let z = getInput(block, "Z_POS");
+    let code = `world.getDimension('${dimension}').spawnItem(new ItemStack(itemType: ${item}, amount: ${quantity}), {x: ${x}, y: ${y}, z: ${z}});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['spawn_particle'] = function(block) {
-
+    let dimension = block.getFieldValue("DIMENSION");
+    let particle = getInput(block, "PARTICLE");
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let z = getInput(block, "Z_POS");
+    let code = `world.getDimension('${dimension}').spawnParticle(${particle}, {x: ${x}, y: ${y}, z: ${z}});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['get_entity_property'] = function(block) {
@@ -656,7 +682,8 @@ Blockly.JavaScript.forBlock['colour_rgb'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['json_create'] = function(block) {
-
+    let code = '{}';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['json_get_prop'] = function(block) {
@@ -676,7 +703,7 @@ Blockly.JavaScript.forBlock['json_has_prop'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['json_keys'] = function(block) {
-
+    
 };
 
 Blockly.JavaScript.forBlock['json_merge'] = function(block) {

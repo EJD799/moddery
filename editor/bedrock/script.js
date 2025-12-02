@@ -1597,9 +1597,9 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         type: "field_dropdown",
         name: "WEATHER",
         options: [
-          ["clear", "clear"],
-          ["rain", "rain"],
-          ["thunder", "thunder"]
+          ["clear", "Clear"],
+          ["rain", "Rain"],
+          ["thunder", "Thunder"]
         ]
       },
       {
@@ -1614,7 +1614,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "spawn_entity",
-    message0: "spawn entity %1 at x %2 y %3 z %4",
+    message0: "spawn entity %1 at x %2 y %3 z %4 in %5",
     colour: 100,
     args0: [
       {
@@ -1637,6 +1637,15 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         name: "Z_POS",
         check: null
       },
+      {
+        type: "field_dropdown",
+        name: "DIMENSION",
+        options: [
+          ["overworld", "overworld"],
+          ["nether", "nether"],
+          ["the end", "the_end"]
+        ]
+      },
     ],
     previousStatement: null,
     nextStatement: null,
@@ -1644,7 +1653,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "spawn_item",
-    message0: "spawn %1 of item %2 at x %3 y %4 z %5",
+    message0: "spawn %1 of item %2 at x %3 y %4 z %5 in %6",
     colour: 100,
     args0: [
       {
@@ -1672,6 +1681,15 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         name: "Z_POS",
         check: null
       },
+      {
+        type: "field_dropdown",
+        name: "DIMENSION",
+        options: [
+          ["overworld", "overworld"],
+          ["nether", "nether"],
+          ["the end", "the_end"]
+        ]
+      },
     ],
     previousStatement: null,
     nextStatement: null,
@@ -1679,7 +1697,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "spawn_particle",
-    message0: "create particle emitter type %1 at x %2 y %3 z %4",
+    message0: "create particle emitter type %1 at x %2 y %3 z %4 in %5",
     colour: 100,
     args0: [
       {
@@ -1701,6 +1719,15 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         type: "input_value",
         name: "Z_POS",
         check: null
+      },
+      {
+        type: "field_dropdown",
+        name: "DIMENSION",
+        options: [
+          ["overworld", "overworld"],
+          ["nether", "nether"],
+          ["the end", "the_end"]
+        ]
       },
     ],
     previousStatement: null,

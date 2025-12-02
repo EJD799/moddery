@@ -454,15 +454,22 @@ Blockly.JavaScript.forBlock['get_block'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['get_block_property'] = function(block) {
-
+    let worldBlock = getInput(block, "BLOCK");
+    let property = block.getFieldValue("PROPERTY");
+    let code = `${worldBlock}.${property}`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['json_stringify'] = function(block) {
-
+    let object = getInput(block, "OBJECT");
+    let code = `JSON.stringify(${object})`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['json_parse'] = function(block) {
-
+    let object = getInput(block, "OBJECT");
+    let code = `JSON.parse(${object})`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['set_block_type'] = function(block) {

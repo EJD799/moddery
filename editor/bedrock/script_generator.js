@@ -839,7 +839,7 @@ Blockly.JavaScript.forBlock['json_merge'] = function(block) {
     let a = getInput(block, "A");
     let b = getInput(block, "B");
     let code = `Object.assign({}, ${a}, ${b})`;
-    return [code, Blockly.JavaScript.ORDER_ATOMIC]
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['run_js_statement'] = function(block) {

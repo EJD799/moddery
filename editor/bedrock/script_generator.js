@@ -476,7 +476,7 @@ Blockly.JavaScript.forBlock['set_block_type'] = function(block) {
     let worldBlock = getInput(block, "BLOCK");
     let type = getInput(block, "TYPE");
     let code = `${worldBlock}.setType(${type});
-    `;
+`;
     return code;
 };
 
@@ -484,28 +484,44 @@ Blockly.JavaScript.forBlock['set_block_waterlogged'] = function(block) {
     let worldBlock = getInput(block, "BLOCK");
     let type = block.getFieldValue("TYPE");
     let code = `${worldBlock}.setWaterlogged(${type});
-    `;
+`;
     return code;
 };
 
 Blockly.JavaScript.forBlock['get_entities'] = function(block) {
-
+    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').getEntities()`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['get_entities_at_location'] = function(block) {
-
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let z = getInput(block, "Z_POS");
+    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').getEntitiesAtBlockLocation({x: ${x}, y: ${y}, z: ${z}})`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['get_players_dimension'] = function(block) {
-
+    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').getPlayers()`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['is_chunk_loaded'] = function(block) {
-
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let z = getInput(block, "Z_POS");
+    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').isChunkLoaded({x: ${x}, y: ${y}, z: ${z}})`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['play_sound_all'] = function(block) {
-
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let z = getInput(block, "Z_POS");
+    let sound = getInput(block, "SOUND")
+    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').playSound(${sound}, {x: ${x}, y: ${y}, z: ${z}});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['set_weather'] = function(block) {

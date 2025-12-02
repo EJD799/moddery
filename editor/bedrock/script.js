@@ -1449,14 +1449,25 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "get_entities",
-    message0: "get entities",
+    message0: "get entities in dimension %1",
     colour: 100,
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "DIMENSION",
+        options: [
+          ["overworld", "overworld"],
+          ["nether", "nether"],
+          ["the end", "the_end"]
+        ]
+      }
+    ],
     output: null,
     inputsInline: true
   },
   {
     type: "get_entities_at_location",
-    message0: "get entities at x %1 y %2 z %3",
+    message0: "get entities at x %1 y %2 z %3 in %4",
     colour: 100,
     args0: [
       {
@@ -1473,6 +1484,15 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         type: "input_value",
         name: "Z_POS",
         check: null
+      },
+      {
+        type: "field_dropdown",
+        name: "DIMENSION",
+        options: [
+          ["overworld", "overworld"],
+          ["nether", "nether"],
+          ["the end", "the_end"]
+        ]
       }
     ],
     output: null,
@@ -1531,7 +1551,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "play_sound_all",
-    message0: "play sound %1 to all players in %2",
+    message0: "play sound %1 to all players in %2 at location x %3 y %4 z %5",
     colour: 100,
     args0: [
       {
@@ -1547,6 +1567,21 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
           ["nether", "nether"],
           ["the end", "the_end"]
         ]
+      },
+      {
+        type: "input_value",
+        name: "X_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Y_POS",
+        check: null
+      },
+      {
+        type: "input_value",
+        name: "Z_POS",
+        check: null
       }
     ],
     previousStatement: null,

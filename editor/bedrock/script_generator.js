@@ -713,31 +713,62 @@ Blockly.JavaScript.forBlock['entity_teleport'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['player_get_property'] = function(block) {
-
+    let player = getInput(block, "PLAYER");
+    let property = block.getFieldValue("PROPERTY");
+    let code = `${player}.${property}`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['player_give_xp'] = function(block) {
-
+    let player = getInput(block, "PLAYER");
+    let amount = getInput(block, "AMOUNT");
+    let mode = block.getFieldValue("MODE");
+    let code = `${player}.${mode}(${amount});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['player_play_sound'] = function(block) {
-
+    let player = getInput(block, "PLAYER");
+    let sound = getInput(block, "SOUND");
+    let code = `${player}.playSound(${sound});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['player_play_music'] = function(block) {
-
+    let player = getInput(block, "PLAYER");
+    let track = getInput(block, "TRACK");
+    let code = `${player}.playMusic(${track});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['player_queue_music'] = function(block) {
-
+    let player = getInput(block, "PLAYER");
+    let track = getInput(block, "TRACK");
+    let code = `${player}.queueMusic(${track});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['player_set_gamemode'] = function(block) {
-
+    let player = getInput(block, "PLAYER");
+    let gamemode = block.getFieldValue("GAMEMODE");
+    let code = `${player}.setGameMode(${gamemode});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['player_set_spawn_point'] = function(block) {
-
+    let player = getInput(block, "PLAYER");
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let z = getInput(block, "Z_POS");
+    let dimension = block.getFieldValue("DIMENSION");
+    let code = `${player}.setSpawnPoint({dimension: ${dimension}, x: ${x}, y: ${y}, z: ${z}});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['player_stop_music'] = function(block) {

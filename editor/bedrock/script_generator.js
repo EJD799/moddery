@@ -310,7 +310,14 @@ Blockly.JavaScript.forBlock['register_command'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['set_block'] = function(block) {
-
+    let dimension = block.getFieldValue("DIMENSION");
+    let type = getInput(block, "BLOCK");
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let z = getInput(block, "Z_POS");
+    let code = `world.getDimension('${dimension}').setBlockType({x: ${x}, y: ${y}, z: ${z}}, ${type});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['get_absolute_time'] = function(block) {

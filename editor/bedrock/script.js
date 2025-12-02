@@ -1249,7 +1249,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "get_biome",
-    message0: "get biome at x %1 y %2 z %3",
+    message0: "get biome at x %1 y %2 z %3 in %4",
     colour: 100,
     args0: [
       {
@@ -1266,6 +1266,15 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         type: "input_value",
         name: "Z_POS",
         check: null
+      },
+      {
+        type: "field_dropdown",
+        name: "DIMENSION",
+        options: [
+          ["overworld", "overworld"],
+          ["nether", "nether"],
+          ["the end", "the_end"]
+        ]
       }
     ],
     output: null,
@@ -1273,7 +1282,7 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
   },
   {
     type: "get_block",
-    message0: "get block at x %1 y %2 z %3",
+    message0: "get block at x %1 y %2 z %3 in %4",
     colour: 100,
     args0: [
       {
@@ -1290,6 +1299,15 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         type: "input_value",
         name: "Z_POS",
         check: null
+      },
+      {
+        type: "field_dropdown",
+        name: "DIMENSION",
+        options: [
+          ["overworld", "overworld"],
+          ["nether", "nether"],
+          ["the end", "the_end"]
+        ]
       }
     ],
     output: null,

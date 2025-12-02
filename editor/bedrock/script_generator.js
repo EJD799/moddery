@@ -436,11 +436,21 @@ Blockly.JavaScript.forBlock['create_explosion'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['get_biome'] = function(block) {
-
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let z = getInput(block, "Z_POS");
+    let dimension = block.getFieldValue("DIMENSION");
+    let code = `world.getDimension('${dimension}').getBiome({x: ${x}, y: ${y}, z: ${z}})`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['get_block'] = function(block) {
-
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let z = getInput(block, "Z_POS");
+    let dimension = block.getFieldValue("DIMENSION");
+    let code = `world.getDimension('${dimension}').getBlock({x: ${x}, y: ${y}, z: ${z}})`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['get_block_property'] = function(block) {

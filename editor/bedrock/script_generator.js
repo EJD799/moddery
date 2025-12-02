@@ -473,11 +473,19 @@ Blockly.JavaScript.forBlock['json_parse'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['set_block_type'] = function(block) {
-
+    let worldBlock = getInput(block, "BLOCK");
+    let type = getInput(block, "TYPE");
+    let code = `${worldBlock}.setType(${type});
+    `;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['set_block_waterlogged'] = function(block) {
-
+    let worldBlock = getInput(block, "BLOCK");
+    let type = block.getFieldValue("TYPE");
+    let code = `${worldBlock}.setWaterlogged(${type});
+    `;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['get_entities'] = function(block) {

@@ -567,15 +567,30 @@ Blockly.JavaScript.forBlock['spawn_particle'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['get_entity_property'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let property = block.getFieldValue("PROPERTY");
+    let code = `${entity}.${property}`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['set_entity_property'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let property = block.getFieldValue("PROPERTY");
+    let value = getInput(block, "VALUE");
+    let code = `${entity}.${property} = ${value};
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_add_effect'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let effect = getInput(block, "EFFECT");
+    let duration = getInput(block, "DURATION");
+    let amplifier = getInput(block, "AMPLIFIER");
+    let hideParticles = getInput(block, "HIDE_PARTICLES");
+    let code = `${entity}.addEffect(${effect}, ${duration}, {amplifier: ${amplifier}, showParticles: ${!hideParticles}});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_add_tag'] = function(block) {

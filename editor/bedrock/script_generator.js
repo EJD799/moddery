@@ -306,7 +306,16 @@ Blockly.JavaScript.forBlock['command_origin'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['register_command'] = function(block) {
-
+    let code = `customCommandRegistry.registerCommand(
+    {
+        name: '${block.getFieldValue("NAME")}',
+        description: '${block.getFieldValue("DESCRIPTION")}',
+        permissionLevel: CommandPermissionLevel.${block.getFieldValue("PERMISSION_LEVEL")},
+    },
+    () => {
+    ${getStatement(block, "CODE")}}
+);`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['set_block'] = function(block) {

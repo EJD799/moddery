@@ -420,7 +420,19 @@ Blockly.JavaScript.forBlock['fill_blocks'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['create_explosion'] = function(block) {
-
+    let dimension = block.getFieldValue("DIMENSION");
+    let type = getInput(block, "BLOCK");
+    let radius = getInput(block, "RADIUS");
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let z = getInput(block, "Z_POS");
+    let code = `world.getDimension('${dimension}').createExplosion({x: ${x}, y: ${y}, z: ${z}}, ${radius}, {
+    allowUnderwater: ${getInput(block, "ALLOW_UNDERWATER")},
+    breaksBlocks: ${getInput(block, "BREAK_BLOCKS")},
+    causesFire: ${getInput(block, "CAUSE_FIRE")}
+});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['get_biome'] = function(block) {

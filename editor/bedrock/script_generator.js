@@ -619,37 +619,62 @@ Blockly.JavaScript.forBlock['entity_clear_velocity'] = function(block) {
 Blockly.JavaScript.forBlock['entity_set_fire'] = function(block) {
     let entity = getInput(block, "ENTITY");
     let duration = getInput(block, "DURATION");
-    let mode = block.getFieldValue("MODE")
-    if (mode == "setOn") {
-
+    let mode = block.getFieldValue("MODE");
+    let code;
+    if (mode == "extinguish") {
+        code = `${entity}.extinguishFire();
+`;
     } else {
-        
+        code = `${entity}.setOnFire(${duration});
+`;
     }
     return code;
 };
 
 Blockly.JavaScript.forBlock['entity_get_component'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let component = getInput(block, "COMPONENT");
+    let code = `${entity}.getComponent(${component})`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_has_tag'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let tag = getInput(block, "TAG");
+    let code = `${entity}.hasTag(${tag})`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_kill'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let code = `${entity}.kill();
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_look_at'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let z = getInput(block, "Z_POS");
+    let code = `${entity}.lookAt({x: ${x}, y: ${y}, z: ${z}});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_play_animation'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let animation = getInput(block, "ANIMATION");
+    let code = `${entity}.playAnimation(${animation});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_remove'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let code = `${entity}.remove();
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_remove_effect'] = function(block) {
@@ -697,7 +722,10 @@ Blockly.JavaScript.forBlock['player_set_spawn_point'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['player_stop_music'] = function(block) {
-
+    let player = getInput(block, "PLAYER");
+    let code = `${player}.stopMusic();
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['colour_picker'] = function(block) {

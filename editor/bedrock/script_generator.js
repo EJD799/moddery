@@ -799,27 +799,47 @@ Blockly.JavaScript.forBlock['json_create'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['json_get_prop'] = function(block) {
-
+    let key = getInput(block, "KEY");
+    let obj = getInput(block, "OBJ");
+    let code = `${obj}[${key}]`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['json_set_prop'] = function(block) {
-
+    let key = getInput(block, "KEY");
+    let obj = getInput(block, "OBJ");
+    let value = getInput(block, "VALUE");
+    let code = `${obj}[${key}] = ${value};
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['json_delete_prop'] = function(block) {
-
+    let key = getInput(block, "KEY");
+    let obj = getInput(block, "OBJ");
+    let code = `delete ${obj}[${key}];
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['json_has_prop'] = function(block) {
-
+    let key = getInput(block, "KEY");
+    let obj = getInput(block, "OBJ");
+    let code = `(${key} in ${obj})`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['json_keys'] = function(block) {
-    
+    let obj = getInput(block, "OBJ");
+    let code = `Object.keys(${obj})`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['json_merge'] = function(block) {
-
+    let a = getInput(block, "A");
+    let b = getInput(block, "B");
+    let code = `Object.assign({}, ${a}, ${b})`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC]
 };
 
 Blockly.JavaScript.forBlock['run_js_statement'] = function(block) {

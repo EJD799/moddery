@@ -703,7 +703,13 @@ Blockly.JavaScript.forBlock['entity_set_rotation'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['entity_teleport'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let z = getInput(block, "Z_POS");
+    let code = `${entity}.teleport({x: ${x}, y: ${y}, z: ${z}});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['player_get_property'] = function(block) {

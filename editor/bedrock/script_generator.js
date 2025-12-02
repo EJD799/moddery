@@ -296,11 +296,13 @@ Blockly.JavaScript.forBlock['get_dynamic_property'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['command_parameter'] = function(block) {
-
+    let code = block.getFieldValue("PARAM");
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['command_origin'] = function(block) {
-
+    let code = 'origin';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['register_command'] = function(block) {

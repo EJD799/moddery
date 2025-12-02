@@ -1120,10 +1120,10 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         type: "field_dropdown",
         name: "DIFFICULTY",
         options: [
-          ["peaceful", "peaceful"],
-          ["easy", "easy"],
-          ["normal", "normal"],
-          ["hard", "hard"]
+          ["peaceful", "Peaceful"],
+          ["easy", "Easy"],
+          ["normal", "Normal"],
+          ["hard", "Hard"]
         ]
       }
     ],

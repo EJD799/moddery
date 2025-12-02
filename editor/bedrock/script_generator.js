@@ -340,55 +340,83 @@ Blockly.JavaScript.forBlock['get_day'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['get_default_spawn'] = function(block) {
-
+    let code = `world.getDefaultSpawn().${block.getFieldValue("POS")}`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['get_difficulty'] = function(block) {
-
+    let code = 'world.getDifficulty()';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['dynamic_property_list'] = function(block) {
-
+    let code = 'world.getDynamicPropertyIds()';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['dynamic_property_size'] = function(block) {
-
+    let code = 'world.getDynamicPropertyTotalByteCount()';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['get_time'] = function(block) {
-
+    let code = 'world.getTimeOfDay()';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['get_moon_phase'] = function(block) {
-
+    let code = 'world.getMoonPhase()';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['world_play_music'] = function(block) {
-
+    let code = `world.playMusic(${getInput(block, "TRACK")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['world_queue_music'] = function(block) {
-
+    let code = `world.queueMusic(${getInput(block, "TRACK")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['set_time'] = function(block) {
-
+    let code = `world.setTimeOfDay(${getInput(block, "TIME")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['set_default_spawn'] = function(block) {
-
+    let code = `world.playMusic(${getInput(block, "TRACK")});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['set_difficulty'] = function(block) {
-
+    let code = `world.setDifficulty('${block.getFieldValue("DIFFICULTY")}');
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['world_stop_music'] = function(block) {
-
+    let code = `world.stopMusic();
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['fill_blocks'] = function(block) {
-
+    let dimension = block.getFieldValue("DIMENSION");
+    let type = getInput(block, "BLOCK");
+    let x1 = getInput(block, "X_POS1");
+    let y1 = getInput(block, "Y_POS1");
+    let z1 = getInput(block, "Z_POS1");
+    let x2 = getInput(block, "X_POS2");
+    let y2 = getInput(block, "Y_POS2");
+    let z2 = getInput(block, "Z_POS2");
+    let code = `world.getDimension('${dimension}').fillBlocks(new BlockVolume({x: ${x1}, y: ${y1}, z: ${z1}}, {x: ${x2}, y: ${y2}, z: ${z2}}), ${type});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['create_explosion'] = function(block) {

@@ -330,11 +330,13 @@ Blockly.JavaScript.forBlock['set_block'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['get_absolute_time'] = function(block) {
-
+    let code = 'world.getAbsoluteTime()';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['get_day'] = function(block) {
-
+    let code = 'world.getDay()';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['get_default_spawn'] = function(block) {

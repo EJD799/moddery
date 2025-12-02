@@ -1906,8 +1906,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         type: "field_dropdown",
         name: "MODE",
         options: [
-          ["set on fire", "setOnFire()"],
-          ["extinguish fire", "extinguishFire()"]
+          ["set on fire", "setOn"],
+          ["extinguish fire", "extinguish"]
         ]
       },
       {

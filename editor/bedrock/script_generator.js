@@ -594,19 +594,38 @@ Blockly.JavaScript.forBlock['entity_add_effect'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['entity_add_tag'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let tag = getInput(block, "TAG");
+    let code = `${entity}.addTag(${tag});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_apply_damage'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let damage = getInput(block, "DAMAGE");
+    let code = `${entity}.applyDamage(${damage});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_clear_velocity'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let code = `${entity}.clearVelocity();
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_set_fire'] = function(block) {
+    let entity = getInput(block, "ENTITY");
+    let duration = getInput(block, "DURATION");
+    let mode = block.getFieldValue("MODE")
+    if (mode == "setOn") {
 
+    } else {
+        
+    }
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_get_component'] = function(block) {

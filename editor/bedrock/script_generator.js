@@ -678,15 +678,28 @@ Blockly.JavaScript.forBlock['entity_remove'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['entity_remove_effect'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let effect = getInput(block, "EFFECT");
+    let code = `${entity}.removeEffect(${effect});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_remove_tag'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let tag = getInput(block, "TAG");
+    let code = `${entity}.removeTag(${tag});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_set_rotation'] = function(block) {
-
+    let entity = getInput(block, "ENTITY");
+    let x = getInput(block, "X_POS");
+    let y = getInput(block, "Y_POS");
+    let code = `${entity}.setRotation({x: ${x}, y: ${y}});
+`;
+    return code;
 };
 
 Blockly.JavaScript.forBlock['entity_teleport'] = function(block) {

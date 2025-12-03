@@ -687,10 +687,10 @@ async function renameZipFile(zip, oldPath, newPath) {
     zip.remove(oldPath);
 }
 
-function deleteElementFromZip(id, folder) {
-    const mainPath = `${folder}/${id}.json`;
-    const codePath = `${folder}/${id}.code.json`;
-    const imagePath = `${folder}/${id}`;
+function deleteElementFromZip(id) {
+    const mainPath = `elements/${id}.json`;
+    const codePath = `elements/${id}.code.json`;
+    const imagePath = `assets/${decodeText(id)}`;
 
     if (projZip.file(mainPath)) {
         projZip.remove(mainPath);
@@ -707,7 +707,7 @@ function deleteElementFromZip(id, folder) {
 
 function deleteElement() {
   closeDeleteElement();
-  deleteElementFromZip(deleteElementID, deleteElementType + "s");
+  deleteElementFromZip(deleteElementID);
   document.getElementById("elementbox" + encodeText(deleteElementID)).remove();
   saveProject();
 }
@@ -715,6 +715,11 @@ function renameElement() {
   closeRenameElement();
   if (renameElementType == "element") {
     renameZipFile(projZip, `elements/${renameElementID}.json`, `elements/${renameDlgBox.value}.json`);
+    projZip.folder("elements").file(`${renameDlgBox.value}.json`).async("string").then(function (data) {
+      let updated = data;
+      updated.name = renameDlgBox.value;
+      projZip.folder("elements").file(`${renameDlgBox.value}.json`, JSON.stringify(updated));
+    });
     if (projZip.file(`elements/${renameElementID}.code.json`)) {
       renameZipFile(projZip, `elements/${renameElementID}.code.json`, `elements/${renameDlgBox.value}.code.json`);
     }

@@ -633,7 +633,6 @@ function openRenameElement(elementID, type) {
   $("#renameDlg").dialog("open");
   renameElementID = elementID;
   renameElementType = type;
-  let renameDlg = document.getElementById("renameDlg");
   let renameDlgText = document.getElementById("renameDlgText");
   if (type == "asset") {
     $("#renameDlg").dialog("option", "title", "Rename Asset");
@@ -650,7 +649,6 @@ function openDeleteElement(elementID, type) {
   $("#deleteDlg").dialog("open");
   deleteElementID = elementID;
   deleteElementType = type;
-  let deleteDlg = document.getElementById("deleteDlg");
   let deleteDlgText = document.getElementById("deleteDlgText");
   if (type == "asset") {
     $("#deleteDlg").dialog("option", "title", "Delete Asset?");
@@ -673,11 +671,30 @@ function closeDeleteElement() {
   $("#deleteDlg").dialog("close");
 }
 
+function deleteElementFromZip(id, folder) {
+    const mainPath = `${folder}/${id}.json`;
+    const codePath = `${folder}/${id}.code.json`;
+    const imagePath = `${folder}/${id}`;
+
+    if (projZip.file(mainPath)) {
+        projZip.remove(mainPath);
+    }
+
+    if (projZip.file(imagePath)) {
+        projZip.remove(imagePath);
+    }
+
+    if (projZip.file(codePath)) {
+        projZip.remove(codePath);
+    }
+}
+
 function deleteElement() {
   closeDeleteElement();
+  deleteElementFromZip(deleteElementID, deleteElementType + "s");
 }
 function renameElement() {
-  closeRenameElement();
+
 }
 
 function getCustomItems(mode) {

@@ -735,9 +735,18 @@ async function renameElement() {
       `;
     $(`#${renameDlgBox.value}_editBtn`).button();
     $(`#${renameDlgBox.value}_optionBtn`).button();
+    createElementDropdown(renameDlgBox.value, "element");
+    $(`#${renameDlgBox.value}_optionBtn`).on("click", function () {
+      $(`#${renameDlgBox.value}_elementMenu`).show().position({
+        my: "left top",
+        at: "left bottom",
+        of: $(`#${renameDlgBox.value}_optionBtn`)
+      });
+    });
   } else {
     var assetBox = elementBox;
-    var fileNameEncoded = renameDlgBox.value;
+    var fileName = decodeText(renameDlgBox.value);
+    var fileNameEncoded = encodeText(renameDlgBox.value);
     var center = document.createElement("center");
     assetBox.setAttribute("class", "elementbox");
     assetBox.setAttribute("id", "elementbox" + fileNameEncoded);
@@ -764,6 +773,14 @@ async function renameElement() {
     assetBox.appendChild(center);
     $(`#${fileNameEncoded}_assetEditBtn`).button();
     $(`#${fileNameEncoded}_assetOptionBtn`).button();
+    createElementDropdown(renameDlgBox.value, "asset");
+    $(`#${renameDlgBox.value}_assetOptionBtn`).on("click", function () {
+      $(`#${renameDlgBox.value}_assetMenu`).show().position({
+        my: "left top",
+        at: "left bottom",
+        of: $(`#${renameDlgBox.value}_assetOptionBtn`)
+      });
+    });
   }
   saveProject();
 }

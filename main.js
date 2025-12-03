@@ -747,6 +747,7 @@ async function renameElement() {
     var assetBox = elementBox;
     var fileName = decodeText(renameDlgBox.value);
     var fileNameEncoded = encodeText(renameDlgBox.value);
+    var fileType = "png";
     var center = document.createElement("center");
     assetBox.setAttribute("class", "elementbox");
     assetBox.setAttribute("id", "elementbox" + fileNameEncoded);

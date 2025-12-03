@@ -673,6 +673,20 @@ function closeDeleteElement() {
   $("#deleteDlg").dialog("close");
 }
 
+async function renameZipFile(zip, oldPath, newPath) {
+    const file = zip.file(oldPath);
+    if (!file) return false; // nothing to rename
+
+    // Read the original file's data (as ArrayBuffer to preserve any type)
+    const data = await file.async("arraybuffer");
+
+    // Write it under the new name
+    zip.file(newPath, data);
+
+    // Delete the old one
+    zip.remove(oldPath);
+}
+
 function deleteElementFromZip(id, folder) {
     const mainPath = `${folder}/${id}.json`;
     const codePath = `${folder}/${id}.code.json`;
@@ -699,8 +713,17 @@ function deleteElement() {
 }
 function renameElement() {
   closeRenameElement();
-  renameElement(renameElementID, renameElementType + "s");
-
+  if (renameElementType == "element") {
+    renameZipFile(projZip, `elements/${renameElementID}.json`, `elements/${renameDlgBox.value}.json`);
+    if (projZip.file(`elements/${renameElementID}.code.json`)) {
+      renameZipFile(projZip, `elements/${renameElementID}.code.json`, `elements/${renameDlgBox.value}.code.json`);
+    }
+  } else {
+    renameZipFile(projZip, `assets/${decodeText(renameElementID)}`, `assets/${renameDlgBox.value}`);
+  }
+  document.getElementById("elementboxname" + encodeText(renameElementID)).innerHTML = renameDlgBox.value;
+  document.getElementById("elementboxname" + encodeText(renameElementID)).id = "elementboxname" + renameDlgBox.value;
+  saveProject();
 }
 
 function getCustomItems(mode) {

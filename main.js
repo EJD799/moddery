@@ -724,7 +724,7 @@ async function renameElement() {
       await renameZipFile(projZip, `elements/${renameElementID}.code.json`, `elements/${renameDlgBox.value}.code.json`);
     }
   } else {
-    await renameZipFile(projZip, `assets/${decodeText(renameElementID)}`, `assets/${renameDlgBox.value}`);
+    await renameZipFile(projZip, `assets/${decodeText(renameElementID)}`, `assets/${encodeText(renameDlgBox.value)}`);
   }
   let elementBox = document.getElementById("elementbox" + encodeText(renameElementID));
   if (renameElementType == "element") {
@@ -751,6 +751,7 @@ async function renameElement() {
     var center = document.createElement("center");
     assetBox.setAttribute("class", "elementbox");
     assetBox.setAttribute("id", "elementbox" + fileNameEncoded);
+    assetBox.innerHTML = "";
     center.innerHTML = `<h3 id="${"elementboxname" + fileNameEncoded}">${fileName}</h3>`;
     if (fileType == "png") {
       previewBox = document.createElement("div");

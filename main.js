@@ -748,39 +748,42 @@ async function renameElement() {
     var fileName = decodeText(renameDlgBox.value);
     var fileNameEncoded = encodeText(renameDlgBox.value);
     var fileType = "png";
-    var center = document.createElement("center");
-    assetBox.setAttribute("class", "elementbox");
-    assetBox.setAttribute("id", "elementbox" + fileNameEncoded);
-    assetBox.innerHTML = "";
-    center.innerHTML = `<h3 id="${"elementboxname" + fileNameEncoded}">${fileName}</h3>`;
-    if (fileType == "png") {
-      previewBox = document.createElement("div");
-      previewBox.setAttribute("class", "previewBox");
-      preview = document.createElement("img");
-      preview.setAttribute("src", await fileToDataURL(file));
-      preview.setAttribute("id", fileNameEncoded + "_preview");
-      previewBox.appendChild(preview);
-    }
-    center.appendChild(previewBox);
-    center.appendChild(document.createElement("br"));
-    editBtn = document.createElement("button");
-    editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}')`);
-    editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
-    editBtn.innerHTML = "Edit";
-    optionsBtn = document.createElement("button");
-    optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
-    optionsBtn.innerHTML = "&#x22EF;";
-    center.appendChild(editBtn);
-    center.appendChild(optionsBtn);
-    assetBox.appendChild(center);
-    $(`#${fileNameEncoded}_assetEditBtn`).button();
-    $(`#${fileNameEncoded}_assetOptionBtn`).button();
-    createElementDropdown(renameDlgBox.value, "asset");
-    $(`#${renameDlgBox.value}_assetOptionBtn`).on("click", function () {
-      $(`#${renameDlgBox.value}_assetMenu`).show().position({
-        my: "left top",
-        at: "left bottom",
-        of: $(`#${renameDlgBox.value}_assetOptionBtn`)
+    projZip.folder("assets").file(decodeText(fileName)).async("blob").then(function (data) {
+      var file = data;
+      var center = document.createElement("center");
+      assetBox.setAttribute("class", "elementbox");
+      assetBox.setAttribute("id", "elementbox" + fileNameEncoded);
+      assetBox.innerHTML = "";
+      center.innerHTML = `<h3 id="${"elementboxname" + fileNameEncoded}">${fileName}</h3>`;
+      if (fileType == "png") {
+        previewBox = document.createElement("div");
+        previewBox.setAttribute("class", "previewBox");
+        preview = document.createElement("img");
+        preview.setAttribute("src", await fileToDataURL(file));
+        preview.setAttribute("id", fileNameEncoded + "_preview");
+        previewBox.appendChild(preview);
+      }
+      center.appendChild(previewBox);
+      center.appendChild(document.createElement("br"));
+      editBtn = document.createElement("button");
+      editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}')`);
+      editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
+      editBtn.innerHTML = "Edit";
+      optionsBtn = document.createElement("button");
+      optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
+      optionsBtn.innerHTML = "&#x22EF;";
+      center.appendChild(editBtn);
+      center.appendChild(optionsBtn);
+      assetBox.appendChild(center);
+      $(`#${fileNameEncoded}_assetEditBtn`).button();
+      $(`#${fileNameEncoded}_assetOptionBtn`).button();
+      createElementDropdown(renameDlgBox.value, "asset");
+      $(`#${renameDlgBox.value}_assetOptionBtn`).on("click", function () {
+        $(`#${renameDlgBox.value}_assetMenu`).show().position({
+          my: "left top",
+          at: "left bottom",
+          of: $(`#${renameDlgBox.value}_assetOptionBtn`)
+        });
       });
     });
   }

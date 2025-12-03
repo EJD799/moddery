@@ -716,7 +716,7 @@ function renameElement() {
   if (renameElementType == "element") {
     renameZipFile(projZip, `elements/${renameElementID}.json`, `elements/${renameDlgBox.value}.json`);
     projZip.folder("elements").file(`${renameDlgBox.value}.json`).async("string").then(function (data) {
-      let updated = data;
+      let updated = JSON.parse(data);
       updated.name = renameDlgBox.value;
       projZip.folder("elements").file(`${renameDlgBox.value}.json`, JSON.stringify(updated));
     });
@@ -726,8 +726,40 @@ function renameElement() {
   } else {
     renameZipFile(projZip, `assets/${decodeText(renameElementID)}`, `assets/${renameDlgBox.value}`);
   }
-  document.getElementById("elementboxname" + encodeText(renameElementID)).innerHTML = renameDlgBox.value;
-  document.getElementById("elementboxname" + encodeText(renameElementID)).id = "elementboxname" + renameDlgBox.value;
+  let elementBox = document.getElementById("elementbox" + encodeText(renameElementID));
+  if (renameElementType == "element") {
+    elementBox.innerHTML = `
+      <h3 id="elementboxname${renameDlgBox.value}">${renameDlgBox.value}</h3>
+      <button onclick="editElement('${renameDlgBox.value}')" id="${renameDlgBox.value}_editBtn">Edit</button>
+      <button id="${renameDlgBox.value}_optionBtn">&#x22EF;</button>
+      `;
+  } else {
+    var assetBox = elementBox;
+    var center = document.createElement("center");
+    assetBox.setAttribute("class", "elementbox");
+    assetBox.setAttribute("id", "elementbox" + fileNameEncoded);
+    center.innerHTML = `<h3 id="${"elementboxname" + fileNameEncoded}">${fileName}</h3>`;
+    if (fileType == "png") {
+      previewBox = document.createElement("div");
+      previewBox.setAttribute("class", "previewBox");
+      preview = document.createElement("img");
+      preview.setAttribute("src", await fileToDataURL(file));
+      preview.setAttribute("id", fileNameEncoded + "_preview");
+      previewBox.appendChild(preview);
+    }
+    center.appendChild(previewBox);
+    center.appendChild(document.createElement("br"));
+    editBtn = document.createElement("button");
+    editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}')`);
+    editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
+    editBtn.innerHTML = "Edit";
+    optionsBtn = document.createElement("button");
+    optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
+    optionsBtn.innerHTML = "&#x22EF;";
+    center.appendChild(editBtn);
+    center.appendChild(optionsBtn);
+    assetBox.appendChild(center);
+  }
   saveProject();
 }
 

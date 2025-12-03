@@ -733,8 +733,11 @@ async function renameElement() {
       <button onclick="editElement('${renameDlgBox.value}')" id="${renameDlgBox.value}_editBtn">Edit</button>
       <button id="${renameDlgBox.value}_optionBtn">&#x22EF;</button>
       `;
+    $(`#${renameDlgBox.value}_editBtn`).button();
+    $(`#${renameDlgBox.value}_optionBtn`).button();
   } else {
     var assetBox = elementBox;
+    var fileNameEncoded = renameDlgBox.value;
     var center = document.createElement("center");
     assetBox.setAttribute("class", "elementbox");
     assetBox.setAttribute("id", "elementbox" + fileNameEncoded);
@@ -759,6 +762,8 @@ async function renameElement() {
     center.appendChild(editBtn);
     center.appendChild(optionsBtn);
     assetBox.appendChild(center);
+    $(`#${fileNameEncoded}_assetEditBtn`).button();
+    $(`#${fileNameEncoded}_assetOptionBtn`).button();
   }
   saveProject();
 }

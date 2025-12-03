@@ -407,6 +407,7 @@ function addElement(loadingProj) {
     var parentDiv = document.getElementById("tabs-1");
     var elementBox = document.createElement("div");
     elementBox.setAttribute("class", "elementbox");
+    elementBox.setAttribute("id", "elementbox" + $("#addElementNameBox").val());
     elementBox.innerHTML = `
     <h3>${$("#addElementNameBox").val()}</h3>
     <button onclick="editElement('${$("#addElementNameBox").val()}')" id="${$("#addElementNameBox").val()}_editBtn">Edit</button>
@@ -464,6 +465,7 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
       var assetBox = document.createElement("div");
       var center = document.createElement("center");
       assetBox.setAttribute("class", "elementbox");
+      assetBox.setAttribute("id", "elementbox" + fileNameEncoded);
       center.innerHTML = `<h3>${fileName}</h3>`;
       if (fileType == "png") {
         previewBox = document.createElement("div");
@@ -692,6 +694,7 @@ function deleteElementFromZip(id, folder) {
 function deleteElement() {
   closeDeleteElement();
   deleteElementFromZip(deleteElementID, deleteElementType + "s");
+  document.getElementById("elementbox" + encodeText(deleteElementID)).remove();
 }
 function renameElement() {
 

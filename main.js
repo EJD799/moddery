@@ -714,17 +714,17 @@ function deleteElement() {
 async function renameElement() {
   closeRenameElement();
   if (renameElementType == "element") {
-    renameZipFile(projZip, `elements/${renameElementID}.json`, `elements/${renameDlgBox.value}.json`);
+    await renameZipFile(projZip, `elements/${renameElementID}.json`, `elements/${renameDlgBox.value}.json`);
     projZip.folder("elements").file(`${renameDlgBox.value}.json`).async("string").then(function (data) {
       let updated = JSON.parse(data);
       updated.name = renameDlgBox.value;
       projZip.folder("elements").file(`${renameDlgBox.value}.json`, JSON.stringify(updated));
     });
     if (projZip.file(`elements/${renameElementID}.code.json`)) {
-      renameZipFile(projZip, `elements/${renameElementID}.code.json`, `elements/${renameDlgBox.value}.code.json`);
+      await renameZipFile(projZip, `elements/${renameElementID}.code.json`, `elements/${renameDlgBox.value}.code.json`);
     }
   } else {
-    renameZipFile(projZip, `assets/${decodeText(renameElementID)}`, `assets/${renameDlgBox.value}`);
+    await renameZipFile(projZip, `assets/${decodeText(renameElementID)}`, `assets/${renameDlgBox.value}`);
   }
   let elementBox = document.getElementById("elementbox" + encodeText(renameElementID));
   if (renameElementType == "element") {

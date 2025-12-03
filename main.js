@@ -711,7 +711,7 @@ function deleteElement() {
   document.getElementById("elementbox" + encodeText(deleteElementID)).remove();
   saveProject();
 }
-function renameElement() {
+async function renameElement() {
   closeRenameElement();
   if (renameElementType == "element") {
     renameZipFile(projZip, `elements/${renameElementID}.json`, `elements/${renameDlgBox.value}.json`);

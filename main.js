@@ -724,7 +724,7 @@ async function renameElement() {
       await renameZipFile(projZip, `elements/${renameElementID}.code.json`, `elements/${renameDlgBox.value}.code.json`);
     }
   } else {
-    await renameZipFile(projZip, `assets/${decodeText(renameElementID)}`, `assets/${encodeText(renameDlgBox.value)}`);
+    await renameZipFile(projZip, `assets/${decodeText(renameElementID)}`, `assets/${renameDlgBox.value}`);
   }
   let elementBox = document.getElementById("elementbox" + encodeText(renameElementID));
   if (renameElementType == "element") {

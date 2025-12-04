@@ -522,6 +522,7 @@ function saveProject() {
 
 async function saveProject() {
   document.getElementById("savingText").innerHTML = "<i class='fa-solid fa-spinner'></i> Saving...";
+  document.getElementById("savingFlyoutText").innerHTML = `Saving...`;
 
   // If no file is opened, fall back to Save As
   if (!projFileHandle) {
@@ -566,6 +567,7 @@ $("#loaderProgress").progressbar({
 });
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 $('textarea').addClass("ui-widget ui-widget-content ui-corner-all");
+$('#savingFlyoutButton').button();
 
 function getTabContent(role, elementID) {
   if (role == "Function") {

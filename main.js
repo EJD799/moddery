@@ -554,6 +554,8 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
         preview.setAttribute("src", await fileToDataURL(file));
       } else if (fileType == "mcstructure") {
         preview.setAttribute("src", "/moddery/custom_textures/structure.png");
+      } else if (fileType == "wav") {
+        preview.setAttribute("src", "/moddery/custom_textures/audio.png");
       } else {
         preview.setAttribute("src", "/moddery/custom_textures/file.png");
       }
@@ -721,6 +723,8 @@ function openElementInfo(elementID, type) {
       elementType = "Image";
     } else if (elementID.endsWith("mcstructure")) {
       elementType = "Structure";
+    } else if (elementID.endsWith("wav")) {
+      elementType = "Audio";
     } else {
       elementType = "Asset";
     }
@@ -876,6 +880,8 @@ async function renameElement() {
         preview.setAttribute("src", await fileToDataURL(file));
       } else if (fileType == "mcstructure") {
         preview.setAttribute("src", "/moddery/custom_textures/structure.png");
+      } else if (fileType == "wav") {
+        preview.setAttribute("src", "/moddery/custom_textures/audio.png");
       } else {
         preview.setAttribute("src", "/moddery/custom_textures/file.png");
       }

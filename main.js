@@ -57,7 +57,7 @@ $("#newProjCreateBtn").button();
 $("#editProjDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
-  height: 400,
+  height: 500,
   width: 500
 });
 $("#editProjDlg").dialog("close");

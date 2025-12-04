@@ -467,14 +467,18 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
       assetBox.setAttribute("class", "elementbox");
       assetBox.setAttribute("id", "elementbox" + fileNameEncoded);
       center.innerHTML = `<h3 id="${"elementboxname" + fileNameEncoded}">${fileName}</h3>`;
+      previewBox = document.createElement("div");
+      previewBox.setAttribute("class", "previewBox");
+      preview = document.createElement("img");
       if (fileType == "png") {
-        previewBox = document.createElement("div");
-        previewBox.setAttribute("class", "previewBox");
-        preview = document.createElement("img");
         preview.setAttribute("src", await fileToDataURL(file));
-        preview.setAttribute("id", fileNameEncoded + "_preview");
-        previewBox.appendChild(preview);
+      } else if (fileType == "mcstructure") {
+        preview.setAttribute("src", "/moddery/custom_textures/structure.png");
+      } else {
+        preview.setAttribute("src", "/moddery/custom_textures/file.png");
       }
+      preview.setAttribute("id", fileNameEncoded + "_preview");
+      previewBox.appendChild(preview);
       center.appendChild(previewBox);
       center.appendChild(document.createElement("br"));
       editBtn = document.createElement("button");
@@ -612,6 +616,8 @@ function openElementInfo(elementID, type) {
     elementIdentifier = decodeText(elementID);
     if (elementID.endsWith("png")) {
       elementType = "Image";
+    } else if (elementID.endsWith("mcstructure")) {
+      elementType = "Structure";
     } else {
       elementType = "Asset";
     }
@@ -752,7 +758,7 @@ async function renameElement() {
     var assetBox = elementBox;
     var fileName = decodeText(renameDlgBox.value);
     var fileNameEncoded = encodeText(renameDlgBox.value);
-    var fileType = "png";
+    var fileType = afterLastDot(fileName);
     projZip.folder("assets").file(decodeText(fileName)).async("blob").then(async function (data) {
       var file = data;
       var center = document.createElement("center");
@@ -760,14 +766,18 @@ async function renameElement() {
       assetBox.setAttribute("id", "elementbox" + fileNameEncoded);
       assetBox.innerHTML = "";
       center.innerHTML = `<h3 id="${"elementboxname" + fileNameEncoded}">${fileName}</h3>`;
+      previewBox = document.createElement("div");
+      previewBox.setAttribute("class", "previewBox");
+      preview = document.createElement("img");
       if (fileType == "png") {
-        previewBox = document.createElement("div");
-        previewBox.setAttribute("class", "previewBox");
-        preview = document.createElement("img");
         preview.setAttribute("src", await fileToDataURL(file));
-        preview.setAttribute("id", fileNameEncoded + "_preview");
-        previewBox.appendChild(preview);
+      } else if (fileType == "mcstructure") {
+        preview.setAttribute("src", "/moddery/custom_textures/structure.png");
+      } else {
+        preview.setAttribute("src", "/moddery/custom_textures/file.png");
       }
+      preview.setAttribute("id", fileNameEncoded + "_preview");
+      previewBox.appendChild(preview);
       center.appendChild(previewBox);
       center.appendChild(document.createElement("br"));
       editBtn = document.createElement("button");
@@ -885,20 +895,25 @@ async function saveElement(elementTab) {
   }
 }
 
-function fileListInFolder(path) {
+function fileListInFolder(path, filterType) {
   const folder = projZip.folder(path);
   const folderPath = path + "/";
   let fileNames = [];
   folder.forEach((relativePath, file) => {
     if (!file.dir) {
-      fileNames.push(relativePath); // relativePath excludes "myfolder/"
+      if (relativePath.endsWith(filterType) || !filterType) {
+        fileNames.push(relativePath); // relativePath excludes "myfolder/"
+      }
     }
   });
   return fileNames;
 }
 
 function getTextureList() {
-  return fileListInFolder("assets");
+  return fileListInFolder("assets", "png");
+}
+function getStructureList() {
+  return fileListInFolder("assets", "mcstructure")
 }
 
 $("#newProjBtn").button();

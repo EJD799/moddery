@@ -59,10 +59,33 @@ function selectStructure() {
 }
 
 function saveProject() {
-    return {};
+    return {
+        name: elementData.name,
+        id: $("#structureIDBox").val(),
+        type: "Structure",
+        structureType: $("#typeBox").val(),
+        direction: $("#directionBox").val(),
+        structure: selectedStructure
+    };
 }
 function loadProject(data) {
-
+    elementData = data;
+    $("#elementIDBox").val(data.name);
+    $("#structureIDBox").val(data.id);
+    if ((data?.structureType ?? false)) {
+        $("#typeBox").val(data.structureType);
+        $("#typeBox").selectmenu("refresh");
+    }
+    if ((data?.direction ?? false)) {
+        $("#directionBox").val(data.direction);
+        $("#directionBox").selectmenu("refresh");
+    }
+    selectedStructure = data.structure;
+    if (selectedStructure) {
+        document.getElementById("structureNameText").innerHTML = selectedStructure;
+    } else {
+        document.getElementById("structureNameText").innerHTML = "No structure selected";
+    }
 }
 
 

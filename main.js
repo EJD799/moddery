@@ -523,6 +523,12 @@ function saveProject() {
 async function saveProject() {
   document.getElementById("savingText").innerHTML = "<i class='fa-solid fa-spinner'></i> Saving...";
   document.getElementById("savingFlyoutText").innerHTML = `Saving...`;
+  $("#savingFlyout")
+    .position({
+      my: "right bottom",
+      at: "right top",
+      of: $("#savingBox")
+    });
 
   // If no file is opened, fall back to Save As
   if (!projFileHandle) {

@@ -35,17 +35,14 @@
     <option>Water Surface</option>
 </select>
 <br><br>
-<h4>Spawn Location Weighting</h4>
-<label for="frozenWeight">Frozen</label>
-<input type="number" name="frozenWeight" id="frozenWeight" class="smallInput"><br>
-<label for="coldWeight">Cold</label>
-<input type="number" name="coldWeight" id="coldWeight" class="smallInput"><br>
-<label for="mediumWeight">Medium</label>
-<input type="number" name="mediumWeight" id="mediumWeight" class="smallInput"><br>
-<label for="lukewarmWeight">Lukewarm</label>
-<input type="number" name="lukewarmWeight" id="lukewarmWeight" class="smallInput"><br>
-<label for="warmWeight">Warm</label>
-<input type="number" name="warmWeight" id="warmWeight" class="smallInput">
+<label for="directionBox">Facing Direction</label>
+<select name="directionBox" id="directionBox">
+    <option selected>Random</option>
+    <option>North</option>
+    <option>South</option>
+    <option>East</option>
+    <option>West</option>
+</select>
 <br><br>
 <label for="itemTextureBtn">Item Texture: <span id="textureNameText">No texture selected</span></label>
 <button name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg()">Select Texture</button><br><br>

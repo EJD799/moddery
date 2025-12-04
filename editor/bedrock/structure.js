@@ -15,39 +15,30 @@ $("#selectStructureDlg").dialog("close");
 
 function openSelectStructureDlg() {
   $("#selectStructureDlg").dialog("open");
-  textures = window.parent.getTextureList();
-  let selectTextureMenu = document.getElementById("selectTextureMenu");
-  selectTextureMenu.innerHTML = "";
+  textures = window.parent.getStructureList();
+  let selectStructureMenu = document.getElementById("selectStructureMenu");
+  selectStructureMenu.innerHTML = "";
   for (let i = 0; i < textures.length; i++) {
-    let selectTextureMenuItem;
+    let selectStructureMenuItem;
     let previewBox;
     let preview;
     let itemTitle;
     let itemRadio;
-    selectTextureMenuItem = document.createElement("div");
-    selectTextureMenuItem.setAttribute("class", "textureMenuItem");
+    selectStructureMenuItem = document.createElement("div");
+    selectStructureMenuItem.setAttribute("class", "structureMenuItem");
     itemRadio = document.createElement("input");
     itemRadio.setAttribute("type", "radio");
-    itemRadio.setAttribute("name", "selectedTexture");
-    itemRadio.setAttribute("class", "textureRadio");
+    itemRadio.setAttribute("name", "selectedStructure");
+    itemRadio.setAttribute("class", "structureRadio");
     itemRadio.setAttribute("value", textures[i]);
-    selectTextureMenuItem.appendChild(itemRadio);
-    previewBox = document.createElement("div");
-    previewBox.setAttribute("class", "smallPreviewBox");
-    preview = document.createElement("img");
-    window.parent.projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
-      preview.setAttribute("src", await window.parent.fileToDataURL(file));
-    });
-    preview.setAttribute("id", window.parent.encodeText(textures[i]) + "_preview");
-    previewBox.appendChild(preview);
-    selectTextureMenuItem.appendChild(previewBox);
+    selectStructureMenuItem.appendChild(itemRadio);
     itemTitle = document.createElement("span");
-    itemTitle.setAttribute("class", "textureMenuTitle");
+    itemTitle.setAttribute("class", "structureMenuTitle");
     itemTitle.innerHTML = textures[i];
-    selectTextureMenuItem.appendChild(itemTitle);
-    selectTextureMenu.appendChild(selectTextureMenuItem);
-    selectTextureMenuItem.addEventListener("click", () => {
-      const itemRadio = selectTextureMenuItem.querySelector('input[type="radio"]');
+    selectStructureMenuItem.appendChild(itemTitle);
+    selectStructureMenu.appendChild(selectStructureMenuItem);
+    selectStructureMenuItem.addEventListener("click", () => {
+      const itemRadio = selectStructureMenuItem.querySelector('input[type="radio"]');
       if (itemRadio) {
         itemRadio.checked = true;  // select this radio
       }

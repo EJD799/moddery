@@ -72,3 +72,26 @@ function afterLastDot(str) {
     const i = str.lastIndexOf(".");
     return i === -1 ? str : str.slice(i + 1, str.length);
 }
+
+function getFormattedDateTime() {
+  const now = new Date();
+
+  // Extract parts in local time
+  let month = now.getMonth() + 1; // 0-based
+  let day = now.getDate();
+  let year = now.getFullYear();
+
+  let hours = now.getHours();
+  let minutes = now.getMinutes();
+  let seconds = now.getSeconds();
+
+  // AM/PM formatting
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  if (hours === 0) hours = 12;
+
+  // Pad values to 2 digits
+  const pad = (n) => (n < 10 ? "0" + n : n);
+
+  return `${pad(month)}/${pad(day)}/${year} at ${pad(hours)}:${pad(minutes)}:${pad(seconds)} ${ampm}`;
+}

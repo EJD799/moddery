@@ -728,6 +728,7 @@ async function renameElement() {
   }
   let elementBox = document.getElementById("elementbox" + encodeText(renameElementID));
   if (renameElementType == "element") {
+    elementBox.id = "elementbox" + renameDlgBox.value;
     elementBox.innerHTML = `
       <h3 id="elementboxname${renameDlgBox.value}">${renameDlgBox.value}</h3>
       <button onclick="editElement('${renameDlgBox.value}')" id="${renameDlgBox.value}_editBtn">Edit</button>

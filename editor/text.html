@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Monaco CDN Example</title>
+  <style>
+    #editor {
+      width: 800px;
+      height: 500px;
+      border: 1px solid #ccc;
+    }
+  </style>
+
+  <!-- Load Monaco Editor from CDN -->
+  <script type="module">
+    import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor@0.52.0/+esm";
+
+    window.addEventListener("DOMContentLoaded", () => {
+      monaco.editor.create(document.getElementById("editor"), {
+        value: `function hello() {\n  console.log("Hello, world!");\n}`,
+        language: "javascript",
+        theme: "vs-dark",
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="editor"></div>
+</body>
+</html>

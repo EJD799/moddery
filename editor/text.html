@@ -24,12 +24,15 @@
   <script type="module">
     import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor@0.52.0/+esm";
 
+    let editor;
+
     window.addEventListener("DOMContentLoaded", () => {
-      monaco.editor.create(document.getElementById("editor"), {
+      editor = monaco.editor.create(document.getElementById("editor"), {
         value: `function hello() {\n  console.log("Hello, world!");\n}`,
         language: "javascript",
         theme: "vs-dark",
       });
+      window.requestAnimationFrame(() => editor.layout());
     });
 
     window.addEventListener("resize", () => {

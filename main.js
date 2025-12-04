@@ -565,6 +565,8 @@ function getTabContent(role, elementID) {
     return '<iframe src="editor/bedrock/item.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else if (role == "Biome") {
     return '<iframe src="editor/bedrock/biome.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
+  } else if (role == "Structure") {
+    return '<iframe src="editor/bedrock/structure.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else if (role == "Recipe") {
     return '<iframe src="editor/bedrock/recipe.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else if (role == "Image") {
@@ -830,7 +832,7 @@ function addTab(role, elementID) {
       projZip.folder("elements").file(elementID + ".code.json").async("string").then(function (data) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
-    } else if ((role == "Item") || (role == "Recipe") || (role == "Biome")) {
+    } else if ((role == "Item") || (role == "Recipe") || (role == "Biome") || (role == "Structure")) {
       projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
@@ -872,7 +874,7 @@ async function saveElement(elementTab) {
   if ((elementTab[0] == "Function") || (elementTab[0] == "Script")) {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("elements").file(elementTab[1] + ".code.json", JSON.stringify(frame.contentWindow.saveProject()));
-  } else if ((elementTab[0] == "Item") || (elementTab[0] == "Recipe") || (elementTab[0] == "Biome")) {
+  } else if ((elementTab[0] == "Item") || (elementTab[0] == "Recipe") || (elementTab[0] == "Biome") || (elementTab[0] == "Structure")) {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("elements").file(elementTab[1] + ".json", JSON.stringify(frame.contentWindow.saveProject()));
   } else if (elementTab[0] == "Image") {

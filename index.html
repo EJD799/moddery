@@ -163,7 +163,7 @@
       <option>Script</option>
       <option>Loot Table</option>
       <option disabled>Command</option>
-      <option>Biome</option>
+      <option disabled>Biome</option>
       <option>Structure</option>
     </select>
     <br><br>
@@ -174,10 +174,10 @@
 
 <div id="addAssetDlg" title="Add Asset">
   <center>
-    <span>Upload an asset to add it to your project. Accepts PNG textures, WAV audio, and JSON geometry files.</span>
+    <span>Upload an asset to add it to your project. Accepts PNG textures, WAV audio, JSON geometry files, and MCSTRUCTURE files.</span>
     <br><br>
     <button onclick="document.getElementById('addAssetUploadInput').click()" id="addAssetUploadBtn">Upload...</button>
-    <input type="file" id="addAssetUploadInput" style="display:none" accept=".png, .wav, .json">
+    <input type="file" id="addAssetUploadInput" style="display:none" accept=".png, .wav, .json, .mcstructure">
     <br><br>
     <label for="addAssetNameBox">Asset Name</label>
     <input type="text" id="addAssetNameBox" name="addAssetNameBox" placeholder="Asset Name">

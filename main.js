@@ -973,6 +973,7 @@ $("#savingFlyout").on("click", function (e) {
   e.stopPropagation();
 });
 
+$("#editProjMCVersionBox").selectmenu();
 
 
 

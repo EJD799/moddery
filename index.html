@@ -143,6 +143,18 @@
     <input type="number" name="editProjVersionBox2" id="editProjVersionBox2" class="versionBox" placeholder="0">.
     <input type="number" name="editProjVersionBox3" id="editProjVersionBox3" class="versionBox" placeholder="0">
     <br><br>
+    <label for="editProjMCVersionBox">Minecraft Version</label>
+    <select id="editProjMCVersionBox" name="editProjMCVersionBox">
+      <option selected>1.21.90</option>
+      <option>1.21.100</option>
+      <option>1.21.110</option>
+      <option>1.21.120</option>
+      <option>1.21.130</option>
+    </select>
+    <br><br>
+    <label for="packIconBtn">Pack Icon: <span id="packIconText">No icon selected</span></label>
+    <button name="packIconBtn" id="packIconBtn" onclick="openSelectPackIconDlg()">Select Icon</button>
+    <br><br>
     <label for="editProjDescriptionBox">Description</label>
     <textarea name="editProjDescriptionBox" id="editProjDescriptionBox"></textarea>
     <br><br>

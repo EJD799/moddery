@@ -159,6 +159,11 @@ function openEditProjDlg() {
   $("#editProjMCVersionBox1").val(projManifest.mc_version[0]);
   $("#editProjMCVersionBox2").val(projManifest.mc_version[1]);
   $("#editProjMCVersionBox3").val(projManifest.mc_version[2]);
+  if (projManifest.packIcon) {
+      document.getElementById("textureNameText").innerHTML = projManifest.packIcon;
+  } else {
+      document.getElementById("textureNameText").innerHTML = "No icon selected";
+  }
 }
 function closeEditProjDlg() {
   $("#editProjDlg").dialog("close");
@@ -168,7 +173,9 @@ function saveProjectInfo() {
   projManifest.name = $("#editProjNameBox").val();
   projManifest.namespace = $("#editProjNamespaceBox").val();
   projManifest.addon_version = [$("#editProjVersionBox1").val(), $("#editProjVersionBox2").val(), $("#editProjVersionBox3").val()];
+  projManifest.mc_version = [$("#editProjMCVersionBox1").val(), $("#editProjMCVersionBox2").val(), $("#editProjMCVersionBox3").val()];
   projManifest.description = $("#editProjDescriptionBox").val();
+  projManifest.packIcon = selectedPackIcon;
   projZip.file("manifest.json", JSON.stringify(projManifest));
   saveProject();
 }

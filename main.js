@@ -778,11 +778,11 @@ async function renameElement() {
       $(`#${fileNameEncoded}_assetEditBtn`).button();
       $(`#${fileNameEncoded}_assetOptionBtn`).button();
       createElementDropdown(renameDlgBox.value, "asset");
-      $(`#${renameDlgBox.value}_assetOptionBtn`).on("click", function () {
-        $(`#${renameDlgBox.value}_assetMenu`).show().position({
+      $(`#${fileNameEncoded}_assetOptionBtn`).on("click", function () {
+        $(`#${fileNameEncoded}_assetMenu`).show().position({
           my: "left top",
           at: "left bottom",
-          of: $(`#${renameDlgBox.value}_assetOptionBtn`)
+          of: $(`#${fileNameEncoded}_assetOptionBtn`)
         });
       });
     });

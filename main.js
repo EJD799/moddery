@@ -933,7 +933,28 @@ $("#openProjBtn").button();
 $("#closeAboutBtn").button();
 document.getElementById("tabs").hidden = true;
 
+// Click handler for the savingBox menu item
+$("#savingBox").on("click", function (e) {
+  e.stopPropagation(); // Prevent auto-closing on click
 
+  $("#savingFlyout")
+    .show()
+    .position({
+      my: "left top",
+      at: "right top",
+      of: $(this)
+    });
+});
+
+// Hide flyout on outside click
+$(document).on("click", function () {
+  $("#savingFlyout").hide();
+});
+
+// Prevent closing when clicking inside flyout
+$("#savingFlyout").on("click", function (e) {
+  e.stopPropagation();
+});
 
 
 

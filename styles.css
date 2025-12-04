@@ -336,3 +336,12 @@ input[type=color]:hover {
 .ui-dialog.no-close .ui-dialog-titlebar-close {
   display: none !important;
 }
+
+#savingFlyout {
+  display: none;
+  position: absolute;
+  background: #222222;
+  border: 1px solid #333333;
+  padding: 4px;
+  z-index: 9999;
+}

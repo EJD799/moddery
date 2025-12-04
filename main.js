@@ -206,6 +206,10 @@ function selectPackIcon() {
     }
 }
 
+$("#packIconBtn").button();
+$("#selectPackIconCancelBtn").button();
+$("#selectPackIconSelectBtn").button();
+
 function openEditProjDlg() {
   $("#editProjDlg").dialog("open");
   $("#editProjNameBox").val(projManifest.name);

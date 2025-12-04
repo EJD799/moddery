@@ -344,8 +344,9 @@ input[type=color]:hover {
   border: 1px solid #333333;
   padding: 4px;
   z-index: 9999;
+  width: max-content !important;
 }
 #savingFlyoutText {
-    color: white;
-    font-family: Verdana, sans-serif;
+  color: white;
+  font-family: Verdana, sans-serif;
 }

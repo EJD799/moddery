@@ -777,7 +777,7 @@ async function renameElement() {
       assetBox.appendChild(center);
       $(`#${fileNameEncoded}_assetEditBtn`).button();
       $(`#${fileNameEncoded}_assetOptionBtn`).button();
-      createElementDropdown(renameDlgBox.value, "asset");
+      createElementDropdown(fileNameEncoded, "asset");
       $(`#${fileNameEncoded}_assetOptionBtn`).on("click", function () {
         $(`#${fileNameEncoded}_assetMenu`).show().position({
           my: "left top",

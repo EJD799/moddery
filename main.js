@@ -529,6 +529,7 @@ async function saveProject() {
       at: "right top",
       of: $("#savingBox")
     });
+  $("#savingFlyoutButton").hide();
 
   // If no file is opened, fall back to Save As
   if (!projFileHandle) {
@@ -557,6 +558,7 @@ async function saveProject() {
       at: "right top",
       of: $("#savingBox")
     });
+  $("#savingFlyoutButton").show();
 }
 async function saveProjectAs() {
   projFileHandle = await window.showSaveFilePicker({

@@ -156,6 +156,9 @@ function openEditProjDlg() {
   $("#editProjVersionBox2").val(projManifest.addon_version[1]);
   $("#editProjVersionBox3").val(projManifest.addon_version[2]);
   $("#editProjDescriptionBox").val(projManifest.description);
+  $("#editProjMCVersionBox1").val(projManifest.mc_version[0]);
+  $("#editProjMCVersionBox2").val(projManifest.mc_version[1]);
+  $("#editProjMCVersionBox3").val(projManifest.mc_version[2]);
 }
 function closeEditProjDlg() {
   $("#editProjDlg").dialog("close");
@@ -972,8 +975,6 @@ $(document).on("click", function () {
 $("#savingFlyout").on("click", function (e) {
   e.stopPropagation();
 });
-
-$("#editProjMCVersionBox").selectmenu();
 
 
 

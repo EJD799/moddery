@@ -149,6 +149,14 @@ function closeNewProjDlg() {
   $("#newProjDlg").dialog("close");
 }
 
+$("#selectPackIconDlg").dialog({
+  position: { my: "center", at: "center", of: window },
+  resizable: false,
+  height: 500,
+  width: 500
+});
+$("#selectPackIconDlg").dialog("close");
+
 function openSelectPackIconDlg() {
   $("#selectPackIconDlg").dialog("open");
   textures = getTextureList();

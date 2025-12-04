@@ -1,0 +1,117 @@
+<link rel="stylesheet" href="../../jquery-ui.min.css">
+<link rel="stylesheet" href="../../jquery-ui.theme.min.css">
+<link rel="stylesheet" href="../../styles.css">
+<script src="../../jquery-3.7.1.min.js"></script>
+<script src="../../jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
+<style>
+    input {
+        padding: 10px;
+    }
+    body {
+        color: white;
+        font-family: Verdana, sans-serif;
+        background: #111111;
+        padding-left: 18px;
+    }
+    .ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
+        z-index: 2000 !important; /* Use !important if necessary to override existing styles */
+    }
+</style>
+
+<label for="elementIDBox">Element Name (Editor)</label>
+<input name="elementIDBox" id="elementIDBox" placeholder="Element ID">
+<br><br>
+<label for="biomeIDBox">Biome ID</label>
+<input name="biomeIDBox" id="itemIDBox" placeholder="Item ID">
+<br><br>
+<label for="nameBox">Biome Name</label>
+<input name="nameBox" id="nameBox" placeholder="Biome Name">
+<br><br>
+<label for="dimensionBox">Dimension</label>
+<select name="dimensionBox" id="dimensionBox">
+    <option selected>Overworld</option>
+    <option>Nether</option>
+    <option disabled>The End</option>
+</select>
+<br><br>
+<h4>Spawn Location Weighting</h4>
+<label for="frozenWeight">Frozen</label>
+<input type="number" name="frozenWeight" id="frozenWeight" class="smallInput"><br>
+<label for="coldWeight">Cold</label>
+<input type="number" name="coldWeight" id="coldWeight" class="smallInput"><br>
+<label for="mediumWeight">Medium</label>
+<input type="number" name="mediumWeight" id="mediumWeight" class="smallInput"><br>
+<label for="lukewarmWeight">Lukewarm</label>
+<input type="number" name="lukewarmWeight" id="lukewarmWeight" class="smallInput"><br>
+<label for="warmWeight">Warm</label>
+<input type="number" name="warmWeight" id="warmWeight" class="smallInput">
+<br><br>
+<label for="itemTextureBtn">Item Texture: <span id="textureNameText">No texture selected</span></label>
+<button name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg()">Select Texture</button><br><br>
+<h3>Components <button id="addComponentBtn" onclick="addComponent()">+ Add Component</button></h3>
+<div id="componentsBox"></div>
+<div id="addComponentDlg" title="Add Component">
+  <center>
+    <label for="addComponentType">Component Type</label>
+    <select name="addComponentType" id="addComponentType">
+      <option>Allow Off Hand</option>
+      <option>Block Placer</option>
+      <option>Bundle Interaction</option>
+      <option>Can Destroy in Creative</option>
+      <option>Compostable</option>
+      <option>Cooldown</option>
+      <option>Damage</option>
+      <option>Digger</option>
+      <option>Durability</option>
+      <option>Dyeable</option>
+      <option>Enchantable</option>
+      <option>Entity Placer</option>
+      <option>Fire Resistant</option>
+      <option>Food</option>
+      <option>Fuel</option>
+      <option>Glint</option>
+      <option>Hand Equipped</option>
+      <option>Hover Text Color</option>
+      <option>Interact Button</option>
+      <option>Liquid Clipped</option>
+      <option>Projectile</option>
+      <option>Rarity</option>
+      <option>Record</option>
+      <option>Repairable</option>
+      <option>Shooter</option>
+      <option>Should Despawn</option>
+      <option>Stacked By Data</option>
+      <option>Storage Item</option>
+      <option>Swing Duration</option>
+      <option>Tags</option>
+      <option>Throwable</option>
+      <option>Use Animation</option>
+      <option>Use Modifiers</option>
+      <option>Wearable</option>
+    </select>
+    <br><br>
+    <button id="addComponentCancelBtn" onclick="closeAddComponentDlg()">Cancel</button>
+    <button id="addComponentAddBtn" onclick="createComponent($('#addComponentType').val())">Add</button>
+  </center>
+</div>
+
+<div id="selectTextureDlg" title="Select Texture">
+    <div class="textureMenu" id="selectTextureMenu"></div>
+
+    <div class="textureDialogButtons">
+        <button id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
+        <button id="selectTextureSelectBtn" onclick="selectTexture()">Select</button>
+    </div>
+</div>
+
+<div id="deleteDlg" title="Delete Component?">
+  <center>
+    <span id="deleteDlgText"></span><br><br>
+    <button id="deleteDlgCancel" onclick="closeDeleteComponent()">Cancel</button>
+    <button id="deleteDlgConfirm" class="redBtn">Delete</button>
+  </center>
+</div>
+
+<script src="biome.js"></script>

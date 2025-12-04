@@ -218,9 +218,9 @@ function openEditProjDlg() {
   $("#editProjMCVersionBox2").val(projManifest.mc_version[1]);
   $("#editProjMCVersionBox3").val(projManifest.mc_version[2]);
   if (projManifest.packIcon) {
-      document.getElementById("textureNameText").innerHTML = projManifest.packIcon;
+      document.getElementById("packIconNameText").innerHTML = projManifest.packIcon;
   } else {
-      document.getElementById("textureNameText").innerHTML = "No icon selected";
+      document.getElementById("packIconNameText").innerHTML = "No icon selected";
   }
 }
 function closeEditProjDlg() {

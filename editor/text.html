@@ -31,6 +31,10 @@
         theme: "vs-dark",
       });
     });
+
+    window.addEventListener("resize", () => {
+      editor.layout();
+    });
   </script>
 </head>
 <body>

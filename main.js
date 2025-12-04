@@ -200,7 +200,7 @@ function selectPackIcon() {
     $("#selectPackIconDlg").dialog("close");
     const selected = document.querySelector('input[name="selectedPackIcon"]:checked');
     if (selected.value) {
-        const packIconNameText = document.getElementById("packIconNameText");
+        const packIconNameText = document.getElementById("packIconText");
         packIconNameText.innerHTML = selected.value;
         selectedPackIcon = selected.value;
     }
@@ -222,9 +222,9 @@ function openEditProjDlg() {
   $("#editProjMCVersionBox2").val(projManifest.mc_version[1]);
   $("#editProjMCVersionBox3").val(projManifest.mc_version[2]);
   if (projManifest.packIcon) {
-      document.getElementById("packIconNameText").innerHTML = projManifest.packIcon;
+      document.getElementById("packIconText").innerHTML = projManifest.packIcon;
   } else {
-      document.getElementById("packIconNameText").innerHTML = "No icon selected";
+      document.getElementById("packIconText").innerHTML = "No icon selected";
   }
 }
 function closeEditProjDlg() {

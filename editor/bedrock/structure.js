@@ -65,7 +65,9 @@ function saveProject() {
         type: "Structure",
         structureType: $("#typeBox").val(),
         direction: $("#directionBox").val(),
-        structure: selectedStructure
+        structure: selectedStructure,
+        biomeFilter: $("#biomesBox").val(),
+        spawnChance: [$("#spawnChanceBox1").val(), $("#spawnChanceBox2").val()]
     };
 }
 function loadProject(data) {
@@ -86,6 +88,9 @@ function loadProject(data) {
     } else {
         document.getElementById("structureNameText").innerHTML = "No structure selected";
     }
+    $("#biomesBox").val(data.biomeFilter);
+    $("#spawnChanceBox1").val(data.spawnChance[0]);
+    $("#spawnChanceBox2").val(data.spawnChance[1]);
 }
 
 

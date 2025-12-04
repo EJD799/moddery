@@ -551,6 +551,12 @@ async function saveProject() {
   console.log("Project saved!");
   document.getElementById("savingText").innerHTML = "<i class='fa-solid fa-circle-check'></i> Saved";
   document.getElementById("savingFlyoutText").innerHTML = `Last saved on ${getFormattedDateTime()}`;
+  $("#savingFlyout")
+    .position({
+      my: "right bottom",
+      at: "right top",
+      of: $("#savingBox")
+    });
 }
 async function saveProjectAs() {
   projFileHandle = await window.showSaveFilePicker({

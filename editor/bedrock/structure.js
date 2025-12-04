@@ -25,15 +25,15 @@ function openSelectStructureDlg() {
     let itemTitle;
     let itemRadio;
     selectStructureMenuItem = document.createElement("div");
-    selectStructureMenuItem.setAttribute("class", "structureMenuItem");
+    selectStructureMenuItem.setAttribute("class", "textureMenuItem");
     itemRadio = document.createElement("input");
     itemRadio.setAttribute("type", "radio");
     itemRadio.setAttribute("name", "selectedStructure");
-    itemRadio.setAttribute("class", "structureRadio");
+    itemRadio.setAttribute("class", "textureRadio");
     itemRadio.setAttribute("value", textures[i]);
     selectStructureMenuItem.appendChild(itemRadio);
     itemTitle = document.createElement("span");
-    itemTitle.setAttribute("class", "structureMenuTitle");
+    itemTitle.setAttribute("class", "textureMenuTitle");
     itemTitle.innerHTML = textures[i];
     selectStructureMenuItem.appendChild(itemTitle);
     selectStructureMenu.appendChild(selectStructureMenuItem);

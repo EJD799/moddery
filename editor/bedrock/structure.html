@@ -46,6 +46,13 @@
 <br><br>
 <label for="structureFileBtn">Structure File: <span id="structureNameText">No structure selected</span></label>
 <button name="structureFileBtn" id="structureFileBtn" onclick="openSelectStructureDlg()">Select Structure</button><br><br>
+<label for="biomesBox">Generate in: (Enter as a list of biomes separated with commas and no spaces)</label>
+<input name="biomesBox" id="biomesBox" placeholder="Biomes" value="plains">
+<br><br>
+<label for="spawnChanceBox1">Spawn Chance</label>
+<input name="spawnChanceBox1" id="spawnChanceBox1" type="number" class="smallInput" value="1">/
+<input name="spawnChanceBox2" id="spawnChanceBox2" type="number" class="smallInput" value="25">
+<br><br>
 
 <div id="selectStructureDlg" title="Select Structure">
     <div class="textureMenu" id="selectStructureMenu"></div>

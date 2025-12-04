@@ -148,6 +148,64 @@ function openNewProjDlg() {
 function closeNewProjDlg() {
   $("#newProjDlg").dialog("close");
 }
+
+function openSelectPackIconDlg() {
+  $("#selectPackIconDlg").dialog("open");
+  textures = getTextureList();
+  let selectPackIconMenu = document.getElementById("selectPackIconMenu");
+  selectPackIconMenu.innerHTML = "";
+  for (let i = 0; i < textures.length; i++) {
+    let selectPackIconMenuItem;
+    let previewBox;
+    let preview;
+    let itemTitle;
+    let itemRadio;
+    selectPackIconMenuItem = document.createElement("div");
+    selectPackIconMenuItem.setAttribute("class", "textureMenuItem");
+    itemRadio = document.createElement("input");
+    itemRadio.setAttribute("type", "radio");
+    itemRadio.setAttribute("name", "selectedPackIcon");
+    itemRadio.setAttribute("class", "textureRadio");
+    itemRadio.setAttribute("value", textures[i]);
+    selectPackIconMenuItem.appendChild(itemRadio);
+    previewBox = document.createElement("div");
+    previewBox.setAttribute("class", "smallPreviewBox");
+    preview = document.createElement("img");
+    window.parent.projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
+      preview.setAttribute("src", await fileToDataURL(file));
+    });
+    preview.setAttribute("id", encodeText(textures[i]) + "_preview");
+    previewBox.appendChild(preview);
+    selectPackIconMenuItem.appendChild(previewBox);
+    itemTitle = document.createElement("span");
+    itemTitle.setAttribute("class", "textureMenuTitle");
+    itemTitle.innerHTML = textures[i];
+    selectPackIconMenuItem.appendChild(itemTitle);
+    selectPackIconMenu.appendChild(selectPackIconMenuItem);
+    selectPackIconMenuItem.addEventListener("click", () => {
+      const itemRadio = selectPackIconMenuItem.querySelector('input[type="radio"]');
+      if (itemRadio) {
+        itemRadio.checked = true;  // select this radio
+      }
+    });
+  }
+}
+
+let selectedPackIcon = "";
+
+function closeSelectPackIconDlg() {
+  $("#selectPackIconDlg").dialog("close");
+}
+function selectPackIcon() {
+    $("#selectPackIconDlg").dialog("close");
+    const selected = document.querySelector('input[name="selectedPackIcon"]:checked');
+    if (selected.value) {
+        const packIconNameText = document.getElementById("packIconNameText");
+        packIconNameText.innerHTML = selected.value;
+        selectedPackIcon = selected.value;
+    }
+}
+
 function openEditProjDlg() {
   $("#editProjDlg").dialog("open");
   $("#editProjNameBox").val(projManifest.name);

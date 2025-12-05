@@ -333,7 +333,24 @@ const componentDefinitions = {
         name: "Random Offset",
         id: "minecraft:random_offset",
         inputs: [
-            
+            {
+                type: "number",
+                name: "x_steps",
+                label: "X Steps",
+                tooltip: "The step amount for the x-axis."
+            },
+            {
+                type: "number",
+                name: "x_min",
+                label: "X Range Min",
+                tooltip: "The minimum range for the x-axis"
+            },
+            {
+                type: "number",
+                name: "x_max",
+                label: "X Range Max",
+                tooltip: "The maximum range for the x-axis"
+            },
             {
                 type: "number",
                 name: "y_steps",
@@ -352,6 +369,24 @@ const componentDefinitions = {
                 label: "Y Range Max",
                 tooltip: "The maximum range for the y-axis"
             },
+            {
+                type: "number",
+                name: "z_steps",
+                label: "Z Steps",
+                tooltip: "The step amount for the z-axis."
+            },
+            {
+                type: "number",
+                name: "z_min",
+                label: "Z Range Min",
+                tooltip: "The minimum range for the z-axis"
+            },
+            {
+                type: "number",
+                name: "z_max",
+                label: "Z Range Max",
+                tooltip: "The maximum range for the z-axis"
+            }
         ],
         requires: false
     },

@@ -171,7 +171,7 @@ const componentDefinitions = {
                 type: "number",
                 name: "particle_count",
                 label: "Particle Count",
-                tooltip: "The number of particles that appear when the block is destroyed. Must be between 0 and 255. Default is 100."
+                tooltip: "The number of particles that appear when the block is destroyed, from 0 to 255. Default is 100."
             }
         ],
         requires: false
@@ -197,6 +197,109 @@ const componentDefinitions = {
                 name: "destroy_chance_modifier",
                 label: "Destroy Chance Modifier",
                 tooltip: "How likely the block is to be destroyed when on fire."
+            }
+        ],
+        requires: false
+    },
+    "Flower Pottable": {
+        name: "Flower Pottable",
+        id: "minecraft:flower_pottable",
+        inputs: [
+            {
+                type: "texture",
+                name: "texture",
+                label: "Texture",
+                tooltip: "The texture for this block to use when inside a flower pot."
+            }
+        ],
+        requires: false
+    },
+    "Friction": {
+        name: "Friction",
+        id: "minecraft:friction",
+        inputs: [
+            {
+                type: "number",
+                name: "main",
+                label: "Friction",
+                tooltip: "How much this block slows down the player while walking on it, from 0.0 to 0.9."
+            }
+        ],
+        requires: false
+    },
+    "Light Dampening": {
+        name: "Light Dampening",
+        id: "minecraft:light_dampening",
+        inputs: [
+            {
+                type: "number",
+                name: "main",
+                label: "Light Dampening",
+                tooltip: "The amount of light levels dampened by this block, from 0 to 15."
+            }
+        ],
+        requires: false
+    },
+    "Light Emission": {
+        name: "Light Emission",
+        id: "minecraft:light_emission",
+        inputs: [
+            {
+                type: "number",
+                name: "main",
+                label: "Light Emission",
+                tooltip: "The amount of light levels emitted by this block, from 0 to 15."
+            }
+        ],
+        requires: false
+    },
+    "Liquid Detection": {
+        name: "Liquid Detection",
+        id: "minecraft:liquid_detection",
+        inputs: [
+            {
+                type: "boolean",
+                name: "can_contain_liquid",
+                label: "Allow Waterlogging",
+                tooltip: "Whether the block can be waterlogged."
+            },
+            {
+                type: "dropdown",
+                name: "on_liquid_touches",
+                label: "Reaction",
+                tooltip: "What happens when water touches this block.",
+                options: [
+                    "blocking",
+                    "broken",
+                    "no_reaction",
+                    "popped"
+                ]
+            }
+        ],
+        requires: false
+    },
+    "Loot": {
+        name: "Loot",
+        id: "minecraft:loot",
+        inputs: [
+            {
+                type: "loot_table",
+                name: "main",
+                label: "Loot Table",
+                tooltip: "The loot table to use for this block."
+            }
+        ],
+        requires: false
+    },
+    "Map Color": {
+        name: "Map Color",
+        id: "minecraft:map_color",
+        inputs: [
+            {
+                type: "color",
+                name: "main",
+                label: "Map Color",
+                tooltip: "The color the block appears on a map."
             }
         ],
         requires: false

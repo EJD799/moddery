@@ -1007,10 +1007,10 @@ function saveProject() {
         displayName: $("#nameBox").val(),
         invCategory: $("#categoryBox").val(),
         hasItem: useCustomItemBox.checked,
-        textures: [
+        textures: {
             item: elementData.textures.item,
-            default: elementData.textures.default
-        ],
+            ...currentBlockTextures
+        },
         components: currentBlockComponents
     };
 }
@@ -1031,11 +1031,15 @@ function loadProject(data) {
 }
 
 function loadTextures(data) {
-    if (elementData.hasItem) {
-        $("#textureNameText").
-    }
     if (data) {
-
+        currentBlockTextures = data;
+        if (elementData.hasItem) {
+            $("#textureNameText").val(data.item);
+        }
+        dataKeys = Object.keys(data);
+        for (let i = 1; i < dataKeys.length; i++) {
+            $(`#textureNameText${i}`).val(data[dataKeys[i]]);
+        }
     }
 }
 

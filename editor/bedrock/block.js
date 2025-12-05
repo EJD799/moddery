@@ -1,5 +1,6 @@
 let textures;
 let elementData = {};
+let currentBlockTextures = {item: "", default: ""};
 let selectedTexture;
 
 const componentDefinitions = {

@@ -304,6 +304,57 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Movable": {
+        name: "Movable",
+        id: "minecraft:movable",
+        inputs: [
+            {
+                type: "dropdown",
+                name: "movement_type",
+                label: "Movement Type",
+                tooltip: "The way the block should interact with pistons.",
+                options: [
+                    "immovable",
+                    "popped",
+                    "push",
+                    "push_pull"
+                ]
+            },
+            {
+                type: "boolean",
+                name: "sticky",
+                label: "Sticky",
+                tooltip: "Whether the block should act like slime and honey blocks."
+            }
+        ],
+        requires: false
+    },
+    "Random Offset": {
+        name: "Random Offset",
+        id: "minecraft:random_offset",
+        inputs: [
+            
+            {
+                type: "number",
+                name: "y_steps",
+                label: "Y Steps",
+                tooltip: "The step amount for the y-axis."
+            },
+            {
+                type: "number",
+                name: "y_min",
+                label: "Y Range Min",
+                tooltip: "The minimum range for the y-axis"
+            },
+            {
+                type: "number",
+                name: "y_max",
+                label: "Y Range Max",
+                tooltip: "The maximum range for the y-axis"
+            },
+        ],
+        requires: false
+    },
 };
 var currentItemComponents = {};
 

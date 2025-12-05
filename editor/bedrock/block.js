@@ -1006,7 +1006,11 @@ function saveProject() {
         type: "Block",
         displayName: $("#nameBox").val(),
         invCategory: $("#categoryBox").val(),
-        textures: [],
+        hasItem: useCustomItemBox.checked,
+        textures: [
+            item: elementData.textures.item,
+            default: elementData.textures.default
+        ],
         components: currentBlockComponents
     };
 }
@@ -1019,8 +1023,20 @@ function loadProject(data) {
         $("#categoryBox").val(data.invCategory);
         $("#categoryBox").selectmenu("refresh");
     }
+    if (data.hasItem) {
+        useCustomItemBox.checked = true;
+    }
     loadTextures(data.textures);
     loadComponents(data.components);
+}
+
+function loadTextures(data) {
+    if (elementData.hasItem) {
+        $("#textureNameText").
+    }
+    if (data) {
+
+    }
 }
 
 function loadComponents(data) {

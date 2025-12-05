@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="../../jquery-ui.min.css">
+<link rel="stylesheet" href="../../jquery-ui.theme.min.css">
+<link rel="stylesheet" href="../../styles.css">
+<script src="../../jquery-3.7.1.min.js"></script>
+<script src="../../jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
+<style>
+    input {
+        padding: 10px;
+    }
+    body {
+        color: white;
+        font-family: Verdana, sans-serif;
+        background: #111111;
+        padding-left: 18px;
+    }
+    .ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
+        z-index: 2000 !important; /* Use !important if necessary to override existing styles */
+    }
+</style>
+
+<label for="elementIDBox">Element Name (Editor)</label>
+<input name="elementIDBox" id="elementIDBox" placeholder="Element ID">
+<br><br>
+<label for="blockIDBox">Item ID</label>
+<input name="blockIDBox" id="blockIDBox" placeholder="Block ID">
+<br><br>
+<label for="nameBox">Block Name</label>
+<input name="nameBox" id="nameBox" placeholder="Block Name">
+<br><br>
+<label for="categoryBox">Inventory Category</label>
+<select name="categoryBox" id="categoryBox">
+    <option>Construction</option>
+    <option>Equipment</option>
+    <option selected>Items</option>
+    <option>Nature</option>
+</select>
+<br><br>
+<label for="useCustomItemBox">Use Custom Item Texture</label>
+<input type="checkbox" id="useCustomItemBox" name="useCustomItemBox">
+<br><br>
+<label for="itemTextureBtn">Item Texture: <span id="textureNameText">No texture selected</span></label>
+<button name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg(-1)">Select Texture</button><br><br>
+<br><br>
+<h3>Block Textures</h3>
+<label for="blockTextureBtn0">Default: <span id="textureNameText0">No texture selected</span></label>
+<button name="blockTextureBtn0" id="blockTextureBtn0" onclick="openSelectTextureDlg(0)">Select Texture</button><br><br>
+<h3>Components <button id="addComponentBtn" onclick="addComponent()">+ Add Component</button></h3>
+<div id="componentsBox"></div>
+<div id="addComponentDlg" title="Add Component">
+  <center>
+    <label for="addComponentType">Component Type</label>
+    <select name="addComponentType" id="addComponentType">
+      
+    </select>
+    <br><br>
+    <button id="addComponentCancelBtn" onclick="closeAddComponentDlg()">Cancel</button>
+    <button id="addComponentAddBtn" onclick="createComponent($('#addComponentType').val())">Add</button>
+  </center>
+</div>
+
+<div id="selectTextureDlg" title="Select Texture">
+    <div class="textureMenu" id="selectTextureMenu"></div>
+
+    <div class="textureDialogButtons">
+        <button id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
+        <button id="selectTextureSelectBtn" onclick="selectTexture()">Select</button>
+    </div>
+</div>
+
+<div id="deleteDlg" title="Delete Component?">
+  <center>
+    <span id="deleteDlgText"></span><br><br>
+    <button id="deleteDlgCancel" onclick="closeDeleteComponent()">Cancel</button>
+    <button id="deleteDlgConfirm" class="redBtn">Delete</button>
+  </center>
+</div>
+
+<script src="block.js"></script>

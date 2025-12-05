@@ -577,7 +577,10 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
         editBtn.innerHTML = "Edit";
       }
       if (fileType == "wav") {
-        
+        editBtn = document.createElement("button");
+        editBtn.setAttribute("onclick", `playSound('${fileNameEncoded}')`);
+        editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
+        editBtn.innerHTML = "Play";
       }
       optionsBtn = document.createElement("button");
       optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);

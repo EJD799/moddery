@@ -987,7 +987,7 @@ function openSelectTextureDlg() {
 function closeSelectTextureDlg() {
   $("#selectTextureDlg").dialog("close");
 }
-function selectTexture() {
+function selectTexture(textureNumber) {
     $("#selectTextureDlg").dialog("close");
     const selected = document.querySelector('input[name="selectedTexture"]:checked');
     if (selected.value) {
@@ -1001,31 +1001,24 @@ $("#addComponentType").selectmenu();
 function saveProject() {
     return {
         name: elementData.name,
-        id: $("#itemIDBox").val(),
-        type: "Item",
+        id: $("#blockIDBox").val(),
+        type: "Block",
         displayName: $("#nameBox").val(),
         invCategory: $("#categoryBox").val(),
-        maxStackSize: $("#stackSizeBox").val(),
-        texture: selectedTexture,
-        components: currentItemComponents
+        textures: [],
+        components: currentBlockComponents
     };
 }
 function loadProject(data) {
     elementData = data;
     $("#elementIDBox").val(data.name);
-    $("#itemIDBox").val(data.id);
+    $("#blockIDBox").val(data.id);
     $("#nameBox").val(data.displayName);
     if ((data?.invCategory ?? false)) {
         $("#categoryBox").val(data.invCategory);
         $("#categoryBox").selectmenu("refresh");
     }
-    $("#stackSizeBox").val(data.maxStackSize);
-    selectedTexture = data.texture;
-    if (selectedTexture) {
-        document.getElementById("textureNameText").innerHTML = selectedTexture;
-    } else {
-        document.getElementById("textureNameText").innerHTML = "No texture selected";
-    }
+    loadTextures(data.textures);
     loadComponents(data.components);
 }
 

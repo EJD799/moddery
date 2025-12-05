@@ -259,7 +259,6 @@ function createProject() {
     document.getElementById("tabs").hidden = false;
     document.getElementById("welcome").hidden = true;
     document.getElementById("savingBox").style.display = "block";
-    savingText.innerHTML = "<i class='fa-solid fa-circle-check'></i> Saved";
     projZip = new JSZip();
     projManifest = {
       "name": $("#newProjNameBox").val(),
@@ -276,6 +275,8 @@ function createProject() {
     projZip.folder("assets");
     $("#newProjNameBox").val("");
     $("#newProjNamespaceBox").val("");
+    document.getElementById("savingText").innerHTML = "<i class='fa-regular fa-file'></i> Not Saved";
+    document.getElementById("savingFlyoutText").innerHTML = `Not saved. Click "Save Now" or "File>Save" to save your work.`;
   }
 }
 

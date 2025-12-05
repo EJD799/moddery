@@ -2,6 +2,8 @@ let textures;
 let elementData = {};
 let currentBlockTextures = {item: "", default: ""};
 let selectedTexture;
+let currentTextureSelecting;
+let currentLootTableSelecting;
 
 const componentDefinitions = {
     "Placement Direction": {
@@ -748,8 +750,9 @@ function createComponent(type) {
     }
     $("#addComponentDlg").dialog("close");
 }
-function openSelectTextureDlg() {
+function openSelectTextureDlg(textureToSelect) {
   $("#selectTextureDlg").dialog("open");
+  currentTextureSelecting = textureToSelect;
   textures = window.parent.getTextureList();
   let selectTextureMenu = document.getElementById("selectTextureMenu");
   selectTextureMenu.innerHTML = "";

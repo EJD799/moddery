@@ -85,7 +85,16 @@
 
     <div class="textureDialogButtons">
         <button id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
-        <button id="selectTextureSelectBtn" onclick="selectTexture()">Select</button>
+        <button id="selectTextureSelectBtn" onclick="selectTexture(currentTextureSelecting)">Select</button>
+    </div>
+</div>
+
+<div id="selectLootTableDlg" title="Select Loot Table">
+    <div class="textureMenu" id="selectLootTableMenu"></div>
+
+    <div class="textureDialogButtons">
+        <button id="selectLootTableCancelBtn" onclick="closeSelectLootTableDlg()">Cancel</button>
+        <button id="selectLootTableSelectBtn" onclick="selectLootTable(currentLootTableSelecting)">Select</button>
     </div>
 </div>
 

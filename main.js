@@ -626,6 +626,9 @@ async function saveProject() {
   if (perm !== "granted") {
     // If permission denied, fallback to Save As as well
     return await saveProjectAs();
+  } else {
+    document.getElementById("savingText").innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Not Saving";
+    document.getElementById("savingFlyoutText").innerHTML = `Project not saving. Check your browser permissions and try again.`;
   }
 
   const writable = await projFileHandle.createWritable();

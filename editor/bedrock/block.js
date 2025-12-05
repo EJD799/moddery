@@ -163,6 +163,44 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Destruction Particles": {
+        name: "Destruction Particles",
+        id: "minecraft:destruction_particles",
+        inputs: [
+            {
+                type: "number",
+                name: "particle_count",
+                label: "Particle Count",
+                tooltip: "The number of particles that appear when the block is destroyed. Must be between 0 and 255. Default is 100."
+            }
+        ],
+        requires: false
+    },
+    "Flammable": {
+        name: "Flammable",
+        id: "minecraft:flammable",
+        inputs: [
+            {
+                type: "boolean",
+                name: "main",
+                label: "Is Flammable",
+                tooltip: "Whether the block is flammable."
+            },
+            {
+                type: "number",
+                name: "catch_chance_modifier",
+                label: "Catch Chance Modifier",
+                tooltip: "How likely the block is to catch on fire."
+            },
+            {
+                type: "number",
+                name: "destroy_chance_modifier",
+                label: "Destroy Chance Modifier",
+                tooltip: "How likely the block is to be destroyed when on fire."
+            }
+        ],
+        requires: false
+    },
 };
 var currentItemComponents = {};
 

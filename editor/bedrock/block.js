@@ -428,6 +428,44 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Replaceable": {
+        name: "Replaceable",
+        id: "minecraft:replaceable",
+        inputs: [
+            {
+                type: "boolean",
+                name: "main",
+                label: "Is Replaceable",
+                tooltip: "Whether the block can be replaced by another block by right-clicking."
+            }
+        ],
+        requires: false
+    },
+    "Selection Box": {
+        name: "Selection Box",
+        id: "minecraft:selection_box",
+        inputs: [
+            {
+                type: "boolean",
+                name: "disable",
+                label: "Disable Selection Box",
+                tooltip: "Whether the selection box should be disabled."
+            },
+            {
+                type: "text",
+                name: "origin",
+                label: "Origin",
+                tooltip: "The bottom north-western corner of the selection box. Measured in pixels from the bottom center of the block. Enter the X, Y, and Z values separated by commas."
+            },
+            {
+                type: "text",
+                name: "size",
+                label: "Size",
+                tooltip: "The size of the selection box, in pixels, measured from the origin of the selection box. Enter the X, Y, and Z values separated by commas."
+            }
+        ],
+        requires: false
+    }
 };
 var currentItemComponents = {};
 

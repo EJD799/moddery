@@ -1004,7 +1004,7 @@ function selectTexture(textureNumber) {
             }
         }
         textureNameText.innerHTML = selected.value;
-        selectedTexture = selected.value;
+        selectedTexture = selected.value; 
     }
 }
 $("#addComponentType").selectmenu();

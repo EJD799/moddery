@@ -3,6 +3,7 @@ let elementData = {};
 let currentBlockTextures = {item: "", default: ""};
 let selectedTexture;
 let currentTextureSelecting;
+let currentModelSelecting;
 let currentLootTableSelecting;
 
 const componentDefinitions = {

@@ -4,666 +4,71 @@ let currentBlockTextures = {item: "", default: ""};
 let selectedTexture;
 
 const componentDefinitions = {
-    "Allow Off Hand": {
-        name: "Allow Off Hand",
-        id: "minecraft:allow_off_hand",
-        inputs: [
-            {
-                type: "boolean",
-                name: "main",
-                label: "Allow Off Hand",
-                tooltip: "Whether the item can be wielded in the off-hand."
-            }
-        ],
-        requires: false
-    },
-    "Block Placer": {
-        name: "Block Placer",
-        id: "minecraft:block_placer",
-        inputs: [
-            {
-                type: "text",
-                name: "block",
-                label: "Block ID",
-                tooltip: "The block to place."
-            },
-            {
-                type: "boolean",
-                name: "replace_block_item",
-                label: "Replace Block Item",
-                tooltip: "Whether the item should replace the block."
-            },
-            {
-                type: "list",
-                name: "use_on",
-                label: "Use On Filter",
-                tooltip: "The list of items the block can be used on. Separate items with commas. Do not add spaces."
-            }
-        ],
-        requires: false
-    },
-    "Bundle Interaction": {
-        name: "Bundle Interaction",
-        id: "minecraft:bundle_interaction",
-        inputs: [
-            {
-                type: "number",
-                name: "num_viewable_slots",
-                label: "Number of Viewable Slots",
-                tooltip: "The number of slots that can be viewed on hover. Requires the Storage Item component."
-            }
-        ],
-        requires: ["Storage Item"]
-    },
-    "Can Destroy in Creative": {
-        name: "Can Destroy in Creative",
-        id: "minecraft:can_destroy_in_creative",
-        inputs: [
-            {
-                type: "boolean",
-                name: "main",
-                label: "Can Break Blocks",
-                tooltip: "Whether the item can break blocks in Creative mode. Example: swords cannot break blocks."
-            }
-        ],
-        requires: false
-    },
-    "Compostable": {
-        name: "Compostable",
-        id: "minecraft:compostable",
-        inputs: [
-            {
-                type: "number",
-                name: "composting_chance",
-                label: "Composting Chance (%)",
-                tooltip: "How likely the composter level is to increase."
-            }
-        ],
-        requires: false
-    },
-    "Cooldown": {
-        name: "Cooldown",
-        id: "minecraft:cooldown",
-        inputs: [
-            {
-                type: "number",
-                name: "duration",
-                label: "Duration (seconds)",
-                tooltip: "How long the item will be disabled after using it."
-            }
-        ],
-        requires: false
-    },
-    "Damage": {
-        name: "Damage",
-        id: "minecraft:damage",
-        inputs: [
-            {
-                type: "number",
-                name: "main",
-                label: "Damage Points",
-                tooltip: "The amount of damage the item deals on attack."
-            }
-        ],
-        requires: false
-    },
-    "Digger": {
-        name: "Digger",
-        id: "minecraft:digger",
-        inputs: [
-            {
-                type: "number",
-                name: "speed",
-                label: "Destroy Speed",
-                tooltip: "How fast the item can break blocks, in seconds."
-            },
-            {
-                type: "text",
-                name: "block",
-                label: "Block Type Filter",
-                tooltip: "Which types of blocks can be broken at this speed. Enter a Molang query."
-            }
-        ],
-        requires: false
-    },
-    "Durability": {
-        name: "Durability",
-        id: "minecraft:durability",
-        inputs: [
-            {
-                type: "number",
-                name: "max_durability",
-                label: "Durability",
-                tooltip: "The durability level of the item."
-            },
-            {
-                type: "number",
-                name: "damage_chance",
-                label: "Damage Chance (%)",
-                tooltip: "The chance of the item to take durability damage."
-            }
-        ],
-        requires: false
-    },
-    "Dyeable": {
-        name: "Dyeable",
-        id: "minecraft:dyeable",
-        inputs: [
-            {
-                type: "color",
-                name: "default_color",
-                label: "Default Color",
-                tooltip: "The default color of the item."
-            }
-        ],
-        requires: false
-    },
-    "Enchantable": {
-        name: "Enchantable",
-        id: "minecraft:enchantable",
+    "Placement Direction": {
+        name: "Placement Direction",
+        id: "minecraft:placement_direction",
         inputs: [
             {
                 type: "dropdown",
-                name: "slot",
-                label: "Slot",
-                tooltip: "The enchantment category that can be applied to this item.",
+                name: "type",
+                label: "Type",
+                tooltip: "The type of rotation to use. Cardinal direction rotation supports north, east, west, and south. Facing direction supports the cardinal directions, plus up and down.",
                 options: [
-                    "armor_feet",
-                    "armor_torso",
-                    "armor_head",
-                    "armor_legs",
-                    "axe",
-                    "bow",
-                    "cosmetic_head",
-                    "crossbow",
-                    "elytra",
-                    "fishing_rod",
-                    "flintsteel",
-                    "hoe",
-                    "pickaxe",
-                    "shears",
-                    "shield",
-                    "shovel",
-                    "sword",
-                    "all"
+                    "Cardinal Direction",
+                    "Facing Direction"
                 ]
             },
             {
                 type: "number",
-                name: "value",
-                label: "Enchantability Value",
-                tooltip: "How enchantable the item is. See \"Enchanting Mechanics\" on the Minecraft Wiki."
+                name: "y_rotation_offset",
+                label: "Rotation Offset",
+                tooltip: "The offset of the y-axis rotation."
             }
         ],
         requires: false
     },
-    "Entity Placer": {
-        name: "Entity Placer",
-        id: "minecraft:entity_placer",
-        inputs: [
-            {
-                type: "text",
-                name: "entity",
-                label: "Entity",
-                tooltip: "The entity to place."
-            }
-        ],
-        requires: false
-    },
-    "Fire Resistant": {
-        name: "Fire Resistant",
-        id: "minecraft:fire_resistant",
-        inputs: [
-            {
-                type: "boolean",
-                name: "main",
-                label: "Fire Resistant",
-                tooltip: "Whether the item is resistant to fire when dropped, like netherite."
-            }
-        ],
-        requires: false
-    },
-    "Food": {
-        name: "Food",
-        id: "minecraft:food",
-        inputs: [
-            {
-                type: "boolean",
-                name: "can_always_eat",
-                label: "Can Always Eat",
-                tooltip: "Whether the item can be eaten when the hunger bar is full."
-            },
-            {
-                type: "number",
-                name: "nutrition",
-                label: "Nutrition",
-                tooltip: "The number of hunger points restored."
-            },
-            {
-                type: "number",
-                name: "saturation_modifier",
-                label: "Saturation",
-                tooltip: "The saturation modifier. See \"Saturation\" on the Minecraft Wiki."
-            },
-            {
-                type: "string",
-                name: "using_converts_to",
-                label: "Using Converts To",
-                tooltip: "The item the item turns into when it is consumed."
-            }
-        ],
-        requires: false
-    },
-    "Fuel": {
-        name: "Fuel",
-        id: "minecraft:fuel",
-        inputs: [
-            {
-                type: "number",
-                name: "duration",
-                label: "Duration",
-                tooltip: "How long, in seconds, the item will power a furnace."
-            }
-        ],
-        requires: false
-    },
-    "Glint": {
-        name: "Glint",
-        id: "minecraft:glint",
-        inputs: [
-            {
-                type: "boolean",
-                name: "main",
-                label: "Show Glint",
-                tooltip: "Whether the item should have an enchantment glint."
-            }
-        ],
-        requires: false
-    },
-    "Hand Equipped": {
-        name: "Hand Equipped",
-        id: "minecraft:hand_equipped",
-        inputs: [
-            {
-                type: "boolean",
-                name: "main",
-                label: "Tool Rendering",
-                tooltip: "Whether the item should render like a tool when held."
-            }
-        ],
-        requires: false
-    },
-    "Hover Text Color": {
-        name: "Hover Text Color",
-        id: "minecraft:hover_text_color",
+    "Placement Position": {
+        name: "Placement Position",
+        id: "minecraft:placement_position",
         inputs: [
             {
                 type: "dropdown",
-                name: "main",
-                label: "Color",
-                tooltip: "The color the item name should be when hovered.",
+                name: "type",
+                label: "Type",
+                tooltip: "The type of positioning to use. Vertical half supports top and bottom. Block face supports north, east, west, south, up, and down.",
                 options: [
-                    "black",
-                    "dark_blue",
-                    "dark_green",
-                    "dark_aqua",
-                    "dark_red",
-                    "dark_purple",
-                    "gold",
-                    "gray",
-                    "dark_gray",
-                    "blue",
-                    "green",
-                    "aqua",
-                    "red",
-                    "light_purple",
-                    "yellow",
-                    "white",
-                    "minecoin_gold",
-                    "material_quartz",
-                    "material_iron",
-                    "material_netherite",
-                    "material_redstone",
-                    "material_copper",
-                    "material_gold",
-                    "material_emerald",
-                    "material_diamond",
-                    "material_lapis",
-                    "material_amethyst",
-                    "material_resin"
+                    "Vertical Half",
+                    "Block Face"
                 ]
             }
         ],
         requires: false
     },
-    "Interact Button": {
-        name: "Interact Button",
-        id: "minecraft:interact_button",
+    "Collision Box": {
+        name: "Collision Box",
+        id: "minecraft:collision_box",
         inputs: [
             {
-                type: "text",
-                name: "main",
-                label: "Text",
-                tooltip: "The text that should be displayed on the touch controls interact button."
-            }
-        ],
-        requires: false
-    },
-    "Liquid Clipped": {
-        name: "Liquid Clipped",
-        id: "minecraft:liquid_clipped",
-        inputs: [
-            {
-                type: "text",
-                name: "main",
-                label: "Interact with Liquids",
-                tooltip: "Whether the item can interact with liquid blocks."
-            }
-        ],
-        requires: false
-    },
-    "Projectile": {
-        name: "Projectile",
-        id: "minecraft:projectile",
-        inputs: [
-            {
-                type: "number",
-                name: "minimum_critical_power",
-                label: "Minimum Critical Power",
-                tooltip: "The time the projectile needs to charge for a critical hit."
+                type: "boolean",
+                name: "disable",
+                label: "Disable Collision Box",
+                tooltip: "Whether the collision box should be disabled."
             },
             {
                 type: "text",
-                name: "projectile_entity",
-                label: "Projectile Entity",
-                tooltip: "The entity that is fired by this item."
-            }
-        ],
-        requires: false
-    },
-    "Rarity": {
-        name: "Rarity",
-        id: "minecraft:rarity",
-        inputs: [
-            {
-                type: "dropdown",
-                name: "main",
-                label: "Rarity",
-                tooltip: "The rarity of the item.",
-                options: [
-                    "common",
-                    "uncommon",
-                    "rare",
-                    "epic"
-                ]
-            }
-        ],
-        requires: false
-    },
-    "Record": {
-        name: "Record",
-        id: "minecraft:record",
-        inputs: [
-            {
-                type: "number",
-                name: "comparator_signal",
-                label: "Comparator Signal",
-                tooltip: "The signal strength output from a comparator."
-            },
-            {
-                type: "number",
-                name: "duration",
-                label: "Duration",
-                tooltip: "The duration of the disc, in seconds."
+                name: "origin",
+                label: "Origin",
+                tooltip: "The bottom north-western corner of the collision box. Measured in pixels from the bottom center of the block. Enter the X, Y, and Z values separated by commas."
             },
             {
                 type: "text",
-                name: "sound_event",
-                label: "Sound ID",
-                tooltip: "The sound that is played by this disc."
+                name: "size",
+                label: "Size",
+                tooltip: "The size of the collision box, in pixels, measured from the origin of the collision box. Enter the X, Y, and Z values separated by commas."
             }
         ],
         requires: false
     },
-    "Repairable": {
-        name: "Repairable",
-        id: "minecraft:repairable",
-        inputs: [
-            {
-                type: "number",
-                name: "repair_amount",
-                label: "Repair Amount",
-                tooltip: "How much durability is repaired."
-            },
-            {
-                type: "list",
-                name: "items",
-                label: "Items",
-                tooltip: "The items that can repair this item. Separate items with commas. Do not add spaces."
-            }
-        ],
-        requires: false
-    },
-    "Shooter": {
-        name: "Shooter",
-        id: "minecraft:shooter",
-        inputs: [
-            {
-                type: "list",
-                name: "item",
-                label: "Ammunition Items",
-                tooltip: "The items that can be used as ammunition. Separate items with commas. Do not add spaces."
-            },
-            {
-                type: "boolean",
-                name: "charge_on_draw",
-                label: "Charge on Draw",
-                tooltip: "Whether the item should charge when drawn."
-            },
-            {
-                type: "number",
-                name: "max_draw_duration",
-                label: "Max Draw Duration",
-                tooltip: "How long, in seconds, the item can be drawn before releasing automatically."
-            },
-            {
-                type: "boolean",
-                name: "scale_power_by_draw_duration",
-                label: "Scale Power by Draw Duration",
-                tooltip: "Whether the power should increase when drawn longer."
-            }
-        ],
-        requires: ["Use Modifiers"]
-    },
-    "Should Despawn": {
-        name: "Should Despawn",
-        id: "minecraft:should_despawn",
-        inputs: [
-            {
-                type: "boolean",
-                name: "main",
-                label: "Should Despawn",
-                tooltip: "Whether the item should despawn when left in the world."
-            }
-        ],
-        requires: false
-    },
-    "Stacked by Data": {
-        name: "Stacked by Data",
-        id: "minecraft:stacked_by_data",
-        inputs: [
-            {
-                type: "boolean",
-                name: "main",
-                label: "Allow Stacking",
-                tooltip: "Whether items with different data can stack together."
-            }
-        ],
-        requires: false
-    },
-    "Storage Item": {
-        name: "Storage Item",
-        id: "minecraft:storage_item",
-        inputs: [
-            {
-                type: "boolean",
-                name: "allow_nested_storage_items",
-                label: "Allow Nested Storage Items",
-                tooltip: "Whether other storage items can be stored in this item."
-            },
-            {
-                type: "list",
-                name: "allowed_items",
-                label: "Allowed Items",
-                tooltip: "The list of items that can be stored in this item. Separate items with commas. Do not add spaces."
-            },
-            {
-                type: "list",
-                name: "banned_items",
-                label: "Banned Items",
-                tooltip: "The list of items that cannot be stored in this item. Separate items with commas. Do not add spaces."
-            },
-            {
-                type: "number",
-                name: "max_slots",
-                label: "Max Slots",
-                tooltip: "The number of slots the item can hold."
-            }
-        ],
-        requires: false
-    },
-    "Swing Duration": {
-        name: "Swing Duration",
-        id: "minecraft:swing_duration",
-        inputs: [
-            {
-                type: "number",
-                name: "value",
-                label: "Swing Duration",
-                tooltip: "The length of the swing animation, in seconds."
-            }
-        ],
-        requires: false
-    },
-    "Tags": {
-        name: "Tags",
-        id: "minecraft:tags",
-        inputs: [
-            {
-                type: "list",
-                name: "tags",
-                label: "Tags",
-                tooltip: "The list of tags to apply to the item. Separate items with commas."
-            }
-        ],
-        requires: false
-    },
-    "Throwable": {
-        name: "Throwable",
-        id: "minecraft:throwable",
-        inputs: [
-            {
-                type: "boolean",
-                name: "do_swing_animation",
-                label: "Do Swing Animation",
-                tooltip: "Whether the item will show a swing animation when thrown."
-            },
-            {
-                type: "number",
-                name: "launch_power_scale",
-                label: "Launch Power Scale",
-                tooltip: "The scale at which the power of the throw increases."
-            },
-            {
-                type: "number",
-                name: "max_launch_power",
-                label: "Max Launch Power",
-                tooltip: "The maximum power of the throw."
-            }
-        ],
-        requires: ["Projectile"]
-    },
-    "Use Animation": {
-        name: "Use Animation",
-        id: "minecraft:use_animation",
-        inputs: [
-            {
-                type: "dropdown",
-                name: "main",
-                label: "Animation",
-                tooltip: "The animation of the item when used.",
-                options: [
-                    "eat",
-                    "drink",
-                    "bow",
-                    "block",
-                    "camera",
-                    "crossbow",
-                    "none",
-                    "brush",
-                    "spear",
-                    "spyglass"
-                ]
-            }
-        ],
-        requires: false
-    },
-    "Use Modifiers": {
-        name: "Use Modifiers",
-        id: "minecraft:use_modifiers",
-        inputs: [
-            {
-                type: "boolean",
-                name: "emit_vibrations",
-                label: "Emit Vibrations",
-                tooltip: "Whether the item emits vibrations when it is used."
-            },
-            {
-                type: "number",
-                name: "movement_modifier",
-                label: "Movement Modifier",
-                tooltip: "The scale of the player speed while the item is used."
-            },
-            {
-                type: "number",
-                name: "use_duration",
-                label: "Use Duration",
-                tooltip: "How long, in seconds, it takes to use the item."
-            }
-        ],
-        requires: false
-    },
-    "Wearable": {
-        name: "Wearable",
-        id: "minecraft:wearable",
-        inputs: [
-            {
-                type: "dropdown",
-                name: "slot",
-                label: "Slot",
-                tooltip: "The slot that the item can be worn in.",
-                options: [
-                    "slot.armor.head",
-                    "slot.armor.chest",
-                    "slot.armor.legs",
-                    "slot.armor.feet"
-                ]
-            },
-            {
-                type: "number",
-                name: "protection",
-                label: "Protection",
-                tooltip: "The amount of protection the item provides when worn."
-            },
-            {
-                type: "boolean",
-                name: "hides_player_location",
-                label: "Hides Player Location",
-                tooltip: "Whether a player wearing the item is hidden from locator maps and the locator bar."
-            }
-        ],
-        requires: false
-    }
 };
 var currentItemComponents = {};
 

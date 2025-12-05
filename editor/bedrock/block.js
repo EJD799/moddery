@@ -390,6 +390,44 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Redstone Conductivity": {
+        name: "Redstone Conductivity",
+        id: "minecraft:redstone_conductivity",
+        inputs: [
+            {
+                type: "boolean",
+                name: "redstone_conductor",
+                label: "Is Conductor",
+                tooltip: "Whether the block can conduct redstone."
+            },
+            {
+                type: "boolean",
+                name: "allows_wire_to_step_down",
+                label: "Allow Wire to Step Down",
+                tooltip: "Whether the block should allow redstone wires to step down. Automatically on if \"Is Conductor\" is on."
+            }
+        ],
+        requires: false
+    },
+    "Redstone Producer": {
+        name: "Redstone Producer",
+        id: "minecraft:redstone_producer",
+        inputs: [
+            {
+                type: "number",
+                name: "power",
+                label: "Power Level",
+                tooltip: "The power level output of the block, from 0 to 15."
+            },
+            {
+                type: "list",
+                name: "connected_faces",
+                label: "Power Directions",
+                tooltip: "Which directions the blocks outputs power. Separate items with commas, and do not add spaces. Items can be \"north\", \"south\", \"east\", \"west\", \"up\", or \"down\""
+            }
+        ],
+        requires: false
+    },
 };
 var currentItemComponents = {};
 

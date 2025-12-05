@@ -639,7 +639,6 @@ async function saveProject() {
         at: "right top",
         of: $("#savingBox")
       });
-    return await saveProjectAs();
   }
 
   const writable = await projFileHandle.createWritable();

@@ -992,7 +992,17 @@ function selectTexture(textureNumber) {
     $("#selectTextureDlg").dialog("close");
     const selected = document.querySelector('input[name="selectedTexture"]:checked');
     if (selected.value) {
-        const textureNameText = document.getElementById("textureNameText");
+        if (textureNumber == -1) {
+            const textureNameText = document.getElementById("textureNameText");
+            currentBlockTextures["item"] = selected.value;
+        } else {
+            const textureNameText = document.getElementById("textureNameText" + textureNumber);
+            if (textureNumber == 0) {
+                currentBlockTextures["default"] = selected.value;
+            } else {
+                currentBlockTextures[textureNumber] = selected.value;
+            }
+        }
         textureNameText.innerHTML = selected.value;
         selectedTexture = selected.value;
     }

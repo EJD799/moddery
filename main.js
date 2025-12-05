@@ -277,6 +277,12 @@ function createProject() {
     $("#newProjNamespaceBox").val("");
     document.getElementById("savingText").innerHTML = "<i class='fa-regular fa-file'></i> Not Saved";
     document.getElementById("savingFlyoutText").innerHTML = `Not saved. Click "Save Now" or "File>Save" to save your work.`;
+    $("#savingFlyout")
+      .position({
+        my: "right bottom",
+        at: "right top",
+        of: $("#savingBox")
+      });
   }
 }
 
@@ -625,10 +631,15 @@ async function saveProject() {
   const perm = await projFileHandle.requestPermission({ mode: "readwrite" });
   if (perm !== "granted") {
     // If permission denied, fallback to Save As as well
-    return await saveProjectAs();
-  } else {
     document.getElementById("savingText").innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Not Saving";
     document.getElementById("savingFlyoutText").innerHTML = `Project not saving. Check your browser permissions and try again.`;
+    $("#savingFlyout")
+      .position({
+        my: "right bottom",
+        at: "right top",
+        of: $("#savingBox")
+      });
+    return await saveProjectAs();
   }
 
   const writable = await projFileHandle.createWritable();

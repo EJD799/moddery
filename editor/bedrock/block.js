@@ -14,8 +14,8 @@ const componentDefinitions = {
                 label: "Type",
                 tooltip: "The type of rotation to use. Cardinal direction rotation supports north, east, west, and south. Facing direction supports the cardinal directions, plus up and down.",
                 options: [
-                    "Cardinal Direction",
-                    "Facing Direction"
+                    "cardinal_direction",
+                    "facing_direction"
                 ]
             },
             {
@@ -37,8 +37,8 @@ const componentDefinitions = {
                 label: "Type",
                 tooltip: "The type of positioning to use. Vertical half supports top and bottom. Block face supports north, east, west, south, up, and down.",
                 options: [
-                    "Vertical Half",
-                    "Block Face"
+                    "vertical_half",
+                    "block_face"
                 ]
             }
         ],
@@ -65,6 +65,43 @@ const componentDefinitions = {
                 name: "size",
                 label: "Size",
                 tooltip: "The size of the collision box, in pixels, measured from the origin of the collision box. Enter the X, Y, and Z values separated by commas."
+            }
+        ],
+        requires: false
+    },
+    "Block Tint": {
+        name: "Block Tint",
+        id: "minecraft:tint_color",
+        inputs: [
+            {
+                type: "dropdown",
+                name: "world_mode",
+                label: "World Mode",
+                tooltip: "The type of tinting to use in the world.",
+                options: [
+                    "none",
+                    "birch_foliage",
+                    "default_foliage",
+                    "dry_foliage",
+                    "evergreen_foliage",
+                    "grass",
+                    "water"
+                ]
+            },
+            {
+                type: "dropdown",
+                name: "map_mode",
+                label: "Map Mode",
+                tooltip: "The type of tinting to use on maps.",
+                options: [
+                    "none",
+                    "birch_foliage",
+                    "default_foliage",
+                    "dry_foliage",
+                    "evergreen_foliage",
+                    "grass",
+                    "water"
+                ]
             }
         ],
         requires: false

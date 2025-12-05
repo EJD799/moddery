@@ -683,6 +683,7 @@ $("#blockTextureBtn0").button();
 
 $("#categoryBox").selectmenu();
 $("#addComponentBtn").button();
+$("#addTextureBtn").button();
 $("#addComponentCancelBtn").button();
 $("#addComponentAddBtn").button();
 $("#selectTextureCancelBtn").button();
@@ -1004,7 +1005,7 @@ function selectTexture(textureNumber) {
             }
         }
         textureNameText.innerHTML = selected.value;
-        selectedTexture = selected.value; 
+        selectedTexture = selected.value;
     }
 }
 $("#addComponentType").selectmenu();

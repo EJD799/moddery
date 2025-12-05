@@ -576,16 +576,19 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
         editBtn.innerHTML = "Edit";
       }
+      if (fileType == "wav") {
+        
+      }
       optionsBtn = document.createElement("button");
       optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
       optionsBtn.innerHTML = "&#x22EF;";
-      if (fileType == "png") {
+      if (fileType == "png" || fileType == "wav") {
         center.appendChild(editBtn);
       }
       center.appendChild(optionsBtn);
       assetBox.appendChild(center);
       parentDiv.appendChild(assetBox);
-      if (fileType == "png") {
+      if (fileType == "png" || fileType == "wav") {
         $(`#${fileNameEncoded}_assetEditBtn`).button();
       }
       $(`#${fileNameEncoded}_assetOptionBtn`).button();

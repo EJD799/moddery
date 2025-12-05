@@ -125,6 +125,44 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Destructible by Explosion": {
+        name: "Destructible by Explosion",
+        id: "minecraft:destructible_by_explosion",
+        inputs: [
+            {
+                type: "boolean",
+                name: "main",
+                label: "Can Be Destroyed By Explosions",
+                tooltip: "Whether the block can be destroyed by explosions."
+            },
+            {
+                type: "number",
+                name: "explosion_resistance",
+                label: "Explosion Resistance",
+                tooltip: "The explosion resistance value of the block."
+            }
+        ],
+        requires: false
+    },
+    "Destructible by Mining": {
+        name: "Destructible by Mining",
+        id: "minecraft:destructible_by_mining",
+        inputs: [
+            {
+                type: "boolean",
+                name: "main",
+                label: "Can Be Destroyed By Mining",
+                tooltip: "Whether the block can be destroyed by mining."
+            },
+            {
+                type: "number",
+                name: "seconds_to_destroy",
+                label: "Hardness",
+                tooltip: "The hardness value of the block. The time it takes to destroy, in seconds, is 1.5 times this value."
+            }
+        ],
+        requires: false
+    },
 };
 var currentItemComponents = {};
 

@@ -678,9 +678,10 @@ function centerDialogViewport(selector) {
     });
 }
 
+$("#itemTextureBtn").button();
+$("#blockTextureBtn0").button();
 
 $("#categoryBox").selectmenu();
-$("#itemTextureBtn").button();
 $("#addComponentBtn").button();
 $("#addComponentCancelBtn").button();
 $("#addComponentAddBtn").button();

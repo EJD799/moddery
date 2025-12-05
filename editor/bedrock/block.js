@@ -106,6 +106,25 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Crafting Table": {
+        name: "Crafting Table",
+        id: "minecraft:crafting_table",
+        inputs: [
+            {
+                type: "text",
+                name: "table_name",
+                label: "Table Name",
+                tooltip: "The name of the crafting table."
+            },
+            {
+                type: "list",
+                name: "crafting_tags",
+                label: "Crafting Tags",
+                tooltip: "The list of crafting tags that apply to this table. Separate items with commas, and do not add spaces."
+            }
+        ],
+        requires: false
+    },
 };
 var currentItemComponents = {};
 

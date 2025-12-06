@@ -159,6 +159,11 @@ function closeOptionsDlg() {
   $("#optionsDlg").dialog("close");
 }
 
+$( function() {
+  $( "#optionsTabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+  $( "#optionsTabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+} );
+
 function openNewProjDlg() {
   $("#newProjDlg").dialog("open");
 }

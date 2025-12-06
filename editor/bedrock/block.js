@@ -826,10 +826,7 @@ function saveProject() {
         displayName: $("#nameBox").val(),
         invCategory: $("#categoryBox").val(),
         hasItem: useCustomItemBox.checked,
-        textures: {
-            item: elementData.textures.item,
-            ...currentBlockTextures
-        },
+        textures: currentBlockTextures,
         components: currentBlockComponents
     };
 }

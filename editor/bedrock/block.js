@@ -470,7 +470,7 @@ const componentDefinitions = {
         requires: false
     }
 };
-var currentItemComponents = {};
+var currentBlockComponents = {};
 
 function centerDialogViewport(selector) {
     const $dlg = $(selector).dialog("widget");
@@ -545,8 +545,8 @@ function createComponent(type) {
         }
         newComponentObj[componentDefinitions[type].inputs[i].name] = newComponentDefault;
     }
-    if (!Object.keys(currentItemComponents).includes(type)) {
-        currentItemComponents[type] = newComponentObj;
+    if (!Object.keys(currentBlockComponents).includes(type)) {
+        currentBlockComponents[type] = newComponentObj;
         var parentDiv = document.getElementById("componentsBox");
         var elementBox = document.createElement("div");
         elementBox.setAttribute("class", "componentbox");
@@ -873,18 +873,18 @@ function loadComponents(data) {
                         $(removeSpaces(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`)).selectmenu("refresh");
                     }
                 }
-                currentItemComponents[Object.keys(data)[i]][componentInputDefs[j].name] = data[Object.keys(data)[i]][componentInputDefs[j].name];
+                currentBlockComponents[Object.keys(data)[i]][componentInputDefs[j].name] = data[Object.keys(data)[i]][componentInputDefs[j].name];
             }
         }
     }
 }
 
 function updateInput(type, input, value) {
-    currentItemComponents[type][input] = value;
+    currentBlockComponents[type][input] = value;
 }
 
 function deleteComponent(name) {
-    delete currentItemComponents[name];
+    delete currentBlockComponents[name];
     document.getElementById("componentbox_" + removeSpaces(name)).remove();
     closeDeleteComponent()
 }

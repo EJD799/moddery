@@ -142,6 +142,23 @@ $("#elementInfoDlg").dialog({
 });
 $("#elementInfoDlg").dialog("close");
 $("#elementInfoDlgClose").button();
+
+$("#optionsDlg").dialog({
+  position: { my: "center", at: "center", of: window },
+  resizable: false,
+  height: 500,
+  width: 500,
+  closeOnEscape: false
+});
+$("#optionsDlg").dialog("close");
+
+function openOptionsDlg() {
+  $("#optionsDlg").dialog("open");
+}
+function closeOptionsDlg() {
+  $("#optionsDlg").dialog("close");
+}
+
 function openNewProjDlg() {
   $("#newProjDlg").dialog("open");
 }

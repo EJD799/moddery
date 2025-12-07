@@ -638,11 +638,17 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
       previewBox.appendChild(preview);
       center.appendChild(previewBox);
       center.appendChild(document.createElement("br"));
-      if (fileType == "png" || fileType == "wav") {
+      if (fileType == "png") {
         editBtn = document.createElement("button");
-        editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}')`);
+        editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'png')`);
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
         editBtn.innerHTML = "Edit";
+      }
+      if (fileType == "wav") {
+        editBtn = document.createElement("button");
+        editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'wav')`);
+        editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
+        editBtn.innerHTML = "View";
       }
       optionsBtn = document.createElement("button");
       optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
@@ -983,19 +989,25 @@ async function renameElement() {
       center.appendChild(document.createElement("br"));
       if (fileType == "png") {
         editBtn = document.createElement("button");
-        editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}')`);
+        editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'png')`);
+        editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
+        editBtn.innerHTML = "Edit";
+      }
+      if (fileType == "wav") {
+        editBtn = document.createElement("button");
+        editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'wav')`);
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
         editBtn.innerHTML = "Edit";
       }
       optionsBtn = document.createElement("button");
       optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
       optionsBtn.innerHTML = "&#x22EF;";
-      if (fileType == "png") {
+      if (fileType == "png" || fileType == "wav") {
         center.appendChild(editBtn);
       }
       center.appendChild(optionsBtn);
       assetBox.appendChild(center);
-      if (fileType == "png") {
+      if (fileType == "png" || fileType == "wav") {
         $(`#${fileNameEncoded}_assetEditBtn`).button();
       }
       $(`#${fileNameEncoded}_assetOptionBtn`).button();

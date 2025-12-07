@@ -152,6 +152,7 @@ $("#optionsDlg").dialog({
 });
 $("#optionsDlg").dialog("close");
 $("#clearCacheBtn").button();
+$("#themeMenu").selectmenu();
 
 function openOptionsDlg() {
   $("#optionsDlg").dialog("open");

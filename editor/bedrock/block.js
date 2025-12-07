@@ -2,6 +2,7 @@ let textures;
 let elementData = {};
 let currentBlockTextures = {item: "", default: ""};
 let selectedTexture;
+let selectedModel;
 let currentTextureSelecting;
 let currentModelSelecting;
 let currentLootTableSelecting;
@@ -836,6 +837,50 @@ function selectTexture(textureNumber) {
 }
 $("#addComponentType").selectmenu();
 
+function openSelectModelDlg() {
+  $("#selectModelDlg").dialog("open");
+  models = window.parent.getModelList();
+  let selectModelMenu = document.getElementById("selectModelMenu");
+  selectModelMenu.innerHTML = "";
+  for (let i = 0; i < models.length; i++) {
+    let selectModelMenuItem;
+    let previewBox;
+    let preview;
+    let itemTitle;
+    let itemRadio;
+    selectModelMenuItem = document.createElement("div");
+    selectModelMenuItem.setAttribute("class", "textureMenuItem");
+    itemRadio = document.createElement("input");
+    itemRadio.setAttribute("type", "radio");
+    itemRadio.setAttribute("name", "selectedModel");
+    itemRadio.setAttribute("class", "textureRadio");
+    itemRadio.setAttribute("value", models[i]);
+    selectModelMenuItem.appendChild(itemRadio);
+    itemTitle = document.createElement("span");
+    itemTitle.setAttribute("class", "textureMenuTitle");
+    itemTitle.innerHTML = models[i];
+    selectModelMenuItem.appendChild(itemTitle);
+    selectModelMenu.appendChild(selectModelMenuItem);
+    selectModelMenuItem.addEventListener("click", () => {
+      const itemRadio = selectModelMenuItem.querySelector('input[type="radio"]');
+      if (itemRadio) {
+        itemRadio.checked = true;  // select this radio
+      }
+    });
+  }
+}
+function closeSelectModelDlg() {
+  $("#selectModelDlg").dialog("close");
+}
+function selectModel() {
+    $("#selectModelDlg").dialog("close");
+    const selected = document.querySelector('input[name="selectedModel"]:checked');
+    if (selected.value) {
+        modelNameText.innerHTML = selected.value;
+        selectedModel = selected.value;
+    }
+}
+
 function saveProject() {
     return {
         name: elementData.name,
@@ -843,6 +888,7 @@ function saveProject() {
         type: "Block",
         displayName: $("#nameBox").val(),
         invCategory: $("#categoryBox").val(),
+        model: selectedModel,
         hasItem: useCustomItemBox.checked,
         textures: currentBlockTextures,
         components: currentBlockComponents

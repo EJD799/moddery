@@ -494,6 +494,10 @@ $("#addComponentCancelBtn").button();
 $("#addComponentAddBtn").button();
 $("#selectTextureCancelBtn").button();
 $("#selectTextureSelectBtn").button();
+$("#selectModelCancelBtn").button();
+$("#selectModelSelectBtn").button();
+$("#selectLootTableCancelBtn").button();
+$("#selectLootTableSelectBtn").button();
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 
 $("#addComponentDlg").dialog({
@@ -510,6 +514,20 @@ $("#selectTextureDlg").dialog({
   width: 500
 });
 $("#selectTextureDlg").dialog("close");
+$("#selectModelDlg").dialog({
+  position: { my: "center", at: "center", of: window },
+  resizable: false,
+  height: 500,
+  width: 500
+});
+$("#selectModelDlg").dialog("close");
+$("#selectLootTableDlg").dialog({
+  position: { my: "center", at: "center", of: window },
+  resizable: false,
+  height: 500,
+  width: 500
+});
+$("#selectLootTableDlg").dialog("close");
 $("#deleteDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,

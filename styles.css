@@ -431,16 +431,17 @@ input[type=color]:hover {
     position: relative;
 }
 
-/* Make the <a> fill the entire tab area */
+/* Force <a> to reserve space for the close button */
 .ui-tabs .ui-tabs-nav li a {
     display: block !important;
     width: 100%;
-    padding: .5em 2.2em .5em 1em; /* reserve space for close button */
+    padding: .5em 2.6em .5em 1em !important;  /* right padding is now forced */
     box-sizing: border-box;
-    user-select: none; /* prevent text cursor */
+    user-select: none;
+    white-space: nowrap; /* prevent text wrapping under button */
 }
 
-/* Correct cursor behavior */
+/* Cursor behavior */
 .ui-tabs .ui-tabs-nav li:not(.ui-tabs-active) a {
     cursor: pointer;
 }
@@ -448,12 +449,16 @@ input[type=color]:hover {
     cursor: default !important;
 }
 
-/* Position the close icon that is OUTSIDE <a> */
+/* Position the close icon relative to <li> */
 .ui-tabs .ui-tabs-nav li .ui-icon-close {
-    position: absolute;   /* relative to <li> */
-    right: .5em;
+    position: absolute;
+    right: .6em;          /* sits inside the reserved padding */
     top: 50%;
     transform: translateY(-50%);
+
+    width: 16px;          /* gives the icon a real box */
+    height: 16px;
+
     margin: 0 !important;
     pointer-events: auto;
     cursor: pointer;

@@ -10,7 +10,7 @@ var renameElementID;
 var renameElementType;
 var deleteElementID;
 var deleteElementType;
-var autosaveEnabled = false;
+var autosaveEnabled = true;
 
 document.addEventListener("DOMContentLoaded", function(){
   document.getElementById("savingBox").style.display = "none";
@@ -348,6 +348,14 @@ fileInput.addEventListener("change", function(e) {
 function openProjDlg() {
   fileInput.click();
 }*/
+
+autosaveEnabled = (getCookie("autosaveEnabled") == "true");
+
+let autosaveBox = document.getElementById("autosaveBox");
+autosaveBox.addEventListener("change", function(e) {
+  autosaveEnabled = autosaveBox.checked;
+  setCookie("autosaveEnabled", autosaveEnabled, 399);
+});
 
 let projFileHandle = null;
 

@@ -417,3 +417,16 @@ input[type=color]:hover {
     margin-bottom: 0 !important;
     border-bottom-width: 1px !important; /* keep the same border */
 }
+
+/* Make the whole tab clickable for ALL jQuery UI tab styles */
+.ui-tabs .ui-tabs-nav li {
+    padding: 0 !important;      /* Remove inset padding so <a> can cover entire area */
+}
+
+.ui-tabs .ui-tabs-nav li a {
+    display: block !important;   /* Expand to full <li> */
+    width: 100% !important;      /* Fill horizontally */
+    height: 100% !important;     /* Fill vertically */
+    padding: .5em 1em;           /* Add your click area padding */
+    box-sizing: border-box;      /* Make padding not break the layout */
+}

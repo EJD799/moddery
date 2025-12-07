@@ -160,8 +160,12 @@ function closeOptionsDlg() {
   $("#optionsDlg").dialog("close");
 }
 function clearCache() {
-  const f = document.querySelector("iframe");
-  f.src = f.src.split('?')[0] + '?force=' + Date.now();
+  const warningText = "All open tabs will be refreshed, deleting all unsaved work. Are you sure you want to continue?";
+  if (confirm(warningText)) {
+    const f = document.querySelector("iframe");
+    f.src = f.src.split('?')[0] + '?force=' + Date.now();
+    alert("Cache cleared successfully.")
+  }
 }
 
 $( function() {

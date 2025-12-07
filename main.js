@@ -1,3 +1,5 @@
+const appVersion = "v0.0.0";
+
 var projZip;
 var projManifest;
 var tabCounter = 3;
@@ -14,6 +16,8 @@ var autosaveEnabled = true;
 
 document.addEventListener("DOMContentLoaded", function(){
   document.getElementById("savingBox").style.display = "none";
+  aboutText1.innerHTML = `Moddery ${appVersion}`;
+  aboutText2.innerHTML = `Moddery ${appVersion}`;
 });
 
 function arraysEqual(a, b) {

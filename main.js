@@ -592,17 +592,11 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
       previewBox.appendChild(preview);
       center.appendChild(previewBox);
       center.appendChild(document.createElement("br"));
-      if (fileType == "png") {
+      if (fileType == "png" || fileType == "wav") {
         editBtn = document.createElement("button");
         editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}')`);
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
         editBtn.innerHTML = "Edit";
-      }
-      if (fileType == "wav") {
-        editBtn = document.createElement("button");
-        editBtn.setAttribute("onclick", `playSound('${fileNameEncoded}')`);
-        editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
-        editBtn.innerHTML = "Play";
       }
       optionsBtn = document.createElement("button");
       optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);

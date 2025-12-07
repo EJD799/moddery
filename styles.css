@@ -445,7 +445,7 @@ input[type=color]:hover {
     cursor: pointer;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
-    cursor: default;
+    cursor: default !important;
 }
 
 /* Position the close icon that is OUTSIDE <a> */

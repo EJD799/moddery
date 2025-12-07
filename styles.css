@@ -405,3 +405,15 @@ input[type=color]:hover {
     padding: 0;
     margin: 0;
 }
+
+/* Prevent vertical tabs from shifting down when active */
+.ui-tabs-vertical .ui-tabs-nav li {
+    box-sizing: border-box;
+}
+
+/* Remove the height change on active state */
+.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
+    padding-bottom: .2em !important; /* match the normal padding */
+    margin-bottom: 0 !important;
+    border-bottom-width: 1px !important; /* keep the same border */
+}

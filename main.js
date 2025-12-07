@@ -331,7 +331,7 @@ function setNotSaved(nonAutosave) {
   if (nonAutosave) {
     document.getElementById("savingFlyoutText").innerHTML = `Not saved. Click "Save Now" or "File>Save" to save your work.`;
   } else {
-    document.getElementById("savingFlyoutText").innerHTML = `Not saved. Click "Save Now" or "File>Save" to save your work. Autosave is disabled. Go to "Moddery>Options>General" to turn it on.`;
+    document.getElementById("savingFlyoutText").innerHTML = `Not saved. Click "Save Now" or "File>Save" to save your work.<br>Autosave is disabled. Go to "Moddery>Options>General" to turn it on.`;
   }
 }
 
@@ -361,7 +361,7 @@ if (getCookie("autosaveEnabled")) {
 
 autosaveBox.addEventListener("change", function(e) {
   autosaveEnabled = autosaveBox.checked;
-  setCookie("autosaveEnabled", autosaveEnabled, 399);
+  setCookie("autosaveEnabled", autosaveEnabled.toString(), 399);
 });
 
 let projFileHandle = null;

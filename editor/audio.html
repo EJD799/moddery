@@ -1,12 +1,26 @@
 <script type="module" src="https://cdn.jsdelivr.net/npm/player.style/tailwind-audio/+esm"></script>
 
+<style>
+  body {
+    background: #111111;
+  }
+</style>
+
 <media-theme-tailwind-audio
-  style="--media-primary-color: #ffffff; --media-secondary-color: #111111; --media-accent-color: #00498f;"
- style="width:100%">
+  style="--media-primary-color: #ffffff; --media-secondary-color: #222222; --media-accent-color: #00498f; width: 100%;">
   <audio
     slot="media"
-    src="https://stream.mux.com/fXNzVtmtWuyz00xnSrJg4OJH6PyNo6D02UzmgeKGkP5YQ/low.mp4"
+    id="audioElement"
     playsinline
     crossorigin="anonymous"
   ></audio>
 </media-theme-tailwind-audio>
+
+<script>
+    function loadProject(data) {
+        audioElement.setAttribute(src, data);
+    }
+    function saveProject() {
+
+    }
+</script>

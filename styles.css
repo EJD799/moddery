@@ -406,26 +406,44 @@ input[type=color]:hover {
     margin: 0;
 }
 
-/* Prevent vertical tabs from shifting down when active */
+/* ---------------------------------------- */
+/* FIX: Prevent vertical tabs from shifting */
+/* ---------------------------------------- */
+
 .ui-tabs-vertical .ui-tabs-nav li {
     box-sizing: border-box;
 }
 
-/* Remove the height change on active state */
 .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
-    padding-bottom: .2em !important; /* match the normal padding */
+    padding-bottom: .2em !important;
     margin-bottom: 0 !important;
-    border-bottom-width: 1px !important; /* keep the same border */
+    border-bottom-width: 1px !important;
 }
 
-/* Make the whole tab clickable for ALL jQuery UI tab styles */
+/* ---------------------------------------- */
+/* MAKE ENTIRE TAB CLICKABLE (all jQuery UI tabs) */
+/* Works with close buttons */
+/* ---------------------------------------- */
+
 .ui-tabs .ui-tabs-nav li {
-    padding: 0 !important;      /* Remove inset padding so <a> can cover entire area */
+    padding: 0 !important;
+    position: relative; /* required for close button positioning */
 }
 
 .ui-tabs .ui-tabs-nav li a {
-    display: block !important;   /* Expand to full <li> */
-    width: 100% !important;      /* Fill horizontally */
-    padding: .5em 1em;           /* Add your click area padding */
-    box-sizing: border-box;      /* Make padding not break the layout */
+    display: block !important;
+    padding: .5em 2em .5em 1em; /* right padding = room for close button */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Position the close button inside the tab */
+.ui-tabs .ui-tabs-nav li .ui-icon-close {
+    position: absolute;
+    right: .4em;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 !important;
+    cursor: pointer;
+    z-index: 2;
 }

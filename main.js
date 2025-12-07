@@ -162,9 +162,13 @@ function closeOptionsDlg() {
 function clearCache() {
   const warningText = "All open tabs will be refreshed, deleting all unsaved work. Are you sure you want to continue?";
   if (confirm(warningText)) {
-    const f = document.querySelector("iframe");
-    f.src = f.src.split('?')[0] + '?force=' + Date.now();
-    alert("Cache cleared successfully.")
+    try {
+      const f = document.querySelector("iframe");
+      f.src = f.src.split('?')[0] + '?force=' + Date.now();
+      alert("Cache cleared successfully.");
+    } catch(e) {
+      alert("No cache found to clear. Please open the tab that needs to be refreshed first.");
+    }
   }
 }
 

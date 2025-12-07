@@ -425,38 +425,37 @@ input[type=color]:hover {
 /* Works with close buttons */
 /* ---------------------------------------- */
 
-/* Make the whole tab clickable */
+/* Make each tab fully clickable */
 .ui-tabs .ui-tabs-nav li {
     padding: 0 !important;
     position: relative;
 }
 
-/* Make the <a> fill the tab area */
+/* Make the <a> fill the entire tab area */
 .ui-tabs .ui-tabs-nav li a {
     display: block !important;
-    padding: .5em 2.2em .5em 1em;  /* Reserve real space for the icon */
     width: 100%;
+    padding: .5em 2.2em .5em 1em; /* reserve space for close button */
     box-sizing: border-box;
-
-    user-select: none; /* Prevent text cursor on selected tabs */
+    user-select: none; /* prevent text cursor */
 }
 
-/* Cursor behavior */
+/* Correct cursor behavior */
 .ui-tabs .ui-tabs-nav li:not(.ui-tabs-active) a {
     cursor: pointer;
 }
-
 .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
     cursor: default;
 }
 
-/* Fix the close button overlap */
-.ui-tabs .ui-tabs-nav li a .ui-icon-close {
-    position: absolute;         /* Position relative to <a> */
-    right: .5em;                /* Always in the same place */
+/* Position the close icon that is OUTSIDE <a> */
+.ui-tabs .ui-tabs-nav li .ui-icon-close {
+    position: absolute;   /* relative to <li> */
+    right: .5em;
     top: 50%;
     transform: translateY(-50%);
     margin: 0 !important;
     pointer-events: auto;
     cursor: pointer;
+    z-index: 5;
 }

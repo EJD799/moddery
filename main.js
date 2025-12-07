@@ -774,6 +774,8 @@ function getTabContent(role, elementID) {
     return '<iframe src="editor/bedrock/recipe.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else if (role == "Image") {
     return '<iframe src="editor/image.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
+  } else if (role == "Audio") {
+    return '<iframe src="editor/audio.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else {
     return "Coming soon!";
   }
@@ -795,12 +797,16 @@ function editElement(elementID) {
     }
   });
 }
-function editAsset(assetID) {
-  projZip.folder("assets").file(decodeText(assetID)).async("string").then(function (data) {
-    if (!arrayContains(Object.values(openElements), ["Image", assetID])) {
-      addTab("Image", assetID);
-    }
-  });
+function editAsset(assetID, type) {
+  if (type == "png") {
+    projZip.folder("assets").file(decodeText(assetID)).async("string").then(function (data) {
+      if (!arrayContains(Object.values(openElements), ["Image", assetID])) {
+        addTab("Image", assetID);
+      }
+    });
+  } else if (type == "wav") {
+    addTab("Audio", assetID);
+  }
 }
 
 function openElementInfo(elementID, type) {
@@ -1071,7 +1077,7 @@ function addTab(role, elementID) {
       projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
-    } else if (role == "Image") {
+    } else if ((role == "Image") || (role == "Audio")) {
       projZip.folder("assets").file(decodeText(elementID)).async("blob").then(async function (data) {
         frame.contentWindow.loadProject(await fileToDataURL(data));
       });

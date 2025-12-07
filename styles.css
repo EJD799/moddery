@@ -425,42 +425,39 @@ input[type=color]:hover {
 /* Works with close buttons */
 /* ---------------------------------------- */
 
-/* Make each tab fully clickable */
-.ui-tabs .ui-tabs-nav li {
-    padding: 0 !important;
-    position: relative;
-}
-
-/* Force <a> to reserve space for the close button */
+/* Base link styling for all tabs */
 .ui-tabs .ui-tabs-nav li a {
     display: block !important;
     width: 100%;
-    padding: .5em 2.6em .5em 1em !important;  /* right padding is now forced */
+    padding: .5em 1em !important;   /* normal padding */
     box-sizing: border-box;
     user-select: none;
-    white-space: nowrap; /* prevent text wrapping under button */
+    white-space: nowrap;
+}
+
+/* Add extra right padding ONLY if the tab has a close button */
+.ui-tabs .ui-tabs-nav li.has-close > a {
+    padding-right: 2.2em !important;  /* just enough for the icon */
+}
+
+/* Position the close button inside the tab */
+.ui-tabs .ui-tabs-nav li .ui-icon-close {
+    position: absolute;
+    right: .5em;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 !important;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    z-index: 5;
 }
 
 /* Cursor behavior */
 .ui-tabs .ui-tabs-nav li:not(.ui-tabs-active) a {
     cursor: pointer;
 }
+
 .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
     cursor: default !important;
-}
-
-/* Position the close icon relative to <li> */
-.ui-tabs .ui-tabs-nav li .ui-icon-close {
-    position: absolute;
-    right: .6em;          /* sits inside the reserved padding */
-    top: 50%;
-    transform: translateY(-50%);
-
-    width: 16px;          /* gives the icon a real box */
-    height: 16px;
-
-    margin: 0 !important;
-    pointer-events: auto;
-    cursor: pointer;
-    z-index: 5;
 }

@@ -983,6 +983,8 @@ function addTab(role, elementID) {
     id = "tabs-" + tabCounter,
     li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
     tabContentHtml = getTabContent(role, elementID);
+
+  li.addClass("has-close");
  
   tabs.find( ".ui-tabs-nav" ).append( li );
   if (shouldRemoveMargin(role)) {

@@ -157,6 +157,7 @@ $("#optionsDlg").dialog({
 });
 $("#optionsDlg").dialog("close");
 $("#clearCacheBtn").button();
+$("#signInBtn").button();
 $("#themeMenu").selectmenu();
 
 function openOptionsDlg() {

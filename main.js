@@ -151,12 +151,17 @@ $("#optionsDlg").dialog({
   closeOnEscape: false
 });
 $("#optionsDlg").dialog("close");
+$("#clearCacheBtn").button();
 
 function openOptionsDlg() {
   $("#optionsDlg").dialog("open");
 }
 function closeOptionsDlg() {
   $("#optionsDlg").dialog("close");
+}
+function clearCache() {
+  const f = document.querySelector("iframe");
+  f.src = f.src.split('?')[0] + '?force=' + Date.now();
 }
 
 $( function() {

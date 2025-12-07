@@ -349,7 +349,11 @@ function openProjDlg() {
   fileInput.click();
 }*/
 
-autosaveEnabled = (getCookie("autosaveEnabled") == "true");
+if (getCookie("autosaveEnabled")) {
+  autosaveEnabled = (getCookie("autosaveEnabled") == "true");
+} else {
+  autosaveEnabled = true;
+}
 
 let autosaveBox = document.getElementById("autosaveBox");
 autosaveBox.addEventListener("change", function(e) {

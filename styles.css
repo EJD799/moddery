@@ -428,33 +428,44 @@ input[type=color]:hover {
 /* Make each tab fully clickable */
 .ui-tabs .ui-tabs-nav li {
     padding: 0 !important;
-    position: relative; /* needed for close button positioning */
+    position: relative;
+    white-space: nowrap; /* Prevent text from wrapping under the close icon */
 }
 
-/* Make the link fill the tab area, with enough padding for the close icon */
+/* Make the link fill the tab, leave empty space for the close icon */
 .ui-tabs .ui-tabs-nav li a {
     display: block !important;
-    padding: .5em 3em .5em 1em;  /* 3em = guaranteed space for close icon */
+    padding: .5em 2.5em .5em 1em; /* right padding = reserved icon area */
     width: 100%;
     box-sizing: border-box;
+
+    user-select: none; /* Prevent text-selection cursor on selected tab */
+    -webkit-user-select: none;
+    -moz-user-select: none;
 }
 
 /* Cursor behavior */
 .ui-tabs .ui-tabs-nav li:not(.ui-tabs-active) a {
-    cursor: pointer;         /* unselected tabs */
+    cursor: pointer;   /* unselected tab */
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
-    cursor: default;         /* selected tab */
+    cursor: default;   /* selected tab (arrow cursor, not text cursor) */
 }
 
-/* Position the close button inside the tab */
+/* Style and position the close button */
 .ui-tabs .ui-tabs-nav li .ui-icon-close {
     position: absolute;
-    right: .8em;             /* placed inside padding, never touching text */
+    right: .6em;
     top: 50%;
     transform: translateY(-50%);
     margin: 0 !important;
+
+    width: 16px;   /* prevent overlap by giving it a real box */
+    height: 16px;
+
+    pointer-events: auto;
     cursor: pointer;
-    z-index: 3;              /* keep it above the <a> */
+
+    z-index: 3;    /* ensure it appears above <a> but not over text area */
 }

@@ -4219,10 +4219,6 @@ const itemDefinitions = {
         name: "Nether Sprouts",
         texture: "@java/block/nether_sprouts.png"
     },
-    "minecraft:nether_wart": {
-        name: "Nether Wart",
-        texture: "@java/item/nether_wart.png"
-    },
     "minecraft:nether_wart_block": {
         name: "Nether Wart Block",
         texture: "https://minecraft.wiki/images/thumb/Nether_Wart_Block_JE3.png/60px-Nether_Wart_Block_JE3.png?2555f"

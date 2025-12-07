@@ -10,6 +10,7 @@ var renameElementID;
 var renameElementType;
 var deleteElementID;
 var deleteElementType;
+var autosaveEnabled = false;
 
 document.addEventListener("DOMContentLoaded", function(){
   document.getElementById("savingBox").style.display = "none";
@@ -283,7 +284,11 @@ function saveProjectInfo() {
   projManifest.description = $("#editProjDescriptionBox").val();
   projManifest.packIcon = selectedPackIcon;
   projZip.file("manifest.json", JSON.stringify(projManifest));
-  saveProject();
+  if (autosaveEnabled) {
+    saveProject();
+  } else {
+    setNotSaved();
+  }
 }
 function createProject() {
   if ($("#newProjNamespaceBox").val() == "minecraft") {
@@ -311,14 +316,22 @@ function createProject() {
     projZip.folder("assets");
     $("#newProjNameBox").val("");
     $("#newProjNamespaceBox").val("");
-    document.getElementById("savingText").innerHTML = "<i class='fa-regular fa-file'></i> Not Saved";
-    document.getElementById("savingFlyoutText").innerHTML = `Not saved. Click "Save Now" or "File>Save" to save your work.`;
+    setNotSaved(true);
     $("#savingFlyout")
       .position({
         my: "right bottom",
         at: "right top",
         of: $("#savingBox")
       });
+  }
+}
+
+function setNotSaved(nonAutosave) {
+  document.getElementById("savingText").innerHTML = "<i class='fa-regular fa-file'></i> Not Saved";
+  if (nonAutosave) {
+    document.getElementById("savingFlyoutText").innerHTML = `Not saved. Click "Save Now" or "File>Save" to save your work.`;
+  } else {
+    document.getElementById("savingFlyoutText").innerHTML = `Not saved. Click "Save Now" or "File>Save" to save your work. Autosave is disabled. Go to "Moddery>Options>General" to turn it on.`;
   }
 }
 
@@ -545,7 +558,11 @@ function addElement(loadingProj) {
   $("#addElementNameBox").val("");
   $("#addElementIDBox").val("");
   if (projFileHandle) {
-    saveProject();
+    if (autosaveEnabled) {
+      saveProject();
+    } else {
+      setNotSaved();
+    }
   }
 }
 
@@ -632,7 +649,11 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
   addAssetUploadInput.value = "";
   addAssetNameBox.value = "";
   if (projFileHandle) {
-    saveProject();
+    if (autosaveEnabled) {
+      saveProject();
+    } else {
+      setNotSaved();
+    }
   }
 }
 
@@ -878,7 +899,11 @@ function deleteElement() {
   closeDeleteElement();
   deleteElementFromZip(deleteElementID);
   document.getElementById("elementbox" + encodeText(deleteElementID)).remove();
-  saveProject();
+  if (autosaveEnabled) {
+    saveProject();
+  } else {
+    setNotSaved();
+  }
 }
 async function renameElement() {
   closeRenameElement();
@@ -969,7 +994,11 @@ async function renameElement() {
       });
     });
   }
-  saveProject();
+  if (autosaveEnabled) {
+    saveProject();
+  } else {
+    setNotSaved();
+  }
 }
 
 function getCustomItems(mode) {
@@ -1030,7 +1059,11 @@ tabs.on( "click", "span.ui-icon-close", function() {
   $( "#" + panelId ).remove();
   tabs.tabs( "refresh" );
   if (projFileHandle) {
-    saveProject();
+    if (autosaveEnabled) {
+      saveProject();
+    } else {
+      setNotSaved();
+    }
   }
 });
 

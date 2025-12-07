@@ -351,9 +351,57 @@ input[type=color]:hover {
   font-family: Verdana, sans-serif;
 }
 
-.ui-tabs-vertical { width: 55em; }
-.ui-tabs-vertical .ui-tabs-nav { padding: .2em .1em .2em .2em; float: left; width: 12em; }
-.ui-tabs-vertical .ui-tabs-nav li { clear: left; width: 100%; border-bottom-width: 1px !important; border-right-width: 0 !important; margin: 0 -1px .2em 0; }
-.ui-tabs-vertical .ui-tabs-nav li a { display:block; }
-.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active { padding-bottom: 0; padding-right: .1em; border-right-width: 1px; }
-.ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: right; width: 40em;}
+/* Make vertical tabs a flex container */
+.ui-tabs-vertical {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+/* The left tab list */
+.ui-tabs-vertical .ui-tabs-nav {
+    padding: .2em .1em .2em .2em;
+    width: 12em;            /* same as original */
+    flex-shrink: 0;         /* keep fixed width */
+    border-right: 1px solid #ddd;
+}
+
+/* Each tab */
+.ui-tabs-vertical .ui-tabs-nav li {
+    width: 100%;
+    margin: 0 0 .2em 0;
+    border-bottom-width: 1px !important;
+    border-right-width: 0 !important;
+    clear: none !important; /* no clearing needed with flex */
+}
+
+/* Tab link */
+.ui-tabs-vertical .ui-tabs-nav li a {
+    display: block;
+}
+
+/* Active tab */
+.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
+    padding-right: 0;
+    border-right-width: 0 !important;
+}
+
+/* Right content panel */
+.ui-tabs-vertical .ui-tabs-panel {
+    padding: 1em;
+    width: auto;            /* allow it to fill remaining space */
+    flex: 1 1 auto;         /* this is the important part */
+    overflow: auto;         /* avoids content pushing container */
+}
+
+/* Your dialog + container */
+#optionsTabs {
+    width: 100%;
+    height: 100%;
+}
+
+#optionsDlg {
+    padding: 0;
+    margin: 0;
+}

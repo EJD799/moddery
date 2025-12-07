@@ -147,7 +147,7 @@ $("#optionsDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 500,
-  width: 500,
+  width: 800,
   closeOnEscape: false
 });
 $("#optionsDlg").dialog("close");

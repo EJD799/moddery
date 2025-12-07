@@ -18,7 +18,7 @@
 
 <script>
     function loadProject(data) {
-        audioElement.setAttribute("src", data);
+        audioElement.setAttribute("src", data.replace("application/octet-stream", "audio/wav"));
     }
     function saveProject() {
 

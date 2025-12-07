@@ -426,7 +426,6 @@ input[type=color]:hover {
 .ui-tabs .ui-tabs-nav li a {
     display: block !important;   /* Expand to full <li> */
     width: 100% !important;      /* Fill horizontally */
-    height: 100% !important;     /* Fill vertically */
     padding: .5em 1em;           /* Add your click area padding */
     box-sizing: border-box;      /* Make padding not break the layout */
 }

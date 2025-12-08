@@ -485,7 +485,7 @@ function centerDialogViewport(selector) {
     });
 }
 
-$("#modelTextureBtn").button();
+$("#modelBtn").button();
 $("#itemTextureBtn").button();
 $("#blockTextureBtn0").button();
 

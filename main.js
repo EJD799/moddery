@@ -1155,6 +1155,9 @@ function getTextureList() {
 function getStructureList() {
   return fileListInFolder("assets", "mcstructure")
 }
+function getModelList() {
+  return fileListInFolder("assets", "json")
+}
 
 $("#newProjBtn").button();
 $("#openProjBtn").button();

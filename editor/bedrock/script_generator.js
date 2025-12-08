@@ -306,7 +306,7 @@ Blockly.JavaScript.forBlock['command_origin'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['dimension_menu'] = function(block) {
-    let code = `'${block.getFieldValue("DIMENSION")}'`;
+    let code = `${block.getFieldValue("DIMENSION")}`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 

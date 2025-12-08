@@ -534,9 +534,15 @@ Blockly.JavaScript.forBlock['play_sound_all'] = function(block) {
     return code;
 };
 
-Blockly.JavaScript.forBlock['set_weather'] = function(block) {
+Blockly.JavaScript.forBlock['weather_menu'] = function(block) {
     let weather = block.getFieldValue("WEATHER");
-    let duration = getInput(block, "DURATION")
+    let code = `'${weather}'`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript.forBlock['set_weather'] = function(block) {
+    let weather = getInput(block, "WEATHER");
+    let duration = getInput(block, "DURATION");
     let code = `world.getDimension('overworld').setWeather(${weather}, ${duration});
 `;
     return code;

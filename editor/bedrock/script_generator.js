@@ -762,9 +762,15 @@ Blockly.JavaScript.forBlock['player_queue_music'] = function(block) {
     return code;
 };
 
+Blockly.JavaScript.forBlock['gamemode_menu'] = function(block) {
+    let gamemode = block.getFieldValue("GAMEMODE");
+    let code = `'${gamemode}'`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
 Blockly.JavaScript.forBlock['player_set_gamemode'] = function(block) {
     let player = getInput(block, "PLAYER");
-    let gamemode = block.getFieldValue("GAMEMODE");
+    let gamemode = getInput(block, "GAMEMODE");
     let code = `${player}.setGameMode(${gamemode});
 `;
     return code;

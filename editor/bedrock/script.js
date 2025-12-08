@@ -2228,6 +2228,25 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     inputsInline: true
   },
   {
+    type: "gamemode_menu",
+    message0: "%1",
+    colour: 100,
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "GAMEMODE",
+        options: [
+          ["creative", "creative"],
+          ["survival", "survival"],
+          ["adventure", "adventure"],
+          ["spectator", "spectator"]
+        ]
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
     type: "player_set_gamemode",
     message0: "set gamemode of player %1 to %2",
     colour: 100,
@@ -2238,14 +2257,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       },
       {
-        type: "field_dropdown",
-        name: "GAMEMODE",
-        options: [
-          ["creative", "creative"],
-          ["survival", "survival"],
-          ["adventure", "adventure"],
-          ["spectator", "spectator"]
-        ]
+        type: "input_value",
+        name: "GAMEMODE"
       }
     ],
     previousStatement: null,
@@ -3008,7 +3021,7 @@ const bedrockScriptToolbox = {
         { kind: 'label', text: 'Players'},
         { kind: 'block', type: 'player_get_property'},
         { kind: 'block', type: 'send_message', inputs: { MESSAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'player_set_gamemode' },
+        { kind: 'block', type: 'player_set_gamemode', inputs: { GAMEMODE: { shadow: { type: 'gamemode_menu' } } } },
         { kind: 'block', type: 'player_set_spawn_point', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'player_give_xp', inputs: { AMOUNT: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'player_play_sound', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },

@@ -907,19 +907,25 @@ function loadProject(data) {
     if (data.hasItem) {
         useCustomItemBox.checked = true;
     }
-    loadTextures(data.textures);
+    loadTextures(data);
     loadComponents(data.components);
 }
 
 function loadTextures(data) {
     if (data) {
-        currentBlockTextures = data;
-        if (elementData.hasItem) {
-            $("#textureNameText").val(data.item);
+        selectedModel = data.model;
+        if (data.model) {
+            modelNameText.innerHTML = data.model;
         }
-        dataKeys = Object.keys(data);
+        currentBlockTextures = data.textures;
+        if (data.hasItem && data.textures.item) {
+            textureNameText.innerHTML = data.textures.item;
+        }
+        dataKeys = Object.keys(data.textures);
         for (let i = 1; i < dataKeys.length; i++) {
-            $(`#textureNameText${i}`).val(data[dataKeys[i]]);
+            if (data.textures[dataKeys[i]]) {
+                document.getElementById(`#textureNameText${i}`).innerHTML = data.textures[dataKeys[i]];
+            }
         }
     }
 }

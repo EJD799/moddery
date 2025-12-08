@@ -76,7 +76,7 @@ Blockly.JavaScript.forBlock['cancel_event'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['run_command_dimension'] = function(block) {
-    let code = `world.getDimension('${getInput(block, "DIMENSION")}').runCommand(${getInput(block, "COMMAND")});
+    let code = `world.getDimension(${getInput(block, "DIMENSION")}).runCommand(${getInput(block, "COMMAND")});
 `;
     return code;
 };
@@ -306,7 +306,7 @@ Blockly.JavaScript.forBlock['command_origin'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['dimension_menu'] = function(block) {
-    let code = `${block.getFieldValue("DIMENSION")}`;
+    let code = `'${block.getFieldValue("DIMENSION")}'`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -329,7 +329,7 @@ Blockly.JavaScript.forBlock['set_block'] = function(block) {
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
-    let code = `world.getDimension('${dimension}').setBlockType({x: ${x}, y: ${y}, z: ${z}}, ${type});
+    let code = `world.getDimension(${dimension}).setBlockType({x: ${x}, y: ${y}, z: ${z}}, ${type});
 `;
     return code;
 };
@@ -419,7 +419,7 @@ Blockly.JavaScript.forBlock['fill_blocks'] = function(block) {
     let x2 = getInput(block, "X_POS2");
     let y2 = getInput(block, "Y_POS2");
     let z2 = getInput(block, "Z_POS2");
-    let code = `world.getDimension('${dimension}').fillBlocks(new BlockVolume({x: ${x1}, y: ${y1}, z: ${z1}}, {x: ${x2}, y: ${y2}, z: ${z2}}), ${type});
+    let code = `world.getDimension(${dimension}).fillBlocks(new BlockVolume({x: ${x1}, y: ${y1}, z: ${z1}}, {x: ${x2}, y: ${y2}, z: ${z2}}), ${type});
 `;
     return code;
 };
@@ -431,7 +431,7 @@ Blockly.JavaScript.forBlock['create_explosion'] = function(block) {
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
-    let code = `world.getDimension('${dimension}').createExplosion({x: ${x}, y: ${y}, z: ${z}}, ${radius}, {
+    let code = `world.getDimension(${dimension}).createExplosion({x: ${x}, y: ${y}, z: ${z}}, ${radius}, {
     allowUnderwater: ${getInput(block, "ALLOW_UNDERWATER")},
     breaksBlocks: ${getInput(block, "BREAK_BLOCKS")},
     causesFire: ${getInput(block, "CAUSE_FIRE")}
@@ -445,7 +445,7 @@ Blockly.JavaScript.forBlock['get_biome'] = function(block) {
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
     let dimension = getInput(block, "DIMENSION");
-    let code = `world.getDimension('${dimension}').getBiome({x: ${x}, y: ${y}, z: ${z}})`;
+    let code = `world.getDimension(${dimension}).getBiome({x: ${x}, y: ${y}, z: ${z}})`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -454,7 +454,7 @@ Blockly.JavaScript.forBlock['get_block'] = function(block) {
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
     let dimension = getInput(block, "DIMENSION");
-    let code = `world.getDimension('${dimension}').getBlock({x: ${x}, y: ${y}, z: ${z}})`;
+    let code = `world.getDimension(${dimension}).getBlock({x: ${x}, y: ${y}, z: ${z}})`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -494,7 +494,7 @@ Blockly.JavaScript.forBlock['set_block_waterlogged'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['get_entities'] = function(block) {
-    let code = `world.getDimension('${getInput(block, "DIMENSION")}').getEntities()`;
+    let code = `world.getDimension(${getInput(block, "DIMENSION")}).getEntities()`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -502,12 +502,12 @@ Blockly.JavaScript.forBlock['get_entities_at_location'] = function(block) {
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
-    let code = `world.getDimension('${getInput(block, "DIMENSION")}').getEntitiesAtBlockLocation({x: ${x}, y: ${y}, z: ${z}})`;
+    let code = `world.getDimension(${getInput(block, "DIMENSION")}).getEntitiesAtBlockLocation({x: ${x}, y: ${y}, z: ${z}})`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['get_players_dimension'] = function(block) {
-    let code = `world.getDimension('${getInput(block, "DIMENSION")}').getPlayers()`;
+    let code = `world.getDimension(${getInput(block, "DIMENSION")}).getPlayers()`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -515,7 +515,7 @@ Blockly.JavaScript.forBlock['is_chunk_loaded'] = function(block) {
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
-    let code = `world.getDimension('${getInput(block, "DIMENSION")}').isChunkLoaded({x: ${x}, y: ${y}, z: ${z}})`;
+    let code = `world.getDimension(${getInput(block, "DIMENSION")}).isChunkLoaded({x: ${x}, y: ${y}, z: ${z}})`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -524,7 +524,7 @@ Blockly.JavaScript.forBlock['play_sound_all'] = function(block) {
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
     let sound = getInput(block, "SOUND")
-    let code = `world.getDimension('${getInput(block, "DIMENSION")}').playSound(${sound}, {x: ${x}, y: ${y}, z: ${z}});
+    let code = `world.getDimension(${getInput(block, "DIMENSION")}).playSound(${sound}, {x: ${x}, y: ${y}, z: ${z}});
 `;
     return code;
 };
@@ -543,7 +543,7 @@ Blockly.JavaScript.forBlock['spawn_entity'] = function(block) {
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
-    let code = `world.getDimension('${dimension}').spawnEntity(${entity}, {x: ${x}, y: ${y}, z: ${z}});
+    let code = `world.getDimension(${dimension}).spawnEntity(${entity}, {x: ${x}, y: ${y}, z: ${z}});
 `;
     return code;
 };
@@ -555,7 +555,7 @@ Blockly.JavaScript.forBlock['spawn_item'] = function(block) {
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
-    let code = `world.getDimension('${dimension}').spawnItem(new ItemStack(itemType: ${item}, amount: ${quantity}), {x: ${x}, y: ${y}, z: ${z}});
+    let code = `world.getDimension(${dimension}).spawnItem(new ItemStack(itemType: ${item}, amount: ${quantity}), {x: ${x}, y: ${y}, z: ${z}});
 `;
     return code;
 };
@@ -566,7 +566,7 @@ Blockly.JavaScript.forBlock['spawn_particle'] = function(block) {
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
-    let code = `world.getDimension('${dimension}').spawnParticle(${particle}, {x: ${x}, y: ${y}, z: ${z}});
+    let code = `world.getDimension(${dimension}).spawnParticle(${particle}, {x: ${x}, y: ${y}, z: ${z}});
 `;
     return code;
 };

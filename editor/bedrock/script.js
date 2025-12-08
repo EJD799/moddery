@@ -1120,8 +1120,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     inputsInline: true
   },
   {
-    type: "set_difficulty",
-    message0: "set difficulty to %1",
+    type: "difficulty_menu",
+    message0: "%1",
     colour: 180,
     args0: [
       {
@@ -1133,6 +1133,19 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
           ["normal", "Normal"],
           ["hard", "Hard"]
         ]
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: "set_difficulty",
+    message0: "set difficulty to %1",
+    colour: 180,
+    args0: [
+      {
+        type: "input_value",
+        name: "DIFFICULTY"
       }
     ],
     previousStatement: null,
@@ -2896,7 +2909,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'get_default_spawn' },
         { kind: 'block', type: 'set_default_spawn', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
         { kind: 'block', type: 'get_difficulty' },
-        { kind: 'block', type: 'set_difficulty' },
+        { kind: 'block', type: 'set_difficulty', inputs: { DIFFICULTY: { shadow: { type: 'difficulty_menu' } } } },
         { kind: 'sep'},
         { kind: 'label', text: 'Dynamic Properties'},
         { kind: 'block', type: 'set_dynamic_property', inputs: { PROPERTY: { shadow: { type: 'text', fields: { TEXT: "" } } }, VALUE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },

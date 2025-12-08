@@ -398,8 +398,13 @@ Blockly.JavaScript.forBlock['set_default_spawn'] = function(block) {
     return code;
 };
 
+Blockly.JavaScript.forBlock['difficulty_menu'] = function(block) {
+    let code = `'${block.getFieldValue("DIFFICULTY")}'`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
 Blockly.JavaScript.forBlock['set_difficulty'] = function(block) {
-    let code = `world.setDifficulty('${block.getFieldValue("DIFFICULTY")}');
+    let code = `world.setDifficulty(${getInput(block, "DIFFICULTY")});
 `;
     return code;
 };

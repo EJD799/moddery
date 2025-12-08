@@ -1153,10 +1153,10 @@ function getTextureList() {
   return fileListInFolder("assets", "png");
 }
 function getStructureList() {
-  return fileListInFolder("assets", "mcstructure")
+  return fileListInFolder("assets", "mcstructure");
 }
 function getModelList() {
-  return fileListInFolder("assets", "json")
+  return fileListInFolder("assets", "json");
 }
 
 $("#newProjBtn").button();

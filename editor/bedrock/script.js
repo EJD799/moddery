@@ -1570,13 +1570,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     colour: 100,
     args0: [
       {
-        type: "field_dropdown",
-        name: "WEATHER",
-        options: [
-          ["clear", "Clear"],
-          ["rain", "Rain"],
-          ["thunder", "Thunder"]
-        ]
+        type: "input_value",
+        name: "WEATHER"
       },
       {
         type: "input_value",

@@ -224,6 +224,24 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     inputsInline: true
   },
   {
+    type: "dimension_menu",
+    message0: "%1",
+    colour: 100,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'DIMENSION',
+        options: [
+          ['overworld', 'overworld'],
+          ['nether', 'nether'],
+          ['the end', 'the_end']
+        ]
+      }
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
     type: "run_command_dimension",
     message0: "run command %1 in dimension %2",
     colour: 100,
@@ -234,13 +252,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       },
       {
-        type: 'field_dropdown',
-        name: 'DIMENSION',
-        options: [
-          ['overworld', 'overworld'],
-          ['nether', 'nether'],
-          ['the end', 'the_end']
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       }
     ],
     previousStatement: null,
@@ -956,13 +969,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       },
       {
-        type: "field_dropdown",
-        name: "DIMENSION",
-        options: [
-          ["overworld", "overworld"],
-          ["nether", "nether"],
-          ["the end", "the_end"]
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       },
       {
         type: "input_value",
@@ -1175,13 +1183,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       },
       {
-        type: "field_dropdown",
-        name: "DIMENSION",
-        options: [
-          ["overworld", "overworld"],
-          ["nether", "nether"],
-          ["the end", "the_end"]
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       },
       {
         type: "input_value",
@@ -1219,13 +1222,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       },
       {
-        type: "field_dropdown",
-        name: "DIMENSION",
-        options: [
-          ["overworld", "overworld"],
-          ["nether", "nether"],
-          ["the end", "the_end"]
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       },
       {
         type: "input_value",
@@ -1268,13 +1266,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       },
       {
-        type: "field_dropdown",
-        name: "DIMENSION",
-        options: [
-          ["overworld", "overworld"],
-          ["nether", "nether"],
-          ["the end", "the_end"]
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       }
     ],
     output: null,
@@ -1301,13 +1294,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       },
       {
-        type: "field_dropdown",
-        name: "DIMENSION",
-        options: [
-          ["overworld", "overworld"],
-          ["nether", "nether"],
-          ["the end", "the_end"]
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       }
     ],
     output: null,
@@ -1453,13 +1441,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     colour: 100,
     args0: [
       {
-        type: "field_dropdown",
-        name: "DIMENSION",
-        options: [
-          ["overworld", "overworld"],
-          ["nether", "nether"],
-          ["the end", "the_end"]
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       }
     ],
     output: null,
@@ -1486,13 +1469,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       },
       {
-        type: "field_dropdown",
-        name: "DIMENSION",
-        options: [
-          ["overworld", "overworld"],
-          ["nether", "nether"],
-          ["the end", "the_end"]
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       }
     ],
     output: null,
@@ -1504,13 +1482,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
     colour: 100,
     args0: [
       {
-        type: "field_dropdown",
-        name: "DIMENSION",
-        options: [
-          ["overworld", "overworld"],
-          ["nether", "nether"],
-          ["the end", "the_end"]
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       }
     ],
     output: null,
@@ -1537,13 +1510,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       },
       {
-        type: "field_dropdown",
-        name: "DIMENSION",
-        options: [
-          ["overworld", "overworld"],
-          ["nether", "nether"],
-          ["the end", "the_end"]
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       }
     ],
     output: "Boolean",
@@ -1560,13 +1528,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       },
       {
-        type: "field_dropdown",
-        name: "DIMENSION",
-        options: [
-          ["overworld", "overworld"],
-          ["nether", "nether"],
-          ["the end", "the_end"]
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       },
       {
         type: "input_value",
@@ -1638,13 +1601,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       },
       {
-        type: "field_dropdown",
-        name: "DIMENSION",
-        options: [
-          ["overworld", "overworld"],
-          ["nether", "nether"],
-          ["the end", "the_end"]
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       },
     ],
     previousStatement: null,
@@ -1682,13 +1640,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       },
       {
-        type: "field_dropdown",
-        name: "DIMENSION",
-        options: [
-          ["overworld", "overworld"],
-          ["nether", "nether"],
-          ["the end", "the_end"]
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       },
     ],
     previousStatement: null,
@@ -1721,13 +1674,8 @@ const bedrockScriptDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
         check: null
       },
       {
-        type: "field_dropdown",
-        name: "DIMENSION",
-        options: [
-          ["overworld", "overworld"],
-          ["nether", "nether"],
-          ["the end", "the_end"]
-        ]
+        type: 'input_value',
+        name: 'DIMENSION'
       },
     ],
     previousStatement: null,
@@ -2935,7 +2883,7 @@ const bedrockScriptToolbox = {
       contents: [
         { kind: 'sep'},
         { kind: 'label', text: 'Commands'},
-        { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } }, DIMENSION: { shadow: { type: 'dimension_menu' } } } },
         { kind: 'block', type: 'run_command_player', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'register_command' },
         { kind: 'block', type: 'command_parameter' },
@@ -3009,25 +2957,25 @@ const bedrockScriptToolbox = {
       colour: 100,
       contents: [
         { kind: 'label', text: 'Blocks'},
-        { kind: 'block', type: 'set_block', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BLOCK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'fill_blocks', inputs: { X_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, X_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BLOCK: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'create_explosion', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, RADIUS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BREAK_BLOCKS: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } }, CAUSE_FIRE: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } }, ALLOW_UNDERWATER: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } } } },
-        { kind: 'block', type: 'get_biome', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
-        { kind: 'block', type: 'get_block', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
+        { kind: 'block', type: 'set_block', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BLOCK: { shadow: { type: 'text', fields: { TEXT: "" } } }, DIMENSION: { shadow: { type: 'dimension_menu' } } } },
+        { kind: 'block', type: 'fill_blocks', inputs: { X_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS1: { shadow: { type: 'math_number', fields: { NUM: "" } } }, X_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS2: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BLOCK: { shadow: { type: 'text', fields: { TEXT: "" } } }, DIMENSION: { shadow: { type: 'dimension_menu' } } } },
+        { kind: 'block', type: 'create_explosion', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, RADIUS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, BREAK_BLOCKS: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } }, CAUSE_FIRE: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } }, ALLOW_UNDERWATER: { shadow: { type: 'logic_boolean', fields: { BOOL: false } } }, DIMENSION: { shadow: { type: 'dimension_menu' } } } },
+        { kind: 'block', type: 'get_biome', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, DIMENSION: { shadow: { type: 'dimension_menu' } } } },
+        { kind: 'block', type: 'get_block', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, DIMENSION: { shadow: { type: 'dimension_menu' } } } },
         { kind: 'block', type: 'get_block_property'},
         { kind: 'block', type: 'get_block_component', inputs: { COMPONENT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'set_block_type', inputs: { TYPE: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'set_block_waterlogged'},
         { kind: 'sep' },
         { kind: 'label', text: 'Entities'},
-        { kind: 'block', type: 'get_entities'},
-        { kind: 'block', type: 'get_entities_at_location', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
+        { kind: 'block', type: 'get_entities', inputs: { DIMENSION: { shadow: { type: 'dimension_menu' } } } },
+        { kind: 'block', type: 'get_entities_at_location', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, DIMENSION: { shadow: { type: 'dimension_menu' } } } },
         { kind: 'block', type: 'get_entity_property'},
         { kind: 'block', type: 'set_entity_property', inputs: { VALUE: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
-        { kind: 'block', type: 'spawn_entity', inputs: { ENTITY: { shadow: { type: 'text', fields: { TEXT: "" } } }, X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
-        { kind: 'block', type: 'spawn_item', inputs: { ITEM: { shadow: { type: 'text', fields: { TEXT: "" } } }, QUANTITY: { shadow: { type: 'math_number', fields: { NUM: "" } } }, X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
-        { kind: 'block', type: 'spawn_particle', inputs: { PARTICLE: { shadow: { type: 'text', fields: { TEXT: "" } } }, X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
-        { kind: 'block', type: 'get_players_dimension'},
+        { kind: 'block', type: 'spawn_entity', inputs: { ENTITY: { shadow: { type: 'text', fields: { TEXT: "" } } }, X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, DIMENSION: { shadow: { type: 'dimension_menu' } } } },
+        { kind: 'block', type: 'spawn_item', inputs: { ITEM: { shadow: { type: 'text', fields: { TEXT: "" } } }, QUANTITY: { shadow: { type: 'math_number', fields: { NUM: "" } } }, X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, DIMENSION: { shadow: { type: 'dimension_menu' } } } },
+        { kind: 'block', type: 'spawn_particle', inputs: { PARTICLE: { shadow: { type: 'text', fields: { TEXT: "" } } }, X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, DIMENSION: { shadow: { type: 'dimension_menu' } } } },
+        { kind: 'block', type: 'get_players_dimension', inputs: { DIMENSION: { shadow: { type: 'dimension_menu' } } } },
         { kind: 'block', type: 'entity_add_effect', inputs: { EFFECT: { shadow: { type: 'text', fields: { TEXT: "" } } }, DURATION: { shadow: { type: 'math_number', fields: { NUM: "" } } }, AMPLIFIER: { shadow: { type: 'math_number', fields: { NUM: "" } } }, HIDE_PARTICLES: { shadow: { type: 'logic_boolean', fields: { BOOL: "" } } } } },
         { kind: 'block', type: 'entity_add_tag', inputs: { TAG: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
         { kind: 'block', type: 'entity_apply_damage', inputs: { DAMAGE: { shadow: { type: 'math_number', fields: { NUM: "" } } } }},
@@ -3056,9 +3004,9 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'player_stop_music'},
         { kind: 'sep' },
         { kind: 'label', text: 'Other'},
-        { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
-        { kind: 'block', type: 'play_sound_all', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
-        { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
+        { kind: 'block', type: 'is_chunk_loaded', inputs: { X_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Y_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, Z_POS: { shadow: { type: 'math_number', fields: { NUM: "" } } }, DIMENSION: { shadow: { type: 'dimension_menu' } } } },
+        { kind: 'block', type: 'play_sound_all', inputs: { SOUND: { shadow: { type: 'text', fields: { TEXT: "" } } }, DIMENSION: { shadow: { type: 'dimension_menu' } } } },
+        { kind: 'block', type: 'run_command_dimension', inputs: { COMMAND: { shadow: { type: 'text', fields: { TEXT: "" } } }, DIMENSION: { shadow: { type: 'dimension_menu' } } } },
         { kind: 'block', type: 'set_weather', inputs: { DURATION: { shadow: { type: 'math_number', fields: { NUM: "" } } } } },
       ]
     },

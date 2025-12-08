@@ -76,7 +76,7 @@ Blockly.JavaScript.forBlock['cancel_event'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['run_command_dimension'] = function(block) {
-    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').runCommand(${getInput(block, "COMMAND")});
+    let code = `world.getDimension('${getInput(block, "DIMENSION")}').runCommand(${getInput(block, "COMMAND")});
 `;
     return code;
 };
@@ -305,6 +305,11 @@ Blockly.JavaScript.forBlock['command_origin'] = function(block) {
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
+Blockly.JavaScript.forBlock['dimension_menu'] = function(block) {
+    let code = `'${block.getFieldValue("DIMENSION")}'`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
 Blockly.JavaScript.forBlock['register_command'] = function(block) {
     let code = `customCommandRegistry.registerCommand(
     {
@@ -319,7 +324,7 @@ Blockly.JavaScript.forBlock['register_command'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['set_block'] = function(block) {
-    let dimension = block.getFieldValue("DIMENSION");
+    let dimension = getInput(block, "DIMENSION");
     let type = getInput(block, "BLOCK");
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
@@ -406,7 +411,7 @@ Blockly.JavaScript.forBlock['world_stop_music'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['fill_blocks'] = function(block) {
-    let dimension = block.getFieldValue("DIMENSION");
+    let dimension = getInput(block, "DIMENSION");
     let type = getInput(block, "BLOCK");
     let x1 = getInput(block, "X_POS1");
     let y1 = getInput(block, "Y_POS1");
@@ -420,7 +425,7 @@ Blockly.JavaScript.forBlock['fill_blocks'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['create_explosion'] = function(block) {
-    let dimension = block.getFieldValue("DIMENSION");
+    let dimension = getInput(block, "DIMENSION");
     let type = getInput(block, "BLOCK");
     let radius = getInput(block, "RADIUS");
     let x = getInput(block, "X_POS");
@@ -439,7 +444,7 @@ Blockly.JavaScript.forBlock['get_biome'] = function(block) {
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
-    let dimension = block.getFieldValue("DIMENSION");
+    let dimension = getInput(block, "DIMENSION");
     let code = `world.getDimension('${dimension}').getBiome({x: ${x}, y: ${y}, z: ${z}})`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -448,7 +453,7 @@ Blockly.JavaScript.forBlock['get_block'] = function(block) {
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
-    let dimension = block.getFieldValue("DIMENSION");
+    let dimension = getInput(block, "DIMENSION");
     let code = `world.getDimension('${dimension}').getBlock({x: ${x}, y: ${y}, z: ${z}})`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -489,7 +494,7 @@ Blockly.JavaScript.forBlock['set_block_waterlogged'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['get_entities'] = function(block) {
-    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').getEntities()`;
+    let code = `world.getDimension('${getInput(block, "DIMENSION")}').getEntities()`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -497,12 +502,12 @@ Blockly.JavaScript.forBlock['get_entities_at_location'] = function(block) {
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
-    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').getEntitiesAtBlockLocation({x: ${x}, y: ${y}, z: ${z}})`;
+    let code = `world.getDimension('${getInput(block, "DIMENSION")}').getEntitiesAtBlockLocation({x: ${x}, y: ${y}, z: ${z}})`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['get_players_dimension'] = function(block) {
-    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').getPlayers()`;
+    let code = `world.getDimension('${getInput(block, "DIMENSION")}').getPlayers()`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -510,7 +515,7 @@ Blockly.JavaScript.forBlock['is_chunk_loaded'] = function(block) {
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
-    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').isChunkLoaded({x: ${x}, y: ${y}, z: ${z}})`;
+    let code = `world.getDimension('${getInput(block, "DIMENSION")}').isChunkLoaded({x: ${x}, y: ${y}, z: ${z}})`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -519,7 +524,7 @@ Blockly.JavaScript.forBlock['play_sound_all'] = function(block) {
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
     let sound = getInput(block, "SOUND")
-    let code = `world.getDimension('${block.getFieldValue("DIMENSION")}').playSound(${sound}, {x: ${x}, y: ${y}, z: ${z}});
+    let code = `world.getDimension('${getInput(block, "DIMENSION")}').playSound(${sound}, {x: ${x}, y: ${y}, z: ${z}});
 `;
     return code;
 };
@@ -533,7 +538,7 @@ Blockly.JavaScript.forBlock['set_weather'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['spawn_entity'] = function(block) {
-    let dimension = block.getFieldValue("DIMENSION");
+    let dimension = getInput(block, "DIMENSION");
     let entity = getInput(block, "ENTITY");
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
@@ -544,7 +549,7 @@ Blockly.JavaScript.forBlock['spawn_entity'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['spawn_item'] = function(block) {
-    let dimension = block.getFieldValue("DIMENSION");
+    let dimension = getInput(block, "DIMENSION");
     let item = getInput(block, "ITEM");
     let quantity = getInput(block, "QUANTITY");
     let x = getInput(block, "X_POS");
@@ -556,7 +561,7 @@ Blockly.JavaScript.forBlock['spawn_item'] = function(block) {
 };
 
 Blockly.JavaScript.forBlock['spawn_particle'] = function(block) {
-    let dimension = block.getFieldValue("DIMENSION");
+    let dimension = getInput(block, "DIMENSION");
     let particle = getInput(block, "PARTICLE");
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
@@ -765,7 +770,7 @@ Blockly.JavaScript.forBlock['player_set_spawn_point'] = function(block) {
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");
     let z = getInput(block, "Z_POS");
-    let dimension = block.getFieldValue("DIMENSION");
+    let dimension = getInput(block, "DIMENSION");
     let code = `${player}.setSpawnPoint({dimension: ${dimension}, x: ${x}, y: ${y}, z: ${z}});
 `;
     return code;

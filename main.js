@@ -830,6 +830,8 @@ function openElementInfo(elementID, type) {
       elementType = "Structure";
     } else if (elementID.endsWith("wav")) {
       elementType = "Audio";
+    } else if (elementID.endsWith("json")) {
+      elementType = "JSON";
     } else {
       elementType = "Asset";
     }

@@ -3385,7 +3385,14 @@ workspace.addChangeListener(function(event) {
   }
 });
 
+function addBlock(type) {
+  // Create a block by type:
+  const block = workspace.newBlock(type);
 
+  // Initialize fields/inputs (required!)
+  block.initSvg();
+  block.render();
+}
 
 const startBlock = workspace.newBlock('on_start');
 startBlock.initSvg();

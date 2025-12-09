@@ -6647,41 +6647,4 @@ const itemDefinitions = {
         texture: "https://minecraft.wiki/images/thumb/Purpur_Block_JE2_BE2.png/60px-Purpur_Block_JE2_BE2.png?f2101",
         filter: "bedrock"
     },
-    
-
-
-    
-    
-
-
-
-    /*
-    "minecraft:": {
-        name: "",
-        texture: ""
-    },
-
-    "minecraft:": {
-        name: "",
-        texture: "",
-        filter: "bedrock"
-    },
-
-    "minecraft:_candle_cake": {
-        name: " Candle Cake",
-        texture: "",
-        filter: "bedrock"
-    },
-
-    "minecraft:hardened__stained_glass": {
-        name: "Hardened  Stained Glass",
-        texture: "",
-        filter: "bedrock"
-    },
-    "minecraft:hardened__stained_glass_pane": {
-        name: "Hardened  Stained Glass Pane",
-        texture: "",
-        filter: "bedrock"
-    },
-    */
 };

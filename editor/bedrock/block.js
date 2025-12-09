@@ -938,7 +938,7 @@ function loadTextures(data) {
             console.log("i: " + i);
             console.log(data.textures[dataKeys[i]]);
             if (data.textures[dataKeys[i]]) {
-                document.getElementById(`#textureNameText${i}`).innerHTML = data.textures[dataKeys[i]];
+                document.getElementById(`textureNameText${i}`).innerHTML = data.textures[dataKeys[i]];
             }
         }
     }

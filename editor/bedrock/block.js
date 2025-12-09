@@ -930,7 +930,13 @@ function loadTextures(data) {
             textureNameText.innerHTML = data.textures.item;
         }
         dataKeys = Object.keys(data.textures);
+        console.log("Object:");
+        console.log(data.textures);
+        console.log("Keys:");
+        console.log(dataKeys);
         for (let i = 1; i < dataKeys.length; i++) {
+            console.log("i: " + i);
+            console.log(data.textures[dataKeys[i]]);
             if (data.textures[dataKeys[i]]) {
                 document.getElementById(`#textureNameText${i}`).innerHTML = data.textures[dataKeys[i]];
             }

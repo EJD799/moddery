@@ -882,6 +882,14 @@ function selectModel() {
     }
 }
 
+useCustomItemBox.addEventListener("change", function(){
+    if (useCustomItemBox.checked) {
+        $("#itemTextureDiv").show();
+    } else {
+        $("#itemTextureDiv").hide();
+    }
+});
+
 function saveProject() {
     return {
         name: elementData.name,

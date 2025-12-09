@@ -43,9 +43,11 @@
 <label for="useCustomItemBox">Use Custom Item Texture</label>
 <input type="checkbox" id="useCustomItemBox" name="useCustomItemBox">
 <br><br>
-<label for="itemTextureBtn">Item Texture: <span id="textureNameText">No texture selected</span></label>
-<button name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg(-1)">Select Texture</button>
-<br><br>
+<div id="itemTextureDiv">
+    <label for="itemTextureBtn">Item Texture: <span id="textureNameText">No texture selected</span></label>
+    <button name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg(-1)">Select Texture</button>
+    <br><br>
+</div>
 <h3>Block Textures <button id="addTextureBtn" onclick="addTexture()">+ Add Texture</button></h3>
 <label for="blockTextureBtn0">Default: <span id="textureNameText0">No texture selected</span></label>
 <button name="blockTextureBtn0" id="blockTextureBtn0" onclick="openSelectTextureDlg(0)">Select Texture</button>

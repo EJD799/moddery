@@ -150,6 +150,11 @@ const db = {
 
         const paths = items.map(i => dir + i.name);
 
+        if (paths.length === 0) {
+            console.log("Directory already empty:", dir);
+            return;
+        }
+
         const { error } = await fileClient
             .storage
             .from('db')
@@ -166,10 +171,18 @@ const db = {
         const items = await db.listDirectory(oldDir);
         if (!items) return;
 
-        for (const item of items) {
+        // Move non-.keep files first
+        for (const item of items.filter(i => i.name !== ".keep")) {
             await db.renameFile(oldDir + item.name, newDir + item.name);
         }
 
+        // Move .keep last
+        const keep = items.find(i => i.name === ".keep");
+        if (keep) {
+            await db.renameFile(oldDir + ".keep", newDir + ".keep");
+        }
+
+        // Now delete old dir (handles empty case safely)
         await db.deleteDirectory(oldDir);
 
         console.log("Directory renamed:", oldDir, "→", newDir);

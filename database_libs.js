@@ -134,57 +134,59 @@ const db = {
         else console.log("Directory created:", dir);
     },
 
-    listDirectory: async function(dir) {
+    listDirectory: async function (dir, { includeKeep = false } = {}) {
         const { data, error } = await fileClient
             .storage
             .from('db')
             .list(dir, { limit: 1000 });
 
-        if (error) console.error(error);
-        return (data || []).filter(item => item.name !== ".keep");
+        if (error) {
+            console.error(error);
+            return [];
+        }
+
+        return includeKeep ? data : data.filter(item => item.name !== ".keep");
     },
 
-    deleteDirectory: async function(dir) {
-        const items = await db.listDirectory(dir);
-        if (!items) return;
+    deleteDirectory: async function (dir) {
+        const items = await db.listDirectory(dir, { includeKeep: true });
 
-        const paths = items.map(i => dir + i.name);
+        for (const item of items) {
+            const fullPath = `${dir}/${item.name}`;
 
-        if (paths.length === 0) {
-            console.log("Directory already empty:", dir);
-            return;
+            if (item.metadata === null) {
+                // It's a subdirectory
+                await db.deleteDirectory(fullPath);
+            } else {
+                // It's a file
+                const { error } = await fileClient.storage.from('db').remove([fullPath]);
+                if (error) console.error("Delete file failed:", error);
+            }
         }
 
-        const { error } = await fileClient
-            .storage
-            .from('db')
-            .remove(paths);
-
-        if (error) console.error(error);
-        else console.log("Directory deleted:", dir);
+        // Delete the empty folder itself
+        const { error } = await fileClient.storage.from('db').remove([dir]);
+        if (error) console.warn("Final directory delete (expected if empty):", error);
     },
 
-    renameDirectory: async function(oldDir, newDir) {
-        if (!oldDir.endsWith("/")) oldDir += "/";
-        if (!newDir.endsWith("/")) newDir += "/";
+    renameDirectory: async function (oldDir, newDir) {
+        const items = await db.listDirectory(oldDir, { includeKeep: true });
 
-        const items = await db.listDirectory(oldDir);
-        if (!items) return;
+        for (const item of items) {
+            const oldPath = `${oldDir}/${item.name}`;
+            const newPath = `${newDir}/${item.name}`;
 
-        // Move non-.keep files first
-        for (const item of items.filter(i => i.name !== ".keep")) {
-            await db.renameFile(oldDir + item.name, newDir + item.name);
+            const { error: moveError } = await fileClient.storage
+                .from('db')
+                .move(oldPath, newPath);
+
+            if (moveError) console.error("Move failed:", moveError);
+            else console.log(`Moved: ${oldPath} → ${newPath}`);
         }
 
-        // Move .keep last
-        const keep = items.find(i => i.name === ".keep");
-        if (keep) {
-            await db.renameFile(oldDir + ".keep", newDir + ".keep");
-        }
-
-        // Now delete old dir (handles empty case safely)
-        await db.deleteDirectory(oldDir);
-
-        console.log("Directory renamed:", oldDir, "→", newDir);
+        // Finally remove the old directory container
+        const { error: dirError } = await fileClient.storage.from('db').remove([oldDir]);
+        if (dirError) console.warn("Old directory removal error:", dirError);
+        else console.log(`Directory renamed: ${oldDir}/ → ${newDir}/`);
     }
 };

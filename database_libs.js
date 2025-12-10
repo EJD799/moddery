@@ -3,7 +3,7 @@ const fileClient = supabase.createClient(
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpiaG56bXJxZXV1eWRjbHJsaWFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUzMzM1MDUsImV4cCI6MjA4MDkwOTUwNX0.2Kx5M2idUHpmqPo3jXisDcFxar2F3YoySay0apSy_TE'
 );
 
-let database = {
+const db = {
     writeFile: async function(name, content) {
         const { data, error } = await fileClient
             .storage

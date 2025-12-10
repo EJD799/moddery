@@ -118,33 +118,35 @@ function getCookie(name) {
 function eraseCookie(name) {   
     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
-function getMaterialInstances(geoJson) {
-  const results = [];
 
-  // Bedrock models store geometry in "minecraft:geometry"
+function getMaterialInstances(geoJson) {
+  const materials = [];
+
   const geometries = geoJson["minecraft:geometry"];
-  if (!Array.isArray(geometries)) return results;
+  if (!Array.isArray(geometries)) return materials;
 
   for (const geometry of geometries) {
     const bones = geometry.bones;
     if (!Array.isArray(bones)) continue;
 
     for (const bone of bones) {
-      // Each bone may have cubes
-      if (Array.isArray(bone.cubes)) {
-        for (const cube of bone.cubes) {
-          if (cube.material_instance) {
-            results.push(cube.material_instance);
+      if (!Array.isArray(bone.cubes)) continue;
+
+      for (const cube of bone.cubes) {
+        const uv = cube.uv;
+        if (!uv) continue;
+
+        // Iterate through each face
+        for (const faceName in uv) {
+          const face = uv[faceName];
+          if (face?.material_instance) {
+            materials.push(face.material_instance);
           }
         }
-      }
-
-      // Optional: If your model uses "poly_mesh" or other elements
-      if (bone.poly_mesh && bone.poly_mesh.material_instance) {
-        results.push(bone.poly_mesh.material_instance);
       }
     }
   }
 
-  return results;
+  // Remove duplicates while preserving order
+  return [...new Set(materials)];
 }

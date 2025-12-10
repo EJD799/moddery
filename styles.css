@@ -463,5 +463,5 @@ input[type=color]:hover {
 }
 
 input:disabled {
-    color: #adadad;
+    color: #7d7d7d;
 }

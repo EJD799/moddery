@@ -1054,6 +1054,19 @@ function getCustomItems(mode) {
   }
   return itemsList;
 }
+function getFilteredElements(type) {
+  let elementsList = fileListInFolder("elements");
+  let itemsList = [];
+  for (let i = 0; i < elementsList.length; i++) {
+    projZip.folder("elements").file(elementsList[i]).async("string").then(async function (data) {
+      let elementObj = JSON.parse(data);
+      if (elementObj.type == type) {
+        itemsList.push(elementObj);
+      }
+    });
+  }
+  return itemsList;
+}
 
 function addTab(role, elementID) {
   var label = decodeText(elementID),
@@ -1160,6 +1173,9 @@ function getStructureList() {
 function getModelList() {
   let vanillaList = ["Full Block", "Plant"];
   return vanillaList.concat(fileListInFolder("assets", "json"));
+}
+function getScriptList() {
+  return getFilteredElements("Script");
 }
 
 $("#newProjBtn").button();

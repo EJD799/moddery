@@ -1158,7 +1158,8 @@ function getStructureList() {
   return fileListInFolder("assets", "mcstructure");
 }
 function getModelList() {
-  return fileListInFolder("assets", "json");
+  let vanillaList = ["Full Block", "Plant"];
+  return vanillaList.concat(fileListInFolder("assets", "json"));
 }
 
 $("#newProjBtn").button();

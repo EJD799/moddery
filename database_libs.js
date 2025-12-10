@@ -3,12 +3,60 @@ const fileClient = supabase.createClient(
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpiaG56bXJxZXV1eWRjbHJsaWFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUzMzM1MDUsImV4cCI6MjA4MDkwOTUwNX0.2Kx5M2idUHpmqPo3jXisDcFxar2F3YoySay0apSy_TE'
 );
 
+async function toBlob(input, type = "application/octet-stream") {
+
+    // Already a Blob or File
+    if (input instanceof Blob) {
+        return input;
+    }
+
+    // ArrayBuffer-like
+    if (input instanceof ArrayBuffer) {
+        return new Blob([input], { type });
+    }
+
+    if (ArrayBuffer.isView(input)) { // handles Uint8Array, DataView, etc.
+        return new Blob([input.buffer], { type });
+    }
+
+    // Browser File
+    if (typeof File !== "undefined" && input instanceof File) {
+        return new Blob([input], { type: input.type || type });
+    }
+
+    // ReadableStream (Safari, some Supabase downloads)
+    if (input instanceof ReadableStream) {
+        const reader = input.getReader();
+        const chunks = [];
+        let result;
+
+        while (!(result = await reader.read()).done) {
+            chunks.push(result.value);
+        }
+
+        return new Blob(chunks, { type });
+    }
+
+    // String
+    if (typeof input === "string") {
+        return new Blob([input], { type: "text/plain" });
+    }
+
+    // JSON object
+    if (typeof input === "object") {
+        return new Blob([JSON.stringify(input)], { type: "application/json" });
+    }
+
+    // Fallback: convert to string
+    return new Blob([String(input)], { type: "text/plain" });
+}
+
 const db = {
     writeFile: async function(name, content) {
         const { data, error } = await fileClient
             .storage
             .from('db')
-            .upload(name, content, {
+            .upload(name, await toBlob(content), {
             upsert: true, // allows overwriting
             });
 
@@ -57,7 +105,7 @@ const db = {
         const { error: upError } = await fileClient
             .storage
             .from('db')
-            .upload(newPath, fileData, { upsert: true });
+            .upload(newPath, await toBlob(fileData), { upsert: true });
 
         if (upError) return console.error(upError);
 
@@ -97,7 +145,7 @@ const db = {
     },
 
     deleteDirectory: async function(dir) {
-        const items = await listDirectory(dir);
+        const items = await db.listDirectory(dir);
         if (!items) return;
 
         const paths = items.map(i => dir + i.name);
@@ -115,14 +163,14 @@ const db = {
         if (!oldDir.endsWith("/")) oldDir += "/";
         if (!newDir.endsWith("/")) newDir += "/";
 
-        const items = await listDirectory(oldDir);
+        const items = await db.listDirectory(oldDir);
         if (!items) return;
 
         for (const item of items) {
-            await renameFile(oldDir + item.name, newDir + item.name);
+            await db.renameFile(oldDir + item.name, newDir + item.name);
         }
 
-        await deleteDirectory(oldDir);
+        await db.deleteDirectory(oldDir);
 
         console.log("Directory renamed:", oldDir, "→", newDir);
     }

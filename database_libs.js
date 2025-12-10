@@ -141,7 +141,7 @@ const db = {
             .list(dir, { limit: 1000 });
 
         if (error) console.error(error);
-        return data;
+        return (data || []).filter(item => item.name !== ".keep");
     },
 
     deleteDirectory: async function(dir) {

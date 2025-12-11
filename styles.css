@@ -1,5 +1,5 @@
 body {
-    background: #333333;
+    background: #111111;
     padding: 0;
     margin: 0 !important;
 }
@@ -464,4 +464,10 @@ input[type=color]:hover {
 
 input:disabled {
     color: #7d7d7d;
+}
+
+#tabs-1, #tabs-2 {
+    overflow: hidden auto;
+    height: calc(100% - 70px);
+    position: relative;
 }

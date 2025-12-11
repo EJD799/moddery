@@ -161,6 +161,7 @@ $("#signInDlgCancel").button();
 
 let signInMode = "in";
 $("#signInDlgPasswordBox2").hide();
+$("#signInDlgPasswordBox2Label").hide();
 
 function openSignInDlg() {
   $("#signInDlg").dialog("open");
@@ -178,6 +179,7 @@ function switchSignInMode() {
     signInDlgText2.innerHTML = "Don't have an account? ";
     signInDlgModeLink.innerHTML = "Sign Up";
     $("#signInDlgPasswordBox2").hide();
+    $("#signInDlgPasswordBox2Label").hide();
     signInDlgSignIn.innerHTML = "Sign In";
   } else {
     signInMode = "up";
@@ -185,6 +187,7 @@ function switchSignInMode() {
     signInDlgText2.innerHTML = "Already have an account? ";
     signInDlgModeLink.innerHTML = "Sign In";
     $("#signInDlgPasswordBox2").show();
+    $("#signInDlgPasswordBox2Label").show();
     signInDlgSignIn.innerHTML = "Sign Up";
   }
 }

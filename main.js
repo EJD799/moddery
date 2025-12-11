@@ -170,7 +170,6 @@ function closeSignInDlg() {
   $("#signInDlg").dialog("close");
 }
 async function signIn() {
-  closeSignInDlg();
   let username = signInDlgUsernameBox.value;
   let password = signInDlgPasswordBox.value;
   let password2 = signInDlgPasswordBox2.value;
@@ -178,6 +177,7 @@ async function signIn() {
   if (signInMode == "in") {
     userFile = JSON.parse(await db.readFile(`accounts/${username}.json`));
     if (userFile.password == password) {
+      closeSignInDlg();
       finishSignIn(username, password);
     } else {
       alert("Incorrect password!");
@@ -190,6 +190,7 @@ async function signIn() {
           password: password
         };
         db.writeFile(`accounts/${username}.json`, userFile);
+        closeSignInDlg();
         finishSignIn(username, password);
       } else {
         alert("The password must be at least 6 characters long!");

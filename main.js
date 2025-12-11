@@ -200,7 +200,7 @@ async function signIn() {
           username: username,
           password: password
         };
-        db.writeFile(`accounts/${username}.json`, userFile);
+        await db.writeFile(`accounts/${username}.json`, userFile);
         finishSignIn(username, password);
       } else {
         alert("The password must be at least 6 characters long!");

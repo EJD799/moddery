@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", function(){
   let currentUsername = getCookie("currentUsername");
   let currentPassword = getCookie("currentPassword");
   if (currentUsername) {
+    accountNameText.innerHTML = `Signing in...`;
+    signInBtn.disabled = true;
     finishSignIn(currentUsername, currentPassword);
   }
 });
@@ -180,12 +182,16 @@ async function signIn() {
   let password = signInDlgPasswordBox.value;
   let password2 = signInDlgPasswordBox2.value;
   let userFile;
+  accountNameText.innerHTML = `Signing in...`;
+  signInBtn.disabled = true;
   if (signInMode == "in") {
     userFile = JSON.parse(await db.readFile(`accounts/${username}.json`));
     if (userFile.password == password) {
       finishSignIn(username, password);
     } else {
       alert("Incorrect password!");
+      accountNameText.innerHTML = `Not signed in`;
+      signInBtn.disabled = false;
     }
   } else {
     if (password == password2) {
@@ -198,16 +204,18 @@ async function signIn() {
         finishSignIn(username, password);
       } else {
         alert("The password must be at least 6 characters long!");
+        accountNameText.innerHTML = `Not signed in`;
+        signInBtn.disabled = false;
       }
     } else {
       alert("The passwords entered do not match!");
+      accountNameText.innerHTML = `Not signed in`;
+      signInBtn.disabled = false;
     }
   }
 }
 function finishSignIn(username, password) {
   closeSignInDlg();
-  accountNameText.innerHTML = `Signing in...`;
-  signInBtn.disabled = true;
   signedIn = true;
   setCookie("currentUsername", username, 399);
   setCookie("currentPassword", password, 399);

@@ -216,12 +216,14 @@ async function signIn() {
 }
 function finishSignIn(username, password) {
   closeSignInDlg();
-  signedIn = true;
-  setCookie("currentUsername", username, 399);
-  setCookie("currentPassword", password, 399);
-  accountNameText.innerHTML = `Signed in as ${username}`;
-  signInBtn.disabled = false;
-  signInBtn.innerHTML = "Sign Out";
+  setTimeout(function(){
+    signedIn = true;
+    setCookie("currentUsername", username, 399);
+    setCookie("currentPassword", password, 399);
+    accountNameText.innerHTML = `Signed in as ${username}`;
+    signInBtn.disabled = false;
+    signInBtn.innerHTML = "Sign Out";
+  }, 1000);
 }
 function switchSignInMode() {
   if (signInMode == "up") {

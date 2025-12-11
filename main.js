@@ -260,6 +260,77 @@ $("#packIconBtn").button();
 $("#selectPackIconCancelBtn").button();
 $("#selectPackIconSelectBtn").button();
 
+// Select Script Entry Point Dialog
+
+$("#selectScriptEntryDlg").dialog({
+  position: { my: "center", at: "center", of: window },
+  resizable: false,
+  height: 500,
+  width: 500
+});
+$("#selectScriptEntryDlg").dialog("close");
+
+function openSelectScriptEntryDlg() {
+  $("#selectScriptEntryDlg").dialog("open");
+  scripts = getScriptList();
+  let selectScriptEntryMenu = document.getElementById("selectScriptEntryMenu");
+  selectScriptEntryMenu.innerHTML = "";
+  for (let i = 0; i < scripts.length; i++) {
+    let selectScriptEntryMenuItem;
+    let previewBox;
+    let preview;
+    let itemTitle;
+    let itemRadio;
+    selectScriptEntryMenuItem = document.createElement("div");
+    selectScriptEntryMenuItem.setAttribute("class", "textureMenuItem");
+    itemRadio = document.createElement("input");
+    itemRadio.setAttribute("type", "radio");
+    itemRadio.setAttribute("name", "selectedScriptEntry");
+    itemRadio.setAttribute("class", "textureRadio");
+    itemRadio.setAttribute("value", scripts[i]);
+    selectScriptEntryMenuItem.appendChild(itemRadio);
+    previewBox = document.createElement("div");
+    previewBox.setAttribute("class", "smallPreviewBox");
+    preview = document.createElement("img");
+    window.parent.projZip.folder("assets").file(scripts[i]).async("blob").then(async function (file) {
+      preview.setAttribute("src", await fileToDataURL(file));
+    });
+    preview.setAttribute("id", encodeText(scripts[i]) + "_preview");
+    previewBox.appendChild(preview);
+    selectScriptEntryMenuItem.appendChild(previewBox);
+    itemTitle = document.createElement("span");
+    itemTitle.setAttribute("class", "textureMenuTitle");
+    itemTitle.innerHTML = scripts[i];
+    selectScriptEntryMenuItem.appendChild(itemTitle);
+    selectScriptEntryMenu.appendChild(selectScriptEntryMenuItem);
+    selectScriptEntryMenuItem.addEventListener("click", () => {
+      const itemRadio = selectScriptEntryMenuItem.querySelector('input[type="radio"]');
+      if (itemRadio) {
+        itemRadio.checked = true;  // select this radio
+      }
+    });
+  }
+}
+
+let selectedScriptEntry = "";
+
+function closeSelectScriptEntryDlg() {
+  $("#selectScriptEntryDlg").dialog("close");
+}
+function selectScriptEntry() {
+    $("#selectScriptEntryDlg").dialog("close");
+    const selected = document.querySelector('input[name="selectedScriptEntry"]:checked');
+    if (selected.value) {
+        const scriptEntryNameText = document.getElementById("scriptEntryText");
+        scriptEntryNameText.innerHTML = selected.value;
+        selectedScriptEntry = selected.value;
+    }
+}
+
+$("#scriptEntryBtn").button();
+$("#selectScriptEntryCancelBtn").button();
+$("#selectScriptEntrySelectBtn").button();
+
 function openEditProjDlg() {
   $("#editProjDlg").dialog("open");
   $("#editProjNameBox").val(projManifest.name);
@@ -276,6 +347,11 @@ function openEditProjDlg() {
   } else {
       document.getElementById("packIconText").innerHTML = "No icon selected";
   }
+  if (projManifest.scriptEntry) {
+      document.getElementById("scriptEntryText").innerHTML = projManifest.scriptEntry;
+  } else {
+      document.getElementById("scriptEntryText").innerHTML = "No script entry point selected";
+  }
 }
 function closeEditProjDlg() {
   $("#editProjDlg").dialog("close");
@@ -288,6 +364,7 @@ function saveProjectInfo() {
   projManifest.mc_version = [$("#editProjMCVersionBox1").val(), $("#editProjMCVersionBox2").val(), $("#editProjMCVersionBox3").val()];
   projManifest.description = $("#editProjDescriptionBox").val();
   projManifest.packIcon = selectedPackIcon;
+  projManifest.scriptEntry = selectedScriptEntry;
   projZip.file("manifest.json", JSON.stringify(projManifest));
   if (autosaveEnabled) {
     saveProject();

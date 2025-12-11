@@ -173,7 +173,7 @@ async function signIn() {
   closeSignInDlg();
   let username = signInDlgUsernameBox.value;
   let password = signInDlgPasswordBox.value;
-  let password2 = signInDlgPassword2Box.value;
+  let password2 = signInDlgPasswordBox2.value;
   let userFile;
   if (signInMode == "in") {
     userFile = JSON.parse(await db.readFile(`accounts/${username}.json`));
@@ -202,7 +202,7 @@ async function signIn() {
 function finishSignIn(username, password) {
   setCookie("currentUsername", username, 399);
   setCookie("currentPassword", password, 399);
-  
+
 }
 function switchSignInMode() {
   if (signInMode == "up") {

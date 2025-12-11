@@ -211,6 +211,7 @@ function finishSignIn(username, password) {
   setCookie("currentUsername", username, 399);
   setCookie("currentPassword", password, 399);
   accountNameText.innerHTML = `Signed in as ${username}`;
+  signInBtn.innerHTML = "Sign Out";
 }
 function switchSignInMode() {
   if (signInMode == "up") {
@@ -236,7 +237,7 @@ function signOut() {
   setCookie("currentUsername", "", 399);
   setCookie("currentPassword", "", 399);
   accountNameText.innerHTML = "Not signed in";
-
+  signInBtn.innerHTML = "Sign In";
 }
 
 $("#optionsDlg").dialog({

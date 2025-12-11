@@ -1,4 +1,4 @@
-const appVersion = "v0.4.4";
+const appVersion = "v0.4.5";
 
 var projZip;
 var projManifest;
@@ -1246,7 +1246,7 @@ function getCustomItems(mode) {
   }
   return itemsList;
 }
-function getFilteredElements(type) {
+async function getFilteredElements(type) {
   let elementsList = fileListInFolder("elements");
   let itemsList = [];
   for (let i = 0; i < elementsList.length; i++) {
@@ -1393,7 +1393,7 @@ function getModelList() {
   return vanillaList.concat(fileListInFolder("assets", "json"));
 }
 function getScriptList() {
-  return getFilteredElements("Script").map(obj => obj.name);
+  return (await getFilteredElements("Script")).map(obj => obj.name);
 }
 
 $("#newProjBtn").button();

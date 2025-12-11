@@ -169,8 +169,40 @@ function openSignInDlg() {
 function closeSignInDlg() {
   $("#signInDlg").dialog("close");
 }
-function signIn() {
+async function signIn() {
   closeSignInDlg();
+  let username = signInDlgUsernameBox.value;
+  let password = signInDlgPasswordBox.value;
+  let password2 = signInDlgPassword2Box.value;
+  let userFile;
+  if (signInMode == "in") {
+    userFile = JSON.parse(await db.readFile(`accounts/${username}.json`));
+    if (userFile.password == password) {
+      finishSignIn(username, password);
+    } else {
+      alert("Incorrect password!");
+    }
+  } else {
+    if (password == password2) {
+      if (password.length >= 6) {
+        userFile = {
+          username: username,
+          password: password
+        };
+        db.writeFile(`accounts/${username}.json`, userFile);
+        finishSignIn(username, password);
+      } else {
+        alert("The password must be at least 6 characters long!");
+      }
+    } else {
+      alert("The passwords entered do not match!");
+    }
+  }
+}
+function finishSignIn(username, password) {
+  setCookie("currentUsername", username, 399);
+  setCookie("currentPassword", password, 399);
+  
 }
 function switchSignInMode() {
   if (signInMode == "up") {

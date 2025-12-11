@@ -159,6 +159,35 @@ $("#signInDlg").dialog("close");
 $("#signInDlgSignIn").button();
 $("#signInDlgCancel").button();
 
+let signInMode = "in";
+
+function openSignInDlg() {
+  $("#signInDlg").dialog("open");
+}
+function closeSignInDlg() {
+  $("#signInDlg").dialog("close");
+}
+function signIn() {
+  closeSignInDlg();
+}
+function switchSignInMode() {
+  if (signInMode == "up") {
+    signInMode = "in";
+    signInDlgText1.innerHTML = "Sign in to Moddery!";
+    signInDlgText2.innerHTML = "Don't have an account? ";
+    signInDlgModeLink.innerHTML = "Sign Up";
+    $("#signInDlgPasswordBox2").hide();
+    signInDlgSignIn.innerHTML = "Sign In";
+  } else {
+    signInMode = "up";
+    signInDlgText1.innerHTML = "Sign up for Moddery!";
+    signInDlgText2.innerHTML = "Already have an account? ";
+    signInDlgModeLink.innerHTML = "Sign In";
+    $("#signInDlgPasswordBox2").show();
+    signInDlgSignIn.innerHTML = "Sign Up";
+  }
+}
+
 $("#optionsDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,

@@ -985,7 +985,7 @@ function loadProject(data) {
     loadComponents(data.components);
 }
 
-function loadTextures(data) {
+async function loadTextures(data) {
     if (data) {
         selectedModel = data.model;
         if (data.model) {

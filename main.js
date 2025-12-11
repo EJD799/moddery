@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(){
   let currentPassword = getCookie("currentPassword");
   if (currentUsername) {
     accountNameText.innerHTML = `Signing in...`;
-    signInBtn.disabled = true;
+    $("#signInBtn").button("disable");
     finishSignIn(currentUsername, currentPassword);
   }
 });
@@ -183,7 +183,7 @@ async function signIn() {
   let password2 = signInDlgPasswordBox2.value;
   let userFile;
   accountNameText.innerHTML = `Signing in...`;
-  signInBtn.disabled = true;
+  $("#signInBtn").button("disable");
   if (signInMode == "in") {
     userFile = JSON.parse(await db.readFile(`accounts/${username}.json`));
     if (userFile.password == password) {
@@ -191,7 +191,7 @@ async function signIn() {
     } else {
       alert("Incorrect password!");
       accountNameText.innerHTML = `Not signed in`;
-      signInBtn.disabled = false;
+      $("#signInBtn").button("enable");
     }
   } else {
     if (password == password2) {
@@ -205,12 +205,12 @@ async function signIn() {
       } else {
         alert("The password must be at least 6 characters long!");
         accountNameText.innerHTML = `Not signed in`;
-        signInBtn.disabled = false;
+        $("#signInBtn").button("enable");
       }
     } else {
       alert("The passwords entered do not match!");
       accountNameText.innerHTML = `Not signed in`;
-      signInBtn.disabled = false;
+      $("#signInBtn").button("enable");
     }
   }
 }
@@ -221,7 +221,7 @@ function finishSignIn(username, password) {
     setCookie("currentUsername", username, 399);
     setCookie("currentPassword", password, 399);
     accountNameText.innerHTML = `Signed in as ${username}`;
-    signInBtn.disabled = false;
+    $("#signInBtn").button("enable");
     signInBtn.innerHTML = "Sign Out";
   }, 1000);
 }

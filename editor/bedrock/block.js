@@ -876,9 +876,61 @@ function closeSelectModelDlg() {
 function selectModel() {
     $("#selectModelDlg").dialog("close");
     const selected = document.querySelector('input[name="selectedModel"]:checked');
+    let oldModel = selectedModel;
     if (selected.value) {
         modelNameText.innerHTML = selected.value;
         selectedModel = selected.value;
+        if (oldModel != selectedModel) {
+            let modelData;
+            if (selectedModel == "Full Block") {
+                modelData = {
+                    "minecraft:geometry": [
+                        {
+                        "bones": [
+                            {
+                            "name": "test_bone",
+                            "cubes": [
+                                {
+                                "uv": {
+                                    "up":    { "material_instance": "up" },
+                                    "down":  { "material_instance": "down" },
+                                    "north": { "material_instance": "north" },
+                                    "east":  { "material_instance": "east" },
+                                    "west":  { "material_instance": "west" },
+                                    "south": { "material_instance": "south" }
+                                }
+                                }
+                            ]
+                            }
+                        ]
+                        }
+                    ]
+                };
+            } else if (selectedModel == "Plant") {
+                modelData = {
+                    "minecraft:geometry": [
+                        {
+                        "bones": [
+                            {
+                            "name": "test_bone",
+                            "cubes": [
+                                {
+                                "uv": {
+                                }
+                                }
+                            ]
+                            }
+                        ]
+                        }
+                    ]
+                };
+            } else {
+                window.parent.projZip.folder("assets").file(selectedModel).async("string").then(function(data) {
+                    modelData = JSON.parse(data);
+                });
+            }
+            let materialInstances = getMaterialInstances(modelData);
+        }
     }
 }
 

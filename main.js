@@ -1,4 +1,4 @@
-const appVersion = "v0.4.2";
+const appVersion = "v0.4.3";
 
 var projZip;
 var projManifest;
@@ -1260,8 +1260,34 @@ function getFilteredElements(type) {
   return itemsList;
 }
 
+function getElementTabIcon(type) {
+  if (type == "Image") {
+    return `<i class="fas fa-image"></i>`;
+  } else if (type == "Audio") {
+    return `<i class="fas fa-volume-high"></i>`;
+  } else if (type == "Block") {
+    return `<i class="fas fa-cube"></i>`;
+  } else if (type == "Item") {
+    return `<i class="fa-regular fa-gem"></i>`;
+  } else if (type == "Entity") {
+    return `<i class="fas fa-paw"></i>`;
+  } else if (type == "Recipe") {
+    return `<i class="fas fa-table-cells"></i>`;
+  } else if (type == "Function") {
+    return `<i class="fas fa-terminal"></i>`;
+  } else if (type == "Script") {
+    return `<i class="fas fa-code"></i>`;
+  } else if (type == "Loot Table") {
+    return `<i class="fas fa-coins"></i>`;
+  } else if (type == "Structure") {
+    return `<i class="fas fa-cubes"></i>`;
+  } else {
+    return `<i class="fa-regular fa-file"></i>`;
+  }
+}
+
 function addTab(role, elementID) {
-  var label = decodeText(elementID),
+  var label = `${getElementTabIcon(role)} ${decodeText(elementID)}`,
     id = "tabs-" + tabCounter,
     li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
     tabContentHtml = getTabContent(role, elementID);

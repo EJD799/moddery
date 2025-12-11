@@ -265,7 +265,7 @@ $("#selectPackIconSelectBtn").button();
 $("#selectScriptEntryDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
-  height: 500,
+  height: 600,
   width: 500
 });
 $("#selectScriptEntryDlg").dialog("close");
@@ -287,20 +287,11 @@ function openSelectScriptEntryDlg() {
     itemRadio.setAttribute("type", "radio");
     itemRadio.setAttribute("name", "selectedScriptEntry");
     itemRadio.setAttribute("class", "textureRadio");
-    itemRadio.setAttribute("value", scripts[i]);
+    itemRadio.setAttribute("value", scripts[i].name);
     selectScriptEntryMenuItem.appendChild(itemRadio);
-    previewBox = document.createElement("div");
-    previewBox.setAttribute("class", "smallPreviewBox");
-    preview = document.createElement("img");
-    window.parent.projZip.folder("assets").file(scripts[i]).async("blob").then(async function (file) {
-      preview.setAttribute("src", await fileToDataURL(file));
-    });
-    preview.setAttribute("id", encodeText(scripts[i]) + "_preview");
-    previewBox.appendChild(preview);
-    selectScriptEntryMenuItem.appendChild(previewBox);
     itemTitle = document.createElement("span");
     itemTitle.setAttribute("class", "textureMenuTitle");
-    itemTitle.innerHTML = scripts[i];
+    itemTitle.innerHTML = scripts[i].name;
     selectScriptEntryMenuItem.appendChild(itemTitle);
     selectScriptEntryMenu.appendChild(selectScriptEntryMenuItem);
     selectScriptEntryMenuItem.addEventListener("click", () => {

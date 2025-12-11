@@ -880,7 +880,7 @@ function openSelectModelDlg() {
 function closeSelectModelDlg() {
   $("#selectModelDlg").dialog("close");
 }
-function selectModel() {
+async function selectModel() {
     $("#selectModelDlg").dialog("close");
     const selected = document.querySelector('input[name="selectedModel"]:checked');
     let oldModel = selectedModel;

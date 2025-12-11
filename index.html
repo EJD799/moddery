@@ -252,6 +252,7 @@
     </div>
     <div id="optionsTabs-2">
       <h2>Account</h2>
+      <p id="accountNameText">Not signed in</p>
       <button id="signInBtn" onclick="openSignInDlg()">Sign In</button>
     </div>
     <div id="optionsTabs-3">
@@ -303,8 +304,11 @@
 
 <div id="signInDlg" title="Sign In">
   <center>
-    <p id="signInDlgText1">Sign in to Moddery!</p><br>
-    <p id="signInDlgText2">Don't have an account? </p><a href="javascript:switchSignInMode()" id="signInDlgModeLink">Sign Up</a>
+    <span id="signInDlgText1">Sign in to Moddery!</span>
+    <br>
+    <span id="signInDlgText2">Don't have an account? </span>
+    <a href="javascript:switchSignInMode()" id="signInDlgModeLink">Sign Up</a>
+    <br>
     <label for="signInUsernameBox">Username</label><br>
     <input name="signInUsernameBox" id="signInUsernameBox"><br><br>
     <label for="signInPasswordBox">Password</label><br>

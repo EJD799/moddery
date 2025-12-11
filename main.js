@@ -160,6 +160,7 @@ $("#signInDlgSignIn").button();
 $("#signInDlgCancel").button();
 
 let signInMode = "in";
+$("#signInDlgPasswordBox2").hide();
 
 function openSignInDlg() {
   $("#signInDlg").dialog("open");

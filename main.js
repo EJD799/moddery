@@ -1,4 +1,4 @@
-const appVersion = "v0.4.3";
+const appVersion = "v0.4.4";
 
 var projZip;
 var projManifest;
@@ -69,7 +69,7 @@ $("#newProjCreateBtn").button();
 $("#editProjDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
-  height: 500,
+  height: 600,
   width: 500
 });
 $("#editProjDlg").dialog("close");
@@ -377,7 +377,7 @@ $("#selectPackIconSelectBtn").button();
 $("#selectScriptEntryDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
-  height: 600,
+  height: 500,
   width: 500
 });
 $("#selectScriptEntryDlg").dialog("close");
@@ -1393,7 +1393,7 @@ function getModelList() {
   return vanillaList.concat(fileListInFolder("assets", "json"));
 }
 function getScriptList() {
-  return getFilteredElements("Script");
+  return getFilteredElements("Script").map(obj => obj.name);
 }
 
 $("#newProjBtn").button();

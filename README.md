@@ -16,4 +16,6 @@ This Minecraft mod builder is unlike the rest. Other ones have to be installed o
 | Java Spigot Plugin | TBD - Probably ~Jun 2026 |
 | Java Forge Mod | TBD - Probably ~Jul 2026 |
 | Java Fabric Mod | TBD - Probably ~Jul 2026 |
-| Java Shader Pack | TBD - Probably ~Mar 2026 |
+| Java Shader Pack | TBD - Probably ~April 2026 |
+| MTR Custom Resources (Java) | TBD - Probably ~March 2026 |
+| MTR Custom Resources (Bedrock) | TBD - Depends on when MTR Bedrock releases |

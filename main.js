@@ -1,4 +1,4 @@
-const appVersion = "v0.4.5";
+const appVersion = "0.4.6";
 
 var projZip;
 var projManifest;
@@ -16,8 +16,8 @@ var autosaveEnabled = true;
 
 document.addEventListener("DOMContentLoaded", function(){
   document.getElementById("savingBox").style.display = "none";
-  aboutText1.innerHTML = `Moddery ${appVersion}`;
-  aboutText2.innerHTML = `Moddery ${appVersion}`;
+  aboutText1.innerHTML = `Moddery v${appVersion}`;
+  aboutText2.innerHTML = `Moddery v${appVersion}`;
   let currentUsername = getCookie("currentUsername");
   let currentPassword = getCookie("currentPassword");
   if (currentUsername) {
@@ -382,9 +382,9 @@ $("#selectScriptEntryDlg").dialog({
 });
 $("#selectScriptEntryDlg").dialog("close");
 
-function openSelectScriptEntryDlg() {
+async function openSelectScriptEntryDlg() {
   $("#selectScriptEntryDlg").dialog("open");
-  scripts = getScriptList();
+  scripts = await getScriptList();
   let selectScriptEntryMenu = document.getElementById("selectScriptEntryMenu");
   selectScriptEntryMenu.innerHTML = "";
   for (let i = 0; i < scripts.length; i++) {
@@ -1392,7 +1392,7 @@ function getModelList() {
   let vanillaList = ["Full Block", "Plant"];
   return vanillaList.concat(fileListInFolder("assets", "json"));
 }
-function getScriptList() {
+async function getScriptList() {
   return (await getFilteredElements("Script")).map(obj => obj.name);
 }
 

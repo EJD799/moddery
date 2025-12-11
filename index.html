@@ -304,6 +304,19 @@
 <div id="signInDlg" title="Sign In">
   <center>
     <p id="signInDlgText1">Sign in to Moddery!</p><br>
+    <p id="signInDlgText2">Don't have an account? <a href="javascript:switchSignInMode()">Sign Up</a></p>
+    <label for="signInUsernameBox">Username</label><br>
+    <input name="signInUsernameBox" id="signInUsernameBox"><br><br>
+    <label for="signInPasswordBox">Password</label><br>
+    <input name="signInPasswordBox" id="signInPasswordBox" type="password"><br><br>
+    <button id="signInDlgCancel" onclick="closeSignInDlg()">Cancel</button>
+    <button id="signInDlgSignIn" onclick="signIn()">Sign In</button>
+  </center>
+</div>
+
+<div id="signInDlg" title="Sign In">
+  <center>
+    <p id="signInDlgText1">Sign in to Moddery!</p><br>
     <p id="signInDlgText2">Don't have an account? <a href="javascript:switchToSignUp()">Sign Up</a></p>
     <label for="signInUsernameBox">Username</label><br>
     <input name="signInUsernameBox" id="signInUsernameBox"><br><br>

@@ -152,7 +152,7 @@ $("#signInDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 400,
-  width: 300,
+  width: 320,
   closeOnEscape: false
 });
 $("#signInDlg").dialog("close");

@@ -728,6 +728,14 @@ function createElementDropdown(elementID, type) {
   }
 }
 
+function removeElementDropdown(elementID, type) {
+  if (type == "element") {
+    $(`#${elementID}_elementMenu`).remove();
+  } else {
+    $(`#${encodeText(elementID)}_assetMenu`).remove();
+  }
+}
+
 function addElement(loadingProj) {
   if (!fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json") || loadingProj) {
     if (!loadingProj) {
@@ -1144,6 +1152,7 @@ async function renameElement() {
       `;
     $(`#${renameDlgBox.value}_editBtn`).button();
     $(`#${renameDlgBox.value}_optionBtn`).button();
+    removeElementDropdown(renameElementID, "element");
     createElementDropdown(renameDlgBox.value, "element");
     $(`#${renameDlgBox.value}_optionBtn`).on("click", function () {
       $(`#${renameDlgBox.value}_elementMenu`).show().position({
@@ -1204,6 +1213,7 @@ async function renameElement() {
         $(`#${fileNameEncoded}_assetEditBtn`).button();
       }
       $(`#${fileNameEncoded}_assetOptionBtn`).button();
+      removeElementDropdown(renameElementID, "asset");
       createElementDropdown(fileNameEncoded, "asset");
       $(`#${fileNameEncoded}_assetOptionBtn`).on("click", function () {
         $(`#${fileNameEncoded}_assetMenu`).show().position({

@@ -18,6 +18,11 @@ document.addEventListener("DOMContentLoaded", function(){
   document.getElementById("savingBox").style.display = "none";
   aboutText1.innerHTML = `Moddery ${appVersion}`;
   aboutText2.innerHTML = `Moddery ${appVersion}`;
+  let currentUsername = getCookie("currentUsername");
+  let currentPassword = getCookie("currentPassword");
+  if (currentUsername) {
+    finishSignIn(currentUsername, currentPassword);
+  }
 });
 
 function arraysEqual(a, b) {
@@ -160,6 +165,7 @@ $("#signInDlgSignIn").button();
 $("#signInDlgCancel").button();
 
 let signInMode = "in";
+let signedIn = false;
 $("#signInDlgPasswordBox2").hide();
 $("#signInDlgPasswordBox2Label").hide();
 
@@ -201,9 +207,10 @@ async function signIn() {
   }
 }
 function finishSignIn(username, password) {
+  signedIn = true;
   setCookie("currentUsername", username, 399);
   setCookie("currentPassword", password, 399);
-
+  accountNameText.innerHTML = `Signed in as ${username}`;
 }
 function switchSignInMode() {
   if (signInMode == "up") {
@@ -223,6 +230,13 @@ function switchSignInMode() {
     $("#signInDlgPasswordBox2Label").show();
     signInDlgSignIn.innerHTML = "Sign Up";
   }
+}
+function signOut() {
+  signedIn = false;
+  setCookie("currentUsername", "", 399);
+  setCookie("currentPassword", "", 399);
+  accountNameText.innerHTML = "Not signed in";
+
 }
 
 $("#optionsDlg").dialog({

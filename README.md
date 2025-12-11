@@ -9,7 +9,7 @@ This Minecraft mod builder is unlike the rest. Other ones have to be installed o
 **Current Development Status:**
 | Mod Type | Status |
 |--|--|
-| Bedrock Addon | In Development |
+| Bedrock Addon | In Development - Planned for December 2025 |
 | Bedrock Resource Pack | Planned for Feb 2026 |
 | Java Datapack | Planned for Jan 2026 |
 | Java Resource Pack | Planned for Feb 2026 |

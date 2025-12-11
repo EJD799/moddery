@@ -771,6 +771,13 @@ function createComponent(type) {
     }
     $("#addComponentDlg").dialog("close");
 }
+
+function generateTextureSelector(id, name) {
+    return `<label for="blockTextureBtn${id}">${name}: <span id="textureNameText${id}">No texture selected</span></label>
+<button name="blockTextureBtn${id}" id="blockTextureBtn${id}" onclick="openSelectTextureDlg(${id})">Select Texture</button>
+<br><br>`;
+}
+
 function openSelectTextureDlg(textureToSelect) {
   $("#selectTextureDlg").dialog("open");
   currentTextureSelecting = textureToSelect;
@@ -925,11 +932,18 @@ function selectModel() {
                     ]
                 };
             } else {
-                window.parent.projZip.folder("assets").file(selectedModel).async("string").then(function(data) {
+                await window.parent.projZip.folder("assets").file(selectedModel).async("string").then(function(data) {
                     modelData = JSON.parse(data);
                 });
             }
             let materialInstances = getMaterialInstances(modelData);
+            additionalTexturesDiv.innerHTML = "";
+            for (let i = 0; i < materialInstances.length; i++) {
+                let div = document.createElement("div");
+                div.innerHTML = generateTextureSelector(i + 1, materialInstances[i]);
+                additionalTexturesDiv.appendChild(div);
+                $(`#blockTextureBtn${i + 1}`).button();
+            }
         }
     }
 }
@@ -980,6 +994,62 @@ function loadTextures(data) {
         currentBlockTextures = data.textures;
         if (data.hasItem && data.textures.item) {
             textureNameText.innerHTML = data.textures.item;
+        }
+        let modelData;
+        if (selectedModel == "Full Block") {
+            modelData = {
+                "minecraft:geometry": [
+                    {
+                    "bones": [
+                        {
+                        "name": "test_bone",
+                        "cubes": [
+                            {
+                            "uv": {
+                                "up":    { "material_instance": "up" },
+                                "down":  { "material_instance": "down" },
+                                "north": { "material_instance": "north" },
+                                "east":  { "material_instance": "east" },
+                                "west":  { "material_instance": "west" },
+                                "south": { "material_instance": "south" }
+                            }
+                            }
+                        ]
+                        }
+                    ]
+                    }
+                ]
+            };
+        } else if (selectedModel == "Plant") {
+            modelData = {
+                "minecraft:geometry": [
+                    {
+                    "bones": [
+                        {
+                        "name": "test_bone",
+                        "cubes": [
+                            {
+                            "uv": {
+                            }
+                            }
+                        ]
+                        }
+                    ]
+                    }
+                ]
+            };
+        } else {
+            await window.parent.projZip.folder("assets").file(selectedModel).async("string").then(function(data) {
+                modelData = JSON.parse(data);
+            });
+        }
+        let materialInstances = getMaterialInstances(modelData);
+        additionalTexturesDiv.innerHTML = "";
+        for (let i = 0; i < materialInstances.length; i++) {
+            let div = document.createElement("div");
+            div.innerHTML = generateTextureSelector(i + 1, materialInstances[i]);
+            additionalTexturesDiv.appendChild(div);
+            $(`#blockTextureBtn${i + 1}`).button();
         }
         dataKeys = Object.keys(data.textures);
         console.log("Object:");

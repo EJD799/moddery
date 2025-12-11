@@ -183,7 +183,6 @@ async function signIn() {
   if (signInMode == "in") {
     userFile = JSON.parse(await db.readFile(`accounts/${username}.json`));
     if (userFile.password == password) {
-      closeSignInDlg();
       finishSignIn(username, password);
     } else {
       alert("Incorrect password!");
@@ -196,7 +195,6 @@ async function signIn() {
           password: password
         };
         db.writeFile(`accounts/${username}.json`, userFile);
-        closeSignInDlg();
         finishSignIn(username, password);
       } else {
         alert("The password must be at least 6 characters long!");
@@ -207,10 +205,14 @@ async function signIn() {
   }
 }
 function finishSignIn(username, password) {
+  closeSignInDlg();
+  accountNameText.innerHTML = `Signing in...`;
+  signInBtn.disabled = true;
   signedIn = true;
   setCookie("currentUsername", username, 399);
   setCookie("currentPassword", password, 399);
   accountNameText.innerHTML = `Signed in as ${username}`;
+  signInBtn.disabled = false;
   signInBtn.innerHTML = "Sign Out";
 }
 function switchSignInMode() {

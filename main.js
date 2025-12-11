@@ -746,7 +746,7 @@ function addElement(loadingProj) {
     elementBox.setAttribute("id", "elementbox" + $("#addElementNameBox").val());
     elementBox.innerHTML = `
     <h3 id="${"elementboxname" + $("#addElementNameBox").val()}">${$("#addElementNameBox").val()}</h3>
-    <button onclick="editElement('${$("#addElementNameBox").val()}')" id="${$("#addElementNameBox").val()}_editBtn">Edit</button>
+    <button onclick="editElement('${$("#addElementNameBox").val()}')" id="${$("#addElementNameBox").val()}_editBtn"><i class="fas fa-pencil"></i> Edit</button>
     <button id="${$("#addElementNameBox").val()}_optionBtn">&#x22EF;</button>
     `;
     parentDiv.appendChild(elementBox);
@@ -827,13 +827,13 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
         editBtn = document.createElement("button");
         editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'png')`);
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
-        editBtn.innerHTML = "Edit";
+        editBtn.innerHTML = "<i class="fas fa-pencil"></i> Edit";
       }
       if (fileType == "wav") {
         editBtn = document.createElement("button");
         editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'wav')`);
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
-        editBtn.innerHTML = "View";
+        editBtn.innerHTML = "<i class="fas fa-pencil"></i> Edit";
       }
       optionsBtn = document.createElement("button");
       optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
@@ -1139,7 +1139,7 @@ async function renameElement() {
     elementBox.id = "elementbox" + renameDlgBox.value;
     elementBox.innerHTML = `
       <h3 id="elementboxname${renameDlgBox.value}">${renameDlgBox.value}</h3>
-      <button onclick="editElement('${renameDlgBox.value}')" id="${renameDlgBox.value}_editBtn">Edit</button>
+      <button onclick="editElement('${renameDlgBox.value}')" id="${renameDlgBox.value}_editBtn"><i class="fas fa-pencil"></i> Edit</button>
       <button id="${renameDlgBox.value}_optionBtn">&#x22EF;</button>
       `;
     $(`#${renameDlgBox.value}_editBtn`).button();
@@ -1184,13 +1184,13 @@ async function renameElement() {
         editBtn = document.createElement("button");
         editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'png')`);
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
-        editBtn.innerHTML = "Edit";
+        editBtn.innerHTML = "<i class="fas fa-pencil"></i> Edit";
       }
       if (fileType == "wav") {
         editBtn = document.createElement("button");
         editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'wav')`);
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
-        editBtn.innerHTML = "Edit";
+        editBtn.innerHTML = "<i class="fas fa-pencil"></i> Edit";
       }
       optionsBtn = document.createElement("button");
       optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);

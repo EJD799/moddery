@@ -1060,8 +1060,8 @@ async function loadTextures(data) {
         console.log(data.textures);
         console.log("Keys:");
         console.log(dataKeys);
-        if (data.textures[dataKeys["default"]]) {
-            document.getElementById(`textureNameText0`).innerHTML = data.textures[dataKeys["default"]];
+        if (data.textures["default"]) {
+            document.getElementById(`textureNameText0`).innerHTML = data.textures["default"];
         }
         for (let i = 1; i < dataKeys.length - 1; i++) {
             j = i.toString();

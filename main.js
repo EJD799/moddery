@@ -148,6 +148,17 @@ $("#elementInfoDlg").dialog({
 $("#elementInfoDlg").dialog("close");
 $("#elementInfoDlgClose").button();
 
+$("#signInDlg").dialog({
+  position: { my: "center", at: "center", of: window },
+  resizable: false,
+  height: 300,
+  width: 250,
+  closeOnEscape: false
+});
+$("#signInDlg").dialog("close");
+$("#signInDlgSignIn").button();
+$("#signInDlgCancel").button();
+
 $("#optionsDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,

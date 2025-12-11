@@ -151,7 +151,7 @@ $("#elementInfoDlgClose").button();
 $("#signInDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
-  height: 350,
+  height: 400,
   width: 300,
   closeOnEscape: false
 });

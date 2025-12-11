@@ -195,9 +195,11 @@ async function signIn() {
         $("#signInBtn").button("enable");
       }
     } catch(err) {
-      alert("The username entered does not exist!");
       accountNameText.innerHTML = `Not signed in`;
       $("#signInBtn").button("enable");
+      if (confirm("The username entered does not exist! Sign up instead?")) {
+        switchSignInMode();
+      }
     }
   } else {
     if (password == password2) {

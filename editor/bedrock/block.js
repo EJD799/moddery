@@ -491,7 +491,6 @@ $("#blockTextureBtn0").button();
 
 $("#categoryBox").selectmenu();
 $("#addComponentBtn").button();
-$("#addTextureBtn").button();
 $("#addComponentCancelBtn").button();
 $("#addComponentAddBtn").button();
 $("#selectTextureCancelBtn").button();
@@ -983,6 +982,11 @@ function loadProject(data) {
     }
     loadTextures(data);
     loadComponents(data.components);
+    if (useCustomItemBox.checked) {
+        $("#itemTextureDiv").show();
+    } else {
+        $("#itemTextureDiv").hide();
+    }
 }
 
 async function loadTextures(data) {

@@ -185,11 +185,17 @@ async function signIn() {
   accountNameText.innerHTML = `Signing in...`;
   $("#signInBtn").button("disable");
   if (signInMode == "in") {
-    userFile = JSON.parse(await db.readFile(`accounts/${username}.json`));
-    if (userFile.password == password) {
-      finishSignIn(username, password);
-    } else {
-      alert("Incorrect password!");
+    try {
+      userFile = JSON.parse(await db.readFile(`accounts/${username}.json`));
+      if (userFile.password == password) {
+        finishSignIn(username, password);
+      } else {
+        alert("Incorrect password!");
+        accountNameText.innerHTML = `Not signed in`;
+        $("#signInBtn").button("enable");
+      }
+    } catch(err) {
+      alert("The username entered does not exist!");
       accountNameText.innerHTML = `Not signed in`;
       $("#signInBtn").button("enable");
     }

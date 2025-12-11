@@ -692,6 +692,7 @@ function createElementDropdown(elementID, type) {
         of: $(`#${elementID}_assetOptionBtn`)
       });
     });
+    $(`#${elementID}_assetMenu`).hide();
     $(document).on('click', function (e) {
       if (!$(e.target).closest($(`#${elementID}_assetMenu`)).length && !$(e.target).is($(`#${elementID}_assetOptionBtn`))) {
           $(`#${elementID}_assetMenu`).hide();
@@ -720,6 +721,7 @@ function createElementDropdown(elementID, type) {
         of: $(`#${elementID}_optionBtn`)
       });
     });
+    $(`#${elementID}_elementMenu`).hide();
     $(document).on('click', function (e) {
       if (!$(e.target).closest($(`#${elementID}_elementMenu`)).length && !$(e.target).is($(`#${elementID}_optionBtn`))) {
           $(`#${elementID}_elementMenu`).hide();

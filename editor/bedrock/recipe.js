@@ -397,10 +397,15 @@ $(function () {
     });
 });
 
-// DRAG: images only
+// Disable native image dragging (CRITICAL)
+$(".itemIconBtnImg").on("dragstart", function (e) {
+    e.preventDefault();
+});
+
+// DRAG: images
 $(".itemIconBtnImg").draggable({
+    appendTo: "body",
     helper: function () {
-        // Only allow drag if image exists
         if (!this.src) return false;
 
         const clone = $(this).clone();
@@ -414,15 +419,14 @@ $(".itemIconBtnImg").draggable({
         });
         return clone;
     },
-    appendTo: "body",   // VERY important: prevents drag being trapped inside button
-    revert: "invalid",
     cursor: "move",
+    revert: "invalid",
     start: function (event, ui) {
         ui.helper.css("z-index", 999999);
     }
 });
 
-// DROP: buttons only
+// DROP: buttons
 $(".itemIconBtn").droppable({
     tolerance: "pointer",
     drop: function (event, ui) {
@@ -440,6 +444,7 @@ $(".itemIconBtn").droppable({
         copySlot(fromId, toId);
     }
 });
+
 
 
 

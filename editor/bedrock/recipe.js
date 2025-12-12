@@ -229,6 +229,7 @@ $("#itemPickerSelectBtn").button();
 function copySlot(a, b) {
     currentSlot = b;
     setItem(currentGrid[a - 1][0]);
+    console.log(`copying slot ${a} to slot ${b}`);
 }
 
 function setItem(value) {
@@ -397,40 +398,49 @@ $(function () {
 });
 
 $(function () {
+  const slots = $("[id^='recipeBtn']");
 
-    const slots = $("[id^='recipeBtn']"); // recipeBtn1, recipeBtn2, etc.
+  slots.draggable({
+    helper: "clone",
+    opacity: 0.6,
+    revert: "invalid",
+    // IMPORTANT: allow dragging on <button> (jQuery UI cancels buttons by default)
+    cancel: "",
+    start: function (event, ui) {
+      // only allow dragging if slot has an image src
+      const src = $(this).find("img").attr("src");
+      if (!src) {
+        // returning false prevents the drag from starting
+        console.log("drag prevented (no item):", this.id);
+        return false;
+      }
+      console.log("drag started:", this.id, "img:", src);
+    }
+  });
 
-    // Make buttons draggable
-    slots.draggable({
-        helper: "clone",
-        opacity: 0.6,
-        revert: "invalid",
-        start: function () {
-            // Only allow dragging if slot has an image (same logic as before)
-            if (!$(this).find("img").attr("src")) {
-                return false;
-            }
-        }
-    });
+  slots.droppable({
+    accept: "[id^='recipeBtn']",
+    drop: function (event, ui) {
+      const from = ui.draggable;
+      const to = $(this);
 
-    // Make buttons droppable
-    slots.droppable({
-        accept: "[id^='recipeBtn']",
-        drop: function (event, ui) {
+      // If helper is a clone, ui.draggable is still the original element (jQuery UI behavior).
+      // Extract numeric IDs (recipeBtn1 => 1, recipeBtn10 => 10)
+      const fromID = parseInt(from.attr("id").replace("recipeBtn", ""), 10);
+      const toID = parseInt(to.attr("id").replace("recipeBtn", ""), 10);
 
-            const from = ui.draggable;
-            const to = $(this);
+      console.log("drop:", from.attr("id"), "->", to.attr("id"), " => ", fromID, toID);
 
-            // Extract numeric IDs (1–10) from button id="recipeBtnX"
-            const fromID = parseInt(from.attr("id").replace("recipeBtn", ""));
-            const toID = parseInt(to.attr("id").replace("recipeBtn", ""));
-
-            // Run your custom copy logic
-            copySlot(fromID, toID);
-        }
-    });
-
+      // call your copy function
+      if (typeof copySlot === "function") {
+        copySlot(fromID, toID);
+      } else {
+        console.warn("copySlot is not defined");
+      }
+    }
+  });
 });
+
 
 
 

@@ -226,9 +226,9 @@ $("#itemPickerDialog").dialog("close");
 $("#itemPickerCancelBtn").button();
 $("#itemPickerSelectBtn").button();
 
-function copyItem(a, b) {
+function copySlot(a, b) {
     currentSlot = b;
-    setItem(currentGrid[a - 1]);
+    setItem(currentGrid[a - 1][0]);
 }
 
 function setItem(value) {

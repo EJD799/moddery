@@ -35,16 +35,39 @@ let customItems = {};
 let customItemList = window?.parent?.getCustomItems?.() ?? [];
 window.setTimeout(async function() {
     await Promise.all(customItemList.map(async (item) => {
-        let blob = await window.parent.projZip.folder("assets").file(item.texture).async("blob");
-        let texture = await window.parent.fileToDataURL(blob);
         if (item.type == "Block") {
-            let isoTexture = await makeIsometricCube(texture, texture, texture);
+            if (item.hasItem) {
+                let blob = await window.parent.projZip.folder("assets").file(item.textures.item).async("blob");
+                let texture = await window.parent.fileToDataURL(blob);
+                customItems[item.id] = {
+                    name: item.displayName,
+                    texture: texture
+                };
+            } else if (item.model == "Full Block") {
+                let blob1 = await window.parent.projZip.folder("assets").file(item.textures["1"]).async("blob");
+                let texture1 = await window.parent.fileToDataURL(blob);
+                let blob2 = await window.parent.projZip.folder("assets").file(item.textures["3"]).async("blob");
+                let texture2 = await window.parent.fileToDataURL(blob);
+                let blob3 = await window.parent.projZip.folder("assets").file(item.textures["4"]).async("blob");
+                let texture3 = await window.parent.fileToDataURL(blob);
 
-            customItems[item.id] = {
-                name: item.displayName,
-                texture: isoTexture
-            };
+                let isoTexture = await makeIsometricCube(texture1, texture2, texture3);
+
+                customItems[item.id] = {
+                    name: item.displayName,
+                    texture: isoTexture
+                };
+            } else {
+                let blob = await window.parent.projZip.folder("assets").file(item.textures.default).async("blob");
+                let texture = await window.parent.fileToDataURL(blob);
+                customItems[item.id] = {
+                    name: item.displayName,
+                    texture: texture
+                };
+            }
         } else {
+            let blob = await window.parent.projZip.folder("assets").file(item.texture).async("blob");
+            let texture = await window.parent.fileToDataURL(blob);
             customItems[item.id] = {
                 name: item.displayName,
                 texture: texture

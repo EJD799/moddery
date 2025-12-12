@@ -226,6 +226,11 @@ $("#itemPickerDialog").dialog("close");
 $("#itemPickerCancelBtn").button();
 $("#itemPickerSelectBtn").button();
 
+function copyItem(a, b) {
+    currentSlot = b;
+    setItem(currentGrid[a - 1]);
+}
+
 function setItem(value) {
     let itemID;
     if (value == "special_custom") {
@@ -391,6 +396,41 @@ $(function () {
     });
 });
 
+$(function () {
+
+    const slots = $("[id^='recipeBtn']"); // recipeBtn1, recipeBtn2, etc.
+
+    // Make buttons draggable
+    slots.draggable({
+        helper: "clone",
+        opacity: 0.6,
+        revert: "invalid",
+        start: function () {
+            // Only allow dragging if slot has an image (same logic as before)
+            if (!$(this).find("img").attr("src")) {
+                return false;
+            }
+        }
+    });
+
+    // Make buttons droppable
+    slots.droppable({
+        accept: "[id^='recipeBtn']",
+        drop: function (event, ui) {
+
+            const from = ui.draggable;
+            const to = $(this);
+
+            // Extract numeric IDs (1–10) from button id="recipeBtnX"
+            const fromID = parseInt(from.attr("id").replace("recipeBtn", ""));
+            const toID = parseInt(to.attr("id").replace("recipeBtn", ""));
+
+            // Run your custom copy logic
+            copySlot(fromID, toID);
+        }
+    });
+
+});
 
 
 

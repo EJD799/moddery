@@ -45,11 +45,11 @@ window.setTimeout(async function() {
                 };
             } else if (item.model == "Full Block") {
                 let blob1 = await window.parent.projZip.folder("assets").file(item.textures["1"]).async("blob");
-                let texture1 = await window.parent.fileToDataURL(blob);
+                let texture1 = await window.parent.fileToDataURL(blob1);
                 let blob2 = await window.parent.projZip.folder("assets").file(item.textures["3"]).async("blob");
-                let texture2 = await window.parent.fileToDataURL(blob);
+                let texture2 = await window.parent.fileToDataURL(blob2);
                 let blob3 = await window.parent.projZip.folder("assets").file(item.textures["5"]).async("blob");
-                let texture3 = await window.parent.fileToDataURL(blob);
+                let texture3 = await window.parent.fileToDataURL(blob3);
 
                 let isoTexture = await makeIsometricCube(texture1, texture2, texture3);
 

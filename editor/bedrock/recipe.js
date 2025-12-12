@@ -33,7 +33,7 @@ const actionItems = {
 
 let customItems = {};
 let customItemList = window?.parent?.getCustomItems?.() ?? [];
-/*window.setTimeout(*/async function() {
+window.setTimeout(async function() {
     await Promise.all(customItemList.map(async (item) => {
         let blob = await window.parent.projZip.folder("assets").file(item.texture).async("blob");
         let texture = await window.parent.fileToDataURL(blob);
@@ -51,7 +51,7 @@ let customItemList = window?.parent?.getCustomItems?.() ?? [];
             };
         }
     }));
-}//, 500);
+}, 100);
 
 const javaItemCDN = "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.11/assets/minecraft/textures";
 
@@ -294,7 +294,9 @@ function loadProject(data) {
         $("#recipeTypeMenu").selectmenu("refresh");
     }
     $("#outputQuantityBox").val(data.outputQuantity);
-    loadGrid(data.craftingGrid);
+    window.setTimeout(function() {
+        loadGrid(data.craftingGrid);
+    }, 200);
 }
 
 function loadGrid(data) {

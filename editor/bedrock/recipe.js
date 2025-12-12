@@ -397,50 +397,50 @@ $(function () {
     });
 });
 
-// Make each item image draggable
+// DRAG: images only
 $(".itemIconBtnImg").draggable({
     helper: function () {
-        // Create a floating copy of the *image only*
-        let clone = $(this).clone();
+        // Only allow drag if image exists
+        if (!this.src) return false;
+
+        const clone = $(this).clone();
         clone.css({
-            opacity: 0.9,
-            "z-index": 999999,
-            position: "absolute",
             width: $(this).width(),
             height: $(this).height(),
+            opacity: 0.9,
+            position: "absolute",
+            zIndex: 999999,
             pointerEvents: "none"
         });
         return clone;
     },
-    cursor: "move",
+    appendTo: "body",   // VERY important: prevents drag being trapped inside button
     revert: "invalid",
+    cursor: "move",
     start: function (event, ui) {
         ui.helper.css("z-index", 999999);
     }
 });
 
-// Make each image a drop target
-$(".itemIconBtnImg").droppable({
+// DROP: buttons only
+$(".itemIconBtn").droppable({
     tolerance: "pointer",
-    greedy: true,
     drop: function (event, ui) {
 
-        // Source image
         const fromImg = ui.draggable[0];
-        // Target image
-        const toImg = this;
+        const toImg   = $(this).find(".itemIconBtnImg")[0];
 
         if (!fromImg || !toImg) return;
 
-        // Extract IDs: recipeBtnImg_#
         const fromId = fromImg.id.replace("recipeBtnImg_", "");
-        const toId = toImg.id.replace("recipeBtnImg_", "");
+        const toId   = toImg.id.replace("recipeBtnImg_", "");
 
-        if (fromId === toId) return; // no self-copy
+        if (fromId === toId) return;
 
         copySlot(fromId, toId);
     }
 });
+
 
 
 

@@ -1,4 +1,6 @@
-// Minecraft Item DB (Modified Build)
+// Minecraft Item DB v1.1 (Modified Build)
+// Java Version: 1.21.11
+// Bedrock Version: 1.21.130
 // 2025 EJD799
 // https://github.com/ejd799/minecraft-item-db
 
@@ -904,10 +906,30 @@ const itemDefinitions = {
         name: "Netherite Hoe",
         texture: "@java/item/netherite_hoe.png"
     },
-    /*"minecraft:netherite_horse_armor": {
+    "minecraft:netherite_horse_armor": {
         name: "Netherite Horse Armor",
         texture: "@java/item/netherite_horse_armor.png"
-    },*/
+    },
+    "minecraft:copper_nautilus_armor": {
+        name: "Copper Nautilus Armor",
+        texture: "@java/item/copper_nautilus_armor.png"
+    },
+    "minecraft:iron_nautilus_armor": {
+        name: "Iron Nautilus Armor",
+        texture: "@java/item/iron_nautilus_armor.png"
+    },
+    "minecraft:golden_nautilus_armor": {
+        name: "Golden Nautilus Armor",
+        texture: "@java/item/golden_nautilus_armor.png"
+    },
+    "minecraft:diamond_nautilus_armor": {
+        name: "Diamond Nautilus Armor",
+        texture: "@java/item/diamond_nautilus_armor.png"
+    },
+    "minecraft:netherite_nautilus_armor": {
+        name: "Netherite Nautilus Armor",
+        texture: "@java/item/netherite_nautilus_armor.png"
+    },
     "minecraft:netherite_leggings": {
         name: "Netherite Leggings",
         texture: "@java/item/netherite_leggings.png"
@@ -1893,6 +1915,54 @@ const itemDefinitions = {
     "minecraft:zombified_piglin_spawn_egg": {
         name: "Zombified Piglin Spawn Egg",
         texture: "@java/item/zombified_piglin_spawn_egg.png"
+    },
+    "minecraft:nautilus_spawn_egg": {
+        name: "Nautilus Spawn Egg",
+        texture: "@java/item/nautilus_spawn_egg.png"
+    },
+    "minecraft:zombie_nautilus_spawn_egg": {
+        name: "Zombie Nautilus Spawn Egg",
+        texture: "@java/item/zombie_nautilus_spawn_egg.png"
+    },
+    "minecraft:parched_spawn_egg": {
+        name: "Parched Spawn Egg",
+        texture: "@java/item/parched_spawn_egg.png"
+    },
+    "minecraft:camel_husk_spawn_egg": {
+        name: "Camel Husk Spawn Egg",
+        texture: "@java/item/camel_husk_spawn_egg.png"
+    },
+    "minecraft:nautilus_spawn_egg": {
+        name: "Nautilus Spawn Egg",
+        texture: "@java/item/nautilus_spawn_egg.png"
+    },
+    "minecraft:wooden_spear": {
+        name: "Wooden Spear",
+        texture: "@java/item/wooden_spear.png"
+    },
+    "minecraft:stone_spear": {
+        name: "Stone Spear",
+        texture: "@java/item/stone_spear.png"
+    },
+    "minecraft:copper_spear": {
+        name: "Copper Spear",
+        texture: "@java/item/copper_spear.png"
+    },
+    "minecraft:iron_spear": {
+        name: "Iron Spear",
+        texture: "@java/item/iron_spear.png"
+    },
+    "minecraft:golden_spear": {
+        name: "Golden Spear",
+        texture: "@java/item/golden_spear.png"
+    },
+    "minecraft:diamond_spear": {
+        name: "Diamond Spear",
+        texture: "@java/item/diamond_spear.png"
+    },
+    "minecraft:netherite_spear": {
+        name: "Netherite Spear",
+        texture: "@java/item/netherite_spear.png"
     },
 
     "minecraft:furnace_minecart": {

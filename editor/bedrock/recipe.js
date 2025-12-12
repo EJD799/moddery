@@ -53,7 +53,7 @@ window.setTimeout(async function() {
     }));
 }, 500);
 
-const javaItemCDN = "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures";
+const javaItemCDN = "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.11/assets/minecraft/textures";
 
 let selectedItemId = null;
 let filteredItems = [];   // after search

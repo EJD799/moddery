@@ -33,7 +33,7 @@ const actionItems = {
 
 let customItems = {};
 let customItemList = window?.parent?.getCustomItems?.() ?? [];
-window.setTimeout(async function() {
+/*window.setTimeout(*/async function() {
     await Promise.all(customItemList.map(async (item) => {
         let blob = await window.parent.projZip.folder("assets").file(item.texture).async("blob");
         let texture = await window.parent.fileToDataURL(blob);
@@ -51,7 +51,7 @@ window.setTimeout(async function() {
             };
         }
     }));
-}, 500);
+}//, 500);
 
 const javaItemCDN = "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.11/assets/minecraft/textures";
 
@@ -222,7 +222,7 @@ function renderSlot(slot, value, original) {
         slotImage.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
     } else if (original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) {
         slotImage.setAttribute("src", replaceShortURLs(itemDefinitions["minecraft:" + value].texture));
-    } else if (original == "special_custom" && !Object.keys(itemDefinitions).includes(value)) {
+    } else if (original == "special_custom" && !Object.keys(itemDefinitions).includes(value) && !Object.keys(customItems).includes(value)) {
         slotImage.setAttribute("src", "/moddery/custom_textures/special_custom.png");
     } else {
         if (Object.keys(customItems).includes(value)) {
@@ -300,12 +300,12 @@ function loadProject(data) {
 function loadGrid(data) {
     if (data) {
         currentGrid = data;
-    }
-    for (let i = 0; i < 10; i++) {
-        if (currentGrid[i][0] == "") {
-            renderSlot(i + 1, "", "special_remove");
-        } else {
-            renderSlot(i + 1, currentGrid[i][0], "special_custom");
+        for (let i = 0; i < 10; i++) {
+            if (currentGrid[i][0] == "") {
+                renderSlot(i + 1, "", "special_remove");
+            } else {
+                renderSlot(i + 1, currentGrid[i][0], "special_custom");
+            }
         }
     }
 }

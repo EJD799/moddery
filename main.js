@@ -1,4 +1,4 @@
-const appVersion = "0.4.6";
+const appVersion = "0.4.7";
 
 var projZip;
 var projManifest;
@@ -399,11 +399,11 @@ async function openSelectScriptEntryDlg() {
     itemRadio.setAttribute("type", "radio");
     itemRadio.setAttribute("name", "selectedScriptEntry");
     itemRadio.setAttribute("class", "textureRadio");
-    itemRadio.setAttribute("value", scripts[i].name);
+    itemRadio.setAttribute("value", scripts[i]);
     selectScriptEntryMenuItem.appendChild(itemRadio);
     itemTitle = document.createElement("span");
     itemTitle.setAttribute("class", "textureMenuTitle");
-    itemTitle.innerHTML = scripts[i].name;
+    itemTitle.innerHTML = scripts[i];
     selectScriptEntryMenuItem.appendChild(itemTitle);
     selectScriptEntryMenu.appendChild(selectScriptEntryMenuItem);
     selectScriptEntryMenuItem.addEventListener("click", () => {
@@ -1250,12 +1250,11 @@ async function getFilteredElements(type) {
   let elementsList = fileListInFolder("elements");
   let itemsList = [];
   for (let i = 0; i < elementsList.length; i++) {
-    projZip.folder("elements").file(elementsList[i]).async("string").then(async function (data) {
-      let elementObj = JSON.parse(data);
-      if (elementObj.type == type) {
-        itemsList.push(elementObj);
-      }
-    });
+    let data = await projZip.folder("elements").file(elementsList[i]).async("string");
+    let elementObj = JSON.parse(data);
+    if (elementObj.type == type) {
+      itemsList.push(elementObj);
+    }
   }
   return itemsList;
 }

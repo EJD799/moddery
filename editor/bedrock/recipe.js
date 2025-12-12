@@ -398,54 +398,45 @@ $(function () {
 });
 
 $(function () {
-  const slots = $("[id^='recipeBtn']");
+    const slotButtons = $("[id^='recipeBtn']");
+    const slotImages  = $("[id^='recipeBtnImg']");
 
-  // Attach draggable to the button, but only start when the image is used as handle.
-  // This makes ui.draggable reliably the button.
-  slots.draggable({
-    helper: "clone",
-    opacity: 0.6,
-    revert: "invalid",
-    cancel: "",       // allow dragging on <button> (jQuery UI cancels buttons by default)
-    handle: "img",    // start drag only when user drags the img inside the button
-    start: function (event, ui) {
-      // only allow drag if the slot actually has an item
-      const src = $(this).find("img").attr("src");
-      if (!src) {
-        console.log("drag prevented (no item):", this.id);
-        return false;
-      }
-      console.log("drag started on slot:", this.id, "img:", src);
-    }
-  });
+    // Make only the images draggable (not the buttons!)
+    slotImages.draggable({
+        helper: "clone",
+        opacity: 0.6,
+        revert: "invalid",
+        cancel: false,  // allow dragging the img
+        start: function () {
+            const src = $(this).attr("src");
 
-  // Make each slot droppable
-  slots.droppable({
-    accept: "[id^='recipeBtn'], [id^='recipeBtn'] img", // accept buttons or their imgs (defensive)
-    drop: function (event, ui) {
-      // ui.draggable may be the img or the button depending on where drag started.
-      // Find the nearest ancestor/itself with id starting recipeBtn to get the true slot.
-      const fromElem = ui.draggable.closest("[id^='recipeBtn']");
-      const toElem = $(this);
+            // Prevent drag if no image in this slot
+            if (!src) return false;
 
-      if (!fromElem.length) {
-        console.warn("Could not resolve source slot from draggable:", ui.draggable);
-        return;
-      }
+            console.log("drag start from img:", this.id);
+        }
+    });
 
-      const fromID = parseInt(fromElem.attr("id").replace("recipeBtn", ""), 10);
-      const toID = parseInt(toElem.attr("id").replace("recipeBtn", ""), 10);
+    // Make the buttons droppable
+    slotButtons.droppable({
+        accept: "[id^='recipeBtnImg']",
+        drop: function (event, ui) {
+            // The actual dragged thing is the IMG, but we need the BUTTON
+            const fromBtn = ui.draggable.closest("[id^='recipeBtn']");
+            const toBtn   = $(this);
 
-      console.log("drop resolved:", fromElem.attr("id"), "->", toElem.attr("id"), fromID, toID);
+            const fromID = Number(fromBtn.attr("id").replace("recipeBtn", ""));
+            const toID   = Number(toBtn.attr("id").replace("recipeBtn", ""));
 
-      if (typeof copySlot === "function") {
-        copySlot(fromID, toID);
-      } else {
-        console.warn("copySlot is not defined");
-      }
-    }
-  });
+            console.log("drop:", fromID, "→", toID);
+
+            if (typeof copySlot === "function") {
+                copySlot(fromID, toID);
+            }
+        }
+    });
 });
+
 
 
 

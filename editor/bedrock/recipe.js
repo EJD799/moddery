@@ -397,53 +397,40 @@ $(function () {
     });
 });
 
-// Disable native image dragging (CRITICAL)
-$(".itemIconBtnImg").on("dragstart", function (e) {
-    e.preventDefault();
-});
-
-// DRAG: images
-$(".itemIconBtnImg").draggable({
+$(".itemIconBtn").draggable({
     appendTo: "body",
-    helper: function () {
-        if (!this.src) return false;
-
-        const clone = $(this).clone();
-        clone.css({
-            width: $(this).width(),
-            height: $(this).height(),
-            opacity: 0.9,
-            position: "absolute",
-            zIndex: 999999,
-            pointerEvents: "none"
-        });
-        return clone;
-    },
-    cursor: "move",
+    distance: 6,
     revert: "invalid",
-    start: function (event, ui) {
-        ui.helper.css("z-index", 999999);
+    helper: function () {
+        const img = $(this).find(".itemIconBtnImg");
+        if (!img.attr("src")) return false;
+
+        return img.clone().css({
+            width: img.width(),
+            height: img.height(),
+            pointerEvents: "none",
+            zIndex: 1000000
+        });
     }
 });
 
-// DROP: buttons
 $(".itemIconBtn").droppable({
     tolerance: "pointer",
     drop: function (event, ui) {
+        const fromId = ui.draggable
+            .find(".itemIconBtnImg")
+            .attr("id")
+            .replace("recipeBtnImg_", "");
 
-        const fromImg = ui.draggable[0];
-        const toImg   = $(this).find(".itemIconBtnImg")[0];
-
-        if (!fromImg || !toImg) return;
-
-        const fromId = fromImg.id.replace("recipeBtnImg_", "");
-        const toId   = toImg.id.replace("recipeBtnImg_", "");
-
-        if (fromId === toId) return;
+        const toId = $(this)
+            .find(".itemIconBtnImg")
+            .attr("id")
+            .replace("recipeBtnImg_", "");
 
         copySlot(fromId, toId);
     }
 });
+
 
 
 

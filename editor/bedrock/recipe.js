@@ -48,7 +48,7 @@ window.setTimeout(async function() {
                 let texture1 = await window.parent.fileToDataURL(blob);
                 let blob2 = await window.parent.projZip.folder("assets").file(item.textures["3"]).async("blob");
                 let texture2 = await window.parent.fileToDataURL(blob);
-                let blob3 = await window.parent.projZip.folder("assets").file(item.textures["4"]).async("blob");
+                let blob3 = await window.parent.projZip.folder("assets").file(item.textures["5"]).async("blob");
                 let texture3 = await window.parent.fileToDataURL(blob);
 
                 let isoTexture = await makeIsometricCube(texture1, texture2, texture3);

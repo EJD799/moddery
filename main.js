@@ -1,4 +1,4 @@
-const appVersion = "0.4.9";
+const appVersion = "0.4.10";
 
 var projZip;
 var projManifest;
@@ -53,6 +53,13 @@ function centerDialogViewport(selector) {
     });
 }
 
+function updateTabHeight() {
+  const tabBar = document.querySelector('#tabBar');
+  const h = tabBar.offsetHeight + 'px';
+
+  document.documentElement.style.setProperty('--tab-height', h);
+}
+window.addEventListener('resize', updateTabHeight);
 
 $("#toolbar").menu();
 $("#tabs").tabs();
@@ -1322,6 +1329,7 @@ function addTab(role, elementID) {
       });
     }
   };
+  updateTabHeight();
 }
 
 tabs.on( "click", "span.ui-icon-close", function() {
@@ -1337,6 +1345,7 @@ tabs.on( "click", "span.ui-icon-close", function() {
       setNotSaved();
     }
   }
+  updateTabHeight();
 });
 
 function dataURItoFile(dataURI, filename) {

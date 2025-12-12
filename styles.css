@@ -1,3 +1,6 @@
+:root {
+    --tab-height: 44px;
+}
 body {
     background: #111111;
     padding: 0;
@@ -468,6 +471,6 @@ input:disabled {
 
 #tabs-1, #tabs-2 {
     overflow: hidden auto;
-    height: calc(100% - 70px);
+    height: calc(100% - (26px + var(--tab-height, 44px)));
     position: relative;
 }

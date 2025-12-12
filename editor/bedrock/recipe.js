@@ -400,38 +400,44 @@ $(function () {
 $(function () {
   const slots = $("[id^='recipeBtn']");
 
+  // Attach draggable to the button, but only start when the image is used as handle.
+  // This makes ui.draggable reliably the button.
   slots.draggable({
     helper: "clone",
     opacity: 0.6,
     revert: "invalid",
-    // IMPORTANT: allow dragging on <button> (jQuery UI cancels buttons by default)
-    cancel: "",
+    cancel: "",       // allow dragging on <button> (jQuery UI cancels buttons by default)
+    handle: "img",    // start drag only when user drags the img inside the button
     start: function (event, ui) {
-      // only allow dragging if slot has an image src
+      // only allow drag if the slot actually has an item
       const src = $(this).find("img").attr("src");
       if (!src) {
-        // returning false prevents the drag from starting
         console.log("drag prevented (no item):", this.id);
         return false;
       }
-      console.log("drag started:", this.id, "img:", src);
+      console.log("drag started on slot:", this.id, "img:", src);
     }
   });
 
+  // Make each slot droppable
   slots.droppable({
-    accept: "[id^='recipeBtn']",
+    accept: "[id^='recipeBtn'], [id^='recipeBtn'] img", // accept buttons or their imgs (defensive)
     drop: function (event, ui) {
-      const from = ui.draggable;
-      const to = $(this);
+      // ui.draggable may be the img or the button depending on where drag started.
+      // Find the nearest ancestor/itself with id starting recipeBtn to get the true slot.
+      const fromElem = ui.draggable.closest("[id^='recipeBtn']");
+      const toElem = $(this);
 
-      // If helper is a clone, ui.draggable is still the original element (jQuery UI behavior).
-      // Extract numeric IDs (recipeBtn1 => 1, recipeBtn10 => 10)
-      const fromID = parseInt(from.attr("id").replace("recipeBtn", ""), 10);
-      const toID = parseInt(to.attr("id").replace("recipeBtn", ""), 10);
+      if (!fromElem.length) {
+        console.warn("Could not resolve source slot from draggable:", ui.draggable);
+        return;
+      }
 
-      console.log("drop:", from.attr("id"), "->", to.attr("id"), " => ", fromID, toID);
+      const fromID = parseInt(fromElem.attr("id").replace("recipeBtn", ""), 10);
+      const toID = parseInt(toElem.attr("id").replace("recipeBtn", ""), 10);
 
-      // call your copy function
+      console.log("drop resolved:", fromElem.attr("id"), "->", toElem.attr("id"), fromID, toID);
+
       if (typeof copySlot === "function") {
         copySlot(fromID, toID);
       } else {
@@ -440,6 +446,7 @@ $(function () {
     }
   });
 });
+
 
 
 

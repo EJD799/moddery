@@ -397,45 +397,52 @@ $(function () {
     });
 });
 
-$(function () {
-    const slotButtons = $("[id^='recipeBtn']");
-    const slotImages  = $("[id^='recipeBtnImg']");
-
-    // Make only the images draggable (not the buttons!)
-    slotImages.draggable({
-        helper: "clone",
-        opacity: 0.6,
-        revert: "invalid",
-        cancel: false,  // allow dragging the img
-        start: function () {
-            const src = $(this).attr("src");
-
-            // Prevent drag if no image in this slot
-            if (!src) return false;
-
-            console.log("drag start from img:", this.id);
-        }
-    });
-
-    // Make the buttons droppable
-    slotButtons.droppable({
-        accept: "[id^='recipeBtnImg']",
-        drop: function (event, ui) {
-            // The actual dragged thing is the IMG, but we need the BUTTON
-            const fromBtn = ui.draggable.closest("[id^='recipeBtn']");
-            const toBtn   = $(this);
-
-            const fromID = Number(fromBtn.attr("id").replace("recipeBtn", ""));
-            const toID   = Number(toBtn.attr("id").replace("recipeBtn", ""));
-
-            console.log("drop:", fromID, "→", toID);
-
-            if (typeof copySlot === "function") {
-                copySlot(fromID, toID);
-            }
-        }
-    });
+// Make each item image draggable
+$(".itemIconBtnImg").draggable({
+    helper: function () {
+        // Create a floating copy of the *image only*
+        let clone = $(this).clone();
+        clone.css({
+            opacity: 0.9,
+            "z-index": 999999,
+            position: "absolute",
+            width: $(this).width(),
+            height: $(this).height(),
+            pointerEvents: "none"
+        });
+        return clone;
+    },
+    cursor: "move",
+    revert: "invalid",
+    start: function (event, ui) {
+        ui.helper.css("z-index", 999999);
+    }
 });
+
+// Make each image a drop target
+$(".itemIconBtnImg").droppable({
+    tolerance: "pointer",
+    greedy: true,
+    drop: function (event, ui) {
+
+        // Source image
+        const fromImg = ui.draggable[0];
+        // Target image
+        const toImg = this;
+
+        if (!fromImg || !toImg) return;
+
+        // Extract IDs: recipeBtnImg_#
+        const fromId = fromImg.id.replace("recipeBtnImg_", "");
+        const toId = toImg.id.replace("recipeBtnImg_", "");
+
+        if (fromId === toId) return; // no self-copy
+
+        copySlot(fromId, toId);
+    }
+});
+
+
 
 
 

@@ -584,6 +584,8 @@ function openProj(file) {
         document.getElementById("tabs-2").innerHTML = `<p>Press the "+ <i class="fas fa-image"></i>" button to add an asset.</p>`;
         projZip = zip;
         projManifest = manifest;
+        selectedPackIcon = manifest.packIcon;
+        selectedScriptEntry = manifest.scriptEntry;
         document.getElementById("tabs").hidden = false;
         document.getElementById("welcome").hidden = true;
         document.getElementById("savingBox").style.display = "block";

@@ -311,28 +311,24 @@ renderSlot(10, "", "special_remove");
 function saveProject() {
     return {
         name: elementData.name,
-        id: $("#recipeIDBox").val(),
-        type: "Recipe",
-        recipeType: $("#recipeTypeMenu").val(),
-        outputQuantity: $("#outputQuantityBox").val(),
-        craftingGrid: currentGrid
+        id: $("#lootTableIDBox").val(),
+        type: "Loot Table",
+        rollCount: [$("#rollCountBox1").val(), $("#rollCountBox2").val()],
+        items: currentItems
     };
 }
 function loadProject(data) {
     elementData = data;
     $("#elementIDBox").val(data.name);
-    $("#recipeIDBox").val(data.id);
-    if (data.recipeType) {
-        $("#recipeTypeMenu").val(data.recipeType);
-        $("#recipeTypeMenu").selectmenu("refresh");
-    }
-    $("#outputQuantityBox").val(data.outputQuantity);
+    $("#lootTableIDBox").val(data.id);
+    $("#rollCountBox1").val(data.rollCount[0]);
+    $("#rollCountBox2").val(data.rollCount[1]);
     window.setTimeout(function() {
-        loadGrid(data.craftingGrid);
+        loadItemList(data.items);
     }, 200);
 }
 
-function loadGrid(data) {
+function loadItemList(data) {
     if (data) {
         currentGrid = data;
         for (let i = 0; i < 10; i++) {

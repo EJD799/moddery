@@ -2,7 +2,7 @@ var elementData = {};
 var currentGrid = [["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0]];
 var currentSlot = 0;
 
-var currentItems = [["", 0]];
+var currentItems = [];
 
 function addItem(customID = false) {
     let newID;
@@ -56,19 +56,8 @@ function addItemToBeginning(obj, key, value) {
     return { [key]: value, ...obj };
 }
 
-$("#recipeTypeMenu").selectmenu();
-$("#recipeBtn1").button();
-$("#recipeBtn2").button();
-$("#recipeBtn3").button();
-$("#recipeBtn4").button();
-$("#recipeBtn5").button();
-$("#recipeBtn6").button();
-$("#recipeBtn7").button();
-$("#recipeBtn8").button();
-$("#recipeBtn9").button();
-$("#recipeBtn10").button();
-
-$('input').addClass("ui-widget ui-widget-content ui-corner-all");
+$("#addItemBtn").button();
+$("input").addClass("ui-widget ui-widget-content ui-corner-all");
 
 const actionItems = {
     "special_remove": {
@@ -298,7 +287,7 @@ function setItem(value) {
     currentSlot = 0;
 }
 function renderSlot(slot, value, original) {
-    let slotImage = document.getElementById("recipeBtnImg" + slot);
+    let slotImage = document.getElementById("itemBtnImg" + slot);
     if (original == "special_remove") {
         slotImage.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
     } else if (original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) {
@@ -312,7 +301,7 @@ function renderSlot(slot, value, original) {
             slotImage.setAttribute("src", replaceShortURLs(itemDefinitions[value].texture));
         }
     }
-    let slotBtn = document.getElementById("recipeBtn" + slot);
+    let slotBtn = document.getElementById("itemBtn" + slot);
     if (original == "special_remove") {
         slotBtn.setAttribute("title", "");
     } else if ((original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) || (itemDefinitions["minecraft:" + value]?.name ?? false)) {
@@ -330,7 +319,7 @@ function renderSlot(slot, value, original) {
             slotBtn.setAttribute("title", value);
         }
     }
-    $("#recipeBtn" + slot).tooltip({
+    $("#itemBtn" + slot).tooltip({
         content: function() {
             return $(this).attr("title");
         },
@@ -343,17 +332,6 @@ function selectItem(slot) {
     openItemPickerDialog();
     currentSlot = slot;
 }
-
-renderSlot(1, "", "special_remove");
-renderSlot(2, "", "special_remove");
-renderSlot(3, "", "special_remove");
-renderSlot(4, "", "special_remove");
-renderSlot(5, "", "special_remove");
-renderSlot(6, "", "special_remove");
-renderSlot(7, "", "special_remove");
-renderSlot(8, "", "special_remove");
-renderSlot(9, "", "special_remove");
-renderSlot(10, "", "special_remove");
 
 
 function saveProject() {
@@ -374,8 +352,10 @@ function loadProject(data) {
     window.setTimeout(function() {
         if (data.items) {
             currentItems = data.items;
-            loadItemList(data.items);
+        } else {
+            currentItems = [["", 1]];
         }
+        loadItemList(currentItems);
     }, 200);
 }
 
@@ -383,52 +363,13 @@ function loadItemList(data) {
     document.getElementById("containerDiv").innerHTML = "";
     for (let i = 0; i < data.length; i++) {
         addItem(i + 1);
+        currentSlot = i + 1;
+        setItem(data[i][0]);
+        $(`#itemWeightBox${currentSlot}`).val(data[i][1].toString());
     }
 }
-function changeGridType(type) {
-    if (type == "crafting" || type == "crafting_shapeless") {
-        enableSlot(1);
-        enableSlot(2);
-        enableSlot(3);
-        enableSlot(4);
-        enableSlot(5);
-        enableSlot(6);
-        enableSlot(7);
-        enableSlot(8);
-        enableSlot(9);
-    }
-    if (type == "stonecutter" || type == "furnace" || type == "blast_furnace" || type == "smoker" || type == "campfire" || type == "soul_campfire") {
-        disableSlot(1);
-        disableSlot(2);
-        disableSlot(3);
-        disableSlot(4);
-        disableSlot(5);
-        enableSlot(6);
-        disableSlot(7);
-        disableSlot(8);
-        disableSlot(9);
-    }
-    if (type == "brewing") {
-        disableSlot(1);
-        disableSlot(2);
-        disableSlot(3);
-        disableSlot(4);
-        enableSlot(5);
-        enableSlot(6);
-        disableSlot(7);
-        disableSlot(8);
-        disableSlot(9);
-    }
-}
-function enableSlot(num) {
-    document.getElementById(`recipeBtn${num}`).style.display = "inline-block";
-}
-function disableSlot(num) {
-    document.getElementById(`recipeBtn${num}`).style.display = "none";
-}
-$("#recipeTypeMenu").on("selectmenuchange", function (e, ui) {
-    changeGridType(ui.item.value);
-});
+
+
 
 $(function () {
     $("#itemPickerDialog").tooltip({
@@ -465,7 +406,7 @@ $(".itemIconBtn").draggable({
     },
 
     start: function () {
-        const fromId = this.id?.replace("recipeBtn", "");
+        const fromId = this.id?.replace("itemBtn", "");
         console.log("[DRAG START] from slot:", fromId);
     }
 });
@@ -477,8 +418,8 @@ $(".itemIconBtn").droppable({
         const fromBtn = ui.draggable[0];
         const toBtn   = this;
 
-        const fromIdRaw = fromBtn?.id?.replace("recipeBtn", "");
-        const toIdRaw   = toBtn?.id?.replace("recipeBtn", "");
+        const fromIdRaw = fromBtn?.id?.replace("itemBtn", "");
+        const toIdRaw   = toBtn?.id?.replace("itemBtn", "");
 
         const fromId = parseInt(fromIdRaw, 10);
         const toId   = parseInt(toIdRaw, 10);

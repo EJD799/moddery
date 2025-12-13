@@ -489,8 +489,8 @@ $(".itemIconBtn").droppable({
         if (
             !Number.isInteger(fromId) ||
             !Number.isInteger(toId) ||
-            fromId < 1 || fromId > currentItems.length ||
-            toId < 1 || toId > currentItems.length ||
+            fromId < 1 || fromId > 1000 ||
+            toId < 1 || toId > 1000 ||
             fromId === toId
         ) {
             console.warn("[DROP] Invalid slot IDs — copySlot NOT called");

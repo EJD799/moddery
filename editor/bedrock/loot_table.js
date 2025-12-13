@@ -36,6 +36,9 @@ function addItem() {
     deleteBtn.setAttribute("onclick", `removeItem(${newID})`);
     div.appendChild(deleteBtn);
     container.appendChild(div);
+    let br = document.createElement("br");
+    br.setAttribute("id", `itemBr${newID}`);
+    container.appendChild(br);
     $(`itemBtn${newID}`).button();
 }
 

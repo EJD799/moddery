@@ -13,6 +13,7 @@ function addItem() {
     let btn = document.createElement("button");
     btn.id = `itemBtn${newID}`;
     btn.class = "itemIconBtn";
+    btn.onclick = `selectItem(${newID})`;
     let img = document.createElement("img");
     img.id = `itemBtnImg${newID}`;
     img.id = "itemIconBtnImg";

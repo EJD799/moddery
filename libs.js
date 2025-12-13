@@ -1,3 +1,5 @@
+const javaItemCDN = "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.11/assets/minecraft/textures";
+
 async function makeIsometricCube(topURI, leftURI, rightURI, scale = 16) {
     // Helper to load an image
     const loadImg = src => new Promise(resolve => {

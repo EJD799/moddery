@@ -76,8 +76,6 @@ window.setTimeout(async function() {
     }));
 }, 100);
 
-const javaItemCDN = "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.11/assets/minecraft/textures";
-
 let selectedItemId = null;
 let filteredItems = [];   // after search
 let itemsPerRow = 0;

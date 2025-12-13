@@ -4,9 +4,14 @@ var currentSlot = 0;
 
 var currentItems = [["", 0]];
 
-function addItem() {
-    currentItems.push(["", 0]);
-    let newID = currentItems.length;
+function addItem(customID = false) {
+    let newID;
+    if (customID) {
+        newID = customID;
+    } else {
+        currentItems.push(["", 0]);
+        newID = currentItems.length;
+    }
     let container = document.getElementById("containerDiv");
     let div = document.createElement("div");
     div.setAttribute("id", `itemDiv${newID}`);
@@ -43,7 +48,8 @@ function addItem() {
 }
 
 function removeItem(id) {
-
+    currentItems.splice(id - 1, 1);
+    loadItemList(currentItems);
 }
 
 function addItemToBeginning(obj, key, value) {
@@ -366,20 +372,17 @@ function loadProject(data) {
     $("#rollCountBox1").val(data.rollCount[0]);
     $("#rollCountBox2").val(data.rollCount[1]);
     window.setTimeout(function() {
-        loadItemList(data.items);
+        if (data.items) {
+            currentItems = data.items;
+            loadItemList(data.items);
+        }
     }, 200);
 }
 
 function loadItemList(data) {
-    if (data) {
-        currentGrid = data;
-        for (let i = 0; i < 10; i++) {
-            if (currentGrid[i][0] == "") {
-                renderSlot(i + 1, "", "special_remove");
-            } else {
-                renderSlot(i + 1, currentGrid[i][0], "special_custom");
-            }
-        }
+    document.getElementById("containerDiv").innerHTML = "";
+    for (let i = 0; i < data.length; i++) {
+        addItem(i + 1);
     }
 }
 function changeGridType(type) {

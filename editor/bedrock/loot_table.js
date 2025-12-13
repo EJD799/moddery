@@ -38,9 +38,6 @@ function addItem() {
     deleteBtn.setAttribute("onclick", `removeItem(${newID})`);
     div.appendChild(deleteBtn);
     container.appendChild(div);
-    let br = document.createElement("br");
-    br.setAttribute("id", `itemBr${newID}`);
-    container.appendChild(br);
     $(`#itemBtn${newID}`).button();
     $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 }

@@ -1,5 +1,4 @@
 var elementData = {};
-var currentGrid = [["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0]];
 var currentSlot = 0;
 
 var currentItems = [];
@@ -265,10 +264,10 @@ $("#itemPickerSelectBtn").button();
 
 function copySlot(a, b) {
     currentSlot = b;
-    if (currentGrid[a - 1][0] == "") {
+    if (currentItems[a - 1][0] == "") {
         setItem("special_remove");
     } else {
-        setItem(currentGrid[a - 1][0]);
+        setItem(currentItems[a - 1][0]);
     }
     console.log(`copying slot ${a} to slot ${b}`);
 }
@@ -282,7 +281,7 @@ function setItem(value) {
     } else {
         itemID = value;
     }
-    currentGrid[currentSlot - 1] = [itemID, Number($("#itemDataBox").val())];
+    currentItems[currentSlot - 1] = [itemID, Number($("#itemDataBox").val())];
     renderSlot(currentSlot, itemID, value);
     currentSlot = 0;
 }

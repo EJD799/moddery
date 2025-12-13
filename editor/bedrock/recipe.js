@@ -228,7 +228,11 @@ $("#itemPickerSelectBtn").button();
 
 function copySlot(a, b) {
     currentSlot = b;
-    setItem(currentGrid[a - 1][0]);
+    if (currentGrid[a - 1][0] == "") {
+        setItem("special_remove");
+    } else {
+        setItem(currentGrid[a - 1][0]);
+    }
     console.log(`copying slot ${a} to slot ${b}`);
 }
 

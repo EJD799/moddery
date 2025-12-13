@@ -366,7 +366,11 @@ function loadItemList(data) {
     for (let i = 0; i < data.length; i++) {
         addItem(i + 1);
         currentSlot = i + 1;
-        setItem(data[i][0]);
+        if (data[i][0] == "") {
+            setItem("special_remove");
+        } else {
+            setItem(data[i][0]);
+        }
         $(`#itemWeightBox${currentSlot}`).val(data[i][1].toString());
     }
 }

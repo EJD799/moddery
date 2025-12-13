@@ -34,6 +34,9 @@ function addItem(customID = false) {
     weightBox.setAttribute("class", "smallInput");
     weightBox.setAttribute("type", "number");
     weightBox.setAttribute("value", "1");
+    weightBox.addEventListener("change", function(e) {
+        currentItems[newID - 1][1] = Number(weightBox.value);
+    });
     div.appendChild(weightBox);
     div.appendChild(document.createTextNode(" "));
     let deleteBtn = document.createElement("i");

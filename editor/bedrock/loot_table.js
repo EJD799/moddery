@@ -2,6 +2,46 @@ var elementData = {};
 var currentGrid = [["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0]];
 var currentSlot = 0;
 
+var currentItems = [["", 0]];
+
+function addItem() {
+    currentItems.push(["", 0]);
+    let newID = currentItems.length;
+    let container = document.getElementById("containerDiv");
+    let div = document.createElement("div");
+    div.id = `itemDiv${newID}`;
+    let btn = document.createElement("button");
+    btn.id = `itemBtn${newID}`;
+    btn.class = "itemIconBtn";
+    let img = document.createElement("img");
+    img.id = `itemBtnImg${newID}`;
+    img.id = "itemIconBtnImg";
+    btn.appendChild(img);
+    div.appendChild(btn);
+    let label = document.createElement("label");
+    label.id = `itemWeightBoxLabel${newID}`;
+    label.setAttribute("for", `itemWeightBox${newID}`);
+    label.innerHTML = "Weight";
+    div.appendChild(label);
+    let weightBox = document.createElement("input");
+    weightBox.id = `itemWeightBox${newID}`;
+    weightBox.class = "smallInput";
+    weightBox.setAttribute("type", "number");
+    weightBox.value = "1";
+    div.appendChild(weightBox);
+    let deleteBtn = document.createElement("i");
+    deleteBtn.id = `itemDeleteBtn${newID}`;
+    deleteBtn.class = "fas fa-trash deleteIcon";
+    deleteBtn.onclick = `removeItem(${newID})`;
+    div.appendChild(deleteBtn);
+    container.appendChild(div);
+    $(`itemBtn${newID}`).button();
+}
+
+function removeItem(id) {
+
+}
+
 function addItemToBeginning(obj, key, value) {
     return { [key]: value, ...obj };
 }
@@ -445,8 +485,8 @@ $(".itemIconBtn").droppable({
         if (
             !Number.isInteger(fromId) ||
             !Number.isInteger(toId) ||
-            fromId < 1 || fromId > 10 ||
-            toId < 1 || toId > 10 ||
+            fromId < 1 || fromId > currentItems.length ||
+            toId < 1 || toId > currentItems.length ||
             fromId === toId
         ) {
             console.warn("[DROP] Invalid slot IDs — copySlot NOT called");

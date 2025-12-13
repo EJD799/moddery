@@ -28,21 +28,13 @@
 <label for="elementIDBox">Element Name (Editor)</label>
 <input name="elementIDBox" id="elementIDBox" placeholder="Element ID" disabled>
 <br><br>
-<label for="recipeIDBox">Recipe ID</label>
-<input name="recipeIDBox" id="recipeIDBox" placeholder="Recipe ID">
+<label for="lootTableIDBox">Loot Table ID</label>
+<input name="lootTableIDBox" id="lootTableIDBox" placeholder="Loot Table ID">
 <br><br>
-<label for="recipeTypeMenu">Recipe Type</label>
-<select id="recipeTypeMenu" name="recipeTypeMenu">
-  <option value="crafting" selected>Crafting Table</option>
-  <option value="crafting_shapeless">Crafting Table (Shapeless)</option>
-  <option value="stonecutter">Stonecutter</option>
-  <option value="furnace">Furnace</option>
-  <option value="blast_furnace">Blast Furnace</option>
-  <option value="smoker">Smoker</option>
-  <option value="campfire">Campfire</option>
-  <option value="soul_campfire">Soul Campfire</option>
-  <option value="brewing">Brewing Stand</option>
-</select>
+<label for="rollCountBox1">Roll Count</label>
+<input name="rollCountBox1" id="rollCountBox1" type="number" class="smallInput">
+<span>-</span>
+<input name="rollCountBox2" id="rollCountBox2" type="number" class="smallInput">
 <br><br>
 <button id="recipeBtn1" class="itemIconBtn" onclick="selectItem(1)"><img id="recipeBtnImg1" class="itemIconBtnImg"></button>
 <button id="recipeBtn2" class="itemIconBtn" onclick="selectItem(2)"><img id="recipeBtnImg2" class="itemIconBtnImg"></button>

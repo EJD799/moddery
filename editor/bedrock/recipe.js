@@ -398,12 +398,18 @@ $(function () {
 });
 
 $(".itemIconBtn").draggable({
+    cancel: false,
     appendTo: "body",
     distance: 6,
     revert: "invalid",
+
     helper: function () {
         const img = $(this).find(".itemIconBtnImg");
-        if (!img.attr("src")) return false;
+
+        // Always return a helper so the real element never moves
+        if (!img.length || !img.attr("src")) {
+            return $("<div>").css({ width: 1, height: 1 });
+        }
 
         return img.clone().css({
             width: img.width(),
@@ -411,31 +417,48 @@ $(".itemIconBtn").draggable({
             pointerEvents: "none",
             zIndex: 1000000
         });
+    },
+
+    start: function () {
+        const fromId = this.id?.replace("recipeBtn", "");
+        console.log("[DRAG START] from slot:", fromId);
     }
 });
 
 $(".itemIconBtn").droppable({
     tolerance: "pointer",
+
     drop: function (event, ui) {
-        const fromId = ui.draggable
-            .find(".itemIconBtnImg")
-            .attr("id")
-            .replace("recipeBtnImg_", "");
+        const fromBtn = ui.draggable[0];
+        const toBtn   = this;
 
-        const toId = $(this)
-            .find(".itemIconBtnImg")
-            .attr("id")
-            .replace("recipeBtnImg_", "");
+        const fromIdRaw = fromBtn?.id?.replace("recipeBtn", "");
+        const toIdRaw   = toBtn?.id?.replace("recipeBtn", "");
 
+        const fromId = parseInt(fromIdRaw, 10);
+        const toId   = parseInt(toIdRaw, 10);
+
+        console.log(
+            "[DROP]",
+            "from:", fromIdRaw, "→", fromId,
+            "| to:", toIdRaw, "→", toId
+        );
+
+        if (
+            !Number.isInteger(fromId) ||
+            !Number.isInteger(toId) ||
+            fromId < 1 || fromId > 10 ||
+            toId < 1 || toId > 10 ||
+            fromId === toId
+        ) {
+            console.warn("[DROP] Invalid slot IDs — copySlot NOT called");
+            return;
+        }
+
+        console.log("[copySlot] Calling copySlot(", fromId, ",", toId, ")");
         copySlot(fromId, toId);
     }
 });
-
-
-
-
-
-
 
 
 

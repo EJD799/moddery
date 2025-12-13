@@ -17,12 +17,13 @@ function addItem() {
     let img = document.createElement("img");
     img.setAttribute("id", `itemBtnImg${newID}`);
     img.setAttribute("class", "itemIconBtnImg");
+    img.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
     btn.appendChild(img);
     div.appendChild(btn);
     let label = document.createElement("label");
     label.setAttribute("id", `itemWeightBoxLabel${newID}`);
     label.setAttribute("for", `itemWeightBox${newID}`);
-    label.innerHTML = "Weight";
+    label.innerHTML = " Weight ";
     div.appendChild(label);
     let weightBox = document.createElement("input");
     weightBox.setAttribute("id", `itemWeightBox${newID}`);
@@ -30,6 +31,7 @@ function addItem() {
     weightBox.setAttribute("type", "number");
     weightBox.setAttribute("value", "1");
     div.appendChild(weightBox);
+    div.appendChild(document.createTextNode(" "));
     let deleteBtn = document.createElement("i");
     deleteBtn.setAttribute("id", `itemDeleteBtn${newID}`);
     deleteBtn.setAttribute("class", "fas fa-trash deleteIcon");

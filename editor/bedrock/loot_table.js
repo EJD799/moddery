@@ -275,7 +275,7 @@ function copySlot(a, b) {
     console.log(`copying slot ${a} to slot ${b}`);
 }
 
-function setItem(value) {
+function setItem(value, modifyList = true) {
     let itemID;
     if (value == "special_custom") {
         itemID = prompt("Enter the item ID:");
@@ -284,7 +284,9 @@ function setItem(value) {
     } else {
         itemID = value;
     }
-    currentItems[currentSlot - 1] = [itemID, Number($("#itemDataBox").val())];
+    if (modifyList) {
+        currentItems[currentSlot - 1][0] = itemID;
+    }
     renderSlot(currentSlot, itemID, value);
     currentSlot = 0;
 }

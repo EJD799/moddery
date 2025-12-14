@@ -373,7 +373,7 @@ function loadItemList(data) {
         } else {
             setItem(data[i][0], false);
         }
-        $(`#itemWeightBox${currentSlot}`).val(data[i][1].toString());
+        $(`#itemWeightBox${i + 1}`).val(data[i][1].toString());
     }
 }
 

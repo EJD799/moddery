@@ -369,9 +369,9 @@ function loadItemList(data) {
         addItem(i + 1);
         currentSlot = i + 1;
         if (data[i][0] == "") {
-            setItem("special_remove");
+            setItem("special_remove", false);
         } else {
-            setItem(data[i][0]);
+            setItem(data[i][0], false);
         }
         $(`#itemWeightBox${currentSlot}`).val(data[i][1].toString());
     }

@@ -47,6 +47,7 @@ function addItem(customID = false) {
     container.appendChild(div);
     $(`#itemBtn${newID}`).button();
     $('input').addClass("ui-widget ui-widget-content ui-corner-all");
+    initializeDraggableIcons();
 }
 
 function removeItem(id) {
@@ -391,68 +392,71 @@ $(function () {
     });
 });
 
-$(".itemIconBtn").draggable({
-    cancel: false,
-    appendTo: "body",
-    distance: 6,
-    revert: "invalid",
+function initializeDraggableIcons() {
+    $(".itemIconBtn").draggable({
+        cancel: false,
+        appendTo: "body",
+        distance: 6,
+        revert: "invalid",
 
-    helper: function () {
-        const img = $(this).find(".itemIconBtnImg");
+        helper: function () {
+            const img = $(this).find(".itemIconBtnImg");
 
-        // Always return a helper so the real element never moves
-        if (!img.length || !img.attr("src")) {
-            return $("<div>").css({ width: 1, height: 1 });
+            // Always return a helper so the real element never moves
+            if (!img.length || !img.attr("src")) {
+                return $("<div>").css({ width: 1, height: 1 });
+            }
+
+            return img.clone().css({
+                width: img.width(),
+                height: img.height(),
+                pointerEvents: "none",
+                zIndex: 1000000
+            });
+        },
+
+        start: function () {
+            const fromId = this.id?.replace("itemBtn", "");
+            console.log("[DRAG START] from slot:", fromId);
         }
+    });
 
-        return img.clone().css({
-            width: img.width(),
-            height: img.height(),
-            pointerEvents: "none",
-            zIndex: 1000000
-        });
-    },
+    $(".itemIconBtn").droppable({
+        tolerance: "pointer",
 
-    start: function () {
-        const fromId = this.id?.replace("itemBtn", "");
-        console.log("[DRAG START] from slot:", fromId);
-    }
-});
+        drop: function (event, ui) {
+            const fromBtn = ui.draggable[0];
+            const toBtn   = this;
 
-$(".itemIconBtn").droppable({
-    tolerance: "pointer",
+            const fromIdRaw = fromBtn?.id?.replace("itemBtn", "");
+            const toIdRaw   = toBtn?.id?.replace("itemBtn", "");
 
-    drop: function (event, ui) {
-        const fromBtn = ui.draggable[0];
-        const toBtn   = this;
+            const fromId = parseInt(fromIdRaw, 10);
+            const toId   = parseInt(toIdRaw, 10);
 
-        const fromIdRaw = fromBtn?.id?.replace("itemBtn", "");
-        const toIdRaw   = toBtn?.id?.replace("itemBtn", "");
+            console.log(
+                "[DROP]",
+                "from:", fromIdRaw, "→", fromId,
+                "| to:", toIdRaw, "→", toId
+            );
 
-        const fromId = parseInt(fromIdRaw, 10);
-        const toId   = parseInt(toIdRaw, 10);
+            if (
+                !Number.isInteger(fromId) ||
+                !Number.isInteger(toId) ||
+                fromId < 1 || fromId > 1000 ||
+                toId < 1 || toId > 1000 ||
+                fromId === toId
+            ) {
+                console.warn("[DROP] Invalid slot IDs — copySlot NOT called");
+                return;
+            }
 
-        console.log(
-            "[DROP]",
-            "from:", fromIdRaw, "→", fromId,
-            "| to:", toIdRaw, "→", toId
-        );
-
-        if (
-            !Number.isInteger(fromId) ||
-            !Number.isInteger(toId) ||
-            fromId < 1 || fromId > 1000 ||
-            toId < 1 || toId > 1000 ||
-            fromId === toId
-        ) {
-            console.warn("[DROP] Invalid slot IDs — copySlot NOT called");
-            return;
+            console.log("[copySlot] Calling copySlot(", fromId, ",", toId, ")");
+            copySlot(fromId, toId);
         }
-
-        console.log("[copySlot] Calling copySlot(", fromId, ",", toId, ")");
-        copySlot(fromId, toId);
-    }
-});
+    });
+}
+initializeDraggableIcons();
 
 
 

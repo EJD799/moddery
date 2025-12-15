@@ -9,8 +9,8 @@ function addTier(customID = false) {
     if (customID) {
         newID = customID;
     } else {
+        newID = currentTiers.length + 1;
         currentTiers.push([`Tier ${newID}`, 0]);
-        newID = currentTiers.length;
     }
     let container = document.getElementById("tiersContainerDiv");
     let div = document.createElement("div");

@@ -1,6 +1,6 @@
 let textures;
 let elementData = {};
-let currentBlockTextures = {item: "", default: ""};
+let currentEntityTextures = [["default": ""]];
 let selectedTexture;
 let selectedModel;
 let currentTextureSelecting;
@@ -772,8 +772,9 @@ function createComponent(type) {
 }
 
 function generateTextureSelector(id, name) {
-    return `<label for="blockTextureBtn${id}">${name}: <span id="textureNameText${id}">No texture selected</span></label>
-<button name="blockTextureBtn${id}" id="blockTextureBtn${id}" onclick="openSelectTextureDlg(${id})">Select Texture</button>
+    return `<label for="entityTextureBtn${id}"><span id="textureNameText${id}">No texture selected</span></label>
+<button name="entityTextureBtn${id}" id="entityTextureBtn${id}" onclick="openSelectTextureDlg(${id})">Select Texture</button>
+<i class="fas fa-trash deleteIcon" onclick="removeTexture(${id})"></i>
 <br><br>`;
 }
 
@@ -827,16 +828,11 @@ function selectTexture(textureNumber) {
     const selected = document.querySelector('input[name="selectedTexture"]:checked');
     if (selected.value) {
         let textureNameText;
-        if (textureNumber == -1) {
-            textureNameText = document.getElementById("textureNameText");
-            currentBlockTextures["item"] = selected.value;
+        textureNameText = document.getElementById("textureNameText" + textureNumber);
+        if (textureNumber == 0) {
+            currentEntityTextures[0] = selected.value;
         } else {
-            textureNameText = document.getElementById("textureNameText" + textureNumber);
-            if (textureNumber == 0) {
-                currentBlockTextures["default"] = selected.value;
-            } else {
-                currentBlockTextures[textureNumber] = selected.value;
-            }
+            currentEntityTextures[textureNumber] = selected.value;
         }
         textureNameText.innerHTML = selected.value;
         selectedTexture = selected.value;
@@ -886,64 +882,33 @@ async function selectModel() {
     if (selected.value) {
         modelNameText.innerHTML = selected.value;
         selectedModel = selected.value;
-        if (oldModel != selectedModel) {
-            let modelData;
-            if (selectedModel == "Full Block") {
-                modelData = {
-                    "minecraft:geometry": [
-                        {
-                        "bones": [
-                            {
-                            "name": "test_bone",
-                            "cubes": [
-                                {
-                                "uv": {
-                                    "up":    { "material_instance": "up" },
-                                    "down":  { "material_instance": "down" },
-                                    "north": { "material_instance": "north" },
-                                    "east":  { "material_instance": "east" },
-                                    "west":  { "material_instance": "west" },
-                                    "south": { "material_instance": "south" }
-                                }
-                                }
-                            ]
-                            }
-                        ]
-                        }
-                    ]
-                };
-            } else if (selectedModel == "Plant") {
-                modelData = {
-                    "minecraft:geometry": [
-                        {
-                        "bones": [
-                            {
-                            "name": "test_bone",
-                            "cubes": [
-                                {
-                                "uv": {
-                                }
-                                }
-                            ]
-                            }
-                        ]
-                        }
-                    ]
-                };
-            } else {
-                await window.parent.projZip.folder("assets").file(selectedModel).async("string").then(function(data) {
-                    modelData = JSON.parse(data);
-                });
-            }
-            let materialInstances = getMaterialInstances(modelData);
-            additionalTexturesDiv.innerHTML = "";
-            for (let i = 0; i < materialInstances.length; i++) {
-                let div = document.createElement("div");
-                div.innerHTML = generateTextureSelector(i + 1, materialInstances[i]);
-                additionalTexturesDiv.appendChild(div);
-                $(`#blockTextureBtn${i + 1}`).button();
-            }
-        }
+    }
+}
+
+function addTexture(name, value, i, addToList = true) {
+    let div = document.createElement("div");
+    div.innerHTML = generateTextureSelector(i + 1, materialInstances[i]);
+    let nameBox = document.createElement("input");
+    nameBox.setAttribute("id", `textureNameBox${i + 1}`);
+    nameBox.addEventListener("change", function() {
+        currentEntityTextures[i][0] = nameBox.value;
+    });
+    div.prepend(nameBox);
+    additionalTexturesDiv.appendChild(div);
+    $(`#entityTextureBtn${i + 1}`).button();
+    if (addToList) {
+        currentEntityTextures.push([name, value]);
+    }
+}
+
+function removeTexture(id) {
+    currentEntityTextures.splice(id - 1, 1);
+    loadTextureList(currentEntityTextures);
+}
+
+function loadTextureList(data) {
+    for (let i = 0; i < data.length; i++) {
+        addTexture(data[i][0], data[i][1], i, false);
     }
 }
 
@@ -958,35 +923,24 @@ useCustomItemBox.addEventListener("change", function(){
 function saveProject() {
     return {
         name: elementData.name,
-        id: $("#blockIDBox").val(),
-        type: "Block",
+        id: $("#entityIDBox").val(),
+        type: "Entity",
         displayName: $("#nameBox").val(),
-        invCategory: $("#categoryBox").val(),
+        collisionBox: [$("#collisionBox1").val(), $("#collisionBox2").val()],
         model: selectedModel,
-        hasItem: useCustomItemBox.checked,
-        textures: currentBlockTextures,
-        components: currentBlockComponents
+        textures: currentEntityTextures,
+        components: currentEntityComponents
     };
 }
 function loadProject(data) {
     elementData = data;
     $("#elementIDBox").val(data.name);
-    $("#blockIDBox").val(data.id);
+    $("#entityIDBox").val(data.id);
     $("#nameBox").val(data.displayName);
-    if ((data?.invCategory ?? false)) {
-        $("#categoryBox").val(data.invCategory);
-        $("#categoryBox").selectmenu("refresh");
-    }
-    if (data.hasItem) {
-        useCustomItemBox.checked = true;
-    }
+    $("#collisionBox1").val(data.collisionBox[0]);
+    $("#collisionBox2").val(data.collisionBox[1]);
     loadTextures(data);
     loadComponents(data.components);
-    if (useCustomItemBox.checked) {
-        $("#itemTextureDiv").show();
-    } else {
-        $("#itemTextureDiv").hide();
-    }
 }
 
 async function loadTextures(data) {
@@ -995,66 +949,7 @@ async function loadTextures(data) {
         if (data.model) {
             modelNameText.innerHTML = data.model;
         }
-        currentBlockTextures = data.textures;
-        if (data.hasItem && data.textures.item) {
-            textureNameText.innerHTML = data.textures.item;
-        }
-        let modelData;
-        if (selectedModel == "Full Block") {
-            modelData = {
-                "minecraft:geometry": [
-                    {
-                    "bones": [
-                        {
-                        "name": "test_bone",
-                        "cubes": [
-                            {
-                            "uv": {
-                                "up":    { "material_instance": "up" },
-                                "down":  { "material_instance": "down" },
-                                "north": { "material_instance": "north" },
-                                "east":  { "material_instance": "east" },
-                                "west":  { "material_instance": "west" },
-                                "south": { "material_instance": "south" }
-                            }
-                            }
-                        ]
-                        }
-                    ]
-                    }
-                ]
-            };
-        } else if (selectedModel == "Plant") {
-            modelData = {
-                "minecraft:geometry": [
-                    {
-                    "bones": [
-                        {
-                        "name": "test_bone",
-                        "cubes": [
-                            {
-                            "uv": {
-                            }
-                            }
-                        ]
-                        }
-                    ]
-                    }
-                ]
-            };
-        } else {
-            await window.parent.projZip.folder("assets").file(selectedModel).async("string").then(function(data) {
-                modelData = JSON.parse(data);
-            });
-        }
-        let materialInstances = getMaterialInstances(modelData);
-        additionalTexturesDiv.innerHTML = "";
-        for (let i = 0; i < materialInstances.length; i++) {
-            let div = document.createElement("div");
-            div.innerHTML = generateTextureSelector(i + 1, materialInstances[i]);
-            additionalTexturesDiv.appendChild(div);
-            $(`#blockTextureBtn${i + 1}`).button();
-        }
+        loadTextureList(data.textures);
         dataKeys = Object.keys(data.textures);
         console.log("Object:");
         console.log(data.textures);

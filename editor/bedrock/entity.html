@@ -23,34 +23,17 @@
 <label for="elementIDBox">Element Name (Editor)</label>
 <input name="elementIDBox" id="elementIDBox" placeholder="Element ID" disabled>
 <br><br>
-<label for="blockIDBox">Item ID</label>
-<input name="blockIDBox" id="blockIDBox" placeholder="Block ID">
+<label for="entityIDBox">Entity ID</label>
+<input name="entityIDBox" id="entityIDBox" placeholder="Entity ID">
 <br><br>
-<label for="nameBox">Block Name</label>
-<input name="nameBox" id="nameBox" placeholder="Block Name">
+<label for="nameBox">Entity Name</label>
+<input name="nameBox" id="nameBox" placeholder="Entity Name">
 <br><br>
-<label for="categoryBox">Inventory Category</label>
-<select name="categoryBox" id="categoryBox">
-    <option>Construction</option>
-    <option>Equipment</option>
-    <option selected>Items</option>
-    <option>Nature</option>
-</select>
-<br><br>
-<label for="modelBtn">Block Model: <span id="modelNameText">No model selected</span></label>
+<label for="modelBtn">Entity Model: <span id="modelNameText">No model selected</span></label>
 <button name="modelBtn" id="modelBtn" onclick="openSelectModelDlg()">Select Model</button>
-<br><br>
-<label for="useCustomItemBox">Use Custom Item Texture</label>
-<input type="checkbox" id="useCustomItemBox" name="useCustomItemBox">
-<br><br>
-<div id="itemTextureDiv">
-    <label for="itemTextureBtn">Item Texture: <span id="textureNameText">No texture selected</span></label>
-    <button name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg(-1)">Select Texture</button>
-    <br><br>
-</div>
-<h3>Block Textures</h3>
-<label for="blockTextureBtn0">Default: <span id="textureNameText0">No texture selected</span></label>
-<button name="blockTextureBtn0" id="blockTextureBtn0" onclick="openSelectTextureDlg(0)">Select Texture</button>
+<h3>Entity Textures</h3>
+<label for="entityTextureBtn0">Default: <span id="textureNameText0">No texture selected</span></label>
+<button name="entityTextureBtn0" id="entityTextureBtn0" onclick="openSelectTextureDlg(0)">Select Texture</button>
 <br><br>
 <div id="additionalTexturesDiv"></div>
 <h3>Components <button id="addComponentBtn" onclick="addComponent()">+ Add Component</button></h3>

@@ -550,8 +550,6 @@ function loadProject(data) {
     elementData = data;
     $("#elementIDBox").val(data.name);
     $("#tradeTableIDBox").val(data.id);
-    $("#rollCountBox1").val(data.rollCount[0]);
-    $("#rollCountBox2").val(data.rollCount[1]);
     window.setTimeout(function() {
         if (data.tiers) {
             currentTiers = data.tiers;

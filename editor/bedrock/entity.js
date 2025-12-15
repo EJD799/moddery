@@ -471,7 +471,7 @@ const componentDefinitions = {
         requires: false
     }
 };
-var currentBlockComponents = {};
+var currentEntityComponents = {};
 
 function centerDialogViewport(selector) {
     const $dlg = $(selector).dialog("widget");
@@ -566,8 +566,8 @@ function createComponent(type) {
         }
         newComponentObj[componentDefinitions[type].inputs[i].name] = newComponentDefault;
     }
-    if (!Object.keys(currentBlockComponents).includes(type)) {
-        currentBlockComponents[type] = newComponentObj;
+    if (!Object.keys(currentEntityComponents).includes(type)) {
+        currentEntityComponents[type] = newComponentObj;
         var parentDiv = document.getElementById("componentsBox");
         var elementBox = document.createElement("div");
         elementBox.setAttribute("class", "componentbox");
@@ -887,7 +887,7 @@ async function selectModel() {
     }
 }
 
-function addTexture(name = "", value = "", i = currentEntityComponents.length, addToList = true) {
+function addTexture(name = "", value = "", i = currentEntityTextures.length, addToList = true) {
     let div = document.createElement("div");
     div.innerHTML = generateTextureSelector(i + 1);
     let nameBox = document.createElement("input");
@@ -978,18 +978,18 @@ function loadComponents(data) {
                         $(removeSpaces(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`)).selectmenu("refresh");
                     }
                 }
-                currentBlockComponents[Object.keys(data)[i]][componentInputDefs[j].name] = data[Object.keys(data)[i]][componentInputDefs[j].name];
+                currentEntityComponents[Object.keys(data)[i]][componentInputDefs[j].name] = data[Object.keys(data)[i]][componentInputDefs[j].name];
             }
         }
     }
 }
 
 function updateInput(type, input, value) {
-    currentBlockComponents[type][input] = value;
+    currentEntityComponents[type][input] = value;
 }
 
 function deleteComponent(name) {
-    delete currentBlockComponents[name];
+    delete currentEntityComponents[name];
     document.getElementById("componentbox_" + removeSpaces(name)).remove();
     closeDeleteComponent()
 }

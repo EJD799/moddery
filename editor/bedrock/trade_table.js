@@ -24,6 +24,7 @@ function addTier(customID = false) {
     nameBox.setAttribute("value", `Tier ${newID}`);
     nameBox.addEventListener("change", function(e) {
         currentTiers[newID - 1][0] = nameBox.value;
+        loadItemList(currentItems);
     });
     div.appendChild(nameBox);
     let xpLabel = document.createElement("label");
@@ -47,6 +48,7 @@ function addTier(customID = false) {
     div.appendChild(deleteBtn);
     container.appendChild(div);
     $('input').addClass("ui-widget ui-widget-content ui-corner-all");
+    loadItemList(currentItems);
 }
 
 function addItem(customID = false) {
@@ -54,34 +56,121 @@ function addItem(customID = false) {
     if (customID) {
         newID = customID;
     } else {
-        currentItems.push(["", 0]);
+        currentItems.push({
+            tier: currentTiers[0][0],
+            item1: ["", 1, 1],
+            item2: ["", 1, 1],
+            item3: ["", 1, 1]
+        });
         newID = currentItems.length;
     }
     let container = document.getElementById("containerDiv");
     let div = document.createElement("div");
     div.setAttribute("id", `itemDiv${newID}`);
-    let btn = document.createElement("button");
-    btn.setAttribute("id", `itemBtn${newID}`);
-    btn.setAttribute("class", "itemIconBtn");
-    btn.setAttribute("onclick", `selectItem(${newID})`);
-    let img = document.createElement("img");
-    img.setAttribute("id", `itemBtnImg${newID}`);
-    img.setAttribute("class", "itemIconBtnImg");
-    img.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
-    btn.appendChild(img);
-    div.appendChild(btn);
+
+    let btn1 = document.createElement("button");
+    btn1.setAttribute("id", `itemBtn${newID}a`);
+    btn1.setAttribute("class", "itemIconBtn");
+    btn1.setAttribute("onclick", `selectItem('${newID}a')`);
+    let img1 = document.createElement("img");
+    img1.setAttribute("id", `itemBtnImg${newID}a`);
+    img1.setAttribute("class", "itemIconBtnImg");
+    img1.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
+    btn1.appendChild(img1);
+    div.appendChild(btn1);
+    let btn1QuantityBox1 = document.createElement("input");
+    btn1QuantityBox1.setAttribute("id", `itemQuantityBox${newID}a1`);
+    btn1QuantityBox1.setAttribute("class", "smallInput");
+    btn1QuantityBox1.setAttribute("type", "number");
+    btn1QuantityBox1.setAttribute("value", "1");
+    btn1QuantityBox1.addEventListener("change", function(e) {
+        currentItems[newID - 1].item1[1] = Number(btn1QuantityBox1.value);
+    });
+    div.appendChild(btn1QuantityBox1);
+    let btn1QuantityBox2 = document.createElement("input");
+    btn1QuantityBox2.setAttribute("id", `itemQuantityBox${newID}a2`);
+    btn1QuantityBox2.setAttribute("class", "smallInput");
+    btn1QuantityBox2.setAttribute("type", "number");
+    btn1QuantityBox2.setAttribute("value", "1");
+    btn1QuantityBox2.addEventListener("change", function(e) {
+        currentItems[newID - 1].item1[2] = Number(btn1QuantityBox2.value);
+    });
+    div.appendChild(btn1QuantityBox2);
+
+    div.appendChild(document.createTextNode("-"));
+
+    let btn2 = document.createElement("button");
+    btn2.setAttribute("id", `itemBtn${newID}b`);
+    btn2.setAttribute("class", "itemIconBtn");
+    btn2.setAttribute("onclick", `selectItem('${newID}b')`);
+    let img2 = document.createElement("img");
+    img2.setAttribute("id", `itemBtnImg${newID}b`);
+    img2.setAttribute("class", "itemIconBtnImg");
+    img2.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
+    btn2.appendChild(img2);
+    div.appendChild(btn2);
+    let btn2QuantityBox1 = document.createElement("input");
+    btn2QuantityBox1.setAttribute("id", `itemQuantityBox${newID}b1`);
+    btn2QuantityBox1.setAttribute("class", "smallInput");
+    btn2QuantityBox1.setAttribute("type", "number");
+    btn2QuantityBox1.setAttribute("value", "1");
+    btn2QuantityBox1.addEventListener("change", function(e) {
+        currentItems[newID - 1].item2[1] = Number(btn2QuantityBox1.value);
+    });
+    div.appendChild(btn2QuantityBox1);
+    let btn2QuantityBox2 = document.createElement("input");
+    btn2QuantityBox2.setAttribute("id", `itemQuantityBox${newID}b2`);
+    btn2QuantityBox2.setAttribute("class", "smallInput");
+    btn2QuantityBox2.setAttribute("type", "number");
+    btn2QuantityBox2.setAttribute("value", "1");
+    btn2QuantityBox2.addEventListener("change", function(e) {
+        currentItems[newID - 1].item2[2] = Number(btn2QuantityBox2.value);
+    });
+    div.appendChild(btn2QuantityBox2);
+
+    let arrowIcon = document.createElement("i");
+    arrowIcon.setAttribute("class", "fas fa-arrow-right");
+    div.appendChild(arrowIcon);
+
+    let btn3 = document.createElement("button");
+    btn3.setAttribute("id", `itemBtn${newID}c`);
+    btn3.setAttribute("class", "itemIconBtn");
+    btn3.setAttribute("onclick", `selectItem('${newID}c')`);
+    let img3 = document.createElement("img");
+    img3.setAttribute("id", `itemBtnImg${newID}c`);
+    img3.setAttribute("class", "itemIconBtnImg");
+    img3.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
+    btn3.appendChild(img3);
+    div.appendChild(btn3);
+    let btn3QuantityBox1 = document.createElement("input");
+    btn3QuantityBox1.setAttribute("id", `itemQuantityBox${newID}c1`);
+    btn3QuantityBox1.setAttribute("class", "smallInput");
+    btn3QuantityBox1.setAttribute("type", "number");
+    btn3QuantityBox1.setAttribute("value", "1");
+    btn3QuantityBox1.addEventListener("change", function(e) {
+        currentItems[newID - 1].item3[1] = Number(btn3QuantityBox1.value);
+    });
+    div.appendChild(btn3QuantityBox1);
+    let btn3QuantityBox2 = document.createElement("input");
+    btn3QuantityBox2.setAttribute("id", `itemQuantityBox${newID}c2`);
+    btn3QuantityBox2.setAttribute("class", "smallInput");
+    btn3QuantityBox2.setAttribute("type", "number");
+    btn3QuantityBox2.setAttribute("value", "1");
+    btn3QuantityBox2.addEventListener("change", function(e) {
+        currentItems[newID - 1].item3[2] = Number(btn3QuantityBox2.value);
+    });
+    div.appendChild(btn3QuantityBox2);
+
     let label = document.createElement("label");
-    label.setAttribute("id", `itemWeightBoxLabel${newID}`);
-    label.setAttribute("for", `itemWeightBox${newID}`);
-    label.innerHTML = " Weight ";
+    label.setAttribute("id", `itemTierBoxLabel${newID}`);
+    label.setAttribute("for", `itemTierBox${newID}`);
+    label.innerHTML = " Tier ";
     div.appendChild(label);
-    let weightBox = document.createElement("input");
-    weightBox.setAttribute("id", `itemWeightBox${newID}`);
-    weightBox.setAttribute("class", "smallInput");
-    weightBox.setAttribute("type", "number");
-    weightBox.setAttribute("value", "1");
-    weightBox.addEventListener("change", function(e) {
-        currentItems[newID - 1][1] = Number(weightBox.value);
+    let tierBox = document.createElement("select");
+    tierBox.setAttribute("id", `itemTierBox${newID}`);
+    tierBox.innerHTML = generateSelectContents(currentTiers.map(item => item[0]));
+    tierBox.addEventListener("change", function(e) {
+        currentItems[newID - 1].tier = tierBox.value;
     });
     div.appendChild(weightBox);
     div.appendChild(document.createTextNode(" "));
@@ -91,11 +180,20 @@ function addItem(customID = false) {
     deleteBtn.setAttribute("onclick", `removeItem(${newID})`);
     div.appendChild(deleteBtn);
     container.appendChild(div);
-    $(`#itemBtn${newID}`).button();
+    $(`#itemBtn${newID}a1`).button();
+    $(`#itemBtn${newID}a2`).button();
+    $(`#itemBtn${newID}b1`).button();
+    $(`#itemBtn${newID}b2`).button();
+    $(`#itemBtn${newID}c1`).button();
+    $(`#itemBtn${newID}c2`).button();
     $('input').addClass("ui-widget ui-widget-content ui-corner-all");
     initializeDraggableIcons();
 }
 
+function removeTier(id) {
+    currentTiers.splice(id - 1, 1);
+    loadTierList(currentTiers);
+}
 function removeItem(id) {
     currentItems.splice(id - 1, 1);
     loadItemList(currentItems);

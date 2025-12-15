@@ -95,9 +95,8 @@ function addItem(customID = false) {
     btn1QuantityBox2.addEventListener("change", function(e) {
         currentItems[newID - 1].item1[2] = Number(btn1QuantityBox2.value);
     });
+    div.appendChild(document.createTextNode(" - "));
     div.appendChild(btn1QuantityBox2);
-
-    div.appendChild(document.createTextNode("-"));
 
     let btn2 = document.createElement("button");
     btn2.setAttribute("id", `itemBtn${newID}b`);
@@ -126,11 +125,14 @@ function addItem(customID = false) {
     btn2QuantityBox2.addEventListener("change", function(e) {
         currentItems[newID - 1].item2[2] = Number(btn2QuantityBox2.value);
     });
+    div.appendChild(document.createTextNode(" - "));
     div.appendChild(btn2QuantityBox2);
 
     let arrowIcon = document.createElement("i");
     arrowIcon.setAttribute("class", "fas fa-arrow-right");
+    div.appendChild(document.createTextNode(" "));
     div.appendChild(arrowIcon);
+    div.appendChild(document.createTextNode(" "));
 
     let btn3 = document.createElement("button");
     btn3.setAttribute("id", `itemBtn${newID}c`);
@@ -159,6 +161,7 @@ function addItem(customID = false) {
     btn3QuantityBox2.addEventListener("change", function(e) {
         currentItems[newID - 1].item3[2] = Number(btn3QuantityBox2.value);
     });
+    div.appendChild(document.createTextNode(" - "));
     div.appendChild(btn3QuantityBox2);
 
     let label = document.createElement("label");
@@ -172,7 +175,7 @@ function addItem(customID = false) {
     tierBox.addEventListener("change", function(e) {
         currentItems[newID - 1].tier = tierBox.value;
     });
-    div.appendChild(weightBox);
+    div.appendChild(tierBox);
     div.appendChild(document.createTextNode(" "));
     let deleteBtn = document.createElement("i");
     deleteBtn.setAttribute("id", `itemDeleteBtn${newID}`);
@@ -181,11 +184,8 @@ function addItem(customID = false) {
     div.appendChild(deleteBtn);
     container.appendChild(div);
     $(`#itemBtn${newID}a1`).button();
-    $(`#itemBtn${newID}a2`).button();
-    $(`#itemBtn${newID}b1`).button();
-    $(`#itemBtn${newID}b2`).button();
-    $(`#itemBtn${newID}c1`).button();
-    $(`#itemBtn${newID}c2`).button();
+    $(`#itemBtn${newID}b`).button();
+    $(`#itemBtn${newID}c`).button();
     $(`#itemTierBox${newID}`).selectmenu();
     $('input').addClass("ui-widget ui-widget-content ui-corner-all");
     initializeDraggableIcons();

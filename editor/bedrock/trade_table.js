@@ -57,7 +57,7 @@ function addItem(customID = false) {
         newID = customID;
     } else {
         currentItems.push({
-            tier: currentTiers[0][0] ?? "",
+            tier: "",
             item1: ["", 1, 1],
             item2: ["", 1, 1],
             item3: ["", 1, 1]

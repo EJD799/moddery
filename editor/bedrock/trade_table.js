@@ -9,7 +9,7 @@ function addTier(customID = false) {
     if (customID) {
         newID = customID;
     } else {
-        currentTiers.push(["", 0]);
+        currentTiers.push([`Tier ${newID}`, 0]);
         newID = currentTiers.length;
     }
     let container = document.getElementById("tiersContainerDiv");
@@ -78,6 +78,7 @@ function addItem(customID = false) {
     img1.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
     btn1.appendChild(img1);
     div.appendChild(btn1);
+    div.appendChild(document.createTextNode(" "));
     let btn1QuantityBox1 = document.createElement("input");
     btn1QuantityBox1.setAttribute("id", `itemQuantityBox${newID}a1`);
     btn1QuantityBox1.setAttribute("class", "smallInput");
@@ -107,7 +108,9 @@ function addItem(customID = false) {
     img2.setAttribute("class", "itemIconBtnImg");
     img2.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
     btn2.appendChild(img2);
+    div.appendChild(document.createTextNode(" "));
     div.appendChild(btn2);
+    div.appendChild(document.createTextNode(" "));
     let btn2QuantityBox1 = document.createElement("input");
     btn2QuantityBox1.setAttribute("id", `itemQuantityBox${newID}b1`);
     btn2QuantityBox1.setAttribute("class", "smallInput");
@@ -144,6 +147,7 @@ function addItem(customID = false) {
     img3.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
     btn3.appendChild(img3);
     div.appendChild(btn3);
+    div.appendChild(document.createTextNode(" "));
     let btn3QuantityBox1 = document.createElement("input");
     btn3QuantityBox1.setAttribute("id", `itemQuantityBox${newID}c1`);
     btn3QuantityBox1.setAttribute("class", "smallInput");

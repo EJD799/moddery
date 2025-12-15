@@ -358,7 +358,7 @@ function loadProject(data) {
         if (data.items) {
             currentItems = data.items;
         } else {
-            currentItems = [["", 1]];
+            currentItems = [];
         }
         loadItemList(currentItems);
     }, 200);

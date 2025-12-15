@@ -387,28 +387,42 @@ function selectItem(slot) {
 function saveProject() {
     return {
         name: elementData.name,
-        id: $("#lootTableIDBox").val(),
-        type: "Loot Table",
-        rollCount: [$("#rollCountBox1").val(), $("#rollCountBox2").val()],
+        id: $("#tradeTableIDBox").val(),
+        type: "Trade Table",
+        tiers: currentTiers,
         items: currentItems
     };
 }
 function loadProject(data) {
     elementData = data;
     $("#elementIDBox").val(data.name);
-    $("#lootTableIDBox").val(data.id);
+    $("#tradeTableIDBox").val(data.id);
     $("#rollCountBox1").val(data.rollCount[0]);
     $("#rollCountBox2").val(data.rollCount[1]);
     window.setTimeout(function() {
+        if (data.tiers) {
+            currentTiers = data.tiers;
+        } else {
+            currentTiers = [];
+        }
         if (data.items) {
             currentItems = data.items;
         } else {
-            currentItems = [["", 1]];
+            currentItems = [];
         }
+        loadTierList(currentTiers)
         loadItemList(currentItems);
     }, 200);
 }
 
+function loadTierList(data) {
+    document.getElementById("tiersContainerDiv").innerHTML = "";
+    for (let i = 0; i < data.length; i++) {
+        addTier(i + 1);
+        $(`#tierNameBox${i + 1}`).val(data[i][0]);
+        $(`#tierXpBox${i + 1}`).val(data[i][1].toString());
+    }
+}
 function loadItemList(data) {
     document.getElementById("containerDiv").innerHTML = "";
     for (let i = 0; i < data.length; i++) {

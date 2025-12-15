@@ -1,4 +1,4 @@
-const appVersion = "0.4.48";
+const appVersion = "0.4.49";
 
 var projZip;
 var projManifest;
@@ -1133,6 +1133,7 @@ function deleteElementFromZip(id) {
 function deleteElement() {
   closeDeleteElement();
   deleteElementFromZip(deleteElementID);
+  removeElementDropdown(deleteElementID, "element");
   document.getElementById("elementbox" + encodeText(deleteElementID)).remove();
   if (autosaveEnabled) {
     saveProject();

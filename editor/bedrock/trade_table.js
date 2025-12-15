@@ -5,6 +5,31 @@ var currentSubslot = "a";
 var currentTiers = [];
 var currentItems = [];
 
+function parseSlot(slot) {
+    // accepts: 1, "1", "1a", "2b"
+    if (typeof slot === "number") {
+        return { slot, subslot: currentSubslot ?? "a" };
+    }
+
+    if (typeof slot === "string") {
+        const match = /^(\d+)([abc])?$/.exec(slot);
+        if (!match) throw new Error("Invalid slot: " + slot);
+        return {
+            slot: Number(match[1]),
+            subslot: match[2] ?? currentSubslot ?? "a"
+        };
+    }
+
+    throw new Error("Invalid slot type");
+}
+
+function subslotKey(subslot) {
+    if (subslot === "a") return "item1";
+    if (subslot === "b") return "item2";
+    if (subslot === "c") return "item3";
+    throw new Error("Invalid subslot: " + subslot);
+}
+
 function addTier(customID = false) {
     let newID;
     if (customID) {
@@ -417,78 +442,92 @@ $("#itemPickerDialog").dialog("close");
 $("#itemPickerCancelBtn").button();
 $("#itemPickerSelectBtn").button();
 
-function copySlot(a, b) {
-    currentSlot = b;
-    if (currentItems[a - 1][0] == "") {
-        setItem("special_remove");
-    } else {
-        setItem(currentItems[a - 1][0]);
-    }
-    console.log(`copying slot ${a} to slot ${b}`);
+function copySlot(from, to) {
+    const fromParsed = parseSlot(from);
+    const toParsed   = parseSlot(to);
+
+    const fromKey = subslotKey(fromParsed.subslot);
+    const toKey   = subslotKey(toParsed.subslot);
+
+    const itemID =
+        currentItems[fromParsed.slot - 1]?.[fromKey]?.[0] ?? "";
+
+    currentSlot = toParsed.slot;
+    currentSubslot = toParsed.subslot;
+
+    setItem(itemID === "" ? "special_remove" : itemID);
 }
+
 
 function setItem(value, modifyList = true) {
     let itemID;
-    if (value == "special_custom") {
+    if (value === "special_custom") {
         itemID = prompt("Enter the item ID:");
-    } else if (value == "special_remove") {
+    } else if (value === "special_remove") {
         itemID = "";
     } else {
         itemID = value;
     }
+
+    const key = subslotKey(currentSubslot);
+
     if (modifyList) {
-        currentItems[currentSlot - 1][0] = itemID;
+        currentItems[currentSlot - 1][key][0] = itemID;
     }
-    renderSlot(currentSlot, itemID, value);
+
+    renderSlot(currentSlot, currentSubslot, itemID, value);
+
+    // CLEANUP
     currentSlot = 0;
+    currentSubslot = "a";
 }
-function renderSlot(slot, value, original) {
-    let slotImage = document.getElementById("itemBtnImg" + slot);
-    if (original == "special_remove") {
-        slotImage.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
-    } else if (original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) {
-        slotImage.setAttribute("src", replaceShortURLs(itemDefinitions["minecraft:" + value].texture));
-    } else if (original == "special_custom" && !Object.keys(itemDefinitions).includes(value) && !Object.keys(customItems).includes(value)) {
-        slotImage.setAttribute("src", "/moddery/custom_textures/special_custom.png");
+
+function renderSlot(slot, subslot, value, original) {
+    const img = document.getElementById(`itemBtnImg${slot}${subslot}`);
+    const btn = document.getElementById(`itemBtn${slot}${subslot}`);
+    if (!img || !btn) return;
+
+    if (original === "special_remove") {
+        img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==";
+        btn.title = "";
     } else {
-        if (Object.keys(customItems).includes(value)) {
-            slotImage.setAttribute("src", customItems[value].texture);
+        let texture, title;
+
+        if (customItems[value]) {
+            texture = customItems[value].texture;
+            title = customItems[value].name;
+        } else if (itemDefinitions["minecraft:" + value]) {
+            texture = replaceShortURLs(itemDefinitions["minecraft:" + value].texture);
+            title = itemDefinitions["minecraft:" + value].name;
+        } else if (itemDefinitions[value]) {
+            texture = replaceShortURLs(itemDefinitions[value].texture);
+            title = itemDefinitions[value].name;
         } else {
-            slotImage.setAttribute("src", replaceShortURLs(itemDefinitions[value].texture));
+            texture = "/moddery/custom_textures/special_custom.png";
+            title = value;
         }
+
+        img.src = texture;
+        btn.title = title;
     }
-    let slotBtn = document.getElementById("itemBtn" + slot);
-    if (original == "special_remove") {
-        slotBtn.setAttribute("title", "");
-    } else if ((original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) || (itemDefinitions["minecraft:" + value]?.name ?? false)) {
-        slotBtn.setAttribute("title", itemDefinitions["minecraft:" + value].name);
-    } else if ((itemDefinitions[value]?.name ?? false)) {
-        if (Object.keys(customItems).includes(value)) {
-            slotBtn.setAttribute("title", customItems[value].name);
-        } else {
-            slotBtn.setAttribute("title", itemDefinitions[value].name);
-        }
-    } else {
-        if (Object.keys(customItems).includes(value)) {
-            slotBtn.setAttribute("title", customItems[value].name);
-        } else {
-            slotBtn.setAttribute("title", value);
-        }
-    }
-    $("#itemBtn" + slot).tooltip({
-        content: function() {
-            return $(this).attr("title");
-        },
-        show: { effect: "fadeIn", duration: 200, delay: 0 },
-        hide: { effect: "fadeOut", duration: 200, delay: 0 },
+
+    $(btn).tooltip({
+        content: () => btn.title,
+        show: { effect: "fadeIn", duration: 200 },
+        hide: { effect: "fadeOut", duration: 200 },
         track: true
     });
 }
-function selectItem(slot, subslot) {
-    openItemPickerDialog();
+
+function selectItem(slotId) {
+    const { slot, subslot } = parseSlot(slotId);
+
     currentSlot = slot;
     currentSubslot = subslot;
+
+    openItemPickerDialog();
 }
+
 
 
 function saveProject() {
@@ -614,28 +653,15 @@ function initializeDraggableIcons() {
             const fromBtn = ui.draggable[0];
             const toBtn   = this;
 
-            const fromIdRaw = fromBtn?.id?.replace("itemBtn", "");
-            const toIdRaw   = toBtn?.id?.replace("itemBtn", "");
+            const fromId = fromBtn?.id?.replace("itemBtn", "");
+            const toId   = toBtn?.id?.replace("itemBtn", "");
 
-            const fromId = parseInt(fromIdRaw, 10);
-            const toId   = parseInt(toIdRaw, 10);
-
-            console.log(
-                "[DROP]",
-                "from:", fromIdRaw, "→", fromId,
-                "| to:", toIdRaw, "→", toId
-            );
-
-            if (
-                !Number.isInteger(fromId) ||
-                !Number.isInteger(toId) ||
-                fromId < 1 || fromId > 1000 ||
-                toId < 1 || toId > 1000 ||
-                fromId === toId
-            ) {
+            if (!fromId || !toId || fromId === toId) {
                 console.warn("[DROP] Invalid slot IDs — copySlot NOT called");
                 return;
             }
+
+            console.log("[DROP] from:", fromId, "to:", toId);
 
             console.log("[copySlot] Calling copySlot(", fromId, ",", toId, ")");
             copySlot(fromId, toId);

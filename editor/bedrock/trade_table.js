@@ -1,5 +1,6 @@
 var elementData = {};
 var currentSlot = 0;
+var currentSubslot = "a";
 
 var currentTiers = [];
 var currentItems = [];
@@ -483,9 +484,10 @@ function renderSlot(slot, value, original) {
         track: true
     });
 }
-function selectItem(slot) {
+function selectItem(slot, subslot) {
     openItemPickerDialog();
     currentSlot = slot;
+    currentSubslot = subslot;
 }
 
 
@@ -533,12 +535,32 @@ function loadItemList(data) {
     for (let i = 0; i < data.length; i++) {
         addItem(i + 1);
         currentSlot = i + 1;
-        if (data[i][0] == "") {
+        currentSubslot = "a";
+        if (data[i].item1[0] == "") {
             setItem("special_remove", false);
         } else {
-            setItem(data[i][0], false);
+            setItem(data[i].item1[0], false);
         }
-        $(`#itemWeightBox${i + 1}`).val(data[i][1].toString());
+        currentSlot = i + 1;
+        currentSubslot = "b";
+        if (data[i].item2[0] == "") {
+            setItem("special_remove", false);
+        } else {
+            setItem(data[i].item2[0], false);
+        }
+        currentSlot = i + 1;
+        currentSubslot = "c";
+        if (data[i].item3[0] == "") {
+            setItem("special_remove", false);
+        } else {
+            setItem(data[i].item3[0], false);
+        }
+        $(`#itemQuantityBox${i + 1}a1`).val(data[i].item1[1].toString());
+        $(`#itemQuantityBox${i + 1}a2`).val(data[i].item1[2].toString());
+        $(`#itemQuantityBox${i + 1}b1`).val(data[i].item2[1].toString());
+        $(`#itemQuantityBox${i + 1}b2`).val(data[i].item2[2].toString());
+        $(`#itemQuantityBox${i + 1}c1`).val(data[i].item3[1].toString());
+        $(`#itemQuantityBox${i + 1}c2`).val(data[i].item3[2].toString());
     }
 }
 

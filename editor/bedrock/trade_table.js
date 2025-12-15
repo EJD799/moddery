@@ -82,8 +82,14 @@ function addItem(customID = false) {
     if (customID) {
         newID = customID;
     } else {
+        let itemTier;
+        if (currentTiers.length > 0) {
+            itemTier = currentTiers[0][0];
+        } else {
+            itemTier = "";
+        }
         currentItems.push({
-            tier: "",
+            tier: itemTier,
             item1: ["", 1, 1],
             item2: ["", 1, 1],
             item3: ["", 1, 1]
@@ -601,6 +607,15 @@ function loadItemList(data) {
         $(`#itemQuantityBox${i + 1}b2`).val(data[i].item2[2].toString());
         $(`#itemQuantityBox${i + 1}c1`).val(data[i].item3[1].toString());
         $(`#itemQuantityBox${i + 1}c2`).val(data[i].item3[2].toString());
+
+        const tier = data[i].tier ?? "";
+
+        const $tierBox = $(`#itemTierBox${i + 1}`);
+
+        $tierBox.val(tier);
+
+        // IMPORTANT: tell jQuery UI to re-sync the UI
+        $tierBox.selectmenu("refresh");
     }
 }
 

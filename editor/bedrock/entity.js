@@ -491,6 +491,7 @@ $("#blockTextureBtn0").button();
 
 $("#categoryBox").selectmenu();
 $("#addTextureBtn").button();
+$("#entityTextureBtn0").button();
 $("#addComponentBtn").button();
 $("#addComponentCancelBtn").button();
 $("#addComponentAddBtn").button();
@@ -772,7 +773,7 @@ function createComponent(type) {
     $("#addComponentDlg").dialog("close");
 }
 
-function generateTextureSelector(id, name) {
+function generateTextureSelector(id) {
     return `<label for="entityTextureBtn${id}"><span id="textureNameText${id}">No texture selected</span></label>
 <button name="entityTextureBtn${id}" id="entityTextureBtn${id}" onclick="openSelectTextureDlg(${id})">Select Texture</button>
 <i class="fas fa-trash deleteIcon" onclick="removeTexture(${id})"></i>
@@ -888,7 +889,7 @@ async function selectModel() {
 
 function addTexture(name, value, i, addToList = true) {
     let div = document.createElement("div");
-    div.innerHTML = generateTextureSelector(i + 1, materialInstances[i]);
+    div.innerHTML = generateTextureSelector(i + 1);
     let nameBox = document.createElement("input");
     nameBox.setAttribute("id", `textureNameBox${i + 1}`);
     nameBox.addEventListener("change", function() {
@@ -912,14 +913,6 @@ function loadTextureList(data) {
         addTexture(data[i][0], data[i][1], i, false);
     }
 }
-
-useCustomItemBox.addEventListener("change", function(){
-    if (useCustomItemBox.checked) {
-        $("#itemTextureDiv").show();
-    } else {
-        $("#itemTextureDiv").hide();
-    }
-});
 
 function saveProject() {
     return {

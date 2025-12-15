@@ -1,4 +1,4 @@
-const appVersion = "0.4.64";
+const appVersion = "0.4.65";
 
 var projZip;
 var projManifest;
@@ -976,6 +976,8 @@ function getTabContent(role, elementID) {
     return '<iframe src="editor/bedrock/structure.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else if (role == "Recipe") {
     return '<iframe src="editor/bedrock/recipe.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
+  } else if (role == "Entity") {
+    return '<iframe src="editor/bedrock/entity.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else if (role == "Loot Table") {
     return '<iframe src="editor/bedrock/loot_table.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else if (role == "Trade Table") {
@@ -1326,7 +1328,7 @@ function addTab(role, elementID) {
       projZip.folder("elements").file(elementID + ".code.json").async("string").then(function (data) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
-    } else if ((role == "Item") || (role == "Recipe") || (role == "Biome") || (role == "Structure") || (role == "Block") || (role == "Loot Table") || (role == "Trade Table")) {
+    } else if ((role == "Item") || (role == "Recipe") || (role == "Entity") || (role == "Biome") || (role == "Structure") || (role == "Block") || (role == "Loot Table") || (role == "Trade Table")) {
       projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
@@ -1374,7 +1376,7 @@ async function saveElement(elementTab) {
   if ((elementTab[0] == "Function") || (elementTab[0] == "Script")) {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("elements").file(elementTab[1] + ".code.json", JSON.stringify(frame.contentWindow.saveProject()));
-  } else if ((elementTab[0] == "Item") || (elementTab[0] == "Recipe") || (elementTab[0] == "Biome") || (elementTab[0] == "Structure") || (elementTab[0] == "Block") || (elementTab[0] == "Loot Table") || (elementTab[0] == "Trade Table")) {
+  } else if ((elementTab[0] == "Item") || (elementTab[0] == "Recipe") || (elementTab[0] == "Entity") || (elementTab[0] == "Biome") || (elementTab[0] == "Structure") || (elementTab[0] == "Block") || (elementTab[0] == "Loot Table") || (elementTab[0] == "Trade Table")) {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("elements").file(elementTab[1] + ".json", JSON.stringify(frame.contentWindow.saveProject()));
   } else if (elementTab[0] == "Image") {

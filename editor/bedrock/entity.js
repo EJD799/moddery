@@ -887,7 +887,7 @@ async function selectModel() {
     }
 }
 
-function addTexture(name, value, i, addToList = true) {
+function addTexture(name = "", value = "", i = currentEntityComponents.length, addToList = true) {
     let div = document.createElement("div");
     div.innerHTML = generateTextureSelector(i + 1);
     let nameBox = document.createElement("input");
@@ -898,6 +898,7 @@ function addTexture(name, value, i, addToList = true) {
     div.prepend(nameBox);
     additionalTexturesDiv.appendChild(div);
     $(`#entityTextureBtn${i + 1}`).button();
+    $('input').addClass("ui-widget ui-widget-content ui-corner-all");
     if (addToList) {
         currentEntityTextures.push([name, value]);
     }

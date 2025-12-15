@@ -17,7 +17,7 @@ function addTier(customID = false) {
     div.setAttribute("id", `tierDiv${newID}`);
     let nameLabel = document.createElement("label");
     nameLabel.setAttribute("for", `tierNameBox${newID}`);
-    nameLabel.innerHTML = "Name";
+    nameLabel.innerHTML = "Name ";
     div.appendChild(nameLabel);
     let nameBox = document.createElement("input");
     nameBox.setAttribute("id", `tierNameBox${newID}`);
@@ -28,7 +28,7 @@ function addTier(customID = false) {
     div.appendChild(nameBox);
     let xpLabel = document.createElement("label");
     xpLabel.setAttribute("for", `tierXpBox${newID}`);
-    xpLabel.innerHTML = "Required XP Points";
+    xpLabel.innerHTML = " Required XP Points ";
     div.appendChild(xpLabel);
     let xpBox = document.createElement("input");
     xpBox.setAttribute("id", `tierXpBox${newID}`);
@@ -39,6 +39,7 @@ function addTier(customID = false) {
         currentTiers[newID - 1][1] = Number(xpBox.value);
     });
     div.appendChild(xpBox);
+    div.appendChild(document.createTextNode(" "));
     let deleteBtn = document.createElement("i");
     deleteBtn.setAttribute("id", `tierDeleteBtn${newID}`);
     deleteBtn.setAttribute("class", "fas fa-trash deleteIcon");
@@ -104,6 +105,7 @@ function addItemToBeginning(obj, key, value) {
     return { [key]: value, ...obj };
 }
 
+$("#addTierBtn").button();
 $("#addItemBtn").button();
 $("input").addClass("ui-widget ui-widget-content ui-corner-all");
 

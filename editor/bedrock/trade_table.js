@@ -9,8 +9,8 @@ function addTier(customID = false) {
     if (customID) {
         newID = customID;
     } else {
-        currentItems.push(["", 0]);
-        newID = currentItems.length;
+        currentTiers.push(["", 0]);
+        newID = currentTiers.length;
     }
     let container = document.getElementById("tiersContainerDiv");
     let div = document.createElement("div");
@@ -183,7 +183,7 @@ function addItem(customID = false) {
     deleteBtn.setAttribute("onclick", `removeItem(${newID})`);
     div.appendChild(deleteBtn);
     container.appendChild(div);
-    $(`#itemBtn${newID}a1`).button();
+    $(`#itemBtn${newID}a`).button();
     $(`#itemBtn${newID}b`).button();
     $(`#itemBtn${newID}c`).button();
     $(`#itemTierBox${newID}`).selectmenu();

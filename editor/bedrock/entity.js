@@ -905,7 +905,7 @@ function addTexture(name = "", value = "", i = currentEntityTextures.length, add
 }
 
 function removeTexture(id) {
-    currentEntityTextures.splice(id - 1, 1);
+    currentEntityTextures.splice(id, 1);
     additionalTexturesDiv.innerHTML = "";
     loadTextureList(currentEntityTextures);
 }

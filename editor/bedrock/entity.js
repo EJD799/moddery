@@ -1,6 +1,6 @@
 let textures;
 let elementData = {};
-let currentEntityTextures = [["default": ""]];
+let currentEntityTextures = [["default", ""]];
 let selectedTexture;
 let selectedModel;
 let currentTextureSelecting;
@@ -490,6 +490,7 @@ $("#itemTextureBtn").button();
 $("#blockTextureBtn0").button();
 
 $("#categoryBox").selectmenu();
+$("#addTextureBtn").button();
 $("#addComponentBtn").button();
 $("#addComponentCancelBtn").button();
 $("#addComponentAddBtn").button();

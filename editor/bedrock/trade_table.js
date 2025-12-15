@@ -202,9 +202,6 @@ function addItem(customID = false) {
     let tierBox = document.createElement("select");
     tierBox.setAttribute("id", `itemTierBox${newID}`);
     tierBox.innerHTML = generateSelectContents(currentTiers.map(item => item[0]));
-    tierBox.addEventListener("change", function(e) {
-        currentItems[newID - 1].tier = tierBox.value;
-    });
     div.appendChild(tierBox);
     div.appendChild(document.createTextNode(" "));
     let deleteBtn = document.createElement("i");
@@ -216,7 +213,11 @@ function addItem(customID = false) {
     $(`#itemBtn${newID}a`).button();
     $(`#itemBtn${newID}b`).button();
     $(`#itemBtn${newID}c`).button();
-    $(`#itemTierBox${newID}`).selectmenu();
+    $(`#itemTierBox${newID}`).selectmenu({
+        change: function (event, ui) {
+            currentItems[newID - 1].tier = ui.item.value;
+        }
+    });
     $('input').addClass("ui-widget ui-widget-content ui-corner-all");
     initializeDraggableIcons();
 }

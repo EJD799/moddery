@@ -152,3 +152,11 @@ function getMaterialInstances(geoJson) {
   // Remove duplicates while preserving order
   return [...new Set(materials)];
 }
+
+function generateSelectContents(list) {
+    let str = "";
+    for (let i = 0; i < list.length; i++) {
+        str += `<option>${list[i]}</option>`;
+    }
+    return str;
+}

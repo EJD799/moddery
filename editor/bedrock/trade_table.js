@@ -57,7 +57,7 @@ function addItem(customID = false) {
         newID = customID;
     } else {
         currentItems.push({
-            tier: currentTiers[0][0],
+            tier: currentTiers[0][0] ?? "",
             item1: ["", 1, 1],
             item2: ["", 1, 1],
             item3: ["", 1, 1]
@@ -186,6 +186,7 @@ function addItem(customID = false) {
     $(`#itemBtn${newID}b2`).button();
     $(`#itemBtn${newID}c1`).button();
     $(`#itemBtn${newID}c2`).button();
+    $(`#itemTierBox${newID}`).selectmenu();
     $('input').addClass("ui-widget ui-widget-content ui-corner-all");
     initializeDraggableIcons();
 }

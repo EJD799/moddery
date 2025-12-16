@@ -831,11 +831,7 @@ function selectTexture(textureNumber) {
     if (selected.value) {
         let textureNameText;
         textureNameText = document.getElementById("textureNameText" + textureNumber);
-        if (textureNumber == 0) {
-            currentEntityTextures[0] = selected.value;
-        } else {
-            currentEntityTextures[textureNumber] = selected.value;
-        }
+        currentEntityTextures[textureNumber][1] = selected.value;
         textureNameText.innerHTML = selected.value;
         selectedTexture = selected.value;
     }

@@ -42,28 +42,55 @@
   <center>
     <label for="addComponentType">Component Type</label>
     <select name="addComponentType" id="addComponentType">
-      <option>Placement Direction</option>
-      <option>Placement Position</option>
-      <option>Collision Box</option>
-      <option>Block Tint</option>
-      <option>Crafting Table</option>
-      <option>Destructible by Explosion</option>
-      <option>Destructible by Mining</option>
-      <option>Destruction Particles</option>
-      <option>Flammable</option>
-      <option>Flower Pottable</option>
-      <option>Friction</option>
-      <option>Light Dampening</option>
-      <option>Light Emission</option>
-      <option>Liquid Detection</option>
-      <option>Loot</option>
-      <option>Map Color</option>
-      <option>Movable</option>
-      <option>Random Offset</option>
-      <option>Redstone Conductivity</option>
-      <option>Redstone Producer</option>
-      <option>Replaceable</option>
-      <option>Selection Box</option>
+        <optgroup label="Spawning & Drops">
+            <option>Spawn Egg</option>
+            <option>Experience Reward</option>
+            <option>Loot</option>
+        </optgroup>
+
+        <optgroup label="Health & Damage">
+            <option>Health</option>
+            <option>Hurt On Condition</option>
+            <option>Damage Sensor</option>
+            <option>Fire Immune</option>
+        </optgroup>
+
+        <optgroup label="Movement">
+            <option>Movement</option>
+            <option>Movement Basic</option>
+            <option>Movement Fly</option>
+            <option>Movement Swim</option>
+            <option>Jump Static</option>
+        </optgroup>
+
+        <optgroup label="AI & Behavior">
+            <option>Behavior Float</option>
+            <option>Behavior Panic</option>
+            <option>Behavior Melee Attack</option>
+            <option>Behavior Random Stroll</option>
+            <option>Behavior Look At Player</option>
+        </optgroup>
+
+        <optgroup label="Combat & Targeting">
+            <option>Attack</option>
+            <option>Follow Range</option>
+        </optgroup>
+
+        <optgroup label="Physics & Collision">
+            <option>Physics</option>
+            <option>Collision Box</option>
+            <option>Pushable</option>
+        </optgroup>
+
+        <optgroup label="Rendering & Interaction">
+            <option>Scale</option>
+            <option>Nameable</option>
+            <option>Interact</option>
+        </optgroup>
+
+        <optgroup label="Lifecycle">
+            <option>Despawn</option>
+        </optgroup>
     </select>
     <br><br>
     <button id="addComponentCancelBtn" onclick="closeAddComponentDlg()">Cancel</button>

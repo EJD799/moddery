@@ -8,469 +8,270 @@ let currentModelSelecting;
 let currentLootTableSelecting;
 
 const componentDefinitions = {
-    "Placement Direction": {
-        name: "Placement Direction",
-        id: "minecraft:placement_direction",
+    /* =======================
+       SPAWNING / BASICS
+       ======================= */
+
+    "Spawn Egg": {
+        name: "Spawn Egg",
+        id: "spawn_egg",
         inputs: [
-            {
-                type: "dropdown",
-                name: "type",
-                label: "Type",
-                tooltip: "The type of rotation to use. Cardinal direction rotation supports north, east, west, and south. Facing direction supports the cardinal directions, plus up and down.",
-                options: [
-                    "cardinal_direction",
-                    "facing_direction"
-                ]
-            },
-            {
-                type: "number",
-                name: "y_rotation_offset",
-                label: "Rotation Offset",
-                tooltip: "The offset of the y-axis rotation."
-            }
+            { type: "color", name: "base_color", label: "Base Color", tooltip: "The base color of the spawn egg." },
+            { type: "color", name: "overlay_color", label: "Overlay Color", tooltip: "The overlay color of the spawn egg." },
+            { type: "texture", name: "texture", label: "Texture", tooltip: "Overrides spawn egg colors." }
         ],
         requires: false
     },
-    "Placement Position": {
-        name: "Placement Position",
-        id: "minecraft:placement_position",
+
+    "Experience Reward": {
+        name: "Experience Reward",
+        id: "experience_reward",
         inputs: [
-            {
-                type: "dropdown",
-                name: "type",
-                label: "Type",
-                tooltip: "The type of positioning to use. Vertical half supports top and bottom. Block face supports north, east, west, south, up, and down.",
-                options: [
-                    "vertical_half",
-                    "block_face"
-                ]
-            }
+            { type: "number", name: "min", label: "Minimum XP", tooltip: "Minimum XP dropped." },
+            { type: "number", name: "max", label: "Maximum XP", tooltip: "Maximum XP dropped." }
         ],
         requires: false
     },
-    "Collision Box": {
-        name: "Collision Box",
-        id: "minecraft:collision_box",
-        inputs: [
-            {
-                type: "boolean",
-                name: "disable",
-                label: "Disable Collision Box",
-                tooltip: "Whether the collision box should be disabled."
-            },
-            {
-                type: "text",
-                name: "origin",
-                label: "Origin",
-                tooltip: "The bottom north-western corner of the collision box. Measured in pixels from the bottom center of the block. Enter the X, Y, and Z values separated by commas."
-            },
-            {
-                type: "text",
-                name: "size",
-                label: "Size",
-                tooltip: "The size of the collision box, in pixels, measured from the origin of the collision box. Enter the X, Y, and Z values separated by commas."
-            }
-        ],
-        requires: false
-    },
-    "Block Tint": {
-        name: "Block Tint",
-        id: "minecraft:tint_color",
-        inputs: [
-            {
-                type: "dropdown",
-                name: "world_mode",
-                label: "World Mode",
-                tooltip: "The type of tinting to use in the world.",
-                options: [
-                    "none",
-                    "birch_foliage",
-                    "default_foliage",
-                    "dry_foliage",
-                    "evergreen_foliage",
-                    "grass",
-                    "water"
-                ]
-            },
-            {
-                type: "dropdown",
-                name: "map_mode",
-                label: "Map Mode",
-                tooltip: "The type of tinting to use on maps.",
-                options: [
-                    "none",
-                    "birch_foliage",
-                    "default_foliage",
-                    "dry_foliage",
-                    "evergreen_foliage",
-                    "grass",
-                    "water"
-                ]
-            }
-        ],
-        requires: false
-    },
-    "Crafting Table": {
-        name: "Crafting Table",
-        id: "minecraft:crafting_table",
-        inputs: [
-            {
-                type: "text",
-                name: "table_name",
-                label: "Table Name",
-                tooltip: "The name of the crafting table."
-            },
-            {
-                type: "list",
-                name: "crafting_tags",
-                label: "Crafting Tags",
-                tooltip: "The list of crafting tags that apply to this table. Separate items with commas, and do not add spaces."
-            }
-        ],
-        requires: false
-    },
-    "Destructible by Explosion": {
-        name: "Destructible by Explosion",
-        id: "minecraft:destructible_by_explosion",
-        inputs: [
-            {
-                type: "boolean",
-                name: "main",
-                label: "Can Be Destroyed By Explosions",
-                tooltip: "Whether the block can be destroyed by explosions."
-            },
-            {
-                type: "number",
-                name: "explosion_resistance",
-                label: "Explosion Resistance",
-                tooltip: "The explosion resistance value of the block."
-            }
-        ],
-        requires: false
-    },
-    "Destructible by Mining": {
-        name: "Destructible by Mining",
-        id: "minecraft:destructible_by_mining",
-        inputs: [
-            {
-                type: "boolean",
-                name: "main",
-                label: "Can Be Destroyed By Mining",
-                tooltip: "Whether the block can be destroyed by mining."
-            },
-            {
-                type: "number",
-                name: "seconds_to_destroy",
-                label: "Hardness",
-                tooltip: "The hardness value of the block. The time it takes to destroy, in seconds, is 1.5 times this value."
-            }
-        ],
-        requires: false
-    },
-    "Destruction Particles": {
-        name: "Destruction Particles",
-        id: "minecraft:destruction_particles",
-        inputs: [
-            {
-                type: "number",
-                name: "particle_count",
-                label: "Particle Count",
-                tooltip: "The number of particles that appear when the block is destroyed, from 0 to 255. Default is 100."
-            }
-        ],
-        requires: false
-    },
-    "Flammable": {
-        name: "Flammable",
-        id: "minecraft:flammable",
-        inputs: [
-            {
-                type: "boolean",
-                name: "main",
-                label: "Is Flammable",
-                tooltip: "Whether the block is flammable."
-            },
-            {
-                type: "number",
-                name: "catch_chance_modifier",
-                label: "Catch Chance Modifier",
-                tooltip: "How likely the block is to catch on fire."
-            },
-            {
-                type: "number",
-                name: "destroy_chance_modifier",
-                label: "Destroy Chance Modifier",
-                tooltip: "How likely the block is to be destroyed when on fire."
-            }
-        ],
-        requires: false
-    },
-    "Flower Pottable": {
-        name: "Flower Pottable",
-        id: "minecraft:flower_pottable",
-        inputs: [
-            {
-                type: "texture",
-                name: "texture",
-                label: "Texture",
-                tooltip: "The texture for this block to use when inside a flower pot."
-            }
-        ],
-        requires: false
-    },
-    "Friction": {
-        name: "Friction",
-        id: "minecraft:friction",
-        inputs: [
-            {
-                type: "number",
-                name: "main",
-                label: "Friction",
-                tooltip: "How much this block slows down the player while walking on it, from 0.0 to 0.9."
-            }
-        ],
-        requires: false
-    },
-    "Light Dampening": {
-        name: "Light Dampening",
-        id: "minecraft:light_dampening",
-        inputs: [
-            {
-                type: "number",
-                name: "main",
-                label: "Light Dampening",
-                tooltip: "The amount of light levels dampened by this block, from 0 to 15."
-            }
-        ],
-        requires: false
-    },
-    "Light Emission": {
-        name: "Light Emission",
-        id: "minecraft:light_emission",
-        inputs: [
-            {
-                type: "number",
-                name: "main",
-                label: "Light Emission",
-                tooltip: "The amount of light levels emitted by this block, from 0 to 15."
-            }
-        ],
-        requires: false
-    },
-    "Liquid Detection": {
-        name: "Liquid Detection",
-        id: "minecraft:liquid_detection",
-        inputs: [
-            {
-                type: "boolean",
-                name: "can_contain_liquid",
-                label: "Allow Waterlogging",
-                tooltip: "Whether the block can be waterlogged."
-            },
-            {
-                type: "dropdown",
-                name: "on_liquid_touches",
-                label: "Reaction",
-                tooltip: "What happens when water touches this block.",
-                options: [
-                    "blocking",
-                    "broken",
-                    "no_reaction",
-                    "popped"
-                ]
-            }
-        ],
-        requires: false
-    },
+
     "Loot": {
         name: "Loot",
-        id: "minecraft:loot",
+        id: "loot",
         inputs: [
-            {
-                type: "loot_table",
-                name: "main",
-                label: "Loot Table",
-                tooltip: "The loot table to use for this block."
-            }
+            { type: "loot_table", name: "table", label: "Loot Table", tooltip: "Loot table used when the entity dies." }
         ],
         requires: false
     },
-    "Map Color": {
-        name: "Map Color",
-        id: "minecraft:map_color",
+
+    /* =======================
+       HEALTH / DAMAGE
+       ======================= */
+
+    "Health": {
+        name: "Health",
+        id: "health",
         inputs: [
-            {
-                type: "color",
-                name: "main",
-                label: "Map Color",
-                tooltip: "The color the block appears on a map."
-            }
+            { type: "number", name: "value", label: "Health", tooltip: "Maximum health of the entity." }
         ],
         requires: false
     },
-    "Movable": {
-        name: "Movable",
-        id: "minecraft:movable",
+
+    "Hurt On Condition": {
+        name: "Hurt On Condition",
+        id: "hurt_on_condition",
         inputs: [
-            {
-                type: "dropdown",
-                name: "movement_type",
-                label: "Movement Type",
-                tooltip: "The way the block should interact with pistons.",
-                options: [
-                    "immovable",
-                    "popped",
-                    "push",
-                    "push_pull"
-                ]
-            },
-            {
-                type: "boolean",
-                name: "sticky",
-                label: "Sticky",
-                tooltip: "Whether the block should act like slime and honey blocks."
-            }
+            { type: "number", name: "damage", label: "Damage", tooltip: "Damage dealt when the condition is met." }
         ],
         requires: false
     },
-    "Random Offset": {
-        name: "Random Offset",
-        id: "minecraft:random_offset",
+
+    "Damage Sensor": {
+        name: "Damage Sensor",
+        id: "damage_sensor",
         inputs: [
-            {
-                type: "number",
-                name: "x_steps",
-                label: "X Steps",
-                tooltip: "The step amount for the x-axis."
-            },
-            {
-                type: "number",
-                name: "x_min",
-                label: "X Range Min",
-                tooltip: "The minimum range for the x-axis"
-            },
-            {
-                type: "number",
-                name: "x_max",
-                label: "X Range Max",
-                tooltip: "The maximum range for the x-axis"
-            },
-            {
-                type: "number",
-                name: "y_steps",
-                label: "Y Steps",
-                tooltip: "The step amount for the y-axis."
-            },
-            {
-                type: "number",
-                name: "y_min",
-                label: "Y Range Min",
-                tooltip: "The minimum range for the y-axis"
-            },
-            {
-                type: "number",
-                name: "y_max",
-                label: "Y Range Max",
-                tooltip: "The maximum range for the y-axis"
-            },
-            {
-                type: "number",
-                name: "z_steps",
-                label: "Z Steps",
-                tooltip: "The step amount for the z-axis."
-            },
-            {
-                type: "number",
-                name: "z_min",
-                label: "Z Range Min",
-                tooltip: "The minimum range for the z-axis"
-            },
-            {
-                type: "number",
-                name: "z_max",
-                label: "Z Range Max",
-                tooltip: "The maximum range for the z-axis"
-            }
+            { type: "checkbox", name: "immune", label: "Immune", tooltip: "Whether the entity is immune to certain damage." }
         ],
         requires: false
     },
-    "Redstone Conductivity": {
-        name: "Redstone Conductivity",
-        id: "minecraft:redstone_conductivity",
+
+    /* =======================
+       MOVEMENT
+       ======================= */
+
+    "Movement": {
+        name: "Movement",
+        id: "movement",
         inputs: [
-            {
-                type: "boolean",
-                name: "redstone_conductor",
-                label: "Is Conductor",
-                tooltip: "Whether the block can conduct redstone."
-            },
-            {
-                type: "boolean",
-                name: "allows_wire_to_step_down",
-                label: "Allow Wire to Step Down",
-                tooltip: "Whether the block should allow redstone wires to step down. Automatically on if \"Is Conductor\" is on."
-            }
+            { type: "number", name: "value", label: "Speed", tooltip: "Base movement speed." }
         ],
         requires: false
     },
-    "Redstone Producer": {
-        name: "Redstone Producer",
-        id: "minecraft:redstone_producer",
+
+    "Movement Basic": {
+        name: "Movement Basic",
+        id: "movement_basic",
+        inputs: [],
+        requires: false
+    },
+
+    "Movement Fly": {
+        name: "Movement Fly",
+        id: "movement_fly",
+        inputs: [],
+        requires: false
+    },
+
+    "Movement Swim": {
+        name: "Movement Swim",
+        id: "movement_swim",
+        inputs: [],
+        requires: false
+    },
+
+    "Jump Static": {
+        name: "Jump Static",
+        id: "jump_static",
         inputs: [
-            {
-                type: "number",
-                name: "power",
-                label: "Power Level",
-                tooltip: "The power level output of the block, from 0 to 15."
-            },
-            {
-                type: "list",
-                name: "connected_faces",
-                label: "Power Directions",
-                tooltip: "Which directions the blocks outputs power. Separate items with commas, and do not add spaces. Items can be \"north\", \"south\", \"east\", \"west\", \"up\", or \"down\""
-            }
+            { type: "number", name: "jump_power", label: "Jump Power", tooltip: "Jump strength." }
         ],
         requires: false
     },
-    "Replaceable": {
-        name: "Replaceable",
-        id: "minecraft:replaceable",
+
+    /* =======================
+       AI / BEHAVIOR
+       ======================= */
+
+    "Behavior Float": {
+        name: "Behavior Float",
+        id: "behavior_float",
+        inputs: [],
+        requires: false
+    },
+
+    "Behavior Panic": {
+        name: "Behavior Panic",
+        id: "behavior_panic",
         inputs: [
-            {
-                type: "boolean",
-                name: "main",
-                label: "Is Replaceable",
-                tooltip: "Whether the block can be replaced by another block by right-clicking."
-            }
+            { type: "number", name: "speed_multiplier", label: "Speed Multiplier", tooltip: "Speed while panicking." }
         ],
         requires: false
     },
-    "Selection Box": {
-        name: "Selection Box",
-        id: "minecraft:selection_box",
+
+    "Behavior Melee Attack": {
+        name: "Behavior Melee Attack",
+        id: "behavior_melee_attack",
         inputs: [
-            {
-                type: "boolean",
-                name: "disable",
-                label: "Disable Selection Box",
-                tooltip: "Whether the selection box should be disabled."
-            },
-            {
-                type: "text",
-                name: "origin",
-                label: "Origin",
-                tooltip: "The bottom north-western corner of the selection box. Measured in pixels from the bottom center of the block. Enter the X, Y, and Z values separated by commas."
-            },
-            {
-                type: "text",
-                name: "size",
-                label: "Size",
-                tooltip: "The size of the selection box, in pixels, measured from the origin of the selection box. Enter the X, Y, and Z values separated by commas."
-            }
+            { type: "number", name: "damage", label: "Damage", tooltip: "Melee attack damage." },
+            { type: "number", name: "speed_multiplier", label: "Speed Multiplier", tooltip: "Speed while attacking." }
+        ],
+        requires: false
+    },
+
+    "Behavior Random Stroll": {
+        name: "Behavior Random Stroll",
+        id: "behavior_random_stroll",
+        inputs: [
+            { type: "number", name: "speed_multiplier", label: "Speed Multiplier", tooltip: "Movement speed while strolling." }
+        ],
+        requires: false
+    },
+
+    "Behavior Look At Player": {
+        name: "Behavior Look At Player",
+        id: "behavior_look_at_player",
+        inputs: [
+            { type: "number", name: "look_distance", label: "Look Distance", tooltip: "Distance to look at players." }
+        ],
+        requires: false
+    },
+
+    /* =======================
+       SENSORY / TARGETING
+       ======================= */
+
+    "Follow Range": {
+        name: "Follow Range",
+        id: "follow_range",
+        inputs: [
+            { type: "number", name: "value", label: "Range", tooltip: "How far the entity can detect targets." }
+        ],
+        requires: false
+    },
+
+    "Attack": {
+        name: "Attack",
+        id: "attack",
+        inputs: [
+            { type: "number", name: "damage", label: "Damage", tooltip: "Base attack damage." }
+        ],
+        requires: false
+    },
+
+    /* =======================
+       PHYSICS / COLLISION
+       ======================= */
+
+    "Physics": {
+        name: "Physics",
+        id: "physics",
+        inputs: [
+            { type: "checkbox", name: "has_gravity", label: "Has Gravity", tooltip: "Whether gravity affects the entity." }
+        ],
+        requires: false
+    },
+
+    "Collision Box": {
+        name: "Collision Box",
+        id: "collision_box",
+        inputs: [
+            { type: "number", name: "width", label: "Width", tooltip: "Collision width." },
+            { type: "number", name: "height", label: "Height", tooltip: "Collision height." }
+        ],
+        requires: false
+    },
+
+    "Pushable": {
+        name: "Pushable",
+        id: "pushable",
+        inputs: [
+            { type: "checkbox", name: "is_pushable", label: "Pushable", tooltip: "Whether the entity can be pushed." }
+        ],
+        requires: false
+    },
+
+    /* =======================
+       RENDERING
+       ======================= */
+
+    "Scale": {
+        name: "Scale",
+        id: "scale",
+        inputs: [
+            { type: "number", name: "value", label: "Scale", tooltip: "Visual scale of the entity." }
+        ],
+        requires: false
+    },
+
+    "Nameable": {
+        name: "Nameable",
+        id: "nameable",
+        inputs: [
+            { type: "checkbox", name: "allow_rename", label: "Allow Rename", tooltip: "Whether the entity can be renamed." }
+        ],
+        requires: false
+    },
+
+    "Interact": {
+        name: "Interact",
+        id: "interact",
+        inputs: [
+            { type: "text", name: "interaction_text", label: "Interaction Text", tooltip: "Text shown when interacting." }
+        ],
+        requires: false
+    },
+
+    /* =======================
+       MISC
+       ======================= */
+
+    "Despawn": {
+        name: "Despawn",
+        id: "despawn",
+        inputs: [
+            { type: "checkbox", name: "despawnable", label: "Despawnable", tooltip: "Whether the entity can despawn." }
+        ],
+        requires: false
+    },
+
+    "Fire Immune": {
+        name: "Fire Immune",
+        id: "fire_immune",
+        inputs: [
+            { type: "checkbox", name: "immune", label: "Fire Immune", tooltip: "Whether the entity is immune to fire and lava." }
         ],
         requires: false
     }
 };
+
 var currentEntityComponents = {};
 
 function centerDialogViewport(selector) {
@@ -928,7 +729,6 @@ function saveProject() {
         id: $("#entityIDBox").val(),
         type: "Entity",
         displayName: $("#nameBox").val(),
-        collisionBox: [$("#collisionBox1").val(), $("#collisionBox2").val()],
         model: selectedModel,
         textures: currentEntityTextures,
         components: currentEntityComponents
@@ -939,8 +739,6 @@ function loadProject(data) {
     $("#elementIDBox").val(data.name);
     $("#entityIDBox").val(data.id);
     $("#nameBox").val(data.displayName);
-    $("#collisionBox1").val(data.collisionBox[0]);
-    $("#collisionBox2").val(data.collisionBox[1]);
     currentEntityTextures = data.textures;
     loadTextures(data);
     loadComponents(data.components);

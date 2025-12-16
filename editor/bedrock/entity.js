@@ -898,6 +898,11 @@ function addTexture(name = "", value = "", i = currentEntityTextures.length, add
     nameBox.value = name;
     div.prepend(nameBox);
     additionalTexturesDiv.appendChild(div);
+    if (value == "") {
+        document.getElementById(`textureNameText${i + 1}`).innerHTML = "No texture selected";
+    } else {
+        document.getElementById(`textureNameText${i + 1}`).innerHTML = value;
+    }
     $(`#entityTextureBtn${i + 1}`).button();
     $('input').addClass("ui-widget ui-widget-content ui-corner-all");
     if (addToList) {

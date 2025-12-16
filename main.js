@@ -1,4 +1,4 @@
-const appVersion = "0.5.6";
+const appVersion = "0.5.7";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -655,6 +655,24 @@ function closeAddAssetDlg() {
   $("#addAssetDlg").dialog("close");
 }
 
+function waitForIframeLoad(iframe) {
+  return new Promise(resolve => {
+    iframe.onload = () => resolve();
+  });
+}
+function waitForIframeReady(iframe, propName) {
+  return new Promise(resolve => {
+    const check = () => {
+      if (iframe.contentWindow && iframe.contentWindow[propName]) {
+        resolve();
+      } else {
+        requestAnimationFrame(check);
+      }
+    };
+    check();
+  });
+}
+
 
 function openExportDlg() {
   $("#exportDlg").dialog("open");
@@ -777,6 +795,8 @@ async function exportProj() {
     } else if (role == "Trade Table") {
       exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/trade_table.html";
     }
+    await waitForIframeLoad(exporterFrame);
+    await waitForIframeReady(exporterFrame, "loadProject");
     exporterFrame.contentWindow.loadProject(elementFile);
     exportedFile = exporterFrame.contentWindow.generateCode();
     loaderText.innerHTML = `Exporting Project... (${(loaderProgress.value / progressBarMax) * 100}%)`;

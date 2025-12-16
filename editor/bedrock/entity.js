@@ -831,7 +831,7 @@ function selectTexture(textureNumber) {
     if (selected.value) {
         let textureNameText;
         textureNameText = document.getElementById("textureNameText" + textureNumber);
-        currentEntityTextures[textureNumber][1] = selected.value;
+        currentEntityTextures[textureNumber - 1][1] = selected.value;
         textureNameText.innerHTML = selected.value;
         selectedTexture = selected.value;
     }
@@ -932,6 +932,7 @@ function loadProject(data) {
     $("#nameBox").val(data.displayName);
     $("#collisionBox1").val(data.collisionBox[0]);
     $("#collisionBox2").val(data.collisionBox[1]);
+    currentEntityTextures = data.textures;
     loadTextures(data);
     loadComponents(data.components);
 }

@@ -3451,6 +3451,6 @@ function generateCode() {
   alert(code);
   return code;
 }
-document.addEventListener('keydown', e => {
+/*document.addEventListener('keydown', e => {
   if (e.key === 'g') generateCode();
-});
+});*/

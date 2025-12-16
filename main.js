@@ -1,4 +1,4 @@
-const appVersion = "0.5.2";
+const appVersion = "0.5.3";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -618,7 +618,7 @@ function openProj(file) {
             });
           }
           loaderProgress.value = Number(loaderProgress.value + 1);
-          loaderText.innerHTML = `Opening Project... (${(progressBarMax / loaderProgress.value) * 100}%)`;
+          loaderText.innerHTML = `Opening Project... (${(loaderProgress.value / progressBarMax) * 100}%)`;
         }
         for (let i = 0; i < assetFolderList.length; i++) {
           projZip.folder("assets").file(assetFolderList[i]).async("blob").then(function(file) {
@@ -665,7 +665,7 @@ function closeExportDlg() {
 async function exportProj() {
   closeExportDlg();
   openLoader();
-  loaderText.innerHTML = "Exporting Project... (0%)";
+  loaderText.innerHTML = "Exporting Project...";
   loaderProgress.setAttribute("max", "0"),
   loaderProgress.value = "0";
   exportZip1 = new JSZip();
@@ -744,6 +744,40 @@ async function exportProj() {
     ]
   };
   exportZip2.file("manifest.json", rpManifest);
+  let elementsList = fileListInFolder("elements").filter(item => !item.endsWith(".code.json"));
+  let assetsList = fileListInFolder("assets");
+  loaderText.innerHTML = "Exporting Project... (0%)";
+  loaderProgress.setAttribute("max", elementsList.length + 1),
+  loaderProgress.value = "0";
+  for (let i = 0; i < elementsList.length; i++) {
+    let elementFile = JSON.parse(await projZip.file(elementsList[i]).async("string"));
+    let exportedFile;
+    if (role == "Function") {
+      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/function.html";
+    } else if (role == "Script") {
+      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/script.html";
+    } else if (role == "Item") {
+      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/item.html";
+    } else if (role == "Block") {
+      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/block.html";
+    } else if (role == "Biome") {
+      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/biome.html";
+    } else if (role == "Structure") {
+      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/structure.html";
+    } else if (role == "Recipe") {
+      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/recipe.html";
+    } else if (role == "Entity") {
+      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/entity.html";
+    } else if (role == "Loot Table") {
+      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/loot_table.html";
+    } else if (role == "Trade Table") {
+      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/trade_table.html";
+    }
+    exporterFrame.contentWindow.loadProject(elementFile);
+    exportedFile = exporterFrame.contentWindow.generateCode();
+    loaderText.innerHTML = `Exporting Project... (${(loaderProgress.value / progressBarMax) * 100}%)`;
+    loaderProgress.value = (i + 1).toString();
+  }
 }
 
 function openLoader() {

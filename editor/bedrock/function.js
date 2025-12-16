@@ -1190,10 +1190,10 @@ function saveProject() {
 }
 function generateCode() {
   const code = Blockly.JavaScript.workspaceToCode(workspace);
+  console.log("Generated code:");
   console.log(code);
-  alert(code);
   return code;
 }
-document.addEventListener('keydown', e => {
+/*document.addEventListener('keydown', e => {
   if (e.key === 'g') generateCode();
-});
+});*/

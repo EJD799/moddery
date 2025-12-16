@@ -1,4 +1,4 @@
-const appVersion = "0.4.76";
+const appVersion = "0.4.77";
 
 var projZip;
 var projManifest;

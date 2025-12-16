@@ -1,4 +1,4 @@
-const appVersion = "0.5.3";
+const appVersion = "0.5.4";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -749,7 +749,10 @@ async function exportProj() {
   loaderText.innerHTML = "Exporting Project... (0%)";
   loaderProgress.setAttribute("max", elementsList.length + 1),
   loaderProgress.value = "0";
+  console.log("Exporting project - elements:");
+  console.log(elementsList);
   for (let i = 0; i < elementsList.length; i++) {
+    console.log("Exporting element: " + elementsList[i]);
     let elementFile = JSON.parse(await projZip.file(elementsList[i]).async("string"));
     let exportedFile;
     if (role == "Function") {

@@ -1,4 +1,4 @@
-const appVersion = "0.5.13";
+const appVersion = "0.5.14";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -688,11 +688,11 @@ function closeExportDlg() {
   $("#exportDlg").dialog("close");
 }
 async function exportProj() {
-  closeExportDlg();
   openLoader();
   loaderText.innerHTML = "Exporting Project...";
   loaderProgress.setAttribute("max", "0"),
   loaderProgress.value = "0";
+  exportLog.innerHTML = "";
   exportZip1 = new JSZip();
   exportZip2 = new JSZip();
   let packIcon = await projZip.folder("assets").file(projManifest.packIcon).async("blob");
@@ -778,74 +778,79 @@ async function exportProj() {
   console.log("Exporting project - elements:");
   console.log(elementsList);
   for (let i = 0; i < elementsList.length; i++) {
-    console.log("Exporting element: " + elementsList[i]);
-    let elementFile = JSON.parse(await projZip.folder("elements").file(elementsList[i]).async("string"));
-    let role = elementFile.type;
-    let exportedFile;
-    if (role == "Function") {
-      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/function.html";
-      let elementCode = JSON.parse(await projZip.folder("elements").file(elementsList[i].replace(".json", ".code.json")).async("string"));
-      await waitForIframeLoad(exporterFrame);
-      await waitForIframeReady(exporterFrame, "loadProject");
-      exporterFrame.contentWindow.loadProject(elementCode);
-      if (exporterFrame.contentWindow?.generateCode) {
-        exportedFile = exporterFrame.contentWindow.generateCode();
-      } else {
-        exportedFile = "";
-      }
-      exportZip1.folder("functions").folder(projManifest.namespace).file(`${elementFile.id}.mcfunction`, exportedFile);
-    } else if (role == "Script") {
-      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/script.html";
-      let elementCode = JSON.parse(await projZip.folder("elements").file(elementsList[i].replace(".json", ".code.json")).async("string"));
-      await waitForIframeLoad(exporterFrame);
-      await waitForIframeReady(exporterFrame, "loadProject");
-      exporterFrame.contentWindow.loadProject(elementCode);
-      if (exporterFrame.contentWindow?.generateCode) {
-        exportedFile = exporterFrame.contentWindow.generateCode();
-      } else {
-        exportedFile = "";
-      }
-      exportZip1.folder("scripts").folder(projManifest.namespace).file(`${elementFile.id}.js`, exportedFile);
-    } else if (role == "Item") {
+    try {
+      console.log("Exporting element: " + elementsList[i]);
+      let elementFile = JSON.parse(await projZip.folder("elements").file(elementsList[i]).async("string"));
+      let role = elementFile.type;
+      let exportedFile;
+      if (role == "Function") {
+        exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/function.html";
+        let elementCode = JSON.parse(await projZip.folder("elements").file(elementsList[i].replace(".json", ".code.json")).async("string"));
+        await waitForIframeLoad(exporterFrame);
+        await waitForIframeReady(exporterFrame, "loadProject");
+        exporterFrame.contentWindow.loadProject(elementCode);
+        if (exporterFrame.contentWindow?.generateCode) {
+          exportedFile = exporterFrame.contentWindow.generateCode();
+        } else {
+          exportedFile = "";
+        }
+        exportZip1.folder("functions").folder(projManifest.namespace).file(`${elementFile.id}.mcfunction`, exportedFile);
+      } else if (role == "Script") {
+        exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/script.html";
+        let elementCode = JSON.parse(await projZip.folder("elements").file(elementsList[i].replace(".json", ".code.json")).async("string"));
+        await waitForIframeLoad(exporterFrame);
+        await waitForIframeReady(exporterFrame, "loadProject");
+        exporterFrame.contentWindow.loadProject(elementCode);
+        if (exporterFrame.contentWindow?.generateCode) {
+          exportedFile = exporterFrame.contentWindow.generateCode();
+        } else {
+          exportedFile = "";
+        }
+        exportZip1.folder("scripts").folder(projManifest.namespace).file(`${elementFile.id}.js`, exportedFile);
+      } else if (role == "Item") {
 
-    } else if (role == "Block") {
+      } else if (role == "Block") {
 
-    } else if (role == "Biome") {
+      } else if (role == "Biome") {
 
-    } else if (role == "Structure") {
+      } else if (role == "Structure") {
 
-    } else if (role == "Recipe") {
-      let elementObj = JSON.parse(elementFile);
-      let craftingGrid = elementObj.craftingGrid;
-      let exportObj = {
-        "format_version": minEngineVersion,
-        "minecraft:recipe_shaped": {}
-      };
-      let parsedGrid;
-      if (elementObj.recipeType == "crafting") {
-        parsedGrid = parseCraftingGrid(craftingGrid, "crafting");
-        exportObj["minecraft:recipe_shaped"] = {
-          "description": {
-            "identifier": craftingGrid[9]
-          },
-          "tags": ["crafting_table"],
-          "pattern": parsedGrid[0],
-          "key": parsedGrid[1],
-          "result": [
-            {
-              "item": craftingGrid[9],
-              "count": elementObj.outputQuantity
-            }
-          ]
+      } else if (role == "Recipe") {
+        let elementObj = JSON.parse(elementFile);
+        let craftingGrid = elementObj.craftingGrid;
+        let exportObj = {
+          "format_version": minEngineVersion,
+          "minecraft:recipe_shaped": {}
         };
+        let parsedGrid;
+        if (elementObj.recipeType == "crafting") {
+          parsedGrid = parseCraftingGrid(craftingGrid, "crafting");
+          exportObj["minecraft:recipe_shaped"] = {
+            "description": {
+              "identifier": craftingGrid[9]
+            },
+            "tags": ["crafting_table"],
+            "pattern": parsedGrid[0],
+            "key": parsedGrid[1],
+            "result": [
+              {
+                "item": craftingGrid[9],
+                "count": elementObj.outputQuantity
+              }
+            ]
+          };
+        }
+        exportedFile = JSON.stringify(exportObj, null, 4);
+      } else if (role == "Entity") {
+
+      } else if (role == "Loot Table") {
+
+      } else if (role == "Trade Table") {
+
       }
-      exportedFile = JSON.stringify(exportObj, null, 4);
-    } else if (role == "Entity") {
-
-    } else if (role == "Loot Table") {
-
-    } else if (role == "Trade Table") {
-
+    } catch(err) {
+      exportLog.appendChild(document.createTextNode(err));
+      exportLog.appendChild(document.createElement("br"));
     }
     loaderText.innerHTML = `Exporting Project... (${(loaderProgress.value / progressBarMax) * 100}%)`;
     loaderProgress.value = (i + 1).toString();

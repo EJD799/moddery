@@ -484,3 +484,7 @@ input:disabled {
     height: 1px;
     visibility: hidden;
 }
+
+#exportLog {
+    font-family: "Courier New", "Lucida Console", monospace;
+}

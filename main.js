@@ -1,4 +1,4 @@
-const appVersion = "0.5.7";
+const appVersion = "0.5.8";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -798,7 +798,11 @@ async function exportProj() {
     await waitForIframeLoad(exporterFrame);
     await waitForIframeReady(exporterFrame, "loadProject");
     exporterFrame.contentWindow.loadProject(elementFile);
-    exportedFile = exporterFrame.contentWindow.generateCode();
+    if (exporterFrame.contentWindow?.generateCode) {
+      exportedFile = exporterFrame.contentWindow.generateCode();
+    } else {
+      exportedFile = "";
+    }
     loaderText.innerHTML = `Exporting Project... (${(loaderProgress.value / progressBarMax) * 100}%)`;
     loaderProgress.value = (i + 1).toString();
   }

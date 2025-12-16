@@ -1,4 +1,4 @@
-const appVersion = "0.5.4";
+const appVersion = "0.5.6";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;

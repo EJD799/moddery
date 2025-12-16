@@ -1,4 +1,4 @@
-const appVersion = "0.5.11";
+const appVersion = "0.5.12";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -114,6 +114,8 @@ $("#exportDlg").dialog({
 });
 $("#exportDlg").dialog("close");
 $("#exportDlgModeBox").selectmenu();
+$("#exportDlgCancelBtn").button();
+$("#exportDlgExportBtn").button();
 
 $("#loaderDlg").dialog({
   position: { my: "center", at: "center", of: window },
@@ -674,6 +676,11 @@ function waitForIframeReady(iframe, propName) {
 }
 
 
+function parseCraftingGrid(grid, type) {
+
+}
+
+
 function openExportDlg() {
   $("#exportDlg").dialog("open");
 }
@@ -734,7 +741,7 @@ async function exportProj() {
       "version": [1, 0, 0]
     });
   }
-  exportZip1.file("manifest.json", JSON.stringify(bpManifest));
+  exportZip1.file("manifest.json", JSON.stringify(bpManifest, null, 4));
   let rpManifest = {
     "format_version": 2,
     "header": {
@@ -761,7 +768,7 @@ async function exportProj() {
       }
     ]
   };
-  exportZip2.file("manifest.json", JSON.stringify(rpManifest));
+  exportZip2.file("manifest.json", JSON.stringify(rpManifest, null, 4));
   let elementsList = fileListInFolder("elements").filter(item => !item.endsWith(".code.json"));
   let assetsList = fileListInFolder("assets");
   loaderText.innerHTML = "Exporting Project... (0%)";
@@ -777,32 +784,64 @@ async function exportProj() {
     let exportedFile;
     if (role == "Function") {
       exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/function.html";
+      await waitForIframeLoad(exporterFrame);
+      await waitForIframeReady(exporterFrame, "loadProject");
+      exporterFrame.contentWindow.loadProject(elementFile);
+      if (exporterFrame.contentWindow?.generateCode) {
+        exportedFile = exporterFrame.contentWindow.generateCode();
+      } else {
+        exportedFile = "";
+      }
     } else if (role == "Script") {
       exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/script.html";
+      await waitForIframeLoad(exporterFrame);
+      await waitForIframeReady(exporterFrame, "loadProject");
+      exporterFrame.contentWindow.loadProject(elementFile);
+      if (exporterFrame.contentWindow?.generateCode) {
+        exportedFile = exporterFrame.contentWindow.generateCode();
+      } else {
+        exportedFile = "";
+      }
     } else if (role == "Item") {
-      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/item.html";
+
     } else if (role == "Block") {
-      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/block.html";
+
     } else if (role == "Biome") {
-      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/biome.html";
+
     } else if (role == "Structure") {
-      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/structure.html";
+
     } else if (role == "Recipe") {
-      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/recipe.html";
+      let elementObj = JSON.parse(elementFile);
+      let craftingGrid = elementObj.craftingGrid;
+      let exportObj = {
+        "format_version": minEngineVersion,
+        "minecraft:recipe_shaped": {}
+      };
+      let parsedGrid;
+      if (elementObj.recipeType == "crafting") {
+        parsedGrid = parseCraftingGrid(craftingGrid, "crafting");
+        exportObj["minecraft:recipe_shaped"] = {
+          "description": {
+            "identifier": craftingGrid[9]
+          },
+          "tags": ["crafting_table"],
+          "pattern": parsedGrid[0],
+          "key": parsedGrid[1],
+          "result": [
+            {
+              "item": craftingGrid[9],
+              "count": elementObj.outputQuantity
+            }
+          ]
+        };
+      }
+      exportedFile = JSON.stringify(exportObj, null, 4);
     } else if (role == "Entity") {
-      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/entity.html";
+
     } else if (role == "Loot Table") {
-      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/loot_table.html";
+
     } else if (role == "Trade Table") {
-      exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/trade_table.html";
-    }
-    await waitForIframeLoad(exporterFrame);
-    await waitForIframeReady(exporterFrame, "loadProject");
-    exporterFrame.contentWindow.loadProject(elementFile);
-    if (exporterFrame.contentWindow?.generateCode) {
-      exportedFile = exporterFrame.contentWindow.generateCode();
-    } else {
-      exportedFile = "";
+
     }
     loaderText.innerHTML = `Exporting Project... (${(loaderProgress.value / progressBarMax) * 100}%)`;
     loaderProgress.value = (i + 1).toString();

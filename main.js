@@ -679,7 +679,7 @@ async function exportProj() {
       "name": projManifest.name,
       "description": projManifest.description,
       "uuid": projManifest.bp_uuid,
-      "version": `${projManifest.version[0]}.${projManifest.version[1]}.${projManifest.version[2]}`,
+      "version": `${projManifest.addon_version[0]}.${projManifest.addon_version[1]}.${projManifest.addon_version[2]}`,
       "min_engine_version": minEngineVersion
     },
     "modules": [
@@ -695,7 +695,7 @@ async function exportProj() {
     "dependencies": [
       {
         "uuid": projManifest.rp_uuid,
-        "version": [projManifest.version[0], projManifest.version[1], projManifest.version[2]]
+        "version": [projManifest.addon_version[0], projManifest.addon_version[1], projManifest.addon_version[2]]
       },
       {
         "module_name": "@minecraft/server",
@@ -723,7 +723,7 @@ async function exportProj() {
       "name": projManifest.name,
       "description": projManifest.description,
       "uuid": projManifest.rp_uuid,
-      "version": `${projManifest.version[0]}.${projManifest.version[1]}.${projManifest.version[2]}`,
+      "version": `${projManifest.addon_version[0]}.${projManifest.addon_version[1]}.${projManifest.addon_version[2]}`,
       "min_engine_version": minEngineVersion
     },
     "modules": [
@@ -739,7 +739,7 @@ async function exportProj() {
     "dependencies": [
       {
         "uuid": projManifest.bp_uuid,
-        "version": [projManifest.version[0], projManifest.version[1], projManifest.version[2]]
+        "version": [projManifest.addon_version[0], projManifest.addon_version[1], projManifest.addon_version[2]]
       }
     ]
   };

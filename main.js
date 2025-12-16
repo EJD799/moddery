@@ -1,5 +1,8 @@
-const appVersion = "0.5.1";
+const appVersion = "0.5.2";
+const minEngineVersion = [1, 21, 90];
 
+var exportZip1;
+var exportZip2;
 var projZip;
 var projManifest;
 var tabCounter = 3;
@@ -651,12 +654,98 @@ function openAddAssetDlg() {
 function closeAddAssetDlg() {
   $("#addAssetDlg").dialog("close");
 }
+
+
 function openExportDlg() {
   $("#exportDlg").dialog("open");
 }
 function closeExportDlg() {
   $("#exportDlg").dialog("close");
 }
+async function exportProj() {
+  closeExportDlg();
+  openLoader();
+  loaderText.innerHTML = "Exporting Project... (0%)";
+  loaderProgress.setAttribute("max", "0"),
+  loaderProgress.value = "0";
+  exportZip1 = new JSZip();
+  exportZip2 = new JSZip();
+  let packIcon = await projZip.folder("assets").file(projManifest.packIcon).async("blob");
+  exportZip1.file("pack_icon.png", packIcon);
+  exportZip2.file("pack_icon.png", packIcon);
+  let bpManifest = {
+    "format_version": 2,
+    "header": {
+      "name": projManifest.name,
+      "description": projManifest.description,
+      "uuid": projManifest.bp_uuid,
+      "version": `${projManifest.version[0]}.${projManifest.version[1]}.${projManifest.version[2]}`,
+      "min_engine_version": minEngineVersion
+    },
+    "modules": [
+      {
+        "type": "data",
+        "uuid": "5e60ecee-8628-4df7-a9cb-960baeae2c41",
+        "version": [1, 0, 0]
+      }
+    ],
+    "metadata": {
+      "product_type": "addon"
+    },
+    "dependencies": [
+      {
+        "uuid": projManifest.rp_uuid,
+        "version": [projManifest.version[0], projManifest.version[1], projManifest.version[2]]
+      },
+      {
+        "module_name": "@minecraft/server",
+        "version": "1.10.0"
+      },
+      {
+        "module_name": "@minecraft/server-ui",
+        "version": "1.2.0"
+      }
+    ]
+  }
+  if (projManifest?.scriptEntry ?? "") {
+    bpManifest.modules.push({
+      "type": "script",
+      "language": "javascript",
+      "entry": projManifest?.scriptEntry ?? "",
+      "uuid": "53a5804b-fb35-4f7d-a89e-e4a925fadb77",
+      "version": [1, 0, 0]
+    });
+  }
+  exportZip1.file("manifest.json", bpManifest);
+  let rpManifest = {
+    "format_version": 2,
+    "header": {
+      "name": projManifest.name,
+      "description": projManifest.description,
+      "uuid": projManifest.rp_uuid,
+      "version": `${projManifest.version[0]}.${projManifest.version[1]}.${projManifest.version[2]}`,
+      "min_engine_version": minEngineVersion
+    },
+    "modules": [
+      {
+        "type": "resources",
+        "uuid": "5a5510c5-5965-48af-a3b6-44cbaa434af5",
+        "version": [1, 0, 0]
+      }
+    ],
+    "metadata": {
+      "product_type": "addon"
+    },
+    "dependencies": [
+      {
+        "uuid": projManifest.bp_uuid,
+        "version": [projManifest.version[0], projManifest.version[1], projManifest.version[2]]
+      }
+    ]
+  };
+  exportZip2.file("manifest.json", rpManifest);
+}
+
 function openLoader() {
   $("#loaderDlg").dialog("open");
 }

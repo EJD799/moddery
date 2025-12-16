@@ -754,6 +754,7 @@ async function exportProj() {
   for (let i = 0; i < elementsList.length; i++) {
     console.log("Exporting element: " + elementsList[i]);
     let elementFile = JSON.parse(await projZip.folder("elements").file(elementsList[i]).async("string"));
+    let role = elementFile.type;
     let exportedFile;
     if (role == "Function") {
       exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/function.html";

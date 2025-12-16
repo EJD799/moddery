@@ -1,4 +1,4 @@
-const appVersion = "0.5.0";
+const appVersion = "0.5.1";
 
 var projZip;
 var projManifest;
@@ -102,6 +102,7 @@ $("#addAssetDlg").dialog("close");
 $("#addAssetUploadBtn").button();
 $("#addAssetCancelBtn").button();
 $("#addAssetAddBtn").button();
+
 $("#exportDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
@@ -109,6 +110,8 @@ $("#exportDlg").dialog({
   width: 500
 });
 $("#exportDlg").dialog("close");
+$("#exportDlgModeBox").selectmenu();
+
 $("#loaderDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,

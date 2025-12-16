@@ -1,4 +1,4 @@
-const appVersion = "0.5.12";
+const appVersion = "0.5.13";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -677,7 +677,7 @@ function waitForIframeReady(iframe, propName) {
 
 
 function parseCraftingGrid(grid, type) {
-
+  return ["", ""];
 }
 
 
@@ -784,24 +784,28 @@ async function exportProj() {
     let exportedFile;
     if (role == "Function") {
       exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/function.html";
+      let elementCode = JSON.parse(await projZip.folder("elements").file(elementsList[i].replace(".json", ".code.json")).async("string"));
       await waitForIframeLoad(exporterFrame);
       await waitForIframeReady(exporterFrame, "loadProject");
-      exporterFrame.contentWindow.loadProject(elementFile);
+      exporterFrame.contentWindow.loadProject(elementCode);
       if (exporterFrame.contentWindow?.generateCode) {
         exportedFile = exporterFrame.contentWindow.generateCode();
       } else {
         exportedFile = "";
       }
+      exportZip1.folder("functions").folder(projManifest.namespace).file(`${elementFile.id}.mcfunction`, exportedFile);
     } else if (role == "Script") {
       exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/script.html";
+      let elementCode = JSON.parse(await projZip.folder("elements").file(elementsList[i].replace(".json", ".code.json")).async("string"));
       await waitForIframeLoad(exporterFrame);
       await waitForIframeReady(exporterFrame, "loadProject");
-      exporterFrame.contentWindow.loadProject(elementFile);
+      exporterFrame.contentWindow.loadProject(elementCode);
       if (exporterFrame.contentWindow?.generateCode) {
         exportedFile = exporterFrame.contentWindow.generateCode();
       } else {
         exportedFile = "";
       }
+      exportZip1.folder("scripts").folder(projManifest.namespace).file(`${elementFile.id}.js`, exportedFile);
     } else if (role == "Item") {
 
     } else if (role == "Block") {

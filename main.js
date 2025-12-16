@@ -1,4 +1,4 @@
-const appVersion = "0.5.9";
+const appVersion = "0.5.10";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -734,7 +734,7 @@ async function exportProj() {
       "version": [1, 0, 0]
     });
   }
-  exportZip1.file("manifest.json", bpManifest);
+  exportZip1.file("manifest.json", JSON.stringify(bpManifest));
   let rpManifest = {
     "format_version": 2,
     "header": {
@@ -761,7 +761,7 @@ async function exportProj() {
       }
     ]
   };
-  exportZip2.file("manifest.json", rpManifest);
+  exportZip2.file("manifest.json", JSON.stringify(rpManifest));
   let elementsList = fileListInFolder("elements").filter(item => !item.endsWith(".code.json"));
   let assetsList = fileListInFolder("assets");
   loaderText.innerHTML = "Exporting Project... (0%)";

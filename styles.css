@@ -475,3 +475,12 @@ input:disabled {
     height: calc(100% - (26px + var(--tab-height, 44px)));
     position: relative;
 }
+
+#exporterFrame {
+    position: absolute;
+    left: -10000px;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    visibility: hidden;
+}

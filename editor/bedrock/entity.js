@@ -774,7 +774,7 @@ function createComponent(type) {
 }
 
 function generateTextureSelector(id) {
-    return `<label for="entityTextureBtn${id}"><span id="textureNameText${id}">No texture selected</span></label>
+    return `<label for="entityTextureBtn${id}"> <span id="textureNameText${id}">No texture selected</span></label>
 <button name="entityTextureBtn${id}" id="entityTextureBtn${id}" onclick="openSelectTextureDlg(${id})">Select Texture</button>
 <i class="fas fa-trash deleteIcon" onclick="removeTexture(${id})"></i>
 <br><br>`;
@@ -895,6 +895,7 @@ function addTexture(name = "", value = "", i = currentEntityTextures.length, add
     nameBox.addEventListener("change", function() {
         currentEntityTextures[i][0] = nameBox.value;
     });
+    nameBox.value = name;
     div.prepend(nameBox);
     additionalTexturesDiv.appendChild(div);
     $(`#entityTextureBtn${i + 1}`).button();
@@ -905,13 +906,13 @@ function addTexture(name = "", value = "", i = currentEntityTextures.length, add
 }
 
 function removeTexture(id) {
-    currentEntityTextures.splice(id, 1);
+    currentEntityTextures.splice(id - 1, 1);
     additionalTexturesDiv.innerHTML = "";
     loadTextureList(currentEntityTextures);
 }
 
 function loadTextureList(data) {
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 1; i < data.length; i++) {
         addTexture(data[i][0], data[i][1], i, false);
     }
 }

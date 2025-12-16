@@ -1,4 +1,4 @@
-const appVersion = "0.4.80";
+const appVersion = "0.4.81";
 
 var projZip;
 var projManifest;
@@ -1407,8 +1407,13 @@ function getTextureList() {
 function getStructureList() {
   return fileListInFolder("assets", "mcstructure");
 }
-function getModelList() {
-  let vanillaList = ["Full Block", "Plant"];
+function getModelList(mode) {
+  let vanillaList;
+  if (mode == "entity") {
+    vanillaList = [];
+  } else {
+    vanillaList = ["Full Block", "Plant"];
+  }
   return vanillaList.concat(fileListInFolder("assets", "json"));
 }
 async function getScriptList() {

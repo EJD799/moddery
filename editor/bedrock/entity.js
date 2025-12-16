@@ -645,7 +645,7 @@ $("#addComponentType").selectmenu();
 
 function openSelectModelDlg() {
   $("#selectModelDlg").dialog("open");
-  models = window.parent.getModelList();
+  models = window.parent.getModelList("entity");
   let selectModelMenu = document.getElementById("selectModelMenu");
   selectModelMenu.innerHTML = "";
   for (let i = 0; i < models.length; i++) {

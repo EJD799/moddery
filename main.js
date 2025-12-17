@@ -1,4 +1,4 @@
-const appVersion = "0.5.26";
+const appVersion = "0.5.27";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1083,7 +1083,7 @@ async function exportProj() {
         }
         exportZip1.folder("features").file(`${elementFile.id}_feature.json`, JSON.stringify(exportObj1, null, 4));
         exportZip1.folder("features").file(`${elementFile.id}_feature_rule.json`, JSON.stringify(exportObj2, null, 4));
-        let structureFile = JSON.parse(await projZip.folder("assets").file(elementFile.structure).async("blob"));
+        let structureFile = await projZip.folder("assets").file(elementFile.structure).async("blob");
         exportZip1.folder("structures").file(`${elementFile.id}.mcstructure`, structureFile);
       } else if (role == "Recipe") {
         let craftingGrid = elementFile.craftingGrid;

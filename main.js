@@ -1,4 +1,4 @@
-const appVersion = "0.5.20";
+const appVersion = "0.5.21";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -834,14 +834,13 @@ async function exportProj() {
       } else if (role == "Structure") {
 
       } else if (role == "Recipe") {
-        let elementObj = JSON.parse(elementFile);
-        let craftingGrid = elementObj.craftingGrid;
+        let craftingGrid = elementFile.craftingGrid;
         let exportObj = {
           "format_version": minEngineVersion,
           "minecraft:recipe_shaped": {}
         };
         let parsedGrid;
-        if (elementObj.recipeType == "crafting") {
+        if (elementFile.recipeType == "crafting") {
           parsedGrid = parseCraftingGrid(craftingGrid, "crafting");
           exportObj["minecraft:recipe_shaped"] = {
             "description": {
@@ -853,7 +852,7 @@ async function exportProj() {
             "result": [
               {
                 "item": craftingGrid[9],
-                "count": elementObj.outputQuantity
+                "count": elementFile.outputQuantity
               }
             ]
           };

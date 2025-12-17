@@ -1,4 +1,4 @@
-const appVersion = "0.5.14";
+const appVersion = "0.5.15";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -852,9 +852,12 @@ async function exportProj() {
       exportLog.appendChild(document.createTextNode(err));
       exportLog.appendChild(document.createElement("br"));
     }
-    loaderText.innerHTML = `Exporting Project... (${(loaderProgress.value / progressBarMax) * 100}%)`;
+    loaderText.innerHTML = `Exporting Project... (${Math.round((loaderProgress.value / progressBarMax) * 100)}%)`;
     loaderProgress.value = (i + 1).toString();
   }
+  loaderText.innerHTML = `Exporting Project... (100%)`;
+  loaderProgress.value = (i + 1).toString();
+  closeLoader();
 }
 
 function openLoader() {

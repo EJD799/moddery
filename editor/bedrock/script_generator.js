@@ -431,7 +431,6 @@ Blockly.JavaScript.forBlock['fill_blocks'] = function(block) {
 
 Blockly.JavaScript.forBlock['create_explosion'] = function(block) {
     let dimension = getInput(block, "DIMENSION");
-    let type = getInput(block, "BLOCK");
     let radius = getInput(block, "RADIUS");
     let x = getInput(block, "X_POS");
     let y = getInput(block, "Y_POS");

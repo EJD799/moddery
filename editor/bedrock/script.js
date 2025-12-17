@@ -3448,7 +3448,6 @@ function saveProject() {
 function generateCode() {
   const code = Blockly.JavaScript.workspaceToCode(workspace);
   console.log(code);
-  alert(code);
   return code;
 }
 /*document.addEventListener('keydown', e => {

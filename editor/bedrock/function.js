@@ -1189,7 +1189,7 @@ function saveProject() {
   return Blockly.serialization.workspaces.save(workspace);
 }
 function generateCode() {
-  const code = Blockly.JavaScript.workspaceToCode(workspace);
+  const code = Blockly.BedrockFunction.workspaceToCode(workspace);
   console.log("Generated code:");
   console.log(code);
   return code;

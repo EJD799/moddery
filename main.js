@@ -1,4 +1,4 @@
-const appVersion = "0.5.27";
+const appVersion = "0.5.28";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -874,8 +874,6 @@ async function exportProj() {
 
       } else if (role == "Block") {
 
-      } else if (role == "Biome") {
-
       } else if (role == "Structure") {
         let exportObj1 = {
           "format_version": formatVersion,
@@ -1111,13 +1109,32 @@ async function exportProj() {
           exportedFile1 = JSON.stringify(exportObj, null, 4);
           exportZip1.folder("recipes").folder("crafting").file(`${elementFile.id}.json`, exportedFile1);
         }
-        exportedFile1 = JSON.stringify(exportObj, null, 4);
       } else if (role == "Entity") {
 
       } else if (role == "Loot Table") {
-
+        let exportObj = {
+          "pools": [
+            {
+              "rolls": {
+                "min": Number(elementFile.rollCount[0]),
+                "max": Number(elementFile.rollCount[1])
+              },
+              "entries": []
+            }
+          ]
+        };
+        let itemList = elementFile.items;
+        for (let i = 0; i < itemList.length; i++) {
+          exportObj.pools.entries.push({
+            "type": "item",
+            "name": itemList[i][0],
+            "weight": itemList[i][1]
+          });
+        }
+        exportedFile1 = JSON.stringify(exportObj, null, 4);
+        exportZip1.folder("loot_tables").file(`${elementFile.id}.json`, exportedFile1);
       } else if (role == "Trade Table") {
-
+        
       }
     } catch(err) {
       logExporter(err, "error");

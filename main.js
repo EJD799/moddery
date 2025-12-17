@@ -1,4 +1,4 @@
-const appVersion = "0.5.28";
+const appVersion = "0.5.29";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1134,7 +1134,56 @@ async function exportProj() {
         exportedFile1 = JSON.stringify(exportObj, null, 4);
         exportZip1.folder("loot_tables").file(`${elementFile.id}.json`, exportedFile1);
       } else if (role == "Trade Table") {
-        
+        let exportObj = {
+          "tiers": []
+        };
+        let tierList = elementFile.tiers
+        let itemList = elementFile.items;
+        for (let i = 0; i < tierList.length; i++) {
+          filteredItemList = itemList.filter(entry => entry.tier == elementFile.tiers[i][0]);
+          exportObj.tiers.push({
+            "total_exp_required": elementFile.tiers[i][1],
+            "trades": []
+          });
+          for (let j = 0; j < filteredItemList.length; j++) {
+            let wantsObj = [
+              {
+                "item": filteredItemList[j].item1[0],
+                "quantity": {
+                  "min": filteredItemList[j].item1[1],
+                  "max": filteredItemList[j].item1[2]
+                }
+              }
+            ];
+            if (filteredItemList[j].item1[0] != "") {
+              wantsObj.push({
+                "item": filteredItemList[j].item2[0],
+                "quantity": {
+                  "min": filteredItemList[j].item2[1],
+                  "max": filteredItemList[j].item2[2]
+                }
+              });
+            }
+            let givesObj = [
+              {
+                "item": filteredItemList[j].item3[0],
+                "quantity": {
+                  "min": filteredItemList[j].item3[1],
+                  "max": filteredItemList[j].item3[2]
+                }
+              }
+            ];
+            exportObj.tiers[i].trades.push({
+              "wants": wantsObj,
+              "gives": givesObj,
+              "max_uses": -1,
+              "reward_exp": true,
+              "trader_exp": 1
+            });
+          }
+        }
+        exportedFile1 = JSON.stringify(exportObj, null, 4);
+        exportZip1.folder("trading").file(`${elementFile.id}.json`, exportedFile1);
       }
     } catch(err) {
       logExporter(err, "error");

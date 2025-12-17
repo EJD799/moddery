@@ -169,3 +169,18 @@ async function downloadZip(zip, filename) {
   a.click();
   URL.revokeObjectURL(a.href);
 }
+
+async function copyZipIntoFolder(sourceZip, targetFolder) {
+  const files = Object.values(sourceZip.files);
+
+  for (const file of files) {
+    // Skip directories; JSZip creates them automatically
+    if (file.dir) continue;
+
+    // Read file contents
+    const data = await file.async("arraybuffer");
+
+    // Recreate the same path inside the target folder
+    targetFolder.file(file.name, data);
+  }
+}

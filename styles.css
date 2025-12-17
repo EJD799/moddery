@@ -488,3 +488,13 @@ input:disabled {
 #exportLog {
     font-family: "Courier New", "Lucida Console", monospace;
 }
+
+.logTextInfo {
+    color: white;
+}
+.logTextWarn {
+    color: rgb(255, 255, 114);
+}
+.logTextError {
+    color: #ff837d;
+}

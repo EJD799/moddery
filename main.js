@@ -1,4 +1,4 @@
-const appVersion = "0.5.17";
+const appVersion = "0.5.18";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -680,7 +680,24 @@ function parseCraftingGrid(grid, type) {
   return ["", ""];
 }
 
-functio
+function logExporter(text, type = "info") {
+  let textElement = document.createElement("span");
+  if (type == "info") {
+    console.log("[Exporter] " + text);
+    textElement.innerHTML = text;
+    textElement.setAttribute("class", "logTextInfo");
+  } else if (type == "warn") {
+    console.warn("[Exporter] " + text);
+    textElement.innerHTML = text;
+    textElement.setAttribute("class", "logTextWarn");
+  } else if (type == "error") {
+    console.error("[Exporter] " + text);
+    textElement.innerHTML = text;
+    textElement.setAttribute("class", "logTextError");
+  }
+  exportLog.appendChild(textElement);
+  exportLog.appendChild(document.createElement("br"));
+}
 
 
 function openExportDlg() {
@@ -851,8 +868,7 @@ async function exportProj() {
 
       }
     } catch(err) {
-      exportLog.appendChild(document.createTextNode(err));
-      exportLog.appendChild(document.createElement("br"));
+      logExporter(err, "error")
     }
     loaderText.innerHTML = `Exporting Project... (${Math.round((loaderProgress.value / progressBarMax) * 100)}%)`;
     loaderProgress.value = (i + 1).toString();
@@ -886,8 +902,6 @@ async function exportProj() {
       `${projManifest.name}_RP.${ext}`
     );
 
-  } else {
-    console.warn("Unknown export mode:", exportDlgModeBox.value);
   }
 
   loaderText.innerHTML = `Exporting Project... (100%)`;

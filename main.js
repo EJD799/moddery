@@ -1,4 +1,4 @@
-const appVersion = "0.5.15";
+const appVersion = "0.5.16";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -856,7 +856,7 @@ async function exportProj() {
     loaderProgress.value = (i + 1).toString();
   }
   loaderText.innerHTML = `Exporting Project... (100%)`;
-  loaderProgress.value = (i + 1).toString();
+  loaderProgress.value = progressBarMax;
   closeLoader();
 }
 

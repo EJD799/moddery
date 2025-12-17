@@ -1,5 +1,6 @@
-const appVersion = "0.5.24";
+const appVersion = "0.5.25";
 const minEngineVersion = [1, 21, 90];
+const formatVersion = "1.21.90";
 
 var exportZip1;
 var exportZip2;
@@ -841,8 +842,10 @@ async function exportProj() {
     try {
       logExporter("Exporting element: " + elementsList[i], "info");
       let elementFile = JSON.parse(await projZip.folder("elements").file(elementsList[i]).async("string"));
+      let namespacedID = `${projManifest.id}:${elementFile.id}`;
       let role = elementFile.type;
-      let exportedFile;
+      let exportedFile1;
+      let exportedFile2;
       if (role == "Function") {
         exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/function.html";
         let elementCode = JSON.parse(await projZip.folder("elements").file(elementsList[i].replace(".json", ".code.json")).async("string"));
@@ -850,11 +853,11 @@ async function exportProj() {
         await waitForIframeReady(exporterFrame, "loadProject");
         exporterFrame.contentWindow.loadProject(elementCode);
         if (exporterFrame.contentWindow?.generateCode) {
-          exportedFile = exporterFrame.contentWindow.generateCode();
+          exportedFile1 = exporterFrame.contentWindow.generateCode();
         } else {
-          exportedFile = "";
+          exportedFile1 = "";
         }
-        exportZip1.folder("functions").folder(projManifest.namespace).file(`${elementFile.id}.mcfunction`, exportedFile);
+        exportZip1.folder("functions").folder(projManifest.namespace).file(`${elementFile.id}.mcfunction`, exportedFile1);
       } else if (role == "Script") {
         exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/script.html";
         let elementCode = JSON.parse(await projZip.folder("elements").file(elementsList[i].replace(".json", ".code.json")).async("string"));
@@ -862,11 +865,11 @@ async function exportProj() {
         await waitForIframeReady(exporterFrame, "loadProject");
         exporterFrame.contentWindow.loadProject(elementCode);
         if (exporterFrame.contentWindow?.generateCode) {
-          exportedFile = exporterFrame.contentWindow.generateCode();
+          exportedFile1 = exporterFrame.contentWindow.generateCode();
         } else {
-          exportedFile = "";
+          exportedFile1 = "";
         }
-        exportZip1.folder("scripts").folder(projManifest.namespace).file(`${elementFile.id}.js`, exportedFile);
+        exportZip1.folder("scripts").folder(projManifest.namespace).file(`${elementFile.id}.js`, exportedFile1);
       } else if (role == "Item") {
 
       } else if (role == "Block") {
@@ -874,11 +877,215 @@ async function exportProj() {
       } else if (role == "Biome") {
 
       } else if (role == "Structure") {
+        let exportObj1 = {
+          "format_version": formatVersion,
+          "minecraft:structure_template_feature": {
+            "description": {
+              "identifier": `${namespacedID}_feature`
+            },
+            "structure_name": namespacedID,
+            "adjustment_radius": 4,
+            "facing_direction": elementFile.facingDirection
+          }
+        };
+        if (elementFile.structureType == "Surface") {
+          exportObj1["minecraft:structure_template_feature"]["constraints"] = {
+            "grounded": {},
+            "unburied": {},
+            "block_intersection": {
+              "block_allowlist": [
+                "minecraft:air" //The structure can only replace air
+              ]
+            }
+          };
+        } else if (elementFile.structureType == "Underground") {
+          exportObj1["minecraft:structure_template_feature"]["constraints"] = {
+            "block_intersection": {
+              "block_allowlist": [
+                "minecraft:air", //Makes the feature only replace air and stone
+                "minecraft:stone"
+              ]
+            }
+          };
+        } else if (elementFile.structureType == "Floating") {
+          exportObj1["minecraft:structure_template_feature"]["constraints"] = {
+            "block_intersection": {
+              "block_allowlist": [
+                "minecraft:air" //Makes the structure only replace air
+              ]
+            }
+          };
+        } else if (elementFile.structureType == "Underwater") {
+          exportObj1["minecraft:structure_template_feature"]["constraints"] = {
+            "block_intersection": {
+              "block_allowlist": [
+                "minecraft:water" //Makes the structure only replace water
+              ]
+            }
+          };
+        } else if (elementFile.structureType == "Water Surface") {
+          exportObj1["minecraft:structure_template_feature"]["constraints"] = {
+            "block_intersection": {
+              "block_allowlist": [
+                "minecraft:water", //Makes the structure only replace air and water
+                "minecraft:air"
+              ]
+            }
+          };
+        }
 
+        let exportObj2 = {
+          "format_version": formatVersion,
+          "minecraft:feature_rules": {
+            "description": {
+              "identifier": `${namespacedID}_feature`,
+              "places_feature": `${namespacedID}_feature`
+            }
+          }
+        };
+        if (elementFile.structureType == "Surface") {
+          exportObj2["minecraft:feature_rules"]["conditions"] = {
+            "placement_pass": "first_pass",
+            "minecraft:biome_filter": {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "overworld"
+            }
+          };
+          exportObj2["minecraft:feature_rules"]["distribution"] = {
+            "iterations": 1,
+            "x": {
+              "extent": [0, 16],
+              "distribution": "uniform"
+            },
+            "y": "q.heightmap(v.worldx, v.worldz)", //Generates the feature on the highest block on the column
+            "z": {
+              "extent": [0, 16],
+              "distribution": "uniform"
+            },
+            "scatter_chance": {
+              "numerator": elementFile.spawnChance[0],
+              "denominator": elementFile.spawnChance[1]
+            }
+          };
+        } else if (elementFile.structureType == "Underground") {
+          exportObj2["minecraft:feature_rules"]["conditions"] = {
+            "placement_pass": "first_pass",
+            "minecraft:biome_filter": {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "overworld"
+            }
+          };
+          exportObj2["minecraft:feature_rules"]["distribution"] = {
+            "iterations": 1,
+            "x": {
+              "extent": [0, 16],
+              "distribution": "uniform"
+            },
+            "y": {
+              "extent": [
+                11,
+                50 //Makes the structure generate between y11 and y50
+              ],
+              "distribution": "uniform"
+            },
+            "z": {
+              "extent": [0, 16],
+              "distribution": "uniform"
+            },
+            "scatter_chance": {
+              "numerator": 1,
+              "denominator": 15
+            }
+          };
+        } else if (elementFile.structureType == "Floating") {
+          exportObj2["minecraft:feature_rules"]["conditions"] = {
+            "placement_pass": "first_pass",
+            "minecraft:biome_filter": {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "overworld"
+            }
+          };
+          exportObj2["minecraft:feature_rules"]["distribution"] = {
+            "iterations": 1,
+            "x": {
+              "extent": [0, 16],
+              "distribution": "uniform"
+            },
+            "y": {
+              "extent": [
+                100, //Makes the structure generate from y100 to y200
+                200
+              ],
+              "distribution": "uniform"
+            },
+            "z": {
+              "extent": [0, 16],
+              "distribution": "uniform"
+            },
+            "scatter_chance": {
+              "numerator": elementFile.spawnChance[0],
+              "denominator": elementFile.spawnChance[1]
+            }
+          };
+        } else if (elementFile.structureType == "Underwater") {
+          exportObj2["minecraft:feature_rules"]["conditions"] = {
+            "placement_pass": "first_pass",
+            "minecraft:biome_filter": {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "ocean"
+            }
+          };
+          exportObj2["minecraft:feature_rules"]["distribution"] = {
+            "iterations": 1,
+            "x": {
+              "extent": [0, 16],
+              "distribution": "uniform"
+            },
+            "y": "q.above_top_solid(v.worldx, v.worldz)", //Places the feature on top of the highest solid block on the column, so it won't place it on the surface of the water
+            "z": {
+              "extent": [0, 16],
+              "distribution": "uniform"
+            },
+            "scatter_chance": {
+              "numerator": elementFile.spawnChance[0],
+              "denominator": elementFile.spawnChance[1]
+            }
+          };
+        } else if (elementFile.structureType == "Water Surface") {
+          exportObj2["minecraft:feature_rules"]["conditions"] = {
+            "placement_pass": "first_pass",
+            "minecraft:biome_filter": {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "ocean"
+            }
+          };
+          exportObj2["minecraft:feature_rules"]["distribution"] = {
+            "iterations": 1,
+            "x": {
+              "extent": [0, 16],
+              "distribution": "uniform"
+            },
+            "y": 62, //Makes the feature generate only on y62, which is Minecraft water level
+            "z": {
+              "extent": [0, 16],
+              "distribution": "uniform"
+            },
+            "scatter_chance": {
+              "numerator": elementFile.spawnChance[0],
+              "denominator": elementFile.spawnChance[1]
+            }
+          };
+        }
+        exportZip1.folder("features").file(`${elementFile.id}`)
       } else if (role == "Recipe") {
         let craftingGrid = elementFile.craftingGrid;
         let exportObj = {
-          "format_version": minEngineVersion,
+          "format_version": formatVersion,
           "minecraft:recipe_shaped": {}
         };
         let parsedGrid;
@@ -898,10 +1105,10 @@ async function exportProj() {
               }
             ]
           };
-          exportedFile = JSON.stringify(exportObj, null, 4);
-          exportZip1.folder("recipes").folder("crafting").file(`${elementFile.id}.json`, exportedFile);
+          exportedFile1 = JSON.stringify(exportObj, null, 4);
+          exportZip1.folder("recipes").folder("crafting").file(`${elementFile.id}.json`, exportedFile1);
         }
-        exportedFile = JSON.stringify(exportObj, null, 4);
+        exportedFile1 = JSON.stringify(exportObj, null, 4);
       } else if (role == "Entity") {
 
       } else if (role == "Loot Table") {

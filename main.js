@@ -1,4 +1,4 @@
-const appVersion = "0.5.23";
+const appVersion = "0.5.24";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -677,8 +677,50 @@ function waitForIframeReady(iframe, propName) {
 
 
 function parseCraftingGrid(grid, type) {
-  return ["", ""];
+  // Normalize to 3x3 item-only array
+  const items = grid.slice(0, 9).map(cell => cell?.[0] ?? "");
+
+  // Convert to rows
+  let rows = [
+    items.slice(0, 3),
+    items.slice(3, 6),
+    items.slice(6, 9)
+  ];
+
+  // Trim empty rows
+  while (rows.length && rows[0].every(v => !v)) rows.shift();
+  while (rows.length && rows[rows.length - 1].every(v => !v)) rows.pop();
+
+  // Trim empty columns
+  let minCol = 0;
+  let maxCol = rows[0].length - 1;
+
+  while (rows.every(r => !r[minCol])) minCol++;
+  while (rows.every(r => !r[maxCol])) maxCol--;
+
+  rows = rows.map(r => r.slice(minCol, maxCol + 1));
+
+  // Build pattern + key
+  const key = {};
+  const itemToChar = {};
+  let charCode = "A".charCodeAt(0);
+
+  const pattern = rows.map(row => {
+    return row.map(item => {
+      if (!item) return " ";
+
+      if (!itemToChar[item]) {
+        const char = String.fromCharCode(charCode++);
+        itemToChar[item] = char;
+        key[char] = item;
+      }
+      return itemToChar[item];
+    }).join("");
+  });
+
+  return [pattern, key];
 }
+
 
 function logExporter(text, type = "info") {
   let textElement = document.createElement("span");

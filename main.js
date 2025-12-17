@@ -1081,7 +1081,10 @@ async function exportProj() {
             }
           };
         }
-        exportZip1.folder("features").file(`${elementFile.id}`)
+        exportZip1.folder("features").file(`${elementFile.id}_feature.json`, JSON.stringify(exportObj1, null, 4));
+        exportZip1.folder("features").file(`${elementFile.id}_feature_rule.json`, JSON.stringify(exportObj2, null, 4));
+        let structureFile = JSON.parse(await projZip.folder("assets").file(elementFile.structure).async("blob"));
+        exportZip1.folder("structures").file(`${elementFile.id}.mcstructure`, structureFile);
       } else if (role == "Recipe") {
         let craftingGrid = elementFile.craftingGrid;
         let exportObj = {

@@ -160,3 +160,12 @@ function generateSelectContents(list) {
     }
     return str;
 }
+
+async function downloadZip(zip, filename) {
+  const blob = await zip.generateAsync({ type: "blob" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}

@@ -1,4 +1,4 @@
-const appVersion = "0.5.16";
+const appVersion = "0.5.17";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -680,6 +680,8 @@ function parseCraftingGrid(grid, type) {
   return ["", ""];
 }
 
+functio
+
 
 function openExportDlg() {
   $("#exportDlg").dialog("open");
@@ -855,6 +857,39 @@ async function exportProj() {
     loaderText.innerHTML = `Exporting Project... (${Math.round((loaderProgress.value / progressBarMax) * 100)}%)`;
     loaderProgress.value = (i + 1).toString();
   }
+  if (exportDlgModeBox.value === "1mcaddon" || exportDlgModeBox.value === "1zip") {
+    // One file containing both BP and RP
+
+    const exportZipFinal = new JSZip();
+
+    const bpFolder = exportZipFinal.folder(`${projManifest.name}_BP`);
+    const rpFolder = exportZipFinal.folder(`${projManifest.name}_RP`);
+
+    await copyZipIntoFolder(exportZip1, bpFolder);
+    await copyZipIntoFolder(exportZip2, rpFolder);
+
+    const ext = exportDlgModeBox.value === "1mcaddon" ? "mcaddon" : "zip";
+    await downloadZip(exportZipFinal, `${projManifest.name}.${ext}`);
+
+  } else if (exportDlgModeBox.value === "2mcpack" || exportDlgModeBox.value === "2zip") {
+    // Two separate files (BP + RP)
+
+    const ext = exportDlgModeBox.value === "2mcpack" ? "mcpack" : "zip";
+
+    await downloadZip(
+      exportZip1,
+      `${projManifest.name}_BP.${ext}`
+    );
+
+    await downloadZip(
+      exportZip2,
+      `${projManifest.name}_RP.${ext}`
+    );
+
+  } else {
+    console.warn("Unknown export mode:", exportDlgModeBox.value);
+  }
+
   loaderText.innerHTML = `Exporting Project... (100%)`;
   loaderProgress.value = progressBarMax;
   closeLoader();

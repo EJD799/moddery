@@ -1,4 +1,4 @@
-const appVersion = "0.5.18";
+const appVersion = "0.5.19";
 const minEngineVersion = [1, 21, 90];
 
 var exportZip1;
@@ -752,10 +752,11 @@ async function exportProj() {
     ]
   }
   if (projManifest?.scriptEntry ?? "") {
+    let scriptInfoFile = JSON.parse(await projZip.folder("elements").file(`${projManifest.scriptEntry}.json`).async("string"));
     bpManifest.modules.push({
       "type": "script",
       "language": "javascript",
-      "entry": projManifest?.scriptEntry ?? "",
+      "entry": scriptInfoFile?.id ?? "",
       "uuid": "53a5804b-fb35-4f7d-a89e-e4a925fadb77",
       "version": [1, 0, 0]
     });
@@ -794,11 +795,9 @@ async function exportProj() {
   let progressBarMax = elementsList.length + 1;
   loaderProgress.setAttribute("max", progressBarMax),
   loaderProgress.value = "0";
-  console.log("Exporting project - elements:");
-  console.log(elementsList);
   for (let i = 0; i < elementsList.length; i++) {
     try {
-      console.log("Exporting element: " + elementsList[i]);
+      logExporter("Exporting element: " + elementsList[i], "info");
       let elementFile = JSON.parse(await projZip.folder("elements").file(elementsList[i]).async("string"));
       let role = elementFile.type;
       let exportedFile;
@@ -858,6 +857,8 @@ async function exportProj() {
               }
             ]
           };
+          exportedFile = JSON.stringify(exportObj, null, 4);
+          exportZip1.folder("recipes").folder("crafting").file(`${elementFile.id}.json`, exportedFile);
         }
         exportedFile = JSON.stringify(exportObj, null, 4);
       } else if (role == "Entity") {
@@ -868,7 +869,7 @@ async function exportProj() {
 
       }
     } catch(err) {
-      logExporter(err, "error")
+      logExporter(err, "error");
     }
     loaderText.innerHTML = `Exporting Project... (${Math.round((loaderProgress.value / progressBarMax) * 100)}%)`;
     loaderProgress.value = (i + 1).toString();

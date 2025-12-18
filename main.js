@@ -1,4 +1,4 @@
-const appVersion = "0.5.34";
+const appVersion = "0.5.35";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1085,7 +1085,11 @@ async function exportProj() {
   let progressBarMax = elementsList.length + 1;
   loaderProgress.setAttribute("max", progressBarMax),
   loaderProgress.value = "0";
-  let itemTextureFile = {};
+  let itemTextureFile = {
+    "resource_pack_name": projManifest.namespace,
+    "texture_name": "atlas.items",
+    "texture_data": {}
+  };
   let terrainTextureFile = {};
   let languageFile = "";
   for (let i = 0; i < elementsList.length; i++) {
@@ -1121,6 +1125,15 @@ async function exportProj() {
         }
         exportZip1.folder("scripts").folder(projManifest.namespace).file(`${elementFile.id}.js`, exportedFile1);
       } else if (role == "Item") {
+        let itemComponents = parseItemComponents(elementFile);
+        let textureID = `${projManifest.namespace}:${elementFile.texture.replace(".png", "")}`;
+        itemComponents.icon = textureID;
+        if (!Object.keys(itemTextureFile.texture_data).includes(textureID)) {
+          itemTextureFile.texture_data[textureID] = {
+            "textures": `textures/items/${textureID}`
+          };
+        }
+        if (!fileListInFolder().includes)
         let exportObj = {
           "format_version": formatVersion,
           "minecraft:item": {
@@ -1130,9 +1143,11 @@ async function exportProj() {
                 "category": elementFile.invCategory
               }
             },
-            "components": parseItemComponents(elementFile)
+            "components": itemComponents
           }
         };
+        exportedFile1 = JSON.stringify(exportObj, null, 4);
+        exportZip1.folder("items").file(`${elementFile.id}.json`, exportedFile1);
       } else if (role == "Block") {
 
       } else if (role == "Structure") {
@@ -2281,8 +2296,8 @@ async function saveElement(elementTab) {
   }
 }
 
-function fileListInFolder(path, filterType) {
-  const folder = projZip.folder(path);
+function fileListInFolder(path, filterType, zip = projZip) {
+  const folder = zip.folder(path);
   const folderPath = path + "/";
   let fileNames = [];
   folder.forEach((relativePath, file) => {

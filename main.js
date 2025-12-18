@@ -1137,6 +1137,7 @@ async function exportProj() {
           let texture = await projZip.folder("assets").file(elementFile.texture).async("blob");
           exportZip2.folder("textures").folder("items").file(elementFile.texture, texture);
         }
+        languageFile += `item.${namespacedID}.name=${elementFile.displayName}`
         let exportObj = {
           "format_version": formatVersion,
           "minecraft:item": {

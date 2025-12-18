@@ -1,4 +1,4 @@
-const appVersion = "0.5.37";
+const appVersion = "0.5.38";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1152,7 +1152,7 @@ async function exportProj() {
         exportedFile1 = JSON.stringify(exportObj, null, 4);
         exportZip1.folder("items").file(`${elementFile.id}.json`, exportedFile1);
       } else if (role == "Block") {
-
+        
       } else if (role == "Structure") {
         let exportObj1 = {
           "format_version": formatVersion,

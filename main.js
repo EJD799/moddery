@@ -1,4 +1,4 @@
-const appVersion = "0.5.44";
+const appVersion = "0.5.45";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1137,7 +1137,7 @@ async function exportProj() {
           let texture = await projZip.folder("assets").file(elementFile.texture).async("blob");
           exportZip2.folder("textures").folder("items").file(elementFile.texture, texture);
         }
-        languageFile += `item.${namespacedID}.name=${elementFile.displayName}`
+        languageFile += `item.${namespacedID}=${elementFile.displayName}`
         let exportObj = {
           "format_version": formatVersion,
           "minecraft:item": {

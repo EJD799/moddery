@@ -1,4 +1,4 @@
-const appVersion = "0.5.33";
+const appVersion = "0.5.34";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -726,6 +726,7 @@ function parseItemComponents(file) {
   let components = file.components;
   let keys = Object.keys(components);
   let newObj = {};
+  newObj.max_stack_size = file.maxStackSize;
   if (keys.includes("Allow Off Hand")) {
     let component = components["Allow Off Hand"];
     newObj["minecraft:allow_off_hand"] = component.main;
@@ -888,11 +889,80 @@ function parseItemComponents(file) {
       ]
     };
   }
-  if (keys.includes("Projectile")) {
-    let component = components["Projectile"];
-    newObj["minecraft:projectile"] = {
-      "minimum_critical_power": component.minimum_critical_power,
-      "projectile_entity": component.projectile_entity
+  if (keys.includes("Shooter")) {
+    let component = components["Shooter"];
+    newObj["minecraft:shooter"] = {
+      "ammunition": [
+        {
+          "item": component.item,
+          "use_offhand": true,
+          "search_inventory": true,
+          "use_in_creative": true
+        }
+      ],
+      "max_draw_duration": component.max_draw_duration,
+      "scale_power_by_draw_duration": component.scale_power_by_draw_duration,
+      "charge_on_draw": component.charge_on_draw
+    };
+  }
+  if (keys.includes("Should Despawn")) {
+    let component = components["Should Despawn"];
+    newObj["minecraft:should_despawn"] = component.main;
+  }
+  if (keys.includes("Storage Item")) {
+    let component = components["Storage Item"];
+    newObj["minecraft:storage_item"] = {
+      "max_slots": component.max_slots,
+      "allow_nested_storage_items": component.allow_nested_storage_items,
+    };
+    if (component.allowed_items) {
+      newObj["minecraft:storage_item"].allowed_items = component.allowed_items.split(",");
+    }
+    if (component.banned_items) {
+      newObj["minecraft:storage_item"].banned_items = component.banned_items.split(",");
+    }
+  }
+  if (keys.includes("Swing Duration")) {
+    let component = components["Swing Duration"];
+    newObj["minecraft:swing_duration"] = {
+      "value": component.value
+    };
+  }
+  if (keys.includes("Tags")) {
+    let component = components["Tags"];
+    newObj["minecraft:tags"] = {
+      "tags": component.tags.split(",")
+    };
+  }
+  if (keys.includes("Throwable")) {
+    let component = components["Throwable"];
+    newObj["minecraft:throwable"] = {
+      "do_swing_animation": component.do_swing_animation,
+      "launch_power_scale": component.launch_power_scale,
+      "max_launch_power": component.max_launch_power,
+      "scale_power_by_draw_duration": false,
+      "min_draw_duration": -1,
+      "max_draw_duration": -1
+    };
+  }
+  if (keys.includes("Use Animation")) {
+    let component = components["Use Animation"];
+    newObj["minecraft:use_animation"] = component.main;
+  }
+  if (keys.includes("Use Modifiers")) {
+    let component = components["Use Modifiers"];
+    newObj["minecraft:use_modifiers"] = {
+      "emit_vibrations": component.emit_vibrations,
+      "movement_modifer": component.movement_modifer,
+      "use_duration": component.use_duration
+    };
+  }
+  if (keys.includes("Wearable")) {
+    let component = components["Wearable"];
+    newObj["minecraft:wearable"] = {
+      "slot": component.slot,
+      "protection": component.protection,
+      "hides_player_location": component.hides_player_location
     };
   }
   return newObj;

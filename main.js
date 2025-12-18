@@ -1,4 +1,4 @@
-const appVersion = "0.5.32";
+const appVersion = "0.5.33";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -873,6 +873,26 @@ function parseItemComponents(file) {
       "comparator_signal": component.comparator_signal,
       "duration": component.duration,
       "sound_event": component.sound_event
+    };
+  }
+  if (keys.includes("Repairable")) {
+    let component = components["Repairable"];
+    newObj["minecraft:repairable"] = {
+      "repair_items": [
+        {
+          "items": [
+            component.items.split(",")
+          ],
+          "repair_amount": component.repair_amount
+        }
+      ]
+    };
+  }
+  if (keys.includes("Projectile")) {
+    let component = components["Projectile"];
+    newObj["minecraft:projectile"] = {
+      "minimum_critical_power": component.minimum_critical_power,
+      "projectile_entity": component.projectile_entity
     };
   }
   return newObj;

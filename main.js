@@ -1,4 +1,4 @@
-const appVersion = "0.5.41";
+const appVersion = "0.5.42";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -454,9 +454,9 @@ function openEditProjDlg() {
   $("#editProjDlg").dialog("open");
   $("#editProjNameBox").val(projManifest.name);
   $("#editProjNamespaceBox").val(projManifest.namespace);
-  $("#editProjVersionBox1").val(projManifest.addon_version[0]);
-  $("#editProjVersionBox2").val(projManifest.addon_version[1]);
-  $("#editProjVersionBox3").val(projManifest.addon_version[2]);
+  $("#editProjVersionBox1").val(Number(projManifest.addon_version[0]));
+  $("#editProjVersionBox2").val(Number(projManifest.addon_version[1]));
+  $("#editProjVersionBox3").val(Number(projManifest.addon_version[2]));
   $("#editProjDescriptionBox").val(projManifest.description);
   $("#editProjMCVersionBox1").val(projManifest.mc_version[0]);
   $("#editProjMCVersionBox2").val(projManifest.mc_version[1]);
@@ -726,7 +726,7 @@ function parseItemComponents(file) {
   let components = file.components;
   let keys = Object.keys(components);
   let newObj = {};
-  newObj.max_stack_size = file.maxStackSize;
+  newObj.["minecraft:max_stack_size"] = file.maxStackSize;
   if (keys.includes("Allow Off Hand")) {
     let component = components["Allow Off Hand"];
     newObj["minecraft:allow_off_hand"] = component.main;
@@ -1012,7 +1012,7 @@ async function exportProj() {
       "name": projManifest.name,
       "description": projManifest.description,
       "uuid": projManifest.bp_uuid,
-      "version": `${projManifest.addon_version[0]}.${projManifest.addon_version[1]}.${projManifest.addon_version[2]}`,
+      "version": [Number(projManifest.addon_version[0]), Number(projManifest.addon_version[1]), Number(projManifest.addon_version[2])],
       "min_engine_version": minEngineVersion
     },
     "modules": [
@@ -1028,7 +1028,7 @@ async function exportProj() {
     "dependencies": [
       {
         "uuid": projManifest.rp_uuid,
-        "version": [projManifest.addon_version[0], projManifest.addon_version[1], projManifest.addon_version[2]]
+        "version": [Number(projManifest.addon_version[0]), Number(projManifest.addon_version[1]), Number(projManifest.addon_version[2])]
       },
       {
         "module_name": "@minecraft/server",
@@ -1058,7 +1058,7 @@ async function exportProj() {
       "name": projManifest.name,
       "description": projManifest.description,
       "uuid": projManifest.rp_uuid,
-      "version": `${projManifest.addon_version[0]}.${projManifest.addon_version[1]}.${projManifest.addon_version[2]}`,
+      "version": [Number(projManifest.addon_version[0]), Number(projManifest.addon_version[1]), Number(projManifest.addon_version[2])],
       "min_engine_version": minEngineVersion
     },
     "modules": [
@@ -1074,7 +1074,7 @@ async function exportProj() {
     "dependencies": [
       {
         "uuid": projManifest.bp_uuid,
-        "version": [projManifest.addon_version[0], projManifest.addon_version[1], projManifest.addon_version[2]]
+        "version": [Number(projManifest.addon_version[0]), Number(projManifest.addon_version[1]), Number(projManifest.addon_version[2])]
       }
     ]
   };
@@ -1096,7 +1096,7 @@ async function exportProj() {
     try {
       logExporter("Exporting element: " + elementsList[i], "info");
       let elementFile = JSON.parse(await projZip.folder("elements").file(elementsList[i]).async("string"));
-      let namespacedID = `${projManifest.id}:${elementFile.id}`;
+      let namespacedID = `${projManifest.namespace}:${elementFile.id}`;
       let role = elementFile.type;
       let exportedFile1;
       let exportedFile2;
@@ -1123,11 +1123,11 @@ async function exportProj() {
         } else {
           exportedFile1 = "";
         }
-        exportZip1.folder("scripts").folder(projManifest.namespace).file(`${elementFile.id}.js`, exportedFile1);
+        exportZip1.folder("scripts").file(`${elementFile.id}.js`, exportedFile1);
       } else if (role == "Item") {
         let itemComponents = parseItemComponents(elementFile);
         let textureID = `${projManifest.namespace}:${elementFile.texture.replace(".png", "")}`;
-        itemComponents.icon = textureID;
+        itemComponents.["icon"] = textureID;
         if (!Object.keys(itemTextureFile.texture_data).includes(textureID)) {
           itemTextureFile.texture_data[textureID] = {
             "textures": `textures/items/${elementFile.texture.replace(".png", "")}`
@@ -1359,7 +1359,7 @@ async function exportProj() {
           };
         }
         exportZip1.folder("features").file(`${elementFile.id}_feature.json`, JSON.stringify(exportObj1, null, 4));
-        exportZip1.folder("features").file(`${elementFile.id}_feature_rule.json`, JSON.stringify(exportObj2, null, 4));
+        exportZip1.folder("feature_rules").file(`${elementFile.id}_feature_rule.json`, JSON.stringify(exportObj2, null, 4));
         let structureFile = await projZip.folder("assets").file(elementFile.structure).async("blob");
         exportZip1.folder("structures").file(`${elementFile.id}.mcstructure`, structureFile);
       } else if (role == "Recipe") {
@@ -1379,8 +1379,8 @@ async function exportProj() {
             "key": parsedGrid[1],
             "result": [
               {
-                "item": craftingGrid[9],
-                "count": elementFile.outputQuantity
+                "item": craftingGrid[9][0],
+                "count": Number(elementFile.outputQuantity)
               }
             ]
           };
@@ -1395,8 +1395,8 @@ async function exportProj() {
             "ingredients": craftingGrid.slice(0, -1).map(v => v[0]).filter(Boolean),
             "result": [
               {
-                "item": craftingGrid[9],
-                "count": elementFile.outputQuantity
+                "item": craftingGrid[9][0],
+                "count": Number(elementFile.outputQuantity)
               }
             ]
           };
@@ -1408,10 +1408,10 @@ async function exportProj() {
               "identifier": namespacedID
             },
             "tags": ["stonecutter"],
-            "input": craftingGrid[5],
+            "input": craftingGrid[5][0],
             "output": {
-              "item": craftingGrid[9],
-              "count": elementFile.outputQuantity
+              "item": craftingGrid[9][0],
+              "count": Number(elementFile.outputQuantity)
             }
           };
           exportedFile1 = JSON.stringify(exportObj, null, 4);
@@ -1422,9 +1422,9 @@ async function exportProj() {
               "identifier": namespacedID
             },
             "tags": ["brewing_stand"],
-            "input": craftingGrid[5],
-            "reagent": craftingGrid[4],
-            "output": craftingGrid[9]
+            "input": craftingGrid[5][0],
+            "reagent": craftingGrid[4][0],
+            "output": craftingGrid[9][0]
           };
           exportedFile1 = JSON.stringify(exportObj, null, 4);
           exportZip1.folder("recipes").file(`${elementFile.id}.json`, exportedFile1);
@@ -1434,10 +1434,10 @@ async function exportProj() {
               "identifier": namespacedID
             },
             "tags": [elementFile.recipeType],
-            "input": craftingGrid[5],
+            "input": craftingGrid[5][0],
             "output": {
-              "item": craftingGrid[9],
-              "count": elementFile.outputQuantity
+              "item": craftingGrid[9][0],
+              "count": Number(elementFile.outputQuantity)
             }
           };
           exportedFile1 = JSON.stringify(exportObj, null, 4);

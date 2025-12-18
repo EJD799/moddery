@@ -239,7 +239,7 @@ objective: ${getInput(block, "OBJECTIVE")}
 };
 
 Blockly.JavaScript.forBlock['hidedisplay'] = function(block) {
-    let code = `world.scoreboard.clearObjectiveAtDisplaySlot(${block.getFieldValue("DISPLAY")});
+    let code = `world.scoreboard.clearObjectiveAtDisplaySlot('${block.getFieldValue("DISPLAY")}');
 `;
     return code;
 };

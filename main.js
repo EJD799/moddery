@@ -1,4 +1,4 @@
-const appVersion = "0.5.42";
+const appVersion = "0.5.43";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1127,7 +1127,7 @@ async function exportProj() {
       } else if (role == "Item") {
         let itemComponents = parseItemComponents(elementFile);
         let textureID = `${projManifest.namespace}:${elementFile.texture.replace(".png", "")}`;
-        itemComponents.["icon"] = textureID;
+        itemComponents["icon"] = textureID;
         if (!Object.keys(itemTextureFile.texture_data).includes(textureID)) {
           itemTextureFile.texture_data[textureID] = {
             "textures": `textures/items/${elementFile.texture.replace(".png", "")}`

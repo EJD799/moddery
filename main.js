@@ -1,4 +1,4 @@
-const appVersion = "0.5.40";
+const appVersion = "0.5.41";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1459,7 +1459,7 @@ async function exportProj() {
         };
         let itemList = elementFile.items;
         for (let i = 0; i < itemList.length; i++) {
-          exportObj.pools.entries.push({
+          exportObj.pools[0].entries.push({
             "type": "item",
             "name": itemList[i][0],
             "weight": itemList[i][1]

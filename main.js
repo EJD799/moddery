@@ -1,4 +1,4 @@
-const appVersion = "0.5.36";
+const appVersion = "0.5.37";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1392,7 +1392,7 @@ async function exportProj() {
               "identifier": namespacedID
             },
             "tags": ["crafting_table"],
-            "ingredients": craftingGrid.slice(0, -1).map(v => v[0]).filter(Boolean);,
+            "ingredients": craftingGrid.slice(0, -1).map(v => v[0]).filter(Boolean),
             "result": [
               {
                 "item": craftingGrid[9],

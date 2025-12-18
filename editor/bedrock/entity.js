@@ -739,7 +739,7 @@ function loadProject(data) {
     $("#elementIDBox").val(data.name);
     $("#entityIDBox").val(data.id);
     $("#nameBox").val(data.displayName);
-    if (currentEntityTextures) {
+    if (data.textures) {
         currentEntityTextures = data.textures;
         loadTextures(data);
     }

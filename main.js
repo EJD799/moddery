@@ -1,4 +1,4 @@
-const appVersion = "0.5.35";
+const appVersion = "0.5.36";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1130,10 +1130,13 @@ async function exportProj() {
         itemComponents.icon = textureID;
         if (!Object.keys(itemTextureFile.texture_data).includes(textureID)) {
           itemTextureFile.texture_data[textureID] = {
-            "textures": `textures/items/${textureID}`
+            "textures": `textures/items/${elementFile.texture.replace(".png", "")}`
           };
         }
-        if (!fileListInFolder().includes)
+        if (!fileListInFolder("textures/items", false, exportZip2).includes(elementFile.texture)) {
+          let texture = await projZip.folder("assets").file(elementFile.texture).async("blob");
+          exportZip2.folder("textures").folder("items").file(elementFile.texture, texture);
+        }
         let exportObj = {
           "format_version": formatVersion,
           "minecraft:item": {

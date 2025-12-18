@@ -726,7 +726,7 @@ function parseItemComponents(file) {
   let components = file.components;
   let keys = Object.keys(components);
   let newObj = {};
-  newObj.["minecraft:max_stack_size"] = file.maxStackSize;
+  newObj["minecraft:max_stack_size"] = file.maxStackSize;
   if (keys.includes("Allow Off Hand")) {
     let component = components["Allow Off Hand"];
     newObj["minecraft:allow_off_hand"] = component.main;

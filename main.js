@@ -1,4 +1,4 @@
-const appVersion = "0.5.31";
+const appVersion = "0.5.32";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -722,6 +722,162 @@ function parseCraftingGrid(grid) {
   return [pattern, key];
 }
 
+function parseItemComponents(file) {
+  let components = file.components;
+  let keys = Object.keys(components);
+  let newObj = {};
+  if (keys.includes("Allow Off Hand")) {
+    let component = components["Allow Off Hand"];
+    newObj["minecraft:allow_off_hand"] = component.main;
+  }
+  if (keys.includes("Block Placer")) {
+    let component = components["Block Placer"];
+    newObj["minecraft:block_placer"] = {
+      "block": component.block,
+      "replace_block_item": component.replace_block_item,
+      "use_on": component.use_on.split(",")
+    };
+  }
+  if (keys.includes("Bundle Interaction")) {
+    let component = components["Bundle Interaction"];
+    newObj["minecraft:bundle_interaction"] = {
+      "num_viewable_slots": component.num_viewable_slots
+    };
+  }
+  if (keys.includes("Can Destroy in Creative")) {
+    let component = components["Can Destroy in Creative"];
+    newObj["minecraft:can_destroy_in_creative"] = component.main;
+  }
+  if (keys.includes("Compostable")) {
+    let component = components["Compostable"];
+    newObj["minecraft:compostable"] = {
+      "composting_chance": component.composting_chance
+    };
+  }
+  if (keys.includes("Cooldown")) {
+    let component = components["Cooldown"];
+    newObj["minecraft:cooldown"] = {
+      "category": `${projManifest.namespace}:cooldown_${(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0')}`,
+      "duration": component.duration,
+      "type": "use"
+    };
+  }
+  if (keys.includes("Damage")) {
+    let component = components["Damage"];
+    newObj["minecraft:damage"] = component.main;
+  }
+  if (keys.includes("Digger")) {
+    let component = components["Digger"];
+    newObj["minecraft:digger"] = {
+      "use_efficiency": true,
+      "destroy_speeds": [
+        {
+          "block": {
+            "tags": component.block
+          },
+          "speed": component.speed
+        }
+      ]
+    };
+  }
+  if (keys.includes("Durability")) {
+    let component = components["Durability"];
+    newObj["minecraft:durability"] = {
+      "max_durability": component.max_durability,
+      "damage_chance": {
+        "min": component.damage_chance,
+        "max": component.damage_chance
+      }
+    };
+  }
+  if (keys.includes("Dyeable")) {
+    let component = components["Dyeable"];
+    newObj["minecraft:dyeable"] = {
+      "default_color": component.default_color
+    };
+  }
+  if (keys.includes("Enchantable")) {
+    let component = components["Enchantable"];
+    newObj["minecraft:enchantable"] = {
+      "slot": component.slot,
+      "value": component.value
+    };
+  }
+  if (keys.includes("Entity Placer")) {
+    let component = components["Entity Placer"];
+    newObj["minecraft:entity_placer"] = {
+      "entity": component.entity,
+      "use_on": [],
+      "dispense_on": []
+    };
+  }
+  if (keys.includes("Fire Resistant")) {
+    let component = components["Fire Resistant"];
+    newObj["minecraft:fire_resistant"] = {
+      "value": component.main
+    };
+  }
+  if (keys.includes("Food")) {
+    let component = components["Food"];
+    newObj["minecraft:food"] = {
+      "can_always_eat": component.can_always_eat,
+      "nutrition": component.nutrition,
+      "saturation_modifier": component.saturation_modifier,
+    };
+    if (component.using_converts_to) {
+      newObj["minecraft:food"].using_converts_to = component.using_converts_to;
+    }
+  }
+  if (keys.includes("Fuel")) {
+    let component = components["Fuel"];
+    newObj["minecraft:fuel"] = {
+      "duration": component.duration
+    };
+  }
+  if (keys.includes("Glint")) {
+    let component = components["Glint"];
+    newObj["minecraft:glint"] = component.main;
+  }
+  if (keys.includes("Hand Equipped")) {
+    let component = components["Hand Equipped"];
+    newObj["minecraft:hand_equipped"] = component.main;
+  }
+  if (keys.includes("Hover Text Color")) {
+    let component = components["Hover Text Color"];
+    newObj["minecraft:hover_text_color"] = component.main;
+  }
+  if (keys.includes("Interact Button")) {
+    let component = components["Interact Button"];
+    newObj["minecraft:interact_button"] = component.main;
+  }
+  // Kinetic Weapon
+  if (keys.includes("Liquid Clipped")) {
+    let component = components["Liquid Clipped"];
+    newObj["minecraft:liquid_clipped"] = component.main;
+  }
+  // Piercing Weapon
+  if (keys.includes("Projectile")) {
+    let component = components["Projectile"];
+    newObj["minecraft:projectile"] = {
+      "minimum_critical_power": component.minimum_critical_power,
+      "projectile_entity": component.projectile_entity
+    };
+  }
+  if (keys.includes("Rarity")) {
+    let component = components["Rarity"];
+    newObj["minecraft:rarity"] = component.main;
+  }
+  if (keys.includes("Record")) {
+    let component = components["Record"];
+    newObj["minecraft:record"] = {
+      "comparator_signal": component.comparator_signal,
+      "duration": component.duration,
+      "sound_event": component.sound_event
+    };
+  }
+  return newObj;
+}
+
 
 function logExporter(text, type = "info") {
   let textElement = document.createElement("span");
@@ -794,7 +950,7 @@ async function exportProj() {
       }
     ]
   }
-  if (projManifest?.scriptEntry ?? "") {
+  if (projManifest?.scriptEntry ?? false) {
     let scriptInfoFile = JSON.parse(await projZip.folder("elements").file(`${projManifest.scriptEntry}.json`).async("string"));
     bpManifest.modules.push({
       "type": "script",
@@ -803,6 +959,7 @@ async function exportProj() {
       "uuid": "53a5804b-fb35-4f7d-a89e-e4a925fadb77",
       "version": [1, 0, 0]
     });
+    exportZip1.folder("scripts").file("modderyLibs.js", (await (await fetch("https://ejd799.github.io/moddery/export_utils/bedrock/modderyLibs.js")).text()))
   }
   exportZip1.file("manifest.json", JSON.stringify(bpManifest, null, 4));
   let rpManifest = {
@@ -838,6 +995,9 @@ async function exportProj() {
   let progressBarMax = elementsList.length + 1;
   loaderProgress.setAttribute("max", progressBarMax),
   loaderProgress.value = "0";
+  let itemTextureFile = {};
+  let terrainTextureFile = {};
+  let languageFile = "";
   for (let i = 0; i < elementsList.length; i++) {
     try {
       logExporter("Exporting element: " + elementsList[i], "info");
@@ -871,7 +1031,18 @@ async function exportProj() {
         }
         exportZip1.folder("scripts").folder(projManifest.namespace).file(`${elementFile.id}.js`, exportedFile1);
       } else if (role == "Item") {
-
+        let exportObj = {
+          "format_version": formatVersion,
+          "minecraft:item": {
+            "description": {
+              "identifier": namespacedID,
+              "menu_category": {
+                "category": elementFile.invCategory
+              }
+            },
+            "components": parseItemComponents(elementFile)
+          }
+        };
       } else if (role == "Block") {
 
       } else if (role == "Structure") {
@@ -1093,7 +1264,7 @@ async function exportProj() {
           parsedGrid = parseCraftingGrid(craftingGrid, "crafting");
           exportObj["minecraft:recipe_shaped"] = {
             "description": {
-              "identifier": elementFile.id
+              "identifier": namespacedID
             },
             "tags": ["crafting_table"],
             "pattern": parsedGrid[0],
@@ -1110,7 +1281,7 @@ async function exportProj() {
         } else if (elementFile.recipeType == "crafting_shapeless") {
           exportObj["minecraft:recipe_shapeless"] = {
             "description": {
-              "identifier": elementFile.id
+              "identifier": namespacedID
             },
             "tags": ["crafting_table"],
             "ingredients": craftingGrid.slice(0, -1).map(v => v[0]).filter(Boolean);,
@@ -1126,7 +1297,7 @@ async function exportProj() {
         } else if (elementFile.recipeType == "stonecutter") {
           exportObj["minecraft:recipe_stonecutter"] = {
             "description": {
-              "identifier": elementFile.id
+              "identifier": namespacedID
             },
             "tags": ["stonecutter"],
             "input": craftingGrid[5],
@@ -1140,7 +1311,7 @@ async function exportProj() {
         } else if (elementFile.recipeType == "brewing") {
           exportObj["minecraft:recipe_brewing_mix"] = {
             "description": {
-              "identifier": elementFile.id
+              "identifier": namespacedID
             },
             "tags": ["brewing_stand"],
             "input": craftingGrid[5],
@@ -1152,7 +1323,7 @@ async function exportProj() {
         } else {
           exportObj["minecraft:recipe_furnace"] = {
             "description": {
-              "identifier": elementFile.id
+              "identifier": namespacedID
             },
             "tags": [elementFile.recipeType],
             "input": craftingGrid[5],
@@ -1246,6 +1417,10 @@ async function exportProj() {
     loaderText.innerHTML = `Exporting Project... (${Math.round((loaderProgress.value / progressBarMax) * 100)}%)`;
     loaderProgress.value = (i + 1).toString();
   }
+  exportZip2.folder("textures").file("item_texture.json", JSON.stringify(itemTextureFile, null, 4));
+  exportZip2.folder("textures").file("terrain_texture.json", JSON.stringify(terrainTextureFile, null, 4));
+  exportZip2.folder("texts").file("en_US.lang", languageFile);
+  exportZip2.folder("texts").file("languages.json", JSON.stringify(["en_US"]));
   if (exportDlgModeBox.value === "1mcaddon" || exportDlgModeBox.value === "1zip") {
     // One file containing both BP and RP
 

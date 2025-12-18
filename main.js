@@ -1,4 +1,4 @@
-const appVersion = "0.5.30";
+const appVersion = "0.5.31";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1126,21 +1126,43 @@ async function exportProj() {
         } else if (elementFile.recipeType == "stonecutter") {
           exportObj["minecraft:recipe_stonecutter"] = {
             "description": {
-              "description": {
-                "identifier": elementFile.id
-              },
-              "tags": ["stonecutter"],
-              "input": craftingGrid[5],
-              "output": {
-                "item": craftingGrid[9],
-                "count": elementFile.outputQuantity
-              }
+              "identifier": elementFile.id
+            },
+            "tags": ["stonecutter"],
+            "input": craftingGrid[5],
+            "output": {
+              "item": craftingGrid[9],
+              "count": elementFile.outputQuantity
             }
           };
           exportedFile1 = JSON.stringify(exportObj, null, 4);
           exportZip1.folder("recipes").file(`${elementFile.id}.json`, exportedFile1);
         } else if (elementFile.recipeType == "brewing") {
-          exportObj[""]
+          exportObj["minecraft:recipe_brewing_mix"] = {
+            "description": {
+              "identifier": elementFile.id
+            },
+            "tags": ["brewing_stand"],
+            "input": craftingGrid[5],
+            "reagent": craftingGrid[4],
+            "output": craftingGrid[9]
+          };
+          exportedFile1 = JSON.stringify(exportObj, null, 4);
+          exportZip1.folder("recipes").file(`${elementFile.id}.json`, exportedFile1);
+        } else {
+          exportObj["minecraft:recipe_furnace"] = {
+            "description": {
+              "identifier": elementFile.id
+            },
+            "tags": [elementFile.recipeType],
+            "input": craftingGrid[5],
+            "output": {
+              "item": craftingGrid[9],
+              "count": elementFile.outputQuantity
+            }
+          };
+          exportedFile1 = JSON.stringify(exportObj, null, 4);
+          exportZip1.folder("recipes").file(`${elementFile.id}.json`, exportedFile1);
         }
       } else if (role == "Entity") {
 

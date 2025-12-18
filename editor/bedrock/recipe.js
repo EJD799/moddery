@@ -353,6 +353,7 @@ function changeGridType(type) {
         enableSlot(7);
         enableSlot(8);
         enableSlot(9);
+        $("#outputQuantityBox").show();
     }
     if (type == "stonecutter" || type == "furnace" || type == "blast_furnace" || type == "smoker" || type == "campfire" || type == "soul_campfire") {
         disableSlot(1);
@@ -364,6 +365,7 @@ function changeGridType(type) {
         disableSlot(7);
         disableSlot(8);
         disableSlot(9);
+        $("#outputQuantityBox").show();
     }
     if (type == "brewing") {
         disableSlot(1);
@@ -375,6 +377,7 @@ function changeGridType(type) {
         disableSlot(7);
         disableSlot(8);
         disableSlot(9);
+        $("#outputQuantityBox").hide();
     }
 }
 function enableSlot(num) {

@@ -1,4 +1,4 @@
-const appVersion = "0.5.29";
+const appVersion = "0.5.30";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -677,7 +677,7 @@ function waitForIframeReady(iframe, propName) {
 }
 
 
-function parseCraftingGrid(grid, type) {
+function parseCraftingGrid(grid) {
   // Normalize to 3x3 item-only array
   const items = grid.slice(0, 9).map(cell => cell?.[0] ?? "");
 
@@ -1086,15 +1086,14 @@ async function exportProj() {
       } else if (role == "Recipe") {
         let craftingGrid = elementFile.craftingGrid;
         let exportObj = {
-          "format_version": formatVersion,
-          "minecraft:recipe_shaped": {}
+          "format_version": formatVersion
         };
         let parsedGrid;
         if (elementFile.recipeType == "crafting") {
           parsedGrid = parseCraftingGrid(craftingGrid, "crafting");
           exportObj["minecraft:recipe_shaped"] = {
             "description": {
-              "identifier": craftingGrid[9]
+              "identifier": elementFile.id
             },
             "tags": ["crafting_table"],
             "pattern": parsedGrid[0],
@@ -1107,7 +1106,41 @@ async function exportProj() {
             ]
           };
           exportedFile1 = JSON.stringify(exportObj, null, 4);
-          exportZip1.folder("recipes").folder("crafting").file(`${elementFile.id}.json`, exportedFile1);
+          exportZip1.folder("recipes").file(`${elementFile.id}.json`, exportedFile1);
+        } else if (elementFile.recipeType == "crafting_shapeless") {
+          exportObj["minecraft:recipe_shapeless"] = {
+            "description": {
+              "identifier": elementFile.id
+            },
+            "tags": ["crafting_table"],
+            "ingredients": craftingGrid.slice(0, -1).map(v => v[0]).filter(Boolean);,
+            "result": [
+              {
+                "item": craftingGrid[9],
+                "count": elementFile.outputQuantity
+              }
+            ]
+          };
+          exportedFile1 = JSON.stringify(exportObj, null, 4);
+          exportZip1.folder("recipes").file(`${elementFile.id}.json`, exportedFile1);
+        } else if (elementFile.recipeType == "stonecutter") {
+          exportObj["minecraft:recipe_stonecutter"] = {
+            "description": {
+              "description": {
+                "identifier": elementFile.id
+              },
+              "tags": ["stonecutter"],
+              "input": craftingGrid[5],
+              "output": {
+                "item": craftingGrid[9],
+                "count": elementFile.outputQuantity
+              }
+            }
+          };
+          exportedFile1 = JSON.stringify(exportObj, null, 4);
+          exportZip1.folder("recipes").file(`${elementFile.id}.json`, exportedFile1);
+        } else if (elementFile.recipeType == "brewing") {
+          exportObj[""]
         }
       } else if (role == "Entity") {
 
@@ -1829,6 +1862,7 @@ function getCustomItems(mode) {
     projZip.folder("elements").file(elementsList[i]).async("string").then(async function (data) {
       let elementObj = JSON.parse(data);
       if ((elementObj.type == "Item" && mode != "Block") || (elementObj.type == "Block" && mode != "Item")) {
+        elementObj.id = `${projManifest.namespace}:${elementObj.id}`;
         itemsList.push(elementObj);
       }
     });

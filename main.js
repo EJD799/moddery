@@ -1,4 +1,4 @@
-const appVersion = "0.5.51";
+const appVersion = "0.5.52";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -883,9 +883,7 @@ function parseItemComponents(file) {
     newObj["minecraft:repairable"] = {
       "repair_items": [
         {
-          "items": [
-            component.items.split(",")
-          ],
+          "items": component.items.split(","),
           "repair_amount": component.repair_amount
         }
       ]

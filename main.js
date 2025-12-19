@@ -1,4 +1,4 @@
-const appVersion = "0.5.46";
+const appVersion = "0.5.47";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -736,8 +736,10 @@ function parseItemComponents(file) {
     newObj["minecraft:block_placer"] = {
       "block": component.block,
       "replace_block_item": component.replace_block_item,
-      "use_on": component.use_on.split(",")
     };
+    if (component.use_on) {
+      newObj["mincraft:block_placer"].use_on = component.use_on.split(",");
+    }
   }
   if (keys.includes("Bundle Interaction")) {
     let component = components["Bundle Interaction"];

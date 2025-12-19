@@ -757,14 +757,14 @@ function parseItemComponents(file) {
       "composting_chance": Number(component.composting_chance)
     };
   }
-  if (keys.includes("Cooldown")) {
+  /*if (keys.includes("Cooldown")) {
     let component = components["Cooldown"];
     newObj["minecraft:cooldown"] = {
       "category": `${projManifest.namespace}:cooldown_${(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0')}`,
       "duration": Number(component.duration),
       "type": "use"
     };
-  }
+  }*/
   if (keys.includes("Damage")) {
     let component = components["Damage"];
     newObj["minecraft:damage"] = Number(component.main);
@@ -1373,6 +1373,15 @@ async function exportProj() {
         let parsedGrid;
         if (elementFile.recipeType == "crafting") {
           parsedGrid = parseCraftingGrid(craftingGrid, "crafting");
+          let ingredients = Object.values(parsedGrid[1]);
+          let unlock = [];
+          for (let j = 0; j < ingredients.length; j++) {
+            unlock.push({
+              {
+                "item": ingredients[j]
+              }
+            });
+          }
           exportObj["minecraft:recipe_shaped"] = {
             "description": {
               "identifier": namespacedID
@@ -1380,6 +1389,7 @@ async function exportProj() {
             "tags": ["crafting_table"],
             "pattern": parsedGrid[0],
             "key": parsedGrid[1],
+            "unlock": unlock,
             "result": [
               {
                 "item": craftingGrid[9][0],
@@ -1390,12 +1400,22 @@ async function exportProj() {
           exportedFile1 = JSON.stringify(exportObj, null, 4);
           exportZip1.folder("recipes").file(`${elementFile.id}.json`, exportedFile1);
         } else if (elementFile.recipeType == "crafting_shapeless") {
+          let ingredients = craftingGrid.slice(0, -1).map(v => v[0]).filter(Boolean);
+          let unlock = [];
+          for (let j = 0; j < ingredients.length; j++) {
+            unlock.push({
+              {
+                "item": ingredients[j]
+              }
+            });
+          }
           exportObj["minecraft:recipe_shapeless"] = {
             "description": {
               "identifier": namespacedID
             },
             "tags": ["crafting_table"],
-            "ingredients": craftingGrid.slice(0, -1).map(v => v[0]).filter(Boolean),
+            "ingredients": ingredients,
+            "unlock": unlock,
             "result": [
               {
                 "item": craftingGrid[9][0],

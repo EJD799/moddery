@@ -1,4 +1,4 @@
-const appVersion = "0.5.45";
+const appVersion = "0.5.46";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -742,7 +742,7 @@ function parseItemComponents(file) {
   if (keys.includes("Bundle Interaction")) {
     let component = components["Bundle Interaction"];
     newObj["minecraft:bundle_interaction"] = {
-      "num_viewable_slots": component.num_viewable_slots
+      "num_viewable_slots": Number(component.num_viewable_slots)
     };
   }
   if (keys.includes("Can Destroy in Creative")) {
@@ -752,20 +752,20 @@ function parseItemComponents(file) {
   if (keys.includes("Compostable")) {
     let component = components["Compostable"];
     newObj["minecraft:compostable"] = {
-      "composting_chance": component.composting_chance
+      "composting_chance": Number(component.composting_chance)
     };
   }
   if (keys.includes("Cooldown")) {
     let component = components["Cooldown"];
     newObj["minecraft:cooldown"] = {
       "category": `${projManifest.namespace}:cooldown_${(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0')}`,
-      "duration": component.duration,
+      "duration": Number(component.duration),
       "type": "use"
     };
   }
   if (keys.includes("Damage")) {
     let component = components["Damage"];
-    newObj["minecraft:damage"] = component.main;
+    newObj["minecraft:damage"] = Number(component.main);
   }
   if (keys.includes("Digger")) {
     let component = components["Digger"];
@@ -776,7 +776,7 @@ function parseItemComponents(file) {
           "block": {
             "tags": component.block
           },
-          "speed": component.speed
+          "speed": Number(component.speed)
         }
       ]
     };
@@ -784,10 +784,10 @@ function parseItemComponents(file) {
   if (keys.includes("Durability")) {
     let component = components["Durability"];
     newObj["minecraft:durability"] = {
-      "max_durability": component.max_durability,
+      "max_durability": Number(component.max_durability),
       "damage_chance": {
-        "min": component.damage_chance,
-        "max": component.damage_chance
+        "min": Number(component.damage_chance),
+        "max": Number(component.damage_chance)
       }
     };
   }
@@ -801,7 +801,7 @@ function parseItemComponents(file) {
     let component = components["Enchantable"];
     newObj["minecraft:enchantable"] = {
       "slot": component.slot,
-      "value": component.value
+      "value": Number(component.value)
     };
   }
   if (keys.includes("Entity Placer")) {
@@ -822,8 +822,8 @@ function parseItemComponents(file) {
     let component = components["Food"];
     newObj["minecraft:food"] = {
       "can_always_eat": component.can_always_eat,
-      "nutrition": component.nutrition,
-      "saturation_modifier": component.saturation_modifier,
+      "nutrition": Number(component.nutrition),
+      "saturation_modifier": Number(component.saturation_modifier),
     };
     if (component.using_converts_to) {
       newObj["minecraft:food"].using_converts_to = component.using_converts_to;
@@ -832,7 +832,7 @@ function parseItemComponents(file) {
   if (keys.includes("Fuel")) {
     let component = components["Fuel"];
     newObj["minecraft:fuel"] = {
-      "duration": component.duration
+      "duration": Number(component.duration)
     };
   }
   if (keys.includes("Glint")) {
@@ -860,7 +860,7 @@ function parseItemComponents(file) {
   if (keys.includes("Projectile")) {
     let component = components["Projectile"];
     newObj["minecraft:projectile"] = {
-      "minimum_critical_power": component.minimum_critical_power,
+      "minimum_critical_power": Number(component.minimum_critical_power),
       "projectile_entity": component.projectile_entity
     };
   }
@@ -871,8 +871,8 @@ function parseItemComponents(file) {
   if (keys.includes("Record")) {
     let component = components["Record"];
     newObj["minecraft:record"] = {
-      "comparator_signal": component.comparator_signal,
-      "duration": component.duration,
+      "comparator_signal": Number(component.comparator_signal),
+      "duration": Number(component.duration),
       "sound_event": component.sound_event
     };
   }
@@ -900,7 +900,7 @@ function parseItemComponents(file) {
           "use_in_creative": true
         }
       ],
-      "max_draw_duration": component.max_draw_duration,
+      "max_draw_duration": Number(component.max_draw_duration),
       "scale_power_by_draw_duration": component.scale_power_by_draw_duration,
       "charge_on_draw": component.charge_on_draw
     };
@@ -912,7 +912,7 @@ function parseItemComponents(file) {
   if (keys.includes("Storage Item")) {
     let component = components["Storage Item"];
     newObj["minecraft:storage_item"] = {
-      "max_slots": component.max_slots,
+      "max_slots": Number(component.max_slots),
       "allow_nested_storage_items": component.allow_nested_storage_items,
     };
     if (component.allowed_items) {
@@ -925,7 +925,7 @@ function parseItemComponents(file) {
   if (keys.includes("Swing Duration")) {
     let component = components["Swing Duration"];
     newObj["minecraft:swing_duration"] = {
-      "value": component.value
+      "value": Number(component.value)
     };
   }
   if (keys.includes("Tags")) {
@@ -938,8 +938,8 @@ function parseItemComponents(file) {
     let component = components["Throwable"];
     newObj["minecraft:throwable"] = {
       "do_swing_animation": component.do_swing_animation,
-      "launch_power_scale": component.launch_power_scale,
-      "max_launch_power": component.max_launch_power,
+      "launch_power_scale": Number(component.launch_power_scale),
+      "max_launch_power": Number(component.max_launch_power),
       "scale_power_by_draw_duration": false,
       "min_draw_duration": -1,
       "max_draw_duration": -1
@@ -954,14 +954,14 @@ function parseItemComponents(file) {
     newObj["minecraft:use_modifiers"] = {
       "emit_vibrations": component.emit_vibrations,
       "movement_modifer": component.movement_modifer,
-      "use_duration": component.use_duration
+      "use_duration": Number(component.use_duration)
     };
   }
   if (keys.includes("Wearable")) {
     let component = components["Wearable"];
     newObj["minecraft:wearable"] = {
       "slot": component.slot,
-      "protection": component.protection,
+      "protection": Number(component.protection),
       "hides_player_location": component.hides_player_location
     };
   }

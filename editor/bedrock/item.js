@@ -611,12 +611,12 @@ const componentDefinitions = {
         name: "Use Modifiers",
         id: "minecraft:use_modifiers",
         inputs: [
-            {
+            /*{
                 type: "boolean",
                 name: "emit_vibrations",
                 label: "Emit Vibrations",
                 tooltip: "Whether the item emits vibrations when it is used."
-            },
+            },*/
             {
                 type: "number",
                 name: "movement_modifier",

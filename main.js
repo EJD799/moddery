@@ -952,7 +952,7 @@ function parseItemComponents(file) {
   if (keys.includes("Use Modifiers")) {
     let component = components["Use Modifiers"];
     newObj["minecraft:use_modifiers"] = {
-      "emit_vibrations": component.emit_vibrations,
+      //"emit_vibrations": component.emit_vibrations,
       "movement_modifer": component.movement_modifer,
       "use_duration": Number(component.use_duration)
     };

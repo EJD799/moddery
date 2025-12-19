@@ -1,4 +1,4 @@
-const appVersion = "0.5.47";
+const appVersion = "0.5.49";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1377,9 +1377,7 @@ async function exportProj() {
           let unlock = [];
           for (let j = 0; j < ingredients.length; j++) {
             unlock.push({
-              {
-                "item": ingredients[j]
-              }
+              "item": ingredients[j]
             });
           }
           exportObj["minecraft:recipe_shaped"] = {
@@ -1404,9 +1402,7 @@ async function exportProj() {
           let unlock = [];
           for (let j = 0; j < ingredients.length; j++) {
             unlock.push({
-              {
-                "item": ingredients[j]
-              }
+              "item": ingredients[j]
             });
           }
           exportObj["minecraft:recipe_shapeless"] = {

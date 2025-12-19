@@ -1,4 +1,4 @@
-const appVersion = "0.5.49";
+const appVersion = "0.5.50";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -726,7 +726,7 @@ function parseItemComponents(file) {
   let components = file.components;
   let keys = Object.keys(components);
   let newObj = {};
-  newObj["minecraft:max_stack_size"] = file.maxStackSize;
+  newObj["minecraft:max_stack_size"] = Number(file.maxStackSize);
   if (keys.includes("Allow Off Hand")) {
     let component = components["Allow Off Hand"];
     newObj["minecraft:allow_off_hand"] = component.main;

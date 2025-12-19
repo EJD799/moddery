@@ -1,4 +1,4 @@
-const appVersion = "0.5.52";
+const appVersion = "0.5.53";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1045,7 +1045,7 @@ async function exportProj() {
     bpManifest.modules.push({
       "type": "script",
       "language": "javascript",
-      "entry": scriptInfoFile?.id ?? "",
+      "entry": `scripts/${scriptInfoFile?.id ?? ""}.js`,
       "uuid": "53a5804b-fb35-4f7d-a89e-e4a925fadb77",
       "version": [1, 0, 0]
     });

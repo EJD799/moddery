@@ -795,7 +795,7 @@ function loadComponents(data) {
 }
 
 function updateInput(type, input, value) {
-    currentEntityComponents[type][input] = value;
+    currentEntityComponents[type.replace("_s_", " ")][input] = value;
 }
 
 function deleteComponent(name) {

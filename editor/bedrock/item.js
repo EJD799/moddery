@@ -1050,7 +1050,7 @@ function loadComponents(data) {
 }
 
 function updateInput(type, input, value) {
-    currentItemComponents[type][input] = value;
+    currentItemComponents[type.replace("_s_", " ")][input] = value;
 }
 
 function deleteComponent(name) {

@@ -700,8 +700,6 @@ function createComponent(type) {
 
                 // Add to dropdown registration list for jQuery UI
                 dropdownsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
-                console.log("dropdowns to register:");
-                console.log(dropdownsToRegister);
 
                 // Append to the element box
                 elementBox.appendChild(newComponentDOM);
@@ -781,20 +779,8 @@ function createComponent(type) {
         parentDiv.appendChild(elementBox);
         for (let k = 0; k < dropdownsToRegister.length; k++) {
             const [typeName, inputName] = dropdownsToRegister[k];
-            console.log("array:");
-            console.log(dropdownsToRegister);
-            console.log("k:");
-            console.log(k);
-            console.log("value:");
-            console.log(dropdownsToRegister[k]);
             $("#" + typeName + inputName).selectmenu({
                 change: function (event, ui) {
-                    console.log("type:");
-                    console.log(typeName);
-                    console.log("input:");
-                    console.log(inputName);
-                    console.log("value:");
-                    console.log(ui.item.value);
                     updateInput(typeName, inputName, ui.item.value);
                 }
             });
@@ -1094,17 +1080,11 @@ async function loadTextures(data) {
             $(`#blockTextureBtn${i + 1}`).button();
         }
         dataKeys = Object.keys(data.textures);
-        console.log("Object:");
-        console.log(data.textures);
-        console.log("Keys:");
-        console.log(dataKeys);
         if (data.textures["default"]) {
             document.getElementById(`textureNameText0`).innerHTML = data.textures["default"];
         }
         for (let i = 1; i < dataKeys.length - 1; i++) {
             j = i.toString();
-            console.log("i: " + i);
-            console.log(data.textures[j]);
             if (data.textures[j]) {
                 document.getElementById(`textureNameText${i}`).innerHTML = data.textures[j];
             }
@@ -1133,13 +1113,7 @@ function loadComponents(data) {
 }
 
 function updateInput(type, input, value) {
-    console.log("final type:");
-    console.log(type);
-    console.log("final input:");
-    console.log(input);
-    console.log("final value:");
-    console.log(value);
-    currentBlockComponents[type][input] = value;
+    currentBlockComponents[type.replace("_s_", " ")][input] = value;
 }
 
 function deleteComponent(name) {

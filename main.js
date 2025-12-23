@@ -1,4 +1,4 @@
-const appVersion = "0.5.69";
+const appVersion = "0.5.70";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1428,7 +1428,7 @@ async function exportProj() {
   let terrainTextureFile = {};
   let languageFile = "";
   for (let i = 0; i < elementsList.length; i++) {
-    try {
+    //try {
       logExporter("Exporting element: " + elementsList[i], "info");
       let elementFile = JSON.parse(await projZip.folder("elements").file(elementsList[i]).async("string"));
       let namespacedID = `${projManifest.namespace}:${elementFile.id}`;
@@ -1529,6 +1529,8 @@ async function exportProj() {
           }
           let textureID = `${projManifest.namespace}:${(texturesObj[texturesKeys[j]]).replace(".png", "")}`;
           if (!fileListInFolder("textures/blocks", false, exportZip2).includes(texturesObj[texturesKeys[j]])) {
+            console.log(texturesObj);
+            console.log(j);
             let texture = await projZip.folder("assets").file(texturesObj[texturesKeys[j]]).async("blob");
             exportZip2.folder("textures").folder("blocks").file(texturesObj[texturesKeys[j]], texture);
           }
@@ -1946,9 +1948,9 @@ async function exportProj() {
         exportedFile1 = JSON.stringify(exportObj, null, 4);
         exportZip1.folder("trading").file(`${elementFile.id}.json`, exportedFile1);
       }
-    } catch(err) {
+    /*} catch(err) {
       logExporter(err, "error");
-    }
+    }*/
     loaderText.innerHTML = `Exporting Project... (${Math.round((loaderProgress.value / progressBarMax) * 100)}%)`;
     loaderProgress.value = (i + 1).toString();
   }

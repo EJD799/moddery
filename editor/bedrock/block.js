@@ -231,6 +231,19 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Interactable": {
+        name: "Interactable",
+        id: "interactable",
+        inputs: [
+            {
+                type: "boolean",
+                name: "main",
+                label: "Interactable",
+                tooltip: "Whether interaction can be detected using scripting."
+            }
+        ],
+        requires: false
+    }
     "Light Dampening": {
         name: "Light Dampening",
         id: "minecraft:light_dampening",

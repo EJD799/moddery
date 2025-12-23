@@ -1,4 +1,4 @@
-const appVersion = "0.5.53";
+const appVersion = "0.5.54";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1137,7 +1137,7 @@ async function exportProj() {
           let texture = await projZip.folder("assets").file(elementFile.texture).async("blob");
           exportZip2.folder("textures").folder("items").file(elementFile.texture, texture);
         }
-        languageFile += `item.${namespacedID}=${elementFile.displayName}`
+        languageFile += `item.${namespacedID}=${elementFile.displayName}`;
         let exportObj = {
           "format_version": formatVersion,
           "minecraft:item": {
@@ -1153,7 +1153,57 @@ async function exportProj() {
         exportedFile1 = JSON.stringify(exportObj, null, 4);
         exportZip1.folder("items").file(`${elementFile.id}.json`, exportedFile1);
       } else if (role == "Block") {
-
+        let blockComponents = parseBlockComponents(elementFile);
+        let modelID;
+        let geoFile;
+        if (elementFile.model == "Full Block") {
+          modelID = "minecraft:geometry.full_block";
+        } else if (elementFile.model == "Plant") {
+          modelID = "minecraft:geometry.cross";
+        } else {
+          modelID = `geometry.${elementFile.model.replace(".geo.json", "")}`;
+          geoFile = await projZip.folder("assets").file(elementFile.model).async("string");
+          exportZip2.folder("models").folder("blocks").file(elementFile.model, geoFile);
+        }
+        blockComponents["minecraft:geometry"] = modelID;
+        let texturesObj = elementFile.textures;
+        if (texturesObj["item"]) {
+          delete texturesObj["item"];
+        }
+        let exportTextures = {};
+        for (let j = 0; j < Object.keys(texturesObj).length; j++) {
+          let materialName;
+          if (texturesObj[j] == "default") {
+            materialName = "*";
+          } else {
+            materialName = texturesObj[j];
+          }
+        }
+        let textureID = `${projManifest.namespace}:${elementFile.texture.replace(".png", "")}`;
+        if (!Object.keys(itemTextureFile.texture_data).includes(textureID)) {
+          itemTextureFile.texture_data[textureID] = {
+            "textures": `textures/items/${elementFile.texture.replace(".png", "")}`
+          };
+        }
+        if (!fileListInFolder("textures/items", false, exportZip2).includes(elementFile.texture)) {
+          let texture = await projZip.folder("assets").file(elementFile.texture).async("blob");
+          exportZip2.folder("textures").folder("blocks").file(elementFile.texture, texture);
+        }
+        languageFile += `tile.${namespacedID}.name=${elementFile.displayName}`;
+        let exportObj = {
+          "format_version": formatVersion,
+          "minecraft:item": {
+            "description": {
+              "identifier": namespacedID,
+              "menu_category": {
+                "category": elementFile.invCategory
+              }
+            },
+            "components": itemComponents
+          }
+        };
+        exportedFile1 = JSON.stringify(exportObj, null, 4);
+        exportZip1.folder("blocks").file(`${elementFile.id}.json`, exportedFile1);
       } else if (role == "Structure") {
         let exportObj1 = {
           "format_version": formatVersion,

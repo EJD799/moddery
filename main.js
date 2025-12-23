@@ -1,4 +1,4 @@
-const appVersion = "0.5.74";
+const appVersion = "0.5.75";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1486,7 +1486,7 @@ async function exportProj() {
           let texture = await projZip.folder("assets").file(elementFile.texture).async("blob");
           exportZip2.folder("textures").folder("items").file(elementFile.texture, texture);
         }
-        languageFile += `item.${namespacedID}=${elementFile.displayName}`;
+        languageFile += `item.${namespacedID}=${elementFile.displayName}\n`;
         let exportObj = {
           "format_version": formatVersion,
           "minecraft:item": {
@@ -1555,7 +1555,7 @@ async function exportProj() {
             "material_instances": blockComponents["minecraft:material_instances"]
           };
         }
-        languageFile += `tile.${namespacedID}.name=${elementFile.displayName}`;
+        languageFile += `tile.${namespacedID}.name=${elementFile.displayName}\n`;
         let exportObj = {
           "format_version": formatVersion,
           "minecraft:block": {

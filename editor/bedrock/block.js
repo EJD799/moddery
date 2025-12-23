@@ -236,7 +236,7 @@ const componentDefinitions = {
             }
         ],
         requires: false
-    }
+    },
     "Light Dampening": {
         name: "Light Dampening",
         id: "minecraft:light_dampening",
@@ -356,7 +356,7 @@ const componentDefinitions = {
             }
         ],
         requires: false
-    }
+    },
     "Random Offset": {
         name: "Random Offset",
         id: "minecraft:random_offset",

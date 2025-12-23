@@ -208,14 +208,7 @@ const componentDefinitions = {
     "Flower Pottable": {
         name: "Flower Pottable",
         id: "minecraft:flower_pottable",
-        inputs: [
-            {
-                type: "texture",
-                name: "texture",
-                label: "Texture",
-                tooltip: "The texture for this block to use when inside a flower pot."
-            }
-        ],
+        inputs: [],
         requires: false
     },
     "Friction": {

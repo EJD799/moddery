@@ -1,4 +1,4 @@
-const appVersion = "0.5.59";
+const appVersion = "0.5.60";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1172,6 +1172,10 @@ function parseBlockComponents(file) {
       };
     }
   }
+  if (keys.includes("Flower Pottable")) {
+    let component = components["Flower Pottable"];
+    newObj1["minecraft:flower_pottable"] = {};
+  }
 
   /*if (keys.includes("")) {
     let component = components[""];
@@ -1409,6 +1413,12 @@ async function exportProj() {
           }
           blockComponents["minecraft:material_instances"][materialName] = {
             "texture": textureID
+          };
+        }
+        if (typeof blockComponents["minecraft:flower_pottable"] == "object") {
+          blockComponents["minecraft:embedded_visual"] = {
+            "geometry": modelID,
+            "material_instances": blockComponents["minecraft:material_instances"]
           };
         }
         languageFile += `tile.${namespacedID}.name=${elementFile.displayName}`;

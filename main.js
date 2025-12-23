@@ -1,4 +1,4 @@
-const appVersion = "0.5.60";
+const appVersion = "0.5.61";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1176,6 +1176,40 @@ function parseBlockComponents(file) {
     let component = components["Flower Pottable"];
     newObj1["minecraft:flower_pottable"] = {};
   }
+  if (keys.includes("Friction")) {
+    let component = components["Friction"];
+    newObj1["minecraft:friction"] = Number(component.main);
+  }
+  if (keys.includes("Interactable")) {
+    let component = components["Interactable"];
+    
+  }
+  if (keys.includes("Light Dampening")) {
+    let component = components["Light Dampening"];
+    newObj1["minecraft:light_dampening"] = Number(component.main);
+  }
+  if (keys.includes("Light Emission")) {
+    let component = components["Light Emission"];
+    newObj1["minecraft:light_emission"] = Number(component.main);
+  }
+  if (keys.includes("Liquid Detection")) {
+    let component = components["Liquid Detection"];
+    newObj1["minecraft:liquid_detection"] = {
+      "detection_rules": [
+        {
+          "liquid_type": "water",
+          "can_contain_liquid": component.can_contain_liquid,
+          "on_liquid_touches": component.on_liquid_touches
+        }
+      ]
+    };
+  }
+  if (keys.includes("Loot")) {
+    let component = components["Loot"];
+    let lootTableFile = JSON.parse(await projZip.folder("elements").file(`${component.loot_table}.json`).async("string"));
+    newObj1["minecraft:loot"] = `loot_tables/${lootTableFile.id}.json`;
+  }
+  
 
   /*if (keys.includes("")) {
     let component = components[""];

@@ -1,4 +1,4 @@
-const appVersion = "0.5.67";
+const appVersion = "0.5.68";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1182,9 +1182,11 @@ async function parseBlockComponents(file) {
   }
   if (keys.includes("Interactable")) {
     let component = components["Interactable"];
-    newObj1["minecraft:custom_components"] = [
-      `${projManifest.namespace}:interactable`
-    ];
+    if (component.main) {
+      newObj1["minecraft:custom_components"] = [
+        `${projManifest.namespace}:interactable`
+      ];
+    }
   }
   if (keys.includes("Light Dampening")) {
     let component = components["Light Dampening"];

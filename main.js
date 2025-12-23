@@ -1,4 +1,4 @@
-const appVersion = "0.5.80";
+const appVersion = "0.5.81";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1049,7 +1049,7 @@ async function parseBlockComponents(file) {
         }
       ];
     }
-    newObj2 += permutationsToAdd;
+    newObj2.push(...permutationsToAdd);
   }
   if (keys.includes("Placement Position")) {
     let component = components["Placement Position"];
@@ -1112,7 +1112,7 @@ async function parseBlockComponents(file) {
         }
       ];
     }
-    newObj2 += permutationsToAdd;
+    newObj2.push(...permutationsToAdd);
   }
   if (keys.includes("Collision Box")) {
     let component = components["Collision Box"];

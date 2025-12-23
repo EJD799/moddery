@@ -973,7 +973,7 @@ async function selectModel() {
 
 useCustomItemBox.addEventListener("change", function(){
     if (useCustomItemBox.checked) {
-        $("#itemTextureDiv").show();
+        //$("#itemTextureDiv").show();
     } else {
         $("#itemTextureDiv").hide();
     }
@@ -1007,7 +1007,7 @@ function loadProject(data) {
     loadTextures(data);
     loadComponents(data.components);
     if (useCustomItemBox.checked) {
-        $("#itemTextureDiv").show();
+        //$("#itemTextureDiv").show();
     } else {
         $("#itemTextureDiv").hide();
     }

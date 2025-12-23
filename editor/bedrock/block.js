@@ -339,6 +339,24 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Precipitation Interactions": {
+        name: "Precipitation Interactions",
+        id: "minecraft:precipitation_interactions",
+        inputs: [
+            {
+                type: "dropdown",
+                name: "precipitation_behavior",
+                label: "Precipitation Behavior",
+                tooltip: "How the block interacts with rain and snow.",
+                options: [
+                    "obstruct_rain_accumulate_snow",
+                    "obstruct_rain",
+                    "none"
+                ]
+            }
+        ],
+        requires: false
+    }
     "Random Offset": {
         name: "Random Offset",
         id: "minecraft:random_offset",

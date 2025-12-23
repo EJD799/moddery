@@ -1,4 +1,4 @@
-const appVersion = "0.5.63";
+const appVersion = "0.5.64";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1182,7 +1182,9 @@ function parseBlockComponents(file) {
   }
   if (keys.includes("Interactable")) {
     let component = components["Interactable"];
-    
+    newObj1["minecraft:custom_components"] = [
+      `${projManifest.namespace}:interactable`
+    ];
   }
   if (keys.includes("Light Dampening")) {
     let component = components["Light Dampening"];
@@ -1220,7 +1222,12 @@ function parseBlockComponents(file) {
       "sticky": component.sticky
     };
   }
-
+  if (keys.includes("Precipitation Interactions")) {
+    let component = components["Precipitation Interactions"];
+    newObj1["minecraft:precipitation_interactions"] = {
+      "precipitation_behavior": component.precipitation_behavior
+    };
+  }
   if (keys.includes("Random Offset")) {
     let component = components["Random Offset"];
     newObj1["minecraft:random_offset"] = {
@@ -1445,6 +1452,16 @@ async function exportProj() {
         exporterFrame.contentWindow.loadProject(elementCode);
         if (exporterFrame.contentWindow?.generateCode) {
           exportedFile1 = exporterFrame.contentWindow.generateCode();
+          if (projManifest.scriptEntry == elementFile.name) {
+            exportedFile1 += `world.beforeEvents.worldInitialize.subscribe(data => {
+    data.blockComponentRegistry.registerCustomComponent(
+        "${projManifest.namespace}:interactable",
+        {
+            onPlayerInteract() {}
+        }
+    );
+});`;
+          }
         } else {
           exportedFile1 = "";
         }

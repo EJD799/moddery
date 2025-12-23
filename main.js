@@ -1,4 +1,4 @@
-const appVersion = "0.5.64";
+const appVersion = "0.5.65";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -968,7 +968,7 @@ function parseItemComponents(file) {
   return newObj;
 }
 
-function parseBlockComponents(file) {
+async function parseBlockComponents(file) {
   let components = file.components;
   let keys = Object.keys(components);
   let newObj1 = {};
@@ -1495,7 +1495,7 @@ async function exportProj() {
         exportedFile1 = JSON.stringify(exportObj, null, 4);
         exportZip1.folder("items").file(`${elementFile.id}.json`, exportedFile1);
       } else if (role == "Block") {
-        let parsedFile = parseBlockComponents(elementFile);
+        let parsedFile = await parseBlockComponents(elementFile);
         let blockComponents = parsedFile[0];
         let blockPermutations = parsedFile[1];
         let blockTraits = parsedFile[2];

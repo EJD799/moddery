@@ -1,4 +1,4 @@
-const appVersion = "0.5.73";
+const appVersion = "0.5.74";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1525,27 +1525,29 @@ async function exportProj() {
         let texturesKeys = Object.keys(texturesObj);
         blockComponents["minecraft:material_instances"] = {};
         for (let j = 0; j < texturesKeys.length; j++) {
-          let materialName;
-          if (texturesObj[texturesKeys[j]] == "default") {
-            materialName = "*";
-          } else {
-            materialName = texturesObj[texturesKeys[j]];
-          }
-          let textureID = `${projManifest.namespace}:${(texturesObj[texturesKeys[j]]).replace(".png", "")}`;
-          if (!fileListInFolder("textures/blocks", false, exportZip2).includes(texturesObj[texturesKeys[j]])) {
-            console.log(texturesObj);
-            console.log(j);
-            let texture = await projZip.folder("assets").file(texturesObj[texturesKeys[j]]).async("blob");
-            exportZip2.folder("textures").folder("blocks").file(texturesObj[texturesKeys[j]], texture);
-          }
-          if (!Object.keys(terrainTextureFile.texture_data).includes(textureID)) {
-            terrainTextureFile.texture_data[textureID] = {
-              "textures": `textures/blocks/${(texturesObj[texturesKeys[j]]).replace(".png", "")}`
+          if (texturesKeys[j] != "item") {
+            let materialName;
+            if (texturesObj[texturesKeys[j]] == "default") {
+              materialName = "*";
+            } else {
+              materialName = texturesObj[texturesKeys[j]];
+            }
+            let textureID = `${projManifest.namespace}:${(texturesObj[texturesKeys[j]]).replace(".png", "")}`;
+            if (!fileListInFolder("textures/blocks", false, exportZip2).includes(texturesObj[texturesKeys[j]])) {
+              console.log(texturesObj);
+              console.log(j);
+              let texture = await projZip.folder("assets").file(texturesObj[texturesKeys[j]]).async("blob");
+              exportZip2.folder("textures").folder("blocks").file(texturesObj[texturesKeys[j]], texture);
+            }
+            if (!Object.keys(terrainTextureFile.texture_data).includes(textureID)) {
+              terrainTextureFile.texture_data[textureID] = {
+                "textures": `textures/blocks/${(texturesObj[texturesKeys[j]]).replace(".png", "")}`
+              };
+            }
+            blockComponents["minecraft:material_instances"][materialName] = {
+              "texture": textureID
             };
           }
-          blockComponents["minecraft:material_instances"][materialName] = {
-            "texture": textureID
-          };
         }
         if (typeof blockComponents["minecraft:flower_pottable"] == "object") {
           blockComponents["minecraft:embedded_visual"] = {

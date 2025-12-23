@@ -1,4 +1,4 @@
-const appVersion = "0.5.70";
+const appVersion = "0.5.71";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1211,7 +1211,7 @@ async function parseBlockComponents(file) {
   }
   if (keys.includes("Loot")) {
     let component = components["Loot"];
-    let lootTableFile = JSON.parse(await projZip.folder("elements").file(`${component.loot_table}.json`).async("string"));
+    let lootTableFile = JSON.parse(await projZip.folder("elements").file(`${component.main}.json`).async("string"));
     newObj1["minecraft:loot"] = `loot_tables/${lootTableFile.id}.json`;
   }
   if (keys.includes("Map Color")) {

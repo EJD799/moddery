@@ -1,4 +1,4 @@
-const appVersion = "0.5.58";
+const appVersion = "0.5.59";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -975,13 +975,6 @@ function parseBlockComponents(file) {
   let newObj2 = [];
   let newObj3 = {};
 
-  /*if (keys.includes("")) {
-    let component = components[""];
-    newObj1["minecraft:"] = {
-
-    };
-  }*/
-
   if (keys.includes("Placement Direction")) {
     let component = components["Placement Direction"];
     newObj3["minecraft:placement_direction"] = {
@@ -1121,12 +1114,71 @@ function parseBlockComponents(file) {
     }
     newObj2 += permutationsToAdd;
   }
-  if (keys.includes("")) {
+  if (keys.includes("Collision Box")) {
+    let component = components["Collision Box"];
+    if (component.disable) {
+      newObj1["minecraft:collision_box"] = false;
+    } else {
+      let originV3 = component.origin.split(",").map(str => Number(str));
+      let sizeV3 = component.size.split(",").map(str => Number(str));
+      newObj1["minecraft:collision_box"] = {
+        "origin": originV3,
+        "size": sizeV3
+      };
+    }
+  }
+  if (keys.includes("Crafting Table")) {
+    let component = components["Crafting Table"];
+    newObj1["minecraft:crafting_table"] = {
+      "table_name": component.table_name,
+      "crafting_tags": [component.crafting_tags.split(",")]
+    };
+  }
+  if (keys.includes("Destructible by Explosion")) {
+    let component = components["Destructible by Explosion"];
+    if (!component.main) {
+      newObj1["minecraft:destructible_by_explosion"] = false;
+    } else {
+      newObj1["minecraft:destructible_by_explosion"] = {
+        "explosion_resistance": Number(component.explosion_resistance)
+      };
+    }
+  }
+  if (keys.includes("Destructible by Mining")) {
+    let component = components["Destructible by Mining"];
+    if (!component.main) {
+      newObj1["minecraft:destructible_by_mining"] = false;
+    } else if (component.seconds_to_destroy == 0) {
+      newObj1["minecraft:destructible_by_mining"] = true;
+    } else {
+      newObj1["minecraft:destructible_by_mining"] = {
+        "seconds_to_destroy": Number(component.seconds_to_destroy)
+      };
+    }
+  }
+  if (keys.includes("Destruction Particles")) {
+    let component = components["Destruction Particles"];
+    newObj1["minecraft:destruction_particles"] = {
+      "particle_count": component.particle_count
+    };
+  }
+  if (keys.includes("Flammable")) {
+    if (!component.main) {
+      newObj1["minecraft:flammable"] = false;
+    } else {
+      newObj1["minecraft:flammable"] = {
+        "catch_chance_modifier": Number(component.catch_chance_modifier),
+        "destroy_chance_modifier": Number(component.destroy_chance_modifier)
+      };
+    }
+  }
+
+  /*if (keys.includes("")) {
     let component = components[""];
     newObj1["minecraft:"] = {
 
     };
-  }
+  }*/
 
   return [newObj1, newObj2, newObj3];
 }

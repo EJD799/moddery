@@ -1,4 +1,4 @@
-const appVersion = "0.5.68";
+const appVersion = "0.5.69";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1163,6 +1163,7 @@ async function parseBlockComponents(file) {
     };
   }
   if (keys.includes("Flammable")) {
+    let component = components["Flammable"];
     if (!component.main) {
       newObj1["minecraft:flammable"] = false;
     } else {
@@ -1498,9 +1499,9 @@ async function exportProj() {
         exportZip1.folder("items").file(`${elementFile.id}.json`, exportedFile1);
       } else if (role == "Block") {
         let parsedFile = await parseBlockComponents(elementFile);
-        let blockComponents = parsedFile[0];
-        let blockPermutations = parsedFile[1];
-        let blockTraits = parsedFile[2];
+        let blockComponents = parsedFile?.[0] ?? {};
+        let blockPermutations = parsedFile?.[1] ?? [];
+        let blockTraits = parsedFile?.[2] ?? {};
         let modelID;
         let geoFile;
         if (elementFile.model == "Full Block") {

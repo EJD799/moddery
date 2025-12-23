@@ -433,7 +433,7 @@ const componentDefinitions = {
                 type: "list",
                 name: "connected_faces",
                 label: "Power Directions",
-                tooltip: "Which directions the blocks outputs power. Separate items with commas, and do not add spaces. Items can be \"north\", \"south\", \"east\", \"west\", \"up\", or \"down\""
+                tooltip: "Which directions the blocks outputs power. Separate items with commas, and do not add spaces. Items can be \"north\", \"south\", \"east\", \"west\", \"up\", or \"down\". Leave blank for all block faces."
             }
         ],
         requires: false

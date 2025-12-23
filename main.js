@@ -1,4 +1,4 @@
-const appVersion = "0.5.62";
+const appVersion = "0.5.63";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1246,6 +1246,41 @@ function parseBlockComponents(file) {
         }
       }
     };
+  }
+  if (keys.includes("Redstone Conductivity")) {
+    let component = components["Redstone Conductivity"];
+    newObj1["minecraft:redstone_conductivity"] = {
+      "redstone_conductor": component.redstone_conductor,
+      "allows_wire_to_step_down": component.allows_wire_to_step_down
+    };
+  }
+  if (keys.includes("Redstone Producer")) {
+    let component = components["Redstone Producer"];
+    newObj1["minecraft:redstone_producer"] = {
+      "power": Number(component.power),
+    };
+    if (component.connected_faces) {
+      newObj1["minecraft:redstone_producer"].connected_faces = component.connected_faces;
+    }
+  }
+  if (keys.includes("Replaceable")) {
+    let component = components["Replaceable"];
+    if (component.main) {
+      newObj1["minecraft:replaceable"] = {};
+    }
+  }
+  if (keys.includes("Selection Box")) {
+    let component = components["Selection Box"];
+    if (component.disable) {
+      newObj1["minecraft:selection_box"] = false;
+    } else {
+      let originV3 = component.origin.split(",").map(str => Number(str));
+      let sizeV3 = component.size.split(",").map(str => Number(str));
+      newObj1["minecraft:selection_box"] = {
+        "origin": originV3,
+        "size": sizeV3
+      };
+    }
   }
 
   /*if (keys.includes("")) {

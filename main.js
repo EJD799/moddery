@@ -1,4 +1,4 @@
-const appVersion = "0.5.71";
+const appVersion = "0.5.72";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1425,7 +1425,11 @@ async function exportProj() {
     "texture_name": "atlas.items",
     "texture_data": {}
   };
-  let terrainTextureFile = {};
+  let terrainTextureFile = {
+    "resource_pack_name": projManifest.namespace,
+    "texture_name": "atlas.terrain",
+    "texture_data": {}
+  };
   let languageFile = "";
   for (let i = 0; i < elementsList.length; i++) {
     //try {

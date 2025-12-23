@@ -700,6 +700,8 @@ function createComponent(type) {
 
                 // Add to dropdown registration list for jQuery UI
                 dropdownsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
+                console.log("dropdowns to register:");
+                console.log(dropdownsToRegister);
 
                 // Append to the element box
                 elementBox.appendChild(newComponentDOM);
@@ -779,8 +781,20 @@ function createComponent(type) {
         parentDiv.appendChild(elementBox);
         for (let k = 0; k < dropdownsToRegister.length; k++) {
             const [typeName, inputName] = dropdownsToRegister[k];
+            console.log("array:");
+            console.log(dropdownsToRegister);
+            console.log("k:");
+            console.log(k);
+            console.log("value:");
+            console.log(dropdownsToRegister[k]);
             $("#" + typeName + inputName).selectmenu({
                 change: function (event, ui) {
+                    console.log("type:");
+                    console.log(typeName);
+                    console.log("input:");
+                    console.log(inputName);
+                    console.log("value:");
+                    console.log(ui.item.value);
                     updateInput(typeName, inputName, ui.item.value);
                 }
             });
@@ -1119,6 +1133,12 @@ function loadComponents(data) {
 }
 
 function updateInput(type, input, value) {
+    console.log("final type:");
+    console.log(type);
+    console.log("final input:");
+    console.log(input);
+    console.log("final value:");
+    console.log(value);
     currentBlockComponents[type][input] = value;
 }
 

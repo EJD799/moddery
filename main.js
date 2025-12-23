@@ -1,4 +1,4 @@
-const appVersion = "0.5.55";
+const appVersion = "0.5.56";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -968,6 +968,32 @@ function parseItemComponents(file) {
   return newObj;
 }
 
+function parseBlockComponents(file) {
+  let components = file.components;
+  let keys = Object.keys(components);
+  let newObj1 = {};
+  let newObj2 = [];
+  let newObj3 = {};
+
+  /*if (keys.includes("")) {
+    let component = components[""];
+    newObj1["minecraft:"] = {
+
+    };
+  }*/
+
+  if (keys.includes("Placement Direction")) {
+    let component = components["Placement Direction"];
+    newObj3["minecraft:placement_direction"] = {
+      "enabled_states": [component.type],
+      "y_rotation_offset": Number(component.y_rotation_offset)
+    };
+    
+  }
+
+  return [newObj1, newObj2, newObj3];
+}
+
 
 function logExporter(text, type = "info") {
   let textElement = document.createElement("span");
@@ -1153,7 +1179,10 @@ async function exportProj() {
         exportedFile1 = JSON.stringify(exportObj, null, 4);
         exportZip1.folder("items").file(`${elementFile.id}.json`, exportedFile1);
       } else if (role == "Block") {
-        let blockComponents = parseBlockComponents(elementFile);
+        let parsedFile = parseBlockComponents(elementFile);
+        let blockComponents = parsedFile[0];
+        let blockPermutations = parsedFile[1];
+        let blockTraits = parsedFile[2];
         let modelID;
         let geoFile;
         if (elementFile.model == "Full Block") {
@@ -1201,9 +1230,11 @@ async function exportProj() {
               "identifier": namespacedID,
               "menu_category": {
                 "category": elementFile.invCategory
-              }
+              },
+              "traits": blockTraits
             },
-            "components": blockComponents
+            "components": blockComponents,
+            "permutations": blockPermutations
           }
         };
         exportedFile1 = JSON.stringify(exportObj, null, 4);

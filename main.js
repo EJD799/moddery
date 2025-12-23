@@ -1,4 +1,4 @@
-const appVersion = "0.5.72";
+const appVersion = "0.5.73";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1519,10 +1519,10 @@ async function exportProj() {
         }
         blockComponents["minecraft:geometry"] = modelID;
         let texturesObj = elementFile.textures;
-        let texturesKeys = Object.keys(texturesObj);
         if (texturesObj["item"]) {
           delete texturesObj["item"];
         }
+        let texturesKeys = Object.keys(texturesObj);
         blockComponents["minecraft:material_instances"] = {};
         for (let j = 0; j < texturesKeys.length; j++) {
           let materialName;

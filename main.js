@@ -1,4 +1,4 @@
-const appVersion = "0.5.75";
+const appVersion = "0.5.76";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1510,8 +1510,47 @@ async function exportProj() {
         let geoFile;
         if (elementFile.model == "Full Block") {
           modelID = "minecraft:geometry.full_block";
+          geoFile = {
+            "minecraft:geometry": [
+              {
+                "bones": [
+                  {
+                    "name": "test_bone",
+                    "cubes": [
+                      {
+                        "uv": {
+                          "up":    { "material_instance": "up" },
+                          "down":  { "material_instance": "down" },
+                          "north": { "material_instance": "north" },
+                          "east":  { "material_instance": "east" },
+                          "west":  { "material_instance": "west" },
+                          "south": { "material_instance": "south" }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          };
         } else if (elementFile.model == "Plant") {
           modelID = "minecraft:geometry.cross";
+          geoFile = {
+            "minecraft:geometry": [
+              {
+                "bones": [
+                  {
+                    "name": "test_bone",
+                    "cubes": [
+                      {
+                        "uv": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          };
         } else {
           modelID = `geometry.${elementFile.model.replace(".geo.json", "")}`;
           geoFile = await projZip.folder("assets").file(elementFile.model).async("string");
@@ -1523,6 +1562,7 @@ async function exportProj() {
           delete texturesObj["item"];
         }
         let texturesKeys = Object.keys(texturesObj);
+        let materialInstances = getMaterialInstances(geoFile);
         blockComponents["minecraft:material_instances"] = {};
         for (let j = 0; j < texturesKeys.length; j++) {
           if (texturesKeys[j] != "item") {
@@ -1530,7 +1570,7 @@ async function exportProj() {
             if (texturesObj[texturesKeys[j]] == "default") {
               materialName = "*";
             } else {
-              materialName = texturesObj[texturesKeys[j]];
+              materialName = materialInstances[j];
             }
             let textureID = `${projManifest.namespace}:${(texturesObj[texturesKeys[j]]).replace(".png", "")}`;
             if (!fileListInFolder("textures/blocks", false, exportZip2).includes(texturesObj[texturesKeys[j]])) {

@@ -1,4 +1,4 @@
-const appVersion = "0.5.76";
+const appVersion = "0.5.77";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1567,7 +1567,7 @@ async function exportProj() {
         for (let j = 0; j < texturesKeys.length; j++) {
           if (texturesKeys[j] != "item") {
             let materialName;
-            if (texturesObj[texturesKeys[j]] == "default") {
+            if (texturesKeys[j] == "default") {
               materialName = "*";
             } else {
               materialName = materialInstances[j];

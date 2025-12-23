@@ -1,4 +1,4 @@
-const appVersion = "0.5.54";
+const appVersion = "0.5.55";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1167,39 +1167,43 @@ async function exportProj() {
         }
         blockComponents["minecraft:geometry"] = modelID;
         let texturesObj = elementFile.textures;
+        let texturesKeys = Object.keys(texturesObj);
         if (texturesObj["item"]) {
           delete texturesObj["item"];
         }
-        let exportTextures = {};
-        for (let j = 0; j < Object.keys(texturesObj).length; j++) {
+        blockComponents["minecraft:material_instances"] = {};
+        for (let j = 0; j < texturesKeys.length; j++) {
           let materialName;
-          if (texturesObj[j] == "default") {
+          if (texturesObj[texturesKeys[j]] == "default") {
             materialName = "*";
           } else {
-            materialName = texturesObj[j];
+            materialName = texturesObj[texturesKeys[j]];
           }
-        }
-        let textureID = `${projManifest.namespace}:${elementFile.texture.replace(".png", "")}`;
-        if (!Object.keys(itemTextureFile.texture_data).includes(textureID)) {
-          itemTextureFile.texture_data[textureID] = {
-            "textures": `textures/items/${elementFile.texture.replace(".png", "")}`
+          let textureID = `${projManifest.namespace}:${(texturesObj[texturesKeys[j]]).replace(".png", "")}`;
+          if (!fileListInFolder("textures/blocks", false, exportZip2).includes(texturesObj[texturesKeys[j]])) {
+            let texture = await projZip.folder("assets").file(texturesObj[texturesKeys[j]]).async("blob");
+            exportZip2.folder("textures").folder("blocks").file(texturesObj[texturesKeys[j]], texture);
+          }
+          if (!Object.keys(terrainTextureFile.texture_data).includes(textureID)) {
+            terrainTextureFile.texture_data[textureID] = {
+              "textures": `textures/blocks/${(texturesObj[texturesKeys[j]]).replace(".png", "")}`
+            };
+          }
+          blockComponents["minecraft:material_instances"][materialName] = {
+            "texture": textureID
           };
-        }
-        if (!fileListInFolder("textures/items", false, exportZip2).includes(elementFile.texture)) {
-          let texture = await projZip.folder("assets").file(elementFile.texture).async("blob");
-          exportZip2.folder("textures").folder("blocks").file(elementFile.texture, texture);
         }
         languageFile += `tile.${namespacedID}.name=${elementFile.displayName}`;
         let exportObj = {
           "format_version": formatVersion,
-          "minecraft:item": {
+          "minecraft:block": {
             "description": {
               "identifier": namespacedID,
               "menu_category": {
                 "category": elementFile.invCategory
               }
             },
-            "components": itemComponents
+            "components": blockComponents
           }
         };
         exportedFile1 = JSON.stringify(exportObj, null, 4);

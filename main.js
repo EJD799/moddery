@@ -1,4 +1,4 @@
-const appVersion = "0.5.56";
+const appVersion = "0.5.57";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -985,10 +985,84 @@ function parseBlockComponents(file) {
   if (keys.includes("Placement Direction")) {
     let component = components["Placement Direction"];
     newObj3["minecraft:placement_direction"] = {
-      "enabled_states": [component.type],
+      "enabled_states": [`minecraft:${component.type}`],
       "y_rotation_offset": Number(component.y_rotation_offset)
     };
-    
+    let permutationsToAdd;
+    if (component.type == "cardinal_direction") {
+      permutationsToAdd = [
+        {
+          "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+          "components": {
+            "minecraft:transformation": { "rotation": [0, 0, 0] }
+          }
+        },
+        {
+          "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+          "components": {
+            "minecraft:transformation": { "rotation": [0, 90, 0] }
+          }
+        },
+        {
+          "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+          "components": {
+            "minecraft:transformation": { "rotation": [0, 180, 0] }
+          }
+        },
+        {
+          "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+          "components": {
+            "minecraft:transformation": { "rotation": [0, -90, 0] }
+          }
+        }
+      ];
+    } else if (component.type == "facing_direction") {
+      permutationsToAdd = [
+        {
+          "condition": "q.block_state('minecraft:facing_direction') == 'down'",
+          "components": {
+            "minecraft:transformation": { "rotation": [90, 0, 0] }
+          }
+        },
+        {
+          "condition": "q.block_state('minecraft:facing_direction') == 'up'",
+          "components": {
+            "minecraft:transformation": { "rotation": [-90, 0, 0] }
+          }
+        },
+        {
+          "condition": "q.block_state('minecraft:facing_direction') == 'north'",
+          "components": {
+            "minecraft:transformation": { "rotation": [0, 0, 0] }
+          }
+        },
+        {
+          "condition": "q.block_state('minecraft:facing_direction') == 'west'",
+          "components": {
+            "minecraft:transformation": { "rotation": [0, 90, 0] }
+          }
+        },
+        {
+          "condition": "q.block_state('minecraft:facing_direction') == 'south'",
+          "components": {
+            "minecraft:transformation": { "rotation": [0, 180, 0] }
+          }
+        },
+        {
+          "condition": "q.block_state('minecraft:facing_direction') == 'east'",
+          "components": {
+            "minecraft:transformation": { "rotation": [0, -90, 0] }
+          }
+        }
+      ];
+    }
+    newObj2 += permutationsToAdd;
+  }
+  if (keys.includes("")) {
+    let component = components[""];
+    newObj1["minecraft:"] = {
+
+    };
   }
 
   return [newObj1, newObj2, newObj3];

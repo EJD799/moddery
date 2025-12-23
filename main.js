@@ -974,6 +974,7 @@ async function parseBlockComponents(file) {
   let newObj1 = {};
   let newObj2 = [];
   let newObj3 = {};
+  let newObj4 = false;
 
   if (keys.includes("Placement Direction")) {
     let component = components["Placement Direction"];
@@ -1184,7 +1185,7 @@ async function parseBlockComponents(file) {
   if (keys.includes("Interactable")) {
     let component = components["Interactable"];
     if (component.main) {
-      newObj1["minecraft:custom_components"] = [
+      newObj4 = [
         `${projManifest.namespace}:interactable`
       ];
     }
@@ -1300,7 +1301,7 @@ async function parseBlockComponents(file) {
     };
   }*/
 
-  return [newObj1, newObj2, newObj3];
+  return [newObj1, newObj2, newObj3, newObj4];
 }
 
 
@@ -1610,6 +1611,9 @@ async function exportProj() {
             "permutations": blockPermutations
           }
         };
+        if (parsedFile[3]) {
+          exportObj.custom_components = parsedFile[3];
+        }
         exportedFile1 = JSON.stringify(exportObj, null, 4);
         exportZip1.folder("blocks").file(`${elementFile.id}.json`, exportedFile1);
       } else if (role == "Structure") {

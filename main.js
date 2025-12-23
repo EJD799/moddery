@@ -1,4 +1,4 @@
-const appVersion = "0.5.61";
+const appVersion = "0.5.62";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1209,7 +1209,44 @@ function parseBlockComponents(file) {
     let lootTableFile = JSON.parse(await projZip.folder("elements").file(`${component.loot_table}.json`).async("string"));
     newObj1["minecraft:loot"] = `loot_tables/${lootTableFile.id}.json`;
   }
-  
+  if (keys.includes("Map Color")) {
+    let component = components["Map Color"];
+    newObj1["minecraft:map_color"] = component.main;
+  }
+  if (keys.includes("Movable")) {
+    let component = components["Movable"];
+    newObj1["minecraft:movable"] = {
+      "movement_type": component.movement_type,
+      "sticky": component.sticky
+    };
+  }
+
+  if (keys.includes("Random Offset")) {
+    let component = components["Random Offset"];
+    newObj1["minecraft:random_offset"] = {
+      "x": {
+        "steps": Number(component.x_steps),
+        "range": {
+          "min": Number(component.x_min),
+          "max": Number(component.x_max)
+        }
+      },
+      "y": {
+        "steps": Number(component.y_steps),
+        "range": {
+          "min": Number(component.y_min),
+          "max": Number(component.y_max)
+        }
+      },
+      "z": {
+        "steps": Number(component.z_steps),
+        "range": {
+          "min": Number(component.z_min),
+          "max": Number(component.z_max)
+        }
+      }
+    };
+  }
 
   /*if (keys.includes("")) {
     let component = components[""];

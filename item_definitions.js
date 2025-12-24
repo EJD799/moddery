@@ -2451,6 +2451,10 @@ const itemDefinitions = {
         name: "Blue Glazed Terracotta",
         texture: "https://minecraft.wiki/images/thumb/Blue_Glazed_Terracotta_%28S%29_JE1_BE1.png/60px-Blue_Glazed_Terracotta_%28S%29_JE1_BE1.png?4b033"
     },
+    "minecraft:blue_ice": {
+        name: "Blue Ice",
+        texture: "https://minecraft.wiki/images/thumb/Blue_Ice_JE3_BE2.png/60px-Blue_Ice_JE3_BE2.png?b7d3d"
+    },
     "minecraft:blue_shulker_box": {
         name: "Blue Shulker Box",
         texture: "https://minecraft.wiki/images/thumb/Blue_Shulker_Box_JE2_BE2.png/60px-Blue_Shulker_Box_JE2_BE2.png?b6e62"

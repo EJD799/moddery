@@ -3395,18 +3395,23 @@ Blockly.common.defineBlocks({
     attachLabelMouseDown_: function (field, handler) {
       const block = this;
 
-      if (!block.__labelMouseDownQueue) {
-        block.__labelMouseDownQueue = [];
+      if (!block.__labelQueue) {
+        block.__labelQueue = [];
 
         const oldRender = block.render;
         block.render = function () {
           oldRender.call(this);
 
-          block.__labelMouseDownQueue.forEach(({ field, handler }) => {
-            if (field.__mouseDownAttached) return;
-            field.__mouseDownAttached = true;
+          block.__labelQueue.forEach(({ field, handler }) => {
+            if (field.__attached) return;
+            field.__attached = true;
 
-            // OVERRIDE the Blockly hook (this is the magic)
+            const svgRoot = field.getSvgRoot();
+            if (!svgRoot) return;
+
+            // 🔑 THIS IS THE MISSING PIECE
+            svgRoot.style.pointerEvents = "all";
+
             field.onMouseDown_ = function (e) {
               e.stopPropagation();
               e.preventDefault();
@@ -3416,7 +3421,7 @@ Blockly.common.defineBlocks({
         };
       }
 
-      block.__labelMouseDownQueue.push({ field, handler });
+      block.__labelQueue.push({ field, handler });
     },
 
     updateParameters_: function () {

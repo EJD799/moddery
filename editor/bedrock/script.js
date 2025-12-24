@@ -3318,15 +3318,14 @@ Blockly.common.defineBlocks({
       this.appendDummyInput("ADD_PARAM")
         .appendField(addBtn, "ADD_PARAM_BTN");
 
-      addBtn.onMouseDown_ = (e) => {
-        e.stopPropagation();
+      this.attachLabelClick_(addBtn, () => {
         this.parameterData_.push({
           name: "name",
           type: "OPTION1",
           optional: false
         });
         this.updateParameters_();
-      };
+      });
 
       // ----- CODE STATEMENTS -----
       this.appendStatementInput("CODE").appendField("code");
@@ -3393,6 +3392,34 @@ Blockly.common.defineBlocks({
       this.updateParameters_();
     },
 
+    attachLabelClick_: function (field, handler) {
+      const block = this;
+
+      const attach = () => {
+        const target = field.getClickTarget_();
+        if (!target || target.__handlerAttached) return;
+
+        target.__handlerAttached = true;
+        target.onclick = (e) => {
+          e.stopPropagation();
+          handler();
+        };
+      };
+
+      // Try now (works during normal edits)
+      attach();
+
+      // And again after render (required for load)
+      const oldRender = block.render;
+      if (!block.__patchedRender) {
+        block.__patchedRender = true;
+        block.render = function () {
+          oldRender.call(this);
+          attach();
+        };
+      }
+    },
+
     updateParameters_: function () {
       // Initialize storage if it doesn't exist
       if (!this.parameterData_) this.parameterData_ = [];
@@ -3441,13 +3468,10 @@ Blockly.common.defineBlocks({
           .appendField(removeBtn, "REMOVE_BTN_" + i);
 
         // Remove button removes this parameter from the array
-        removeBtn.getClickTarget_().onclick = ((index) => {
-          return (e) => {
-            e.stopPropagation();
-            this.parameterData_.splice(index, 1);
-            this.updateParameters_();
-          };
-        })(i);
+        this.attachLabelClick_(removeBtn, () => {
+          this.parameterData_.splice(i, 1);
+          this.updateParameters_();
+        });
 
         this.moveInputBefore("PARAM" + i, "CODE");
       }

@@ -184,3 +184,56 @@ async function copyZipIntoFolder(sourceZip, targetFolder) {
     targetFolder.file(file.name, data);
   }
 }
+
+function isBedrockShapedRecipeValid(recipeArray) {
+    if (!Array.isArray(recipeArray) || recipeArray.length < 9) {
+        return false;
+    }
+
+    // Extract 3x3 grid, ignore output slot (index 9)
+    const grid = recipeArray
+        .slice(0, 9)
+        .map(e => e && e[0] ? 1 : 0);
+
+    // Helper to count filled slots
+    const count = arr => arr.reduce((a, b) => a + b, 0);
+
+    // Check rows
+    for (let r = 0; r < 3; r++) {
+        const row = grid.slice(r * 3, r * 3 + 3);
+        if (count(row) >= 2) return true;
+    }
+
+    // Check columns
+    for (let c = 0; c < 3; c++) {
+        const col = [grid[c], grid[c + 3], grid[c + 6]];
+        if (count(col) >= 2) return true;
+    }
+
+    // Check orthogonal adjacency
+    const directions = [
+        [1, 0],  // down
+        [-1, 0], // up
+        [0, 1],  // right
+        [0, -1]  // left
+    ];
+
+    for (let i = 0; i < 9; i++) {
+        if (!grid[i]) continue;
+
+        const x = i % 3;
+        const y = Math.floor(i / 3);
+
+        for (const [dx, dy] of directions) {
+            const nx = x + dx;
+            const ny = y + dy;
+            if (nx < 0 || nx > 2 || ny < 0 || ny > 2) continue;
+
+            const ni = ny * 3 + nx;
+            if (grid[ni]) return true;
+        }
+    }
+
+    // Fails all structural checks
+    return false;
+}

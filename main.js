@@ -1,4 +1,4 @@
-const appVersion = "0.5.82";
+const appVersion = "0.5.83";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -678,6 +678,9 @@ function waitForIframeReady(iframe, propName) {
 
 
 function parseCraftingGrid(grid) {
+  if (!isBedrockShapedRecipeValid(grid)) {
+    logExporter("Invalid crafting recipe!", "warn");
+  }
   // Normalize to 3x3 item-only array
   const items = grid.slice(0, 9).map(cell => cell?.[0] ?? "");
 

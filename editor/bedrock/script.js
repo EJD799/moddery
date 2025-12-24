@@ -3395,29 +3395,30 @@ Blockly.common.defineBlocks({
     attachLabelClick_: function (field, handler) {
       const block = this;
 
-      const attach = () => {
-        const target = field.getClickTarget_();
-        if (!target || target.__handlerAttached) return;
+      // Queue attachments
+      if (!block.__labelClickQueue) {
+        block.__labelClickQueue = [];
 
-        target.__handlerAttached = true;
-        target.onclick = (e) => {
-          e.stopPropagation();
-          handler();
-        };
-      };
-
-      // Try now (works during normal edits)
-      attach();
-
-      // And again after render (required for load)
-      const oldRender = block.render;
-      if (!block.__patchedRender) {
-        block.__patchedRender = true;
+        // Patch render ONCE
+        const oldRender = block.render;
         block.render = function () {
           oldRender.call(this);
-          attach();
+
+          // Attach all queued handlers
+          block.__labelClickQueue.forEach(({ field, handler }) => {
+            const target = field.getClickTarget_();
+            if (!target || target.__handlerAttached) return;
+
+            target.__handlerAttached = true;
+            target.onclick = (e) => {
+              e.stopPropagation();
+              handler();
+            };
+          });
         };
       }
+
+      block.__labelClickQueue.push({ field, handler });
     },
 
     updateParameters_: function () {

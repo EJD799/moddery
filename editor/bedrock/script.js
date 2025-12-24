@@ -3318,7 +3318,7 @@ Blockly.common.defineBlocks({
       this.appendDummyInput("ADD_PARAM")
         .appendField(addBtn, "ADD_PARAM_BTN");
 
-      this.attachLabelMouseDown_(addBtn, () => {
+      this.attachLabelOnClick_(addBtn, () => {
         this.parameterData_.push({
           name: "name",
           type: "OPTION1",
@@ -3392,36 +3392,17 @@ Blockly.common.defineBlocks({
       this.updateParameters_();
     },
 
-    attachLabelMouseDown_: function (field, handler) {
-      const block = this;
+    attachLabelOnClick_: function (field, handler) {
+      // Delay until SVG exists
+      setTimeout(() => {
+        const target = field.getClickTarget_();
+        if (!target) return;
 
-      if (!block.__labelQueue) {
-        block.__labelQueue = [];
-
-        const oldRender = block.render;
-        block.render = function () {
-          oldRender.call(this);
-
-          block.__labelQueue.forEach(({ field, handler }) => {
-            if (field.__attached) return;
-            field.__attached = true;
-
-            const svgRoot = field.getSvgRoot();
-            if (!svgRoot) return;
-
-            // 🔑 THIS IS THE MISSING PIECE
-            svgRoot.style.pointerEvents = "all";
-
-            field.onMouseDown_ = function (e) {
-              e.stopPropagation();
-              e.preventDefault();
-              handler();
-            };
-          });
+        target.onclick = (e) => {
+          e.stopPropagation();
+          handler();
         };
-      }
-
-      block.__labelQueue.push({ field, handler });
+      }, 0);
     },
 
     updateParameters_: function () {
@@ -3472,7 +3453,7 @@ Blockly.common.defineBlocks({
           .appendField(removeBtn, "REMOVE_BTN_" + i);
 
         // Remove button removes this parameter from the array
-        this.attachLabelMouseDown_(removeBtn, () => {
+        this.attachLabelOnClick_(removeBtn, () => {
           this.parameterData_.splice(i, 1);
           this.updateParameters_();
         });

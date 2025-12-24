@@ -3395,25 +3395,25 @@ Blockly.common.defineBlocks({
     attachLabelClick_: function (field, handler) {
       const block = this;
 
-      // Queue attachments
       if (!block.__labelClickQueue) {
         block.__labelClickQueue = [];
 
-        // Patch render ONCE
         const oldRender = block.render;
         block.render = function () {
           oldRender.call(this);
 
-          // Attach all queued handlers
           block.__labelClickQueue.forEach(({ field, handler }) => {
             const target = field.getClickTarget_();
             if (!target || target.__handlerAttached) return;
 
             target.__handlerAttached = true;
-            target.onclick = (e) => {
-              e.stopPropagation();
+
+            // IMPORTANT: intercept mousedown, not click
+            target.addEventListener("mousedown", (e) => {
+              e.stopPropagation();   // stops block drag
+              e.preventDefault();    // stops gesture system
               handler();
-            };
+            });
           });
         };
       }

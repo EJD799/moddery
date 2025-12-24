@@ -863,6 +863,35 @@ Blockly.JavaScript.forBlock['json_merge'] = function(block) {
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
+Blockly.JavaScript.forBlock['custom_var_get'] = function(block) {
+    let code = block.getFieldValue("NAME");
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript.forBlock['custom_var_let'] = function(block) {
+    let code = `let ${block.getFieldValue("NAME")};
+`;
+    return code;
+};
+
+Blockly.JavaScript.forBlock['custom_var_let_equal'] = function(block) {
+    let code = `let ${block.getFieldValue("NAME")} = ${getInput(block, "VALUE")};
+`;
+    return code;
+};
+
+Blockly.JavaScript.forBlock['custom_var_const'] = function(block) {
+    let code = `const ${block.getFieldValue("NAME")} = ${getInput(block, "VALUE")};
+`;
+    return code;
+};
+
+Blockly.JavaScript.forBlock['custom_var_set'] = function(block) {
+    let code = `${block.getFieldValue("NAME")} = ${getInput(block, "VALUE")};
+`;
+    return code;
+};
+
 Blockly.JavaScript.forBlock['run_js_statement'] = function(block) {
     let code = `${trimQuotes(getInput(block, "CODE"))};
 `;

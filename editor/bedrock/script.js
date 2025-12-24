@@ -3318,7 +3318,7 @@ Blockly.common.defineBlocks({
       this.appendDummyInput("ADD_PARAM")
         .appendField(addBtn, "ADD_PARAM_BTN");
 
-      this.attachLabelClick_(addBtn, () => {
+      this.attachLabelMouseDown_(addBtn, () => {
         this.parameterData_.push({
           name: "name",
           type: "OPTION1",
@@ -3392,33 +3392,31 @@ Blockly.common.defineBlocks({
       this.updateParameters_();
     },
 
-    attachLabelClick_: function (field, handler) {
+    attachLabelMouseDown_: function (field, handler) {
       const block = this;
 
-      if (!block.__labelClickQueue) {
-        block.__labelClickQueue = [];
+      if (!block.__labelMouseDownQueue) {
+        block.__labelMouseDownQueue = [];
 
         const oldRender = block.render;
         block.render = function () {
           oldRender.call(this);
 
-          block.__labelClickQueue.forEach(({ field, handler }) => {
-            const target = field.getClickTarget_();
-            if (!target || target.__handlerAttached) return;
+          block.__labelMouseDownQueue.forEach(({ field, handler }) => {
+            if (field.__mouseDownAttached) return;
+            field.__mouseDownAttached = true;
 
-            target.__handlerAttached = true;
-
-            // IMPORTANT: intercept mousedown, not click
-            target.addEventListener("mousedown", (e) => {
-              e.stopPropagation();   // stops block drag
-              e.preventDefault();    // stops gesture system
+            // OVERRIDE the Blockly hook (this is the magic)
+            field.onMouseDown_ = function (e) {
+              e.stopPropagation();
+              e.preventDefault();
               handler();
-            });
+            };
           });
         };
       }
 
-      block.__labelClickQueue.push({ field, handler });
+      block.__labelMouseDownQueue.push({ field, handler });
     },
 
     updateParameters_: function () {
@@ -3469,7 +3467,7 @@ Blockly.common.defineBlocks({
           .appendField(removeBtn, "REMOVE_BTN_" + i);
 
         // Remove button removes this parameter from the array
-        this.attachLabelClick_(removeBtn, () => {
+        this.attachLabelMouseDown_(removeBtn, () => {
           this.parameterData_.splice(i, 1);
           this.updateParameters_();
         });

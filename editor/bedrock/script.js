@@ -3357,8 +3357,8 @@ Blockly.common.defineBlocks({
       return m;
     },
 
-    domToMutation: function (xml) {
-      const count = parseInt(xml.getAttribute("parameters") || "0", 10);
+    /*domToMutation: function (xml) {
+      const count = parseInt(xml.getAttribute("count") || "0", 10);
 
       if (!this.parameterData_) this.parameterData_ = [];
 
@@ -3372,6 +3372,22 @@ Blockly.common.defineBlocks({
       }
       while (this.parameterData_.length > count) {
         this.parameterData_.pop();
+      }
+
+      this.updateParameters_();
+    },*/
+
+    domToMutation: function (xml) {
+      this.parameterData_ = [];
+
+      const params = xml.getElementsByTagName("param");
+      for (let i = 0; i < params.length; i++) {
+        const p = params[i];
+        this.parameterData_.push({
+          name: p.getAttribute("name") || "name",
+          type: p.getAttribute("type") || "String",
+          optional: p.getAttribute("optional") === "true",
+        });
       }
 
       this.updateParameters_();

@@ -2508,6 +2508,95 @@ const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray
     "colour": 260,
     inputsInline: true
   },
+  {
+    type: "custom_var_get",
+    message0: "variable %1",
+    args0: [
+      {
+        type: "field_input",
+        name: "NAME",
+        spellcheck: false
+      }
+    ],
+    output: null,
+    colour: '%{BKY_VARIABLES_HUE}',
+    inputsInline: true
+  },
+  {
+    type: "custom_var_let",
+    message0: "define variable %1",
+    args0: [
+      {
+        type: "field_input",
+        name: "NAME",
+        spellcheck: false
+      }
+    ],
+    nextStatement: null,
+    previousStatement: null,
+    colour: '%{BKY_VARIABLES_HUE}',
+    inputsInline: true
+  },
+  {
+    type: "custom_var_let_equal",
+    message0: "define variable %1 as %2",
+    args0: [
+      {
+        type: "field_input",
+        name: "NAME",
+        spellcheck: false
+      },
+      {
+        type: "input_value",
+        name: "VALUE",
+        check: null
+      }
+    ],
+    nextStatement: null,
+    previousStatement: null,
+    colour: '%{BKY_VARIABLES_HUE}',
+    inputsInline: true
+  },
+  {
+    type: "custom_var_const",
+    message0: "define constant variable %1 as %2",
+    args0: [
+      {
+        type: "field_input",
+        name: "NAME",
+        spellcheck: false
+      },
+      {
+        type: "input_value",
+        name: "VALUE",
+        check: null
+      }
+    ],
+    nextStatement: null,
+    previousStatement: null,
+    colour: '%{BKY_VARIABLES_HUE}',
+    inputsInline: true
+  },
+  {
+    type: "custom_var_set",
+    message0: "set variable %1 to %2",
+    args0: [
+      {
+        type: "field_input",
+        name: "NAME",
+        spellcheck: false
+      },
+      {
+        type: "input_value",
+        name: "VALUE",
+        check: null
+      }
+    ],
+    nextStatement: null,
+    previousStatement: null,
+    colour: '%{BKY_VARIABLES_HUE}',
+    inputsInline: true
+  },
 ]);
 
 
@@ -2879,11 +2968,23 @@ const bedrockScriptToolbox = {
       ]
     },
     // Variables
-    {
+    /*{
       kind: 'category',
       name: 'Variables',
       custom: 'VARIABLE',
       colour: '%{BKY_VARIABLES_HUE}'
+    },*/
+    {
+      kind: 'category',
+      name: 'Variables',
+      colour: '%{BKY_VARIABLES_HUE}',
+      contents: [
+        { kind: 'block', type: 'custom_var_get' },
+        { kind: 'block', type: 'custom_var_let' },
+        { kind: 'block', type: 'custom_var_let_equal', inputs: { VALUE: { shadow: { type: 'text' } } } },
+        { kind: 'block', type: 'custom_var_const', inputs: { VALUE: { shadow: { type: 'text' } } } },
+        { kind: 'block', type: 'custom_var_set', inputs: { VALUE: { shadow: { type: 'text' } } } }
+      ]
     },
     // Functions
     {

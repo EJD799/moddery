@@ -19,6 +19,7 @@ var deleteElementType;
 var autosaveEnabled = true;
 
 document.addEventListener("DOMContentLoaded", function(){
+  document.title = `Moddery v${appVersion}`;
   document.getElementById("savingBox").style.display = "none";
   aboutText1.innerHTML = `Moddery v${appVersion}`;
   aboutText2.innerHTML = `Moddery v${appVersion}`;

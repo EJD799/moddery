@@ -908,3 +908,9 @@ Blockly.JavaScript.forBlock['comment_block'] = function(block) {
 `;
     return code;
 };
+
+Blockly.JavaScript.forBlock['text_print'] = function(block) {
+    let code = `print(${getInput(block, "TEXT")});
+`;
+    return code;
+};

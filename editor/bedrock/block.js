@@ -1,6 +1,6 @@
 let textures;
 let elementData = {};
-let currentBlockTextures = {item: "", default: ""};
+let currentBlockTextures = {default: ""};
 let selectedTexture;
 let selectedModel;
 let currentTextureSelecting;
@@ -1019,7 +1019,11 @@ async function loadTextures(data) {
         if (data.model) {
             modelNameText.innerHTML = data.model;
         }
-        currentBlockTextures = data.textures;
+        if (data.textures) {
+            currentBlockTextures = data.textures;
+        } else {
+            currentBlockTextures = {default: ""}
+        }
         if (data.hasItem && data.textures.item) {
             textureNameText.innerHTML = data.textures.item;
         }

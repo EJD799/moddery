@@ -2607,7 +2607,6 @@ const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray
         check: null
       }
     ],
-    nextStatement: false,
     previousStatement: null,
     colour: '%{BKY_PROCEDURES_HUE}',
     inputsInline: true

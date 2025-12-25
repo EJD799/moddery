@@ -3434,6 +3434,8 @@ Blockly.common.defineBlocks({
         const target = field.getClickTarget_();
         if (!target) return;
 
+        target.classList.add("param-button");
+
         target.onclick = (e) => {
           e.stopPropagation();
           handler();
@@ -3594,6 +3596,8 @@ Blockly.common.defineBlocks({
         const target = field.getClickTarget_();
         if (!target) return;
 
+        target.classList.add("param-button");
+
         target.onclick = (e) => {
           e.stopPropagation();
           handler();
@@ -3732,6 +3736,8 @@ Blockly.common.defineBlocks({
         const target = field.getClickTarget_();
         if (!target) return;
 
+        target.classList.add("param-button");
+
         target.onclick = (e) => {
           e.stopPropagation();
           handler();
@@ -3836,6 +3842,8 @@ Blockly.common.defineBlocks({
         const target = field.getClickTarget_();
         if (!target) return;
 
+        target.classList.add("param-button");
+
         target.onclick = (e) => {
           e.stopPropagation();
           handler();
@@ -3931,6 +3939,8 @@ Blockly.common.defineBlocks({
       setTimeout(() => {
         const target = field.getClickTarget_();
         if (!target) return;
+
+        target.classList.add("param-button");
 
         target.onclick = (e) => {
           e.stopPropagation();
@@ -4065,6 +4075,8 @@ Blockly.common.defineBlocks({
       setTimeout(() => {
         const target = field.getClickTarget_();
         if (!target) return;
+
+        target.classList.add("param-button");
 
         target.onclick = (e) => {
           e.stopPropagation();

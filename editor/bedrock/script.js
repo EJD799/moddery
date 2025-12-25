@@ -3868,8 +3868,6 @@ Blockly.common.defineBlocks({
           this.parameterData_.splice(i, 1);
           this.updateParameters_();
         });
-
-        this.moveInputBefore("PARAM" + i, "CODE");
       }
     },
   },
@@ -3897,7 +3895,7 @@ Blockly.common.defineBlocks({
         this.updateParameters_();
       });
 
-      this.setOutput(null);
+      this.setOutput(true);
       this.setColour("%{BKY_PROCEDURES_HUE}");
     },
 
@@ -3966,8 +3964,6 @@ Blockly.common.defineBlocks({
           this.parameterData_.splice(i, 1);
           this.updateParameters_();
         });
-
-        this.moveInputBefore("PARAM" + i, "CODE");
       }
     },
   },

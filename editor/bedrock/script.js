@@ -2597,6 +2597,35 @@ const additionalDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray
     colour: '%{BKY_VARIABLES_HUE}',
     inputsInline: true
   },
+  {
+    type: "custom_function_return",
+    message0: "return %1",
+    args0: [
+      {
+        type: "input_value",
+        name: "VALUE",
+        check: null
+      }
+    ],
+    nextStatement: false,
+    previousStatement: null,
+    colour: '%{BKY_PROCEDURES_HUE}',
+    inputsInline: true
+  },
+  {
+    type: "custom_function_await",
+    message0: "await %1",
+    args0: [
+      {
+        type: "input_value",
+        name: "VALUE",
+        check: null
+      }
+    ],
+    output: null,
+    colour: '%{BKY_PROCEDURES_HUE}',
+    inputsInline: true
+  },
 ]);
 
 
@@ -3004,8 +3033,9 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'custom_function_define' },
         { kind: 'block', type: 'custom_function_define_async' },
         { kind: 'block', type: 'custom_function_run' },
-        /*{ kind: 'block', type: 'custom_function_return' },
-        { kind: 'block', type: 'custom_function_await' },*/
+        { kind: 'block', type: 'custom_function_run_reporter' },
+        { kind: 'block', type: 'custom_function_return' },
+        { kind: 'block', type: 'custom_function_await' },
       ]
     },
     {
@@ -3768,11 +3798,106 @@ Blockly.common.defineBlocks({
         this.updateParameters_();
       });
 
-      // ----- CODE STATEMENTS -----
-      this.appendStatementInput("CODE").appendField("code");
-
       this.setPreviousStatement(true);
       this.setNextStatement(true);
+      this.setColour("%{BKY_PROCEDURES_HUE}");
+    },
+
+    // ----- SAVE MUTATION -----
+    mutationToDom: function () {
+      const m = document.createElement("mutation");
+
+      if (!this.parameterData_) this.parameterData_ = [];
+
+      m.setAttribute("count", this.parameterData_.length);
+
+      this.parameterData_.forEach(() => {
+        m.appendChild(document.createElement("param"));
+      });
+
+      return m;
+    },
+
+    // ----- LOAD MUTATION -----
+    domToMutation: function (xml) {
+      this.parameterData_ = [];
+
+      const params = xml.getElementsByTagName("param");
+      for (let i = 0; i < params.length; i++) {
+        this.parameterData_.push({});
+      }
+
+      this.updateParameters_();
+    },
+
+    // ----- CLICK HANDLER FIX -----
+    attachLabelOnClick_: function (field, handler) {
+      setTimeout(() => {
+        const target = field.getClickTarget_();
+        if (!target) return;
+
+        target.onclick = (e) => {
+          e.stopPropagation();
+          handler();
+        };
+      }, 0);
+    },
+
+    // ----- PARAMETER REBUILD -----
+    updateParameters_: function () {
+      if (!this.parameterData_) this.parameterData_ = [];
+
+      // Remove existing param inputs
+      let i = 0;
+      while (this.getInput("PARAM" + i)) {
+        this.removeInput("PARAM" + i);
+        i++;
+      }
+
+      // Rebuild parameters as VALUE inputs
+      for (let i = 0; i < this.parameterData_.length; i++) {
+        const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
+        removeBtn.CLICKABLE = true;
+
+        const input = this.appendValueInput("PARAM" + i)
+          .appendField("param " + (i + 1))
+          .appendField(removeBtn, "REMOVE_BTN_" + i);
+
+        // Remove button logic
+        this.attachLabelOnClick_(removeBtn, () => {
+          this.parameterData_.splice(i, 1);
+          this.updateParameters_();
+        });
+
+        this.moveInputBefore("PARAM" + i, "CODE");
+      }
+    },
+  },
+});
+
+Blockly.common.defineBlocks({
+  custom_function_run_reporter: {
+    init: function () {
+      this.parameterData_ = this.parameterData_ || [];
+
+      // ----- FUNCTION NAME -----
+      this.appendDummyInput("NAME_INPUT")
+        .appendField("run function")
+        .appendField(new Blockly.FieldTextInput(""), "NAME");
+
+      // ----- ADD PARAM BUTTON -----
+      const addBtn = new Blockly.FieldLabel("+", undefined, "param-button");
+      addBtn.CLICKABLE = true;
+
+      this.appendDummyInput("ADD_PARAM")
+        .appendField(addBtn, "ADD_PARAM_BTN");
+
+      this.attachLabelOnClick_(addBtn, () => {
+        this.parameterData_.push({});
+        this.updateParameters_();
+      });
+
+      this.setOutput(null);
       this.setColour("%{BKY_PROCEDURES_HUE}");
     },
 

@@ -3969,6 +3969,145 @@ Blockly.common.defineBlocks({
   },
 });
 
+let scriptOptions = [
+  ["Option A", "A"],
+  ["Option B", "B"],
+  ["Option C", "C"]
+]
+
+Blockly.common.defineBlocks({
+  custom_function_import: {
+    init: function () {
+      this.parameterCount_ = 0;
+      this.parameterData_ = this.parameterData_ || [];
+
+      // ----- NAME (FieldInput instead of appendValueInput) -----
+      this.appendDummyInput("NAME_INPUT")
+          .appendField("import functions from script")
+          .appendField(new Blockly.FieldDropdown(scriptOptions), "NAME");
+
+      // ----- ADD PARAM BUTTON -----
+      const addBtn = new Blockly.FieldLabel("+", undefined, "param-button");
+      addBtn.CLICKABLE = true;
+
+      this.appendDummyInput("ADD_PARAM")
+        .appendField(addBtn, "ADD_PARAM_BTN");
+
+      this.attachLabelOnClick_(addBtn, () => {
+        this.parameterData_.push({
+          name: "name",
+          type: "OPTION1",
+          optional: false
+        });
+        this.updateParameters_();
+      });
+
+      this.setPreviousStatement(true);
+      this.setNextStatement(true);
+      this.setColour('%{BKY_PROCEDURES_HUE}');
+    },
+
+
+    mutationToDom: function () {
+      const m = document.createElement("mutation");
+      
+      // Ensure parameterData_ exists
+      if (!this.parameterData_) this.parameterData_ = [];
+
+      m.setAttribute("count", this.parameterData_.length);
+
+      // Save each parameter as <param ... />
+      this.parameterData_.forEach((p) => {
+        const el = document.createElement("param");
+        el.setAttribute("name", p.name);
+        m.appendChild(el);
+      });
+
+      return m;
+    },
+
+    /*domToMutation: function (xml) {
+      const count = parseInt(xml.getAttribute("count") || "0", 10);
+
+      if (!this.parameterData_) this.parameterData_ = [];
+
+      // Make sure the array has the correct number of items
+      while (this.parameterData_.length < count) {
+        this.parameterData_.push({
+          name: "name",
+          type: "OPTION1",
+          optional: false
+        });
+      }
+      while (this.parameterData_.length > count) {
+        this.parameterData_.pop();
+      }
+
+      this.updateParameters_();
+    },*/
+
+    domToMutation: function (xml) {
+      this.parameterData_ = [];
+
+      const params = xml.getElementsByTagName("param");
+      for (let i = 0; i < params.length; i++) {
+        const p = params[i];
+        this.parameterData_.push({
+          name: p.getAttribute("name") || "name",
+        });
+      }
+
+      this.updateParameters_();
+    },
+
+    attachLabelOnClick_: function (field, handler) {
+      // Delay until SVG exists
+      setTimeout(() => {
+        const target = field.getClickTarget_();
+        if (!target) return;
+
+        target.onclick = (e) => {
+          e.stopPropagation();
+          handler();
+        };
+      }, 0);
+    },
+
+    updateParameters_: function () {
+      // Initialize storage if it doesn't exist
+      if (!this.parameterData_) this.parameterData_ = [];
+
+      // Remove all existing PARAM inputs
+      let i = 0;
+      while (this.getInput("PARAM" + i)) {
+        this.removeInput("PARAM" + i);
+        i++;
+      }
+
+      // Rebuild PARAM inputs from parameterData_
+      for (let i = 0; i < this.parameterData_.length; i++) {
+        const data = this.parameterData_[i];
+
+        const removeBtn = new Blockly.FieldLabel("×", undefined, "param-button");
+        removeBtn.CLICKABLE = true;
+
+        const input = this.appendDummyInput("PARAM" + i)
+          .appendField("function " + (i + 1))
+          .appendField(new Blockly.FieldTextInput(data.name, function (val) {
+            data.name = val;
+          }), "PARAM_NAME_" + i)
+          .appendField(removeBtn, "REMOVE_BTN_" + i);
+
+        // Remove button removes this parameter from the array
+        this.attachLabelOnClick_(removeBtn, () => {
+          this.parameterData_.splice(i, 1);
+          this.updateParameters_();
+        });
+      }
+    },
+  },
+});
+
 
 
 var workspace = Blockly.inject('blocklyDiv', {

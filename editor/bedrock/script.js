@@ -3036,6 +3036,7 @@ const bedrockScriptToolbox = {
         { kind: 'block', type: 'custom_function_run_reporter' },
         { kind: 'block', type: 'custom_function_return' },
         { kind: 'block', type: 'custom_function_await' },
+        { kind: 'block', type: 'custom_function_import' },
       ]
     },
     {
@@ -3973,7 +3974,7 @@ let scriptOptions = [
   ["Option A", "A"],
   ["Option B", "B"],
   ["Option C", "C"]
-]
+];
 
 Blockly.common.defineBlocks({
   custom_function_import: {

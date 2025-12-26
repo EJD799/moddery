@@ -310,16 +310,44 @@ Blockly.JavaScript.forBlock['dimension_menu'] = function(block) {
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript.forBlock['register_command'] = function(block) {
-    let code = `customCommandRegistry.registerCommand(
+Blockly.JavaScript.forBlock['register_command'] = function (block) {
+    const paramData = block.parameterData_ || [];
+
+    let optionalParams = [];
+    let mandatoryParams = [];
+    let callbackArgs = "origin";
+
+    for (let i = 0; i < paramData.length; i++) {
+        const param = paramData[i];
+        const safeName = param.name.replace(/\W+/g, "_");
+
+        const paramCode = `{ name: "${safeName}", type: CustomCommandParamType.${param.type} }`;
+
+        if (param.optional) {
+            optionalParams.push(paramCode);
+        } else {
+            mandatoryParams.push(paramCode);
+        }
+
+        callbackArgs += `, ${safeName}`;
+    }
+
+    const code = `customCommandRegistry.registerCommand(
     {
-        name: '${block.getFieldValue("NAME")}',
-        description: '${block.getFieldValue("DESCRIPTION")}',
+        name: "${block.getFieldValue("NAME")}",
+        description: "${block.getFieldValue("DESCRIPTION")}",
         permissionLevel: CommandPermissionLevel.${block.getFieldValue("PERMISSION_LEVEL")},
+        optionalParameters: [
+            ${optionalParams.join(",\n            ")}
+        ],
+        mandatoryParameters: [
+            ${mandatoryParams.join(",\n            ")}
+        ],
     },
-    () => {
-    ${getStatement(block, "CODE")}}
+    (${callbackArgs}) => {${getStatement(block, "CODE")}
+    }
 );`;
+
     return code;
 };
 
@@ -890,6 +918,17 @@ Blockly.JavaScript.forBlock['custom_var_set'] = function(block) {
     let code = `${block.getFieldValue("NAME")} = ${getInput(block, "VALUE")};
 `;
     return code;
+};
+
+Blockly.JavaScript.forBlock['custom_function_return'] = function(block) {
+    let code = `return ${getInput(block, "VALUE")};
+`;
+    return code;
+};
+
+Blockly.JavaScript.forBlock['custom_function_await'] = function(block) {
+    let code = `(await ${getInput(block, "VALUE")})`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript.forBlock['run_js_statement'] = function(block) {

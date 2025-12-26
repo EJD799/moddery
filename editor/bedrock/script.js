@@ -3288,6 +3288,9 @@ const bedrockScriptToolbox = {
         ]
     },
     {
+      kind: "sep"
+    },
+    {
       kind: 'category',
       name: 'Other',
       colour: "#808080",

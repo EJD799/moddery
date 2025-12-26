@@ -986,6 +986,36 @@ Blockly.JavaScript.forBlock['custom_function_run'] = function (block) {
     return code;
 };
 
+Blockly.JavaScript.forBlock['custom_function_run_reporter'] = function (block) {
+    let args = [];
+
+    for (let i = 0; i < block.parameterData_.length; i++) {
+        args.push(getInput(block, "PARAM" + i));
+    }
+
+    let code = `${block.getFieldValue("NAME")}(${args.join(", ")})`;
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript.forBlock['custom_function_import'] = function (block) {
+    const paramData = block.parameterData_ || [];
+
+    let functionArgs = "";
+
+    for (let i = 0; i < paramData.length; i++) {
+        let param = paramData[i];
+        if (i != 0) {
+            functionArgs += ", ";
+        }
+        functionArgs += param.name;
+    }
+
+    const code = `import { ${functionArgs} } from "${block.getFieldValue("NAME")}";
+`;
+
+    return code;
+};
+
 Blockly.JavaScript.forBlock['run_js_statement'] = function(block) {
     let code = `${trimQuotes(getInput(block, "CODE"))};
 `;

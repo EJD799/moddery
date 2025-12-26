@@ -3990,18 +3990,7 @@ Blockly.common.defineBlocks({
       // ----- NAME (FieldInput instead of appendValueInput) -----
       this.appendDummyInput("NAME_INPUT")
           .appendField("import functions from script")
-          .appendField(
-            new Blockly.FieldDropdown(() => {
-              const list = window.parent.editorScriptList;
-
-              if (!Array.isArray(list)) {
-                return [["(loading...)", ""]];
-              }
-
-              return list;
-            }),
-            "NAME"
-          );
+          .appendField(new Blockly.FieldDropdown(scriptOptions), "NAME");
 
       // ----- ADD PARAM BUTTON -----
       const addBtn = new Blockly.FieldLabel("+", undefined, "param-button");

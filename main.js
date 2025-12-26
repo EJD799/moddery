@@ -1,4 +1,4 @@
-const appVersion = "0.5.108";
+const appVersion = "0.5.109";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -2700,6 +2700,9 @@ function getElementTabIcon(type) {
 }
 
 async function addTab(role, elementID) {
+  if (role == "Script") {
+    editorScriptList = await getScriptList(2);
+  }
   var label = `${getElementTabIcon(role)} ${decodeText(elementID)}`,
     id = "tabs-" + tabCounter,
     li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
@@ -2719,9 +2722,6 @@ async function addTab(role, elementID) {
   tabCounter++;
   openElements[id] = [role, elementID];
   var frame = document.getElementById(elementID + "_frame");
-  if (role == "Script") {
-    editorScriptList = await getScriptList(2);
-  }
   frame.onload = function() {
     if ((role == "Function") || (role == "Script")) {
       projZip.folder("elements").file(elementID + ".code.json").async("string").then(function (data) {

@@ -1,4 +1,4 @@
-const appVersion = "0.5.105";
+const appVersion = "0.5.106";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -17,6 +17,7 @@ var renameElementType;
 var deleteElementID;
 var deleteElementType;
 var autosaveEnabled = true;
+let editorScriptList;
 
 document.addEventListener("DOMContentLoaded", function(){
   document.title = `Moddery v${appVersion}`;
@@ -2698,7 +2699,7 @@ function getElementTabIcon(type) {
   }
 }
 
-function addTab(role, elementID) {
+async function addTab(role, elementID) {
   var label = `${getElementTabIcon(role)} ${decodeText(elementID)}`,
     id = "tabs-" + tabCounter,
     li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
@@ -2718,6 +2719,9 @@ function addTab(role, elementID) {
   tabCounter++;
   openElements[id] = [role, elementID];
   var frame = document.getElementById(elementID + "_frame");
+  if (role == "Script") {
+    editorScriptList = await getScriptList(2);
+  }
   frame.onload = function() {
     if ((role == "Function") || (role == "Script")) {
       projZip.folder("elements").file(elementID + ".code.json").async("string").then(function (data) {
@@ -2811,8 +2815,12 @@ function getModelList(mode) {
   }
   return vanillaList.concat(fileListInFolder("assets", "json"));
 }
-async function getScriptList() {
-  return (await getFilteredElements("Script")).map(obj => obj.name);
+async function getScriptList(mode = 1) {
+  if (mode == 2) {
+    return (await getFilteredElements("Script")).map(obj => [obj.name, `${obj.id}.js`]);
+  } else {
+    return (await getFilteredElements("Script")).map(obj => obj.name);
+  }
 }
 
 $("#newProjBtn").button();

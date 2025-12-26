@@ -3979,11 +3979,7 @@ Blockly.common.defineBlocks({
   },
 });
 
-let scriptOptions = [
-  ["Option A", "A"],
-  ["Option B", "B"],
-  ["Option C", "C"]
-];
+let scriptOptions = window.parent.editorScriptList;
 
 Blockly.common.defineBlocks({
   custom_function_import: {

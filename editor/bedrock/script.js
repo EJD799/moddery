@@ -3980,6 +3980,9 @@ Blockly.common.defineBlocks({
 });
 
 let scriptOptions = window?.parent?.editorScriptList ?? [["No Scripts", "no_script"]];
+if (scriptOptions == []) {
+  scriptOptions = [["No Scripts", "no_script"]];
+}
 
 Blockly.common.defineBlocks({
   custom_function_import: {

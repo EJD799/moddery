@@ -1,4 +1,4 @@
-const appVersion = "0.5.112";
+const appVersion = "0.5.113";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 

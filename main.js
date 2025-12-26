@@ -1,4 +1,4 @@
-const appVersion = "0.5.110";
+const appVersion = "0.5.111";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -2701,7 +2701,7 @@ function getElementTabIcon(type) {
 
 async function addTab(role, elementID) {
   if (role == "Script") {
-    editorScriptList = await getScriptList(2);
+    editorScriptList = (await getScriptList(2)).filter(item => item[0] != elementID);
   }
   var label = `${getElementTabIcon(role)} ${decodeText(elementID)}`,
     id = "tabs-" + tabCounter,

@@ -931,6 +931,26 @@ Blockly.JavaScript.forBlock['custom_function_await'] = function(block) {
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
+Blockly.JavaScript.forBlock['custom_function_define'] = function (block) {
+    const paramData = block.parameterData_ || [];
+
+    let functionArgs = "";
+
+    for (let i = 0; i < paramData.length; i++) {
+        let param = paramData[i];
+        if (i != 0) {
+            functionArgs += ", ";
+        }
+        functionArgs += param.name;
+    }
+
+    const code = `function ${block.getFieldValue("NAME")}(${functionArgs}) {${getStatement(block, "CODE")}
+}
+`;
+
+    return code;
+};
+
 Blockly.JavaScript.forBlock['run_js_statement'] = function(block) {
     let code = `${trimQuotes(getInput(block, "CODE"))};
 `;

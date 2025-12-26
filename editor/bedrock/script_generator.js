@@ -344,7 +344,8 @@ Blockly.JavaScript.forBlock['register_command'] = function (block) {
             ${mandatoryParams.join(",\n            ")}
         ],
     },
-    (${callbackArgs}) => {${getStatement(block, "CODE")}
+    (${callbackArgs}) => {
+${getStatement(block, "CODE")}
     }
 );`;
 
@@ -944,10 +945,44 @@ Blockly.JavaScript.forBlock['custom_function_define'] = function (block) {
         functionArgs += param.name;
     }
 
-    const code = `function ${block.getFieldValue("NAME")}(${functionArgs}) {${getStatement(block, "CODE")}
+    const code = `function ${block.getFieldValue("NAME")}(${functionArgs}) {
+${getStatement(block, "CODE")}
 }
 `;
 
+    return code;
+};
+
+Blockly.JavaScript.forBlock['custom_function_define_async'] = function (block) {
+    const paramData = block.parameterData_ || [];
+
+    let functionArgs = "";
+
+    for (let i = 0; i < paramData.length; i++) {
+        let param = paramData[i];
+        if (i != 0) {
+            functionArgs += ", ";
+        }
+        functionArgs += param.name;
+    }
+
+    const code = `async function ${block.getFieldValue("NAME")}(${functionArgs}) {
+${getStatement(block, "CODE")}
+}
+`;
+
+    return code;
+};
+
+Blockly.JavaScript.forBlock['custom_function_run'] = function (block) {
+    let args = [];
+
+    for (let i = 0; i < block.parameterData_.length; i++) {
+        args.push(getInput(block, "PARAM" + i));
+    }
+
+    let code = `${block.getFieldValue("NAME")}(${args.join(", ")});
+`;
     return code;
 };
 

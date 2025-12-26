@@ -1,4 +1,4 @@
-const appVersion = "0.5.109";
+const appVersion = "0.5.110";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -17,7 +17,7 @@ var renameElementType;
 var deleteElementID;
 var deleteElementType;
 var autosaveEnabled = true;
-let editorScriptList;
+var editorScriptList;
 
 document.addEventListener("DOMContentLoaded", function(){
   document.title = `Moddery v${appVersion}`;

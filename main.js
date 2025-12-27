@@ -1,4 +1,4 @@
-const appVersion = "0.6.0";
+const appVersion = "0.6.1";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1309,6 +1309,10 @@ async function parseBlockComponents(file) {
   return [newObj1, newObj2, newObj3, newObj4];
 }
 
+async function parseEntityComponents(file) {
+
+}
+
 
 function logExporter(text, type = "info") {
   let textElement = document.createElement("span");
@@ -1445,6 +1449,8 @@ async function exportProj() {
       let role = elementFile.type;
       let exportedFile1;
       let exportedFile2;
+      let exportedFile3;
+      let exportedFile4;
       if (role == "Function") {
         exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/function.html";
         let elementCode = JSON.parse(await projZip.folder("elements").file(elementsList[i].replace(".json", ".code.json")).async("string"));
@@ -1621,6 +1627,30 @@ async function exportProj() {
         }
         exportedFile1 = JSON.stringify(exportObj, null, 4);
         exportZip1.folder("blocks").file(`${elementFile.id}.json`, exportedFile1);
+      } else if (role == "Entity") {
+        let parsedFile = await parseEntityComponents(elementFile);
+
+        let exportObj1 = {
+
+        };
+        let exportObj2 = {
+
+        };
+        let exportObj3 = {
+
+        };
+        let exportObj4 = {
+
+        };
+
+        exportedFile1 = JSON.stringify(exportObj1, null, 4);
+        exportedFile2 = JSON.stringify(exportObj2, null, 4);
+        exportedFile3 = JSON.stringify(exportObj3, null, 4);
+        exportedFile4 = JSON.stringify(exportObj4, null, 4);
+        exportZip1.folder("entities").file(`${elementFile.id}.json`, exportedFile1);
+        exportZip2.folder("entity").file(`${elementFile.id}.json`, exportedFile2);
+        exportZip2.folder("render_controllers").file(`${elementFile.id}.rc.json`, exportedFile3);
+        exportZip2.folder("animations").file(`${elementFile.id}.a.json`, exportedFile4);
       } else if (role == "Structure") {
         let exportObj1 = {
           "format_version": formatVersion,

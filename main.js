@@ -1,4 +1,4 @@
-const appVersion = "0.6.1";
+const appVersion = "0.6.2";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1310,7 +1310,11 @@ async function parseBlockComponents(file) {
 }
 
 async function parseEntityComponents(file) {
+  let newObj1 = {};
 
+  
+  
+  return [newObj1];
 }
 
 

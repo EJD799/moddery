@@ -206,8 +206,8 @@ const componentDefinitions = {
     requires: false
   },
 
-  "Loot Table": {
-    name: "Loot Table",
+  "Loot": {
+    name: "Loot",
     id: "minecraft:loot",
     inputs: [
       {
@@ -287,7 +287,32 @@ const componentDefinitions = {
       }
     ],
     requires: false
-  }
+  },
+
+  "Interactable": {
+    name: "Interactable",
+    id: "minecraft:interact",
+    inputs: [
+        {
+            type: "text",
+            name: "interact_text",
+            label: "Interact Button Text",
+            tooltip: "The text that is shown on the interact button when using touchscreen controls."
+        },
+        {
+            type: "list",
+            name: "play_sounds",
+            label: "Play Sounds",
+            tooltip: "The list of sounds that will be played when the entity is interacted with. Separate items with commas. Do not add spaces."
+        },
+        {
+            type: "number",
+            name: "cooldown",
+            label: "Cooldown",
+            tooltip: "The time in seconds between entity interactions."
+        }
+    ]
+  },
 };
 
 var currentEntityComponents = {};

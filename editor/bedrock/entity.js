@@ -311,7 +311,122 @@ const componentDefinitions = {
             label: "Cooldown",
             tooltip: "The time in seconds between entity interactions."
         }
-    ]
+    ],
+    requires: false
+  },
+
+  "Add Rider": {
+    name: "Add Rider",
+    id: "minecraft:addrider",
+    inputs: [
+        {
+            type: "text",
+            name: "entity_type",
+            label: "Entity Type",
+            tooltip: "The type of entity that will spawn riding this one."
+        }
+    ],
+    requires: ["Rideable"]
+  },
+
+  "Break Door": {
+    name: "Break Door",
+    id: "minecraft:annotation.break_door",
+    inputs: [
+        {
+            type: "number",
+            name: "break_time",
+            label: "Break Time",
+            tooltip: "The amount of time, in seconds, that it takes the entity to break through doors."
+        },
+        {
+            type: "dropdown",
+            name: "min_difficulty",
+            label: "Minimum Difficulty",
+            tooltip: "The minimum difficulty setting for the entity to be able to break through doors.",
+            options: [
+                "peaceful",
+                "easy",
+                "normal",
+                "hard"
+            ]
+        }
+    ],
+    requires: false
+  },
+
+  "Open Door": {
+    name: "Open Door",
+    id: "minecraft:annotation.open_door",
+    inputs: [
+        {
+            type: "boolean",
+            name: "main",
+            label: "Open Door",
+            tooltip: "Whether the entity is able to open doors."
+        }
+    ],
+    requires: false
+  },
+
+  "Attack Cooldown": {
+    name: "Attack Cooldown",
+    id: "minecraft:attack_cooldown",
+    inputs: [
+        {
+            type: "number",
+            name: "attack_cooldown_time_min",
+            label: "Min Attack Cooldown Time",
+            tooltip: "The minimum amount of time, in seconds, that the attack cooldown lasts."
+        },
+        {
+            type: "number",
+            name: "attack_cooldown_time_max",
+            label: "Max Attack Cooldown Time",
+            tooltip: "The maximum amount of time, in seconds, that the attack cooldown lasts."
+        }
+    ],
+    requires: false
+  },
+
+  "Barter": {
+    name: "Barter",
+    id: "minecraft:barter",
+    inputs: [
+        {
+            type: "loot_table",
+            name: "barter_table",
+            label: "Barter Table",
+            tooltip: "The loot table that will be used for the randomized item trades."
+        }
+    ],
+    requires: false
+  },
+
+  "Boss": {
+    name: "Boss",
+    id: "minecraft:boss",
+    inputs: [
+        {
+            type: "text",
+            name: "name",
+            label: "Name",
+            tooltip: "The name of the entity that appears above the boss HUD."
+        },
+        {
+            type: "number",
+            name: "hud_range",
+            label: "HUD Range",
+            tooltip: "The distance from which the boss HUD can be seen."
+        },
+        {
+            type: "boolean",
+            name: "should_darken_sky",
+            label: "Should Darken Sky",
+            tooltip: "Whether the sky should darken in the presence of the entity."
+        }
+    ],
+    requires: false
   },
 };
 

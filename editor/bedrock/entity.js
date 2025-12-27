@@ -428,6 +428,62 @@ const componentDefinitions = {
     ],
     requires: false
   },
+
+  "Breathable": {
+    name: "Breathable",
+    id: "minecraft:breathable",
+    inputs: [
+        {
+            type: "boolean",
+            name: "breathes_air",
+            label: "Breathes Air",
+            tooltip: "Whether the entity can breathe in air."
+        },
+        {
+            type: "boolean",
+            name: "breathes_water",
+            label: "Breathes Water",
+            tooltip: "Whether the entity can breathe in water."
+        },
+        {
+            type: "boolean",
+            name: "breathes_solids",
+            label: "Breathes Solids",
+            tooltip: "Whether the entity can breathe in solids."
+        },
+        {
+            type: "boolean",
+            name: "breathes_lava",
+            label: "Breathes Lava",
+            tooltip: "Whether the entity can breathe in lava."
+        },
+        {
+            type: "boolean",
+            name: "can_dehydrate",
+            label: "Can Dehydrate",
+            tooltip: "Whether the entity takes dehydration damage when out of water."
+        },
+        {
+            type: "boolean",
+            name: "generates_bubbles",
+            label: "Generates Bubbles",
+            tooltip: "Whether the entity generates bubble particles when in water."
+        },
+        {
+            type: "boolean",
+            name: "inhale_time",
+            label: "Inhale Time",
+            tooltip: "The amount of time, in seconds, the entity takes to recover breath to maximum."
+        },
+        {
+            type: "boolean",
+            name: "total_supply",
+            label: "Total Supply",
+            tooltip: "The time, in seconds, the entity can hold its breath."
+        }
+    ],
+    requires: false
+  },
 };
 
 var currentEntityComponents = {};

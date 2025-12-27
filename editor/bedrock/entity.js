@@ -8,268 +8,286 @@ let currentModelSelecting;
 let currentLootTableSelecting;
 
 const componentDefinitions = {
-    /* =======================
-       SPAWNING / BASICS
-       ======================= */
+  "Health": {
+    name: "Health",
+    id: "minecraft:health",
+    inputs: [
+      {
+        type: "number",
+        name: "value",
+        label: "Current Health",
+        tooltip: "The entity's starting health value when it spawns."
+      },
+      {
+        type: "number",
+        name: "max",
+        label: "Maximum Health",
+        tooltip: "The maximum amount of health this entity can have."
+      }
+    ],
+    requires: false
+  },
 
-    "Spawn Egg": {
-        name: "Spawn Egg",
-        id: "spawn_egg",
-        inputs: [
-            { type: "color", name: "base_color", label: "Base Color", tooltip: "The base color of the spawn egg." },
-            { type: "color", name: "overlay_color", label: "Overlay Color", tooltip: "The overlay color of the spawn egg." },
-            { type: "texture", name: "texture", label: "Texture", tooltip: "Overrides spawn egg colors." }
-        ],
-        requires: false
-    },
+  "Attack Damage": {
+    name: "Attack Damage",
+    id: "minecraft:attack",
+    inputs: [
+      {
+        type: "number",
+        name: "damage",
+        label: "Damage",
+        tooltip: "The amount of damage dealt when the entity performs a melee attack."
+      }
+    ],
+    requires: false
+  },
 
-    "Experience Reward": {
-        name: "Experience Reward",
-        id: "experience_reward",
-        inputs: [
-            { type: "number", name: "min", label: "Minimum XP", tooltip: "Minimum XP dropped." },
-            { type: "number", name: "max", label: "Maximum XP", tooltip: "Maximum XP dropped." }
-        ],
-        requires: false
-    },
+  "Movement Speed": {
+    name: "Movement Speed",
+    id: "minecraft:movement",
+    inputs: [
+      {
+        type: "number",
+        name: "value",
+        label: "Speed",
+        tooltip: "Controls how fast the entity moves while walking or running."
+      }
+    ],
+    requires: false
+  },
 
-    "Loot": {
-        name: "Loot",
-        id: "loot",
-        inputs: [
-            { type: "loot_table", name: "table", label: "Loot Table", tooltip: "Loot table used when the entity dies." }
-        ],
-        requires: false
-    },
+  "Collision Box": {
+    name: "Collision Box",
+    id: "minecraft:collision_box",
+    inputs: [
+      {
+        type: "number",
+        name: "width",
+        label: "Width",
+        tooltip: "The width of the entity's collision box."
+      },
+      {
+        type: "number",
+        name: "height",
+        label: "Height",
+        tooltip: "The height of the entity's collision box."
+      }
+    ],
+    requires: false
+  },
 
-    /* =======================
-       HEALTH / DAMAGE
-       ======================= */
+  "Scale": {
+    name: "Scale",
+    id: "minecraft:scale",
+    inputs: [
+      {
+        type: "number",
+        name: "value",
+        label: "Scale",
+        tooltip: "Scales the visual size of the entity without affecting its collision box."
+      }
+    ],
+    requires: false
+  },
 
-    "Health": {
-        name: "Health",
-        id: "health",
-        inputs: [
-            { type: "number", name: "value", label: "Health", tooltip: "Maximum health of the entity." }
-        ],
-        requires: false
-    },
+  "Can Fly": {
+    name: "Can Fly",
+    id: "minecraft:can_fly",
+    inputs: [
+      {
+        type: "boolean",
+        name: "main",
+        label: "Can Fly",
+        tooltip: "Allows the entity to fly instead of being affected by gravity."
+      }
+    ],
+    requires: false
+  },
 
-    "Hurt On Condition": {
-        name: "Hurt On Condition",
-        id: "hurt_on_condition",
-        inputs: [
-            { type: "number", name: "damage", label: "Damage", tooltip: "Damage dealt when the condition is met." }
-        ],
-        requires: false
-    },
+  "Can Climb": {
+    name: "Can Climb",
+    id: "minecraft:can_climb",
+    inputs: [
+      {
+        type: "boolean",
+        name: "main",
+        label: "Can Climb",
+        tooltip: "Allows the entity to climb ladders, vines, and other climbable blocks."
+      }
+    ],
+    requires: false
+  },
 
-    "Damage Sensor": {
-        name: "Damage Sensor",
-        id: "damage_sensor",
-        inputs: [
-            { type: "checkbox", name: "immune", label: "Immune", tooltip: "Whether the entity is immune to certain damage." }
-        ],
-        requires: false
-    },
+  "Buoyant": {
+    name: "Buoyant",
+    id: "minecraft:buoyant",
+    inputs: [
+      {
+        type: "boolean",
+        name: "main",
+        label: "Buoyant",
+        tooltip: "Causes the entity to float in water or lava instead of sinking."
+      }
+    ],
+    requires: false
+  },
 
-    /* =======================
-       MOVEMENT
-       ======================= */
+  "Fire Immune": {
+    name: "Fire Immune",
+    id: "minecraft:fire_immune",
+    inputs: [
+      {
+        type: "boolean",
+        name: "main",
+        label: "Fire Immune",
+        tooltip: "Prevents the entity from taking damage from fire and lava."
+      }
+    ],
+    requires: false
+  },
 
-    "Movement": {
-        name: "Movement",
-        id: "movement",
-        inputs: [
-            { type: "number", name: "value", label: "Speed", tooltip: "Base movement speed." }
-        ],
-        requires: false
-    },
+  "Random Stroll Behavior": {
+    name: "Random Stroll",
+    id: "minecraft:behavior.random_stroll",
+    inputs: [
+      {
+        type: "number",
+        name: "priority",
+        label: "Priority",
+        tooltip: "Determines how important this behavior is compared to other behaviors."
+      },
+      {
+        type: "number",
+        name: "speed_multiplier",
+        label: "Speed Multiplier",
+        tooltip: "Controls how fast the entity moves while wandering."
+      }
+    ],
+    requires: false
+  },
 
-    "Movement Basic": {
-        name: "Movement Basic",
-        id: "movement_basic",
-        inputs: [],
-        requires: false
-    },
+  "Melee Attack Behavior": {
+    name: "Melee Attack",
+    id: "minecraft:behavior.melee_attack",
+    inputs: [
+      {
+        type: "number",
+        name: "priority",
+        label: "Priority",
+        tooltip: "Determines how important attacking is compared to other behaviors."
+      },
+      {
+        type: "number",
+        name: "speed_multiplier",
+        label: "Speed Multiplier",
+        tooltip: "Controls how fast the entity moves while attacking."
+      }
+    ],
+    requires: false
+  },
 
-    "Movement Fly": {
-        name: "Movement Fly",
-        id: "movement_fly",
-        inputs: [],
-        requires: false
-    },
+  "Panic Behavior": {
+    name: "Panic",
+    id: "minecraft:behavior.panic",
+    inputs: [
+      {
+        type: "number",
+        name: "priority",
+        label: "Priority",
+        tooltip: "Determines how urgently the entity panics when threatened."
+      },
+      {
+        type: "number",
+        name: "speed_multiplier",
+        label: "Speed Multiplier",
+        tooltip: "Controls how fast the entity runs while panicking."
+      }
+    ],
+    requires: false
+  },
 
-    "Movement Swim": {
-        name: "Movement Swim",
-        id: "movement_swim",
-        inputs: [],
-        requires: false
-    },
+  "Loot Table": {
+    name: "Loot Table",
+    id: "minecraft:loot",
+    inputs: [
+      {
+        type: "loot_table",
+        name: "table",
+        label: "Loot Table",
+        tooltip: "The loot table that determines what items this entity drops when it dies."
+      }
+    ],
+    requires: false
+  },
 
-    "Jump Static": {
-        name: "Jump Static",
-        id: "jump_static",
-        inputs: [
-            { type: "number", name: "jump_power", label: "Jump Power", tooltip: "Jump strength." }
-        ],
-        requires: false
-    },
+  "Effect Immunity": {
+    name: "Effect Immunity",
+    id: "minecraft:mob_effect_immunity",
+    inputs: [
+      {
+        type: "list",
+        name: "effects",
+        label: "Immune Effects",
+        tooltip: "Status effects that this entity is immune to. Separate items with commas. Do not add spaces."
+      }
+    ],
+    requires: false
+  },
 
-    /* =======================
-       AI / BEHAVIOR
-       ======================= */
+  "Apply Effect": {
+    name: "Apply Effect",
+    id: "minecraft:mob_effect",
+    inputs: [
+      {
+        type: "dropdown",
+        name: "effect",
+        label: "Effect",
+        tooltip: "The status effect that will be applied.",
+        options: ["speed", "strength", "poison", "regeneration", "slowness"]
+      },
+      {
+        type: "number",
+        name: "duration",
+        label: "Duration",
+        tooltip: "How long the effect lasts in seconds."
+      },
+      {
+        type: "number",
+        name: "amplifier",
+        label: "Level",
+        tooltip: "The strength level of the applied effect."
+      }
+    ],
+    requires: false
+  },
 
-    "Behavior Float": {
-        name: "Behavior Float",
-        id: "behavior_float",
-        inputs: [],
-        requires: false
-    },
+  "Spawn Weight": {
+    name: "Spawn Weight",
+    id: "minecraft:weight",
+    inputs: [
+      {
+        type: "number",
+        name: "value",
+        label: "Weight",
+        tooltip: "Controls how likely this entity is to spawn compared to others."
+      }
+    ],
+    requires: false
+  },
 
-    "Behavior Panic": {
-        name: "Behavior Panic",
-        id: "behavior_panic",
-        inputs: [
-            { type: "number", name: "speed_multiplier", label: "Speed Multiplier", tooltip: "Speed while panicking." }
-        ],
-        requires: false
-    },
-
-    "Behavior Melee Attack": {
-        name: "Behavior Melee Attack",
-        id: "behavior_melee_attack",
-        inputs: [
-            { type: "number", name: "damage", label: "Damage", tooltip: "Melee attack damage." },
-            { type: "number", name: "speed_multiplier", label: "Speed Multiplier", tooltip: "Speed while attacking." }
-        ],
-        requires: false
-    },
-
-    "Behavior Random Stroll": {
-        name: "Behavior Random Stroll",
-        id: "behavior_random_stroll",
-        inputs: [
-            { type: "number", name: "speed_multiplier", label: "Speed Multiplier", tooltip: "Movement speed while strolling." }
-        ],
-        requires: false
-    },
-
-    "Behavior Look At Player": {
-        name: "Behavior Look At Player",
-        id: "behavior_look_at_player",
-        inputs: [
-            { type: "number", name: "look_distance", label: "Look Distance", tooltip: "Distance to look at players." }
-        ],
-        requires: false
-    },
-
-    /* =======================
-       SENSORY / TARGETING
-       ======================= */
-
-    "Follow Range": {
-        name: "Follow Range",
-        id: "follow_range",
-        inputs: [
-            { type: "number", name: "value", label: "Range", tooltip: "How far the entity can detect targets." }
-        ],
-        requires: false
-    },
-
-    "Attack": {
-        name: "Attack",
-        id: "attack",
-        inputs: [
-            { type: "number", name: "damage", label: "Damage", tooltip: "Base attack damage." }
-        ],
-        requires: false
-    },
-
-    /* =======================
-       PHYSICS / COLLISION
-       ======================= */
-
-    "Physics": {
-        name: "Physics",
-        id: "physics",
-        inputs: [
-            { type: "checkbox", name: "has_gravity", label: "Has Gravity", tooltip: "Whether gravity affects the entity." }
-        ],
-        requires: false
-    },
-
-    "Collision Box": {
-        name: "Collision Box",
-        id: "collision_box",
-        inputs: [
-            { type: "number", name: "width", label: "Width", tooltip: "Collision width." },
-            { type: "number", name: "height", label: "Height", tooltip: "Collision height." }
-        ],
-        requires: false
-    },
-
-    "Pushable": {
-        name: "Pushable",
-        id: "pushable",
-        inputs: [
-            { type: "checkbox", name: "is_pushable", label: "Pushable", tooltip: "Whether the entity can be pushed." }
-        ],
-        requires: false
-    },
-
-    /* =======================
-       RENDERING
-       ======================= */
-
-    "Scale": {
-        name: "Scale",
-        id: "scale",
-        inputs: [
-            { type: "number", name: "value", label: "Scale", tooltip: "Visual scale of the entity." }
-        ],
-        requires: false
-    },
-
-    "Nameable": {
-        name: "Nameable",
-        id: "nameable",
-        inputs: [
-            { type: "checkbox", name: "allow_rename", label: "Allow Rename", tooltip: "Whether the entity can be renamed." }
-        ],
-        requires: false
-    },
-
-    "Interact": {
-        name: "Interact",
-        id: "interact",
-        inputs: [
-            { type: "text", name: "interaction_text", label: "Interaction Text", tooltip: "Text shown when interacting." }
-        ],
-        requires: false
-    },
-
-    /* =======================
-       MISC
-       ======================= */
-
-    "Despawn": {
-        name: "Despawn",
-        id: "despawn",
-        inputs: [
-            { type: "checkbox", name: "despawnable", label: "Despawnable", tooltip: "Whether the entity can despawn." }
-        ],
-        requires: false
-    },
-
-    "Fire Immune": {
-        name: "Fire Immune",
-        id: "fire_immune",
-        inputs: [
-            { type: "checkbox", name: "immune", label: "Fire Immune", tooltip: "Whether the entity is immune to fire and lava." }
-        ],
-        requires: false
-    }
+  "Transient": {
+    name: "Transient",
+    id: "minecraft:transient",
+    inputs: [
+      {
+        type: "boolean",
+        name: "main",
+        label: "Transient",
+        tooltip: "Prevents the entity from persisting in the world for long periods."
+      }
+    ],
+    requires: false
+  }
 };
 
 var currentEntityComponents = {};

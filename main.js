@@ -1,4 +1,4 @@
-const appVersion = "0.6.9";
+const appVersion = "0.6.10";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1338,6 +1338,29 @@ async function parseEntityComponents(file) {
     newObj1["minecraft:collision_box"] = {
       height: Number(component.height),
       width: Number(component.width)
+    };
+  }
+  if (keys.includes("Can Fly")) {
+    let component = components["Can Fly"];
+    newObj1["minecraft:can_fly"] = component.main;
+  }
+  if (keys.includes("Can Climb")) {
+    let component = components["Can Climb"];
+    newObj1["minecraft:can_climb"] = component.main;
+  }
+  if (keys.includes("Buoyant")) {
+    let component = components["Buoyant"];
+    newObj1["minecraft:buoyant"] = component.main;
+  }
+  if (keys.includes("Fire Immune")) {
+    let component = components["Fire Immune"];
+    newObj1["minecraft:fire_immune"] = component.main;
+  }
+  if (keys.includes("Random Stroll")) {
+    let component = components["Random Stroll"];
+    newObj1["minecraft:random_stroll"] = {
+      priority: Number(component.priority),
+      speed_multiplier: Number(component.speed_multiplier)
     };
   }
 

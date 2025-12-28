@@ -76,20 +76,6 @@ const componentDefinitions = {
     requires: false
   },
 
-  "Scale": {
-    name: "Scale",
-    id: "minecraft:scale",
-    inputs: [
-      {
-        type: "number",
-        name: "value",
-        label: "Scale",
-        tooltip: "Scales the visual size of the entity without affecting its collision box."
-      }
-    ],
-    requires: false
-  },
-
   "Can Fly": {
     name: "Can Fly",
     id: "minecraft:can_fly",

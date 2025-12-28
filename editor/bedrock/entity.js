@@ -659,7 +659,991 @@ const componentDefinitions = {
     requires: false
   },
 
-  
+  "Amphibious Movement": {
+    name: "Amphibious Movement",
+    id: "minecraft:movement.amphibious",
+    inputs: [
+        {
+            type: "number",
+            name: "max_turn",
+            label: "Max Turn",
+            tooltip: "The maximum amount, in degrees, the entity can turn in one tick."
+        }
+    ],
+    requires: false
+  },
+
+  "Basic Movement": {
+    name: "Basic Movement",
+    id: "minecraft:movement.basic",
+    inputs: [
+        {
+            type: "number",
+            name: "max_turn",
+            label: "Max Turn",
+            tooltip: "The maximum amount, in degrees, the entity can turn in one tick."
+        }
+    ],
+    requires: false
+  },
+
+  "Fly Movement": {
+    name: "Fly Movement",
+    id: "minecraft:movement.fly",
+    inputs: [
+        {
+            type: "number",
+            name: "max_turn",
+            label: "Max Turn",
+            tooltip: "The maximum amount, in degrees, the entity can turn in one tick."
+        }
+    ],
+    requires: false
+  },
+
+  "Generic Movement": {
+    name: "Generic Movement",
+    id: "minecraft:movement.generic",
+    inputs: [
+        {
+            type: "number",
+            name: "max_turn",
+            label: "Max Turn",
+            tooltip: "The maximum amount, in degrees, the entity can turn in one tick."
+        }
+    ],
+    requires: false
+  },
+
+  "Hover Movement": {
+    name: "Hover Movement",
+    id: "minecraft:movement.hover",
+    inputs: [
+        {
+            type: "number",
+            name: "max_turn",
+            label: "Max Turn",
+            tooltip: "The maximum amount, in degrees, the entity can turn in one tick."
+        }
+    ],
+    requires: false
+  },
+
+  "Jump Movement": {
+    name: "Jump Movement",
+    id: "minecraft:movement.jump",
+    inputs: [
+        {
+            type: "number",
+            name: "max_turn",
+            label: "Max Turn",
+            tooltip: "The maximum amount, in degrees, the entity can turn in one tick."
+        }
+    ],
+    requires: false
+  },
+
+  "Skip Movement": {
+    name: "Skip Movement",
+    id: "minecraft:movement.skip",
+    inputs: [
+        {
+            type: "number",
+            name: "max_turn",
+            label: "Max Turn",
+            tooltip: "The maximum amount, in degrees, the entity can turn in one tick."
+        }
+    ],
+    requires: false
+  },
+
+  "Sway Movement": {
+    name: "Sway Movement",
+    id: "minecraft:movement.sway",
+    inputs: [
+        {
+            type: "number",
+            name: "max_turn",
+            label: "Max Turn",
+            tooltip: "The maximum amount, in degrees, the entity can turn in one tick."
+        }
+    ],
+    requires: false
+  },
+
+  "Nameable": {
+    name: "Nameable",
+    id: "minecraft:nameable",
+    inputs: [
+        {
+            type: "boolean",
+            name: "allow_name_tag_renaming",
+            label: "Renameable",
+            tooltip: "Whether the entity can be renamed with name tags."
+        },
+        {
+            type: "boolean",
+            name: "always_show",
+            label: "Always Show",
+            tooltip: "Whether the name of the entity should always be shown."
+        }
+    ],
+    requires: false
+  },
+
+  "Climb Navigation": {
+    name: "Climb Navigation",
+    id: "minecraft:navigation.climb",
+    inputs: [
+        {
+            type: "boolean",
+            name: "avoid_damage_blocks",
+            label: "Avoid Damage Blocks",
+            tooltip: "Whether the entity should avoid damage blocks when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_portals",
+            label: "Avoid Portals",
+            tooltip: "Whether the entity should avoid portals when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_sun",
+            label: "Avoid Sun",
+            tooltip: "Whether the entity should avoid blocks exposed to the sun when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_water",
+            label: "Avoid Water",
+            tooltip: "Whether the entity should avoid water when pathfinding."
+        },
+        {
+            type: "list",
+            name: "blocks_to_avoid",
+            label: "Blocks to Avoid",
+            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+        },
+        {
+            type: "boolean",
+            name: "can_breach",
+            label: "Can Breach",
+            tooltip: "Whether the entity can jump out of water (like a dolphin)."
+        },
+        {
+            type: "boolean",
+            name: "can_break_doors",
+            label: "Can Break Doors",
+            tooltip: "Whether the entity can break closed doors."
+        },
+        {
+            type: "boolean",
+            name: "can_jump",
+            label: "Can Jump",
+            tooltip: "Whether the entity can jump."
+        },
+        {
+            type: "boolean",
+            name: "can_open_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open doors."
+        },
+        {
+            type: "boolean",
+            name: "can_open_iron_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open iron doors."
+        },
+        {
+            type: "boolean",
+            name: "can_pass_doors",
+            label: "Can Pass Doors",
+            tooltip: "Whether the entity can pathfind through doors."
+        },
+        {
+            type: "boolean",
+            name: "can_path_from_air",
+            label: "Can Path From Air",
+            tooltip: "Whether the entity can start pathfinding in the air."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_lava",
+            label: "Can Path Over Lava",
+            tooltip: "Whether the entity can travel over lava."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_water",
+            label: "Can Path Over Water",
+            tooltip: "Whether the entity can travel over water."
+        },
+        {
+            type: "boolean",
+            name: "can_sink",
+            label: "Can Sink",
+            tooltip: "Whether the entity can sink in water."
+        },
+        {
+            type: "boolean",
+            name: "can_swim",
+            label: "Can Swim",
+            tooltip: "Whether the entity can swim."
+        },
+        {
+            type: "boolean",
+            name: "can_walk",
+            label: "Can Walk",
+            tooltip: "Whether the entity can walk."
+        },
+        {
+            type: "boolean",
+            name: "can_walk_in_lava",
+            label: "Can Walk In Lava",
+            tooltip: "Whether the entity can walk in lava."
+        },
+        {
+            type: "boolean",
+            name: "is_amphibious",
+            label: "Is Amphibious",
+            tooltip: "Whether the entity is amphibious."
+        }
+    ],
+    requires: false
+  },
+
+  "Float Navigation": {
+    name: "Float Navigation",
+    id: "minecraft:navigation.float",
+    inputs: [
+        {
+            type: "boolean",
+            name: "avoid_damage_blocks",
+            label: "Avoid Damage Blocks",
+            tooltip: "Whether the entity should avoid damage blocks when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_portals",
+            label: "Avoid Portals",
+            tooltip: "Whether the entity should avoid portals when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_sun",
+            label: "Avoid Sun",
+            tooltip: "Whether the entity should avoid blocks exposed to the sun when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_water",
+            label: "Avoid Water",
+            tooltip: "Whether the entity should avoid water when pathfinding."
+        },
+        {
+            type: "list",
+            name: "blocks_to_avoid",
+            label: "Blocks to Avoid",
+            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+        },
+        {
+            type: "boolean",
+            name: "can_breach",
+            label: "Can Breach",
+            tooltip: "Whether the entity can jump out of water (like a dolphin)."
+        },
+        {
+            type: "boolean",
+            name: "can_break_doors",
+            label: "Can Break Doors",
+            tooltip: "Whether the entity can break closed doors."
+        },
+        {
+            type: "boolean",
+            name: "can_jump",
+            label: "Can Jump",
+            tooltip: "Whether the entity can jump."
+        },
+        {
+            type: "boolean",
+            name: "can_open_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open doors."
+        },
+        {
+            type: "boolean",
+            name: "can_open_iron_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open iron doors."
+        },
+        {
+            type: "boolean",
+            name: "can_pass_doors",
+            label: "Can Pass Doors",
+            tooltip: "Whether the entity can pathfind through doors."
+        },
+        {
+            type: "boolean",
+            name: "can_path_from_air",
+            label: "Can Path From Air",
+            tooltip: "Whether the entity can start pathfinding in the air."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_lava",
+            label: "Can Path Over Lava",
+            tooltip: "Whether the entity can travel over lava."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_water",
+            label: "Can Path Over Water",
+            tooltip: "Whether the entity can travel over water."
+        },
+        {
+            type: "boolean",
+            name: "can_sink",
+            label: "Can Sink",
+            tooltip: "Whether the entity can sink in water."
+        },
+        {
+            type: "boolean",
+            name: "can_swim",
+            label: "Can Swim",
+            tooltip: "Whether the entity can swim."
+        },
+        {
+            type: "boolean",
+            name: "can_walk",
+            label: "Can Walk",
+            tooltip: "Whether the entity can walk."
+        },
+        {
+            type: "boolean",
+            name: "can_walk_in_lava",
+            label: "Can Walk In Lava",
+            tooltip: "Whether the entity can walk in lava."
+        },
+        {
+            type: "boolean",
+            name: "is_amphibious",
+            label: "Is Amphibious",
+            tooltip: "Whether the entity is amphibious."
+        }
+    ],
+    requires: false
+  },
+
+  "Fly Navigation": {
+    name: "Fly Navigation",
+    id: "minecraft:navigation.fly",
+    inputs: [
+        {
+            type: "boolean",
+            name: "avoid_damage_blocks",
+            label: "Avoid Damage Blocks",
+            tooltip: "Whether the entity should avoid damage blocks when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_portals",
+            label: "Avoid Portals",
+            tooltip: "Whether the entity should avoid portals when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_sun",
+            label: "Avoid Sun",
+            tooltip: "Whether the entity should avoid blocks exposed to the sun when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_water",
+            label: "Avoid Water",
+            tooltip: "Whether the entity should avoid water when pathfinding."
+        },
+        {
+            type: "list",
+            name: "blocks_to_avoid",
+            label: "Blocks to Avoid",
+            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+        },
+        {
+            type: "boolean",
+            name: "can_breach",
+            label: "Can Breach",
+            tooltip: "Whether the entity can jump out of water (like a dolphin)."
+        },
+        {
+            type: "boolean",
+            name: "can_break_doors",
+            label: "Can Break Doors",
+            tooltip: "Whether the entity can break closed doors."
+        },
+        {
+            type: "boolean",
+            name: "can_jump",
+            label: "Can Jump",
+            tooltip: "Whether the entity can jump."
+        },
+        {
+            type: "boolean",
+            name: "can_open_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open doors."
+        },
+        {
+            type: "boolean",
+            name: "can_open_iron_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open iron doors."
+        },
+        {
+            type: "boolean",
+            name: "can_pass_doors",
+            label: "Can Pass Doors",
+            tooltip: "Whether the entity can pathfind through doors."
+        },
+        {
+            type: "boolean",
+            name: "can_path_from_air",
+            label: "Can Path From Air",
+            tooltip: "Whether the entity can start pathfinding in the air."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_lava",
+            label: "Can Path Over Lava",
+            tooltip: "Whether the entity can travel over lava."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_water",
+            label: "Can Path Over Water",
+            tooltip: "Whether the entity can travel over water."
+        },
+        {
+            type: "boolean",
+            name: "can_sink",
+            label: "Can Sink",
+            tooltip: "Whether the entity can sink in water."
+        },
+        {
+            type: "boolean",
+            name: "can_swim",
+            label: "Can Swim",
+            tooltip: "Whether the entity can swim."
+        },
+        {
+            type: "boolean",
+            name: "can_walk",
+            label: "Can Walk",
+            tooltip: "Whether the entity can walk."
+        },
+        {
+            type: "boolean",
+            name: "can_walk_in_lava",
+            label: "Can Walk In Lava",
+            tooltip: "Whether the entity can walk in lava."
+        },
+        {
+            type: "boolean",
+            name: "is_amphibious",
+            label: "Is Amphibious",
+            tooltip: "Whether the entity is amphibious."
+        }
+    ],
+    requires: false
+  },
+
+  "Generic Navigation": {
+    name: "Generic Navigation",
+    id: "minecraft:navigation.generic",
+    inputs: [
+        {
+            type: "boolean",
+            name: "avoid_damage_blocks",
+            label: "Avoid Damage Blocks",
+            tooltip: "Whether the entity should avoid damage blocks when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_portals",
+            label: "Avoid Portals",
+            tooltip: "Whether the entity should avoid portals when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_sun",
+            label: "Avoid Sun",
+            tooltip: "Whether the entity should avoid blocks exposed to the sun when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_water",
+            label: "Avoid Water",
+            tooltip: "Whether the entity should avoid water when pathfinding."
+        },
+        {
+            type: "list",
+            name: "blocks_to_avoid",
+            label: "Blocks to Avoid",
+            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+        },
+        {
+            type: "boolean",
+            name: "can_breach",
+            label: "Can Breach",
+            tooltip: "Whether the entity can jump out of water (like a dolphin)."
+        },
+        {
+            type: "boolean",
+            name: "can_break_doors",
+            label: "Can Break Doors",
+            tooltip: "Whether the entity can break closed doors."
+        },
+        {
+            type: "boolean",
+            name: "can_jump",
+            label: "Can Jump",
+            tooltip: "Whether the entity can jump."
+        },
+        {
+            type: "boolean",
+            name: "can_open_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open doors."
+        },
+        {
+            type: "boolean",
+            name: "can_open_iron_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open iron doors."
+        },
+        {
+            type: "boolean",
+            name: "can_pass_doors",
+            label: "Can Pass Doors",
+            tooltip: "Whether the entity can pathfind through doors."
+        },
+        {
+            type: "boolean",
+            name: "can_path_from_air",
+            label: "Can Path From Air",
+            tooltip: "Whether the entity can start pathfinding in the air."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_lava",
+            label: "Can Path Over Lava",
+            tooltip: "Whether the entity can travel over lava."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_water",
+            label: "Can Path Over Water",
+            tooltip: "Whether the entity can travel over water."
+        },
+        {
+            type: "boolean",
+            name: "can_sink",
+            label: "Can Sink",
+            tooltip: "Whether the entity can sink in water."
+        },
+        {
+            type: "boolean",
+            name: "can_swim",
+            label: "Can Swim",
+            tooltip: "Whether the entity can swim."
+        },
+        {
+            type: "boolean",
+            name: "can_walk",
+            label: "Can Walk",
+            tooltip: "Whether the entity can walk."
+        },
+        {
+            type: "boolean",
+            name: "can_walk_in_lava",
+            label: "Can Walk In Lava",
+            tooltip: "Whether the entity can walk in lava."
+        },
+        {
+            type: "boolean",
+            name: "is_amphibious",
+            label: "Is Amphibious",
+            tooltip: "Whether the entity is amphibious."
+        }
+    ],
+    requires: false
+  },
+
+  "Hover Navigation": {
+    name: "Hover Navigation",
+    id: "minecraft:navigation.hover",
+    inputs: [
+        {
+            type: "boolean",
+            name: "avoid_damage_blocks",
+            label: "Avoid Damage Blocks",
+            tooltip: "Whether the entity should avoid damage blocks when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_portals",
+            label: "Avoid Portals",
+            tooltip: "Whether the entity should avoid portals when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_sun",
+            label: "Avoid Sun",
+            tooltip: "Whether the entity should avoid blocks exposed to the sun when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_water",
+            label: "Avoid Water",
+            tooltip: "Whether the entity should avoid water when pathfinding."
+        },
+        {
+            type: "list",
+            name: "blocks_to_avoid",
+            label: "Blocks to Avoid",
+            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+        },
+        {
+            type: "boolean",
+            name: "can_breach",
+            label: "Can Breach",
+            tooltip: "Whether the entity can jump out of water (like a dolphin)."
+        },
+        {
+            type: "boolean",
+            name: "can_break_doors",
+            label: "Can Break Doors",
+            tooltip: "Whether the entity can break closed doors."
+        },
+        {
+            type: "boolean",
+            name: "can_jump",
+            label: "Can Jump",
+            tooltip: "Whether the entity can jump."
+        },
+        {
+            type: "boolean",
+            name: "can_open_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open doors."
+        },
+        {
+            type: "boolean",
+            name: "can_open_iron_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open iron doors."
+        },
+        {
+            type: "boolean",
+            name: "can_pass_doors",
+            label: "Can Pass Doors",
+            tooltip: "Whether the entity can pathfind through doors."
+        },
+        {
+            type: "boolean",
+            name: "can_path_from_air",
+            label: "Can Path From Air",
+            tooltip: "Whether the entity can start pathfinding in the air."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_lava",
+            label: "Can Path Over Lava",
+            tooltip: "Whether the entity can travel over lava."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_water",
+            label: "Can Path Over Water",
+            tooltip: "Whether the entity can travel over water."
+        },
+        {
+            type: "boolean",
+            name: "can_sink",
+            label: "Can Sink",
+            tooltip: "Whether the entity can sink in water."
+        },
+        {
+            type: "boolean",
+            name: "can_swim",
+            label: "Can Swim",
+            tooltip: "Whether the entity can swim."
+        },
+        {
+            type: "boolean",
+            name: "can_walk",
+            label: "Can Walk",
+            tooltip: "Whether the entity can walk."
+        },
+        {
+            type: "boolean",
+            name: "can_walk_in_lava",
+            label: "Can Walk In Lava",
+            tooltip: "Whether the entity can walk in lava."
+        },
+        {
+            type: "boolean",
+            name: "is_amphibious",
+            label: "Is Amphibious",
+            tooltip: "Whether the entity is amphibious."
+        }
+    ],
+    requires: false
+  },
+
+  "Swim Navigation": {
+    name: "Swim Navigation",
+    id: "minecraft:navigation.swim",
+    inputs: [
+        {
+            type: "boolean",
+            name: "avoid_damage_blocks",
+            label: "Avoid Damage Blocks",
+            tooltip: "Whether the entity should avoid damage blocks when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_portals",
+            label: "Avoid Portals",
+            tooltip: "Whether the entity should avoid portals when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_sun",
+            label: "Avoid Sun",
+            tooltip: "Whether the entity should avoid blocks exposed to the sun when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_water",
+            label: "Avoid Water",
+            tooltip: "Whether the entity should avoid water when pathfinding."
+        },
+        {
+            type: "list",
+            name: "blocks_to_avoid",
+            label: "Blocks to Avoid",
+            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+        },
+        {
+            type: "boolean",
+            name: "can_breach",
+            label: "Can Breach",
+            tooltip: "Whether the entity can jump out of water (like a dolphin)."
+        },
+        {
+            type: "boolean",
+            name: "can_break_doors",
+            label: "Can Break Doors",
+            tooltip: "Whether the entity can break closed doors."
+        },
+        {
+            type: "boolean",
+            name: "can_jump",
+            label: "Can Jump",
+            tooltip: "Whether the entity can jump."
+        },
+        {
+            type: "boolean",
+            name: "can_open_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open doors."
+        },
+        {
+            type: "boolean",
+            name: "can_open_iron_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open iron doors."
+        },
+        {
+            type: "boolean",
+            name: "can_pass_doors",
+            label: "Can Pass Doors",
+            tooltip: "Whether the entity can pathfind through doors."
+        },
+        {
+            type: "boolean",
+            name: "can_path_from_air",
+            label: "Can Path From Air",
+            tooltip: "Whether the entity can start pathfinding in the air."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_lava",
+            label: "Can Path Over Lava",
+            tooltip: "Whether the entity can travel over lava."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_water",
+            label: "Can Path Over Water",
+            tooltip: "Whether the entity can travel over water."
+        },
+        {
+            type: "boolean",
+            name: "can_sink",
+            label: "Can Sink",
+            tooltip: "Whether the entity can sink in water."
+        },
+        {
+            type: "boolean",
+            name: "can_swim",
+            label: "Can Swim",
+            tooltip: "Whether the entity can swim."
+        },
+        {
+            type: "boolean",
+            name: "can_walk",
+            label: "Can Walk",
+            tooltip: "Whether the entity can walk."
+        },
+        {
+            type: "boolean",
+            name: "can_walk_in_lava",
+            label: "Can Walk In Lava",
+            tooltip: "Whether the entity can walk in lava."
+        },
+        {
+            type: "boolean",
+            name: "is_amphibious",
+            label: "Is Amphibious",
+            tooltip: "Whether the entity is amphibious."
+        }
+    ],
+    requires: false
+  },
+
+  "Walk Navigation": {
+    name: "Walk Navigation",
+    id: "minecraft:navigation.walk",
+    inputs: [
+        {
+            type: "boolean",
+            name: "avoid_damage_blocks",
+            label: "Avoid Damage Blocks",
+            tooltip: "Whether the entity should avoid damage blocks when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_portals",
+            label: "Avoid Portals",
+            tooltip: "Whether the entity should avoid portals when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_sun",
+            label: "Avoid Sun",
+            tooltip: "Whether the entity should avoid blocks exposed to the sun when pathfinding."
+        },
+        {
+            type: "boolean",
+            name: "avoid_water",
+            label: "Avoid Water",
+            tooltip: "Whether the entity should avoid water when pathfinding."
+        },
+        {
+            type: "list",
+            name: "blocks_to_avoid",
+            label: "Blocks to Avoid",
+            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+        },
+        {
+            type: "boolean",
+            name: "can_breach",
+            label: "Can Breach",
+            tooltip: "Whether the entity can jump out of water (like a dolphin)."
+        },
+        {
+            type: "boolean",
+            name: "can_break_doors",
+            label: "Can Break Doors",
+            tooltip: "Whether the entity can break closed doors."
+        },
+        {
+            type: "boolean",
+            name: "can_jump",
+            label: "Can Jump",
+            tooltip: "Whether the entity can jump."
+        },
+        {
+            type: "boolean",
+            name: "can_open_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open doors."
+        },
+        {
+            type: "boolean",
+            name: "can_open_iron_doors",
+            label: "Can Open Doors",
+            tooltip: "Whether the entity can open iron doors."
+        },
+        {
+            type: "boolean",
+            name: "can_pass_doors",
+            label: "Can Pass Doors",
+            tooltip: "Whether the entity can pathfind through doors."
+        },
+        {
+            type: "boolean",
+            name: "can_path_from_air",
+            label: "Can Path From Air",
+            tooltip: "Whether the entity can start pathfinding in the air."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_lava",
+            label: "Can Path Over Lava",
+            tooltip: "Whether the entity can travel over lava."
+        },
+        {
+            type: "boolean",
+            name: "can_path_over_water",
+            label: "Can Path Over Water",
+            tooltip: "Whether the entity can travel over water."
+        },
+        {
+            type: "boolean",
+            name: "can_sink",
+            label: "Can Sink",
+            tooltip: "Whether the entity can sink in water."
+        },
+        {
+            type: "boolean",
+            name: "can_swim",
+            label: "Can Swim",
+            tooltip: "Whether the entity can swim."
+        },
+        {
+            type: "boolean",
+            name: "can_walk",
+            label: "Can Walk",
+            tooltip: "Whether the entity can walk."
+        },
+        {
+            type: "boolean",
+            name: "can_walk_in_lava",
+            label: "Can Walk In Lava",
+            tooltip: "Whether the entity can walk in lava."
+        },
+        {
+            type: "boolean",
+            name: "is_amphibious",
+            label: "Is Amphibious",
+            tooltip: "Whether the entity is amphibious."
+        }
+    ],
+    requires: false
+  },
 };
 
 var currentEntityComponents = {};

@@ -484,6 +484,182 @@ const componentDefinitions = {
     ],
     requires: false
   },
+
+  "Burns in Daylight": {
+    name: "Burns in Daylight",
+    id: "minecraft:burns_in_daylight",
+    inputs: [
+        {
+            type: "boolean",
+            name: "main",
+            label: "Burns in Daylight",
+            tooltip: "Whether the entity should burn in daylight."
+        }
+    ],
+    requires: false
+  },
+
+  "Can Join Raid": {
+    name: "Can Join Raid",
+    id: "minecraft:can_join_raid",
+    inputs: [
+        {
+            type: "boolean",
+            name: "main",
+            label: "Can Join Raid",
+            tooltip: "Whether the entity can join an existing raid."
+        }
+    ],
+    requires: false
+  },
+
+  "Economy Trade Table": {
+    name: "Economy Trade Table",
+    id: "minecraft:economy_trade_table",
+    inputs: [
+        {
+            type: "trade_table",
+            name: "table",
+            label: "Trade Table",
+            tooltip: "The trade table that will be used for the trades."
+        },
+        {
+            type: "text",
+            name: "display_name",
+            label: "Display Name",
+            tooltip: "The name of entity displayed in the trading GUI."
+        }
+    ],
+    requires: false
+  },
+
+  "Flying Speed": {
+    name: "Flying Speed",
+    id: "minecraft:flying_speed",
+    inputs: [
+        {
+            type: "number",
+            name: "value",
+            label: "Flying Speed",
+            tooltip: "The flying speed of the entity, in blocks per tick."
+        }
+    ],
+    requires: false
+  },
+
+  "Friction Modifier": {
+    name: "Friction Modifier",
+    id: "minecraft:friction_modifier",
+    inputs: [
+        {
+            type: "number",
+            name: "value",
+            label: "Friction Modifier",
+            tooltip: "The amount friction affects this entity."
+        }
+    ],
+    requires: false
+  },
+
+  "Ground Offset": {
+    name: "Ground Offset",
+    id: "minecraft:ground_offset",
+    inputs: [
+        {
+            type: "number",
+            name: "value",
+            label: "Ground Offset",
+            tooltip: "The offset of the entity above the terrain, in blocks."
+        }
+    ],
+    requires: false
+  },
+
+  "Input Controls": {
+    name: "Input Controls",
+    id: "minecraft:input_ground_controlled",
+    inputs: [
+        {
+            type: "boolean",
+            name: "main",
+            label: "Use Input Controls",
+            tooltip: "Whether the entity should be controllable with WASD."
+        }
+    ],
+    requires: ["Rideable"]
+  },
+
+  "Is Collidable": {
+    name: "Is Collidable",
+    id: "minecraft:is_collidable",
+    inputs: [
+        {
+            type: "boolean",
+            name: "main",
+            label: "Is Collidable",
+            tooltip: "Whether the entity can have collision box interactions with other entities."
+        }
+    ],
+    requires: ["Collision Box"]
+  },
+
+  "Is Dyeable": {
+    name: "Is Dyeable",
+    id: "minecraft:is_dyeable",
+    inputs: [
+        {
+            type: "text",
+            name: "interact_text",
+            label: "Interact Text",
+            tooltip: "The text that will be displayed on the interact button of the touch-screen controls."
+        }
+    ],
+    requires: false
+  },
+
+  "Is Hidden When Invisible": {
+    name: "Is Hidden When Invisible",
+    id: "minecraft:is_hidden_when_invisible",
+    inputs: [
+        {
+            type: "boolean",
+            name: "main",
+            label: "Is Hidden When Invisible",
+            tooltip: "Whether the entity is hidden from hostile mobs when invisible."
+        }
+    ],
+    requires: false
+  },
+
+  "Renders When Invisible": {
+    name: "Renders When Invisible",
+    id: "minecraft:renders_when_invisible",
+    inputs: [
+        {
+            type: "boolean",
+            name: "main",
+            label: "Renders When Invisible",
+            tooltip: "Whether the entity should render, even when invisible."
+        }
+    ],
+    requires: false
+  },
+
+  "Scale": {
+    name: "Scale",
+    id: "minecraft:scale",
+    inputs: [
+        {
+            type: "number",
+            name: "value",
+            label: "Scale",
+            tooltip: "The visual scale of the entity."
+        }
+    ],
+    requires: false
+  },
+
+  
 };
 
 var currentEntityComponents = {};

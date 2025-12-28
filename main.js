@@ -1,4 +1,4 @@
-const appVersion = "0.6.8";
+const appVersion = "0.6.9";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1310,9 +1310,43 @@ async function parseBlockComponents(file) {
 }
 
 async function parseEntityComponents(file) {
+  let components = file.components;
+  let keys = Object.keys(components);
   let newObj1 = {};
 
+  if (keys.includes("Health")) {
+    let component = components["Health"];
+    newObj1["minecraft:health"] = {
+      value: Number(component.value),
+      max: Number(component.max)
+    };
+  }
+  if (keys.includes("Attack Damage")) {
+    let component = components["Attack Damage"];
+    newObj1["minecraft:attack"] = {
+      damage: Number(component.damage)
+    };
+  }
+  if (keys.includes("Movement Speed")) {
+    let component = components["Movement Speed"];
+    newObj1["minecraft:movement"] = {
+      value: Number(component.value)
+    };
+  }
+  if (keys.includes("Collision Box")) {
+    let component = components["Collision Box"];
+    newObj1["minecraft:collision_box"] = {
+      height: Number(component.height),
+      width: Number(component.width)
+    };
+  }
 
+  /*if (keys.includes("")) {
+    let component = components[""];
+    newObj1["minecraft:"] = {
+
+    };
+  }*/
   
   return [newObj1];
 }

@@ -1644,6 +1644,128 @@ const componentDefinitions = {
     ],
     requires: false
   },
+
+  "Physics": {
+    name: "Physics",
+    id: "minecraft:physics",
+    inputs: [
+        {
+            type: "boolean",
+            name: "has_collision",
+            label: "Has Collision",
+            tooltip: "Whether the entity should collide with things."
+        },
+        {
+            type: "boolean",
+            name: "has_gravity",
+            label: "Has Gravity",
+            tooltip: "Whether the entity is affected by gravity."
+        },
+        {
+            type: "boolean",
+            name: "push_towards_closest_space",
+            label: "Push Towards Closest Spaces",
+            tooltip: "Whether the entity should be pushed towards the closest open space when stuck inside a block."
+        }
+    ],
+    requires: false
+  },
+
+  "Pushable": {
+    name: "Pushable",
+    id: "minecraft:pushable",
+    inputs: [
+        {
+            type: "boolean",
+            name: "is_pushable",
+            label: "Pushable by Entities",
+            tooltip: "Whether the entity can be pushed by other entities."
+        },
+        {
+            type: "boolean",
+            name: "is_pushable_by_piston",
+            label: "Pushable by Pistons",
+            tooltip: "Whether the entity can be pushed by pistons."
+        }
+    ],
+    requires: ["Collision Box"]
+  },
+
+  "Rail Movement": {
+    name: "Rail Movement",
+    id: "minecraft:rail_movement",
+    inputs: [
+        {
+            type: "number",
+            name: "max_speed",
+            label: "Max Speed",
+            tooltip: "The maximum speed of the entity on rails."
+        }
+    ],
+    requires: false
+  },
+
+  "Rideable": {
+    name: "Rideable",
+    id: "minecraft:rideable",
+    inputs: [
+        {
+            type: "number",
+            name: "controlling_seat",
+            label: "Controlling Seat",
+            tooltip: "The seat number of the driver of the entity."
+        },
+        {
+            type: "boolean",
+            name: "crouching_skip_interact",
+            label: "Crouching Skip Interact",
+            tooltip: "Whether crouching makes the entity non-interactable."
+        },
+        {
+            type: "dropdown",
+            name: "dismount_mode",
+            label: "Dismount Mode",
+            tooltip: "Where riders are placed when dismounting from the entity. When set to \"default\", riders are placed on the ground near the entity. When set to \"on_top_center\", riders are placed on top of the entity, at the center of its collision box."
+        },
+        {
+            type: "list",
+            name: "family_types",
+            label: "Family Types",
+            tooltip: "The list of entities that can ride this entity. Separate items with commas. Do not add spaces."
+        },
+        {
+            type: "text",
+            name: "interact_text",
+            label: "Interact Text",
+            tooltip: "The text that appears on the interact button of the touch-screen controls."
+        },
+        {
+            type: "number",
+            name: "passenger_max_width",
+            label: "Passenger Max Width",
+            tooltip: "The maximum width of an entity to ride this entity. Set to 0 to ignore it."
+        },
+        {
+            type: "boolean",
+            name: "pull_in_entities",
+            label: "Pull In Entities",
+            tooltip: "Whether entities should be pulled into available seats."
+        },
+        {
+            type: "number",
+            name: "seat_count",
+            label: "Seat Count",
+            tooltip: "The number of entities that can ride this entity simultaneously."
+        },
+        {
+            type: "seat_selector",
+            name: "seats",
+            label: "Seats",
+            tooltip: "The seat positions of the entity."
+        }
+    ],
+    requires: false
+  },
 };
 
 var currentEntityComponents = {};

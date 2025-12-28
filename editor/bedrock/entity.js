@@ -1766,6 +1766,74 @@ const componentDefinitions = {
     ],
     requires: false
   },
+
+  "Tameable": {
+    name: "Tameable",
+    id: "minecraft:tameable",
+    inputs: [
+        {
+            type: "number",
+            name: "probability",
+            label: "Probability (%)",
+            tooltip: "The chance of taming the entity with each item use, as a percentage."
+        },
+        {
+            type: "list",
+            name: "tame_items",
+            label: "Tame Items",
+            tooltip: "The list of items that can be used to tame this entity. Separate items with commas. Do not add spaces."
+        }
+    ],
+    requires: false
+  },
+
+  "Max Auto Step": {
+    name: "Max Auto Step",
+    id: "minecraft:variable_max_auto_step",
+    inputs: [
+        {
+            type: "number",
+            name: "base_value",
+            label: "Base Value",
+            tooltip: "The maximum auto-step height."
+        },
+        {
+            type: "number",
+            name: "controlled_value",
+            label: "Controlled Value",
+            tooltip: "The maximum auto-step height when controlled by a player."
+        }
+    ],
+    requires: false
+  },
+
+  "Vertical Movement Action": {
+    name: "Vertical Movement Action",
+    id: "minecraft:vertical_movement_action",
+    inputs: [
+        {
+            type: "number",
+            name: "vertical_velocity",
+            label: "Vertical Velocity",
+            tooltip: "The vertical velocity of the entity when the jump command is issued."
+        }
+    ],
+    requires: ["Rideable"]
+  },
+
+  "Water Movement": {
+    name: "Water Movement",
+    id: "minecraft:water_movement",
+    inputs: [
+        {
+            type: "number",
+            name: "drag_factor",
+            label: "Drag Factor",
+            tooltip: "The drag factor, which determines the movement speed, of the entity while in water."
+        }
+    ],
+    requires: false
+  },
 };
 
 var currentEntityComponents = {};

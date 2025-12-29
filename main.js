@@ -1,4 +1,4 @@
-const appVersion = "0.6.12";
+const appVersion = "0.6.13";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1399,6 +1399,24 @@ async function parseEntityComponents(file) {
       cooldown_time: Number(component.cooldown),
       entity_filter: component.entity_filter,
       ambient: component.ambient
+    };
+  }
+  if (keys.includes("Spawn Weight")) {
+    let component = components["Spawn Weight"];
+    newObj1["minecraft:weight"] = {
+      value: component.value
+    };
+  }
+  if (keys.includes("Transient")) {
+    let component = components["Transient"];
+    newObj1["minecraft:transient"] = component.main;
+  }
+  if (keys.includes("Interactable")) {
+    let component = components["Interactable"];
+    newObj1["minecraft:interact"] = {
+      interact_text: component.interact_text,
+      cooldown: Number(component.cooldown),
+      play_sounds: component.play_sounds.split(",")
     };
   }
 

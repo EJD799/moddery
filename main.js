@@ -1,4 +1,4 @@
-const appVersion = "0.6.13";
+const appVersion = "0.6.14";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1417,6 +1417,12 @@ async function parseEntityComponents(file) {
       interact_text: component.interact_text,
       cooldown: Number(component.cooldown),
       play_sounds: component.play_sounds.split(",")
+    };
+  }
+  if (keys.includes("Add Rider")) {
+    let component = components["Add Rider"];
+    newObj1["minecraft:addrider"] = {
+      entity_type: component.entity_type
     };
   }
 

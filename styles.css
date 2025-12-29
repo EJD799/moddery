@@ -24,7 +24,7 @@ body {
     margin: 0;
     padding: 0;
 }
-.ui-menu:not(.sublist) {
+.ui-menu:not(.sublist):not([id$="-menu"][aria-labelledby$="-button"]) {
     top: 0;
     left: 0;
     right: 0;
@@ -497,4 +497,8 @@ input:disabled {
 }
 .logTextError {
     color: #ff837d;
+}
+
+[id$="-menu"][aria-labelledby$="-button"] {
+    max-height: 300px;
 }

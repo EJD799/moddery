@@ -225,11 +225,10 @@ const componentDefinitions = {
     id: "minecraft:mob_effect",
     inputs: [
       {
-        type: "dropdown",
+        type: "text",
         name: "effect",
         label: "Effect",
-        tooltip: "The status effect that will be applied.",
-        options: ["speed", "strength", "poison", "regeneration", "slowness"]
+        tooltip: "The status effect that will be applied."
       },
       {
         type: "number",
@@ -239,9 +238,27 @@ const componentDefinitions = {
       },
       {
         type: "number",
-        name: "amplifier",
-        label: "Level",
-        tooltip: "The strength level of the applied effect."
+        name: "range",
+        label: "Range",
+        tooltip: "The range of the applied effect."
+      },
+      {
+        type: "number",
+        name: "cooldown",
+        label: "Cooldown",
+        tooltip: "The amount of time between each application of the effect."
+      },
+      {
+        type: "list",
+        name: "entity_filter",
+        label: "Entity Filter",
+        tooltip: "The list of entities the effect can be applied to."
+      },
+      {
+        type: "boolean",
+        name: "ambient",
+        label: "Ambient",
+        tooltip: "Whether the effect should be treated as ambient, like beacon effects."
       }
     ],
     requires: false

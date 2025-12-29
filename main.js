@@ -1,4 +1,4 @@
-const appVersion = "0.6.11";
+const appVersion = "0.6.12";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1375,6 +1375,30 @@ async function parseEntityComponents(file) {
     newObj1["minecraft:behavior.panic"] = {
       priority: Number(component.priority),
       speed_multiplier: Number(component.speed_multiplier)
+    };
+  }
+  if (keys.includes("Loot")) {
+    let component = components["Loot"];
+    let lootTableFile = JSON.parse(await projZip.folder("elements").file(`${component.table}.json`).async("string"));
+    newObj1["minecraft:loot"] = {
+      table: `loot_tables/${lootTableFile.id}.json`
+    };
+  }
+  if (keys.includes("Effect Immunity")) {
+    let component = components["Effect Immunity"];
+    newObj1["minecraft:mob_effect_immunity"] = {
+      mob_effects: component.effect.split(",")
+    };
+  }
+  if (keys.includes("Apply Effect")) {
+    let component = components["Apply Effect"];
+    newObj1["minecraft:mob_effect"] = {
+      mob_effect: component.effect,
+      effect_time: Number(component.duration),
+      effect_range: Number(component.range),
+      cooldown_time: Number(component.cooldown),
+      entity_filter: component.entity_filter,
+      ambient: component.ambient
     };
   }
 

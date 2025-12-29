@@ -24,7 +24,7 @@ body {
     margin: 0;
     padding: 0;
 }
-.ui-menu:not(.sublist):not([id$="-menu"][aria-labelledby$="-button"]) {
+.ui-menu:not(.sublist):not([id$="-menu"]):not([aria-labelledby$="-button"]) {
     top: 0;
     left: 0;
     right: 0;

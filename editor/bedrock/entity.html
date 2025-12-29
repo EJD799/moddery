@@ -39,63 +39,74 @@
 <h3>Components <button id="addComponentBtn" onclick="addComponent()">+ Add Component</button></h3>
 <div id="componentsBox"></div>
 <div id="addComponentDlg" title="Add Component">
-  <center>
-    <label for="addComponentType">Component Type</label>
-    <select name="addComponentType" id="addComponentType">
-        <optgroup label="Spawning & Drops">
-            <option>Spawn Egg</option>
-            <option>Experience Reward</option>
-            <option>Loot</option>
-        </optgroup>
-
-        <optgroup label="Health & Damage">
+    <center>
+        <label for="addComponentType">Component Type</label>
+        <select name="addComponentType" id="addComponentType">
             <option>Health</option>
-            <option>Hurt On Condition</option>
-            <option>Damage Sensor</option>
-            <option>Fire Immune</option>
-        </optgroup>
-
-        <optgroup label="Movement">
-            <option>Movement</option>
-            <option>Movement Basic</option>
-            <option>Movement Fly</option>
-            <option>Movement Swim</option>
-            <option>Jump Static</option>
-        </optgroup>
-
-        <optgroup label="AI & Behavior">
-            <option>Behavior Float</option>
-            <option>Behavior Panic</option>
-            <option>Behavior Melee Attack</option>
-            <option>Behavior Random Stroll</option>
-            <option>Behavior Look At Player</option>
-        </optgroup>
-
-        <optgroup label="Combat & Targeting">
-            <option>Attack</option>
-            <option>Follow Range</option>
-        </optgroup>
-
-        <optgroup label="Physics & Collision">
-            <option>Physics</option>
+            <option>Attack Damage</option>
+            <option>Movement Speed</option>
             <option>Collision Box</option>
-            <option>Pushable</option>
-        </optgroup>
-
-        <optgroup label="Rendering & Interaction">
+            <option>Can Fly</option>
+            <option>Can Climb</option>
+            <option>Buoyant</option>
+            <option>Fire Immune</option>
+            <option>Random Stroll Behavior</option>
+            <option>Melee Attack Behavior</option>
+            <option>Panic Behavior</option>
+            <option>Loot</option>
+            <option>Effect Immunity</option>
+            <option>Apply Effect</option>
+            <option>Spawn Weight</option>
+            <option>Transient</option>
+            <option>Interactable</option>
+            <option>Add Rider</option>
+            <option>Break Door</option>
+            <option>Open Door</option>
+            <option>Attack Cooldown</option>
+            <option>Barter</option>
+            <option>Boss</option>
+            <option>Breathable</option>
+            <option>Burns in Daylight</option>
+            <option>Can Join Raid</option>
+            <option>Economy Trade Table</option>
+            <option>Flying Speed</option>
+            <option>Friction Modifier</option>
+            <option>Ground Offset</option>
+            <option>Input Controls</option>
+            <option>Is Collidable</option>
+            <option>Is Dyeable</option>
+            <option>Is Hidden When Invisible</option>
+            <option>Renders When Invisible</option>
             <option>Scale</option>
+            <option>Amphibious Movement</option>
+            <option>Basic Movement</option>
+            <option>Fly Movement</option>
+            <option>Generic Movement</option>
+            <option>Hover Movement</option>
+            <option>Jump Movement</option>
+            <option>Skip Movement</option>
+            <option>Sway Movement</option>
             <option>Nameable</option>
-            <option>Interact</option>
-        </optgroup>
-
-        <optgroup label="Lifecycle">
-            <option>Despawn</option>
-        </optgroup>
-    </select>
-    <br><br>
-    <button id="addComponentCancelBtn" onclick="closeAddComponentDlg()">Cancel</button>
-    <button id="addComponentAddBtn" onclick="createComponent($('#addComponentType').val())">Add</button>
-  </center>
+            <option>Climb Navigation</option>
+            <option>Float Navigation</option>
+            <option>Fly Navigation</option>
+            <option>Generic Navigation</option>
+            <option>Hover Navigation</option>
+            <option>Swim Navigation</option>
+            <option>Walk Navigation</option>
+            <option>Physics</option>
+            <option>Pushable</option>
+            <option>Rail Movement</option>
+            <option>Rideable</option>
+            <option>Tameable</option>
+            <option>Max Auto Step</option>
+            <option>Vertical Movement Action</option>
+            <option>Water Movement</option>
+        </select>
+        <br><br>
+        <button id="addComponentCancelBtn" onclick="closeAddComponentDlg()">Cancel</button>
+        <button id="addComponentAddBtn" onclick="createComponent($('#addComponentType').val())">Add</button>
+    </center>
 </div>
 
 <div id="selectTextureDlg" title="Select Texture">

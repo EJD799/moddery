@@ -133,7 +133,7 @@ const componentDefinitions = {
   },
 
   "Random Stroll Behavior": {
-    name: "Random Stroll",
+    name: "Random Stroll Behavior",
     id: "minecraft:behavior.random_stroll",
     inputs: [
       {
@@ -153,7 +153,7 @@ const componentDefinitions = {
   },
 
   "Melee Attack Behavior": {
-    name: "Melee Attack",
+    name: "Melee Attack Behavior",
     id: "minecraft:behavior.melee_attack",
     inputs: [
       {
@@ -173,7 +173,7 @@ const componentDefinitions = {
   },
 
   "Panic Behavior": {
-    name: "Panic",
+    name: "Panic Behavior",
     id: "minecraft:behavior.panic",
     inputs: [
       {

@@ -1,4 +1,4 @@
-const appVersion = "0.6.10";
+const appVersion = "0.6.11";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1356,9 +1356,23 @@ async function parseEntityComponents(file) {
     let component = components["Fire Immune"];
     newObj1["minecraft:fire_immune"] = component.main;
   }
-  if (keys.includes("Random Stroll")) {
-    let component = components["Random Stroll"];
-    newObj1["minecraft:random_stroll"] = {
+  if (keys.includes("Random Stroll Behavior")) {
+    let component = components["Random Stroll Behavior"];
+    newObj1["minecraft:behavior.random_stroll"] = {
+      priority: Number(component.priority),
+      speed_multiplier: Number(component.speed_multiplier)
+    };
+  }
+  if (keys.includes("Melee Attack Behavior")) {
+    let component = components["Melee Attack Behavior"];
+    newObj1["minecraft:behavior.melee_attack"] = {
+      priority: Number(component.priority),
+      speed_multiplier: Number(component.speed_multiplier)
+    };
+  }
+  if (keys.includes("Panic Behavior")) {
+    let component = components["Panic Behavior"];
+    newObj1["minecraft:behavior.panic"] = {
       priority: Number(component.priority),
       speed_multiplier: Number(component.speed_multiplier)
     };

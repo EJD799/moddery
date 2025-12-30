@@ -361,14 +361,7 @@ const componentDefinitions = {
   "Open Door": {
     name: "Open Door",
     id: "minecraft:annotation.open_door",
-    inputs: [
-        {
-            type: "boolean",
-            name: "main",
-            label: "Open Door",
-            tooltip: "Whether the entity is able to open doors."
-        }
-    ],
+    inputs: [],
     requires: false
   },
 

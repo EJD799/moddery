@@ -1,4 +1,4 @@
-const appVersion = "0.6.16";
+const appVersion = "0.6.17";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1423,6 +1423,13 @@ async function parseEntityComponents(file) {
     let component = components["Add Rider"];
     newObj1["minecraft:addrider"] = {
       entity_type: component.entity_type
+    };
+  }
+  if (keys.includes("Break Door")) {
+    let component = components["Break Door"];
+    newObj1["minecraft:annotation.break_door"] = {
+      break_time: Number(component.break_time),
+      min_difficulty: component.min_difficulty
     };
   }
 

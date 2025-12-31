@@ -1,4 +1,4 @@
-const appVersion = "0.6.18";
+const appVersion = "0.6.19";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1447,7 +1447,7 @@ async function parseEntityComponents(file) {
     let lootTableFile = JSON.parse(await projZip.folder("elements").file(`${component.barter_table}.json`).async("string"));
     newObj1["minecraft:barter"] = {
       barter_table: `loot_tables/${lootTableFile.id}.json`,
-      cooldown_after_being_attacked: 
+      cooldown_after_being_attacked: component.cooldown_after_being_attacked
     };
   }
 

@@ -1,4 +1,4 @@
-const appVersion = "0.6.21";
+const appVersion = "0.6.22";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1495,6 +1495,53 @@ async function parseEntityComponents(file) {
       display_name: component.display_name
     };
   }
+  if (keys.includes("Flying Speed")) {
+    let component = components["Flying Speed"];
+    newObj1["minecraft:flying_speed"] = {
+      value: component.value
+    };
+  }
+  if (keys.includes("Friction Modifier")) {
+    let component = components["Friction Modifier"];
+    newObj1["minecraft:friction_modifier"] = {
+      value: component.value
+    };
+  }
+  if (keys.includes("Ground Offset")) {
+    let component = components["Ground Offset"];
+    newObj1["minecraft:ground_offset"] = {
+      value: component.value
+    };
+  }
+  if (keys.includes("Input Controls")) {
+    let component = components["Input Controls"];
+    newObj1["minecraft:input_ground_controlled"] = component.main;
+  }
+  if (keys.includes("Is Collidable")) {
+    let component = components["Is Collidable"];
+    newObj1["minecraft:is_collidable"] = component.main;
+  }
+  if (keys.includes("Is Dyeable")) {
+    let component = components["Is Dyeable"];
+    newObj1["minecraft:is_dyeable"] = {
+      interact_text: component.interact_text
+    };
+  }
+  if (keys.includes("Is Hidden When Invisible")) {
+    let component = components["Is Hidden When Invisible"];
+    newObj1["minecraft:is_hidden_when_invisible"] = component.main;
+  }
+  if (keys.includes("Renders When Invisible")) {
+    let component = components["Renders When Invisible"];
+    newObj1["minecraft:renders_when_invisible"] = component.main;
+  }
+  if (keys.includes("Scale")) {
+    let component = components["Scale"];
+    newObj1["minecraft:scale"] = {
+      value: component.value
+    };
+  }
+  
 
   /*if (keys.includes("")) {
     let component = components[""];

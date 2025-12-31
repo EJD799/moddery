@@ -1,4 +1,4 @@
-const appVersion = "0.6.17";
+const appVersion = "0.6.18";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1430,6 +1430,24 @@ async function parseEntityComponents(file) {
     newObj1["minecraft:annotation.break_door"] = {
       break_time: Number(component.break_time),
       min_difficulty: component.min_difficulty
+    };
+  }
+  if (keys.includes("Open Door")) {
+    let component = components["Open Door"];
+    newObj1["minecraft:annotation.open_door"] = {};
+  }
+  if (keys.includes("Attack Cooldown")) {
+    let component = components["Attack Cooldown"];
+    newObj1["minecraft:attack_cooldown"] = {
+      attack_cooldown_time: [component.attack_cooldown_time_min, component.attack_cooldown_time_max]
+    };
+  }
+  if (keys.includes("Barter")) {
+    let component = components["Barter"];
+    let lootTableFile = JSON.parse(await projZip.folder("elements").file(`${component.barter_table}.json`).async("string"));
+    newObj1["minecraft:barter"] = {
+      barter_table: `loot_tables/${lootTableFile.id}.json`,
+      cooldown_after_being_attacked: 
     };
   }
 

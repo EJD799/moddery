@@ -394,6 +394,12 @@ const componentDefinitions = {
             name: "barter_table",
             label: "Barter Table",
             tooltip: "The loot table that will be used for the randomized item trades."
+        },
+        {
+            type: "number",
+            name: "cooldown_after_being_attacked",
+            label: "Cooldown After Being Attacked",
+            tooltip: "The duration, in seconds, that the entity will not barter after being attacked."
         }
     ],
     requires: false

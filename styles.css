@@ -19,7 +19,7 @@ body {
     line-height: 0;
     height: 0;
 }
-.ui-menu:not(.sublist) .ui-menu-item:not(.subitem) {
+.ui-menu:not(.sublist):not([id$="-menu"][aria-labelledby$="-button"]) .ui-menu-item:not(.subitem) {
     display: inline-block;
     margin: 0;
     padding: 0;

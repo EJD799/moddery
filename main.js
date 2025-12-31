@@ -1,4 +1,4 @@
-const appVersion = "0.6.28";
+const appVersion = "0.6.29";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1822,6 +1822,32 @@ async function parseEntityComponents(file) {
       pull_in_entities: component.pull_in_entities,
       seat_count: Number(component.seat_count),
       seats: component.seats
+    };
+  }
+  if (keys.includes("Tameable")) {
+    let component = components["Tameable"];
+    newObj1["minecraft:tameable"] = {
+      probability: Number(component.probability) / 100,
+      tame_items: component.tame_items.split(",")
+    };
+  }
+  if (keys.includes("Max Auto Step")) {
+    let component = components["Max Auto Step"];
+    newObj1["minecraft:variable_max_auto_step"] = {
+      base_value: Number(component.base_value),
+      controlled_value: Number(component.controlled_value)
+    };
+  }
+  if (keys.includes("Vertical Movement Action")) {
+    let component = components["Vertical Movement Action"];
+    newObj1["minecraft:vertical_movement_action"] = {
+      vertical_velocity: Number(component.vertical_velocity)
+    };
+  }
+  if (keys.includes("Water Movement")) {
+    let component = components["Water Movement"];
+    newObj1["minecraft:water_movement"] = {
+      drag_factor: Number(component.drag_factor)
     };
   }
   

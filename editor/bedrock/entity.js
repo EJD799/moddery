@@ -515,6 +515,34 @@ const componentDefinitions = {
     requires: false
   },
 
+  "Can Power Jump": {
+    name: "Can Power Jump",
+    id: "minecraft:can_power_jump",
+    inputs: [
+        {
+            type: "boolean",
+            name: "main",
+            label: "Can Power Jump",
+            tooltip: "Whether the entity can power jump, like vanilla horses."
+        }
+    ],
+    requires: false
+  },
+
+  "Cannot Be Attacked": {
+    name: "Cannot Be Attacked",
+    id: "minecraft:cannot_be_attacked",
+    inputs: [
+        {
+            type: "boolean",
+            name: "main",
+            label: "Cannot Be Attacked",
+            tooltip: "Whether the entity should block attacks from other entities."
+        }
+    ],
+    requires: false
+  },
+
   "Economy Trade Table": {
     name: "Economy Trade Table",
     id: "minecraft:economy_trade_table",

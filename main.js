@@ -1,4 +1,4 @@
-const appVersion = "0.6.19";
+const appVersion = "0.6.21";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1469,6 +1469,30 @@ async function parseEntityComponents(file) {
       generates_bubbles: component.generates_bubbles,
       inhale_time: Number(component.inhale_time),
       total_supply: Number(component.total_supply)
+    };
+  }
+  if (keys.includes("Burns in Daylight")) {
+    let component = components["Burns in Daylighr"];
+    newObj1["minecraft:burns_in_daylight"] = component.main;
+  }
+  if (keys.includes("Can Join Raid")) {
+    let component = components["Can Join Raid"];
+    newObj1["minecraft:can_join_raid"] = component.main;
+  }
+  if (keys.includes("Can Power Jump")) {
+    let component = components["Can Power Jump"];
+    newObj1["minecraft:can_power_jump"] = component.main;
+  }
+  if (keys.includes("Cannot Be Attacked")) {
+    let component = components["Cannot Be Attacked"];
+    newObj1["minecraft:cannot_be_attacked"] = component.main;
+  }
+  if (keys.includes("Economy Trade Table")) {
+    let component = components["Economy Trade Table"];
+    let lootTableFile = JSON.parse(await projZip.folder("elements").file(`${component.table}.json`).async("string"));
+    newObj1["minecraft:economy_trade_table"] = {
+      table: `trading/${lootTableFile.id}.json`,
+      display_name: component.display_name
     };
   }
 

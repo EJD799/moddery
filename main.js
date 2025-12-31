@@ -1447,7 +1447,28 @@ async function parseEntityComponents(file) {
     let lootTableFile = JSON.parse(await projZip.folder("elements").file(`${component.barter_table}.json`).async("string"));
     newObj1["minecraft:barter"] = {
       barter_table: `loot_tables/${lootTableFile.id}.json`,
-      cooldown_after_being_attacked: component.cooldown_after_being_attacked
+      cooldown_after_being_attacked: Number(component.cooldown_after_being_attacked)
+    };
+  }
+  if (keys.includes("Boss")) {
+    let component = components["Boss"];
+    newObj1["minecraft:boss"] = {
+      name: component.name,
+      hud_range: Number(component.hud_range),
+      should_darken_sky: component.should_darken_sky
+    };
+  }
+  if (keys.includes("Breathable")) {
+    let component = components["Breathable"];
+    newObj1["minecraft:breathable"] = {
+      breathes_air: component.breathes_air,
+      breathes_lava: component.breathes_lava,
+      breathes_solids: component.breathes_solids,
+      breathes_water: component.breathes_water,
+      can_dehydrate: component.can_dehydrate,
+      generates_bubbles: component.generates_bubbles,
+      inhale_time: Number(component.inhale_time),
+      total_supply: Number(component.total_supply)
     };
   }
 

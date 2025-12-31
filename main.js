@@ -1,4 +1,4 @@
-const appVersion = "0.6.24";
+const appVersion = "0.6.25";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1566,6 +1566,55 @@ async function parseEntityComponents(file) {
     let component = components["Amphibious Movement"];
     newObj1["minecraft:movement.amphibious"] = {
       max_turn: Number(component.max_turn)
+    };
+  }
+  if (keys.includes("Basic Movement")) {
+    let component = components["Basic Movement"];
+    newObj1["minecraft:movement.basic"] = {
+      max_turn: Number(component.max_turn)
+    };
+  }
+  if (keys.includes("Fly Movement")) {
+    let component = components["Fly Movement"];
+    newObj1["minecraft:movement.fly"] = {
+      max_turn: Number(component.max_turn)
+    };
+  }
+  if (keys.includes("Generic Movement")) {
+    let component = components["Generic Movement"];
+    newObj1["minecraft:movement.generic"] = {
+      max_turn: Number(component.max_turn)
+    };
+  }
+  if (keys.includes("Hover Movement")) {
+    let component = components["Hover Movement"];
+    newObj1["minecraft:movement.hover"] = {
+      max_turn: Number(component.max_turn)
+    };
+  }
+  if (keys.includes("Jump Movement")) {
+    let component = components["Jump Movement"];
+    newObj1["minecraft:movement.jump"] = {
+      max_turn: Number(component.max_turn)
+    };
+  }
+  if (keys.includes("Skip Movement")) {
+    let component = components["Skip Movement"];
+    newObj1["minecraft:movement.skip"] = {
+      max_turn: Number(component.max_turn)
+    };
+  }
+  if (keys.includes("Sway Movement")) {
+    let component = components["Sway Movement"];
+    newObj1["minecraft:movement.sway"] = {
+      max_turn: Number(component.max_turn)
+    };
+  }
+  if (keys.includes("Nameable")) {
+    let component = components["Nameable"];
+    newObj1["minecraft:nameable"] = {
+      allow_name_tag_renaming: component.allow_name_tag_renaming,
+      always_show: component.always_show
     };
   }
   

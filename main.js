@@ -1,4 +1,4 @@
-const appVersion = "0.6.26";
+const appVersion = "0.6.27";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1783,6 +1783,25 @@ async function parseEntityComponents(file) {
       can_walk: component.can_walk,
       can_walk_in_lava: component.can_walk_in_lava,
       is_amphibious: component.is_amphibious
+    };
+  }
+  if (keys.includes("Persistent")) {
+    let component = components["Persistent"];
+    newObj1["minecraft:persistent"] = component.main;
+  }
+  if (keys.includes("Physics")) {
+    let component = components["Physics"];
+    newObj1["minecraft:physics"] = {
+      has_collision: component.has_collision,
+      has_gravity: component.has_gravity,
+      push_towards_closest_space: component.push_towards_closest_space
+    };
+  }
+  if (keys.includes("Pushable")) {
+    let component = components["Pushable"];
+    newObj1["minecraft:pushable"] = {
+      is_pushable: component.is_pushable,
+      is_pushable_by_piston: component.is_pushable_by_piston
     };
   }
   

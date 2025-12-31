@@ -1729,6 +1729,20 @@ const componentDefinitions = {
     requires: false
   },
 
+  "Persistent": {
+    name: "Persistent",
+    id: "minecraft:persistent",
+    inputs: [
+        {
+            type: "boolean",
+            name: "main",
+            label: "Is Persistent",
+            tooltip: "Whether the entity should persist in the game world."
+        }
+    ],
+    requires: false
+  },
+
   "Physics": {
     name: "Physics",
     id: "minecraft:physics",
@@ -1748,7 +1762,7 @@ const componentDefinitions = {
         {
             type: "boolean",
             name: "push_towards_closest_space",
-            label: "Push Towards Closest Spaces",
+            label: "Push Towards Closest Space",
             tooltip: "Whether the entity should be pushed towards the closest open space when stuck inside a block."
         }
     ],

@@ -1,4 +1,4 @@
-const appVersion = "0.6.25";
+const appVersion = "0.6.26";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1615,6 +1615,174 @@ async function parseEntityComponents(file) {
     newObj1["minecraft:nameable"] = {
       allow_name_tag_renaming: component.allow_name_tag_renaming,
       always_show: component.always_show
+    };
+  }
+  if (keys.includes("Climb Navigation")) {
+    let component = components["Climb Navigation"];
+    newObj1["minecraft:navigation.climb"] = {
+      avoid_damage_blocks: component.avoid_damage_blocks,
+      avoid_portals: component.avoid_portals,
+      avoid_sun: component.avoid_sun,
+      avoid_water: component.avoid_water,
+      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      can_breach: component.can_breach,
+      can_break_doors: component.can_break_doors,
+      can_jump: component.can_jump,
+      can_open_doors: component.can_open_doors,
+      can_open_iron_doors: component.can_open_iron_doors,
+      can_pass_doors: component.can_pass_doors,
+      can_path_from_air: component.can_path_from_air,
+      can_path_over_lava: component.can_path_over_lava,
+      can_path_over_water: component.can_path_over_water,
+      can_sink: component.can_sink,
+      can_swim: component.can_swim,
+      can_walk: component.can_walk,
+      can_walk_in_lava: component.can_walk_in_lava,
+      is_amphibious: component.is_amphibious
+    };
+  }
+  if (keys.includes("Float Navigation")) {
+    let component = components["Float Navigation"];
+    newObj1["minecraft:navigation.float"] = {
+      avoid_damage_blocks: component.avoid_damage_blocks,
+      avoid_portals: component.avoid_portals,
+      avoid_sun: component.avoid_sun,
+      avoid_water: component.avoid_water,
+      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      can_breach: component.can_breach,
+      can_break_doors: component.can_break_doors,
+      can_jump: component.can_jump,
+      can_open_doors: component.can_open_doors,
+      can_open_iron_doors: component.can_open_iron_doors,
+      can_pass_doors: component.can_pass_doors,
+      can_path_from_air: component.can_path_from_air,
+      can_path_over_lava: component.can_path_over_lava,
+      can_path_over_water: component.can_path_over_water,
+      can_sink: component.can_sink,
+      can_swim: component.can_swim,
+      can_walk: component.can_walk,
+      can_walk_in_lava: component.can_walk_in_lava,
+      is_amphibious: component.is_amphibious
+    };
+  }
+  if (keys.includes("Fly Navigation")) {
+    let component = components["Fly Navigation"];
+    newObj1["minecraft:navigation.fly"] = {
+      avoid_damage_blocks: component.avoid_damage_blocks,
+      avoid_portals: component.avoid_portals,
+      avoid_sun: component.avoid_sun,
+      avoid_water: component.avoid_water,
+      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      can_breach: component.can_breach,
+      can_break_doors: component.can_break_doors,
+      can_jump: component.can_jump,
+      can_open_doors: component.can_open_doors,
+      can_open_iron_doors: component.can_open_iron_doors,
+      can_pass_doors: component.can_pass_doors,
+      can_path_from_air: component.can_path_from_air,
+      can_path_over_lava: component.can_path_over_lava,
+      can_path_over_water: component.can_path_over_water,
+      can_sink: component.can_sink,
+      can_swim: component.can_swim,
+      can_walk: component.can_walk,
+      can_walk_in_lava: component.can_walk_in_lava,
+      is_amphibious: component.is_amphibious
+    };
+  }
+  if (keys.includes("Generic Navigation")) {
+    let component = components["Generic Navigation"];
+    newObj1["minecraft:navigation.generic"] = {
+      avoid_damage_blocks: component.avoid_damage_blocks,
+      avoid_portals: component.avoid_portals,
+      avoid_sun: component.avoid_sun,
+      avoid_water: component.avoid_water,
+      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      can_breach: component.can_breach,
+      can_break_doors: component.can_break_doors,
+      can_jump: component.can_jump,
+      can_open_doors: component.can_open_doors,
+      can_open_iron_doors: component.can_open_iron_doors,
+      can_pass_doors: component.can_pass_doors,
+      can_path_from_air: component.can_path_from_air,
+      can_path_over_lava: component.can_path_over_lava,
+      can_path_over_water: component.can_path_over_water,
+      can_sink: component.can_sink,
+      can_swim: component.can_swim,
+      can_walk: component.can_walk,
+      can_walk_in_lava: component.can_walk_in_lava,
+      is_amphibious: component.is_amphibious
+    };
+  }
+  if (keys.includes("Hover Navigation")) {
+    let component = components["Hover Navigation"];
+    newObj1["minecraft:navigation.hover"] = {
+      avoid_damage_blocks: component.avoid_damage_blocks,
+      avoid_portals: component.avoid_portals,
+      avoid_sun: component.avoid_sun,
+      avoid_water: component.avoid_water,
+      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      can_breach: component.can_breach,
+      can_break_doors: component.can_break_doors,
+      can_jump: component.can_jump,
+      can_open_doors: component.can_open_doors,
+      can_open_iron_doors: component.can_open_iron_doors,
+      can_pass_doors: component.can_pass_doors,
+      can_path_from_air: component.can_path_from_air,
+      can_path_over_lava: component.can_path_over_lava,
+      can_path_over_water: component.can_path_over_water,
+      can_sink: component.can_sink,
+      can_swim: component.can_swim,
+      can_walk: component.can_walk,
+      can_walk_in_lava: component.can_walk_in_lava,
+      is_amphibious: component.is_amphibious
+    };
+  }
+  if (keys.includes("Swim Navigation")) {
+    let component = components["Swim Navigation"];
+    newObj1["minecraft:navigation.swim"] = {
+      avoid_damage_blocks: component.avoid_damage_blocks,
+      avoid_portals: component.avoid_portals,
+      avoid_sun: component.avoid_sun,
+      avoid_water: component.avoid_water,
+      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      can_breach: component.can_breach,
+      can_break_doors: component.can_break_doors,
+      can_jump: component.can_jump,
+      can_open_doors: component.can_open_doors,
+      can_open_iron_doors: component.can_open_iron_doors,
+      can_pass_doors: component.can_pass_doors,
+      can_path_from_air: component.can_path_from_air,
+      can_path_over_lava: component.can_path_over_lava,
+      can_path_over_water: component.can_path_over_water,
+      can_sink: component.can_sink,
+      can_swim: component.can_swim,
+      can_walk: component.can_walk,
+      can_walk_in_lava: component.can_walk_in_lava,
+      is_amphibious: component.is_amphibious
+    };
+  }
+  if (keys.includes("Walk Navigation")) {
+    let component = components["Walk Navigation"];
+    newObj1["minecraft:navigation.walk"] = {
+      avoid_damage_blocks: component.avoid_damage_blocks,
+      avoid_portals: component.avoid_portals,
+      avoid_sun: component.avoid_sun,
+      avoid_water: component.avoid_water,
+      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      can_breach: component.can_breach,
+      can_break_doors: component.can_break_doors,
+      can_jump: component.can_jump,
+      can_open_doors: component.can_open_doors,
+      can_open_iron_doors: component.can_open_iron_doors,
+      can_pass_doors: component.can_pass_doors,
+      can_path_from_air: component.can_path_from_air,
+      can_path_over_lava: component.can_path_over_lava,
+      can_path_over_water: component.can_path_over_water,
+      can_sink: component.can_sink,
+      can_swim: component.can_swim,
+      can_walk: component.can_walk,
+      can_walk_in_lava: component.can_walk_in_lava,
+      is_amphibious: component.is_amphibious
     };
   }
   

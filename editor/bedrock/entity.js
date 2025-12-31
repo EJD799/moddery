@@ -1823,7 +1823,11 @@ const componentDefinitions = {
             type: "dropdown",
             name: "dismount_mode",
             label: "Dismount Mode",
-            tooltip: "Where riders are placed when dismounting from the entity. When set to \"default\", riders are placed on the ground near the entity. When set to \"on_top_center\", riders are placed on top of the entity, at the center of its collision box."
+            tooltip: "Where riders are placed when dismounting from the entity. When set to \"default\", riders are placed on the ground near the entity. When set to \"on_top_center\", riders are placed on top of the entity, at the center of its collision box.",
+            options: [
+                "default",
+                "on_top_center"
+            ]
         },
         {
             type: "list",

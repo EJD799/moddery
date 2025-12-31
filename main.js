@@ -1,4 +1,4 @@
-const appVersion = "0.6.27";
+const appVersion = "0.6.28";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1802,6 +1802,26 @@ async function parseEntityComponents(file) {
     newObj1["minecraft:pushable"] = {
       is_pushable: component.is_pushable,
       is_pushable_by_piston: component.is_pushable_by_piston
+    };
+  }
+  if (keys.includes("Rail Movement")) {
+    let component = components["Rail Movement"];
+    newObj1["minecraft:rail_movement"] = {
+      max_speed: Number(component.max_speed)
+    };
+  }
+  if (keys.includes("Rideable")) {
+    let component = components["Rideable"];
+    newObj1["minecraft:rideable"] = {
+      controlling_seat: Number(component.controlling_seat),
+      crouching_skip_interact: component.crouching_skip_interact,
+      dismount_mode: component.dismount_mode,
+      family_types: component.family_types.split(","),
+      interact_text: component.interact_text,
+      passenger_max_width: Number(component.passenger_max_width),
+      pull_in_entities: component.pull_in_entities,
+      seat_count: Number(component.seat_count),
+      seats: component.seats
     };
   }
   

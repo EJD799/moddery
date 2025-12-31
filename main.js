@@ -1,4 +1,4 @@
-const appVersion = "0.6.23";
+const appVersion = "0.6.24";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1350,7 +1350,11 @@ async function parseEntityComponents(file) {
   }
   if (keys.includes("Buoyant")) {
     let component = components["Buoyant"];
-    newObj1["minecraft:buoyant"] = component.main;
+    if (component.main) {
+      newObj1["minecraft:buoyant"] = {
+        liquid_blocks: ["water", "lava"]
+      };
+    }
   }
   if (keys.includes("Fire Immune")) {
     let component = components["Fire Immune"];
@@ -1404,7 +1408,7 @@ async function parseEntityComponents(file) {
   if (keys.includes("Spawn Weight")) {
     let component = components["Spawn Weight"];
     newObj1["minecraft:weight"] = {
-      value: component.value
+      value: Number(component.value)
     };
   }
   if (keys.includes("Transient")) {
@@ -1439,7 +1443,7 @@ async function parseEntityComponents(file) {
   if (keys.includes("Attack Cooldown")) {
     let component = components["Attack Cooldown"];
     newObj1["minecraft:attack_cooldown"] = {
-      attack_cooldown_time: [component.attack_cooldown_time_min, component.attack_cooldown_time_max]
+      attack_cooldown_time: [Number(component.attack_cooldown_time_min), Number(component.attack_cooldown_time_max)]
     };
   }
   if (keys.includes("Barter")) {
@@ -1498,19 +1502,19 @@ async function parseEntityComponents(file) {
   if (keys.includes("Flying Speed")) {
     let component = components["Flying Speed"];
     newObj1["minecraft:flying_speed"] = {
-      value: component.value
+      value: Number(component.value)
     };
   }
   if (keys.includes("Friction Modifier")) {
     let component = components["Friction Modifier"];
     newObj1["minecraft:friction_modifier"] = {
-      value: component.value
+      value: Number(component.value)
     };
   }
   if (keys.includes("Ground Offset")) {
     let component = components["Ground Offset"];
     newObj1["minecraft:ground_offset"] = {
-      value: component.value
+      value: Number(component.value)
     };
   }
   if (keys.includes("Input Controls")) {
@@ -1538,7 +1542,7 @@ async function parseEntityComponents(file) {
   if (keys.includes("Scale")) {
     let component = components["Scale"];
     newObj1["minecraft:scale"] = {
-      value: component.value
+      value: Number(component.value)
     };
   }
   if (keys.includes("Item Hopper")) {
@@ -1548,7 +1552,7 @@ async function parseEntityComponents(file) {
   if (keys.includes("Static Jump")) {
     let component = components["Static Jump"];
     newObj1["minecraft:jump.static"] = {
-      jump_power: component.jump_power
+      jump_power: Number(component.jump_power)
     };
   }
   if (keys.includes("Leashable")) {
@@ -1556,6 +1560,12 @@ async function parseEntityComponents(file) {
     newObj1["minecraft:leashable"] = {
       can_be_cut: component.can_be_cut,
       can_be_stolen: component.can_be_stolen
+    };
+  }
+  if (keys.includes("Amphibious Movement")) {
+    let component = components["Amphibious Movement"];
+    newObj1["minecraft:movement.amphibious"] = {
+      max_turn: Number(component.max_turn)
     };
   }
   

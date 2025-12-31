@@ -1,4 +1,4 @@
-const appVersion = "0.6.29";
+const appVersion = "0.6.30";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1299,13 +1299,6 @@ async function parseBlockComponents(file) {
     }
   }
 
-  /*if (keys.includes("")) {
-    let component = components[""];
-    newObj1["minecraft:"] = {
-
-    };
-  }*/
-
   return [newObj1, newObj2, newObj3, newObj4];
 }
 
@@ -1850,14 +1843,8 @@ async function parseEntityComponents(file) {
       drag_factor: Number(component.drag_factor)
     };
   }
-  
 
-  /*if (keys.includes("")) {
-    let component = components[""];
-    newObj1["minecraft:"] = {
 
-    };
-  }*/
   
   return [newObj1];
 }
@@ -2180,7 +2167,13 @@ async function exportProj() {
         let parsedFile = await parseEntityComponents(elementFile);
 
         let exportObj1 = {
+          "format_version": formatVersion,
+          "minecraft:entity": {
+            "description": {
 
+            },
+            "components": parsedFile[0]
+          }
         };
         let exportObj2 = {
 

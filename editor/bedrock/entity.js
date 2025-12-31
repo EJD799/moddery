@@ -689,6 +689,60 @@ const componentDefinitions = {
     requires: false
   },
 
+  "Item Hopper": {
+    name: "Item Hopper",
+    id: "minecraft:item_hopper",
+    inputs: [
+        {
+            type: "boolean",
+            name: "main",
+            label: "Is Item Hopper",
+            tooltip: "Whether the entity should be an item hopper."
+        }
+    ],
+    requires: false
+  },
+
+  "Static Jump": {
+    name: "Static Jump",
+    id: "minecraft:static_jump",
+    inputs: [
+        {
+            type: "number",
+            name: "jump_power",
+            label: "Jump Power",
+            tooltip: "The initial vertical velocity of the jump."
+        }
+    ],
+    requires: false
+  },
+
+  "Leashable": {
+    name: "Leashable",
+    id: "minecraft:leashable",
+    inputs: [
+        {
+            type: "boolean",
+            name: "can_be_cut",
+            label: "Can Be Cut",
+            tooltip: "Whether the leash can be cut by shearing the entity."
+        },
+        {
+            type: "boolean",
+            name: "can_be_stolen",
+            label: "Can Be Stolen",
+            tooltip: "Whether the entity can be leashed when it is already leashed to another entity."
+        },
+        {
+            type: "boolean",
+            name: "can_be_cut",
+            label: "Can Be Cut",
+            tooltip: "Whether the leash can be cut by shearing the entity."
+        },
+    ],
+    requires: false
+  },
+
   "Amphibious Movement": {
     name: "Amphibious Movement",
     id: "minecraft:movement.amphibious",

@@ -1,4 +1,4 @@
-const appVersion = "0.6.22";
+const appVersion = "0.6.23";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1539,6 +1539,23 @@ async function parseEntityComponents(file) {
     let component = components["Scale"];
     newObj1["minecraft:scale"] = {
       value: component.value
+    };
+  }
+  if (keys.includes("Item Hopper")) {
+    let component = components["Item Hopper"];
+    newObj1["minecraft:item_hopper"] = component.main;
+  }
+  if (keys.includes("Static Jump")) {
+    let component = components["Static Jump"];
+    newObj1["minecraft:jump.static"] = {
+      jump_power: component.jump_power
+    };
+  }
+  if (keys.includes("Leashable")) {
+    let component = components["Leashable"];
+    newObj1["minecraft:leashable"] = {
+      can_be_cut: component.can_be_cut,
+      can_be_stolen: component.can_be_stolen
     };
   }
   

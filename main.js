@@ -1,4 +1,4 @@
-const appVersion = "0.6.30";
+const appVersion = "0.6.31";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1844,9 +1844,21 @@ async function parseEntityComponents(file) {
     };
   }
 
-
+  if (keys.includes("Spawn Egg")) {
+    let component = components["Spawn Egg"];
+    if (component.texture) {
+      newObj2["spawn_egg"] = {
+        texture: component.texture
+      };
+    } else {
+      newObj2["spawn_egg"] = {
+        base_color: component.base_color,
+        overlay_color: component.overlay_color
+      };
+    }
+  }
   
-  return [newObj1];
+  return [newObj1, newObj2];
 }
 
 
@@ -2170,17 +2182,49 @@ async function exportProj() {
           "format_version": formatVersion,
           "minecraft:entity": {
             "description": {
-
+              "identifier": namespacedID,
+              "is_summonable": true,
+              "is_spawnable": true
             },
             "components": parsedFile[0]
           }
         };
-        let exportObj2 = {
 
+        let exportObj2 = {
+          "format_version": formatVersion,
+          "minecraft:client_entity": {
+            "description": {
+              "identifier": namespacedID,
+              "materials": {
+                "default": "entity_alphatest"
+              },
+              "textures": {},
+              "geometry": {
+                "default": `geometry.${elementFile.id}`
+              },
+              "render_controllers": [
+                `controller.render.${elementFile}`
+              ],
+              "enable_attachables": elementFile.additionalOptions.enableAttachables,
+              "hide_armor": elementFile.additionalOptions.hideArmor
+            }
+          }
         };
+        let textureList = elementFile.textures;
+        for (let j = 0; j < textureList.length; j++) {
+          let texture = textureList[j];
+          exportObj2.textures[texture[0]] = `textures/entity/${elementFile.id}/${texture[1].replace(".png", "")}`;
+          let textureFile = await projZip.folder("assets").file(texture[1]).async("blob");
+          exportZip2.folder("textures").folder("entity").folder(elementFile.id).file(texture[1], textureFile);
+        }
+        if (parsedFile[1]["spawn_egg"]) {
+          exportObj2["spawn_egg"] = parsedFile[1]["spawn_egg"];
+        }
+
         let exportObj3 = {
 
         };
+
         let exportObj4 = {
 
         };

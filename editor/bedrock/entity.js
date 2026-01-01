@@ -1936,6 +1936,32 @@ const componentDefinitions = {
     ],
     requires: false
   },
+
+  "Spawn Egg": {
+    name: "Spawn Egg",
+    id: "spawn_egg",
+    inputs: [
+        {
+            type: "color",
+            name: "base_color",
+            label: "Base Color",
+            tooltip: "The base color of the spawn egg."
+        },
+        {
+            type: "color",
+            name: "overlay_color",
+            label: "Overlay Color",
+            tooltip: "The overlay color of the spawn egg."
+        },
+        {
+            type: "texture",
+            name: "texture",
+            label: "Texture",
+            tooltip: "The texture of the spawn egg. Overrides base color and overlay color."
+        }
+    ],
+    requires: false
+  },
 };
 
 var currentEntityComponents = {};
@@ -2397,7 +2423,11 @@ function saveProject() {
         displayName: $("#nameBox").val(),
         model: selectedModel,
         textures: currentEntityTextures,
-        components: currentEntityComponents
+        components: currentEntityComponents,
+        additionalOptions: {
+            enableAttachables: enableAttachablesBox.checked,
+            hideArmor: hideArmorBox.checked
+        }
     };
 }
 function loadProject(data) {
@@ -2405,6 +2435,8 @@ function loadProject(data) {
     $("#elementIDBox").val(data.name);
     $("#entityIDBox").val(data.id);
     $("#nameBox").val(data.displayName);
+    enableAttachablesBox.checked = data.additionalOptions.enableAttachables;
+    hideArmorBox.checked = data.additionalOptions.hideArmor;
     if (data.textures) {
         currentEntityTextures = data.textures;
         loadTextures(data);

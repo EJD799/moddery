@@ -1,4 +1,4 @@
-const appVersion = "0.6.33";
+const appVersion = "0.6.34";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -2210,6 +2210,8 @@ async function exportProj() {
             }
           }
         };
+        let modelFile = await projZip.folder("assets").file(elementFile.model).async("string");
+        exportZip2.folder("models").folder("entity").file(`geometry.${elementFile.id}.json`, modelFile);
         let textureList = elementFile.textures;
         for (let j = 0; j < textureList.length; j++) {
           let texture = textureList[j];

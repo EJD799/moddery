@@ -1,4 +1,4 @@
-const appVersion = "0.6.37";
+const appVersion = "0.6.38";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -2211,8 +2211,9 @@ async function exportProj() {
             }
           }
         };
-        let modelFile = await projZip.folder("assets").file(elementFile.model).async("string");
-        exportZip2.folder("models").folder("entity").file(`geometry.${elementFile.id}.json`, modelFile);
+        let modelFile = JSON.parse(await projZip.folder("assets").file(elementFile.model).async("string"));
+        modelFile["minecraft:geometry"][0]["description"]["identifier"] = `geometry.${elementFile.id}`;
+        exportZip2.folder("models").folder("entity").file(`geometry.${elementFile.id}.json`, JSON.stringify(modelFile));
         let textureList = elementFile.textures;
         for (let j = 0; j < textureList.length; j++) {
           let texture = textureList[j];

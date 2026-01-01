@@ -1,4 +1,4 @@
-const appVersion = "0.6.31";
+const appVersion = "0.6.32";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -2203,7 +2203,7 @@ async function exportProj() {
                 "default": `geometry.${elementFile.id}`
               },
               "render_controllers": [
-                `controller.render.${elementFile}`
+                `controller.render.${elementFile.id}`
               ],
               "enable_attachables": elementFile.additionalOptions.enableAttachables,
               "hide_armor": elementFile.additionalOptions.hideArmor
@@ -2222,21 +2222,25 @@ async function exportProj() {
         }
 
         let exportObj3 = {
-
+          "format_version": formatVersion,
+          "render_controllers": {}
         };
-
-        let exportObj4 = {
-
+        exportObj3.render_controllers[`controller.render.${elementFile.id}`] = {
+          "geometry": "geometry.default",
+          "materials": [
+            {
+              "*": "material.default"
+            }
+          ],
+          "textures": ["texture.default"]
         };
 
         exportedFile1 = JSON.stringify(exportObj1, null, 4);
         exportedFile2 = JSON.stringify(exportObj2, null, 4);
         exportedFile3 = JSON.stringify(exportObj3, null, 4);
-        exportedFile4 = JSON.stringify(exportObj4, null, 4);
         exportZip1.folder("entities").file(`${elementFile.id}.json`, exportedFile1);
         exportZip2.folder("entity").file(`${elementFile.id}.json`, exportedFile2);
         exportZip2.folder("render_controllers").file(`${elementFile.id}.rc.json`, exportedFile3);
-        exportZip2.folder("animations").file(`${elementFile.id}.a.json`, exportedFile4);
       } else if (role == "Structure") {
         let exportObj1 = {
           "format_version": formatVersion,

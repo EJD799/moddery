@@ -469,6 +469,10 @@ input[type=color]:hover {
 input:disabled {
     color: #404040;
 }
+input:disabled::placeholder {
+    color: #404040;
+    opacity: 1;
+}
 
 #tabs-1, #tabs-2 {
     overflow: hidden auto;

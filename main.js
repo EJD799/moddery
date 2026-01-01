@@ -1,4 +1,4 @@
-const appVersion = "0.6.32";
+const appVersion = "0.6.33";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -2241,6 +2241,9 @@ async function exportProj() {
         exportZip1.folder("entities").file(`${elementFile.id}.json`, exportedFile1);
         exportZip2.folder("entity").file(`${elementFile.id}.json`, exportedFile2);
         exportZip2.folder("render_controllers").file(`${elementFile.id}.rc.json`, exportedFile3);
+
+        languageFile += `entity.${namespacedID}.name=${elementFile.displayName}`;
+        languageFile += `action.hint.exit.${namespacedID}=Press SHIFT to dismount`;
       } else if (role == "Structure") {
         let exportObj1 = {
           "format_version": formatVersion,

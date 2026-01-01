@@ -467,7 +467,7 @@ input[type=color]:hover {
 }
 
 input:disabled {
-    color: #7d7d7d;
+    color: #404040;
 }
 
 #tabs-1, #tabs-2 {
@@ -501,4 +501,8 @@ input:disabled {
 
 [id$="-menu"][aria-labelledby$="-button"] {
     max-height: 300px;
+}
+
+.almostFullInput {
+    width: 180px;
 }

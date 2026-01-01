@@ -892,6 +892,8 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("disabled", "true");
+                newComponentDOM.setAttribute("class", "almostFullInput");
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
                 newComponentDOM.addEventListener("change", event => {

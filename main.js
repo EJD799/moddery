@@ -1,4 +1,4 @@
-const appVersion = "0.6.35";
+const appVersion = "0.6.36";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -2216,12 +2216,12 @@ async function exportProj() {
         let textureList = elementFile.textures;
         for (let j = 0; j < textureList.length; j++) {
           let texture = textureList[j];
-          exportObj2.textures[texture[0]] = `textures/entity/${elementFile.id}/${texture[1].replace(".png", "")}`;
+          exportObj2["minecraft:client_entity"].textures[texture[0]] = `textures/entity/${elementFile.id}/${texture[1].replace(".png", "")}`;
           let textureFile = await projZip.folder("assets").file(texture[1]).async("blob");
           exportZip2.folder("textures").folder("entity").folder(elementFile.id).file(texture[1], textureFile);
         }
         if (parsedFile[1]["spawn_egg"]) {
-          exportObj2["spawn_egg"] = parsedFile[1]["spawn_egg"];
+          exportObj2["minecraft:client_entity"]["spawn_egg"] = parsedFile[1]["spawn_egg"];
         }
 
         let exportObj3 = {

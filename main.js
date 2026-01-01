@@ -1,4 +1,4 @@
-const appVersion = "0.6.34";
+const appVersion = "0.6.35";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1306,6 +1306,7 @@ async function parseEntityComponents(file) {
   let components = file.components;
   let keys = Object.keys(components);
   let newObj1 = {};
+  let newObj2 = {};
 
   if (keys.includes("Health")) {
     let component = components["Health"];

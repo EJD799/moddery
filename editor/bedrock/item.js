@@ -1089,6 +1089,12 @@ function openDeleteComponent(name) {
     deleteDlgConfirm.setAttribute("onclick", `deleteComponent("${name}")`);
 }
 
+function openInputEditor(component, input, type) {
+    console.log(component);
+    console.log(input);
+    console.log(type);
+}
+
 // Run after jQuery, jQuery UI and TouchPunch are loaded and after dialogs exist.
 $(function () {
 

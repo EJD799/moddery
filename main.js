@@ -1,4 +1,4 @@
-const appVersion = "0.7.10";
+const appVersion = "0.7.11";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -377,13 +377,18 @@ function closeSelectPackIconDlg() {
   $("#selectPackIconDlg").dialog("close");
 }
 function selectPackIcon() {
-    $("#selectPackIconDlg").dialog("close");
-    const selected = document.querySelector('input[name="selectedPackIcon"]:checked');
-    if (selected.value) {
-        const packIconNameText = document.getElementById("packIconText");
-        packIconNameText.innerHTML = selected.value;
-        selectedPackIcon = selected.value;
+  $("#selectPackIconDlg").dialog("close");
+  const selected = document.querySelector('input[name="selectedPackIcon"]:checked');
+  if (selected.value) {
+    const packIconNameText = document.getElementById("packIconText");
+    if (selected.value == "None") {
+      packIconNameText.innerHTML = "No pack icon selected";
+      selectedPackIcon = "";
+    } else {
+      packIconNameText.innerHTML = selected.value;
+      selectedPackIcon = selected.value;
     }
+  }
 }
 
 $("#packIconBtn").button();
@@ -439,13 +444,18 @@ function closeSelectScriptEntryDlg() {
   $("#selectScriptEntryDlg").dialog("close");
 }
 function selectScriptEntry() {
-    $("#selectScriptEntryDlg").dialog("close");
-    const selected = document.querySelector('input[name="selectedScriptEntry"]:checked');
-    if (selected.value) {
-        const scriptEntryNameText = document.getElementById("scriptEntryText");
-        scriptEntryNameText.innerHTML = selected.value;
-        selectedScriptEntry = selected.value;
+  $("#selectScriptEntryDlg").dialog("close");
+  const selected = document.querySelector('input[name="selectedScriptEntry"]:checked');
+  if (selected.value) {
+    const scriptEntryNameText = document.getElementById("scriptEntryText");
+    if (selected.value == "None") {
+      scriptEntryNameText.innerHTML = "No script entry point selected";
+      selectedScriptEntry = "";
+    } else {
+      scriptEntryNameText.innerHTML = selected.value;
+      selectedScriptEntry = selected.value;
     }
+  }
 }
 
 $("#scriptEntryBtn").button();
@@ -3428,26 +3438,33 @@ function fileListInFolder(path, filterType, zip = projZip) {
 }
 
 function getTextureList() {
-  return fileListInFolder("assets", "png");
+  let list = fileListInFolder("assets", "png");
+  list.unshift("None");
+  return list;
 }
 function getStructureList() {
-  return fileListInFolder("assets", "mcstructure");
+  let list = fileListInFolder("assets", "mcstructure");
+  list.unshift("None");
+  return list;
 }
 function getModelList(mode) {
   let vanillaList;
   if (mode == "entity") {
-    vanillaList = [];
+    vanillaList = ["None"];
   } else {
-    vanillaList = ["Full Block", "Plant"];
+    vanillaList = ["None", "Full Block", "Plant"];
   }
   return vanillaList.concat(fileListInFolder("assets", "json"));
 }
 async function getScriptList(mode = 1) {
+  let list;
   if (mode == 2) {
-    return (await getFilteredElements("Script")).map(obj => [obj.name, `${obj.id}.js`]);
+    list = (await getFilteredElements("Script")).map(obj => [obj.name, `${obj.id}.js`]);
   } else {
-    return (await getFilteredElements("Script")).map(obj => obj.name);
+    list = (await getFilteredElements("Script")).map(obj => obj.name);
+    list.unshift("None");
   }
+  return list
 }
 
 $("#newProjBtn").button();

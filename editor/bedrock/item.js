@@ -10,6 +10,37 @@ let advEditorCurrentData;
 // new end
 
 const componentDefinitions = {
+    "Test": {
+        name: "Test",
+        id: "test",
+        inputs: [
+            {
+                type: "list",
+                name: "list",
+                label: "List",
+                tooltip: "A list."
+            },
+            {
+                type: "texture",
+                name: "texture",
+                label: "Texture",
+                tooltip: "A texture."
+            },
+            {
+                type: "loot_table",
+                name: "loot_table",
+                label: "Loot Table",
+                tooltip: "A loot table."
+            },
+            {
+                type: "trade_table",
+                name: "trade_table",
+                label: "Trade Table",
+                tooltip: "A trade table."
+            }
+        ],
+        requires: false
+    }
     "Allow Off Hand": {
         name: "Allow Off Hand",
         id: "minecraft:allow_off_hand",

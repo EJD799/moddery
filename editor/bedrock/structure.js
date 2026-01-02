@@ -52,9 +52,14 @@ function selectStructure() {
     $("#selectStructureDlg").dialog("close");
     const selected = document.querySelector('input[name="selectedStructure"]:checked');
     if (selected.value) {
-        const structureNameText = document.getElementById("structureNameText");
-        structureNameText.innerHTML = selected.value;
-        selectedStructure = selected.value;
+		const structureNameText = document.getElementById("structureNameText");
+		if (selected.value == "None") {
+			structureNameText.innerHTML = "No structure selected";
+			selectedStructure = "";
+		} else {
+			structureNameText.innerHTML = selected.value;
+			selectedStructure = selected.value;
+		}
     }
 }
 

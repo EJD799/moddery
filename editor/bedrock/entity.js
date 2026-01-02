@@ -2322,15 +2322,24 @@ function selectTexture(textureNumber) {
     $("#selectTextureDlg").dialog("close");
     const selected = document.querySelector('input[name="selectedTexture"]:checked');
     if (selected.value) {
-        let textureNameText;
-        textureNameText = document.getElementById("textureNameText" + textureNumber);
-        if (textureNumber == 0) {
-            currentEntityTextures[0][1] = selected.value;
+        let textureNameText = document.getElementById("textureNameText" + textureNumber);
+        if (selected.value == "None") {
+            if (textureNumber == 0) {
+                currentEntityTextures[0][1] = "";
+            } else {
+                currentEntityTextures[textureNumber - 1][1] = "";
+            }
+            textureNameText.innerHTML = "No texture selected";
+            selectedTexture = "";
         } else {
-            currentEntityTextures[textureNumber - 1][1] = selected.value;
+            if (textureNumber == 0) {
+                currentEntityTextures[0][1] = selected.value;
+            } else {
+                currentEntityTextures[textureNumber - 1][1] = selected.value;
+            }
+            textureNameText.innerHTML = selected.value;
+            selectedTexture = selected.value;
         }
-        textureNameText.innerHTML = selected.value;
-        selectedTexture = selected.value;
     }
 }
 $("#addComponentType").selectmenu();
@@ -2375,8 +2384,13 @@ async function selectModel() {
     const selected = document.querySelector('input[name="selectedModel"]:checked');
     let oldModel = selectedModel;
     if (selected.value) {
-        modelNameText.innerHTML = selected.value;
-        selectedModel = selected.value;
+        if (selected.value == "None") {
+            modelNameText.innerHTML = "No model selected";
+            selectedModel = "";
+        } else {
+            modelNameText.innerHTML = selected.value;
+            selectedModel = selected.value;
+        }
     }
 }
 

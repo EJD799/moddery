@@ -1034,8 +1034,13 @@ function selectTexture() {
     const selected = document.querySelector('input[name="selectedTexture"]:checked');
     if (selected.value) {
         const textureNameText = document.getElementById("textureNameText");
-        textureNameText.innerHTML = selected.value;
-        selectedTexture = selected.value;
+        if (selected.value == "None") {
+            textureNameText.innerHTML = "No texture selected";
+            selectedTexture = "";
+        } else {
+            textureNameText.innerHTML = selected.value;
+            selectedTexture = selected.value;
+        }
     }
 }
 $("#addComponentType").selectmenu();

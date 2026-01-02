@@ -850,20 +850,37 @@ function selectTexture(textureNumber) {
     $("#selectTextureDlg").dialog("close");
     const selected = document.querySelector('input[name="selectedTexture"]:checked');
     if (selected.value) {
-        let textureNameText;
-        if (textureNumber == -1) {
-            textureNameText = document.getElementById("textureNameText");
-            currentBlockTextures["item"] = selected.value;
-        } else {
-            textureNameText = document.getElementById("textureNameText" + textureNumber);
-            if (textureNumber == 0) {
-                currentBlockTextures["default"] = selected.value;
+        if (selected.value == "None") {
+            let textureNameText;
+            if (textureNumber == -1) {
+                textureNameText = document.getElementById("textureNameText");
+                currentBlockTextures["item"] = "";
             } else {
-                currentBlockTextures[textureNumber] = selected.value;
+                textureNameText = document.getElementById("textureNameText" + textureNumber);
+                if (textureNumber == 0) {
+                    currentBlockTextures["default"] = "";
+                } else {
+                    currentBlockTextures[textureNumber] = "";
+                }
             }
+            textureNameText.innerHTML = "No texture selected";
+            selectedTexture = "";
+        } else {
+            let textureNameText;
+            if (textureNumber == -1) {
+                textureNameText = document.getElementById("textureNameText");
+                currentBlockTextures["item"] = selected.value;
+            } else {
+                textureNameText = document.getElementById("textureNameText" + textureNumber);
+                if (textureNumber == 0) {
+                    currentBlockTextures["default"] = selected.value;
+                } else {
+                    currentBlockTextures[textureNumber] = selected.value;
+                }
+            }
+            textureNameText.innerHTML = selected.value;
+            selectedTexture = selected.value;
         }
-        textureNameText.innerHTML = selected.value;
-        selectedTexture = selected.value;
     }
 }
 $("#addComponentType").selectmenu();
@@ -908,58 +925,65 @@ async function selectModel() {
     const selected = document.querySelector('input[name="selectedModel"]:checked');
     let oldModel = selectedModel;
     if (selected.value) {
-        modelNameText.innerHTML = selected.value;
-        selectedModel = selected.value;
-        if (oldModel != selectedModel) {
-            let modelData;
-            if (selectedModel == "Full Block") {
-                modelData = {
-                    "minecraft:geometry": [
-                        {
-                        "bones": [
+        let materialInstances;
+        if (selected.value == "None") {
+            modelNameText.innerHTML = "No model selected";
+            selectedModel = "";
+            materialInstances = [];
+        } else {
+            modelNameText.innerHTML = selected.value;
+            selectedModel = selected.value;
+            if (oldModel != selectedModel) {
+                let modelData;
+                if (selectedModel == "Full Block") {
+                    modelData = {
+                        "minecraft:geometry": [
                             {
-                            "name": "test_bone",
-                            "cubes": [
+                            "bones": [
                                 {
-                                "uv": {
-                                    "up":    { "material_instance": "up" },
-                                    "down":  { "material_instance": "down" },
-                                    "north": { "material_instance": "north" },
-                                    "east":  { "material_instance": "east" },
-                                    "west":  { "material_instance": "west" },
-                                    "south": { "material_instance": "south" }
-                                }
+                                "name": "test_bone",
+                                "cubes": [
+                                    {
+                                    "uv": {
+                                        "up":    { "material_instance": "up" },
+                                        "down":  { "material_instance": "down" },
+                                        "north": { "material_instance": "north" },
+                                        "east":  { "material_instance": "east" },
+                                        "west":  { "material_instance": "west" },
+                                        "south": { "material_instance": "south" }
+                                    }
+                                    }
+                                ]
                                 }
                             ]
                             }
                         ]
-                        }
-                    ]
-                };
-            } else if (selectedModel == "Plant") {
-                modelData = {
-                    "minecraft:geometry": [
-                        {
-                        "bones": [
+                    };
+                } else if (selectedModel == "Plant") {
+                    modelData = {
+                        "minecraft:geometry": [
                             {
-                            "name": "test_bone",
-                            "cubes": [
+                            "bones": [
                                 {
-                                "uv": {
-                                }
+                                "name": "test_bone",
+                                "cubes": [
+                                    {
+                                    "uv": {
+                                    }
+                                    }
+                                ]
                                 }
                             ]
                             }
                         ]
-                        }
-                    ]
-                };
-            } else {
-                await window.parent.projZip.folder("assets").file(selectedModel).async("string").then(function(data) {
-                    modelData = JSON.parse(data);
-                });
+                    };
+                } else {
+                    await window.parent.projZip.folder("assets").file(selectedModel).async("string").then(function(data) {
+                        modelData = JSON.parse(data);
+                    });
+                }
+                materialInstances = getMaterialInstances(modelData);
             }
-            let materialInstances = getMaterialInstances(modelData);
             additionalTexturesDiv.innerHTML = "";
             for (let i = 0; i < materialInstances.length; i++) {
                 let div = document.createElement("div");

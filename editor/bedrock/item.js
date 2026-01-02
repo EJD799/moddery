@@ -2,6 +2,13 @@ let textures;
 let elementData = {};
 let selectedTexture;
 
+// new start
+let advEditorComponent;
+let advEditorInput;
+let advEditorType;
+let advEditorCurrentData;
+// new end
+
 const componentDefinitions = {
     "Allow Off Hand": {
         name: "Allow Off Hand",
@@ -712,6 +719,20 @@ $("#deleteDlg").dialog({
 $("#deleteDlg").dialog("close");
 $("#deleteDlgCancel").button();
 $("#deleteDlgConfirm").button();
+
+// new start
+$("#advEditor").dialog({
+  position: { my: "center", at: "center", of: window },
+  resizable: false,
+  height: 400,
+  width: 400,
+  closeOnEscape: false
+});
+$("#advEditor").dialog("close");
+$("#advEditorCancel").button();
+$("#advEditorSave").button();
+// new end
+
 function addComponent() {
   $("#addComponentDlg").dialog("open");
 }
@@ -721,6 +742,11 @@ function closeAddComponentDlg() {
 function removeSpaces(str) {
     return str.replaceAll(" ", "_s_");
 }
+// new start
+function addSpaces(str) {
+    return str.replaceAll("_s_", " ");
+}
+// new end
 function createComponent(type) {
     let newComponentObj = {};
     let newComponentType;
@@ -895,13 +921,13 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 newComponentDOM.setAttribute("disabled", "true");
                 newComponentDOM.setAttribute("class", "almostFullInput");
+                newComponentDOM.setAttribute("value", "[]");
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
                 newComponentDOM.addEventListener("change", event => {
                     updateInput(typeName, inputName, event.target.value);
                 });
                 elementBox.appendChild(newComponentDOM);
-                // new start
                 newComponentDOM = document.createElement("button");
                 newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
                 newComponentDOM.setAttribute("class", "inputEditBtn");
@@ -909,7 +935,6 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("onclick", `openInputEditor("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "list")`);
                 buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
                 elementBox.appendChild(newComponentDOM);
-                // new end
             } else {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
@@ -1089,11 +1114,61 @@ function openDeleteComponent(name) {
     deleteDlgConfirm.setAttribute("onclick", `deleteComponent("${name}")`);
 }
 
-function openInputEditor(component, input, type) {
-    console.log(component);
-    console.log(input);
-    console.log(type);
+// new start
+function changeAdvInputMode(mode) {
+    if (mode == "list") {
+        $("#advEditorContentList").show();
+        advEditorListContent.innerHTML = "";
+    }
 }
+function openAdvInputEditor(component, input, type) {
+    advEditorComponent = component;
+    advEditorInput = input;
+    advEditorType = type;
+    $("#advEditor").dialog("open");
+    if (type == "list") {
+        changeAdvInputMode("list");
+        if (typeof currentItemComponents[addSpaces(component)][addSpaces(input)] != "object") {
+            currentItemComponents[addSpaces(component)][addSpaces(input)] = [];
+        }
+        advEditorCurrentData = currentItemComponents[addSpaces(component)][addSpaces(input)];
+        for (let i = 0; i < advEditorCurrentData.length; i++) {
+            advEditorAddItem("list", advEditorCurrentData[i]);
+        }
+    }
+}
+function closeAdvInputEditor() {
+    $("#advEditor").dialog("close");
+}
+function saveAdvInput() {
+    let component = advEditorComponent;
+    let input = advEditorInput;
+    let type = advEditorType;
+    let data = advEditorCurrentData;
+    $(`#${component}${input}`).val(data.toString());
+    updateInput(component, input, data);
+}
+function advEditorAddItem(mode, value, idVal) {
+    let id;
+    if (idVal >= 0) {
+        id = idVal;
+    } else {
+        id = advEditorCurrentData.length;
+    }
+    if (mode == "list") {
+        advEditorCurrentData[id] = value;
+        let textBox = document.createElement("input");
+        textBox.setAttribute("id", `advEditorListItem${id}`);
+        advEditorListContent.appendChild(textBox);
+    }
+}
+function advEditorRemoveItem(id) {
+    delete advEditorCurrentData[id];
+    for (let i = 0; i < advEditorCurrentData.length; i++) {
+        advEditorAddItem(advEditorType, advEditorCurrentData[i], i);
+    }
+}
+// new end
 
 // Run after jQuery, jQuery UI and TouchPunch are loaded and after dialogs exist.
 $(function () {

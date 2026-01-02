@@ -751,6 +751,7 @@ function createComponent(type) {
         elementBoxTitle.appendChild(elementBoxDelete);
         elementBox.appendChild(elementBoxTitle);
         let dropdownsToRegister = [];
+        let buttonsToRegister = []; // new
         for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
             newComponentType = componentDefinitions[type].inputs[i].type;
             newComponentInputName = componentDefinitions[type].inputs[i].name;
@@ -900,6 +901,15 @@ function createComponent(type) {
                     updateInput(typeName, inputName, event.target.value);
                 });
                 elementBox.appendChild(newComponentDOM);
+                // new start
+                newComponentDOM = document.createElement("button");
+                newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
+                newComponentDOM.setAttribute("class", "inputEditBtn");
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
+                newComponentDOM.setAttribute("onclick", `openInputEditor("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "list")`);
+                buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
+                elementBox.appendChild(newComponentDOM);
+                // new end
             } else {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
@@ -936,6 +946,12 @@ function createComponent(type) {
                 }
             });
         }
+        // new start
+        for (let k = 0; k < buttonsToRegister.length; k++) {
+            const [typeName, inputName] = buttonsToRegister[k];
+            $("#" + typeName + inputName + "_btn").button();
+        }
+        // new end
         $(".tooltipIcon").tooltip({
             show: { effect: "fadeIn", duration: 200, delay: 0 },
             hide: { effect: "fadeOut", duration: 200, delay: 0 },

@@ -510,3 +510,7 @@ input:disabled::placeholder {
 .almostFullInput {
     width: 180px;
 }
+.inputEditBtn {
+    width: 36px;
+    height: 36px;
+}

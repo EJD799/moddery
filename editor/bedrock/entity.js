@@ -214,7 +214,7 @@ const componentDefinitions = {
         type: "list",
         name: "effects",
         label: "Immune Effects",
-        tooltip: "Status effects that this entity is immune to. Separate items with commas. Do not add spaces."
+        tooltip: "Status effects that this entity is immune to."
       }
     ],
     requires: false
@@ -306,7 +306,7 @@ const componentDefinitions = {
             type: "list",
             name: "play_sounds",
             label: "Play Sounds",
-            tooltip: "The list of sounds that will be played when the entity is interacted with. Separate items with commas. Do not add spaces."
+            tooltip: "The list of sounds that will be played when the entity is interacted with."
         },
         {
             type: "number",
@@ -907,7 +907,7 @@ const componentDefinitions = {
             type: "list",
             name: "blocks_to_avoid",
             label: "Blocks to Avoid",
-            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+            tooltip: "Additional blocks to avoid when pathfinding."
         },
         {
             type: "boolean",
@@ -1029,7 +1029,7 @@ const componentDefinitions = {
             type: "list",
             name: "blocks_to_avoid",
             label: "Blocks to Avoid",
-            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+            tooltip: "Additional blocks to avoid when pathfinding."
         },
         {
             type: "boolean",
@@ -1151,7 +1151,7 @@ const componentDefinitions = {
             type: "list",
             name: "blocks_to_avoid",
             label: "Blocks to Avoid",
-            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+            tooltip: "Additional blocks to avoid when pathfinding."
         },
         {
             type: "boolean",
@@ -1273,7 +1273,7 @@ const componentDefinitions = {
             type: "list",
             name: "blocks_to_avoid",
             label: "Blocks to Avoid",
-            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+            tooltip: "Additional blocks to avoid when pathfinding."
         },
         {
             type: "boolean",
@@ -1395,7 +1395,7 @@ const componentDefinitions = {
             type: "list",
             name: "blocks_to_avoid",
             label: "Blocks to Avoid",
-            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+            tooltip: "Additional blocks to avoid when pathfinding."
         },
         {
             type: "boolean",
@@ -1517,7 +1517,7 @@ const componentDefinitions = {
             type: "list",
             name: "blocks_to_avoid",
             label: "Blocks to Avoid",
-            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+            tooltip: "Additional blocks to avoid when pathfinding."
         },
         {
             type: "boolean",
@@ -1639,7 +1639,7 @@ const componentDefinitions = {
             type: "list",
             name: "blocks_to_avoid",
             label: "Blocks to Avoid",
-            tooltip: "Additional blocks to avoid when pathfinding. Separate items with commas. Do not add spaces."
+            tooltip: "Additional blocks to avoid when pathfinding."
         },
         {
             type: "boolean",
@@ -1833,7 +1833,7 @@ const componentDefinitions = {
             type: "list",
             name: "family_types",
             label: "Family Types",
-            tooltip: "The list of entities that can ride this entity. Separate items with commas. Do not add spaces."
+            tooltip: "The list of entities that can ride this entity."
         },
         {
             type: "text",
@@ -1883,7 +1883,7 @@ const componentDefinitions = {
             type: "list",
             name: "tame_items",
             label: "Tame Items",
-            tooltip: "The list of items that can be used to tame this entity. Separate items with commas. Do not add spaces."
+            tooltip: "The list of items that can be used to tame this entity."
         }
     ],
     requires: false

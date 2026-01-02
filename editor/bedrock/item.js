@@ -43,7 +43,7 @@ const componentDefinitions = {
                 type: "list",
                 name: "use_on",
                 label: "Use On Filter",
-                tooltip: "The list of items the block can be used on. Separate items with commas. Do not add spaces."
+                tooltip: "The list of items the block can be used on."
             }
         ],
         requires: false
@@ -445,7 +445,7 @@ const componentDefinitions = {
                 type: "list",
                 name: "items",
                 label: "Items",
-                tooltip: "The items that can repair this item. Separate items with commas. Do not add spaces."
+                tooltip: "The items that can repair this item."
             }
         ],
         requires: false
@@ -458,7 +458,7 @@ const componentDefinitions = {
                 type: "list",
                 name: "item",
                 label: "Ammunition Items",
-                tooltip: "The items that can be used as ammunition. Separate items with commas. Do not add spaces."
+                tooltip: "The items that can be used as ammunition."
             },
             {
                 type: "boolean",
@@ -521,13 +521,13 @@ const componentDefinitions = {
                 type: "list",
                 name: "allowed_items",
                 label: "Allowed Items",
-                tooltip: "The list of items that can be stored in this item. Separate items with commas. Do not add spaces."
+                tooltip: "The list of items that can be stored in this item."
             },
             {
                 type: "list",
                 name: "banned_items",
                 label: "Banned Items",
-                tooltip: "The list of items that cannot be stored in this item. Separate items with commas. Do not add spaces."
+                tooltip: "The list of items that cannot be stored in this item."
             },
             {
                 type: "number",
@@ -729,7 +729,6 @@ $("#advEditor").dialog({
   closeOnEscape: false
 });
 $("#advEditor").dialog("close");
-$("#advEditorCancel").button();
 $("#advEditorSave").button();
 // new end
 
@@ -1168,6 +1167,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         let deleteBtn = document.createElement("i");
         deleteBtn.setAttribute("class", "fas fa-trash deleteIcon");
         deleteBtn.setAttribute("onclick", `advEditorRemoveItem(${id})`);
+        advEditorListContent.appendChild(document.createTextNode(" "));
         advEditorListContent.appendChild(deleteBtn);
         advEditorListContent.appendChild(document.createElement("br"));
     }

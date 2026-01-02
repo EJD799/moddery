@@ -2293,15 +2293,17 @@ function openSelectTextureDlg(textureToSelect) {
     itemRadio.setAttribute("class", "textureRadio");
     itemRadio.setAttribute("value", textures[i]);
     selectTextureMenuItem.appendChild(itemRadio);
-    previewBox = document.createElement("div");
-    previewBox.setAttribute("class", "smallPreviewBox");
-    preview = document.createElement("img");
-    window.parent.projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
-      preview.setAttribute("src", await window.parent.fileToDataURL(file));
-    });
-    preview.setAttribute("id", window.parent.encodeText(textures[i]) + "_preview");
-    previewBox.appendChild(preview);
-    selectTextureMenuItem.appendChild(previewBox);
+    if (textures[i] != "None") {
+        previewBox = document.createElement("div");
+        previewBox.setAttribute("class", "smallPreviewBox");
+        preview = document.createElement("img");
+        window.parent.projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
+        preview.setAttribute("src", await window.parent.fileToDataURL(file));
+        });
+        preview.setAttribute("id", window.parent.encodeText(textures[i]) + "_preview");
+        previewBox.appendChild(preview);
+        selectTextureMenuItem.appendChild(previewBox);
+    }
     itemTitle = document.createElement("span");
     itemTitle.setAttribute("class", "textureMenuTitle");
     itemTitle.innerHTML = textures[i];

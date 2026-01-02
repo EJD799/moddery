@@ -1,4 +1,4 @@
-const appVersion = "0.7.12";
+const appVersion = "0.7.13";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -348,15 +348,17 @@ function openSelectPackIconDlg() {
     itemRadio.setAttribute("class", "textureRadio");
     itemRadio.setAttribute("value", textures[i]);
     selectPackIconMenuItem.appendChild(itemRadio);
-    previewBox = document.createElement("div");
-    previewBox.setAttribute("class", "smallPreviewBox");
-    preview = document.createElement("img");
-    window.parent.projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
-      preview.setAttribute("src", await fileToDataURL(file));
-    });
-    preview.setAttribute("id", encodeText(textures[i]) + "_preview");
-    previewBox.appendChild(preview);
-    selectPackIconMenuItem.appendChild(previewBox);
+    if (textures[i] != "None") {
+      previewBox = document.createElement("div");
+      previewBox.setAttribute("class", "smallPreviewBox");
+      preview = document.createElement("img");
+      window.parent.projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
+        preview.setAttribute("src", await fileToDataURL(file));
+      });
+      preview.setAttribute("id", encodeText(textures[i]) + "_preview");
+      previewBox.appendChild(preview);
+      selectPackIconMenuItem.appendChild(previewBox);
+    }
     itemTitle = document.createElement("span");
     itemTitle.setAttribute("class", "textureMenuTitle");
     itemTitle.innerHTML = textures[i];

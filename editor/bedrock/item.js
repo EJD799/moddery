@@ -1159,7 +1159,16 @@ function advEditorAddItem(mode, value, idVal) {
         advEditorCurrentData[id] = value;
         let textBox = document.createElement("input");
         textBox.setAttribute("id", `advEditorListItem${id}`);
+        textBox.setAttribute("value", value);
+        textBox.addEventListener("change", event => {
+            advEditorCurrentData[id] = event.target.value;
+        });
         advEditorListContent.appendChild(textBox);
+        let deleteBtn = document.createElement("i");
+        deleteBtn.setAttribute("class", "fas fa-trash deleteIcon");
+        deleteBtn.setAttribute("onclick", `advEditorRemoveItem(${id})`);
+        advEditorListContent.appendChild(deleteBtn);
+        advEditorListContent.appendChild(document.createElement("br"));
     }
 }
 function advEditorRemoveItem(id) {

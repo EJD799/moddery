@@ -932,7 +932,7 @@ function createComponent(type) {
                 newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
                 newComponentDOM.setAttribute("class", "inputEditBtn");
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
-                newComponentDOM.setAttribute("onclick", `openInputEditor("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "list")`);
+                newComponentDOM.setAttribute("onclick", `openAdvInputEditor("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "list")`);
                 buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
                 elementBox.appendChild(newComponentDOM);
             } else {

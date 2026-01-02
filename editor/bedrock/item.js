@@ -1133,7 +1133,7 @@ function openAdvInputEditor(component, input, type) {
         }
         advEditorCurrentData = currentItemComponents[addSpaces(component)][addSpaces(input)];
         for (let i = 0; i < advEditorCurrentData.length; i++) {
-            advEditorAddItem("list", advEditorCurrentData[i]);
+            advEditorAddItem("list", advEditorCurrentData[i], i);
         }
     }
 }

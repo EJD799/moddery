@@ -1149,15 +1149,15 @@ function saveAdvInput() {
     updateInput(component, input, data);
     closeAdvInputEditor();
 }
-function advEditorAddItem(mode, value, idVal) {
+function advEditorAddItem(mode, value, idVal = -1) {
     let id;
     if (idVal >= 0) {
         id = idVal;
     } else {
         id = advEditorCurrentData.length;
+        advEditorCurrentData[id] = value;
     }
     if (mode == "list") {
-        advEditorCurrentData[id] = value;
         let textBox = document.createElement("input");
         textBox.setAttribute("id", `advEditorListItem${id}`);
         textBox.setAttribute("value", value);

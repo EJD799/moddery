@@ -1147,6 +1147,7 @@ function saveAdvInput() {
     let data = advEditorCurrentData;
     $(`#${component}${input}`).val(data.toString());
     updateInput(component, input, data);
+    closeAdvInputEditor();
 }
 function advEditorAddItem(mode, value, idVal) {
     let id;
@@ -1170,14 +1171,22 @@ function advEditorAddItem(mode, value, idVal) {
         advEditorListContent.appendChild(deleteBtn);
         advEditorListContent.appendChild(document.createElement("br"));
     }
+    $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 }
 function advEditorRemoveItem(id) {
-    delete advEditorCurrentData[id];
+    if (advEditorType == "list") {
+        advEditorListContent.innerHTML = "";
+    }
+    advEditorCurrentData.splice(id, 1);
     for (let i = 0; i < advEditorCurrentData.length; i++) {
         advEditorAddItem(advEditorType, advEditorCurrentData[i], i);
     }
 }
+$("#advEditorListAddBtn").button();
 // new end
+
+
+
 
 // Run after jQuery, jQuery UI and TouchPunch are loaded and after dialogs exist.
 $(function () {

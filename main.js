@@ -1,4 +1,4 @@
-const appVersion = "0.8.1";
+const appVersion = "0.8.2";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -2959,6 +2959,76 @@ function saveProject() {
 }
 */
 
+let idbPromise = null;
+
+function openProjectDB() {
+  if (idbPromise) return idbPromise;
+
+  idbPromise = new Promise((resolve, reject) => {
+    const req = indexedDB.open("projectStorage", 2);
+
+    req.onupgradeneeded = (e) => {
+      const db = e.target.result;
+
+      if (!db.objectStoreNames.contains("projects")) {
+        db.createObjectStore("projects", { keyPath: "id" });
+      }
+
+      if (!db.objectStoreNames.contains("projectInfo")) {
+        const infoStore = db.createObjectStore("projectInfo", { keyPath: "id" });
+        infoStore.createIndex("by_name", "name", { unique: false });
+        infoStore.createIndex("by_type", "type", { unique: false });
+        infoStore.createIndex("by_lastSaved", "lastSaved", { unique: false });
+      }
+    };
+
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+
+  return idbPromise;
+}
+
+async function listProjectsDB() {
+  const db = await openProjectDB();
+
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("projectInfo", "readonly");
+    const req = tx.objectStore("projectInfo").getAll();
+
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = reject;
+  });
+}
+
+async function loadProjectDB(id) {
+  const db = await openProjectDB();
+
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("projects", "readonly");
+    const req = tx.objectStore("projects").get(id);
+
+    req.onsuccess = () => resolve(req.result?.blob);
+    req.onerror = reject;
+  });
+}
+
+async function deleteProjectDB(id) {
+  const db = await openProjectDB();
+  const tx = db.transaction(
+    ["projects", "projectInfo"],
+    "readwrite"
+  );
+
+  tx.objectStore("projects").delete(id);
+  tx.objectStore("projectInfo").delete(id);
+
+  return new Promise((resolve, reject) => {
+    tx.oncomplete = resolve;
+    tx.onerror = reject;
+  });
+}
+
 async function saveProject() {
   document.getElementById("savingText").innerHTML = "<i class='fa-solid fa-spinner'></i> Saving...";
   document.getElementById("savingFlyoutText").innerHTML = `Saving...`;
@@ -2970,30 +3040,59 @@ async function saveProject() {
     });
   $("#savingFlyoutButton").hide();
 
-  // If no file is opened, fall back to Save As
-  if (!projFileHandle) {
-    return await saveProjectAs();
+  if (storageMode == "file_system") {
+    // If no file is opened, fall back to Save As
+    if (!projFileHandle) {
+      return await saveProjectAs();
+    }
+
+    const blob = await projZip.generateAsync({ type: "blob" });
+
+    // Ensure we have write permission
+    const perm = await projFileHandle.requestPermission({ mode: "readwrite" });
+    if (perm !== "granted") {
+      // If permission denied, fallback to Save As as well
+      document.getElementById("savingText").innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Not Saving";
+      document.getElementById("savingFlyoutText").innerHTML = `Project not saving. Check your browser permissions and try again.`;
+      $("#savingFlyout")
+        .position({
+          my: "right bottom",
+          at: "right top",
+          of: $("#savingBox")
+        });
+    }
+
+    const writable = await projFileHandle.createWritable();
+    await writable.write(blob);
+    await writable.close();
+  } else {
+    const db = await openProjectDB();
+    const blob = await projZip.generateAsync({ type: "blob" });
+
+    const tx = db.transaction(
+      ["projects", "projectInfo"],
+      "readwrite"
+    );
+
+    // Store the actual project data
+    tx.objectStore("projects").put({
+      id: currentProjectId,
+      blob
+    });
+
+    // Store lightweight metadata
+    tx.objectStore("projectInfo").put({
+      id: currentProjectId,
+      name: projManifest.name,
+      type: projManifest.type,
+      lastSaved: Date.now()
+    });
+
+    await new Promise((resolve, reject) => {
+      tx.oncomplete = resolve;
+      tx.onerror = reject;
+    });
   }
-
-  const blob = await projZip.generateAsync({ type: "blob" });
-
-  // Ensure we have write permission
-  const perm = await projFileHandle.requestPermission({ mode: "readwrite" });
-  if (perm !== "granted") {
-    // If permission denied, fallback to Save As as well
-    document.getElementById("savingText").innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Not Saving";
-    document.getElementById("savingFlyoutText").innerHTML = `Project not saving. Check your browser permissions and try again.`;
-    $("#savingFlyout")
-      .position({
-        my: "right bottom",
-        at: "right top",
-        of: $("#savingBox")
-      });
-  }
-
-  const writable = await projFileHandle.createWritable();
-  await writable.write(blob);
-  await writable.close();
 
   console.log("Project saved!");
   document.getElementById("savingText").innerHTML = "<i class='fa-solid fa-circle-check'></i> Saved";

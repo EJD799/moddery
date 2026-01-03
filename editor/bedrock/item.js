@@ -1195,7 +1195,7 @@ function openSelectTableDlg(component, input, type) {
         tables = window.parent.getTradeTableList();
     } else {
         selectTableDlg.setAttribute("title", "Select Loot Table");
-        tables = window.parent.getTradeLootList();
+        tables = window.parent.getLootTableList();
     }
     $("#selectTableDlg").dialog("open");
     let selectTableMenu = document.getElementById("selectTableMenu");

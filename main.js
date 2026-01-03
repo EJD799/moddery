@@ -1,4 +1,4 @@
-const appVersion = "0.7.17";
+const appVersion = "0.7.18";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -3466,7 +3466,17 @@ async function getScriptList(mode = 1) {
     list = (await getFilteredElements("Script")).map(obj => obj.name);
     list.unshift("None");
   }
-  return list
+  return list;
+}
+async function getLootTableList() {
+  let list = await getFilteredElements("Loot Table");
+  list.unshift("None");
+  return list;
+}
+async function getTradeTableList() {
+  let list = await getFilteredElements("Trade Table");
+  list.unshift("None");
+  return list;
 }
 
 $("#newProjBtn").button();

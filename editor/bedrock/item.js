@@ -1184,7 +1184,7 @@ function selectCompTexture() {
 
 
 
-function openSelectTableDlg(component, input, type) {
+async function openSelectTableDlg(component, input, type) {
     tableSelectorMode = type;
     advEditorComponent = component;
     advEditorInput = input;
@@ -1192,10 +1192,10 @@ function openSelectTableDlg(component, input, type) {
     let tables;
     if (type == "trade_table") {
         selectTableDlg.setAttribute("title", "Select Trade Table");
-        tables = window.parent.getTradeTableList();
+        tables = await window.parent.getTradeTableList();
     } else {
         selectTableDlg.setAttribute("title", "Select Loot Table");
-        tables = window.parent.getLootTableList();
+        tables = await window.parent.getLootTableList();
     }
     $("#selectTableDlg").dialog("open");
     let selectTableMenu = document.getElementById("selectTableMenu");

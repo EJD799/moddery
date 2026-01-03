@@ -2871,7 +2871,12 @@ function advEditorAddItem(mode, value, idVal = -1) {
         id = idVal;
     } else {
         id = advEditorCurrentData.length;
-        advEditorCurrentData[id] = value;
+        if (mode == "list") {
+            advEditorCurrentData[id] = value;
+        }
+        if (mode == "seat_selector") {
+            advEditorCurrentData[id] = structuredClone(value ?? {});
+        }
     }
     if (mode == "list") {
         let textBox = document.createElement("input");
@@ -2889,6 +2894,8 @@ function advEditorAddItem(mode, value, idVal = -1) {
         advEditorListContent.appendChild(document.createElement("br"));
     }
     if (mode == "seat_selector") {
+        const seat = advEditorCurrentData[id];
+
         let title = document.createElement("h4");
         title.innerHTML = `Seat ${id + 1} `;
         let deleteBtn = document.createElement("i");
@@ -2902,7 +2909,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         label1.innerHTML = "Lock Rider Rotation ";
         let textBox1 = document.createElement("input");
         textBox1.setAttribute("id", `advEditorSeatsItem${id}a`);
-        textBox1.setAttribute("value", value?.lock_rider_rotation ?? 181);
+        textBox1.setAttribute("value", seat.lock_rider_rotation ?? 181);
         textBox1.setAttribute("type", "number");
         textBox1.setAttribute("class", "smallInput");
         textBox1.addEventListener("change", event => {
@@ -2917,7 +2924,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         label2.innerHTML = "Max Rider Count ";
         let textBox2 = document.createElement("input");
         textBox2.setAttribute("id", `advEditorSeatsItem${id}b`);
-        textBox2.setAttribute("value", value?.max_rider_count ?? 0);
+        textBox2.setAttribute("value", seat.max_rider_count ?? 0);
         textBox2.setAttribute("type", "number");
         textBox2.setAttribute("class", "smallInput");
         textBox2.addEventListener("change", event => {
@@ -2932,7 +2939,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         label3.innerHTML = "Min Rider Count ";
         let textBox3 = document.createElement("input");
         textBox3.setAttribute("id", `advEditorSeatsItem${id}c`);
-        textBox3.setAttribute("value", value?.min_rider_count ?? 0);
+        textBox3.setAttribute("value", seat.min_rider_count ?? 0);
         textBox3.setAttribute("type", "number");
         textBox3.setAttribute("class", "smallInput");
         textBox3.addEventListener("change", event => {
@@ -2947,7 +2954,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         label4a.innerHTML = "Position X ";
         let textBox4a = document.createElement("input");
         textBox4a.setAttribute("id", `advEditorSeatsItem${id}d1`);
-        textBox4a.setAttribute("value", value?.position?.[0] ?? 0);
+        textBox4a.setAttribute("value", seat.position?.[0] ?? 0);
         textBox4a.setAttribute("type", "number");
         textBox4a.setAttribute("class", "smallInput");
         textBox4a.addEventListener("change", event => {
@@ -2964,7 +2971,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         label4b.innerHTML = " Y ";
         let textBox4b = document.createElement("input");
         textBox4b.setAttribute("id", `advEditorSeatsItem${id}d2`);
-        textBox4b.setAttribute("value", value?.position?.[1] ?? 0);
+        textBox4b.setAttribute("value", seat.position?.[1] ?? 0);
         textBox4b.setAttribute("type", "number");
         textBox4b.setAttribute("class", "smallInput");
         textBox4b.addEventListener("change", event => {
@@ -2981,7 +2988,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         label4c.innerHTML = " Z ";
         let textBox4c = document.createElement("input");
         textBox4c.setAttribute("id", `advEditorSeatsItem${id}d3`);
-        textBox4c.setAttribute("value", value?.position?.[2] ?? 0);
+        textBox4c.setAttribute("value", seat.position?.[2] ?? 0);
         textBox4c.setAttribute("type", "number");
         textBox4c.setAttribute("class", "smallInput");
         textBox4c.addEventListener("change", event => {
@@ -3000,7 +3007,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         label5.innerHTML = "Rotate Rider By ";
         let textBox5 = document.createElement("input");
         textBox5.setAttribute("id", `advEditorSeatsItem${id}e`);
-        textBox5.setAttribute("value", value?.rotate_rider_by ?? 0);
+        textBox5.setAttribute("value", seat.rotate_rider_by ?? 0);
         textBox5.setAttribute("type", "number");
         textBox5.setAttribute("class", "smallInput");
         textBox5.addEventListener("change", event => {

@@ -14,6 +14,13 @@ let advEditorType;
 let advEditorCurrentData;
 let textureSelectorMode;
 let tableSelectorMode;
+let seatTemplate = {
+    lock_rider_rotation: 181,
+    max_rider_count: 0,
+    min_rider_count: 0,
+    position: [0, 0, 0],
+    rotate_rider_by: 0
+};
 // new end
 
 const componentDefinitions = {

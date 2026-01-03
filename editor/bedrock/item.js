@@ -1191,10 +1191,10 @@ async function openSelectTableDlg(component, input, type) {
     advEditorType = type;
     let tables;
     if (type == "trade_table") {
-        selectTableDlg.setAttribute("title", "Select Trade Table");
+        $("#selectTableDlg").dialog("option", "title", "Select Trade Table");
         tables = await window.parent.getTradeTableList();
     } else {
-        selectTableDlg.setAttribute("title", "Select Loot Table");
+        $("#selectTableDlg").dialog("option", "title", "Select Loot Table");
         tables = await window.parent.getLootTableList();
     }
     $("#selectTableDlg").dialog("open");

@@ -2913,7 +2913,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox1.setAttribute("type", "number");
         textBox1.setAttribute("class", "smallInput");
         textBox1.addEventListener("change", event => {
-            advEditorCurrentData[id].lock_rider_rotation = event.target.value;
+            advEditorCurrentData[id].lock_rider_rotation = Number(event.target.value);
         });
         advEditorSeatsContent.appendChild(label1);
         advEditorSeatsContent.appendChild(textBox1);
@@ -2928,7 +2928,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox2.setAttribute("type", "number");
         textBox2.setAttribute("class", "smallInput");
         textBox2.addEventListener("change", event => {
-            advEditorCurrentData[id].max_rider_count = event.target.value;
+            advEditorCurrentData[id].max_rider_count = Number(event.target.value);
         });
         advEditorSeatsContent.appendChild(label2);
         advEditorSeatsContent.appendChild(textBox2);
@@ -2943,7 +2943,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox3.setAttribute("type", "number");
         textBox3.setAttribute("class", "smallInput");
         textBox3.addEventListener("change", event => {
-            advEditorCurrentData[id].min_rider_count = event.target.value;
+            advEditorCurrentData[id].min_rider_count = Number(event.target.value);
         });
         advEditorSeatsContent.appendChild(label3);
         advEditorSeatsContent.appendChild(textBox3);
@@ -2959,9 +2959,9 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox4a.setAttribute("class", "smallInput");
         textBox4a.addEventListener("change", event => {
             if (typeof advEditorCurrentData[id].position == "object") {
-                advEditorCurrentData[id].position[0] = event.target.value;
+                advEditorCurrentData[id].position[0] = Number(event.target.value);
             } else {
-                advEditorCurrentData[id].position = [event.target.value, 0, 0];
+                advEditorCurrentData[id].position = [Number(event.target.value), 0, 0];
             }
         });
         advEditorSeatsContent.appendChild(label4a);
@@ -2976,9 +2976,9 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox4b.setAttribute("class", "smallInput");
         textBox4b.addEventListener("change", event => {
             if (typeof advEditorCurrentData[id].position == "object") {
-                advEditorCurrentData[id].position[1] = event.target.value;
+                advEditorCurrentData[id].position[1] = Number(event.target.value);
             } else {
-                advEditorCurrentData[id].position = [0, event.target.value, 0];
+                advEditorCurrentData[id].position = [0, Number(event.target.value), 0];
             }
         });
         advEditorSeatsContent.appendChild(label4b);
@@ -2993,9 +2993,9 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox4c.setAttribute("class", "smallInput");
         textBox4c.addEventListener("change", event => {
             if (typeof advEditorCurrentData[id].position == "object") {
-                advEditorCurrentData[id].position[2] = event.target.value;
+                advEditorCurrentData[id].position[2] = Number(event.target.value);
             } else {
-                advEditorCurrentData[id].position = [0, 0, event.target.value];
+                advEditorCurrentData[id].position = [0, 0, Number(event.target.value)];
             }
         });
         advEditorSeatsContent.appendChild(label4c);
@@ -3011,7 +3011,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox5.setAttribute("type", "number");
         textBox5.setAttribute("class", "smallInput");
         textBox5.addEventListener("change", event => {
-            advEditorCurrentData[id].rotate_rider_by = event.target.value;
+            advEditorCurrentData[id].rotate_rider_by = Number(event.target.value);
         });
         advEditorSeatsContent.appendChild(label5);
         advEditorSeatsContent.appendChild(textBox5);

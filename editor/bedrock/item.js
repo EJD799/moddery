@@ -8,8 +8,7 @@ let advEditorInput;
 let advEditorType;
 let advEditorCurrentData;
 let textureSelectorMode;
-let lootTableSelectorMode;
-let tradeTableSelectorMode;
+let tableSelectorMode;
 // new end
 
 const componentDefinitions = {
@@ -727,7 +726,11 @@ $("#addComponentCancelBtn").button();
 $("#addComponentAddBtn").button();
 $("#selectTextureCancelBtn").button();
 $("#selectTextureSelectBtn").button();
+// new start
 $("#selectTextureSelectBtn2").button();
+$("#selectTableSelectBtn").button();
+$("#selectTableCancelBtn").button();
+// new end
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 
 $("#addComponentDlg").dialog({
@@ -996,6 +999,36 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("onclick", `openSelectTextureDlg("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "component")`);
                 buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
                 elementBox.appendChild(newComponentDOM);
+            } else if (newComponentType == "loot_table") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("disabled", "true");
+                newComponentDOM.setAttribute("class", "almostFullInput");
+                newComponentDOM.setAttribute("value", "");
+                let typeName = newComponentTypeName;
+                let inputName = newComponentInputName;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("button");
+                newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
+                newComponentDOM.setAttribute("class", "inputEditBtn");
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
+                newComponentDOM.setAttribute("onclick", `openSelectTableDlg("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "loot_table")`);
+                buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
+                elementBox.appendChild(newComponentDOM);
             } else {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
@@ -1124,7 +1157,75 @@ function selectTexture() {
 // new start
 function selectCompTexture() {
     const selected = document.querySelector('input[name="selectedTexture"]:checked');
-    
+
+    let component = advEditorComponent;
+    let input = advEditorInput;
+
+    if (selected.value) {
+        const textureNameText = document.getElementById("textureNameText");
+        if (selected.value == "None") {
+            $(`#${component}${input}`).val("");
+            updateInput(component, input, "");
+        } else {
+            $(`#${component}${input}`).val(selected.value);
+            updateInput(component, input, selected.value);
+        }
+    }
+
+    $("#selectTextureDlg").dialog("close");
+}
+
+
+
+function openSelectTableDlg(component, input, type) {
+    tableSelectorMode = type;
+    advEditorComponent = component;
+    advEditorInput = input;
+    advEditorType = type;
+    let tables;
+    if (type == "trade_table") {
+        selectTableDlg.setAttribute("title", "Select Trade Table");
+        tables = window.parent.getTradeTableList();
+    } else {
+        selectTableDlg.setAttribute("title", "Select Loot Table");
+        tables = window.parent.getTradeLootList();
+    }
+    $("#selectTableDlg").dialog("open");
+    let selectTableMenu = document.getElementById("selectTableMenu");
+    selectTableMenu.innerHTML = "";
+    for (let i = 0; i < tables.length; i++) {
+        let selectTableMenuItem;
+        let previewBox;
+        let preview;
+        let itemTitle;
+        let itemRadio;
+        selectTableMenuItem = document.createElement("div");
+        selectTableMenuItem.setAttribute("class", "textureMenuItem");
+        itemRadio = document.createElement("input");
+        itemRadio.setAttribute("type", "radio");
+        itemRadio.setAttribute("name", "selectedTable");
+        itemRadio.setAttribute("class", "textureRadio");
+        itemRadio.setAttribute("value", tables[i]);
+        selectTableMenuItem.appendChild(itemRadio);
+        itemTitle = document.createElement("span");
+        itemTitle.setAttribute("class", "textureMenuTitle");
+        itemTitle.innerHTML = tables[i];
+        selectTableMenuItem.appendChild(itemTitle);
+        selectTableMenu.appendChild(selectTableMenuItem);
+        selectTableMenuItem.addEventListener("click", () => {
+            const itemRadio = selectTableMenuItem.querySelector('input[type="radio"]');
+            if (itemRadio) {
+                itemRadio.checked = true;  // select this radio
+            }
+        });
+    }
+}
+function closeSelectTableDlg() {
+    $("#selectTableDlg").dialog("close");
+}
+function selectTable() {
+    const selected = document.querySelector('input[name="selectedTable"]:checked');
+
     let component = advEditorComponent;
     let input = advEditorInput;
 

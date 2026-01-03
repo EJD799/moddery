@@ -1,4 +1,4 @@
-const appVersion = "0.7.37";
+const appVersion = "0.8.0";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -572,11 +572,45 @@ if (getCookie("autosaveEnabled")) {
 } else {
   autosaveEnabled = true;
   autosaveBox.checked = true;
+  setCookie("autosaveEnabled", "true", 399);
 }
 
 autosaveBox.addEventListener("change", function(e) {
   autosaveEnabled = autosaveBox.checked;
   setCookie("autosaveEnabled", autosaveEnabled.toString(), 399);
+});
+
+
+const supportsFileSystemAPI =
+    'showOpenFilePicker' in window &&
+    'showSaveFilePicker' in window &&
+    'showDirectoryPicker' in window;
+
+let storageModeBox = document.getElementById("storageModeBox");
+$("#storageModeBox").selectmenu();
+
+if (supportsFileSystemAPI) {
+  if (getCookie("storageMode")) {
+    storageMode = getCookie("storageMode");
+    $("#storageModeBox").val(getCookie("storageMode"));
+    $("#storageModeBox").selectmenu("refresh");
+  } else {
+    storageMode = "file_system";
+    $("#storageModeBox").val("file_system");
+    $("#storageModeBox").selectmenu("refresh");
+    setCookie("storageMode", "file_system", 399);
+  }
+} else {
+  storageMode = "local_storage";
+  storageModeBoxOpt1.setAttribute("disabled", "true");
+  $("#storageModeBox").val("local_storage");
+  $("#storageModeBox").selectmenu("refresh");
+  setCookie("storageMode", "local_storage", 399);
+}
+
+$("#storageModeBox").on("change", function () {
+    const value = $(this).val();
+    setCookie("storageMode", value, 399);
 });
 
 let projFileHandle = null;

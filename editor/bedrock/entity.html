@@ -150,15 +150,20 @@
 </div>
 
 <div id="advEditor" title="Edit Input">
-  <center>
-    <div id="advEditorContentList">
-      <button id="advEditorListAddBtn" onclick="advEditorAddItem('list', '', -1)">+ Add Item</button>
-      <br><br>
-      <div id="advEditorListContent"></div>
-    </div>
-    <br><br>
-    <button id="advEditorSave" onclick="saveAdvInput()">Save</button>
-  </center>
+    <center>
+        <div id="advEditorContentList">
+            <button id="advEditorListAddBtn" onclick="advEditorAddItem('list', '', -1)">+ Add Item</button>
+            <br><br>
+            <div id="advEditorListContent"></div>
+        </div>
+        <div id="advEditorContentSeats">
+            <button id="advEditorSeatsAddBtn" onclick="advEditorAddItem('seat_selector', '', -1)">+ Add Seat</button>
+            <br><br>
+            <div id="advEditorSeatsContent"></div>
+        </div>
+        <br><br>
+        <button id="advEditorSave" onclick="saveAdvInput()">Save</button>
+    </center>
 </div>
 <!-- new end -->
 

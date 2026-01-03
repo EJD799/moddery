@@ -2811,7 +2811,13 @@ function openDeleteComponent(name) {
 function changeAdvInputMode(mode) {
     if (mode == "list") {
         $("#advEditorContentList").show();
+        $("#advEditorContentSeats").hide();
         advEditorListContent.innerHTML = "";
+    }
+    if (mode == "seat_selector") {
+        $("#advEditorContentList").hide();
+        $("#advEditorContentSeats").show();
+        advEditorSeatsContent.innerHTML = "";
     }
 }
 function openAdvInputEditor(component, input, type) {
@@ -2827,6 +2833,16 @@ function openAdvInputEditor(component, input, type) {
         advEditorCurrentData = currentEntityComponents[addSpaces(component)][addSpaces(input)];
         for (let i = 0; i < advEditorCurrentData.length; i++) {
             advEditorAddItem("list", advEditorCurrentData[i], i);
+        }
+    }
+    if (type == "seat_selector") {
+        changeAdvInputMode("seat_selector");
+        if (typeof currentEntityComponents[addSpaces(component)][addSpaces(input)] != "object") {
+            currentEntityComponents[addSpaces(component)][addSpaces(input)] = [];
+        }
+        advEditorCurrentData = currentEntityComponents[addSpaces(component)][addSpaces(input)];
+        for (let i = 0; i < advEditorCurrentData.length; i++) {
+            advEditorAddItem("seat_selector", advEditorCurrentData[i], i);
         }
     }
 }
@@ -2864,6 +2880,105 @@ function advEditorAddItem(mode, value, idVal = -1) {
         advEditorListContent.appendChild(document.createTextNode(" "));
         advEditorListContent.appendChild(deleteBtn);
         advEditorListContent.appendChild(document.createElement("br"));
+    }
+    if (mode == "seat_selector") {
+        let title = document.createElement("h4");
+        title.innerHTML = `Seat ${id + 1} `;
+        let deleteBtn = document.createElement("i");
+        deleteBtn.setAttribute("class", "fas fa-trash deleteIcon");
+        deleteBtn.setAttribute("onclick", `advEditorRemoveItem(${id})`);
+        title.appendChild(deleteBtn);
+        advEditorSeatsContent.appendChild(title);
+
+        let label1 = document.createElement("label");
+        label1.setAttribute("for", `advEditorSeatsItem${id}a`);
+        label1.innerHTML = "Lock Rider Rotation";
+        let textBox1 = document.createElement("input");
+        textBox1.setAttribute("id", `advEditorSeatsItem${id}a`);
+        textBox1.setAttribute("value", value?.lock_rider_rotation ?? 181);
+        textBox1.setAttribute("type", "number");
+        textBox1.setAttribute("class", "smallInput");
+        textBox1.addEventListener("change", event => {
+            advEditorCurrentData[id].lock_rider_rotation = event.target.value;
+        });
+        advEditorSeatsContent.appendChild(label1);
+        advEditorSeatsContent.appendChild(textBox1);
+        advEditorSeatsContent.appendChild(document.createElement("br"));
+
+        let label2 = document.createElement("label");
+        label2.setAttribute("for", `advEditorSeatsItem${id}b`);
+        label2.innerHTML = "Max Rider Count";
+        let textBox2 = document.createElement("input");
+        textBox2.setAttribute("id", `advEditorSeatsItem${id}b`);
+        textBox2.setAttribute("value", value?.max_rider_count ?? 0);
+        textBox2.setAttribute("type", "number");
+        textBox2.setAttribute("class", "smallInput");
+        textBox2.addEventListener("change", event => {
+            advEditorCurrentData[id].max_rider_count = event.target.value;
+        });
+        advEditorSeatsContent.appendChild(label2);
+        advEditorSeatsContent.appendChild(textBox2);
+        advEditorSeatsContent.appendChild(document.createElement("br"));
+
+        let label3 = document.createElement("label");
+        label3.setAttribute("for", `advEditorSeatsItem${id}c`);
+        label3.innerHTML = "Min Rider Count";
+        let textBox3 = document.createElement("input");
+        textBox3.setAttribute("id", `advEditorSeatsItem${id}c`);
+        textBox3.setAttribute("value", value?.min_rider_count ?? 0);
+        textBox3.setAttribute("type", "number");
+        textBox3.setAttribute("class", "smallInput");
+        textBox3.addEventListener("change", event => {
+            advEditorCurrentData[id].min_rider_count = event.target.value;
+        });
+        advEditorSeatsContent.appendChild(label3);
+        advEditorSeatsContent.appendChild(textBox3);
+        advEditorSeatsContent.appendChild(document.createElement("br"));
+
+        let label4a = document.createElement("label");
+        label4a.setAttribute("for", `advEditorSeatsItem${id}d1`);
+        label4a.innerHTML = "Position X";
+        let textBox4a = document.createElement("input");
+        textBox4a.setAttribute("id", `advEditorSeatsItem${id}d1`);
+        textBox4a.setAttribute("value", value?.position[0] ?? 0);
+        textBox4a.setAttribute("type", "number");
+        textBox4a.setAttribute("class", "smallInput");
+        textBox4a.addEventListener("change", event => {
+            advEditorCurrentData[id].position[0] = event.target.value;
+        });
+        advEditorSeatsContent.appendChild(label4a);
+        advEditorSeatsContent.appendChild(textBox4a);
+        let label4b = document.createElement("label");
+        label4b.setAttribute("for", `advEditorSeatsItem${id}d2`);
+        label4b.innerHTML = "Position X";
+        let textBox4b = document.createElement("input");
+        textBox4b.setAttribute("id", `advEditorSeatsItem${id}d2`);
+        textBox4b.setAttribute("value", value?.position[0] ?? 0);
+        textBox4b.setAttribute("type", "number");
+        textBox4b.setAttribute("class", "smallInput");
+        textBox4b.addEventListener("change", event => {
+            advEditorCurrentData[id].position[0] = event.target.value;
+        });
+        advEditorSeatsContent.appendChild(label4a);
+        advEditorSeatsContent.appendChild(textBox4a);
+        advEditorSeatsContent.appendChild(document.createElement("br"));
+
+        let label5 = document.createElement("label");
+        label5.setAttribute("for", `advEditorSeatsItem${id}e`);
+        label5.innerHTML = "Rotate Rider By";
+        let textBox5 = document.createElement("input");
+        textBox5.setAttribute("id", `advEditorSeatsItem${id}e`);
+        textBox5.setAttribute("value", value?.rotate_rider_by ?? 0);
+        textBox5.setAttribute("type", "number");
+        textBox5.setAttribute("class", "smallInput");
+        textBox5.addEventListener("change", event => {
+            advEditorCurrentData[id].rotate_rider_by = event.target.value;
+        });
+        advEditorSeatsContent.appendChild(label5);
+        advEditorSeatsContent.appendChild(textBox5);
+
+        advEditorSeatsContent.appendChild(document.createElement("br"));
+        advEditorSeatsContent.appendChild(document.createElement("br"));
     }
     $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 }

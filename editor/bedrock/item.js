@@ -7,6 +7,9 @@ let advEditorComponent;
 let advEditorInput;
 let advEditorType;
 let advEditorCurrentData;
+let textureSelectorMode;
+let lootTableSelectorMode;
+let tradeTableSelectorMode;
 // new end
 
 const componentDefinitions = {
@@ -724,6 +727,7 @@ $("#addComponentCancelBtn").button();
 $("#addComponentAddBtn").button();
 $("#selectTextureCancelBtn").button();
 $("#selectTextureSelectBtn").button();
+$("#selectTextureSelectBtn2").button();
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 
 $("#addComponentDlg").dialog({
@@ -954,15 +958,42 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("value", "[]");
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
-                newComponentDOM.addEventListener("change", event => {
-                    updateInput(typeName, inputName, event.target.value);
-                });
                 elementBox.appendChild(newComponentDOM);
                 newComponentDOM = document.createElement("button");
                 newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
                 newComponentDOM.setAttribute("class", "inputEditBtn");
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
                 newComponentDOM.setAttribute("onclick", `openAdvInputEditor("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "list")`);
+                buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
+                elementBox.appendChild(newComponentDOM);
+            } else if (newComponentType == "texture") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("disabled", "true");
+                newComponentDOM.setAttribute("class", "almostFullInput");
+                newComponentDOM.setAttribute("value", "");
+                let typeName = newComponentTypeName;
+                let inputName = newComponentInputName;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("button");
+                newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
+                newComponentDOM.setAttribute("class", "inputEditBtn");
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
+                newComponentDOM.setAttribute("onclick", `openSelectTextureDlg("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "component")`);
                 buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
                 elementBox.appendChild(newComponentDOM);
             } else {
@@ -1016,48 +1047,62 @@ function createComponent(type) {
     }
     $("#addComponentDlg").dialog("close");
 }
-function openSelectTextureDlg() {
-  $("#selectTextureDlg").dialog("open");
-  textures = window.parent.getTextureList();
-  let selectTextureMenu = document.getElementById("selectTextureMenu");
-  selectTextureMenu.innerHTML = "";
-  for (let i = 0; i < textures.length; i++) {
-    let selectTextureMenuItem;
-    let previewBox;
-    let preview;
-    let itemTitle;
-    let itemRadio;
-    selectTextureMenuItem = document.createElement("div");
-    selectTextureMenuItem.setAttribute("class", "textureMenuItem");
-    itemRadio = document.createElement("input");
-    itemRadio.setAttribute("type", "radio");
-    itemRadio.setAttribute("name", "selectedTexture");
-    itemRadio.setAttribute("class", "textureRadio");
-    itemRadio.setAttribute("value", textures[i]);
-    selectTextureMenuItem.appendChild(itemRadio);
-    if (textures[i] != "None") {
-        previewBox = document.createElement("div");
-        previewBox.setAttribute("class", "smallPreviewBox");
-        preview = document.createElement("img");
-        window.parent.projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
-        preview.setAttribute("src", await window.parent.fileToDataURL(file));
-        });
-        preview.setAttribute("id", window.parent.encodeText(textures[i]) + "_preview");
-        previewBox.appendChild(preview);
-        selectTextureMenuItem.appendChild(previewBox);
+function openSelectTextureDlg(component, input, mode) {
+    // new start
+    if (mode == "component") {
+        advEditorComponent = component;
+        advEditorInput = input;
+        advEditorType = "texture";
+        textureSelectorMode = "component";
+        $("#selectTextureSelectBtn").hide();
+        $("#selectTextureSelectBtn2").show();
+    } else {
+        textureSelectorMode = "default";
+        $("#selectTextureSelectBtn").show();
+        $("#selectTextureSelectBtn2").hide();
     }
-    itemTitle = document.createElement("span");
-    itemTitle.setAttribute("class", "textureMenuTitle");
-    itemTitle.innerHTML = textures[i];
-    selectTextureMenuItem.appendChild(itemTitle);
-    selectTextureMenu.appendChild(selectTextureMenuItem);
-    selectTextureMenuItem.addEventListener("click", () => {
-      const itemRadio = selectTextureMenuItem.querySelector('input[type="radio"]');
-      if (itemRadio) {
-        itemRadio.checked = true;  // select this radio
-      }
-    });
-  }
+    // new end
+    $("#selectTextureDlg").dialog("open");
+    textures = window.parent.getTextureList();
+    let selectTextureMenu = document.getElementById("selectTextureMenu");
+    selectTextureMenu.innerHTML = "";
+    for (let i = 0; i < textures.length; i++) {
+        let selectTextureMenuItem;
+        let previewBox;
+        let preview;
+        let itemTitle;
+        let itemRadio;
+        selectTextureMenuItem = document.createElement("div");
+        selectTextureMenuItem.setAttribute("class", "textureMenuItem");
+        itemRadio = document.createElement("input");
+        itemRadio.setAttribute("type", "radio");
+        itemRadio.setAttribute("name", "selectedTexture");
+        itemRadio.setAttribute("class", "textureRadio");
+        itemRadio.setAttribute("value", textures[i]);
+        selectTextureMenuItem.appendChild(itemRadio);
+        if (textures[i] != "None") {
+            previewBox = document.createElement("div");
+            previewBox.setAttribute("class", "smallPreviewBox");
+            preview = document.createElement("img");
+            window.parent.projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
+            preview.setAttribute("src", await window.parent.fileToDataURL(file));
+            });
+            preview.setAttribute("id", window.parent.encodeText(textures[i]) + "_preview");
+            previewBox.appendChild(preview);
+            selectTextureMenuItem.appendChild(previewBox);
+        }
+        itemTitle = document.createElement("span");
+        itemTitle.setAttribute("class", "textureMenuTitle");
+        itemTitle.innerHTML = textures[i];
+        selectTextureMenuItem.appendChild(itemTitle);
+        selectTextureMenu.appendChild(selectTextureMenuItem);
+        selectTextureMenuItem.addEventListener("click", () => {
+        const itemRadio = selectTextureMenuItem.querySelector('input[type="radio"]');
+        if (itemRadio) {
+            itemRadio.checked = true;  // select this radio
+        }
+        });
+    }
 }
 function closeSelectTextureDlg() {
   $("#selectTextureDlg").dialog("close");
@@ -1076,6 +1121,28 @@ function selectTexture() {
         }
     }
 }
+// new start
+function selectCompTexture() {
+    const selected = document.querySelector('input[name="selectedTexture"]:checked');
+    let component = advEditorComponent;
+    let input = advEditorInput;
+    $(`#${component}${input}`).val(data.toString());
+    updateInput(component, input, data);
+
+    if (selected.value) {
+        const textureNameText = document.getElementById("textureNameText");
+        if (selected.value == "None") {
+            $(`#${component}${input}`).val("");
+            updateInput(component, input, "");
+        } else {
+            $(`#${component}${input}`).val(selected.value);
+            updateInput(component, input, selected.value);
+        }
+    }
+
+    $("#selectTextureDlg").dialog("close");
+}
+// new end
 $("#addComponentType").selectmenu();
 
 function saveProject() {

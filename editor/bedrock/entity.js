@@ -2892,7 +2892,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
 
         let label1 = document.createElement("label");
         label1.setAttribute("for", `advEditorSeatsItem${id}a`);
-        label1.innerHTML = "Lock Rider Rotation";
+        label1.innerHTML = "Lock Rider Rotation ";
         let textBox1 = document.createElement("input");
         textBox1.setAttribute("id", `advEditorSeatsItem${id}a`);
         textBox1.setAttribute("value", value?.lock_rider_rotation ?? 181);
@@ -2907,7 +2907,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
 
         let label2 = document.createElement("label");
         label2.setAttribute("for", `advEditorSeatsItem${id}b`);
-        label2.innerHTML = "Max Rider Count";
+        label2.innerHTML = "Max Rider Count ";
         let textBox2 = document.createElement("input");
         textBox2.setAttribute("id", `advEditorSeatsItem${id}b`);
         textBox2.setAttribute("value", value?.max_rider_count ?? 0);
@@ -2922,7 +2922,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
 
         let label3 = document.createElement("label");
         label3.setAttribute("for", `advEditorSeatsItem${id}c`);
-        label3.innerHTML = "Min Rider Count";
+        label3.innerHTML = "Min Rider Count ";
         let textBox3 = document.createElement("input");
         textBox3.setAttribute("id", `advEditorSeatsItem${id}c`);
         textBox3.setAttribute("value", value?.min_rider_count ?? 0);
@@ -2937,7 +2937,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
 
         let label4a = document.createElement("label");
         label4a.setAttribute("for", `advEditorSeatsItem${id}d1`);
-        label4a.innerHTML = "Position X";
+        label4a.innerHTML = "Position X ";
         let textBox4a = document.createElement("input");
         textBox4a.setAttribute("id", `advEditorSeatsItem${id}d1`);
         textBox4a.setAttribute("value", value?.position[0] ?? 0);
@@ -2950,17 +2950,30 @@ function advEditorAddItem(mode, value, idVal = -1) {
         advEditorSeatsContent.appendChild(textBox4a);
         let label4b = document.createElement("label");
         label4b.setAttribute("for", `advEditorSeatsItem${id}d2`);
-        label4b.innerHTML = "Position X";
+        label4b.innerHTML = " Y ";
         let textBox4b = document.createElement("input");
         textBox4b.setAttribute("id", `advEditorSeatsItem${id}d2`);
-        textBox4b.setAttribute("value", value?.position[0] ?? 0);
+        textBox4b.setAttribute("value", value?.position[1] ?? 0);
         textBox4b.setAttribute("type", "number");
         textBox4b.setAttribute("class", "smallInput");
         textBox4b.addEventListener("change", event => {
-            advEditorCurrentData[id].position[0] = event.target.value;
+            advEditorCurrentData[id].position[1] = event.target.value;
         });
-        advEditorSeatsContent.appendChild(label4a);
-        advEditorSeatsContent.appendChild(textBox4a);
+        advEditorSeatsContent.appendChild(label4b);
+        advEditorSeatsContent.appendChild(textBox4b);
+        let label4c = document.createElement("label");
+        label4c.setAttribute("for", `advEditorSeatsItem${id}d3`);
+        label4c.innerHTML = " Z ";
+        let textBox4c = document.createElement("input");
+        textBox4c.setAttribute("id", `advEditorSeatsItem${id}d3`);
+        textBox4c.setAttribute("value", value?.position[2] ?? 0);
+        textBox4c.setAttribute("type", "number");
+        textBox4c.setAttribute("class", "smallInput");
+        textBox4c.addEventListener("change", event => {
+            advEditorCurrentData[id].position[2] = event.target.value;
+        });
+        advEditorSeatsContent.appendChild(label4c);
+        advEditorSeatsContent.appendChild(textBox4c);
         advEditorSeatsContent.appendChild(document.createElement("br"));
 
         let label5 = document.createElement("label");

@@ -2267,6 +2267,36 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("onclick", `openAdvInputEditor("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "list")`);
                 buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
                 elementBox.appendChild(newComponentDOM);
+            } else if (newComponentType == "seat_selector") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("disabled", "true");
+                newComponentDOM.setAttribute("class", "almostFullInput");
+                newComponentDOM.setAttribute("value", "[]");
+                let typeName = newComponentTypeName;
+                let inputName = newComponentInputName;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("button");
+                newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
+                newComponentDOM.setAttribute("class", "inputEditBtn");
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
+                newComponentDOM.setAttribute("onclick", `openAdvInputEditor("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "seat_selector")`);
+                buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
+                elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "texture") {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);

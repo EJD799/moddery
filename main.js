@@ -1,4 +1,4 @@
-const appVersion = "0.7.29";
+const appVersion = "0.7.30";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -755,7 +755,7 @@ function parseItemComponents(file) {
       "replace_block_item": component.replace_block_item,
     };
     if (component.use_on) {
-      newObj["mincraft:block_placer"].use_on = component.use_on.split(",");
+      newObj["mincraft:block_placer"].use_on = component.use_on;
     }
   }
   if (keys.includes("Bundle Interaction")) {
@@ -900,7 +900,7 @@ function parseItemComponents(file) {
     newObj["minecraft:repairable"] = {
       "repair_items": [
         {
-          "items": component.items.split(","),
+          "items": component.items,
           "repair_amount": component.repair_amount
         }
       ]
@@ -933,10 +933,10 @@ function parseItemComponents(file) {
       "allow_nested_storage_items": component.allow_nested_storage_items,
     };
     if (component.allowed_items) {
-      newObj["minecraft:storage_item"].allowed_items = component.allowed_items.split(",");
+      newObj["minecraft:storage_item"].allowed_items = component.allowed_items;
     }
     if (component.banned_items) {
-      newObj["minecraft:storage_item"].banned_items = component.banned_items.split(",");
+      newObj["minecraft:storage_item"].banned_items = component.banned_items;
     }
   }
   if (keys.includes("Swing Duration")) {
@@ -948,7 +948,7 @@ function parseItemComponents(file) {
   if (keys.includes("Tags")) {
     let component = components["Tags"];
     newObj["minecraft:tags"] = {
-      "tags": component.tags.split(",")
+      "tags": component.tags
     };
   }
   if (keys.includes("Throwable")) {
@@ -1149,7 +1149,7 @@ async function parseBlockComponents(file) {
     let component = components["Crafting Table"];
     newObj1["minecraft:crafting_table"] = {
       "table_name": component.table_name,
-      "crafting_tags": [component.crafting_tags.split(",")]
+      "crafting_tags": [component.crafting_tags]
     };
   }
   if (keys.includes("Destructible by Explosion")) {
@@ -1397,7 +1397,7 @@ async function parseEntityComponents(file) {
   if (keys.includes("Effect Immunity")) {
     let component = components["Effect Immunity"];
     newObj1["minecraft:mob_effect_immunity"] = {
-      mob_effects: component.effect.split(",")
+      mob_effects: component.effect
     };
   }
   if (keys.includes("Apply Effect")) {
@@ -1426,7 +1426,7 @@ async function parseEntityComponents(file) {
     newObj1["minecraft:interact"] = {
       interact_text: component.interact_text,
       cooldown: Number(component.cooldown),
-      play_sounds: component.play_sounds.split(",")
+      play_sounds: component.play_sounds
     };
   }
   if (keys.includes("Add Rider")) {
@@ -1630,7 +1630,7 @@ async function parseEntityComponents(file) {
       avoid_portals: component.avoid_portals,
       avoid_sun: component.avoid_sun,
       avoid_water: component.avoid_water,
-      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      blocks_to_avoid: component.blocks_to_avoid,
       can_breach: component.can_breach,
       can_break_doors: component.can_break_doors,
       can_jump: component.can_jump,
@@ -1654,7 +1654,7 @@ async function parseEntityComponents(file) {
       avoid_portals: component.avoid_portals,
       avoid_sun: component.avoid_sun,
       avoid_water: component.avoid_water,
-      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      blocks_to_avoid: component.blocks_to_avoid,
       can_breach: component.can_breach,
       can_break_doors: component.can_break_doors,
       can_jump: component.can_jump,
@@ -1678,7 +1678,7 @@ async function parseEntityComponents(file) {
       avoid_portals: component.avoid_portals,
       avoid_sun: component.avoid_sun,
       avoid_water: component.avoid_water,
-      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      blocks_to_avoid: component.blocks_to_avoid,
       can_breach: component.can_breach,
       can_break_doors: component.can_break_doors,
       can_jump: component.can_jump,
@@ -1702,7 +1702,7 @@ async function parseEntityComponents(file) {
       avoid_portals: component.avoid_portals,
       avoid_sun: component.avoid_sun,
       avoid_water: component.avoid_water,
-      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      blocks_to_avoid: component.blocks_to_avoid,
       can_breach: component.can_breach,
       can_break_doors: component.can_break_doors,
       can_jump: component.can_jump,
@@ -1726,7 +1726,7 @@ async function parseEntityComponents(file) {
       avoid_portals: component.avoid_portals,
       avoid_sun: component.avoid_sun,
       avoid_water: component.avoid_water,
-      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      blocks_to_avoid: component.blocks_to_avoid,
       can_breach: component.can_breach,
       can_break_doors: component.can_break_doors,
       can_jump: component.can_jump,
@@ -1750,7 +1750,7 @@ async function parseEntityComponents(file) {
       avoid_portals: component.avoid_portals,
       avoid_sun: component.avoid_sun,
       avoid_water: component.avoid_water,
-      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      blocks_to_avoid: component.blocks_to_avoid,
       can_breach: component.can_breach,
       can_break_doors: component.can_break_doors,
       can_jump: component.can_jump,
@@ -1774,7 +1774,7 @@ async function parseEntityComponents(file) {
       avoid_portals: component.avoid_portals,
       avoid_sun: component.avoid_sun,
       avoid_water: component.avoid_water,
-      blocks_to_avoid: component.blocks_to_avoid.split(","),
+      blocks_to_avoid: component.blocks_to_avoid,
       can_breach: component.can_breach,
       can_break_doors: component.can_break_doors,
       can_jump: component.can_jump,
@@ -1822,7 +1822,7 @@ async function parseEntityComponents(file) {
       controlling_seat: Number(component.controlling_seat),
       crouching_skip_interact: component.crouching_skip_interact,
       dismount_mode: component.dismount_mode,
-      family_types: component.family_types.split(","),
+      family_types: component.family_types,
       interact_text: component.interact_text,
       passenger_max_width: Number(component.passenger_max_width),
       pull_in_entities: component.pull_in_entities,
@@ -1834,7 +1834,7 @@ async function parseEntityComponents(file) {
     let component = components["Tameable"];
     newObj1["minecraft:tameable"] = {
       probability: Number(component.probability) / 100,
-      tame_items: component.tame_items.split(",")
+      tame_items: component.tame_items
     };
   }
   if (keys.includes("Max Auto Step")) {

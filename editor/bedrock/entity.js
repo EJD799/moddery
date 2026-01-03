@@ -2821,10 +2821,10 @@ function openAdvInputEditor(component, input, type) {
     $("#advEditor").dialog("open");
     if (type == "list") {
         changeAdvInputMode("list");
-        if (typeof currentItemComponents[addSpaces(component)][addSpaces(input)] != "object") {
-            currentItemComponents[addSpaces(component)][addSpaces(input)] = [];
+        if (typeof currentEntityComponents[addSpaces(component)][addSpaces(input)] != "object") {
+            currentEntityComponents[addSpaces(component)][addSpaces(input)] = [];
         }
-        advEditorCurrentData = currentItemComponents[addSpaces(component)][addSpaces(input)];
+        advEditorCurrentData = currentEntityComponents[addSpaces(component)][addSpaces(input)];
         for (let i = 0; i < advEditorCurrentData.length; i++) {
             advEditorAddItem("list", advEditorCurrentData[i], i);
         }

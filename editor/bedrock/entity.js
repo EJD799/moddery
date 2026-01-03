@@ -2990,7 +2990,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
 
         let label5 = document.createElement("label");
         label5.setAttribute("for", `advEditorSeatsItem${id}e`);
-        label5.innerHTML = "Rotate Rider By";
+        label5.innerHTML = "Rotate Rider By ";
         let textBox5 = document.createElement("input");
         textBox5.setAttribute("id", `advEditorSeatsItem${id}e`);
         textBox5.setAttribute("value", value?.rotate_rider_by ?? 0);
@@ -3010,6 +3010,9 @@ function advEditorAddItem(mode, value, idVal = -1) {
 function advEditorRemoveItem(id) {
     if (advEditorType == "list") {
         advEditorListContent.innerHTML = "";
+    }
+    if (advEditorType == "seat_selector") {
+        advEditorSeatsContent.innerHTML = "";
     }
     advEditorCurrentData.splice(id, 1);
     for (let i = 0; i < advEditorCurrentData.length; i++) {

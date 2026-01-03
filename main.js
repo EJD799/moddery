@@ -1,4 +1,4 @@
-const appVersion = "0.8.0";
+const appVersion = "0.8.1";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -608,9 +608,9 @@ if (supportsFileSystemAPI) {
   setCookie("storageMode", "local_storage", 399);
 }
 
-$("#storageModeBox").on("change", function () {
-    const value = $(this).val();
-    setCookie("storageMode", value, 399);
+$("#storageModeBox").on("selectmenuchange", function (event, ui) {
+    storageMode = ui.item.value;
+    setCookie("storageMode", storageMode, 399);
 });
 
 let projFileHandle = null;

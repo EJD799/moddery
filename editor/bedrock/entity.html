@@ -139,14 +139,28 @@
     </div>
 </div>
 
-<div id="selectLootTableDlg" title="Select Loot Table">
-    <div class="textureMenu" id="selectLootTableMenu"></div>
+<!-- new start -->
+<div id="selectTableDlg" title="">
+    <div class="textureMenu" id="selectTableMenu"></div>
 
     <div class="textureDialogButtons">
-        <button id="selectLootTableCancelBtn" onclick="closeSelectLootTableDlg()">Cancel</button>
-        <button id="selectLootTableSelectBtn" onclick="selectLootTable(currentLootTableSelecting)">Select</button>
+        <button id="selectTableCancelBtn" onclick="closeSelectTableDlg()">Cancel</button>
+        <button id="selectTableSelectBtn" onclick="selectTable()">Select</button>
     </div>
 </div>
+
+<div id="advEditor" title="Edit Input">
+  <center>
+    <div id="advEditorContentList">
+      <button id="advEditorListAddBtn" onclick="advEditorAddItem('list', '', -1)">+ Add Item</button>
+      <br><br>
+      <div id="advEditorListContent"></div>
+    </div>
+    <br><br>
+    <button id="advEditorSave" onclick="saveAdvInput()">Save</button>
+  </center>
+</div>
+<!-- new end -->
 
 <div id="deleteDlg" title="Delete Component?">
   <center>

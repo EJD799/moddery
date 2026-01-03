@@ -49,7 +49,7 @@
   <center>
     <label for="addComponentType">Component Type</label>
     <select name="addComponentType" id="addComponentType">
-      <option>Test</option>
+      <!--<option>Test</option>-->
       <option>Allow Off Hand</option>
       <option>Block Placer</option>
       <option>Bundle Interaction</option>
@@ -111,17 +111,7 @@
         <button id="selectTableSelectBtn" onclick="selectTable()">Select</button>
     </div>
 </div>
-<!-- new end -->
 
-<div id="deleteDlg" title="Delete Component?">
-  <center>
-    <span id="deleteDlgText"></span><br><br>
-    <button id="deleteDlgCancel" onclick="closeDeleteComponent()">Cancel</button>
-    <button id="deleteDlgConfirm" class="redBtn">Delete</button>
-  </center>
-</div>
-
-<!-- new start -->
 <div id="advEditor" title="Edit Input">
   <center>
     <div id="advEditorContentList">
@@ -134,5 +124,13 @@
   </center>
 </div>
 <!-- new end -->
+
+<div id="deleteDlg" title="Delete Component?">
+  <center>
+    <span id="deleteDlgText"></span><br><br>
+    <button id="deleteDlgCancel" onclick="closeDeleteComponent()">Cancel</button>
+    <button id="deleteDlgConfirm" class="redBtn">Delete</button>
+  </center>
+</div>
 
 <script src="item.js"></script>

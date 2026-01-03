@@ -7,6 +7,15 @@ let currentTextureSelecting;
 let currentModelSelecting;
 let currentLootTableSelecting;
 
+// new start
+let advEditorComponent;
+let advEditorInput;
+let advEditorType;
+let advEditorCurrentData;
+let textureSelectorMode;
+let tableSelectorMode;
+// new end
+
 const componentDefinitions = {
     "Placement Direction": {
         name: "Placement Direction",
@@ -519,6 +528,18 @@ $("#addComponentCancelBtn").button();
 $("#addComponentAddBtn").button();
 $("#selectTextureCancelBtn").button();
 $("#selectTextureSelectBtn").button();
+// new start
+$("#selectTextureSelectBtn2").button();
+$("#selectTableSelectBtn").button();
+$("#selectTableCancelBtn").button();
+$("#selectTableDlg").dialog({
+  position: { my: "center", at: "center", of: window },
+  resizable: false,
+  height: 500,
+  width: 500
+});
+$("#selectTableDlg").dialog("close");
+// new end
 $("#selectModelCancelBtn").button();
 $("#selectModelSelectBtn").button();
 $("#selectLootTableCancelBtn").button();
@@ -563,6 +584,19 @@ $("#deleteDlg").dialog({
 $("#deleteDlg").dialog("close");
 $("#deleteDlgCancel").button();
 $("#deleteDlgConfirm").button();
+
+// new start
+$("#advEditor").dialog({
+  position: { my: "center", at: "center", of: window },
+  resizable: false,
+  height: 400,
+  width: 400,
+  closeOnEscape: false
+});
+$("#advEditor").dialog("close");
+$("#advEditorSave").button();
+// new end
+
 function addComponent() {
   $("#addComponentDlg").dialog("open");
 }
@@ -572,6 +606,11 @@ function closeAddComponentDlg() {
 function removeSpaces(str) {
     return str.replaceAll(" ", "_s_");
 }
+// new start
+function addSpaces(str) {
+    return str.replaceAll("_s_", " ");
+}
+// new end
 function createComponent(type) {
     let newComponentObj = {};
     let newComponentType;
@@ -726,7 +765,7 @@ function createComponent(type) {
                     updateInput(typeName, inputName, event.target.checked);
                 });
                 elementBox.appendChild(newComponentDOM);
-            } else if (newComponentType == "list") {
+            }/* new start */ else if (newComponentType == "list") {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
                 newComponentDOM.innerHTML = newComponentInputLabel;
@@ -743,13 +782,110 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("disabled", "true");
+                newComponentDOM.setAttribute("class", "almostFullInput");
+                newComponentDOM.setAttribute("value", "[]");
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
-                newComponentDOM.addEventListener("change", event => {
-                    updateInput(typeName, inputName, event.target.value);
-                });
                 elementBox.appendChild(newComponentDOM);
-            } else {
+                newComponentDOM = document.createElement("button");
+                newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
+                newComponentDOM.setAttribute("class", "inputEditBtn");
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
+                newComponentDOM.setAttribute("onclick", `openAdvInputEditor("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "list")`);
+                buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
+                elementBox.appendChild(newComponentDOM);
+            } else if (newComponentType == "texture") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("disabled", "true");
+                newComponentDOM.setAttribute("class", "almostFullInput");
+                newComponentDOM.setAttribute("value", "");
+                let typeName = newComponentTypeName;
+                let inputName = newComponentInputName;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("button");
+                newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
+                newComponentDOM.setAttribute("class", "inputEditBtn");
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
+                newComponentDOM.setAttribute("onclick", `openSelectTextureDlg("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "component")`);
+                buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
+                elementBox.appendChild(newComponentDOM);
+            } else if (newComponentType == "loot_table") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("disabled", "true");
+                newComponentDOM.setAttribute("class", "almostFullInput");
+                newComponentDOM.setAttribute("value", "");
+                let typeName = newComponentTypeName;
+                let inputName = newComponentInputName;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("button");
+                newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
+                newComponentDOM.setAttribute("class", "inputEditBtn");
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
+                newComponentDOM.setAttribute("onclick", `openSelectTableDlg("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "loot_table")`);
+                buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
+                elementBox.appendChild(newComponentDOM);
+            } else if (newComponentType == "trade_table") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("disabled", "true");
+                newComponentDOM.setAttribute("class", "almostFullInput");
+                newComponentDOM.setAttribute("value", "");
+                let typeName = newComponentTypeName;
+                let inputName = newComponentInputName;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("button");
+                newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
+                newComponentDOM.setAttribute("class", "inputEditBtn");
+                newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
+                newComponentDOM.setAttribute("onclick", `openSelectTableDlg("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "trade_table")`);
+                buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
+                elementBox.appendChild(newComponentDOM);
+            }/* new end */ else {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
                 newComponentDOM.innerHTML = newComponentInputLabel;
@@ -785,6 +921,12 @@ function createComponent(type) {
                 }
             });
         }
+        // new start
+        for (let k = 0; k < buttonsToRegister.length; k++) {
+            const [typeName, inputName] = buttonsToRegister[k];
+            $("#" + typeName + inputName + "_btn").button();
+        }
+        // new end
         $(".tooltipIcon").tooltip({
             show: { effect: "fadeIn", duration: 200, delay: 0 },
             hide: { effect: "fadeOut", duration: 200, delay: 0 },
@@ -802,48 +944,62 @@ function generateTextureSelector(id, name) {
 }
 
 function openSelectTextureDlg(textureToSelect) {
-  $("#selectTextureDlg").dialog("open");
-  currentTextureSelecting = textureToSelect;
-  textures = window.parent.getTextureList();
-  let selectTextureMenu = document.getElementById("selectTextureMenu");
-  selectTextureMenu.innerHTML = "";
-  for (let i = 0; i < textures.length; i++) {
-    let selectTextureMenuItem;
-    let previewBox;
-    let preview;
-    let itemTitle;
-    let itemRadio;
-    selectTextureMenuItem = document.createElement("div");
-    selectTextureMenuItem.setAttribute("class", "textureMenuItem");
-    itemRadio = document.createElement("input");
-    itemRadio.setAttribute("type", "radio");
-    itemRadio.setAttribute("name", "selectedTexture");
-    itemRadio.setAttribute("class", "textureRadio");
-    itemRadio.setAttribute("value", textures[i]);
-    selectTextureMenuItem.appendChild(itemRadio);
-    if (textures[i] != "None") {
-        previewBox = document.createElement("div");
-        previewBox.setAttribute("class", "smallPreviewBox");
-        preview = document.createElement("img");
-        window.parent.projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
-        preview.setAttribute("src", await window.parent.fileToDataURL(file));
-        });
-        preview.setAttribute("id", window.parent.encodeText(textures[i]) + "_preview");
-        previewBox.appendChild(preview);
-        selectTextureMenuItem.appendChild(previewBox);
+    // new start
+    if (mode == "component") {
+        advEditorComponent = component;
+        advEditorInput = input;
+        advEditorType = "texture";
+        textureSelectorMode = "component";
+        $("#selectTextureSelectBtn").hide();
+        $("#selectTextureSelectBtn2").show();
+    } else {
+        textureSelectorMode = "default";
+        $("#selectTextureSelectBtn").show();
+        $("#selectTextureSelectBtn2").hide();
     }
-    itemTitle = document.createElement("span");
-    itemTitle.setAttribute("class", "textureMenuTitle");
-    itemTitle.innerHTML = textures[i];
-    selectTextureMenuItem.appendChild(itemTitle);
-    selectTextureMenu.appendChild(selectTextureMenuItem);
-    selectTextureMenuItem.addEventListener("click", () => {
-      const itemRadio = selectTextureMenuItem.querySelector('input[type="radio"]');
-      if (itemRadio) {
-        itemRadio.checked = true;  // select this radio
-      }
-    });
-  }
+    // new end
+    $("#selectTextureDlg").dialog("open");
+    currentTextureSelecting = textureToSelect;
+    textures = window.parent.getTextureList();
+    let selectTextureMenu = document.getElementById("selectTextureMenu");
+    selectTextureMenu.innerHTML = "";
+    for (let i = 0; i < textures.length; i++) {
+        let selectTextureMenuItem;
+        let previewBox;
+        let preview;
+        let itemTitle;
+        let itemRadio;
+        selectTextureMenuItem = document.createElement("div");
+        selectTextureMenuItem.setAttribute("class", "textureMenuItem");
+        itemRadio = document.createElement("input");
+        itemRadio.setAttribute("type", "radio");
+        itemRadio.setAttribute("name", "selectedTexture");
+        itemRadio.setAttribute("class", "textureRadio");
+        itemRadio.setAttribute("value", textures[i]);
+        selectTextureMenuItem.appendChild(itemRadio);
+        if (textures[i] != "None") {
+            previewBox = document.createElement("div");
+            previewBox.setAttribute("class", "smallPreviewBox");
+            preview = document.createElement("img");
+            window.parent.projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
+            preview.setAttribute("src", await window.parent.fileToDataURL(file));
+            });
+            preview.setAttribute("id", window.parent.encodeText(textures[i]) + "_preview");
+            previewBox.appendChild(preview);
+            selectTextureMenuItem.appendChild(previewBox);
+        }
+        itemTitle = document.createElement("span");
+        itemTitle.setAttribute("class", "textureMenuTitle");
+        itemTitle.innerHTML = textures[i];
+        selectTextureMenuItem.appendChild(itemTitle);
+        selectTextureMenu.appendChild(selectTextureMenuItem);
+        selectTextureMenuItem.addEventListener("click", () => {
+        const itemRadio = selectTextureMenuItem.querySelector('input[type="radio"]');
+        if (itemRadio) {
+            itemRadio.checked = true;  // select this radio
+        }
+        });
+    }
 }
 function closeSelectTextureDlg() {
   $("#selectTextureDlg").dialog("close");
@@ -885,6 +1041,95 @@ function selectTexture(textureNumber) {
         }
     }
 }
+// new start
+function selectCompTexture() {
+    const selected = document.querySelector('input[name="selectedTexture"]:checked');
+
+    let component = advEditorComponent;
+    let input = advEditorInput;
+
+    if (selected.value) {
+        const textureNameText = document.getElementById("textureNameText");
+        if (selected.value == "None") {
+            $(`#${component}${input}`).val("");
+            updateInput(component, input, "");
+        } else {
+            $(`#${component}${input}`).val(selected.value);
+            updateInput(component, input, selected.value);
+        }
+    }
+
+    $("#selectTextureDlg").dialog("close");
+}
+
+
+
+async function openSelectTableDlg(component, input, type) {
+    tableSelectorMode = type;
+    advEditorComponent = component;
+    advEditorInput = input;
+    advEditorType = type;
+    let tables;
+    if (type == "trade_table") {
+        $("#selectTableDlg").dialog("option", "title", "Select Trade Table");
+        tables = await window.parent.getTradeTableList();
+    } else {
+        $("#selectTableDlg").dialog("option", "title", "Select Loot Table");
+        tables = await window.parent.getLootTableList();
+    }
+    $("#selectTableDlg").dialog("open");
+    let selectTableMenu = document.getElementById("selectTableMenu");
+    selectTableMenu.innerHTML = "";
+    for (let i = 0; i < tables.length; i++) {
+        let selectTableMenuItem;
+        let previewBox;
+        let preview;
+        let itemTitle;
+        let itemRadio;
+        selectTableMenuItem = document.createElement("div");
+        selectTableMenuItem.setAttribute("class", "textureMenuItem");
+        itemRadio = document.createElement("input");
+        itemRadio.setAttribute("type", "radio");
+        itemRadio.setAttribute("name", "selectedTable");
+        itemRadio.setAttribute("class", "textureRadio");
+        itemRadio.setAttribute("value", tables[i]);
+        selectTableMenuItem.appendChild(itemRadio);
+        itemTitle = document.createElement("span");
+        itemTitle.setAttribute("class", "textureMenuTitle");
+        itemTitle.innerHTML = tables[i];
+        selectTableMenuItem.appendChild(itemTitle);
+        selectTableMenu.appendChild(selectTableMenuItem);
+        selectTableMenuItem.addEventListener("click", () => {
+            const itemRadio = selectTableMenuItem.querySelector('input[type="radio"]');
+            if (itemRadio) {
+                itemRadio.checked = true;  // select this radio
+            }
+        });
+    }
+}
+function closeSelectTableDlg() {
+    $("#selectTableDlg").dialog("close");
+}
+function selectTable() {
+    const selected = document.querySelector('input[name="selectedTable"]:checked');
+
+    let component = advEditorComponent;
+    let input = advEditorInput;
+
+    if (selected.value) {
+        const textureNameText = document.getElementById("textureNameText");
+        if (selected.value == "None") {
+            $(`#${component}${input}`).val("");
+            updateInput(component, input, "");
+        } else {
+            $(`#${component}${input}`).val(selected.value);
+            updateInput(component, input, selected.value);
+        }
+    }
+
+    $("#selectTableDlg").dialog("close");
+}
+// new end
 $("#addComponentType").selectmenu();
 
 function openSelectModelDlg() {
@@ -1163,6 +1408,80 @@ function openDeleteComponent(name) {
     deleteDlgText.innerHTML = `Are you sure you want to delete the component "${name}"?`;
     deleteDlgConfirm.setAttribute("onclick", `deleteComponent("${name}")`);
 }
+
+
+// new start
+function changeAdvInputMode(mode) {
+    if (mode == "list") {
+        $("#advEditorContentList").show();
+        advEditorListContent.innerHTML = "";
+    }
+}
+function openAdvInputEditor(component, input, type) {
+    advEditorComponent = component;
+    advEditorInput = input;
+    advEditorType = type;
+    $("#advEditor").dialog("open");
+    if (type == "list") {
+        changeAdvInputMode("list");
+        if (typeof currentItemComponents[addSpaces(component)][addSpaces(input)] != "object") {
+            currentItemComponents[addSpaces(component)][addSpaces(input)] = [];
+        }
+        advEditorCurrentData = currentItemComponents[addSpaces(component)][addSpaces(input)];
+        for (let i = 0; i < advEditorCurrentData.length; i++) {
+            advEditorAddItem("list", advEditorCurrentData[i], i);
+        }
+    }
+}
+function closeAdvInputEditor() {
+    $("#advEditor").dialog("close");
+}
+function saveAdvInput() {
+    let component = advEditorComponent;
+    let input = advEditorInput;
+    let type = advEditorType;
+    let data = advEditorCurrentData;
+    $(`#${component}${input}`).val(data.toString());
+    updateInput(component, input, data);
+    closeAdvInputEditor();
+}
+function advEditorAddItem(mode, value, idVal = -1) {
+    let id;
+    if (idVal >= 0) {
+        id = idVal;
+    } else {
+        id = advEditorCurrentData.length;
+        advEditorCurrentData[id] = value;
+    }
+    if (mode == "list") {
+        let textBox = document.createElement("input");
+        textBox.setAttribute("id", `advEditorListItem${id}`);
+        textBox.setAttribute("value", value);
+        textBox.addEventListener("change", event => {
+            advEditorCurrentData[id] = event.target.value;
+        });
+        advEditorListContent.appendChild(textBox);
+        let deleteBtn = document.createElement("i");
+        deleteBtn.setAttribute("class", "fas fa-trash deleteIcon");
+        deleteBtn.setAttribute("onclick", `advEditorRemoveItem(${id})`);
+        advEditorListContent.appendChild(document.createTextNode(" "));
+        advEditorListContent.appendChild(deleteBtn);
+        advEditorListContent.appendChild(document.createElement("br"));
+    }
+    $('input').addClass("ui-widget ui-widget-content ui-corner-all");
+}
+function advEditorRemoveItem(id) {
+    if (advEditorType == "list") {
+        advEditorListContent.innerHTML = "";
+    }
+    advEditorCurrentData.splice(id, 1);
+    for (let i = 0; i < advEditorCurrentData.length; i++) {
+        advEditorAddItem(advEditorType, advEditorCurrentData[i], i);
+    }
+}
+$("#advEditorListAddBtn").button();
+// new end
+
 
 // Run after jQuery, jQuery UI and TouchPunch are loaded and after dialogs exist.
 $(function () {

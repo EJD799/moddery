@@ -12,7 +12,7 @@ let tableSelectorMode;
 // new end
 
 const componentDefinitions = {
-    "Test": {
+    /*"Test": {
         name: "Test",
         id: "test",
         inputs: [
@@ -42,7 +42,7 @@ const componentDefinitions = {
             }
         ],
         requires: false
-    },
+    },*/
     "Allow Off Hand": {
         name: "Allow Off Hand",
         id: "minecraft:allow_off_hand",
@@ -946,7 +946,7 @@ function createComponent(type) {
                     updateInput(typeName, inputName, event.target.checked);
                 });
                 elementBox.appendChild(newComponentDOM);
-            } else if (newComponentType == "list") {
+            }/* new start */ else if (newComponentType == "list") {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
                 newComponentDOM.innerHTML = newComponentInputLabel;
@@ -976,7 +976,7 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("onclick", `openAdvInputEditor("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "list")`);
                 buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
                 elementBox.appendChild(newComponentDOM);
-            }/* new start */ else if (newComponentType == "texture") {
+            } else if (newComponentType == "texture") {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);
                 newComponentDOM.innerHTML = newComponentInputLabel;

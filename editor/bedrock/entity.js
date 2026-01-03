@@ -2940,11 +2940,15 @@ function advEditorAddItem(mode, value, idVal = -1) {
         label4a.innerHTML = "Position X ";
         let textBox4a = document.createElement("input");
         textBox4a.setAttribute("id", `advEditorSeatsItem${id}d1`);
-        textBox4a.setAttribute("value", value?.position[0] ?? 0);
+        textBox4a.setAttribute("value", value?.position?.[0] ?? 0);
         textBox4a.setAttribute("type", "number");
         textBox4a.setAttribute("class", "smallInput");
         textBox4a.addEventListener("change", event => {
-            advEditorCurrentData[id].position[0] = event.target.value;
+            if (typeof advEditorCurrentData[id].position == "object") {
+                advEditorCurrentData[id].position[0] = event.target.value;
+            } else {
+                advEditorCurrentData[id].position = [event.target.value, 0, 0];
+            }
         });
         advEditorSeatsContent.appendChild(label4a);
         advEditorSeatsContent.appendChild(textBox4a);
@@ -2953,11 +2957,15 @@ function advEditorAddItem(mode, value, idVal = -1) {
         label4b.innerHTML = " Y ";
         let textBox4b = document.createElement("input");
         textBox4b.setAttribute("id", `advEditorSeatsItem${id}d2`);
-        textBox4b.setAttribute("value", value?.position[1] ?? 0);
+        textBox4b.setAttribute("value", value?.position?.[1] ?? 0);
         textBox4b.setAttribute("type", "number");
         textBox4b.setAttribute("class", "smallInput");
         textBox4b.addEventListener("change", event => {
-            advEditorCurrentData[id].position[1] = event.target.value;
+            if (typeof advEditorCurrentData[id].position == "object") {
+                advEditorCurrentData[id].position[1] = event.target.value;
+            } else {
+                advEditorCurrentData[id].position = [0, event.target.value, 0];
+            }
         });
         advEditorSeatsContent.appendChild(label4b);
         advEditorSeatsContent.appendChild(textBox4b);
@@ -2966,11 +2974,15 @@ function advEditorAddItem(mode, value, idVal = -1) {
         label4c.innerHTML = " Z ";
         let textBox4c = document.createElement("input");
         textBox4c.setAttribute("id", `advEditorSeatsItem${id}d3`);
-        textBox4c.setAttribute("value", value?.position[2] ?? 0);
+        textBox4c.setAttribute("value", value?.position?.[2] ?? 0);
         textBox4c.setAttribute("type", "number");
         textBox4c.setAttribute("class", "smallInput");
         textBox4c.addEventListener("change", event => {
-            advEditorCurrentData[id].position[2] = event.target.value;
+            if (typeof advEditorCurrentData[id].position == "object") {
+                advEditorCurrentData[id].position[2] = event.target.value;
+            } else {
+                advEditorCurrentData[id].position = [0, 0, event.target.value];
+            }
         });
         advEditorSeatsContent.appendChild(label4c);
         advEditorSeatsContent.appendChild(textBox4c);
@@ -3005,6 +3017,7 @@ function advEditorRemoveItem(id) {
     }
 }
 $("#advEditorListAddBtn").button();
+$("#advEditorSeatsAddBtn").button();
 // new end
 
 

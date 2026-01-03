@@ -1124,10 +1124,9 @@ function selectTexture() {
 // new start
 function selectCompTexture() {
     const selected = document.querySelector('input[name="selectedTexture"]:checked');
+    
     let component = advEditorComponent;
     let input = advEditorInput;
-    $(`#${component}${input}`).val(data.toString());
-    updateInput(component, input, data);
 
     if (selected.value) {
         const textureNameText = document.getElementById("textureNameText");

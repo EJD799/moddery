@@ -1247,7 +1247,7 @@ function selectTable() {
         }
     }
 
-    $("#selectTextureDlg").dialog("close");
+    $("#selectTableDlg").dialog("close");
 }
 // new end
 $("#addComponentType").selectmenu();

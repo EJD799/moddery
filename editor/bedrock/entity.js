@@ -2112,6 +2112,7 @@ function createComponent(type) {
         elementBoxTitle.appendChild(elementBoxDelete);
         elementBox.appendChild(elementBoxTitle);
         let dropdownsToRegister = [];
+        let buttonsToRegister = []; // new
         for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
             newComponentType = componentDefinitions[type].inputs[i].type;
             newComponentInputName = componentDefinitions[type].inputs[i].name;

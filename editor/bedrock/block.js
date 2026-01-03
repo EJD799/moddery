@@ -1389,7 +1389,7 @@ function loadComponents(data) {
 }
 
 function updateInput(type, input, value) {
-    currentBlockComponents[type.replace("_s_", " ")][input] = value;
+    currentBlockComponents[addSpaces(type)][input] = value;
 }
 
 function deleteComponent(name) {

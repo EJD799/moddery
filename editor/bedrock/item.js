@@ -1334,7 +1334,7 @@ function loadComponents(data) {
 }
 
 function updateInput(type, input, value) {
-    currentItemComponents[type.replace("_s_", " ")][input] = value;
+    currentItemComponents[addSpaces(type)][input] = value;
 }
 
 function deleteComponent(name) {

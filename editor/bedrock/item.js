@@ -730,6 +730,13 @@ $("#selectTextureSelectBtn").button();
 $("#selectTextureSelectBtn2").button();
 $("#selectTableSelectBtn").button();
 $("#selectTableCancelBtn").button();
+$("#selectTableDlg").dialog({
+  position: { my: "center", at: "center", of: window },
+  resizable: false,
+  height: 500,
+  width: 500
+});
+$("#selectTableDlg").dialog("close");
 // new end
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 

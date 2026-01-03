@@ -43,7 +43,7 @@ const componentDefinitions = {
             }
         ],
         requires: false
-    }
+    },
     "Allow Off Hand": {
         name: "Allow Off Hand",
         id: "minecraft:allow_off_hand",

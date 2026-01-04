@@ -1,4 +1,4 @@
-const appVersion = "0.8.17";
+const appVersion = "0.8.18";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -3024,7 +3024,7 @@ function addElement(loadingProj) {
     const validName = isValidElementName(name);
     const validID = isValidElementID(id);
 
-    if (elementExists) {
+    if (elementExists && !loadingProj) {
       alert("That element already exists!");
     } else if (!validName) {
       alert("The element name is invalid! Allowed characters: a-z, A-Z, 0-9, _");
@@ -3126,7 +3126,7 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
 
     const validName = isValidElementID(name); // same rules as element IDs
 
-    if (assetExists) {
+    if (assetExists && !loadingProj) {
       alert("That asset already exists!");
     } else if (!validName) {
       alert("The asset name is invalid! Allowed characters: a-z, 0-9, _");

@@ -523,3 +523,11 @@ input:disabled::placeholder {
     display: inline-block;
     margin: 10px;
 }
+
+.invalidTextBox {
+    color: #d40000 !important;
+    border-color: #d40000 !important;
+}
+.invalidTextBox::placeholder {
+    color: #d40000 !important;
+}

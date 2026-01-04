@@ -1,4 +1,4 @@
-const appVersion = "0.8.16";
+const appVersion = "0.8.17";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -3011,14 +3011,6 @@ function removeElementDropdown(elementID, type) {
   } else {
     $(`#${encodeText(elementID)}_assetMenu`).remove();
   }
-}
-
-function isValidElementName(value) {
-  return /^[A-Za-z_][A-Za-z0-9_]*$/.test(value);
-}
-
-function isValidElementID(value) {
-  return /^[a-z_][a-z0-9_]*$/.test(value);
 }
 
 function addElement(loadingProj) {

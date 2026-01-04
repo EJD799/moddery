@@ -1543,3 +1543,15 @@ $(function () {
   mo.observe(document.body, { childList: true, subtree: true });
 
 });
+
+itemIDBox.addEventListener("change", function (e) {
+  const value = itemIDBox.value;
+
+  if (isValidElementID(value)) {
+    // Valid → remove the "invalid" class if it exists
+    itemIDBox.classList.remove("invalidTextBox");
+  } else {
+    // Invalid → add the "invalid" class
+    itemIDBox.classList.add("invalidTextBox");
+  }
+});

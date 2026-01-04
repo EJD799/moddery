@@ -237,3 +237,11 @@ function isBedrockShapedRecipeValid(recipeArray) {
     // Fails all structural checks
     return false;
 }
+
+function isValidElementName(value) {
+  return /^[A-Za-z_][A-Za-z0-9_]*$/.test(value);
+}
+
+function isValidElementID(value) {
+  return /^[a-z_][a-z0-9_]*$/.test(value);
+}

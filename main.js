@@ -1,4 +1,4 @@
-const appVersion = "0.8.3";
+const appVersion = "0.8.4";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -617,7 +617,7 @@ if (supportsFileSystemAPI) {
 $("#storageModeBox").on("selectmenuchange", function (event, ui) {
   storageMode = ui.item.value;
   setCookie("storageMode", storageMode, 399);
-  if (projManifest.bp_uuid) {
+  if (projManifest?.bp_uuid ?? false) {
     currentProjectId = projManifest?.bp_uuid ?? null;
   }
 });

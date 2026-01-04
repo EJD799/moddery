@@ -940,7 +940,7 @@ function createComponent(type) {
 
 function generateTextureSelector(id, name) {
     return `<label for="blockTextureBtn${id}">${name}: <span id="textureNameText${id}">No texture selected</span></label>
-<button name="blockTextureBtn${id}" id="blockTextureBtn${id}" onclick="openSelectTextureDlg(false, false, "default", ${id})">Select Texture</button>
+<button name="blockTextureBtn${id}" id="blockTextureBtn${id}" onclick="openSelectTextureDlg(false, false, 'default', ${id})">Select Texture</button>
 <br><br>`;
 }
 

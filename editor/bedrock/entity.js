@@ -2448,7 +2448,7 @@ function createComponent(type) {
 
 function generateTextureSelector(id) {
     return `<label for="entityTextureBtn${id}"> <span id="textureNameText${id}">No texture selected</span></label>
-<button name="entityTextureBtn${id}" id="entityTextureBtn${id}" onclick="openSelectTextureDlg(false, false, "default", ${id})">Select Texture</button>
+<button name="entityTextureBtn${id}" id="entityTextureBtn${id}" onclick="openSelectTextureDlg(false, false, 'default', ${id})">Select Texture</button>
 <i class="fas fa-trash deleteIcon" onclick="removeTexture(${id})"></i>
 <br><br>`;
 }

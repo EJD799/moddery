@@ -1,4 +1,4 @@
-const appVersion = "0.8.21";
+const appVersion = "0.8.22";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -3027,7 +3027,9 @@ function addElement(loadingProj) {
     if (elementExists && !loadingProj) {
       alert("That element already exists!");
     } else if (!validName) {
-      alert("The element name is invalid! Allowed characters: a-z, A-Z, 0-9, _");
+      if (name != ".DS_Store") {
+        alert("The element name is invalid! Allowed characters: a-z, A-Z, 0-9, _");
+      }
     } else if (!validID) {
       alert("The element ID is invalid! Allowed characters: a-z, 0-9, _");
     } else {
@@ -3129,7 +3131,9 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
     if (assetExists && !loadingProj) {
       alert("That asset already exists!");
     } else if (!validName) {
-      alert("The asset name is invalid! Allowed characters: a-z, 0-9, _");
+      if (name != ".DS_Store") {
+        alert("The asset name is invalid! Allowed characters: a-z, 0-9, _");
+      }
     } else {
       let file;
       let fileType;

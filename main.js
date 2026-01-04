@@ -1,4 +1,4 @@
-const appVersion = "0.8.23";
+const appVersion = "0.8.24";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -517,9 +517,14 @@ function openEditProjDlg() {
   $("#editProjVersionBox2").val(Number(projManifest.addon_version[1]));
   $("#editProjVersionBox3").val(Number(projManifest.addon_version[2]));
   $("#editProjDescriptionBox").val(projManifest.description);
-  $("#editProjMCVersionBox1").val(projManifest.mc_version[0]);
+  /*$("#editProjMCVersionBox1").val(projManifest.mc_version[0]);
   $("#editProjMCVersionBox2").val(projManifest.mc_version[1]);
-  $("#editProjMCVersionBox3").val(projManifest.mc_version[2]);
+  $("#editProjMCVersionBox3").val(projManifest.mc_version[2]);*/
+  if (Array.isArray(projManifest.mc_version)) {
+    projManifest.mc_version = "1.21.90";
+  }
+  $("#editProjMCVersionBox").val(projManifest.mc_version);
+  $("#editProjMCVersionBox").selectmenu("refresh");
   if (projManifest.packIcon) {
       document.getElementById("packIconText").innerHTML = projManifest.packIcon;
   } else {
@@ -539,7 +544,8 @@ function saveProjectInfo() {
   projManifest.name = $("#editProjNameBox").val();
   projManifest.namespace = $("#editProjNamespaceBox").val();
   projManifest.addon_version = [$("#editProjVersionBox1").val(), $("#editProjVersionBox2").val(), $("#editProjVersionBox3").val()];
-  projManifest.mc_version = [$("#editProjMCVersionBox1").val(), $("#editProjMCVersionBox2").val(), $("#editProjMCVersionBox3").val()];
+  //projManifest.mc_version = [$("#editProjMCVersionBox1").val(), $("#editProjMCVersionBox2").val(), $("#editProjMCVersionBox3").val()];
+  projManifest.mc_version = $("#editProjMCVersionBox").val();
   projManifest.description = $("#editProjDescriptionBox").val();
   projManifest.packIcon = selectedPackIcon;
   projManifest.scriptEntry = selectedScriptEntry;
@@ -553,6 +559,8 @@ function saveProjectInfo() {
 function createProject() {
   if ($("#newProjNamespaceBox").val() == "minecraft") {
     alert("The project namespace cannot be \"minecraft\"!");
+  } else if (!isValidElementID($("#newProjNamespaceBox").val())) {
+    alert("The project namespace is invalid!");
   } else if (($("#newProjNameBox").val() == "") || ($("#newProjType").val() == "") || ($("#newProjNamespaceBox").val() == "")) {
     alert("All boxes must be filled in!")
   } else {

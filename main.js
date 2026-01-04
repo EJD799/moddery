@@ -1,4 +1,4 @@
-const appVersion = "0.8.12";
+const appVersion = "0.8.13";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -3685,7 +3685,7 @@ tabs.on( "click", "span.ui-icon-close", function() {
   delete openElements[panelId];
   $( "#" + panelId ).remove();
   tabs.tabs( "refresh" );
-  if (projFileHandle) {
+  if (projFileHandle || currentProjectId) {
     if (autosaveEnabled) {
       saveProject();
     } else {

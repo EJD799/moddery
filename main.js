@@ -1,4 +1,4 @@
-const appVersion = "0.8.11";
+const appVersion = "0.8.12";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -714,7 +714,7 @@ async function openProjDlg() {
       let openBtn = document.createElement("button");
       openBtn.innerHTML = `<i class="fas fa-pencil"></i> Open`;
       openBtn.setAttribute("id", `openBtn_${projectInfo.id}`);
-      openBtn.setAttribute("onclick", `openProjectDB("${projectInfo.id}")`);
+      openBtn.setAttribute("onclick", `openProjFromDB("${projectInfo.id}")`);
       box.appendChild(openBtn);
 
       let downloadBtn = document.createElement("button");
@@ -760,8 +760,8 @@ function formatTimestamp(ts) {
   return `${MM}/${DD}/${YYYY} ${hh}:${mm}:${ss}`;
 }
 
-async function openProjectDB(id) {
-  //closeOpenProjDlg();
+async function openProjFromDB(id) {
+  closeOpenProjDlg();
   let file = await loadProjectDB(id);
   openProj(file);
 }

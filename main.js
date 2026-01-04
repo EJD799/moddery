@@ -1,4 +1,4 @@
-const appVersion = "0.8.4";
+const appVersion = "0.8.5";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -3115,16 +3115,39 @@ async function saveProject() {
   $("#savingFlyoutButton").show();
 }
 async function saveProjectAs() {
-  projFileHandle = await window.showSaveFilePicker({
-    suggestedName: (projManifest?.name || "project") + ".zip",
-    types: [{
-      description: "Moddery Project",
-      accept: { "application/zip": [".zip"] }
-    }]
-  });
+  if (storageMode == "file_system") {
+    projFileHandle = await window.showSaveFilePicker({
+      suggestedName: (projManifest?.name || "project") + ".zip",
+      types: [{
+        description: "Moddery Project",
+        accept: { "application/zip": [".zip"] }
+      }]
+    });
 
-  // After choosing location, save normally
-  return await saveProject();
+    // After choosing location, save normally
+    return await saveProject();
+  } else {
+    // IndexedDB / local storage mode → download ZIP
+
+    const blob = await projZip.generateAsync({ type: "blob" });
+
+    const filename =
+      (projManifest?.name || "project") + ".zip";
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    // Also save to IndexedDB so it remains in the project list
+    await saveProject();
+  }
 }
 
 $("#editProjBtn").button();

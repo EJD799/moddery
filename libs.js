@@ -239,13 +239,13 @@ function isBedrockShapedRecipeValid(recipeArray) {
 }
 
 function isValidElementName(value) {
-  return /^[A-Za-z_][A-Za-z0-9_]*$/.test(value);
+  return /^[A-Za-z_][A-Za-z0-9_]*$/.test(value) || value == ".DS_Store";
 }
 
 function isValidElementID(value) {
-  return /^[a-z_][a-z0-9_]*$/.test(value);
+  return /^[a-z_][a-z0-9_]*$/.test(value) || value == ".DS_Store";
 }
 
 function isValidAssetName(value) {
-  return /^[a-z_][a-z0-9_.]*$/.test(value);
+  return /^[a-z_][a-z0-9_.]*$/.test(value) || value == ".DS_Store";
 }

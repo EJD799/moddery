@@ -249,3 +249,21 @@ function isValidElementID(value) {
 function isValidAssetName(value) {
   return /^[a-z_][a-z0-9_.]*$/.test(value);
 }
+
+async function generateEmptyPNGBlob(width, height) {
+  // Create an in-memory canvas
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, width, height); // ensure fully transparent
+
+  // Convert canvas to Blob (PNG format)
+  return new Promise((resolve) => {
+    canvas.toBlob((blob) => {
+      // Release canvas reference
+      resolve(blob);
+    }, "image/png");
+  });
+}

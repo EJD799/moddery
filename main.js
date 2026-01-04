@@ -1,4 +1,4 @@
-const appVersion = "0.8.24";
+const appVersion = "0.8.25";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -6,20 +6,28 @@ var exportZip1;
 var exportZip2;
 var projZip;
 var projManifest;
+
 var tabCounter = 3;
 var tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>";
 var tabs = $("#tabs");
+
 var elementCount = 0;
 var assetCount = 0;
 var openElements = {};
+
 var renameElementID;
 var renameElementType;
 var deleteElementID;
 var deleteElementType;
+
 var autosaveEnabled = true;
-var editorScriptList;
+var storageMode = "";
 let currentProjectId = null;
 let projDeleteID;
+
+var editorScriptList;
+
+let addAssetMode = "upload";
 
 let projectTypes = {
   "be_addon": {
@@ -153,6 +161,17 @@ $("#addAssetDlg").dialog("close");
 $("#addAssetUploadBtn").button();
 $("#addAssetCancelBtn").button();
 $("#addAssetAddBtn").button();
+$("#addAssetBlankDiv").hide();
+$("#addAssetModeMenu").on("selectmenuchange", function (event, ui) {
+  addAssetMode = ui.item.value;
+  if (addAssetMode == "upload") {
+    $("#addAssetUploadDiv").show();
+    $("#addAssetBlankDiv").hide();
+  } else {
+    $("#addAssetUploadDiv").hide();
+    $("#addAssetBlankDiv").show();
+  }
+});
 
 $("#exportDlg").dialog({
   position: { my: "center", at: "center", of: window },
@@ -3022,7 +3041,7 @@ function removeElementDropdown(elementID, type) {
 }
 
 function addElement(loadingProj) {
-  if (loadingProj) {
+  //if (loadingProj) {
     const name = $("#addElementNameBox").val();
     const id = $("#addElementIDBox").val();
 
@@ -3065,7 +3084,7 @@ function addElement(loadingProj) {
       $("#" + $("#addElementNameBox").val() + "_optionBtn").button();
       createElementDropdown($("#addElementNameBox").val(), "element");
     }
-  }
+  //}
 
   /*if ((!fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json") || loadingProj) && (isValidElementName($("#addElementNameBox").val()) && isValidElementID($("#addElementIDBox").val()))) {
     if (!loadingProj) {
@@ -3128,7 +3147,7 @@ function fileToDataURL(file) {
 }
 
 async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
-  if (loadingProj) {
+  //if (loadingProj) {
     const name = $("#addAssetNameBox").val();
 
     const assetExists =
@@ -3151,7 +3170,11 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
         fileName = fileToLoadName;
         fileType = afterLastDot(fileName);
       } else {
-        file = addAssetUploadInput.files[0];
+        if (addAssetMode == "upload") {
+          file = addAssetUploadInput.files[0];
+        } else if (addAssetMode == "blank") {
+          file = await generateEmptyPNGBlob(addAssetBlankBoxW.value, addAssetBlankBoxH.value);
+        }
         fileName = addAssetNameBox.value;
         fileType = afterLastDot(fileName);
       }
@@ -3161,7 +3184,9 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
       let editBtn;
       let optionsBtn;
       if (file) {
-        projZip.folder("assets").file(fileName, file);
+        if (!loadingProj) {
+          projZip.folder("assets").file(fileName, file);
+        }
         assetCount++;
         var parentDiv = document.getElementById("tabs-2");
         var assetBox = document.createElement("div");
@@ -3213,7 +3238,7 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
         createElementDropdown(fileNameEncoded, "asset");
       }
     }
-  }
+  //}
 
   /*if (!fileListInFolder("assets").includes($("#addAssetNameBox").val()) || loadingProj) {
     let file;

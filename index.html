@@ -220,8 +220,19 @@
   <center>
     <span>Upload an asset to add it to your project. Accepts PNG textures, WAV audio, JSON geometry files, and MCSTRUCTURE files.</span>
     <br><br>
-    <button onclick="document.getElementById('addAssetUploadInput').click()" id="addAssetUploadBtn">Upload...</button>
-    <input type="file" id="addAssetUploadInput" style="display:none" accept=".png, .wav, .json, .mcstructure">
+    <select id="addAssetModeMenu">
+      <option value="upload">Upload</option>
+      <option value="blank">Blank Image</option>
+    </select>
+    <br><br>
+    <div id="addAssetUploadDiv">
+      <button onclick="document.getElementById('addAssetUploadInput').click()" id="addAssetUploadBtn">Upload...</button>
+      <input type="file" id="addAssetUploadInput" style="display:none" accept=".png, .wav, .json, .mcstructure">
+    </div>
+    <div id="addAssetBlankDiv">
+      W <input id="addAssetBlankBoxW" type="number" class="smallInput">
+      H <input id="addAssetBlankBoxH" type="number" class="smallInput">
+    </div>
     <br><br>
     <label for="addAssetNameBox">Asset Name</label>
     <input type="text" id="addAssetNameBox" name="addAssetNameBox" placeholder="Asset Name">

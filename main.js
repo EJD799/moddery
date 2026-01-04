@@ -1,4 +1,4 @@
-const appVersion = "0.8.25";
+const appVersion = "0.8.26";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -162,6 +162,7 @@ $("#addAssetUploadBtn").button();
 $("#addAssetCancelBtn").button();
 $("#addAssetAddBtn").button();
 $("#addAssetBlankDiv").hide();
+$("#addAssetModeMenu").selectmenu();
 $("#addAssetModeMenu").on("selectmenuchange", function (event, ui) {
   addAssetMode = ui.item.value;
   if (addAssetMode == "upload") {
@@ -4098,5 +4099,18 @@ window.addEventListener('beforeunload', (event) => {
     event.preventDefault();
     // Chrome requires returnValue to be set
     event.returnValue = ''; 
+  }
+});
+
+let boxToValidate = newProjNamespaceBox;
+boxToValidate.addEventListener("input", function (e) {
+  const value = boxToValidate.value;
+
+  if (isValidElementID(value)) {
+    // Valid → remove the "invalid" class if it exists
+    boxToValidate.classList.remove("invalidTextBox");
+  } else {
+    // Invalid → add the "invalid" class
+    boxToValidate.classList.add("invalidTextBox");
   }
 });

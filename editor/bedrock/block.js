@@ -1597,3 +1597,16 @@ $(function () {
   mo.observe(document.body, { childList: true, subtree: true });
 
 });
+
+let boxToValidate = blockIDBox;
+boxToValidate.addEventListener("input", function (e) {
+  const value = boxToValidate.value;
+
+  if (isValidElementID(value)) {
+    // Valid → remove the "invalid" class if it exists
+    boxToValidate.classList.remove("invalidTextBox");
+  } else {
+    // Invalid → add the "invalid" class
+    boxToValidate.classList.add("invalidTextBox");
+  }
+});

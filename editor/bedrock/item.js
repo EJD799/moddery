@@ -1544,14 +1544,15 @@ $(function () {
 
 });
 
-itemIDBox.addEventListener("change", function (e) {
-  const value = itemIDBox.value;
+let boxToValidate = itemIDBox;
+boxToValidate.addEventListener("input", function (e) {
+  const value = boxToValidate.value;
 
   if (isValidElementID(value)) {
     // Valid → remove the "invalid" class if it exists
-    itemIDBox.classList.remove("invalidTextBox");
+    boxToValidate.classList.remove("invalidTextBox");
   } else {
     // Invalid → add the "invalid" class
-    itemIDBox.classList.add("invalidTextBox");
+    boxToValidate.classList.add("invalidTextBox");
   }
 });

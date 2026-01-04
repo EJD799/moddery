@@ -1,4 +1,4 @@
-const appVersion = "0.8.15";
+const appVersion = "0.8.16";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -3013,8 +3013,59 @@ function removeElementDropdown(elementID, type) {
   }
 }
 
+function isValidElementName(value) {
+  return /^[A-Za-z_][A-Za-z0-9_]*$/.test(value);
+}
+
+function isValidElementID(value) {
+  return /^[a-z_][a-z0-9_]*$/.test(value);
+}
+
 function addElement(loadingProj) {
-  if (!fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json") || loadingProj) {
+  if (loadingProj) {
+    const name = $("#addElementNameBox").val();
+    const id = $("#addElementIDBox").val();
+
+    const elementExists =
+      fileListInFolder("elements").includes(name + ".json");
+
+    const validName = isValidElementName(name);
+    const validID = isValidElementID(id);
+
+    if (elementExists) {
+      alert("That element already exists!");
+    } else if (!validName) {
+      alert("The element name is invalid! Allowed characters: a-z, A-Z, 0-9, _");
+    } else if (!validID) {
+      alert("The element ID is invalid! Allowed characters: a-z, 0-9, _");
+    } else {
+      if (!loadingProj) {
+        var elementJSON = {
+          "name": $("#addElementNameBox").val(),
+          "id": $("#addElementIDBox").val(),
+          "type": $("#addElementType").val()
+        };
+        projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
+        addTab($("#addElementType").val(), $("#addElementNameBox").val());
+      }
+      elementCount++;
+      var parentDiv = document.getElementById("tabs-1");
+      var elementBox = document.createElement("div");
+      elementBox.setAttribute("class", "elementbox");
+      elementBox.setAttribute("id", "elementbox" + $("#addElementNameBox").val());
+      elementBox.innerHTML = `
+      <h3 id="${"elementboxname" + $("#addElementNameBox").val()}">${$("#addElementNameBox").val()}</h3>
+      <button onclick="editElement('${$("#addElementNameBox").val()}')" id="${$("#addElementNameBox").val()}_editBtn"><i class="fas fa-pencil"></i> Edit</button>
+      <button id="${$("#addElementNameBox").val()}_optionBtn">&#x22EF;</button>
+      `;
+      parentDiv.appendChild(elementBox);
+      $("#" + $("#addElementNameBox").val() + "_editBtn").button();
+      $("#" + $("#addElementNameBox").val() + "_optionBtn").button();
+      createElementDropdown($("#addElementNameBox").val(), "element");
+    }
+  }
+
+  /*if ((!fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json") || loadingProj) && (isValidElementName($("#addElementNameBox").val()) && isValidElementID($("#addElementIDBox").val()))) {
     if (!loadingProj) {
       var elementJSON = {
         "name": $("#addElementNameBox").val(),
@@ -3038,7 +3089,17 @@ function addElement(loadingProj) {
     $("#" + $("#addElementNameBox").val() + "_editBtn").button();
     $("#" + $("#addElementNameBox").val() + "_optionBtn").button();
     createElementDropdown($("#addElementNameBox").val(), "element");
-  }
+  } else if (!loadingProj) {
+    if (fileListInFolder("elements").includes($("#addElementNameBox").val() + ".json")) {
+      alert("That element already exists!");
+    }
+    if (!isValidElementName($("#addElementNameBox").val())) {
+      alert("The element name is invalid! Allowed characters: a-z, A-Z, 0-9, _");
+    }
+    if (!isValidElementID($("#addElementIDBox").val())) {
+      alert("The element ID is invalid! Allowed characters: a-z, 0-9, _");
+    }
+  }*/
   closeAddElementDlg();
   $("#addElementNameBox").val("");
   $("#addElementIDBox").val("");
@@ -3065,7 +3126,92 @@ function fileToDataURL(file) {
 }
 
 async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
-  if (!fileListInFolder("assets").includes($("#addAssetNameBox").val()) || loadingProj) {
+  if (loadingProj) {
+    const name = $("#addAssetNameBox").val();
+
+    const assetExists =
+      fileListInFolder("assets").includes(name);
+
+    const validName = isValidElementID(name); // same rules as element IDs
+
+    if (assetExists) {
+      alert("That asset already exists!");
+    } else if (!validName) {
+      alert("The asset name is invalid! Allowed characters: a-z, 0-9, _");
+    } else {
+      let file;
+      let fileType;
+      let fileName;
+      if (loadingProj) {
+        file = fileToLoad;
+        fileName = fileToLoadName;
+        fileType = afterLastDot(fileName);
+      } else {
+        file = addAssetUploadInput.files[0];
+        fileName = addAssetNameBox.value;
+        fileType = afterLastDot(fileName);
+      }
+      let fileNameEncoded = encodeText(fileName);
+      let previewBox;
+      let preview;
+      let editBtn;
+      let optionsBtn;
+      if (file) {
+        projZip.folder("assets").file(fileName, file);
+        assetCount++;
+        var parentDiv = document.getElementById("tabs-2");
+        var assetBox = document.createElement("div");
+        var center = document.createElement("center");
+        assetBox.setAttribute("class", "elementbox");
+        assetBox.setAttribute("id", "elementbox" + fileNameEncoded);
+        center.innerHTML = `<h3 id="${"elementboxname" + fileNameEncoded}">${fileName}</h3>`;
+        previewBox = document.createElement("div");
+        previewBox.setAttribute("class", "previewBox");
+        preview = document.createElement("img");
+        if (fileType == "png") {
+          preview.setAttribute("src", await fileToDataURL(file));
+        } else if (fileType == "mcstructure") {
+          preview.setAttribute("src", "/moddery/custom_textures/structure.png");
+        } else if (fileType == "wav") {
+          preview.setAttribute("src", "/moddery/custom_textures/audio.png");
+        } else {
+          preview.setAttribute("src", "/moddery/custom_textures/file.png");
+        }
+        preview.setAttribute("id", fileNameEncoded + "_preview");
+        previewBox.appendChild(preview);
+        center.appendChild(previewBox);
+        center.appendChild(document.createElement("br"));
+        if (fileType == "png") {
+          editBtn = document.createElement("button");
+          editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'png')`);
+          editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
+          editBtn.innerHTML = `<i class="fas fa-pencil"></i> Edit`;
+        }
+        if (fileType == "wav") {
+          editBtn = document.createElement("button");
+          editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'wav')`);
+          editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
+          editBtn.innerHTML = `<i class="fas fa-pencil"></i> Edit`;
+        }
+        optionsBtn = document.createElement("button");
+        optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
+        optionsBtn.innerHTML = "&#x22EF;";
+        if (fileType == "png" || fileType == "wav") {
+          center.appendChild(editBtn);
+        }
+        center.appendChild(optionsBtn);
+        assetBox.appendChild(center);
+        parentDiv.appendChild(assetBox);
+        if (fileType == "png" || fileType == "wav") {
+          $(`#${fileNameEncoded}_assetEditBtn`).button();
+        }
+        $(`#${fileNameEncoded}_assetOptionBtn`).button();
+        createElementDropdown(fileNameEncoded, "asset");
+      }
+    }
+  }
+
+  /*if (!fileListInFolder("assets").includes($("#addAssetNameBox").val()) || loadingProj) {
     let file;
     let fileType;
     let fileName;
@@ -3135,7 +3281,7 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
       $(`#${fileNameEncoded}_assetOptionBtn`).button();
       createElementDropdown(fileNameEncoded, "asset");
     }
-  }
+  }*/
   closeAddAssetDlg();
   addAssetUploadInput.value = "";
   addAssetNameBox.value = "";

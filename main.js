@@ -1,4 +1,5 @@
-const appVersion = "1.0.0";
+const appVersion = "1.0.1";
+const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -75,8 +76,8 @@ let projectTypes = {
 document.addEventListener("DOMContentLoaded", function(){
   document.title = `Moddery v${appVersion}`;
   document.getElementById("savingBox").style.display = "none";
-  aboutText1.innerHTML = `Moddery v${appVersion}`;
-  aboutText2.innerHTML = `Moddery v${appVersion}`;
+  aboutText1.innerHTML = `Moddery v${appVersion} (${buildDate})`;
+  aboutText2.innerHTML = `Moddery v${appVersion} (${buildDate})`;
   let currentUsername = getCookie("currentUsername");
   let currentPassword = getCookie("currentPassword");
   if (currentUsername) {

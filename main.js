@@ -1,4 +1,4 @@
-const appVersion = "0.8.7";
+const appVersion = "0.8.8";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -701,16 +701,46 @@ async function openProjDlg() {
       projectInfo = projectList[i];
       let box = document.createElement("div");
       box.setAttribute("class", "projListItem");
+
       let title = document.createElement("h4");
       title.innerHTML = `${projectInfo.name} (${projectInfo.namespace})`;
       box.appendChild(title);
+
       let typeText = document.createElement("span");
       typeText.innerHTML = `<b>Type:</b> ${projectTypes[projectInfo.type].name} <b>Last Modified:</b> ${formatTimestamp(projectInfo.lastSaved)}`;
       box.appendChild(typeText);
+      box.appendChild(document.createElement("br"));
+
+      let openBtn = document.createElement("button");
+      openBtn.innerHTML = `<i class="fas fa-pencil"></i> Open`;
+      openBtn.setAttribute("id", `openBtn_${projectInfo.id}`);
+      openBtn.setAttribute("onclick", `openProjectDB("${projectInfo.id}")`);
+      box.appendChild(openBtn);
+
+      let downloadBtn = document.createElement("button");
+      downloadBtn.innerHTML = `<i class="fas fa-download"></i> Download`;
+      downloadBtn.setAttribute("id", `downloadBtn_${projectInfo.id}`);
+      downloadBtn.setAttribute("onclick", `downloadProjDB("${projectInfo.id}")`);
+      box.appendChild(downloadBtn);
+
+      let deleteBtn = document.createElement("button");
+      deleteBtn.innerHTML = `<i class="fas fa-trash"></i> Delete`;
+      deleteBtn.setAttribute("id", `deleteBtn_${projectInfo.id}`);
+      deleteBtn.setAttribute("onclick", `deleteConfirmationDB("${projectInfo.id}")`);
+      deleteBtn.setAttribute("class", "redBtn");
+      box.appendChild(deleteBtn);
+
       div.appendChild(box);
+      div.appendChild(document.createElement("br"));
+
+      $(`openBtn_${projectInfo.id}`).button();
+      $(`downloadBtn_${projectInfo.id}`).button();
+      $(`deleteBtn_${projectInfo.id}`).button();
     }
   }
 };
+
+$("#openProjDBDlgNewBtn").button();
 
 function closeOpenProjDlg() {
   $("#openProjDBDlg").dialog("close");
@@ -728,6 +758,20 @@ function formatTimestamp(ts) {
   const ss = String(d.getSeconds()).padStart(2, "0");
 
   return `${MM}/${DD}/${YYYY} ${hh}:${mm}:${ss}`;
+}
+
+async function openProjectDB(id) {
+  closeOpenProjDlg();
+  let file = await loadProjectDB(id);
+  openProj(file);
+}
+
+async function downloadProjectDB(id) {
+
+}
+
+async function deleteConfirmationDB(id) {
+
 }
 
 function openProj(file) {

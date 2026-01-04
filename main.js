@@ -1,4 +1,4 @@
-const appVersion = "0.8.8";
+const appVersion = "0.8.9";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -733,9 +733,9 @@ async function openProjDlg() {
       div.appendChild(box);
       div.appendChild(document.createElement("br"));
 
-      $(`openBtn_${projectInfo.id}`).button();
-      $(`downloadBtn_${projectInfo.id}`).button();
-      $(`deleteBtn_${projectInfo.id}`).button();
+      $(`#openBtn_${projectInfo.id}`).button();
+      $(`#downloadBtn_${projectInfo.id}`).button();
+      $(`#deleteBtn_${projectInfo.id}`).button();
     }
   }
 };

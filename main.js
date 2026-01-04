@@ -1,4 +1,4 @@
-const appVersion = "0.8.9";
+const appVersion = "0.8.10";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -788,6 +788,9 @@ function openProj(file) {
         document.getElementById("tabs-2").innerHTML = `<p>Press the "+ <i class="fas fa-image"></i>" button to add an asset.</p>`;
         projZip = zip;
         projManifest = manifest;
+        if (storageMode == "local_storage") {
+          currentProjectId = projManifest.bp_uuid;
+        }
         selectedPackIcon = manifest.packIcon;
         selectedScriptEntry = manifest.scriptEntry;
         document.getElementById("tabs").hidden = false;

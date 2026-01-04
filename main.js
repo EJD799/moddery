@@ -1,4 +1,4 @@
-const appVersion = "0.8.26";
+const appVersion = "0.8.27";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -141,6 +141,7 @@ $("#editProjDlg").dialog({
 $("#editProjDlg").dialog("close");
 $("#editProjCancelBtn").button();
 $("#editProjSaveBtn").button();
+$("#editProjMCVersionBox").selectmenu();
 $("#addElementDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,

@@ -1,4 +1,4 @@
-const appVersion = "0.8.6";
+const appVersion = "0.8.7";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -696,6 +696,7 @@ async function openProjDlg() {
     $("#openProjDBDlg").dialog("open");
     let projectList = await listProjectsDB();
     let div = document.getElementById("openProjDBDlgContent");
+    div.innerHTML = "";
     for (let i = 0; i < projectList.length; i++) {
       projectInfo = projectList[i];
       let box = document.createElement("div");
@@ -704,7 +705,9 @@ async function openProjDlg() {
       title.innerHTML = `${projectInfo.name} (${projectInfo.namespace})`;
       box.appendChild(title);
       let typeText = document.createElement("span");
-      typeText.innerHTML = `${projectTypes[projectInfo.type]}`;
+      typeText.innerHTML = `<b>Type:</b> ${projectTypes[projectInfo.type].name} <b>Last Modified:</b> ${formatTimestamp(projectInfo.lastSaved)}`;
+      box.appendChild(typeText);
+      div.appendChild(box);
     }
   }
 };
@@ -713,6 +716,19 @@ function closeOpenProjDlg() {
   $("#openProjDBDlg").dialog("close");
 }
 
+function formatTimestamp(ts) {
+  const d = new Date(ts);
+
+  const MM = String(d.getMonth() + 1).padStart(2, "0");
+  const DD = String(d.getDate()).padStart(2, "0");
+  const YYYY = d.getFullYear();
+
+  const hh = String(d.getHours()).padStart(2, "0");
+  const mm = String(d.getMinutes()).padStart(2, "0");
+  const ss = String(d.getSeconds()).padStart(2, "0");
+
+  return `${MM}/${DD}/${YYYY} ${hh}:${mm}:${ss}`;
+}
 
 function openProj(file) {
   openLoader();

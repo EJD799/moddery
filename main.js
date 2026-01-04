@@ -1,4 +1,4 @@
-const appVersion = "0.8.2";
+const appVersion = "0.8.3";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -18,6 +18,7 @@ var deleteElementID;
 var deleteElementType;
 var autosaveEnabled = true;
 var editorScriptList;
+let currentProjectId = null;
 
 document.addEventListener("DOMContentLoaded", function(){
   document.title = `Moddery v${appVersion}`;
@@ -516,12 +517,14 @@ function createProject() {
     document.getElementById("welcome").hidden = true;
     document.getElementById("savingBox").style.display = "block";
     projZip = new JSZip();
+    let bpUUID = crypto.randomUUID();
+    let rpUUID = crypto.randomUUID();
     projManifest = {
       "name": $("#newProjNameBox").val(),
       "type": $("#newProjType").val(),
       "namespace": $("#newProjNamespaceBox").val(),
-      "bp_uuid": crypto.randomUUID(),
-      "rp_uuid": crypto.randomUUID(),
+      "bp_uuid": bpUUID,
+      "rp_uuid": rpUUID,
       "addon_version": [1, 0, 0],
       "mc_version": [1, 21, 90],
       "description": ""
@@ -538,6 +541,9 @@ function createProject() {
         at: "right top",
         of: $("#savingBox")
       });
+    if (storageMode == "local_storage") {
+      currentProjectId = bpUUID;
+    }
   }
 }
 
@@ -609,8 +615,11 @@ if (supportsFileSystemAPI) {
 }
 
 $("#storageModeBox").on("selectmenuchange", function (event, ui) {
-    storageMode = ui.item.value;
-    setCookie("storageMode", storageMode, 399);
+  storageMode = ui.item.value;
+  setCookie("storageMode", storageMode, 399);
+  if (projManifest.bp_uuid) {
+    currentProjectId = projManifest?.bp_uuid ?? null;
+  }
 });
 
 let projFileHandle = null;

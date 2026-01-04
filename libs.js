@@ -245,3 +245,7 @@ function isValidElementName(value) {
 function isValidElementID(value) {
   return /^[a-z_][a-z0-9_]*$/.test(value);
 }
+
+function isValidAssetName(value) {
+  return /^[a-z_][a-z0-9_.]*$/.test(value);
+}

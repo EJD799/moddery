@@ -1,4 +1,4 @@
-const appVersion = "0.8.18";
+const appVersion = "0.8.19";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -3124,7 +3124,7 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
     const assetExists =
       fileListInFolder("assets").includes(name);
 
-    const validName = isValidElementID(name); // same rules as element IDs
+    const validName = isValidAssetName(name);
 
     if (assetExists && !loadingProj) {
       alert("That asset already exists!");

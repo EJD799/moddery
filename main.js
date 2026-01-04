@@ -1,4 +1,4 @@
-const appVersion = "0.8.14";
+const appVersion = "0.8.15";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -19,6 +19,7 @@ var deleteElementType;
 var autosaveEnabled = true;
 var editorScriptList;
 let currentProjectId = null;
+let projDeleteID;
 
 let projectTypes = {
   "be_addon": {
@@ -767,12 +768,66 @@ async function openProjFromDB(id) {
 }
 
 async function downloadProjectDB(id) {
+  // 1. Load the ZIP blob
+  const blob = await loadProjectDB(id);
 
+  if (!blob) {
+    alert("Failed to load project.");
+    return;
+  }
+
+  // 2. Get metadata for filename (optional but recommended)
+  const projects = await listProjectsDB();
+  const info = projects.find(p => p.id === id);
+
+  const filename =
+    (info?.name || "project") + ".zip";
+
+  // 3. Create a temporary download URL
+  const url = URL.createObjectURL(blob);
+
+  // 4. Create & click a temporary <a>
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+
+  // 5. Cleanup
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
-async function deleteConfirmationDB(id) {
 
+$("#deleteProjDlg").dialog({
+  position: { my: "center", at: "center", of: window },
+  resizable: false,
+  height: 150,
+  width: 300,
+  closeOnEscape: false
+});
+$("#deleteProjDlg").dialog("close");
+$("#deleteProjDlgCancel").button();
+$("#deleteProjDlgConfirm").button();
+
+function deleteConfirmationDB(id) {
+  projDeleteID = id;
+  $("#deleteProjDlg").dialog("open");
+  $("#deleteProjDlg").dialog("option", "title", "Delete Project?");
+  deleteProjDlgText.innerHTML = `Are you sure you want to delete the project? This action cannot be undone!`;
 }
+
+function closeDeleteProj() {
+  $("#deleteProjDlg").dialog("close");
+}
+
+async function deleteCurrentProj() {
+  closeDeleteProj();
+  await deleteProjectDB(projDeleteID);
+  $("#openProjDBDlg").dialog("close");
+  openProjDlg();
+}
+
 
 function openProj(file) {
   openLoader();

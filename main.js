@@ -1,4 +1,4 @@
-const appVersion = "0.8.5";
+const appVersion = "0.8.6";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -19,6 +19,49 @@ var deleteElementType;
 var autosaveEnabled = true;
 var editorScriptList;
 let currentProjectId = null;
+
+let projectTypes = {
+  "be_addon": {
+    name: "Bedrock Addon",
+    shortname: "Addon"
+  },
+  "be_rp": {
+    name: "Bedrock Resource Pack",
+    shortname: "Resource Pack"
+  },
+  "je_dp": {
+    name: "Java Datapack",
+    shortname: "Datapack"
+  },
+  "je_rp": {
+    name: "Java Resource Pack",
+    shortname: "Resource Pack"
+  },
+  "je_forge": {
+    name: "Java Forge Mod",
+    shortname: "Forge Mod"
+  },
+  "je_fabric": {
+    name: "Java Fabric Mod",
+    shortname: "Fabric Mod"
+  },
+  "je_spigot": {
+    name: "Java Spigot Plugin",
+    shortname: "Spigot Plugin"
+  },
+  "nexo": {
+    name: "Nexo Addon",
+    shortname: "Nexo Addon"
+  },
+  "mtr_je": {
+    name: "MTR Content (Java)",
+    shortname: "MTR Content"
+  },
+  "mtr_be": {
+    name: "MTR Content (Bedrock)",
+    shortname: "MTR Content"
+  }
+};
 
 document.addEventListener("DOMContentLoaded", function(){
   document.title = `Moddery v${appVersion}`;
@@ -624,23 +667,51 @@ $("#storageModeBox").on("selectmenuchange", function (event, ui) {
 
 let projFileHandle = null;
 
-async function openProjDlg() {
-  try {
-    const [handle] = await window.showOpenFilePicker({
-      types: [{
-        description: "Moddery Project",
-        accept: { "application/zip": [".zip"] }
-      }]
-    });
+$("#openProjDBDlg").dialog({
+  position: { my: "center", at: "center", of: window },
+  resizable: false,
+  height: 500,
+  width: 500
+});
+$("#openProjDBDlg").dialog("close");
 
-    projFileHandle = handle;    
-    const file = await handle.getFile();
-    openProj(file); // your existing function
-  } catch (err) {
-    alert("Error opening project.");
-    document.getElementById("savingBox").style.display = "none";
+async function openProjDlg() {
+  if (storageMode == "file_system") {
+    try {
+      const [handle] = await window.showOpenFilePicker({
+        types: [{
+          description: "Moddery Project",
+          accept: { "application/zip": [".zip"] }
+        }]
+      });
+
+      projFileHandle = handle;    
+      const file = await handle.getFile();
+      openProj(file); // your existing function
+    } catch (err) {
+      alert("Error opening project.");
+      document.getElementById("savingBox").style.display = "none";
+    }
+  } else {
+    $("#openProjDBDlg").dialog("open");
+    let projectList = await listProjectsDB();
+    let div = document.getElementById("openProjDBDlgContent");
+    for (let i = 0; i < projectList.length; i++) {
+      projectInfo = projectList[i];
+      let box = document.createElement("div");
+      box.setAttribute("class", "projListItem");
+      let title = document.createElement("h4");
+      title.innerHTML = `${projectInfo.name} (${projectInfo.namespace})`;
+      box.appendChild(title);
+      let typeText = document.createElement("span");
+      typeText.innerHTML = `${projectTypes[projectInfo.type]}`;
+    }
   }
 };
+
+function closeOpenProjDlg() {
+  $("#openProjDBDlg").dialog("close");
+}
 
 
 function openProj(file) {
@@ -3094,6 +3165,7 @@ async function saveProject() {
       id: currentProjectId,
       name: projManifest.name,
       type: projManifest.type,
+      namespace: projManifest.namespace,
       lastSaved: Date.now()
     });
 

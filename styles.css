@@ -513,3 +513,13 @@ input:disabled::placeholder {
 .inputEditBtn {
     height: 41px;
 }
+
+.projListItem {
+    padding: 10px;
+    background: #333333;
+    border-radius: 10px;
+    text-align: center;
+    width: 450px;
+    display: inline-block;
+    margin: 10px;
+}

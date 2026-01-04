@@ -940,11 +940,11 @@ function createComponent(type) {
 
 function generateTextureSelector(id, name) {
     return `<label for="blockTextureBtn${id}">${name}: <span id="textureNameText${id}">No texture selected</span></label>
-<button name="blockTextureBtn${id}" id="blockTextureBtn${id}" onclick="openSelectTextureDlg(${id})">Select Texture</button>
+<button name="blockTextureBtn${id}" id="blockTextureBtn${id}" onclick="openSelectTextureDlg(false, false, "default", ${id})">Select Texture</button>
 <br><br>`;
 }
 
-function openSelectTextureDlg(textureToSelect) {
+function openSelectTextureDlg(component, input, mode, textureToSelect) {
     // new start
     if (mode == "component") {
         advEditorComponent = component;

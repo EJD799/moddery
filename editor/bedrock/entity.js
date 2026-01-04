@@ -2448,12 +2448,12 @@ function createComponent(type) {
 
 function generateTextureSelector(id) {
     return `<label for="entityTextureBtn${id}"> <span id="textureNameText${id}">No texture selected</span></label>
-<button name="entityTextureBtn${id}" id="entityTextureBtn${id}" onclick="openSelectTextureDlg(${id})">Select Texture</button>
+<button name="entityTextureBtn${id}" id="entityTextureBtn${id}" onclick="openSelectTextureDlg(false, false, "default", ${id})">Select Texture</button>
 <i class="fas fa-trash deleteIcon" onclick="removeTexture(${id})"></i>
 <br><br>`;
 }
 
-function openSelectTextureDlg(textureToSelect) {
+function openSelectTextureDlg(component, input, mode, textureToSelect) {
     // new start
     if (mode == "component") {
         advEditorComponent = component;

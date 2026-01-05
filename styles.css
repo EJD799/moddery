@@ -339,8 +339,9 @@ input[type=color]:hover {
   display: none;
   position: absolute;
   z-index: 50;
-  width: max-content !important;
-  padding: 8px;
+  width: 355px;
+  height: max-content;
+  padding: 16px;
 }
 
 /* Make vertical tabs a flex container */

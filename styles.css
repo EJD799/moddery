@@ -542,3 +542,30 @@ input:disabled::placeholder {
     display: inline-block;
     margin: 10px;
 }
+
+.menubar {
+  display: flex;
+  align-items: center;
+  height: 3.25rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid #dbdbdb;
+  background: #fff;
+}
+
+.menubar-left,
+.menubar-right {
+  display: flex;
+  align-items: center;
+}
+
+.menubar-left {
+  flex: 1;
+}
+
+.navbar-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 12rem;
+  z-index: 1000;
+}

@@ -21,10 +21,10 @@
 
   <body>
 
-		<nav class="navbar is-fixed-top is-spaced" role="navigation" aria-label="main navigation">
-			<div class="navbar-brand">
+		<header class="menubar">
+			<div class="menubar-left">
 				<div class="navbar-item has-dropdown is-hoverable">
-					<a class="navbar-link">
+					<a class="navbar-link is-arrowless">
 						<img src="moddery_logo.svg">
 					</a>
 					<div class="navbar-dropdown">
@@ -39,44 +39,39 @@
 						</a>
 					</div>
 				</div>
-			</div>
-
-			<div id="navbarBasicExample" class="navbar-menu">
-				<div class="navbar-start">
-					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">
-							File
+				<div class="navbar-item has-dropdown is-hoverable">
+					<a class="navbar-link is-arrowless">
+						File
+					</a>
+					<div class="navbar-dropdown">
+						<a class="navbar-item" onclick="openNewProjDlg();">
+							<i class="fas fa-file"></i> New
 						</a>
-						<div class="navbar-dropdown">
-							<a class="navbar-item" onclick="openNewProjDlg();">
-								<i class="fas fa-file"></i> New
-							</a>
-							<a class="navbar-item" onclick="openProjDlg();">
-								<i class="fas fa-folder-open"></i> Open...
-							</a>
-							<a class="navbar-item" onclick="saveProject();">
-								<i class="fas fa-floppy-disk"></i> Save
-							</a>
-							<a class="navbar-item" onclick="saveProjectAs();">
-								<i class="fas fa-floppy-disk"></i> Save As...
-							</a>
-							<a class="navbar-item" onclick="openExportDlg();">
-								<i class="fas fa-download"></i> Export
-							</a>
-						</div>
+						<a class="navbar-item" onclick="openProjDlg();">
+							<i class="fas fa-folder-open"></i> Open...
+						</a>
+						<a class="navbar-item" onclick="saveProject();">
+							<i class="fas fa-floppy-disk"></i> Save
+						</a>
+						<a class="navbar-item" onclick="saveProjectAs();">
+							<i class="fas fa-floppy-disk"></i> Save As...
+						</a>
+						<a class="navbar-item" onclick="openExportDlg();">
+							<i class="fas fa-download"></i> Export
+						</a>
 					</div>
 				</div>
+			</div>
 
-				<div class="navbar-end">
-					<div class="navbar-item">
-						<div class="buttons">
-							<a class="button is-primary">
-								<strong>Sign up</strong>
-							</a>
-							<a class="button is-light">
-								Log in
-							</a>
-						</div>
+			<div class="menubar-right">
+				<div class="navbar-item">
+					<div class="buttons">
+						<a class="button is-primary">
+							<strong>Sign up</strong>
+						</a>
+						<a class="button is-light">
+							Log in
+						</a>
 					</div>
 				</div>
 			</div>

@@ -21,20 +21,20 @@
 
   <body>
 
-		<nav class="navbar" role="navigation" aria-label="main navigation">
+		<nav class="navbar is-fixed-top is-spaced" role="navigation" aria-label="main navigation">
 			<div class="navbar-brand">
 				<div class="navbar-item has-dropdown is-hoverable">
 					<a class="navbar-link">
 						<img src="moddery_logo.svg">
 					</a>
 					<div class="navbar-dropdown">
-						<a class="navbar-link" onclick="openOptionsDlg();">
+						<a class="navbar-item" onclick="openOptionsDlg();">
 							<i class="fas fa-sliders"></i> Options
 						</a>
-						<a class="navbar-link" onclick="openAboutDlg();">
+						<a class="navbar-item" onclick="openAboutDlg();">
 							<i class="fas fa-circle-info"></i> About Moddery
 						</a>
-						<a class="navbar-link" onclick="window.open('https://github.com/ejd799/moddery');">
+						<a class="navbar-item" onclick="window.open('https://github.com/ejd799/moddery');">
 							<i class="fa-brands fa-github"></i> View Source
 						</a>
 					</div>
@@ -43,32 +43,25 @@
 
 			<div id="navbarBasicExample" class="navbar-menu">
 				<div class="navbar-start">
-					<a class="navbar-item">
-						Home
-					</a>
-
-					<a class="navbar-item">
-						Documentation
-					</a>
-
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a class="navbar-link">
-							More
+							File
 						</a>
-
 						<div class="navbar-dropdown">
-							<a class="navbar-item">
-								About
+							<a class="navbar-item" onclick="openNewProjDlg();">
+								<i class="fas fa-file"></i> New
 							</a>
-							<a class="navbar-item is-selected">
-								Jobs
+							<a class="navbar-item" onclick="openProjDlg();">
+								<i class="fas fa-folder-open"></i> Open...
 							</a>
-							<a class="navbar-item">
-								Contact
+							<a class="navbar-item" onclick="saveProject();">
+								<i class="fas fa-floppy-disk"></i> Save
 							</a>
-							<hr class="navbar-divider">
-							<a class="navbar-item">
-								Report an issue
+							<a class="navbar-item" onclick="saveProjectAs();">
+								<i class="fas fa-floppy-disk"></i> Save As...
+							</a>
+							<a class="navbar-item" onclick="openExportDlg();">
+								<i class="fas fa-download"></i> Export
 							</a>
 						</div>
 					</div>
@@ -91,7 +84,7 @@
 
 
 
-    <ul id="toolbar">
+    <!--<ul id="toolbar">
       <li id="logo_box">
         <div><img src="moddery_logo.svg" id="logo"> </div>
         <ul class="sublist">
@@ -125,7 +118,7 @@
             <div onclick="openExportDlg();"><i class="fas fa-download"></i> Export</div>
           </li>
         </ul>
-      </li>
+      </li>-->
       <!--<li>
         <div>Edit</div>
         <ul class="sublist">
@@ -143,10 +136,10 @@
       <li>
         <div>Element</div>
       </li>-->
-      <li style="margin-left:auto;" id="savingBox">
+      <!--<li style="margin-left:auto;" id="savingBox">
         <div id="savingText">Loading...</div>
       </li>
-    </ul>
+    </ul>-->
 
     <div id="savingFlyout">
       <p id="savingFlyoutText">Last saved never</p>

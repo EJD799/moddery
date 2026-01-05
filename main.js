@@ -1,4 +1,4 @@
-const appVersion = "1.1.23";
+const appVersion = "1.1.24";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -775,20 +775,6 @@ $("#openProjDBDlgNewBtn").button();
 
 function closeOpenProjDlg() {
   $("#openProjDBDlg").dialog("close");
-}
-
-function formatTimestamp(ts) {
-  const d = new Date(ts);
-
-  const MM = String(d.getMonth() + 1).padStart(2, "0");
-  const DD = String(d.getDate()).padStart(2, "0");
-  const YYYY = d.getFullYear();
-
-  const hh = String(d.getHours()).padStart(2, "0");
-  const mm = String(d.getMinutes()).padStart(2, "0");
-  const ss = String(d.getSeconds()).padStart(2, "0");
-
-  return `${MM}/${DD}/${YYYY} ${hh}:${mm}:${ss}`;
 }
 
 async function openProjFromDB(id) {

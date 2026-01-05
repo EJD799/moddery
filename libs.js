@@ -267,3 +267,29 @@ async function generateEmptyPNGBlob(width, height) {
     }, "image/png");
   });
 }
+
+function formatTimestamp(ts) {
+  let d = new Date(ts);
+
+  let MM = String(d.getMonth() + 1).padStart(2, "0");
+  let DD = String(d.getDate()).padStart(2, "0");
+  let YYYY = d.getFullYear();
+
+  let hh = String(d.getHours()).padStart(2, "0");
+  let mm = String(d.getMinutes()).padStart(2, "0");
+  let ss = String(d.getSeconds()).padStart(2, "0");
+
+  let ampm;
+
+  if (hh > 12) {
+    hh -= 12;
+    ampm = "PM";
+  } else if (hh == 0) {
+    hh = 12;
+    ampm = "AM";
+  } else {
+    ampm = "AM";
+  }
+
+  return `${MM}/${DD}/${YYYY} ${hh}:${mm}:${ss} ${ampm}`;
+}

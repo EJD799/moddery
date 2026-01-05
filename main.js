@@ -1,4 +1,4 @@
-const appVersion = "1.1.1";
+const appVersion = "1.1.2";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3078,7 +3078,7 @@ function addElement(loadingProj) {
       elementBox.setAttribute("class", "elementbox");
       elementBox.setAttribute("id", "elementbox" + $("#addElementNameBox").val());
       elementBox.innerHTML = `
-      <h3 id="${"elementboxname" + $("#addElementNameBox").val()}">${$("#addElementNameBox").val()}</h3>
+      <h3 class="title is-3" id="${"elementboxname" + $("#addElementNameBox").val()}">${$("#addElementNameBox").val()}</h3>
       <button onclick="editElement('${$("#addElementNameBox").val()}')" id="${$("#addElementNameBox").val()}_editBtn"><i class="fas fa-pencil"></i> Edit</button>
       <button id="${$("#addElementNameBox").val()}_optionBtn">&#x22EF;</button>
       `;
@@ -3196,7 +3196,7 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
         var center = document.createElement("center");
         assetBox.setAttribute("class", "elementbox");
         assetBox.setAttribute("id", "elementbox" + fileNameEncoded);
-        center.innerHTML = `<h3 id="${"elementboxname" + fileNameEncoded}">${fileName}</h3>`;
+        center.innerHTML = `<h3 class="title is-3" id="${"elementboxname" + fileNameEncoded}">${fileName}</h3>`;
         previewBox = document.createElement("div");
         previewBox.setAttribute("class", "previewBox");
         preview = document.createElement("img");

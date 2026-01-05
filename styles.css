@@ -476,7 +476,7 @@ input:disabled::placeholder {
 
 #tabs-1, #tabs-2 {
     overflow: hidden auto;
-    height: calc(100% - (26px + var(--tab-height, 44px)));
+    height: calc(100% - var(--tab-height, 44px));
     position: relative;
 }
 

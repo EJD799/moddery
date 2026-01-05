@@ -625,12 +625,13 @@ body {
   }
 }
 
-/* =========================
-   HOVER EFFECT RESTORE
-   ========================= */
+/* Restore Bulma navbar hover behavior for custom menubar */
+.menubar .navbar-item:hover,
+.menubar .navbar-link:hover {
+  background-color: var(--bulma-navbar-item-hover-background-color);
+}
 
-/* Restore Bulma hover brightness */
-.navbar-item:hover,
-.navbar-link:hover {
-  background-color: var(--bulma-hover-background);
+/* Dropdown items */
+.menubar .navbar-dropdown .navbar-item:hover {
+  background-color: var(--bulma-navbar-dropdown-item-hover-background-color);
 }

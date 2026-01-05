@@ -531,3 +531,14 @@ input:disabled::placeholder {
 .invalidTextBox::placeholder {
     color: #d40000 !important;
 }
+
+#welcomeInfoBox {
+    padding: 10px;
+    background: #333333;
+    border-radius: 10px;
+    text-align: left;
+    width: 600px;
+    height: 400px;
+    display: inline-block;
+    margin: 10px;
+}

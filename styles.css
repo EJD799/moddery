@@ -673,15 +673,15 @@ input:disabled::placeholder {
 }
 
 .slider-navigation-next, .slider-navigation-previous {
-  background-color: var(--bulma-scheme-main);
-  color: var(--bulma-text);
-  border: 1px solid var(--bulma-border);
+  background-color: var(--bulma-scheme-main) !important;
+  color: var(--bulma-text) !important;
+  border: 1px solid var(--bulma-border) !important;
 }
 
 .slider-page {
-    background: var(--bulma-text);
+    background: var(--bulma-text) !important;
 }
 
 .slider-page.is-active {
-    background: var(--bulma-primary);
+    background: var(--bulma-primary) !important;
 }

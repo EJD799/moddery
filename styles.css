@@ -625,13 +625,24 @@ body {
   }
 }
 
-/* Restore Bulma navbar hover behavior for custom menubar */
+/* =========================
+   MENUBAR HOVER + DROPDOWN FIX (Bulma 1.0.x)
+   ========================= */
+
+/* Top-level items */
 .menubar .navbar-item:hover,
 .menubar .navbar-link:hover {
-  background-color: var(--bulma-navbar-item-hover-background-color);
+  background-color: var(--bulma-navbar-item-hover-background);
 }
 
-/* Dropdown items */
+/* Dropdown container background */
+.menubar .navbar-dropdown {
+  background-color: var(--bulma-navbar-dropdown-background-color);
+  border-radius: var(--bulma-radius);
+  box-shadow: var(--bulma-shadow);
+}
+
+/* Dropdown items hover */
 .menubar .navbar-dropdown .navbar-item:hover {
-  background-color: var(--bulma-navbar-dropdown-item-hover-background-color);
+  background-color: var(--bulma-navbar-dropdown-item-hover-background);
 }

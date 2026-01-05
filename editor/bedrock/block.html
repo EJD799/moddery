@@ -46,12 +46,12 @@
 <!--<br><br>-->
 <div id="itemTextureDiv" style="display:none;">
     <label for="itemTextureBtn">Item Texture: <span id="textureNameText">No texture selected</span></label>
-    <button name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg(-1)">Select Texture</button>
+    <button name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg(false, false, 'default', -1)">Select Texture</button>
     <br><br>
 </div>
 <h3>Block Textures</h3>
 <label for="blockTextureBtn0">Default: <span id="textureNameText0">No texture selected</span></label>
-<button name="blockTextureBtn0" id="blockTextureBtn0" onclick="openSelectTextureDlg(0)">Select Texture</button>
+<button name="blockTextureBtn0" id="blockTextureBtn0" onclick="openSelectTextureDlg(false, false, 'default', 0)">Select Texture</button>
 <br><br>
 <div id="additionalTexturesDiv"></div>
 <h3>Components <button id="addComponentBtn" onclick="addComponent()">+ Add Component</button></h3>

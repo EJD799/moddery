@@ -663,3 +663,21 @@ html, body {
   padding-bottom: 0.5rem; /* or 1rem if needed */
   box-sizing: border-box;  /* ensures padding doesn’t add extra height */
 }
+
+.loadingSpinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  border-top-color: currentColor; /* uses text color */
+  animation: spin 500ms linear infinite;
+  vertical-align: middle; /* aligns with text */
+  margin-left: 0.3em; /* optional spacing from previous text */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

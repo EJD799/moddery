@@ -1,4 +1,4 @@
-const appVersion = "1.1.18";
+const appVersion = "1.1.19";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -881,7 +881,7 @@ function openProj(file) {
         document.getElementById("tabs").hidden = false;
         document.getElementById("welcome").hidden = true;
         document.getElementById("savingBox").style.display = "block";
-        savingText.innerHTML = "<i class='fa-solid fa-spinner'></i> Opening Project...";
+        savingText.innerHTML = "<i class='loadingSpinner'></i> Opening Project...";
         elementFolderList = fileListInFolder("elements");
         assetFolderList = fileListInFolder("assets");
         let progressBarMax = elementFolderList.length + assetFolderList.length;
@@ -3406,7 +3406,7 @@ async function deleteProjectDB(id) {
 }
 
 async function saveProject() {
-  document.getElementById("savingText").innerHTML = "<i class='fa-solid fa-spinner'></i> Saving...";
+  document.getElementById("savingText").innerHTML = "<i class='loadingSpinner'></i> Saving...";
   document.getElementById("savingFlyoutText").innerHTML = `Saving...`;
   $("#savingFlyout")
     .position({

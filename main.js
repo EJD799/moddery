@@ -1,4 +1,4 @@
-const appVersion = "1.1.16";
+const appVersion = "1.1.17";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3414,7 +3414,7 @@ async function saveProject() {
       at: "right top",
       of: $("#savingBox")
     });
-  $("#savingFlyoutButton").hide();
+  savingFlyoutButton.classList.add("is-loading");
 
   if (storageMode == "file_system") {
     // If no file is opened, fall back to Save As
@@ -3480,7 +3480,7 @@ async function saveProject() {
       at: "right top",
       of: $("#savingBox")
     });
-  $("#savingFlyoutButton").show();
+  savingFlyoutButton.classList.remove("is-loading");
 }
 async function saveProjectAs() {
   if (storageMode == "file_system") {

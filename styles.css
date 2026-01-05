@@ -340,10 +340,7 @@ input[type=color]:hover {
   position: absolute;
   z-index: 50;
   width: max-content !important;
-}
-#savingFlyoutText {
-  color: white;
-  /*font-family: Verdana, sans-serif;*/
+  padding: 8px;
 }
 
 /* Make vertical tabs a flex container */

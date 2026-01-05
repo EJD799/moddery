@@ -36,6 +36,7 @@ body {
 }
 .sublist {
     width: max-content;
+    position: absolute !important;
 }
 #logo_box {
     color: #00000000;
@@ -337,10 +338,7 @@ input[type=color]:hover {
 #savingFlyout {
   display: none;
   position: absolute;
-  background: #222222;
-  border: 1px solid #333333;
-  padding: 4px;
-  z-index: 9999;
+  z-index: 50;
   width: max-content !important;
 }
 #savingFlyoutText {

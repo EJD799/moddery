@@ -1,4 +1,4 @@
-const appVersion = "1.1.15";
+const appVersion = "1.1.16";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3526,7 +3526,6 @@ $("#loaderProgress").progressbar({
 });
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 $('textarea').addClass("ui-widget ui-widget-content ui-corner-all");
-$('#savingFlyoutButton').button();
 
 function getTabContent(role, elementID) {
   if (role == "Function") {

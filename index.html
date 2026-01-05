@@ -70,69 +70,10 @@
 			</div>
 		</header>
 
-
-
-    <!--<ul id="toolbar">
-      <li id="logo_box">
-        <div><img src="moddery_logo.svg" id="logo"> </div>
-        <ul class="sublist">
-          <li class="subitem">
-            <div onclick="openOptionsDlg()"><i class="fas fa-sliders"></i> Options</div>
-          </li>
-          <li class="subitem">
-            <div onclick="openAboutDlg()"><i class="fas fa-circle-info"></i> About Moddery</div>
-          </li>
-          <li class="subitem">
-            <div onclick="window.open('https://github.com/ejd799/moddery');"><i class="fa-brands fa-github"></i> View Source</div>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <div>File</div>
-        <ul class="sublist">
-          <li class="subitem">
-            <div onclick="openNewProjDlg()"><i class="fas fa-file"></i> New</div>
-          </li>
-          <li class="subitem">
-            <div onclick="openProjDlg()"><i class="fas fa-folder-open"></i> Open...</div>
-          </li>
-          <li class="subitem">
-            <div onclick="saveProject();"><i class="fas fa-floppy-disk"></i> Save</div>
-          </li>
-          <li class="subitem">
-            <div onclick="saveProjectAs();"><i class="fas fa-floppy-disk"></i> Save As...</div>
-          </li>
-          <li class="subitem">
-            <div onclick="openExportDlg();"><i class="fas fa-download"></i> Export</div>
-          </li>
-        </ul>
-      </li>-->
-      <!--<li>
-        <div>Edit</div>
-        <ul class="sublist">
-          <li class="subitem">
-            <div><i class="fas fa-undo"></i> Undo</div>
-          </li>
-          <li class="subitem">
-            <div><i class="fas fa-redo"></i> Redo</div>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <div>View</div>
-      </li>
-      <li>
-        <div>Element</div>
-      </li>-->
-      <!--<li style="margin-left:auto;" id="savingBox">
-        <div id="savingText">Loading...</div>
-      </li>
-    </ul>-->
-
-    <div id="savingFlyout">
+    <div id="savingFlyout" class="card">
       <p id="savingFlyoutText">Last saved never</p>
       <br>
-      <button id="savingFlyoutButton" onclick="saveProject()">Save Now</button>
+      <button id="savingFlyoutButton" onclick="saveProject()" class="button is-primary">Save Now</button>
     </div>
 
     <div id="tabs">

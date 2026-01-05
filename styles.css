@@ -527,17 +527,6 @@ input:disabled::placeholder {
 }
 
 /* =========================
-   GLOBAL LAYOUT FIX
-   ========================= */
-
-/* Ensure header stacks above content */
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* =========================
    MENUBAR CONTAINER
    ========================= */
 
@@ -640,12 +629,6 @@ body {
 .menubar .navbar-dropdown {
   position: absolute;
   z-index: 40;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
 }
 
 :root {

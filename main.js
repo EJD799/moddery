@@ -1,4 +1,4 @@
-const appVersion = "1.0.6";
+const appVersion = "1.0.7";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -4109,6 +4109,58 @@ boxToValidate.addEventListener("input", function (e) {
   const value = boxToValidate.value;
 
   if (isValidElementID(value)) {
+    // Valid → remove the "invalid" class if it exists
+    boxToValidate.classList.remove("invalidTextBox");
+  } else {
+    // Invalid → add the "invalid" class
+    boxToValidate.classList.add("invalidTextBox");
+  }
+});
+
+boxToValidate = editProjNamespaceBox;
+boxToValidate.addEventListener("input", function (e) {
+  const value = boxToValidate.value;
+
+  if (isValidElementID(value)) {
+    // Valid → remove the "invalid" class if it exists
+    boxToValidate.classList.remove("invalidTextBox");
+  } else {
+    // Invalid → add the "invalid" class
+    boxToValidate.classList.add("invalidTextBox");
+  }
+});
+
+boxToValidate = addElementNameBox;
+boxToValidate.addEventListener("input", function (e) {
+  const value = boxToValidate.value;
+
+  if (isValidElementName(value)) {
+    // Valid → remove the "invalid" class if it exists
+    boxToValidate.classList.remove("invalidTextBox");
+  } else {
+    // Invalid → add the "invalid" class
+    boxToValidate.classList.add("invalidTextBox");
+  }
+});
+
+boxToValidate = addElementIDBox;
+boxToValidate.addEventListener("input", function (e) {
+  const value = boxToValidate.value;
+
+  if (isValidElementID(value)) {
+    // Valid → remove the "invalid" class if it exists
+    boxToValidate.classList.remove("invalidTextBox");
+  } else {
+    // Invalid → add the "invalid" class
+    boxToValidate.classList.add("invalidTextBox");
+  }
+});
+
+boxToValidate = addAssetNameBox;
+boxToValidate.addEventListener("input", function (e) {
+  const value = boxToValidate.value;
+
+  if (isValidAssetName(value)) {
     // Valid → remove the "invalid" class if it exists
     boxToValidate.classList.remove("invalidTextBox");
   } else {

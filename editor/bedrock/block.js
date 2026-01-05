@@ -1359,10 +1359,15 @@ async function loadTextures(data) {
         if (data.textures["default"]) {
             document.getElementById(`textureNameText0`).innerHTML = data.textures["default"];
         }
-        for (let i = 1; i < dataKeys.length - 1; i++) {
-            j = i.toString();
-            if (data.textures[j]) {
-                document.getElementById(`textureNameText${i}`).innerHTML = data.textures[j];
+        for (const [key, value] of Object.entries(data.textures)) {
+            if (key === "default" || key === "item") continue;
+
+            const index = Number(key);
+            if (Number.isNaN(index)) continue;
+
+            const el = document.getElementById(`textureNameText${index}`);
+            if (el) {
+                el.innerHTML = value;
             }
         }
     }

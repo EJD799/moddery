@@ -52,13 +52,6 @@ body {
 input {
     padding: 10px;
 }
-#tabs {
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: calc(100% - 40px);
-}
 #loaderDlg .ui-dialog-titlebar-close {
     display: none !important;
 }
@@ -474,12 +467,6 @@ input:disabled::placeholder {
     opacity: 1;
 }
 
-#tabs-1, #tabs-2 {
-    overflow: hidden auto;
-    height: calc(100% - var(--tab-height, 44px));
-    position: relative;
-}
-
 #exporterFrame {
     position: absolute;
     left: -10000px;
@@ -646,4 +633,35 @@ body {
 /* Dropdown clickable items */
 .menubar .navbar-dropdown a.navbar-item:hover {
   background-color: var(--bulma-scheme-main-ter);
+}
+
+/* Ensure dropdowns appear above tabs and page content */
+.menubar {
+  position: relative;
+  z-index: 30;
+}
+
+.menubar .navbar-dropdown {
+  position: absolute;
+  z-index: 40;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+:root {
+  --menubar-height: 3.25rem;
+}
+
+#tabs {
+  height: calc(100vh - var(--menubar-height));
+  overflow: hidden;
+}
+
+#tabs-1, #tabs-2 {
+  height: 100%;
+  overflow-y: auto;
 }

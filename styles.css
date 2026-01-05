@@ -544,10 +544,10 @@ input:disabled::placeholder {
 }
 
 /* =========================
-   APP LAYOUT FIX
+   GLOBAL LAYOUT FIX
    ========================= */
 
-/* Ensure header is above content, not beside it */
+/* Ensure header stacks above content */
 body {
   display: flex;
   flex-direction: column;
@@ -555,7 +555,7 @@ body {
 }
 
 /* =========================
-   MENUBAR (Navbar replacement)
+   MENUBAR CONTAINER
    ========================= */
 
 .menubar {
@@ -565,72 +565,72 @@ body {
   height: 3.25rem; /* Bulma navbar height */
   padding: 0 1rem;
 
-  /* Follow Bulma theme (light/dark/custom) */
   background-color: var(--bulma-scheme-main);
-  color: var(--bulma-text);
   border-bottom: 1px solid var(--bulma-border);
+  color: var(--bulma-text);
 
-  /* Prevent flex parents from shrinking it */
   flex-shrink: 0;
 }
 
+/* Left and right sections */
 .menubar-left,
 .menubar-right {
   display: flex;
   align-items: center;
 }
 
-.menubar-left {
-  flex: 1 1 auto; /* Push right section to the edge */
+/* Push right section to the far edge */
+.menubar-right {
+  margin-left: auto;
 }
 
 /* =========================
-   LOGO VISIBILITY FIX
+   LOGO FIX
    ========================= */
 
 .navbar-item img {
   height: 32px;
-  max-height: none; /* override Bulma */
+  max-height: none;
   width: auto;
 }
 
 /* =========================
-   DROPDOWN FIX (Desktop-only)
+   DROPDOWNS — KEEP BULMA LOOK
    ========================= */
 
-/* Anchor dropdowns correctly */
+/* Anchor dropdowns */
 .navbar-item.has-dropdown {
   position: relative;
 }
 
-/* Force dropdowns closed by default */
+/* Override Bulma mobile behavior ONLY */
 .navbar-item.has-dropdown .navbar-dropdown {
-  display: none;
-  position: absolute;
   top: 100%;
   left: 0;
+  position: absolute;
 
-  min-width: 12rem;
-  z-index: 1000;
-
-  /* Follow theme */
-  background-color: var(--bulma-scheme-main);
-  border: 1px solid var(--bulma-border);
+  /* Keep Bulma visuals */
+  border-radius: var(--bulma-radius);
+  box-shadow: var(--bulma-shadow);
 }
 
-/* Open on hover only (all screen sizes) */
-.navbar-item.has-dropdown:hover .navbar-dropdown {
-  display: block;
+/* Prevent mobile auto-expansion */
+@media screen and (max-width: 1023px) {
+  .navbar-item.has-dropdown .navbar-dropdown {
+    display: none;
+  }
+
+  .navbar-item.has-dropdown:hover .navbar-dropdown {
+    display: block;
+  }
 }
 
 /* =========================
-   SAFETY: disable Bulma navbar behavior
+   HOVER EFFECT RESTORE
    ========================= */
 
-/* These prevent leftover navbar rules from interfering */
-.navbar,
-.navbar-menu,
-.navbar-start,
-.navbar-end {
-  all: unset;
+/* Restore Bulma hover brightness */
+.navbar-item:hover,
+.navbar-link:hover {
+  background-color: var(--bulma-hover-background);
 }

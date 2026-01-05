@@ -543,13 +543,35 @@ input:disabled::placeholder {
     margin: 10px;
 }
 
+/* =========================
+   APP LAYOUT FIX
+   ========================= */
+
+/* Ensure header is above content, not beside it */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* =========================
+   MENUBAR (Navbar replacement)
+   ========================= */
+
 .menubar {
   display: flex;
   align-items: center;
-  height: 3.25rem;
+  width: 100%;
+  height: 3.25rem; /* Bulma navbar height */
   padding: 0 1rem;
-  border-bottom: 1px solid #dbdbdb;
-  background: #fff;
+
+  /* Follow Bulma theme (light/dark/custom) */
+  background-color: var(--bulma-scheme-main);
+  color: var(--bulma-text);
+  border-bottom: 1px solid var(--bulma-border);
+
+  /* Prevent flex parents from shrinking it */
+  flex-shrink: 0;
 }
 
 .menubar-left,
@@ -559,13 +581,56 @@ input:disabled::placeholder {
 }
 
 .menubar-left {
-  flex: 1;
+  flex: 1 1 auto; /* Push right section to the edge */
 }
 
-.navbar-dropdown {
+/* =========================
+   LOGO VISIBILITY FIX
+   ========================= */
+
+.navbar-item img {
+  height: 32px;
+  max-height: none; /* override Bulma */
+  width: auto;
+}
+
+/* =========================
+   DROPDOWN FIX (Desktop-only)
+   ========================= */
+
+/* Anchor dropdowns correctly */
+.navbar-item.has-dropdown {
+  position: relative;
+}
+
+/* Force dropdowns closed by default */
+.navbar-item.has-dropdown .navbar-dropdown {
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
+
   min-width: 12rem;
   z-index: 1000;
+
+  /* Follow theme */
+  background-color: var(--bulma-scheme-main);
+  border: 1px solid var(--bulma-border);
+}
+
+/* Open on hover only (all screen sizes) */
+.navbar-item.has-dropdown:hover .navbar-dropdown {
+  display: block;
+}
+
+/* =========================
+   SAFETY: disable Bulma navbar behavior
+   ========================= */
+
+/* These prevent leftover navbar rules from interfering */
+.navbar,
+.navbar-menu,
+.navbar-start,
+.navbar-end {
+  all: unset;
 }

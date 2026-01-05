@@ -664,4 +664,6 @@ html, body {
 #tabs-1, #tabs-2 {
   height: 100%;
   overflow-y: auto;
+  padding-bottom: 0.5rem; /* or 1rem if needed */
+  box-sizing: border-box;  /* ensures padding doesn’t add extra height */
 }

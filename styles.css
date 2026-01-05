@@ -69,7 +69,7 @@ input {
     height: calc(100% - 52px);
     background: #222222;
     color: white;
-    font-family: Verdana, sans-serif;
+    /*font-family: Verdana, sans-serif;*/
     padding: 10px;
 }
 .elementFrame {
@@ -352,7 +352,7 @@ input[type=color]:hover {
 }
 #savingFlyoutText {
   color: white;
-  font-family: Verdana, sans-serif;
+  /*font-family: Verdana, sans-serif;*/
 }
 
 /* Make vertical tabs a flex container */

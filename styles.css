@@ -685,3 +685,13 @@ input:disabled::placeholder {
 .slider-page.is-active {
     background: var(--bulma-primary) !important;
 }
+
+.slider-navigation-next,
+.slider-navigation-previous {
+  pointer-events: auto;
+}
+
+.slider-navigation-next svg,
+.slider-navigation-previous svg {
+  pointer-events: none;
+}

@@ -1,4 +1,4 @@
-const appVersion = "1.1.20";
+const appVersion = "1.1.21";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3883,11 +3883,11 @@ async function addTab(role, elementID) {
  
   tabs.find( ".ui-tabs-nav" ).append( li );
   if (shouldRemoveMargin(role)) {
-    marginClass = 'class="noMargin" + ';
+    marginClass = 'class="noMargin elementTabArea" ';
   } else {
-    marginClass = '';
+    marginClass = 'class="elementTabArea" ';
   }
-  tabs.append( "<div " + marginClass + "id='" + id + "'><p>" + tabContentHtml + "</p></div>" );
+  tabs.append( "<div " + marginClass + "id='" + id + "'>" + tabContentHtml + "</div>" );
   tabs.tabs( "refresh" );
   tabs.tabs("option", "active", -1);
   tabCounter++;

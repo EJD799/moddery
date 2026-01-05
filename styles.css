@@ -640,10 +640,10 @@ input:disabled::placeholder {
   overflow: hidden;
 }
 
-#tabs-1, #tabs-2 {
+#tabs-1, #tabs-2, .elementTabArea {
   height: 100%;
   overflow-y: auto;
-  padding-bottom: 0.5rem; /* or 1rem if needed */
+  padding-bottom: 3rem;
   box-sizing: border-box;  /* ensures padding doesn’t add extra height */
 }
 

@@ -626,23 +626,24 @@ body {
 }
 
 /* =========================
-   MENUBAR HOVER + DROPDOWN FIX (Bulma 1.0.x)
+   MENUBAR — CORRECT HOVER TARGETS
    ========================= */
 
-/* Top-level items */
-.menubar .navbar-item:hover,
-.menubar .navbar-link:hover {
-  background-color: var(--bulma-navbar-item-hover-background);
+/* Top-level clickable links */
+.menubar .navbar-link:hover,
+.menubar a.navbar-item:hover {
+  background-color: var(--bulma-scheme-main-bis);
 }
 
-/* Dropdown container background */
+/* Dropdown container */
 .menubar .navbar-dropdown {
-  background-color: var(--bulma-navbar-dropdown-background-color);
+  background-color: var(--bulma-scheme-main);
   border-radius: var(--bulma-radius);
   box-shadow: var(--bulma-shadow);
+  border: 1px solid var(--bulma-border);
 }
 
-/* Dropdown items hover */
-.menubar .navbar-dropdown .navbar-item:hover {
-  background-color: var(--bulma-navbar-dropdown-item-hover-background);
+/* Dropdown clickable items */
+.menubar .navbar-dropdown a.navbar-item:hover {
+  background-color: var(--bulma-scheme-main-ter);
 }

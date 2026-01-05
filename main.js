@@ -1,4 +1,4 @@
-const appVersion = "1.1.26";
+const appVersion = "1.1.27";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -383,9 +383,9 @@ $( function() {
 
 
 
-bulmaCarousel.attach('#carousel-demo', {
+bulmaCarousel.attach('#welcome-carousel', {
   slidesToScroll: 1,
-  slidesToShow: 4
+  slidesToShow: 1
 });
 
 

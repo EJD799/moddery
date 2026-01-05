@@ -671,3 +671,17 @@ input:disabled::placeholder {
     transform: rotate(360deg);
   }
 }
+
+.slider-navigation-next, .slider-navigation-previous {
+  background-color: var(--bulma-scheme-main);
+  color: var(--bulma-text);
+  border: 1px solid var(--bulma-border);
+}
+
+.slider-page {
+    background: var(--bulma-text);
+}
+
+.slider-page.is-active {
+    background: var(--bulma-primary);
+}

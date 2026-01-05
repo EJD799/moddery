@@ -1,4 +1,4 @@
-const appVersion = "1.1.25";
+const appVersion = "1.1.26";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -380,6 +380,15 @@ $( function() {
   $( "#optionsTabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
   $( "#optionsTabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 } );
+
+
+
+bulmaCarousel.attach('#carousel-demo', {
+  slidesToScroll: 1,
+  slidesToShow: 4
+});
+
+
 
 function openNewProjDlg() {
   $("#newProjDlg").dialog("open");

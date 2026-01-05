@@ -641,10 +641,17 @@ input:disabled::placeholder {
 }
 
 #tabs-1, #tabs-2, .elementTabArea {
-  height: 100%;
   overflow-y: auto;
   padding-bottom: 3rem;
   box-sizing: border-box;  /* ensures padding doesn’t add extra height */
+}
+
+#tabs-1, #tabs-2 {
+    height: 100%;
+}
+
+.elementTabArea {
+    height: calc(100% + 15px);
 }
 
 .loadingSpinner {

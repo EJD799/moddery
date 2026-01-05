@@ -1,4 +1,4 @@
-const appVersion = "1.1.0";
+const appVersion = "1.1.1";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -4012,8 +4012,6 @@ async function getTradeTableList() {
   return list;
 }
 
-$("#newProjBtn").button();
-$("#openProjBtn").button();
 $("#closeAboutBtn").button();
 document.getElementById("tabs").hidden = true;
 

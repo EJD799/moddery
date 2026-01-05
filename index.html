@@ -1,397 +1,404 @@
-<link rel="icon" type="image/x-icon" href="moddery_icon.png">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
-<link rel="stylesheet" href="jquery-ui.min.css">
-<link rel="stylesheet" href="jquery-ui.theme.min.css">
-<link rel="stylesheet" href="styles.css">
-<script src="jquery-3.7.1.min.js"></script>
-<script src="jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-<script src="jszip.min.js"></script>
-<script src="FileSaver.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!DOCTYPE html>
+<html data-theme="dark">
+  <head>
+    <link rel="icon" type="image/x-icon" href="moddery_icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="jquery-ui.min.css">
+    <link rel="stylesheet" href="jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="jszip.min.js"></script>
+    <script src="FileSaver.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
 
-<title>Moddery</title>
+    <title>Moddery</title>
+  </head>
 
-
-<ul id="toolbar">
-  <li id="logo_box">
-    <div><img src="moddery_logo.svg" id="logo"> </div>
-    <ul class="sublist">
-      <li class="subitem">
-        <div onclick="openOptionsDlg()"><i class="fas fa-sliders"></i> Options</div>
+  <body>
+    <ul id="toolbar">
+      <li id="logo_box">
+        <div><img src="moddery_logo.svg" id="logo"> </div>
+        <ul class="sublist">
+          <li class="subitem">
+            <div onclick="openOptionsDlg()"><i class="fas fa-sliders"></i> Options</div>
+          </li>
+          <li class="subitem">
+            <div onclick="openAboutDlg()"><i class="fas fa-circle-info"></i> About Moddery</div>
+          </li>
+          <li class="subitem">
+            <div onclick="window.open('https://github.com/ejd799/moddery');"><i class="fa-brands fa-github"></i> View Source</div>
+          </li>
+        </ul>
       </li>
-      <li class="subitem">
-        <div onclick="openAboutDlg()"><i class="fas fa-circle-info"></i> About Moddery</div>
+      <li>
+        <div>File</div>
+        <ul class="sublist">
+          <li class="subitem">
+            <div onclick="openNewProjDlg()"><i class="fas fa-file"></i> New</div>
+          </li>
+          <li class="subitem">
+            <div onclick="openProjDlg()"><i class="fas fa-folder-open"></i> Open...</div>
+          </li>
+          <li class="subitem">
+            <div onclick="saveProject();"><i class="fas fa-floppy-disk"></i> Save</div>
+          </li>
+          <li class="subitem">
+            <div onclick="saveProjectAs();"><i class="fas fa-floppy-disk"></i> Save As...</div>
+          </li>
+          <li class="subitem">
+            <div onclick="openExportDlg();"><i class="fas fa-download"></i> Export</div>
+          </li>
+        </ul>
       </li>
-      <li class="subitem">
-        <div onclick="window.open('https://github.com/ejd799/moddery');"><i class="fa-brands fa-github"></i> View Source</div>
+      <!--<li>
+        <div>Edit</div>
+        <ul class="sublist">
+          <li class="subitem">
+            <div><i class="fas fa-undo"></i> Undo</div>
+          </li>
+          <li class="subitem">
+            <div><i class="fas fa-redo"></i> Redo</div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <div>View</div>
+      </li>
+      <li>
+        <div>Element</div>
+      </li>-->
+      <li style="margin-left:auto;" id="savingBox">
+        <div id="savingText">Loading...</div>
       </li>
     </ul>
-  </li>
-  <li>
-    <div>File</div>
-    <ul class="sublist">
-      <li class="subitem">
-        <div onclick="openNewProjDlg()"><i class="fas fa-file"></i> New</div>
-      </li>
-      <li class="subitem">
-        <div onclick="openProjDlg()"><i class="fas fa-folder-open"></i> Open...</div>
-      </li>
-      <li class="subitem">
-        <div onclick="saveProject();"><i class="fas fa-floppy-disk"></i> Save</div>
-      </li>
-      <li class="subitem">
-        <div onclick="saveProjectAs();"><i class="fas fa-floppy-disk"></i> Save As...</div>
-      </li>
-      <li class="subitem">
-        <div onclick="openExportDlg();"><i class="fas fa-download"></i> Export</div>
-      </li>
-    </ul>
-  </li>
-  <!--<li>
-    <div>Edit</div>
-    <ul class="sublist">
-      <li class="subitem">
-        <div><i class="fas fa-undo"></i> Undo</div>
-      </li>
-      <li class="subitem">
-        <div><i class="fas fa-redo"></i> Redo</div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <div>View</div>
-  </li>
-  <li>
-    <div>Element</div>
-  </li>-->
-  <li style="margin-left:auto;" id="savingBox">
-    <div id="savingText">Loading...</div>
-  </li>
-</ul>
 
-<div id="savingFlyout">
-  <p id="savingFlyoutText">Last saved never</p>
-  <br>
-  <button id="savingFlyoutButton" onclick="saveProject()">Save Now</button>
-</div>
-
-<div id="tabs">
-  <ul id="tabBar">
-    <li><button onclick="openEditProjDlg()" id="editProjBtn"><i class="fas fa-newspaper"></i></button></li>
-    <li><button onclick="openAddElementDlg()" id="addElementBtn">+ <i class="fas fa-cubes"></i></button></li>
-    <li><button onclick="openAddAssetDlg()" id="addAssetBtn">+ <i class="fas fa-image"></i></button></li>
-    <li><a href="#tabs-1"><i class="fas fa-cubes"></i> Elements</a></li>
-    <li><a href="#tabs-2"><i class="fas fa-image"></i> Assets</a></li>
-  </ul>
-  <div id="tabs-1">
-    <p>Press the "+ <i class="fas fa-cubes"></i>" button to add an element.</p>
-  </div>
-  <div id="tabs-2">
-    <p>Press the "+ <i class="fas fa-image"></i>" button to add an asset.</p>
-  </div>
-</div>
-
-<div id="welcome">
-  <center>
-    <h1>Moddery</h1>
-    <p>An open-source, web-based mod builder for Minecraft</p><br><br>
-    <button onclick="openNewProjDlg()" id="newProjBtn"><i class="fas fa-file"></i> New Project</button>
-    <button onclick="openProjDlg()" id="openProjBtn"><i class="fas fa-folder-open"></i> Open Project</button>
-    <br><br>
-    <div id="welcomeInfoBox">
-
+    <div id="savingFlyout">
+      <p id="savingFlyoutText">Last saved never</p>
+      <br>
+      <button id="savingFlyoutButton" onclick="saveProject()">Save Now</button>
     </div>
-  </center>
-</div>
 
-<div id="newProjDlg" title="New Project">
-  <center>
-    <label for="newProjNameBox">Project Name</label>
-    <input type="text" name="newProjNameBox" id="newProjNameBox" placeholder="Project Name">
-    <br><br>
-    <label for="newProjType">Project Type</label>
-    <select name="newProjType" id="newProjType">
-      <optgroup label="Bedrock Edition">
-        <option value="be_addon" selected>Addon</option>
-        <option value="be_rp" disabled>Resource Pack</option>
-      </optgroup>
-      <optgroup label="Java Edition">
-        <option value="je_dp" disabled>Datapack</option>
-        <option value="je_rp" disabled>Resource Pack</option>
-        <option value="je_forge" disabled>Forge Mod</option>
-        <option value="je_fabric" disabled>Fabric Mod</option>
-        <option value="je_spigot" disabled>Spigot Plugin</option>
-      </optgroup>
-      <optgroup label="Other">
-        <option value="mtr_je" disabled>MTR Content (Java)</option>
-        <option value="mtr_be" disabled>MTR Content (Bedrock)</option>
-        <option value="nexo" disabled>Nexo Addon (Java)</option>
-      </optgroup>
-    </select>
-    <br><br>
-    <label for="newProjNamespaceBox">Namespace ID</label>
-    <input type="text" name="newProjNamespaceBox" id="newProjNamespaceBox" placeholder="Namespace ID">
-    <br><br>
-    <button id="newProjCancelBtn" onclick="closeNewProjDlg()">Cancel</button>
-    <button id="newProjCreateBtn" onclick="createProject()">Create</button>
-  </center>
-</div>
-
-<div id="editProjDlg" title="Edit Project">
-  <center>
-    <label for="editProjNameBox">Project Name</label>
-    <input type="text" name="editProjNameBox" id="editProjNameBox" placeholder="Project Name">
-    <br><br>
-    <label for="editProjNamespaceBox">Namespace ID</label>
-    <input type="text" name="editProjNamespaceBox" id="editProjNamespaceBox" placeholder="Namespace ID">
-    <br><br>
-    <label for="editProjVersionBox1">Addon Version</label>
-    <input type="number" name="editProjVersionBox1" id="editProjVersionBox1" class="versionBox" placeholder="1" value="1">.
-    <input type="number" name="editProjVersionBox2" id="editProjVersionBox2" class="versionBox" placeholder="0" value="0">.
-    <input type="number" name="editProjVersionBox3" id="editProjVersionBox3" class="versionBox" placeholder="0" value="0">
-    <br><br>
-    <!--<label for="editProjMCVersionBox1">Target Minecraft Version</label>
-    <input type="number" name="editProjMCVersionBox1" id="editProjMCVersionBox1" class="versionBox" placeholder="1" value="1">.
-    <input type="number" name="editProjMCVersionBox2" id="editProjMCVersionBox2" class="versionBox" placeholder="21" value="21">.
-    <input type="number" name="editProjMCVersionBox3" id="editProjMCVersionBox3" class="versionBox" placeholder="90" value="90">-->
-    <label for="editProjMCVersionBox">Target Minecraft Version</label>
-    <select id="editProjMCVersionBox">
-      <option>1.21.90</option>
-    </select>
-    <br><br>
-    <label for="packIconBtn">Pack Icon: <span id="packIconText">No icon selected</span></label>
-    <button name="packIconBtn" id="packIconBtn" onclick="openSelectPackIconDlg()">Select Icon</button>
-    <br><br>
-    <label for="scriptEntryBtn">Pack Icon: <span id="scriptEntryText">No script entry point selected</span></label>
-    <button name="scriptEntryBtn" id="scriptEntryBtn" onclick="openSelectScriptEntryDlg()">Select Script Entry Point</button>
-    <br><br>
-    <label for="editProjDescriptionBox">Description</label>
-    <textarea name="editProjDescriptionBox" id="editProjDescriptionBox"></textarea>
-    <br><br>
-    <button id="editProjCancelBtn" onclick="closeEditProjDlg()">Cancel</button>
-    <button id="editProjSaveBtn" onclick="saveProjectInfo()">Save</button>
-  </center>
-</div>
-
-<div id="selectPackIconDlg" title="Select Pack Icon">
-    <div class="textureMenu" id="selectPackIconMenu"></div>
-
-    <div class="textureDialogButtons">
-        <button id="selectPackIconCancelBtn" onclick="closeSelectPackIconDlg()">Cancel</button>
-        <button id="selectPackIconSelectBtn" onclick="selectPackIcon()">Select</button>
-    </div>
-</div>
-
-<div id="selectScriptEntryDlg" title="Select Script Entry Point">
-    <div class="textureMenu" id="selectScriptEntryMenu"></div>
-
-    <div class="textureDialogButtons">
-        <button id="selectScriptEntryCancelBtn" onclick="closeSelectScriptEntryDlg()">Cancel</button>
-        <button id="selectScriptEntrySelectBtn" onclick="selectScriptEntry()">Select</button>
-    </div>
-</div>
-
-<div id="addElementDlg" title="Add Element">
-  <center>
-    <label for="addElementNameBox">Element Name</label>
-    <input type="text" name="addElementNameBox" id="addElementNameBox" placeholder="Element Name">
-    <br><br>
-    <label for="addElementIDBox">Element Identifier</label>
-    <input type="text" name="addElementIDBox" id="addElementIDBox" placeholder="Element ID">
-    <br><br>
-    <label for="addElementType">Element Type</label>
-    <select name="addElementType" id="addElementType">
-      <option>Block</option>
-      <option>Item</option>
-      <option>Entity</option>
-      <option>Recipe</option>
-      <option>Function</option>
-      <option>Script</option>
-      <option>Loot Table</option>
-      <option>Trade Table</option>
-      <option disabled>Command</option>
-      <option disabled>Biome</option>
-      <option>Structure</option>
-    </select>
-    <br><br>
-    <button id="addElementCancelBtn" onclick="closeAddElementDlg()">Cancel</button>
-    <button id="addElementAddBtn" onclick="addElement()">Add</button>
-  </center>
-</div>
-
-<div id="addAssetDlg" title="Add Asset">
-  <center>
-    <span>Upload an asset to add it to your project. Accepts PNG textures, WAV audio, JSON geometry files, and MCSTRUCTURE files.</span>
-    <br><br>
-    <select id="addAssetModeMenu">
-      <option value="upload">Upload</option>
-      <option value="blank">Blank Image</option>
-    </select>
-    <br><br>
-    <div id="addAssetUploadDiv">
-      <button onclick="document.getElementById('addAssetUploadInput').click()" id="addAssetUploadBtn">Upload...</button>
-      <input type="file" id="addAssetUploadInput" style="display:none" accept=".png, .wav, .json, .mcstructure">
-    </div>
-    <div id="addAssetBlankDiv">
-      W <input id="addAssetBlankBoxW" type="number" class="smallInput">
-      H <input id="addAssetBlankBoxH" type="number" class="smallInput">
-    </div>
-    <br><br>
-    <label for="addAssetNameBox">Asset Name</label>
-    <input type="text" id="addAssetNameBox" name="addAssetNameBox" placeholder="Asset Name">
-    <br><br>
-    <button id="addAssetCancelBtn" onclick="closeAddAssetDlg()">Cancel</button>
-    <button id="addAssetAddBtn" onclick="addAsset()">Add</button>
-  </center>
-</div>
-
-<div id="exportDlg" title="Export Project">
-  <center>
-    <label for="exportDlgModeBox">Export Mode</label>
-    <select id="exportDlgModeBox">
-      <option value="1mcaddon">Addon (.mcaddon)</option>
-      <option value="1zip">Addon (.zip)</option>
-      <option value="2mcpack">Packs (.mcpack)</option>
-      <option value="2zip">Packs (.zip)</option>
-    </select>
-    <br><br>
-    <iframe id="exporterFrame"></iframe>
-    <div id="exportLog"></div>
-    <br><br>
-    <button onclick="closeExportDlg()" id="exportDlgCancelBtn">Cancel</button>
-    <button onclick="exportProj()" id="exportDlgExportBtn">Export</button>
-  </center>
-</div>
-
-<div id="optionsDlg" title="Options">
-  <div id="optionsTabs">
-    <ul>
-      <li><a href="#optionsTabs-1">General</a></li>
-      <li><a href="#optionsTabs-2">Account</a></li>
-      <li><a href="#optionsTabs-3">Extensions</a></li>
-      <li><a href="#optionsTabs-4">About</a></li>
-      <li><a href="#optionsTabs-5">Developer</a></li>
-    </ul>
-    <div id="optionsTabs-1">
-      <h2>General</h2>
-      <label for="themeMenu">Theme</label>
-      <select id="themeMenu" name="themeMenu">
-        <option disabled>Automatic</option>
-        <option disabled>Light</option>
-        <option selected>Dark</option>
-      </select>
-      <br><br>
-      <label for="autosaveBox">Enable Autosave</label>
-      <input id="autosaveBox" name="autosaveBox" type="checkbox">
-      <br><br>
-      <label for="storageModeBox">Storage Mode</label>
-      <select id="storageModeBox">
-        <option id="storageModeBoxOpt1" selected value="file_system">File System (recommended - desktop only)</option>
-        <option value="local_storage">Local Storage (for mobile users)</option>
-      </select>
-    </div>
-    <div id="optionsTabs-2">
-      <h2>Account</h2>
-      <p>Coming Soon!</p>
-      <div style="display:none">
-        <p id="accountNameText">Not signed in</p>
-        <button id="signInBtn" onclick="if(signedIn){signOut();}else{openSignInDlg();}">Sign In</button>
+    <div id="tabs">
+      <ul id="tabBar">
+        <li><button onclick="openEditProjDlg()" id="editProjBtn"><i class="fas fa-newspaper"></i></button></li>
+        <li><button onclick="openAddElementDlg()" id="addElementBtn">+ <i class="fas fa-cubes"></i></button></li>
+        <li><button onclick="openAddAssetDlg()" id="addAssetBtn">+ <i class="fas fa-image"></i></button></li>
+        <li><a href="#tabs-1"><i class="fas fa-cubes"></i> Elements</a></li>
+        <li><a href="#tabs-2"><i class="fas fa-image"></i> Assets</a></li>
+      </ul>
+      <div id="tabs-1">
+        <p>Press the "+ <i class="fas fa-cubes"></i>" button to add an element.</p>
+      </div>
+      <div id="tabs-2">
+        <p>Press the "+ <i class="fas fa-image"></i>" button to add an asset.</p>
       </div>
     </div>
-    <div id="optionsTabs-3">
-      <h2>Extensions</h2>
-      <p>Coming Soon!</p>
+
+    <div id="welcome">
+      <center>
+        <h1 class="title is-1">Moddery</h1>
+        <p>An open-source, web-based mod builder for Minecraft</p><br><br>
+        <button onclick="openNewProjDlg()" class="button is-primary"><i class="fas fa-file"></i> New Project</button>
+        <button onclick="openProjDlg()" class="button"><i class="fas fa-folder-open"></i> Open Project</button>
+        <br><br>
+        <div id="welcomeInfoBox">
+
+        </div>
+      </center>
     </div>
-    <div id="optionsTabs-4">
-      <h2>About</h2>
-      <img src="moddery_logo.svg" style="height: 70px; width: 200px;"><br>
-      <h4 id="aboutText2">Moddery</h4>
+
+    <div id="newProjDlg" title="New Project">
+      <center>
+        <label for="newProjNameBox">Project Name</label>
+        <input type="text" name="newProjNameBox" id="newProjNameBox" placeholder="Project Name">
+        <br><br>
+        <label for="newProjType">Project Type</label>
+        <select name="newProjType" id="newProjType">
+          <optgroup label="Bedrock Edition">
+            <option value="be_addon" selected>Addon</option>
+            <option value="be_rp" disabled>Resource Pack</option>
+          </optgroup>
+          <optgroup label="Java Edition">
+            <option value="je_dp" disabled>Datapack</option>
+            <option value="je_rp" disabled>Resource Pack</option>
+            <option value="je_forge" disabled>Forge Mod</option>
+            <option value="je_fabric" disabled>Fabric Mod</option>
+            <option value="je_spigot" disabled>Spigot Plugin</option>
+          </optgroup>
+          <optgroup label="Other">
+            <option value="mtr_je" disabled>MTR Content (Java)</option>
+            <option value="mtr_be" disabled>MTR Content (Bedrock)</option>
+            <option value="nexo" disabled>Nexo Addon (Java)</option>
+          </optgroup>
+        </select>
+        <br><br>
+        <label for="newProjNamespaceBox">Namespace ID</label>
+        <input type="text" name="newProjNamespaceBox" id="newProjNamespaceBox" placeholder="Namespace ID">
+        <br><br>
+        <button id="newProjCancelBtn" onclick="closeNewProjDlg()">Cancel</button>
+        <button id="newProjCreateBtn" onclick="createProject()">Create</button>
+      </center>
     </div>
-    <div id="optionsTabs-5">
-      <h2>Developer</h2>
-      <button id="clearCacheBtn" onclick="clearCache()">Clear Cache</button>
+
+    <div id="editProjDlg" title="Edit Project">
+      <center>
+        <label for="editProjNameBox">Project Name</label>
+        <input type="text" name="editProjNameBox" id="editProjNameBox" placeholder="Project Name">
+        <br><br>
+        <label for="editProjNamespaceBox">Namespace ID</label>
+        <input type="text" name="editProjNamespaceBox" id="editProjNamespaceBox" placeholder="Namespace ID">
+        <br><br>
+        <label for="editProjVersionBox1">Addon Version</label>
+        <input type="number" name="editProjVersionBox1" id="editProjVersionBox1" class="versionBox" placeholder="1" value="1">.
+        <input type="number" name="editProjVersionBox2" id="editProjVersionBox2" class="versionBox" placeholder="0" value="0">.
+        <input type="number" name="editProjVersionBox3" id="editProjVersionBox3" class="versionBox" placeholder="0" value="0">
+        <br><br>
+        <!--<label for="editProjMCVersionBox1">Target Minecraft Version</label>
+        <input type="number" name="editProjMCVersionBox1" id="editProjMCVersionBox1" class="versionBox" placeholder="1" value="1">.
+        <input type="number" name="editProjMCVersionBox2" id="editProjMCVersionBox2" class="versionBox" placeholder="21" value="21">.
+        <input type="number" name="editProjMCVersionBox3" id="editProjMCVersionBox3" class="versionBox" placeholder="90" value="90">-->
+        <label for="editProjMCVersionBox">Target Minecraft Version</label>
+        <select id="editProjMCVersionBox">
+          <option>1.21.90</option>
+        </select>
+        <br><br>
+        <label for="packIconBtn">Pack Icon: <span id="packIconText">No icon selected</span></label>
+        <button name="packIconBtn" id="packIconBtn" onclick="openSelectPackIconDlg()">Select Icon</button>
+        <br><br>
+        <label for="scriptEntryBtn">Pack Icon: <span id="scriptEntryText">No script entry point selected</span></label>
+        <button name="scriptEntryBtn" id="scriptEntryBtn" onclick="openSelectScriptEntryDlg()">Select Script Entry Point</button>
+        <br><br>
+        <label for="editProjDescriptionBox">Description</label>
+        <textarea name="editProjDescriptionBox" id="editProjDescriptionBox"></textarea>
+        <br><br>
+        <button id="editProjCancelBtn" onclick="closeEditProjDlg()">Cancel</button>
+        <button id="editProjSaveBtn" onclick="saveProjectInfo()">Save</button>
+      </center>
     </div>
-  </div>
-</div>
 
-<div id="loaderDlg" title="Loading...">
-  <center>
-    <span id="loaderText">Loading...</span><br>
-    <progress id="loaderProgress" max="0" value="0"></progress>
-  </center>
-</div>
+    <div id="selectPackIconDlg" title="Select Pack Icon">
+        <div class="textureMenu" id="selectPackIconMenu"></div>
 
-<div id="deleteDlg" title="">
-  <center>
-    <span id="deleteDlgText"></span><br><br>
-    <button id="deleteDlgCancel" onclick="closeDeleteElement()">Cancel</button>
-    <button id="deleteDlgConfirm" class="redBtn" onclick="deleteElement()">Delete</button>
-  </center>
-</div>
+        <div class="textureDialogButtons">
+            <button id="selectPackIconCancelBtn" onclick="closeSelectPackIconDlg()">Cancel</button>
+            <button id="selectPackIconSelectBtn" onclick="selectPackIcon()">Select</button>
+        </div>
+    </div>
 
-<div id="renameDlg" title="">
-  <center>
-    <span id="renameDlgText"></span><br><br>
-    <input id="renameDlgBox"><br><br>
-    <button id="renameDlgCancel" onclick="closeRenameElement()">Cancel</button>
-    <button id="renameDlgConfirm" onclick="renameElement()">Rename</button>
-  </center>
-</div>
+    <div id="selectScriptEntryDlg" title="Select Script Entry Point">
+        <div class="textureMenu" id="selectScriptEntryMenu"></div>
 
-<div id="elementInfoDlg" title="">
-  <center>
-    <p id="elementInfoDlgContent"></p>
-    <button id="elementInfoDlgClose" onclick="closeElementInfo()">Close</button>
-  </center>
-</div>
+        <div class="textureDialogButtons">
+            <button id="selectScriptEntryCancelBtn" onclick="closeSelectScriptEntryDlg()">Cancel</button>
+            <button id="selectScriptEntrySelectBtn" onclick="selectScriptEntry()">Select</button>
+        </div>
+    </div>
 
-<div id="signInDlg" title="Sign In">
-  <center>
-    <span id="signInDlgText1">Sign in to Moddery!</span>
-    <br>
-    <span id="signInDlgText2">Don't have an account? </span>
-    <a href="javascript:switchSignInMode()" id="signInDlgModeLink">Sign Up</a>
-    <br><br>
-    <label for="signInDlgUsernameBox">Username</label><br>
-    <input name="signInDlgUsernameBox" id="signInDlgUsernameBox"><br><br>
-    <label for="signInDlgPasswordBox">Password</label><br>
-    <input name="signInDlgPasswordBox" id="signInDlgPasswordBox" type="password"><br><br>
-    <label for="signInDlgPasswordBox2" id="signInDlgPasswordBox2Label">Confirm Password</label><br>
-    <input name="signInDlgPasswordBox2" id="signInDlgPasswordBox2" type="password">
-    <br><br>
-    <button id="signInDlgCancel" onclick="closeSignInDlg()">Cancel</button>
-    <button id="signInDlgSignIn" onclick="signIn()">Sign In</button>
-  </center>
-</div>
+    <div id="addElementDlg" title="Add Element">
+      <center>
+        <label for="addElementNameBox">Element Name</label>
+        <input type="text" name="addElementNameBox" id="addElementNameBox" placeholder="Element Name">
+        <br><br>
+        <label for="addElementIDBox">Element Identifier</label>
+        <input type="text" name="addElementIDBox" id="addElementIDBox" placeholder="Element ID">
+        <br><br>
+        <label for="addElementType">Element Type</label>
+        <select name="addElementType" id="addElementType">
+          <option>Block</option>
+          <option>Item</option>
+          <option>Entity</option>
+          <option>Recipe</option>
+          <option>Function</option>
+          <option>Script</option>
+          <option>Loot Table</option>
+          <option>Trade Table</option>
+          <option disabled>Command</option>
+          <option disabled>Biome</option>
+          <option>Structure</option>
+        </select>
+        <br><br>
+        <button id="addElementCancelBtn" onclick="closeAddElementDlg()">Cancel</button>
+        <button id="addElementAddBtn" onclick="addElement()">Add</button>
+      </center>
+    </div>
 
-<div id="aboutDlg" title="About Moddery">
-  <center>
-    <img src="moddery_logo.svg" style="height: 70px; width: 200px;"><br>
-    <h4 id="aboutText1">Moddery</h4>
-    <button id="closeAboutBtn" onclick="closeAboutDlg()">OK</button>
-  </center>
-</div>
+    <div id="addAssetDlg" title="Add Asset">
+      <center>
+        <span>Upload an asset to add it to your project. Accepts PNG textures, WAV audio, JSON geometry files, and MCSTRUCTURE files.</span>
+        <br><br>
+        <select id="addAssetModeMenu">
+          <option value="upload">Upload</option>
+          <option value="blank">Blank Image</option>
+        </select>
+        <br><br>
+        <div id="addAssetUploadDiv">
+          <button onclick="document.getElementById('addAssetUploadInput').click()" id="addAssetUploadBtn">Upload...</button>
+          <input type="file" id="addAssetUploadInput" style="display:none" accept=".png, .wav, .json, .mcstructure">
+        </div>
+        <div id="addAssetBlankDiv">
+          W <input id="addAssetBlankBoxW" type="number" class="smallInput">
+          H <input id="addAssetBlankBoxH" type="number" class="smallInput">
+        </div>
+        <br><br>
+        <label for="addAssetNameBox">Asset Name</label>
+        <input type="text" id="addAssetNameBox" name="addAssetNameBox" placeholder="Asset Name">
+        <br><br>
+        <button id="addAssetCancelBtn" onclick="closeAddAssetDlg()">Cancel</button>
+        <button id="addAssetAddBtn" onclick="addAsset()">Add</button>
+      </center>
+    </div>
 
-<div id="openProjDBDlg" title="Open Project">
-  <center>
-    <h3>Projects <button id="openProjDBDlgNewBtn" onclick="closeOpenProjDlg();openNewProjDlg();">+ New Project</button></h3>
-    <div id="openProjDBDlgContent"></div>
-  </center>
-</div>
+    <div id="exportDlg" title="Export Project">
+      <center>
+        <label for="exportDlgModeBox">Export Mode</label>
+        <select id="exportDlgModeBox">
+          <option value="1mcaddon">Addon (.mcaddon)</option>
+          <option value="1zip">Addon (.zip)</option>
+          <option value="2mcpack">Packs (.mcpack)</option>
+          <option value="2zip">Packs (.zip)</option>
+        </select>
+        <br><br>
+        <iframe id="exporterFrame"></iframe>
+        <div id="exportLog"></div>
+        <br><br>
+        <button onclick="closeExportDlg()" id="exportDlgCancelBtn">Cancel</button>
+        <button onclick="exportProj()" id="exportDlgExportBtn">Export</button>
+      </center>
+    </div>
 
-<div id="deleteProjDlg" title="">
-  <center>
-    <span id="deleteProjDlgText"></span><br><br>
-    <button id="deleteProjDlgCancel" onclick="closeDeleteProj()">Cancel</button>
-    <button id="deleteProjDlgConfirm" class="redBtn" onclick="deleteCurrentProj()">Delete</button>
-  </center>
-</div>
+    <div id="optionsDlg" title="Options">
+      <div id="optionsTabs">
+        <ul>
+          <li><a href="#optionsTabs-1">General</a></li>
+          <li><a href="#optionsTabs-2">Account</a></li>
+          <li><a href="#optionsTabs-3">Extensions</a></li>
+          <li><a href="#optionsTabs-4">About</a></li>
+          <li><a href="#optionsTabs-5">Developer</a></li>
+        </ul>
+        <div id="optionsTabs-1">
+          <h2>General</h2>
+          <label for="themeMenu">Theme</label>
+          <select id="themeMenu" name="themeMenu">
+            <option disabled>Automatic</option>
+            <option disabled>Light</option>
+            <option selected>Dark</option>
+          </select>
+          <br><br>
+          <label for="autosaveBox">Enable Autosave</label>
+          <input id="autosaveBox" name="autosaveBox" type="checkbox">
+          <br><br>
+          <label for="storageModeBox">Storage Mode</label>
+          <select id="storageModeBox">
+            <option id="storageModeBoxOpt1" selected value="file_system">File System (recommended - desktop only)</option>
+            <option value="local_storage">Local Storage (for mobile users)</option>
+          </select>
+        </div>
+        <div id="optionsTabs-2">
+          <h2>Account</h2>
+          <p>Coming Soon!</p>
+          <div style="display:none">
+            <p id="accountNameText">Not signed in</p>
+            <button id="signInBtn" onclick="if(signedIn){signOut();}else{openSignInDlg();}">Sign In</button>
+          </div>
+        </div>
+        <div id="optionsTabs-3">
+          <h2>Extensions</h2>
+          <p>Coming Soon!</p>
+        </div>
+        <div id="optionsTabs-4">
+          <h2>About</h2>
+          <img src="moddery_logo.svg" style="height: 70px; width: 200px;"><br>
+          <h4 id="aboutText2">Moddery</h4>
+        </div>
+        <div id="optionsTabs-5">
+          <h2>Developer</h2>
+          <button id="clearCacheBtn" onclick="clearCache()">Clear Cache</button>
+        </div>
+      </div>
+    </div>
 
-<input id="openFileInput" type="file" accept=".zip">
+    <div id="loaderDlg" title="Loading...">
+      <center>
+        <span id="loaderText">Loading...</span><br>
+        <progress id="loaderProgress" max="0" value="0"></progress>
+      </center>
+    </div>
 
-<script src="libs.js"></script>
-<script src="database_libs.js"></script>
-<script src="main.js"></script>
+    <div id="deleteDlg" title="">
+      <center>
+        <span id="deleteDlgText"></span><br><br>
+        <button id="deleteDlgCancel" onclick="closeDeleteElement()">Cancel</button>
+        <button id="deleteDlgConfirm" class="redBtn" onclick="deleteElement()">Delete</button>
+      </center>
+    </div>
+
+    <div id="renameDlg" title="">
+      <center>
+        <span id="renameDlgText"></span><br><br>
+        <input id="renameDlgBox"><br><br>
+        <button id="renameDlgCancel" onclick="closeRenameElement()">Cancel</button>
+        <button id="renameDlgConfirm" onclick="renameElement()">Rename</button>
+      </center>
+    </div>
+
+    <div id="elementInfoDlg" title="">
+      <center>
+        <p id="elementInfoDlgContent"></p>
+        <button id="elementInfoDlgClose" onclick="closeElementInfo()">Close</button>
+      </center>
+    </div>
+
+    <div id="signInDlg" title="Sign In">
+      <center>
+        <span id="signInDlgText1">Sign in to Moddery!</span>
+        <br>
+        <span id="signInDlgText2">Don't have an account? </span>
+        <a href="javascript:switchSignInMode()" id="signInDlgModeLink">Sign Up</a>
+        <br><br>
+        <label for="signInDlgUsernameBox">Username</label><br>
+        <input name="signInDlgUsernameBox" id="signInDlgUsernameBox"><br><br>
+        <label for="signInDlgPasswordBox">Password</label><br>
+        <input name="signInDlgPasswordBox" id="signInDlgPasswordBox" type="password"><br><br>
+        <label for="signInDlgPasswordBox2" id="signInDlgPasswordBox2Label">Confirm Password</label><br>
+        <input name="signInDlgPasswordBox2" id="signInDlgPasswordBox2" type="password">
+        <br><br>
+        <button id="signInDlgCancel" onclick="closeSignInDlg()">Cancel</button>
+        <button id="signInDlgSignIn" onclick="signIn()">Sign In</button>
+      </center>
+    </div>
+
+    <div id="aboutDlg" title="About Moddery">
+      <center>
+        <img src="moddery_logo.svg" style="height: 70px; width: 200px;"><br>
+        <h4 id="aboutText1">Moddery</h4>
+        <button id="closeAboutBtn" onclick="closeAboutDlg()">OK</button>
+      </center>
+    </div>
+
+    <div id="openProjDBDlg" title="Open Project">
+      <center>
+        <h3>Projects <button id="openProjDBDlgNewBtn" onclick="closeOpenProjDlg();openNewProjDlg();">+ New Project</button></h3>
+        <div id="openProjDBDlgContent"></div>
+      </center>
+    </div>
+
+    <div id="deleteProjDlg" title="">
+      <center>
+        <span id="deleteProjDlgText"></span><br><br>
+        <button id="deleteProjDlgCancel" onclick="closeDeleteProj()">Cancel</button>
+        <button id="deleteProjDlgConfirm" class="redBtn" onclick="deleteCurrentProj()">Delete</button>
+      </center>
+    </div>
+
+    <input id="openFileInput" type="file" accept=".zip">
+
+    <script src="libs.js"></script>
+    <script src="database_libs.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

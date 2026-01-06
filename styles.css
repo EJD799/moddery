@@ -71,7 +71,6 @@ input {
     height: calc(100% - 52px);
     background: var(--app-welcome-background);
     color: var(--bulma-text);
-    /*font-family: Verdana, sans-serif;*/
     padding: 10px;
 }
 .elementFrame {

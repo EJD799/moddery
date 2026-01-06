@@ -699,4 +699,6 @@ input:disabled::placeholder {
 #optionsDlgCard {
     width: 600px;
     height: 600px;
+    padding: 16px;
+    padding-top: 12px;
 }

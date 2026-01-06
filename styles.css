@@ -696,3 +696,7 @@ input:disabled::placeholder {
     --bulma-button-background-l: var(--app-white-btn-background) !important;
     --bulma-button-color-l: var(--app-white-btn-color) !important;
 }
+
+progress {
+    text-align: left !important;
+}

@@ -1,4 +1,4 @@
-const appVersion = "1.1.33";
+const appVersion = "1.1.34";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function(){
   let currentPassword = getCookie("currentPassword");
   if (currentUsername) {
     accountNameText.innerHTML = `Signing in...`;
-    $("#signInBtn").button("disable");
+    signInBtn.classList.add("is-loading");
     finishSignIn(currentUsername, currentPassword);
   }
 });
@@ -268,7 +268,7 @@ async function signIn() {
   let password2 = signInDlgPasswordBox2.value;
   let userFile;
   accountNameText.innerHTML = `Signing in...`;
-  $("#signInBtn").button("disable");
+  signInBtn.classList.add("is-loading");
   if (signInMode == "in") {
     try {
       userFile = JSON.parse(await db.readFile(`accounts/${username}.json`));
@@ -277,11 +277,11 @@ async function signIn() {
       } else {
         alert("Incorrect password!");
         accountNameText.innerHTML = `Not signed in`;
-        $("#signInBtn").button("enable");
+        signInBtn.classList.remove("is-loading");
       }
     } catch(err) {
       accountNameText.innerHTML = `Not signed in`;
-      $("#signInBtn").button("enable");
+      signInBtn.classList.remove("is-loading");
       if (confirm("The username entered does not exist! Sign up instead?")) {
         switchSignInMode();
       }
@@ -298,12 +298,12 @@ async function signIn() {
       } else {
         alert("The password must be at least 6 characters long!");
         accountNameText.innerHTML = `Not signed in`;
-        $("#signInBtn").button("enable");
+        signInBtn.classList.remove("is-loading");
       }
     } else {
       alert("The passwords entered do not match!");
       accountNameText.innerHTML = `Not signed in`;
-      $("#signInBtn").button("enable");
+      signInBtn.classList.remove("is-loading");
     }
   }
 }
@@ -314,7 +314,7 @@ function finishSignIn(username, password) {
     setCookie("currentUsername", username, 399);
     setCookie("currentPassword", password, 399);
     accountNameText.innerHTML = `Signed in as ${username}`;
-    $("#signInBtn").button("enable");
+    signInBtn.classList.remove("is-loading");
     signInBtn.innerHTML = "Sign Out";
   }, 1000);
 }
@@ -353,9 +353,6 @@ $("#oldoptionsDlg").dialog({
   closeOnEscape: false
 });
 $("#oldoptionsDlg").dialog("close");
-$("#clearCacheBtn").button();
-$("#signInBtn").button();
-$("#themeMenu").selectmenu();
 
 $("#optionsContent2").hide();
 $("#optionsContent3").hide();
@@ -694,29 +691,25 @@ const supportsFileSystemAPI =
     'showDirectoryPicker' in window;
 
 let storageModeBox = document.getElementById("storageModeBox");
-$("#storageModeBox").selectmenu();
 
 if (supportsFileSystemAPI) {
   if (getCookie("storageMode")) {
     storageMode = getCookie("storageMode");
     $("#storageModeBox").val(getCookie("storageMode"));
-    $("#storageModeBox").selectmenu("refresh");
   } else {
     storageMode = "file_system";
     $("#storageModeBox").val("file_system");
-    $("#storageModeBox").selectmenu("refresh");
     setCookie("storageMode", "file_system", 399);
   }
 } else {
   storageMode = "local_storage";
   storageModeBoxOpt1.setAttribute("disabled", "true");
   $("#storageModeBox").val("local_storage");
-  $("#storageModeBox").selectmenu("refresh");
   setCookie("storageMode", "local_storage", 399);
 }
 
-$("#storageModeBox").on("selectmenuchange", function (event, ui) {
-  storageMode = ui.item.value;
+storageModeBox.addEventListener("change", function(e) {
+  storageMode = storageModeBox.value;
   setCookie("storageMode", storageMode, 399);
   if (projManifest?.bp_uuid ?? false) {
     currentProjectId = projManifest?.bp_uuid ?? null;

@@ -349,30 +349,60 @@
 
     <div class="modal" id="optionsDlg">
       <div class="modal-background"></div>
-      <div class="card" id="optionsDlgCard">
-        <div class="tabs" id="optionsTabs">
-          <ul>
-            <li id="optionsTab1" onclick="switchOptionsTab(1)" class="is-active"><a>General</a></li>
-            <li id="optionsTab2" onclick="switchOptionsTab(2)"><a>Account</a></li>
-            <li id="optionsTab3" onclick="switchOptionsTab(3)"><a>Extensions</a></li>
-            <li id="optionsTab4" onclick="switchOptionsTab(4)"><a>About</a></li>
-            <li id="optionsTab5" onclick="switchOptionsTab(5)"><a>Developer</a></li>
-          </ul>
-        </div>
-        <div id="optionsContent1">
-          <h3 class="title is-3">General</h3>
-        </div>
-        <div id="optionsContent2">
-          <h3 class="title is-3">Account</h3>
-        </div>
-        <div id="optionsContent3">
-          <h3 class="title is-3">Extensions</h3>
-        </div>
-        <div id="optionsContent4">
-          <h3 class="title is-3">About</h3>
-        </div>
-        <div id="optionsContent5">
-          <h3 class="title is-3">Developer</h3>
+      <div class="modal-content">
+        <div class="card" id="optionsDlgCard">
+          <div class="tabs" id="optionsTabs">
+            <ul>
+              <li id="optionsTab1" onclick="switchOptionsTab(1)" class="is-active"><a>General</a></li>
+              <li id="optionsTab2" onclick="switchOptionsTab(2)"><a>Account</a></li>
+              <li id="optionsTab3" onclick="switchOptionsTab(3)"><a>Extensions</a></li>
+              <li id="optionsTab4" onclick="switchOptionsTab(4)"><a>About</a></li>
+              <li id="optionsTab5" onclick="switchOptionsTab(5)"><a>Developer</a></li>
+            </ul>
+          </div>
+          <div id="optionsContent1">
+            <h3 class="title is-3">General</h3>
+            <label for="themeMenu">Theme</label>
+            <div class="select">
+              <select id="themeMenu">
+                <option disabled>Automatic</option>
+                <option disabled>Light</option>
+                <option selected>Dark</option>
+              </select>
+            </div>
+            <br><br>
+            <label for="autosaveBox">Enable Autosave</label>
+            <input id="autosaveBox" type="checkbox" class="is-primary">
+            <br><br>
+            <label for="storageModeBox">Storage Mode</label>
+            <div class="select">
+              <select id="storageModeBox">
+                <option id="storageModeBoxOpt1" selected value="file_system">File System (recommended - desktop only)</option>
+                <option value="local_storage">Local Storage (for mobile users)</option>
+              </select>
+            </div>
+          </div>
+          <div id="optionsContent2">
+            <h3 class="title is-3">Account</h3>
+            <p>Coming Soon!</p><br>
+            <div>
+              <p id="accountNameText">Not signed in</p>
+              <button id="signInBtn" onclick="if(signedIn){signOut();}else{openSignInDlg();}">Sign In</button>
+            </div>
+          </div>
+          <div id="optionsContent3">
+            <h3 class="title is-3">Extensions</h3>
+            <p>Coming Soon!</p>
+          </div>
+          <div id="optionsContent4">
+            <h3 class="title is-3">About</h3>
+            <img src="moddery_logo.svg" style="height: 70px; width: 200px;"><br>
+            <h5 id="aboutText2" class="title is-5">Moddery</h4>
+          </div>
+          <div id="optionsContent5">
+            <h3 class="title is-3">Developer</h3>
+            <button class="button" onclick="clearCache()">Clear Cache</button>
+          </div>
         </div>
       </div>
       <button class="modal-close is-large" aria-label="close" onclick="closeOptionsDlg();"></button>

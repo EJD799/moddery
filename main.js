@@ -1,4 +1,4 @@
-const appVersion = "1.1.50";
+const appVersion = "1.1.51";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3476,9 +3476,6 @@ async function saveProjectAs() {
 $("#editProjBtn").button();
 $("#addElementBtn").button();
 $("#addAssetBtn").button();
-$("#loaderProgress").progressbar({
-  value: 50
-});
 $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 $('textarea').addClass("ui-widget ui-widget-content ui-corner-all");
 

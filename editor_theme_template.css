@@ -1,0 +1,4 @@
+html[data-theme=themeName] {
+    --app-welcome-background: #000000;
+    --app-welcome-text: #000000;
+}

@@ -1,4 +1,4 @@
-const appVersion = "1.1.36";
+const appVersion = "1.1.37";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -23,6 +23,7 @@ var deleteElementType;
 
 var autosaveEnabled = true;
 var storageMode = "";
+var editorTheme = "system";
 let currentProjectId = null;
 let projDeleteID;
 
@@ -685,6 +686,56 @@ autosaveBox.addEventListener("change", function(e) {
 });
 
 
+let themeMenu = document.getElementById("themeMenu");
+
+if (getCookie("editorTheme")) {
+  editorTheme = getCookie("editorTheme");
+  $("#themeMenu").val(getCookie("editorTheme"));
+  if (editorTheme == "system") {
+    autoThemeChange();
+  } else {
+    document.documentElement.setAttribute("data-theme", editorTheme);
+  }
+} else {
+  editorTheme = "system";
+  $("#themeMenu").val("system");
+  setCookie("editorTheme", "system", 399);
+  autoThemeChange();
+}
+
+themeMenu.addEventListener("change", function(e) {
+  editorTheme = themeMenu.value;
+  setCookie("editorTheme", editorTheme, 399);
+  if (editorTheme == "system") {
+    autoThemeChange();
+  } else {
+    document.documentElement.setAttribute("data-theme", editorTheme);
+  }
+});
+
+function autoThemeChange() {
+  if (getThemePreference() == "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+}
+
+// Select the media query for the dark color scheme preference
+const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+// Define a function to handle the theme change
+function handleThemeChange(event) {
+  if (editorTheme == "system") {
+    autoThemeChange();
+  }
+}
+
+// Add an event listener to call the function when the theme preference changes
+if (window.matchMedia) {
+    darkModeMediaQuery.addEventListener('change', handleThemeChange);
+}
+
 const supportsFileSystemAPI =
     'showOpenFilePicker' in window &&
     'showSaveFilePicker' in window &&
@@ -715,6 +766,8 @@ storageModeBox.addEventListener("change", function(e) {
     currentProjectId = projManifest?.bp_uuid ?? null;
   }
 });
+
+
 
 let projFileHandle = null;
 

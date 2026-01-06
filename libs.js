@@ -293,3 +293,8 @@ function formatTimestamp(ts) {
 
   return `${MM}/${DD}/${YYYY} ${hh}:${mm}:${ss} ${ampm}`;
 }
+
+function getThemePreference() {
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return prefersDark ? "dark" : "light";
+}

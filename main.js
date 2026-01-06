@@ -1,4 +1,4 @@
-const appVersion = "1.1.31";
+const appVersion = "1.1.32";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -345,14 +345,14 @@ function signOut() {
   signInBtn.innerHTML = "Sign In";
 }
 
-/*$("#optionsDlg").dialog({
+$("#oldoptionsDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 500,
   width: 800,
   closeOnEscape: false
 });
-$("#optionsDlg").dialog("close");*/
+$("#oldoptionsDlg").dialog("close");
 $("#clearCacheBtn").button();
 $("#signInBtn").button();
 $("#themeMenu").selectmenu();
@@ -392,8 +392,8 @@ function clearCache() {
 }
 
 $( function() {
-  $( "#optionsTabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
-  $( "#optionsTabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+  $( "#oldoptionsTabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+  $( "#oldoptionsTabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 } );
 
 

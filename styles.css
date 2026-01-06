@@ -700,6 +700,6 @@ input:disabled::placeholder {
 }
 
 .button.is-white {
-    --bulma-button-background-l: var(--bulma-white-l);
-    --bulma-button-color-l: var(--bulma-white-invert-l);
+    --bulma-button-background-l: var(--app-white-btn-background) !important;
+    --bulma-button-color-l: var(--app-white-btn-color) !important;
 }

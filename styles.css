@@ -389,7 +389,7 @@ input[type=color]:hover {
 }
 
 /* Your dialog + container */
-#optionsTabs {
+#oldoptionsTabs {
     width: 100%;
     height: 100%;
 }
@@ -694,4 +694,9 @@ input:disabled::placeholder {
 .slider-navigation-next svg,
 .slider-navigation-previous svg {
   pointer-events: none;
+}
+
+#optionsDlgCard {
+    width: 600px;
+    height: 600px;
 }

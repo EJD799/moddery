@@ -1,4 +1,4 @@
-const appVersion = "1.1.32";
+const appVersion = "1.1.33";
 const buildDate = "1/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -357,7 +357,10 @@ $("#clearCacheBtn").button();
 $("#signInBtn").button();
 $("#themeMenu").selectmenu();
 
-
+$("#optionsContent2").hide();
+$("#optionsContent3").hide();
+$("#optionsContent4").hide();
+$("#optionsContent5").hide();
 function switchOptionsTab(tab) {
   optionsTab1.classList.remove("is-active");
   optionsTab2.classList.remove("is-active");
@@ -370,7 +373,7 @@ function switchOptionsTab(tab) {
   $("#optionsContent4").hide();
   $("#optionsContent5").hide();
   document.getElementById(`optionsTab${tab}`).classList.add("is-active");
-  $(`#optionsContent${tab}`).hide();
+  $(`#optionsContent${tab}`).show();
 }
 function openOptionsDlg() {
   optionsDlg.classList.add("is-active");

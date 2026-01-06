@@ -1,4 +1,4 @@
-const appVersion = "1.1.44";
+const appVersion = "1.1.45";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3113,16 +3113,28 @@ function addElement(loadingProj) {
     var parentDiv = document.getElementById("tabs-1");
     var elementBox = document.createElement("div");
     elementBox.setAttribute("class", "card elementbox");
-    elementBox.setAttribute("id", "elementbox" + $("#addElementNameBox").val());
+    let elementName = $("#addElementNameBox").val()
+    elementBox.setAttribute("id", "elementbox" + elementName);
     elementBox.innerHTML = `
-    <h3 class="title is-5" id="${"elementboxname" + $("#addElementNameBox").val()}">${$("#addElementNameBox").val()}</h3>
-    <button onclick="editElement('${$("#addElementNameBox").val()}')" id="${$("#addElementNameBox").val()}_editBtn"><i class="fas fa-pencil"></i> Edit</button>
-    <button id="${$("#addElementNameBox").val()}_optionBtn">&#x22EF;</button>
+    <h3 class="title is-5" id="${"elementboxname" + elementName}">${elementName}</h3>
+    <button class="button is-primary" onclick="editElement('${elementName}')" id="${elementName}_editBtn"><i class="fas fa-pencil"></i> Edit</button>
+    <div class="dropdown is-active">
+      <div class="dropdown-trigger">
+        <button class="button is-white" aria-haspopup="true" aria-controls="dropdown-menu" id="${elementName}_optionBtn">&#x22EF;</button>
+      </div>
+      <div class="dropdown-menu" id="${elementName}_optionsMenu">
+        <div class="dropdown-content">
+          <a class="dropdown-item" onclick="openElementInfo('${elementName}', 'element')"><i class="fas fa-circle-info"></i> Info</a>
+          <a class="dropdown-item" onclick="openRenameElement('${elementName}', 'element')"><i class="fas fa-pencil"></i> Rename</a>
+          <a class="dropdown-item" style="color:var(--bulma-danger);" onclick="openDeleteElement('${elementName}', 'element')"><i class="fas fa-trash"></i> Delete</a>
+        </div>
+      </div>
+    </div>
     `;
     parentDiv.appendChild(elementBox);
-    $("#" + $("#addElementNameBox").val() + "_editBtn").button();
-    $("#" + $("#addElementNameBox").val() + "_optionBtn").button();
-    createElementDropdown($("#addElementNameBox").val(), "element");
+    //$("#" + $("#addElementNameBox").val() + "_editBtn").button();
+    //$("#" + $("#addElementNameBox").val() + "_optionBtn").button();
+    //createElementDropdown($("#addElementNameBox").val(), "element");
   }
   closeAddElementDlg();
   $("#addElementNameBox").val("");

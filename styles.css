@@ -648,6 +648,7 @@ input:disabled::placeholder {
   overflow-y: auto;
   padding-bottom: 3rem;
   box-sizing: border-box;  /* ensures padding doesn’t add extra height */
+  color: var(--bulma-text);
 }
 
 #tabs-1, #tabs-2 {
@@ -682,4 +683,8 @@ input:disabled::placeholder {
     height: 600px;
     padding: 16px;
     padding-top: 12px;
+}
+
+.veryBold {
+    font-weight: 900;
 }

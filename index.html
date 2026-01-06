@@ -296,7 +296,7 @@
       </center>
     </div>
 
-    <div id="optionsDlg" title="Options">
+    <!--<div id="optionsDlg" title="Options">
       <div id="optionsTabs">
         <ul>
           <li><a href="#optionsTabs-1">General</a></li>
@@ -345,6 +345,37 @@
           <button id="clearCacheBtn" onclick="clearCache()">Clear Cache</button>
         </div>
       </div>
+    </div>-->
+
+    <div class="modal" id="optionsDlg">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <div class="tabs" id="optionsTabs">
+          <ul>
+            <li id="optionsTab1" onclick="switchOptionsTab(1)" class="is-active"><a>General</a></li>
+            <li id="optionsTab2" onclick="switchOptionsTab(2)"><a>Account</a></li>
+            <li id="optionsTab3" onclick="switchOptionsTab(3)"><a>Extensions</a></li>
+            <li id="optionsTab4" onclick="switchOptionsTab(4)"><a>About</a></li>
+            <li id="optionsTab5" onclick="switchOptionsTab(5)"><a>Developer</a></li>
+          </ul>
+        </div>
+        <div id="optionsContent1">
+          <h3 class="title is-3">General</h3>
+        </div>
+        <div id="optionsContent2">
+          <h3 class="title is-3">Account</h3>
+        </div>
+        <div id="optionsContent3">
+          <h3 class="title is-3">Extensions</h3>
+        </div>
+        <div id="optionsContent4">
+          <h3 class="title is-3">About</h3>
+        </div>
+        <div id="optionsContent5">
+          <h3 class="title is-3">Developer</h3>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeOptionsDlg();"></button>
     </div>
 
     <div id="loaderDlg" title="Loading...">

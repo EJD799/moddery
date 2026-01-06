@@ -8,11 +8,11 @@ body {
 }
 html[data-theme=dark] {
     --app-welcome-background: #222222;
-    --app-welcome-text: #ffffff;
+    --app-text: #ffffff;
 }
 html[data-theme=light] {
-    --app-welcome-background: #d9d9d9;
-    --app-welcome-text: #000000;
+    --app-welcome-background: #eeeeee;
+    --app-text: #000000;
 }
 
 #toolbar {
@@ -70,7 +70,7 @@ input {
 #welcome {
     height: calc(100% - 52px);
     background: var(--app-welcome-background);
-    color: var(--app-welcome-text);
+    color: var(--app-text);
     /*font-family: Verdana, sans-serif;*/
     padding: 10px;
 }

@@ -1,4 +1,4 @@
-const appVersion = "1.1.53";
+const appVersion = "1.1.54";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3241,13 +3241,15 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
         editBtn = document.createElement("button");
         editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'png')`);
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
+        editBtn.setAttribute("class", "button is-primary");
         editBtn.innerHTML = `<i class="fas fa-pencil"></i> Edit`;
       }
       if (fileType == "wav") {
         editBtn = document.createElement("button");
         editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'wav')`);
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
-        editBtn.innerHTML = `<i class="fas fa-pencil"></i> Edit`;
+        editBtn.setAttribute("class", "button is-primary");
+        editBtn.innerHTML = `<i class="fas fa-volume-low"></i> View`;
       }
       optionsBtn = document.createElement("button");
       optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
@@ -3258,10 +3260,6 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
       center.appendChild(optionsBtn);
       assetBox.appendChild(center);
       parentDiv.appendChild(assetBox);
-      if (fileType == "png" || fileType == "wav") {
-        $(`#${fileNameEncoded}_assetEditBtn`).button();
-      }
-      $(`#${fileNameEncoded}_assetOptionBtn`).button();
       createElementDropdown(fileNameEncoded, "asset");
     }
   }
@@ -3727,13 +3725,15 @@ async function renameElement() {
         editBtn = document.createElement("button");
         editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'png')`);
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
+        editBtn.setAttribute("class", "button is-primary");
         editBtn.innerHTML = `<i class="fas fa-pencil"></i> Edit`;
       }
       if (fileType == "wav") {
         editBtn = document.createElement("button");
         editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'wav')`);
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
-        editBtn.innerHTML = `<i class="fas fa-pencil"></i> Edit`;
+        editBtn.setAttribute("class", "button is-primary");
+        editBtn.innerHTML = `<i class="fas fa-volume-low"></i> View`;
       }
       optionsBtn = document.createElement("button");
       optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
@@ -3743,10 +3743,6 @@ async function renameElement() {
       }
       center.appendChild(optionsBtn);
       assetBox.appendChild(center);
-      if (fileType == "png" || fileType == "wav") {
-        $(`#${fileNameEncoded}_assetEditBtn`).button();
-      }
-      $(`#${fileNameEncoded}_assetOptionBtn`).button();
       removeElementDropdown(renameElementID, "asset");
       createElementDropdown(fileNameEncoded, "asset");
       $(`#${fileNameEncoded}_assetOptionBtn`).on("click", function () {

@@ -9,10 +9,12 @@ body {
     margin: 0 !important;
 }
 html[data-theme=dark] {
-    
+    --app-white-btn-background: var(--bulma-scheme-main);
+    --app-white-btn-color: var(--bulma-white-l);
 }
 html[data-theme=light] {
-    
+    --app-white-btn-background: var(--bulma-white-l);
+    --app-white-btn-color: var(--bulma-white-invert-l);
 }
 
 #toolbar {
@@ -694,5 +696,10 @@ input:disabled::placeholder {
 }
 
 .dropdown-item {
-    color: var(--bulma-text);
+    color: var(--bulma-text) !important;
+}
+
+.button.is-white {
+    --bulma-button-background-l: var(--bulma-white-l);
+    --bulma-button-color-l: var(--bulma-white-invert-l);
 }

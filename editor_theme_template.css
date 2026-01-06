@@ -8,4 +8,6 @@ html[data-theme=themeName] {
     --bulma-success: #000000;
     --bulma-link: #000000;
     --bulma-info: #000000;
+    --app-white-btn-background: #000000;
+    --app-white-btn-color: #000000;
 }

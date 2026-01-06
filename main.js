@@ -1,4 +1,4 @@
-const appVersion = "1.1.46";
+const appVersion = "1.1.47";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3126,7 +3126,7 @@ function addElement(loadingProj) {
         <div class="dropdown-content" style="color:var(--bulma-text);">
           <a class="dropdown-item" onclick="openElementInfo('${elementName}', 'element')"><i class="fas fa-circle-info"></i> Info</a>
           <a class="dropdown-item" onclick="openRenameElement('${elementName}', 'element')"><i class="fas fa-pencil"></i> Rename</a>
-          <a class="dropdown-item" style="color:var(--bulma-danger);" onclick="openDeleteElement('${elementName}', 'element')"><i class="fas fa-trash"></i> Delete</a>
+          <a class="dropdown-item" style="color:var(--bulma-danger)!important;" onclick="openDeleteElement('${elementName}', 'element')"><i class="fas fa-trash"></i> Delete</a>
         </div>
       </div>
     </div>

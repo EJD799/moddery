@@ -1,4 +1,4 @@
-const appVersion = "1.1.52";
+const appVersion = "1.1.53";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3113,7 +3113,7 @@ function addElement(loadingProj) {
     var parentDiv = document.getElementById("tabs-1");
     var elementBox = document.createElement("div");
     elementBox.setAttribute("class", "card elementbox");
-    let elementName = $("#addElementNameBox").val()
+    let elementName = $("#addElementNameBox").val();
     elementBox.setAttribute("id", "elementbox" + elementName);
     elementBox.innerHTML = `
     <h3 class="title is-5" id="${"elementboxname" + elementName}">${elementName}</h3>
@@ -3132,9 +3132,6 @@ function addElement(loadingProj) {
     </div>
     `;
     parentDiv.appendChild(elementBox);
-    //$("#" + $("#addElementNameBox").val() + "_editBtn").button();
-    //$("#" + $("#addElementNameBox").val() + "_optionBtn").button();
-    //createElementDropdown($("#addElementNameBox").val(), "element");
   }
   closeAddElementDlg();
   $("#addElementNameBox").val("");
@@ -3680,23 +3677,24 @@ async function renameElement() {
   }
   let elementBox = document.getElementById("elementbox" + encodeText(renameElementID));
   if (renameElementType == "element") {
-    elementBox.id = "elementbox" + renameDlgBox.value;
+    let elementName = renameDlgBox.value;
+    elementBox.id = "elementbox" + elementName;
     elementBox.innerHTML = `
-      <h3 id="elementboxname${renameDlgBox.value}">${renameDlgBox.value}</h3>
-      <button onclick="editElement('${renameDlgBox.value}')" id="${renameDlgBox.value}_editBtn"><i class="fas fa-pencil"></i> Edit</button>
-      <button id="${renameDlgBox.value}_optionBtn">&#x22EF;</button>
-      `;
-    $(`#${renameDlgBox.value}_editBtn`).button();
-    $(`#${renameDlgBox.value}_optionBtn`).button();
-    removeElementDropdown(renameElementID, "element");
-    createElementDropdown(renameDlgBox.value, "element");
-    $(`#${renameDlgBox.value}_optionBtn`).on("click", function () {
-      $(`#${renameDlgBox.value}_elementMenu`).show().position({
-        my: "left top",
-        at: "left bottom",
-        of: $(`#${renameDlgBox.value}_optionBtn`)
-      });
-    });
+    <h3 class="title is-5" id="${"elementboxname" + elementName}">${elementName}</h3>
+    <button class="button is-primary" onclick="editElement('${elementName}')" id="${elementName}_editBtn"><i class="fas fa-pencil"></i> Edit</button>
+    <div class="dropdown">
+      <div class="dropdown-trigger">
+        <button class="button is-white veryBold" aria-haspopup="true" aria-controls="dropdown-menu" id="${elementName}_optionBtn">&#x22EF;</button>
+      </div>
+      <div class="dropdown-menu" id="${elementName}_optionsMenu">
+        <div class="dropdown-content" style="color:var(--bulma-text);">
+          <a class="dropdown-item" onclick="openElementInfo('${elementName}', 'element')"><i class="fas fa-circle-info"></i> Info</a>
+          <a class="dropdown-item" onclick="openRenameElement('${elementName}', 'element')"><i class="fas fa-pencil"></i> Rename</a>
+          <a class="dropdown-item" style="color:var(--bulma-danger)!important;" onclick="openDeleteElement('${elementName}', 'element')"><i class="fas fa-trash"></i> Delete</a>
+        </div>
+      </div>
+    </div>
+    `;
   } else {
     var assetBox = elementBox;
     var fileName = decodeText(renameDlgBox.value);

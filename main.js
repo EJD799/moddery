@@ -1,4 +1,4 @@
-const appVersion = "1.1.56";
+const appVersion = "1.1.57";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3116,7 +3116,7 @@ function addElement(loadingProj) {
     let elementName = $("#addElementNameBox").val();
     elementBox.setAttribute("id", "elementbox" + elementName);
     elementBox.innerHTML = `
-    <h3 class="title is-5" id="${"elementboxname" + elementName}">${elementName}</h3>
+    <h5 class="title is-5" id="${"elementboxname" + elementName}">${elementName}</h5>
     <button class="button is-primary" onclick="editElement('${elementName}')" id="${elementName}_editBtn"><i class="fas fa-pencil"></i> Edit</button>
     <div class="dropdown">
       <div class="dropdown-trigger">
@@ -3220,7 +3220,7 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
       var center = document.createElement("center");
       assetBox.setAttribute("class", "card elementbox");
       assetBox.setAttribute("id", "elementbox" + fileNameEncoded);
-      center.innerHTML = `<h3 class="title is-5" id="${"elementboxname" + fileNameEncoded}">${fileName}</h3>`;
+      center.innerHTML = `<h5 class="title is-5" id="${"elementboxname" + fileNameEncoded}">${fileName}</h5>`;
       previewBox = document.createElement("div");
       previewBox.setAttribute("class", "previewBox");
       preview = document.createElement("img");
@@ -3691,7 +3691,7 @@ async function renameElement() {
     let elementName = renameDlgBox.value;
     elementBox.id = "elementbox" + elementName;
     elementBox.innerHTML = `
-    <h3 class="title is-5" id="${"elementboxname" + elementName}">${elementName}</h3>
+    <h5 class="title is-5" id="${"elementboxname" + elementName}">${elementName}</h5>
     <button class="button is-primary" onclick="editElement('${elementName}')" id="${elementName}_editBtn"><i class="fas fa-pencil"></i> Edit</button>
     <div class="dropdown">
       <div class="dropdown-trigger">
@@ -3717,7 +3717,7 @@ async function renameElement() {
       assetBox.setAttribute("class", "card elementbox");
       assetBox.setAttribute("id", "elementbox" + fileNameEncoded);
       assetBox.innerHTML = "";
-      center.innerHTML = `<h3 id="${"elementboxname" + fileNameEncoded}">${fileName}</h3>`;
+      center.innerHTML = `<h5 class="title is-5" id="${"elementboxname" + fileNameEncoded}">${fileName}</h5>`;
       previewBox = document.createElement("div");
       previewBox.setAttribute("class", "previewBox");
       preview = document.createElement("img");

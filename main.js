@@ -1,4 +1,4 @@
-const appVersion = "1.1.58";
+const appVersion = "1.1.59";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3535,8 +3535,6 @@ function editAsset(assetID, type) {
 
 function openElementInfo(elementID, type) {
   elementInfoDlg.classList.add("is-active");
-  let elementInfoDlg = document.getElementById("elementInfoDlg");
-  let elementInfoDlgContent = document.getElementById("elementInfoDlgContent");
   let elementIdentifier;
   let elementType;
   if (type == "asset") {

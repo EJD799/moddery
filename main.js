@@ -1,4 +1,4 @@
-const appVersion = "1.1.57";
+const appVersion = "1.1.58";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -231,15 +231,6 @@ $("#renameDlg").dialog({
 $("#renameDlg").dialog("close");
 $("#renameDlgCancel").button();
 $("#renameDlgConfirm").button();
-$("#elementInfoDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 300,
-  width: 300,
-  closeOnEscape: false
-});
-$("#elementInfoDlg").dialog("close");
-$("#elementInfoDlgClose").button();
 
 $("#signInDlg").dialog({
   position: { my: "center", at: "center", of: window },
@@ -3543,13 +3534,13 @@ function editAsset(assetID, type) {
 }
 
 function openElementInfo(elementID, type) {
-  $("#elementInfoDlg").dialog("open");
+  elementInfoDlg.classList.add("is-active");
   let elementInfoDlg = document.getElementById("elementInfoDlg");
   let elementInfoDlgContent = document.getElementById("elementInfoDlgContent");
   let elementIdentifier;
   let elementType;
   if (type == "asset") {
-    $("#elementInfoDlg").dialog("option", "title", "Asset Info");
+    elementInfoDlgTitle.innerHTML = "Asset Info";
     elementID = decodeText(elementID);
     elementIdentifier = decodeText(elementID);
     if (elementID.endsWith("png")) {
@@ -3568,9 +3559,8 @@ function openElementInfo(elementID, type) {
     ID: ${elementIdentifier}<br>
     Type: ${elementType}
     `;
-    $(`#${encodeText(elementID)}_assetMenu`).hide();
   } else {
-    $("#elementInfoDlg").dialog("option", "title", "Element Info");
+    elementInfoDlgTitle.innerHTML = "Asset Info";
     projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
       elementIdentifier = JSON.parse(data).id;
       elementType = JSON.parse(data).type;
@@ -3580,7 +3570,6 @@ function openElementInfo(elementID, type) {
       Type: ${elementType}
       `;
     });
-    $(`#${elementID}_elementMenu`).hide();
   }
 }
 function openRenameElement(elementID, type) {
@@ -3616,7 +3605,7 @@ function openDeleteElement(elementID, type) {
 }
 
 function closeElementInfo() {
-  $("#elementInfoDlg").dialog("close");
+  elementInfoDlg.classList.remove("is-active");
 }
 function closeRenameElement() {
   $("#renameDlg").dialog("close");

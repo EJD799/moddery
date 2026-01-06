@@ -700,3 +700,7 @@ input:disabled::placeholder {
 progress {
     text-align: left !important;
 }
+
+.button i {
+    margin-right: 6px;
+}

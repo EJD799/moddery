@@ -369,11 +369,18 @@
       </center>
     </div>
 
-    <div id="elementInfoDlg" title="">
-      <center>
-        <p id="elementInfoDlgContent"></p>
-        <button id="elementInfoDlgClose" onclick="closeElementInfo()">Close</button>
-      </center>
+    <div class="modal" id="elementInfoDlg">
+      <div class="modal-background"></div>
+      <div class="modal-content" style="width:300px;height:300px;">
+        <div class="card" id="elementInfoDlgCard" style="padding:16px;">
+          <center>
+            <h3 class="title is-3" id="elementInfoDlgTitle">Element Info</h3>
+            <span id="loaderText">Loading...</span><br>
+            <p id="elementInfoDlgContent"></p>
+            <button class="button is-primary" id="elementInfoDlgClose" onclick="closeElementInfo()">Close</button>
+          </center>
+        </div>
+      </div>
     </div>
 
     <div id="signInDlg" title="Sign In">

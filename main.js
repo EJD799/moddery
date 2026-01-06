@@ -1,4 +1,4 @@
-const appVersion = "1.1.55";
+const appVersion = "1.1.56";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3748,9 +3748,20 @@ async function renameElement() {
         editBtn.setAttribute("class", "button is-primary");
         editBtn.innerHTML = `<i class="fas fa-volume-low"></i> View`;
       }
-      optionsBtn = document.createElement("button");
-      optionsBtn.setAttribute("id", `${fileNameEncoded}_assetOptionBtn`);
-      optionsBtn.innerHTML = "&#x22EF;";
+      optionsBtn = document.createElement("div");
+      optionsBtn.setAttribute("class", "dropdown");
+      optionsBtn.innerHTML = `
+      <div class="dropdown-trigger">
+        <button class="button is-white veryBold" aria-haspopup="true" aria-controls="dropdown-menu" id="${fileNameEncoded}_assetOptionBtn">&#x22EF;</button>
+      </div>
+      <div class="dropdown-menu" id="${fileNameEncoded}_assetOptionsMenu">
+        <div class="dropdown-content" style="color:var(--bulma-text);">
+          <a class="dropdown-item" onclick="openElementInfo('${fileNameEncoded}', 'asset')"><i class="fas fa-circle-info"></i> Info</a>
+          <a class="dropdown-item" onclick="openRenameElement('${fileNameEncoded}', 'asset')"><i class="fas fa-pencil"></i> Rename</a>
+          <a class="dropdown-item" style="color:var(--bulma-danger)!important;" onclick="openDeleteElement('${fileNameEncoded}', 'asset')"><i class="fas fa-trash"></i> Delete</a>
+        </div>
+      </div>
+      `;
       if (fileType == "png" || fileType == "wav") {
         center.appendChild(editBtn);
       }

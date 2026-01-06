@@ -1,4 +1,10 @@
 html[data-theme=themeName] {
     --app-welcome-background: #000000;
-    --app-welcome-text: #000000;
+    --bulma-text: #000000;
+    --bulma-primary: #000000;
+    --bulma-warning: #000000;
+    --bulma-danger: #000000;
+    --bulma-success: #000000;
+    --bulma-link: #000000;
+    --bulma-info: #000000;
 }

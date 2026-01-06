@@ -8,11 +8,9 @@ body {
 }
 html[data-theme=dark] {
     --app-welcome-background: #222222;
-    --app-text: #ffffff;
 }
 html[data-theme=light] {
     --app-welcome-background: #eeeeee;
-    --app-text: #000000;
 }
 
 #toolbar {
@@ -70,7 +68,7 @@ input {
 #welcome {
     height: calc(100% - 52px);
     background: var(--app-welcome-background);
-    color: var(--app-text);
+    color: var(--bulma-text);
     /*font-family: Verdana, sans-serif;*/
     padding: 10px;
 }
@@ -525,7 +523,6 @@ input:disabled::placeholder {
 
 #welcomeInfoBox {
     padding: 10px;
-    background: #333333;
     border-radius: 10px;
     text-align: left;
     width: 700px;
@@ -678,30 +675,6 @@ input:disabled::placeholder {
   to {
     transform: rotate(360deg);
   }
-}
-
-.slider-navigation-next, .slider-navigation-previous {
-  background-color: var(--bulma-scheme-main) !important;
-  color: var(--bulma-text) !important;
-  border: 1px solid var(--bulma-border) !important;
-}
-
-.slider-page {
-    background: var(--bulma-text) !important;
-}
-
-.slider-page.is-active {
-    background: var(--bulma-primary) !important;
-}
-
-.slider-navigation-next,
-.slider-navigation-previous {
-  pointer-events: auto;
-}
-
-.slider-navigation-next svg,
-.slider-navigation-previous svg {
-  pointer-events: none;
 }
 
 #optionsDlgCard {

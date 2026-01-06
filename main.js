@@ -1,4 +1,4 @@
-const appVersion = "1.1.39";
+const appVersion = "1.1.40";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -346,15 +346,6 @@ function signOut() {
   signInBtn.innerHTML = "Sign In";
 }
 
-/*$("#oldoptionsDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 500,
-  width: 800,
-  closeOnEscape: false
-});
-$("#oldoptionsDlg").dialog("close");*/
-
 $("#optionsContent2").hide();
 $("#optionsContent3").hide();
 $("#optionsContent4").hide();
@@ -391,18 +382,6 @@ function clearCache() {
     }
   }
 }
-
-/*$( function() {
-  $( "#oldoptionsTabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
-  $( "#oldoptionsTabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
-} );*/
-
-
-
-bulmaCarousel.attach('#welcome-carousel', {
-  slidesToScroll: 1,
-  slidesToShow: 1
-});
 
 
 

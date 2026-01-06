@@ -15,7 +15,6 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://ejd799.github.io/BulmaColoredInputs/main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
 
     <title>Moddery</title>
 
@@ -119,20 +118,8 @@
         <button onclick="openNewProjDlg()" class="button is-primary"><i class="fas fa-file"></i> New Project</button>
         <button onclick="openProjDlg()" class="button"><i class="fas fa-folder-open"></i> Open Project</button>
         <br><br>
-        <div id="welcomeInfoBox">
-          <!-- Start Carousel -->
-          <div id="welcome-carousel" class="carousel">
-            <div class="item-1">
-              Item 1
-            </div>
-            <div class="item-2">
-              Item 2
-            </div>
-            <div class="item-3">
-              Item 3
-            </div>
-          </div>
-          <!-- End Carousel -->
+        <div id="welcomeInfoBox" class="card">
+          
         </div>
       </center>
     </div>
@@ -295,57 +282,6 @@
         <button onclick="exportProj()" id="exportDlgExportBtn">Export</button>
       </center>
     </div>
-
-    <!--<div id="oldoptionsDlg" title="Options">
-      <div id="oldoptionsTabs">
-        <ul>
-          <li><a href="#optionsTabs-1">General</a></li>
-          <li><a href="#optionsTabs-2">Account</a></li>
-          <li><a href="#optionsTabs-3">Extensions</a></li>
-          <li><a href="#optionsTabs-4">About</a></li>
-          <li><a href="#optionsTabs-5">Developer</a></li>
-        </ul>
-        <div id="optionsTabs-1">
-          <h2>General</h2>
-          <label for="themeMenu">Theme</label>
-          <select id="themeMenu" name="themeMenu">
-            <option disabled>Automatic</option>
-            <option disabled>Light</option>
-            <option selected>Dark</option>
-          </select>
-          <br><br>
-          <label for="autosaveBox">Enable Autosave</label>
-          <input id="autosaveBox" name="autosaveBox" type="checkbox">
-          <br><br>
-          <label for="storageModeBox">Storage Mode</label>
-          <select id="storageModeBox">
-            <option id="storageModeBoxOpt1" selected value="file_system">File System (recommended - desktop only)</option>
-            <option value="local_storage">Local Storage (for mobile users)</option>
-          </select>
-        </div>
-        <div id="optionsTabs-2">
-          <h2>Account</h2>
-          <p>Coming Soon!</p>
-          <div style="display:none">
-            <p id="accountNameText">Not signed in</p>
-            <button id="signInBtn" onclick="if(signedIn){signOut();}else{openSignInDlg();}">Sign In</button>
-          </div>
-        </div>
-        <div id="optionsTabs-3">
-          <h2>Extensions</h2>
-          <p>Coming Soon!</p>
-        </div>
-        <div id="optionsTabs-4">
-          <h2>About</h2>
-          <img src="moddery_logo.svg" style="height: 70px; width: 200px;"><br>
-          <h4 id="aboutText2">Moddery</h4>
-        </div>
-        <div id="optionsTabs-5">
-          <h2>Developer</h2>
-          <button id="clearCacheBtn" onclick="clearCache()">Clear Cache</button>
-        </div>
-      </div>
-    </div>-->
 
     <div class="modal" id="optionsDlg">
       <div class="modal-background"></div>

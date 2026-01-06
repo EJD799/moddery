@@ -1,4 +1,4 @@
-const appVersion = "1.1.45";
+const appVersion = "1.1.46";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3118,12 +3118,12 @@ function addElement(loadingProj) {
     elementBox.innerHTML = `
     <h3 class="title is-5" id="${"elementboxname" + elementName}">${elementName}</h3>
     <button class="button is-primary" onclick="editElement('${elementName}')" id="${elementName}_editBtn"><i class="fas fa-pencil"></i> Edit</button>
-    <div class="dropdown is-active">
+    <div class="dropdown">
       <div class="dropdown-trigger">
-        <button class="button is-white" aria-haspopup="true" aria-controls="dropdown-menu" id="${elementName}_optionBtn">&#x22EF;</button>
+        <button class="button is-white veryBold" aria-haspopup="true" aria-controls="dropdown-menu" id="${elementName}_optionBtn">&#x22EF;</button>
       </div>
       <div class="dropdown-menu" id="${elementName}_optionsMenu">
-        <div class="dropdown-content">
+        <div class="dropdown-content" style="color:var(--bulma-text);">
           <a class="dropdown-item" onclick="openElementInfo('${elementName}', 'element')"><i class="fas fa-circle-info"></i> Info</a>
           <a class="dropdown-item" onclick="openRenameElement('${elementName}', 'element')"><i class="fas fa-pencil"></i> Rename</a>
           <a class="dropdown-item" style="color:var(--bulma-danger);" onclick="openDeleteElement('${elementName}', 'element')"><i class="fas fa-trash"></i> Delete</a>
@@ -3147,6 +3147,22 @@ function addElement(loadingProj) {
     }
   }
 }
+
+document.addEventListener("click", (e) => {
+  // Find the closest dropdown (if any)
+  const dropdown = e.target.closest(".dropdown");
+
+  // Close all dropdowns first
+  document.querySelectorAll(".dropdown.is-active").forEach(d => {
+    d.classList.remove("is-active");
+  });
+
+  // If the click was inside a dropdown trigger, toggle that one
+  if (dropdown && e.target.closest(".dropdown-trigger")) {
+    dropdown.classList.toggle("is-active");
+  }
+});
+
 
 addAssetUploadInput.addEventListener("change", (event) => {
   addAssetNameBox.value = addAssetUploadInput.files[0].name;

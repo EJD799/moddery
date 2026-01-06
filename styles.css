@@ -688,3 +688,11 @@ input:disabled::placeholder {
 .veryBold {
     font-weight: 900;
 }
+
+.dropdown-content {
+    text-align: left;
+}
+
+.dropdown-item {
+    color: var(--bulma-text);
+}

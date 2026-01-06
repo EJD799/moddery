@@ -1,5 +1,6 @@
 html[data-theme=themeName] {
     --app-welcome-background: #000000;
+    --app-main-tabs-background: #000000;
     --bulma-text: #000000;
     --bulma-primary: #000000;
     --bulma-warning: #000000;

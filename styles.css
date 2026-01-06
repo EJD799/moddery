@@ -1,5 +1,7 @@
 :root {
     --tab-height: 44px;
+    --app-welcome-background: var(--bulma-background);
+    --app-main-tabs-background: var(--bulma-background);
 }
 body {
     background: #111111;
@@ -7,10 +9,10 @@ body {
     margin: 0 !important;
 }
 html[data-theme=dark] {
-    --app-welcome-background: #222222;
+    
 }
 html[data-theme=light] {
-    --app-welcome-background: #eeeeee;
+    
 }
 
 #toolbar {
@@ -87,8 +89,6 @@ input {
 
 .elementbox {
     padding: 10px;
-    background: #333333;
-    border-radius: 10px;
     text-align: center;
     width: 20%;
     display: inline-block;
@@ -653,6 +653,7 @@ input:disabled::placeholder {
 
 #tabs-1, #tabs-2 {
     height: 100%;
+    background: var(--app-main-tabs-background);
 }
 
 .elementTabArea {

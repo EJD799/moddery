@@ -687,6 +687,12 @@ input:disabled::placeholder {
     padding-top: 12px;
 }
 
+#loaderDlgCard {
+    width: 300px;
+    height: 150px;
+    padding: 16px;
+}
+
 .veryBold {
     font-weight: 900;
 }

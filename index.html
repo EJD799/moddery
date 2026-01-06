@@ -340,11 +340,16 @@
       <button class="modal-close is-large" aria-label="close" onclick="closeOptionsDlg();"></button>
     </div>
 
-    <div id="loaderDlg" title="Loading...">
-      <center>
-        <span id="loaderText">Loading...</span><br>
-        <progress id="loaderProgress" max="0" value="0"></progress>
-      </center>
+    <div class="modal" id="loaderDlg">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="card" id="loaderDlgCard">
+          <center>
+            <span id="loaderText">Loading...</span><br>
+            <progress class="progress is-large is-primary" id="loaderProgress" max="0" value="0"></progress>
+          </center>
+        </div>
+      </div>
     </div>
 
     <div id="deleteDlg" title="">

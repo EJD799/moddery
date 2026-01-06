@@ -1,4 +1,4 @@
-const appVersion = "1.1.48";
+const appVersion = "1.1.49";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -188,7 +188,7 @@ $("#exportDlgModeBox").selectmenu();
 $("#exportDlgCancelBtn").button();
 $("#exportDlgExportBtn").button();
 
-$("#loaderDlg").dialog({
+/*$("#loaderDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
   height: 150,
@@ -201,7 +201,7 @@ $("#loaderDlg").dialog({
     // hide the close button on the dialog wrapper
     $(this).closest(".ui-dialog").find(".ui-dialog-titlebar-close").hide();
   }
-});
+});*/
 $("#aboutDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
@@ -210,7 +210,7 @@ $("#aboutDlg").dialog({
   closeOnEscape: false
 });
 $("#aboutDlg").dialog("close");
-$("#loaderDlg").dialog("close");
+//$("#loaderDlg").dialog("close");
 $("#deleteDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
@@ -2989,10 +2989,10 @@ async function exportProj() {
 }
 
 function openLoader() {
-  $("#loaderDlg").dialog("open");
+  loaderDlg.classList.add("is-active");
 }
 function closeLoader() {
-  $("#loaderDlg").dialog("close");
+  loaderDlg.classList.remove("is-active");
 }
 function openAboutDlg() {
   $("#aboutDlg").dialog("open");

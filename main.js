@@ -1,4 +1,4 @@
-const appVersion = "1.1.66";
+const appVersion = "1.1.67";
 const buildDate = "1/7/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -379,7 +379,6 @@ function selectPackIcon() {
   }
 }
 
-$("#packIconBtn").button();
 $("#selectPackIconCancelBtn").button();
 $("#selectPackIconSelectBtn").button();
 
@@ -446,7 +445,6 @@ function selectScriptEntry() {
   }
 }
 
-$("#scriptEntryBtn").button();
 $("#selectScriptEntryCancelBtn").button();
 $("#selectScriptEntrySelectBtn").button();
 

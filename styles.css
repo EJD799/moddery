@@ -107,7 +107,7 @@ input {
     vertical-align: middle;
 }
 .versionBox {
-    width: 40px;
+    width: 40px !important;
 }
 /* For WebKit-based browsers (Chrome, Safari, Edge) */
 input::-webkit-outer-spin-button,
@@ -281,7 +281,7 @@ input[type=color]:hover {
 }
 
 .smallInput {
-    width: 65px;
+    width: 65px !important;
 }
 
 #itemPickerViewport {
@@ -498,7 +498,7 @@ input:disabled::placeholder {
 }
 
 .almostFullInput {
-    width: 170px;
+    width: 170px !important;
 }
 .inputEditBtn {
     height: 41px;

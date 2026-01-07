@@ -50,7 +50,7 @@
 						<a class="navbar-item" onclick="openOptionsDlg();">
 							<i class="fas fa-sliders"></i> Options
 						</a>
-						<a class="navbar-item" onclick="openAboutDlg();">
+						<a class="navbar-item" onclick="openOptionsDlg();switchOptionsTab(4);">
 							<i class="fas fa-circle-info"></i> About Moddery
 						</a>
 						<a class="navbar-item" onclick="window.open('https://github.com/ejd799/moddery');">
@@ -282,7 +282,7 @@
     <div class="modal" id="optionsDlg">
       <div class="modal-background"></div>
       <div class="modal-content" style="width:600px;height:600px;">
-        <div class="card" id="optionsDlgCard" style="padding:16px;padding-top:12px;">
+        <div class="card" id="optionsDlgCard" style="padding:16px;padding-top:12px;height:100%;">
           <div class="tabs" id="optionsTabs">
             <ul>
               <li id="optionsTab1" onclick="switchOptionsTab(1)" class="is-active"><a>General</a></li>
@@ -410,14 +410,6 @@
         <br><br>
         <button id="signInDlgCancel" onclick="closeSignInDlg()">Cancel</button>
         <button id="signInDlgSignIn" onclick="signIn()">Sign In</button>
-      </center>
-    </div>
-
-    <div id="aboutDlg" title="About Moddery">
-      <center>
-        <img src="moddery_logo.svg" style="height: 70px; width: 200px;"><br>
-        <h4 id="aboutText1">Moddery</h4>
-        <button id="closeAboutBtn" onclick="closeAboutDlg()">OK</button>
       </center>
     </div>
 

@@ -1,4 +1,4 @@
-const appVersion = "1.1.61";
+const appVersion = "1.1.62";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -187,15 +187,6 @@ $("#exportDlg").dialog("close");
 $("#exportDlgModeBox").selectmenu();
 $("#exportDlgCancelBtn").button();
 $("#exportDlgExportBtn").button();
-
-$("#aboutDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 300,
-  width: 300,
-  closeOnEscape: false
-});
-$("#aboutDlg").dialog("close");
 
 $("#signInDlg").dialog({
   position: { my: "center", at: "center", of: window },
@@ -2949,12 +2940,6 @@ function openLoader() {
 }
 function closeLoader() {
   loaderDlg.classList.remove("is-active");
-}
-function openAboutDlg() {
-  $("#aboutDlg").dialog("open");
-}
-function closeAboutDlg() {
-  $("#aboutDlg").dialog("close");
 }
 
 function encodeText(text) {

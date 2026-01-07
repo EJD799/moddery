@@ -1,5 +1,5 @@
-const appVersion = "1.1.63";
-const buildDate = "1/6/2026";
+const appVersion = "1.1.64";
+const buildDate = "1/7/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -187,27 +187,16 @@ $("#exportDlgModeBox").selectmenu();
 $("#exportDlgCancelBtn").button();
 $("#exportDlgExportBtn").button();
 
-$("#signInDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 400,
-  width: 320,
-  closeOnEscape: false
-});
-$("#signInDlg").dialog("close");
-$("#signInDlgSignIn").button();
-$("#signInDlgCancel").button();
-
 let signInMode = "in";
 let signedIn = false;
 $("#signInDlgPasswordBox2").hide();
 $("#signInDlgPasswordBox2Label").hide();
 
 function openSignInDlg() {
-  $("#signInDlg").dialog("open");
+  signInDlg.classList.add("is-active");
 }
 function closeSignInDlg() {
-  $("#signInDlg").dialog("close");
+  signInDlg.classList.remove("is-active");
 }
 async function signIn() {
   let username = signInDlgUsernameBox.value;

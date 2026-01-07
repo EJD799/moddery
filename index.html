@@ -352,17 +352,23 @@
       </div>
     </div>
 
-    <div id="deleteDlg" title="">
-      <center>
-        <span id="deleteDlgText"></span><br><br>
-        <button id="deleteDlgCancel" onclick="closeDeleteElement()">Cancel</button>
-        <button id="deleteDlgConfirm" class="redBtn" onclick="deleteElement()">Delete</button>
-      </center>
+    <div class="modal" id="deleteDlg">
+      <div class="modal-background"></div>
+      <div class="modal-content" style="width:350px;height:250px;">
+        <div class="card" id="deleteDlgCard" style="padding:16px;">
+          <center>
+            <h3 class="title is-3" id="deleteDlgTitle">Delete Element</h3>
+            <span id="deleteDlgText"></span><br><br>
+            <button class="button" id="deleteDlgCancel" onclick="closeDeleteElement()">Cancel</button>
+            <button class="button is-danger" id="deleteDlgConfirm" onclick="deleteElement()">Delete</button>
+          </center>
+        </div>
+      </div>
     </div>
 
     <div class="modal" id="renameDlg">
       <div class="modal-background"></div>
-      <div class="modal-content" style="width:300px;height:200px;">
+      <div class="modal-content" style="width:350px;height:300px;">
         <div class="card" id="renameDlgCard" style="padding:16px;">
           <center>
             <h3 class="title is-3" id="renameDlgTitle">Rename Element</h3>

@@ -1,4 +1,4 @@
-const appVersion = "1.1.60";
+const appVersion = "1.1.61";
 const buildDate = "1/6/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -188,20 +188,6 @@ $("#exportDlgModeBox").selectmenu();
 $("#exportDlgCancelBtn").button();
 $("#exportDlgExportBtn").button();
 
-/*$("#loaderDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 150,
-  width: 300,
-  closeOnEscape: false,
-  draggable: false,
-  modal: true,
-  dialogClass: "no-close",
-  create: function () {
-    // hide the close button on the dialog wrapper
-    $(this).closest(".ui-dialog").find(".ui-dialog-titlebar-close").hide();
-  }
-});*/
 $("#aboutDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
@@ -210,17 +196,6 @@ $("#aboutDlg").dialog({
   closeOnEscape: false
 });
 $("#aboutDlg").dialog("close");
-//$("#loaderDlg").dialog("close");
-$("#deleteDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 150,
-  width: 300,
-  closeOnEscape: false
-});
-$("#deleteDlg").dialog("close");
-$("#deleteDlgCancel").button();
-$("#deleteDlgConfirm").button();
 
 $("#signInDlg").dialog({
   position: { my: "center", at: "center", of: window },
@@ -3572,18 +3547,15 @@ function openRenameElement(elementID, type) {
   renameBox.value = decodeText(elementID);
 }
 function openDeleteElement(elementID, type) {
-  $("#deleteDlg").dialog("open");
+  deleteDlg.classList.add("is-active");
   deleteElementID = elementID;
   deleteElementType = type;
-  let deleteDlgText = document.getElementById("deleteDlgText");
   if (type == "asset") {
-    $("#deleteDlg").dialog("option", "title", "Delete Asset?");
+    deleteDlgTitle.innerHTML = "Delete Asset?";
     deleteDlgText.innerHTML = `Are you sure you want to delete the asset "${decodeText(elementID)}"?`;
-    $(`#${elementID}_assetMenu`).hide();
   } else {
-    $("#deleteDlg").dialog("option", "title", "Delete Element?");
+    deleteDlgTitle.innerHTML = "Delete Element?";
     deleteDlgText.innerHTML = `Are you sure you want to delete the element "${decodeText(elementID)}"?`;
-    $(`#${elementID}_elementMenu`).hide();
   }
 }
 
@@ -3594,7 +3566,7 @@ function closeRenameElement() {
   renameDlg.classList.remove("is-active");
 }
 function closeDeleteElement() {
-  $("#deleteDlg").dialog("close");
+  deleteDlg.classList.remove("is-active");
 }
 
 async function renameZipFile(zip, oldPath, newPath) {

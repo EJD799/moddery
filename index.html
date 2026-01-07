@@ -360,13 +360,19 @@
       </center>
     </div>
 
-    <div id="renameDlg" title="">
-      <center>
-        <span id="renameDlgText"></span><br><br>
-        <input id="renameDlgBox"><br><br>
-        <button id="renameDlgCancel" onclick="closeRenameElement()">Cancel</button>
-        <button id="renameDlgConfirm" onclick="renameElement()">Rename</button>
-      </center>
+    <div class="modal" id="renameDlg">
+      <div class="modal-background"></div>
+      <div class="modal-content" style="width:300px;height:200px;">
+        <div class="card" id="renameDlgCard" style="padding:16px;">
+          <center>
+            <h3 class="title is-3" id="renameDlgTitle">Rename Element</h3>
+            <span id="renameDlgText"></span><br><br>
+            <input class="input" id="renameDlgBox"><br><br>
+            <button class="button" id="renameDlgCancel" onclick="closeRenameElement()">Cancel</button>
+            <button class="button is-primary" id="renameDlgConfirm" onclick="renameElement()">Rename</button>
+          </center>
+        </div>
+      </div>
     </div>
 
     <div class="modal" id="elementInfoDlg">

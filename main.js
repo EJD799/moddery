@@ -221,16 +221,6 @@ $("#deleteDlg").dialog({
 $("#deleteDlg").dialog("close");
 $("#deleteDlgCancel").button();
 $("#deleteDlgConfirm").button();
-$("#renameDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 200,
-  width: 300,
-  closeOnEscape: false
-});
-$("#renameDlg").dialog("close");
-$("#renameDlgCancel").button();
-$("#renameDlgConfirm").button();
 
 $("#signInDlg").dialog({
   position: { my: "center", at: "center", of: window },
@@ -3472,8 +3462,6 @@ async function saveProjectAs() {
 $("#editProjBtn").button();
 $("#addElementBtn").button();
 $("#addAssetBtn").button();
-$('input').addClass("ui-widget ui-widget-content ui-corner-all");
-$('textarea').addClass("ui-widget ui-widget-content ui-corner-all");
 
 function getTabContent(role, elementID) {
   if (role == "Function") {
@@ -3558,7 +3546,7 @@ function openElementInfo(elementID, type) {
     Type: ${elementType}
     `;
   } else {
-    elementInfoDlgTitle.innerHTML = "Asset Info";
+    elementInfoDlgTitle.innerHTML = "Element Info";
     projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
       elementIdentifier = JSON.parse(data).id;
       elementType = JSON.parse(data).type;
@@ -3571,16 +3559,13 @@ function openElementInfo(elementID, type) {
   }
 }
 function openRenameElement(elementID, type) {
-  $("#renameDlg").dialog("open");
+  renameDlg.classList.add("is-active");
   renameElementID = elementID;
   renameElementType = type;
-  let renameDlgText = document.getElementById("renameDlgText");
   if (type == "asset") {
-    $("#renameDlg").dialog("option", "title", "Rename Asset");
-    $(`#${elementID}_assetMenu`).hide();
+    renameDlgTitle.innerHTML = "Rename Asset";
   } else {
-    $("#renameDlg").dialog("option", "title", "Rename Element");
-    $(`#${elementID}_elementMenu`).hide();
+    renameDlgTitle.innerHTML = "Rename Element";
   }
   renameDlgText.innerHTML = `Rename ${decodeText(elementID)} to:`;
   let renameBox = document.getElementById("renameDlgBox");
@@ -3606,7 +3591,7 @@ function closeElementInfo() {
   elementInfoDlg.classList.remove("is-active");
 }
 function closeRenameElement() {
-  $("#renameDlg").dialog("close");
+  renameDlg.classList.remove("is-active");
 }
 function closeDeleteElement() {
   $("#deleteDlg").dialog("close");

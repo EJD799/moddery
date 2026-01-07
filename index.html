@@ -433,19 +433,31 @@
       </div>
     </div>
 
-    <div id="openProjDBDlg" title="Open Project">
-      <center>
-        <h3>Projects <button id="openProjDBDlgNewBtn" onclick="closeOpenProjDlg();openNewProjDlg();">+ New Project</button></h3>
-        <div id="openProjDBDlgContent"></div>
-      </center>
+    <div class="modal" id="openProjDBDlg">
+      <div class="modal-background"></div>
+      <div class="modal-content" style="width:350px;height:250px;">
+        <div class="card" id="openProjDBDlgCard" style="padding:16px;">
+          <center>
+            <span class="title is-4">Projects</span>
+            <button class="button is-primary" id="openProjDBDlgNewBtn" onclick="closeOpenProjDlg();openNewProjDlg();">+ New Project</button>
+            <div id="openProjDBDlgContent"></div>
+          </center>
+        </div>
+      </div>
     </div>
 
-    <div id="deleteProjDlg" title="">
-      <center>
-        <span id="deleteProjDlgText"></span><br><br>
-        <button id="deleteProjDlgCancel" onclick="closeDeleteProj()">Cancel</button>
-        <button id="deleteProjDlgConfirm" class="redBtn" onclick="deleteCurrentProj()">Delete</button>
-      </center>
+    <div class="modal" id="deleteProjDlg">
+      <div class="modal-background"></div>
+      <div class="modal-content" style="width:350px;height:250px;">
+        <div class="card" id="deleteProjDlgCard" style="padding:16px;">
+          <center>
+            <h3 class="title is-3" id="deleteProjDlgTitle">Delete Project?</h3>
+            <span id="deleteProjDlgText">Are you sure you want to delete the project? This action cannot be undone!</span><br><br>
+            <button class="button" id="deleteProjDlgCancel" onclick="closeDeleteProj()">Cancel</button>
+            <button class="button is-danger" id="deleteProjDlgConfirm" onclick="deleteCurrentProj()">Delete</button>
+          </center>
+        </div>
+      </div>
     </div>
 
     <input id="openFileInput" type="file" accept=".zip">

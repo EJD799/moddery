@@ -1,4 +1,4 @@
-const appVersion = "1.1.67";
+const appVersion = "1.1.68";
 const buildDate = "1/7/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -658,14 +658,6 @@ storageModeBox.addEventListener("change", function(e) {
 
 let projFileHandle = null;
 
-$("#openProjDBDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 500,
-  width: 500
-});
-$("#openProjDBDlg").dialog("close");
-
 async function openProjDlg() {
   if (storageMode == "file_system") {
     try {
@@ -684,17 +676,18 @@ async function openProjDlg() {
       document.getElementById("savingBox").style.display = "none";
     }
   } else {
-    $("#openProjDBDlg").dialog("open");
+    openProjDBDlg.classList.add("is-active");
     let projectList = await listProjectsDB();
     let div = document.getElementById("openProjDBDlgContent");
     div.innerHTML = "";
     for (let i = 0; i < projectList.length; i++) {
       projectInfo = projectList[i];
       let box = document.createElement("div");
-      box.setAttribute("class", "projListItem");
+      box.setAttribute("class", "projListItem card");
 
-      let title = document.createElement("h4");
+      let title = document.createElement("h5");
       title.innerHTML = `${projectInfo.name} (${projectInfo.namespace})`;
+      title.setAttribute("class", "title is-5");
       box.appendChild(title);
 
       let typeText = document.createElement("span");
@@ -706,35 +699,31 @@ async function openProjDlg() {
       openBtn.innerHTML = `<i class="fas fa-pencil"></i> Open`;
       openBtn.setAttribute("id", `openBtn_${projectInfo.id}`);
       openBtn.setAttribute("onclick", `openProjFromDB("${projectInfo.id}")`);
+      openBtn.setAttribute("class", "button is-primary");
       box.appendChild(openBtn);
 
       let downloadBtn = document.createElement("button");
       downloadBtn.innerHTML = `<i class="fas fa-download"></i> Download`;
       downloadBtn.setAttribute("id", `downloadBtn_${projectInfo.id}`);
       downloadBtn.setAttribute("onclick", `downloadProjectDB("${projectInfo.id}")`);
+      downloadBtn.setAttribute("class", "button");
       box.appendChild(downloadBtn);
 
       let deleteBtn = document.createElement("button");
       deleteBtn.innerHTML = `<i class="fas fa-trash"></i> Delete`;
       deleteBtn.setAttribute("id", `deleteBtn_${projectInfo.id}`);
       deleteBtn.setAttribute("onclick", `deleteConfirmationDB("${projectInfo.id}")`);
-      deleteBtn.setAttribute("class", "redBtn");
+      deleteBtn.setAttribute("class", "button is-danger");
       box.appendChild(deleteBtn);
 
       div.appendChild(box);
       div.appendChild(document.createElement("br"));
-
-      $(`#openBtn_${projectInfo.id}`).button();
-      $(`#downloadBtn_${projectInfo.id}`).button();
-      $(`#deleteBtn_${projectInfo.id}`).button();
     }
   }
 };
 
-$("#openProjDBDlgNewBtn").button();
-
 function closeOpenProjDlg() {
-  $("#openProjDBDlg").dialog("close");
+  openProjDBDlg.classList.remove("is-active");
 }
 
 async function openProjFromDB(id) {
@@ -775,32 +764,19 @@ async function downloadProjectDB(id) {
 }
 
 
-$("#deleteProjDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 150,
-  width: 300,
-  closeOnEscape: false
-});
-$("#deleteProjDlg").dialog("close");
-$("#deleteProjDlgCancel").button();
-$("#deleteProjDlgConfirm").button();
-
 function deleteConfirmationDB(id) {
   projDeleteID = id;
-  $("#deleteProjDlg").dialog("open");
-  $("#deleteProjDlg").dialog("option", "title", "Delete Project?");
-  deleteProjDlgText.innerHTML = `Are you sure you want to delete the project? This action cannot be undone!`;
+  deleteProjDlg.classList.add("is-active");
 }
 
 function closeDeleteProj() {
-  $("#deleteProjDlg").dialog("close");
+  deleteProjDlg.classList.remove("is-active");
 }
 
 async function deleteCurrentProj() {
   closeDeleteProj();
   await deleteProjectDB(projDeleteID);
-  $("#openProjDBDlg").dialog("close");
+  openProjDBDlg.classList.remove("is-active");
   openProjDlg();
 }
 

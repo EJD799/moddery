@@ -1,4 +1,4 @@
-const appVersion = "1.1.64";
+const appVersion = "1.1.65";
 const buildDate = "1/7/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -123,16 +123,6 @@ window.addEventListener('resize', updateTabHeight);
 
 $("#toolbar").menu();
 $("#tabs").tabs();
-$("#newProjDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 400,
-  width: 500
-});
-$("#newProjDlg").dialog("close");
-$("#newProjType").selectmenu();
-$("#newProjCancelBtn").button();
-$("#newProjCreateBtn").button();
 $("#editProjDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
@@ -321,10 +311,10 @@ function clearCache() {
 
 
 function openNewProjDlg() {
-  $("#newProjDlg").dialog("open");
+  newProjDlg.classList.add("is-active");
 }
 function closeNewProjDlg() {
-  $("#newProjDlg").dialog("close");
+  newProjDlg.classList.remove("is-active");
 }
 
 $("#selectPackIconDlg").dialog({

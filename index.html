@@ -124,37 +124,45 @@
       </center>
     </div>
 
-    <div id="newProjDlg" title="New Project">
-      <center>
-        <label for="newProjNameBox">Project Name</label>
-        <input type="text" name="newProjNameBox" id="newProjNameBox" placeholder="Project Name">
-        <br><br>
-        <label for="newProjType">Project Type</label>
-        <select name="newProjType" id="newProjType">
-          <optgroup label="Bedrock Edition">
-            <option value="be_addon" selected>Addon</option>
-            <option value="be_rp" disabled>Resource Pack</option>
-          </optgroup>
-          <optgroup label="Java Edition">
-            <option value="je_dp" disabled>Datapack</option>
-            <option value="je_rp" disabled>Resource Pack</option>
-            <option value="je_forge" disabled>Forge Mod</option>
-            <option value="je_fabric" disabled>Fabric Mod</option>
-            <option value="je_spigot" disabled>Spigot Plugin</option>
-          </optgroup>
-          <optgroup label="Other">
-            <option value="mtr_je" disabled>MTR Content (Java)</option>
-            <option value="mtr_be" disabled>MTR Content (Bedrock)</option>
-            <option value="nexo" disabled>Nexo Addon (Java)</option>
-          </optgroup>
-        </select>
-        <br><br>
-        <label for="newProjNamespaceBox">Namespace ID</label>
-        <input type="text" name="newProjNamespaceBox" id="newProjNamespaceBox" placeholder="Namespace ID">
-        <br><br>
-        <button id="newProjCancelBtn" onclick="closeNewProjDlg()">Cancel</button>
-        <button id="newProjCreateBtn" onclick="createProject()">Create</button>
-      </center>
+    <div class="modal" id="newProjDlg">
+      <div class="modal-background"></div>
+      <div class="modal-content" style="width:400px;height:500px;">
+        <div class="card" id="newProjDlgCard" style="padding:16px;">
+          <center>
+            <h4 class="title is-4">New Project</h4>
+            <label for="newProjNameBox">Project Name</label>
+            <input class="input" type="text" id="newProjNameBox" placeholder="Project Name">
+            <br><br>
+            <label for="newProjType">Project Type</label>
+            <div class="select">
+              <select id="newProjType">
+                <optgroup label="Bedrock Edition">
+                  <option value="be_addon" selected>Addon</option>
+                  <option value="be_rp" disabled>Resource Pack</option>
+                </optgroup>
+                <optgroup label="Java Edition">
+                  <option value="je_dp" disabled>Datapack</option>
+                  <option value="je_rp" disabled>Resource Pack</option>
+                  <option value="je_forge" disabled>Forge Mod</option>
+                  <option value="je_fabric" disabled>Fabric Mod</option>
+                  <option value="je_spigot" disabled>Spigot Plugin</option>
+                </optgroup>
+                <optgroup label="Other">
+                  <option value="mtr_je" disabled>MTR Content (Java)</option>
+                  <option value="mtr_be" disabled>MTR Content (Bedrock)</option>
+                  <option value="nexo" disabled>Nexo Addon (Java)</option>
+                </optgroup>
+              </select>
+            </div>
+            <br><br>
+            <label for="newProjNamespaceBox">Namespace ID</label>
+            <input class="input" type="text" name="newProjNamespaceBox" id="newProjNamespaceBox" placeholder="Namespace ID">
+            <br><br>
+            <button class="button" id="newProjCancelBtn" onclick="closeNewProjDlg()">Cancel</button>
+            <button class="button is-primary" id="newProjCreateBtn" onclick="createProject()">Create</button>
+          </center>
+        </div>
+      </div>
     </div>
 
     <div id="editProjDlg" title="Edit Project">
@@ -396,11 +404,10 @@
 
     <div class="modal" id="signInDlg">
       <div class="modal-background"></div>
-      <div class="modal-content" style="width:300px;height:300px;">
+      <div class="modal-content" style="width:300px;height:500px;">
         <div class="card" id="signInDlgCard" style="padding:16px;">
           <center>
             <h4 class="title is-4" id="signInDlgText1">Sign in to Moddery!</h4>
-            <br>
             <span id="signInDlgText2">Don't have an account? </span>
             <a href="javascript:switchSignInMode()" id="signInDlgModeLink">Sign Up</a>
             <br><br>

@@ -1,4 +1,4 @@
-const appVersion = "1.1.68";
+const appVersion = "1.1.69";
 const buildDate = "1/7/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -701,6 +701,7 @@ async function openProjDlg() {
       openBtn.setAttribute("onclick", `openProjFromDB("${projectInfo.id}")`);
       openBtn.setAttribute("class", "button is-primary");
       box.appendChild(openBtn);
+      box.appendChild(document.createTextNode(" "));
 
       let downloadBtn = document.createElement("button");
       downloadBtn.innerHTML = `<i class="fas fa-download"></i> Download`;
@@ -708,6 +709,7 @@ async function openProjDlg() {
       downloadBtn.setAttribute("onclick", `downloadProjectDB("${projectInfo.id}")`);
       downloadBtn.setAttribute("class", "button");
       box.appendChild(downloadBtn);
+      box.appendChild(document.createTextNode(" "));
 
       let deleteBtn = document.createElement("button");
       deleteBtn.innerHTML = `<i class="fas fa-trash"></i> Delete`;

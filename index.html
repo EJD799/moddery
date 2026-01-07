@@ -163,6 +163,7 @@
           </center>
         </div>
       </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeNewProjDlg();"></button>
     </div>
 
     <div class="modal" id="editProjDlg">
@@ -203,6 +204,7 @@
           </center>
         </div>
       </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeEditProjDlg();"></button>
     </div>
 
     <div id="selectPackIconDlg" title="Select Pack Icon">
@@ -380,6 +382,7 @@
           </center>
         </div>
       </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeDeleteElement();"></button>
     </div>
 
     <div class="modal" id="renameDlg">
@@ -395,6 +398,7 @@
           </center>
         </div>
       </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeRenameElement();"></button>
     </div>
 
     <div class="modal" id="elementInfoDlg">
@@ -408,6 +412,7 @@
           </center>
         </div>
       </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeElementInfo();"></button>
     </div>
 
     <div class="modal" id="signInDlg">
@@ -431,11 +436,12 @@
           </center>
         </div>
       </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeSignInDlg();"></button>
     </div>
 
     <div class="modal" id="openProjDBDlg">
       <div class="modal-background"></div>
-      <div class="modal-content" style="width:350px;height:250px;">
+      <div class="modal-content" style="width:500px;height:600px;">
         <div class="card" id="openProjDBDlgCard" style="padding:16px;">
           <center>
             <span class="title is-4">Projects</span>
@@ -444,6 +450,7 @@
           </center>
         </div>
       </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeOpenProjDlg();"></button>
     </div>
 
     <div class="modal" id="deleteProjDlg">
@@ -458,6 +465,7 @@
           </center>
         </div>
       </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeDeleteProj();"></button>
     </div>
 
     <input id="openFileInput" type="file" accept=".zip">

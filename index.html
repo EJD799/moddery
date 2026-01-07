@@ -165,36 +165,44 @@
       </div>
     </div>
 
-    <div id="editProjDlg" title="Edit Project">
-      <center>
-        <label for="editProjNameBox">Project Name</label>
-        <input type="text" name="editProjNameBox" id="editProjNameBox" placeholder="Project Name">
-        <br><br>
-        <label for="editProjNamespaceBox">Namespace ID</label>
-        <input type="text" name="editProjNamespaceBox" id="editProjNamespaceBox" placeholder="Namespace ID">
-        <br><br>
-        <label for="editProjVersionBox1">Addon Version</label>
-        <input type="number" name="editProjVersionBox1" id="editProjVersionBox1" class="versionBox" placeholder="1" value="1">.
-        <input type="number" name="editProjVersionBox2" id="editProjVersionBox2" class="versionBox" placeholder="0" value="0">.
-        <input type="number" name="editProjVersionBox3" id="editProjVersionBox3" class="versionBox" placeholder="0" value="0">
-        <br><br>
-        <label for="editProjMCVersionBox">Target Minecraft Version</label>
-        <select id="editProjMCVersionBox">
-          <option>1.21.90</option>
-        </select>
-        <br><br>
-        <label for="packIconBtn">Pack Icon: <span id="packIconText">No icon selected</span></label>
-        <button name="packIconBtn" id="packIconBtn" onclick="openSelectPackIconDlg()">Select Icon</button>
-        <br><br>
-        <label for="scriptEntryBtn">Pack Icon: <span id="scriptEntryText">No script entry point selected</span></label>
-        <button name="scriptEntryBtn" id="scriptEntryBtn" onclick="openSelectScriptEntryDlg()">Select Script Entry Point</button>
-        <br><br>
-        <label for="editProjDescriptionBox">Description</label>
-        <textarea name="editProjDescriptionBox" id="editProjDescriptionBox"></textarea>
-        <br><br>
-        <button id="editProjCancelBtn" onclick="closeEditProjDlg()">Cancel</button>
-        <button id="editProjSaveBtn" onclick="saveProjectInfo()">Save</button>
-      </center>
+    <div class="modal" id="editProjDlg">
+      <div class="modal-background"></div>
+      <div class="modal-content" style="width:400px;height:600px;">
+        <div class="card" id="editProjDlgCard" style="padding:16px;">
+          <center>
+            <h4 class="title is-4">Edit Project</h4>
+            <label for="editProjNameBox">Project Name</label>
+            <input class="input" type="text" name="editProjNameBox" id="editProjNameBox" placeholder="Project Name">
+            <br><br>
+            <label for="editProjNamespaceBox">Namespace ID</label>
+            <input class="input" type="text" name="editProjNamespaceBox" id="editProjNamespaceBox" placeholder="Namespace ID">
+            <br><br>
+            <label for="editProjVersionBox1">Addon Version</label>
+            <input class="input" type="number" name="editProjVersionBox1" id="editProjVersionBox1" class="versionBox" placeholder="1" value="1">.
+            <input class="input" type="number" name="editProjVersionBox2" id="editProjVersionBox2" class="versionBox" placeholder="0" value="0">.
+            <input class="input" type="number" name="editProjVersionBox3" id="editProjVersionBox3" class="versionBox" placeholder="0" value="0">
+            <br><br>
+            <label for="editProjMCVersionBox">Target Minecraft Version</label>
+            <div class="select">
+              <select id="editProjMCVersionBox">
+                <option>1.21.90</option>
+              </select>
+            </div>
+            <br><br>
+            <label for="packIconBtn">Pack Icon: <span id="packIconText">No icon selected</span></label>
+            <button class="button" name="packIconBtn" id="packIconBtn" onclick="openSelectPackIconDlg()">Select Icon</button>
+            <br><br>
+            <label for="scriptEntryBtn">Pack Icon: <span id="scriptEntryText">No script entry point selected</span></label>
+            <button class="button" name="scriptEntryBtn" id="scriptEntryBtn" onclick="openSelectScriptEntryDlg()">Select Script Entry Point</button>
+            <br><br>
+            <label for="editProjDescriptionBox">Description</label>
+            <textarea class="textarea" name="editProjDescriptionBox" id="editProjDescriptionBox"></textarea>
+            <br><br>
+            <button class="button" id="editProjCancelBtn" onclick="closeEditProjDlg()">Cancel</button>
+            <button class="button is-primary" id="editProjSaveBtn" onclick="saveProjectInfo()">Save</button>
+          </center>
+        </div>
+      </div>
     </div>
 
     <div id="selectPackIconDlg" title="Select Pack Icon">

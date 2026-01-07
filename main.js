@@ -1,4 +1,4 @@
-const appVersion = "1.1.65";
+const appVersion = "1.1.66";
 const buildDate = "1/7/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -123,16 +123,6 @@ window.addEventListener('resize', updateTabHeight);
 
 $("#toolbar").menu();
 $("#tabs").tabs();
-$("#editProjDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 600,
-  width: 500
-});
-$("#editProjDlg").dialog("close");
-$("#editProjCancelBtn").button();
-$("#editProjSaveBtn").button();
-$("#editProjMCVersionBox").selectmenu();
 $("#addElementDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
@@ -461,21 +451,17 @@ $("#selectScriptEntryCancelBtn").button();
 $("#selectScriptEntrySelectBtn").button();
 
 function openEditProjDlg() {
-  $("#editProjDlg").dialog("open");
+  editProjDlg.classList.add("is-active");
   $("#editProjNameBox").val(projManifest.name);
   $("#editProjNamespaceBox").val(projManifest.namespace);
   $("#editProjVersionBox1").val(Number(projManifest.addon_version[0]));
   $("#editProjVersionBox2").val(Number(projManifest.addon_version[1]));
   $("#editProjVersionBox3").val(Number(projManifest.addon_version[2]));
   $("#editProjDescriptionBox").val(projManifest.description);
-  /*$("#editProjMCVersionBox1").val(projManifest.mc_version[0]);
-  $("#editProjMCVersionBox2").val(projManifest.mc_version[1]);
-  $("#editProjMCVersionBox3").val(projManifest.mc_version[2]);*/
   if (Array.isArray(projManifest.mc_version)) {
     projManifest.mc_version = "1.21.90";
   }
   $("#editProjMCVersionBox").val(projManifest.mc_version);
-  $("#editProjMCVersionBox").selectmenu("refresh");
   if (projManifest.packIcon) {
       document.getElementById("packIconText").innerHTML = projManifest.packIcon;
   } else {
@@ -488,14 +474,13 @@ function openEditProjDlg() {
   }
 }
 function closeEditProjDlg() {
-  $("#editProjDlg").dialog("close");
+  editProjDlg.classList.remove("is-active");
 }
 function saveProjectInfo() {
   closeEditProjDlg();
   projManifest.name = $("#editProjNameBox").val();
   projManifest.namespace = $("#editProjNamespaceBox").val();
   projManifest.addon_version = [$("#editProjVersionBox1").val(), $("#editProjVersionBox2").val(), $("#editProjVersionBox3").val()];
-  //projManifest.mc_version = [$("#editProjMCVersionBox1").val(), $("#editProjMCVersionBox2").val(), $("#editProjMCVersionBox3").val()];
   projManifest.mc_version = $("#editProjMCVersionBox").val();
   projManifest.description = $("#editProjDescriptionBox").val();
   projManifest.packIcon = selectedPackIcon;

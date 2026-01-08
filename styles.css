@@ -199,23 +199,27 @@ input[type="number"] {
     display: flex;           /* horizontal layout: image + text */
     align-items: center;     /* vertically center image and text */
     padding: 10px;
-    background: #333333;
     border-radius: 10px;
     margin: 10px;
     width: 90%;
     height: auto;            /* let height expand if needed */
     text-align: left;
     cursor: pointer;
+    transition: var(--bulma-duration);
 }
 
 .textureMenuItem:hover {
-    background: #00498f;
+    background: var(--bulma-scheme-main-bis);
+}
+
+.textureMenuItem:active {
+    background: var(--bulma-scheme-main-ter);
 }
 
 /* Title text next to image, vertically centered */
 .textureMenuTitle {
     font-size: 16px;
-    color: #fff;
+    color: var(--bulma-text);
     margin-left: 10px;       /* space between image and text */
     display: flex;
     align-items: center;     /* vertical centering */

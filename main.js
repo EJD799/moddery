@@ -1,4 +1,4 @@
-const appVersion = "1.1.77";
+const appVersion = "1.1.78";
 const buildDate = "1/8/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -287,7 +287,7 @@ function openSelectPackIconDlg() {
     let itemTitle;
     let itemRadio;
     selectPackIconMenuItem = document.createElement("div");
-    selectPackIconMenuItem.setAttribute("class", "textureMenuItem");
+    selectPackIconMenuItem.setAttribute("class", "textureMenuItem card");
     itemRadio = document.createElement("input");
     itemRadio.setAttribute("type", "radio");
     itemRadio.setAttribute("name", "selectedPackIcon");
@@ -361,7 +361,7 @@ async function openSelectScriptEntryDlg() {
     let itemTitle;
     let itemRadio;
     selectScriptEntryMenuItem = document.createElement("div");
-    selectScriptEntryMenuItem.setAttribute("class", "textureMenuItem");
+    selectScriptEntryMenuItem.setAttribute("class", "textureMenuItem card");
     itemRadio = document.createElement("input");
     itemRadio.setAttribute("type", "radio");
     itemRadio.setAttribute("name", "selectedScriptEntry");

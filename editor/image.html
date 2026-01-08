@@ -103,31 +103,34 @@ input[type="range"] {
     --value: 0%;
 }
 
-
+#toolbar button {
+    text-align: center;
+    padding-right: 12px;
+}
 </style>
 </head>
 <body>
 
 <div id="toolbar">
     <div class="field has-addons">
-        <p class="control"><button class="button" id="toolMove"><i class="fas fa-arrows-alt"></i></button></p>
-        <p class="control"><button class="button is-link" id="toolPencil"><i class="fas fa-paintbrush"></i></button></p>
-        <p class="control"><button class="button" id="toolRect"><i class="fas fa-square"></i></button></p>
-        <p class="control"><button class="button" id="toolFill"><i class="fas fa-fill-drip"></i></button></p>
-        <p class="control"><button class="button" id="toolEraser"><i class="fas fa-eraser"></i></button></p>
-        <p class="control"><button class="button" id="toolEyedropper"><i class="fas fa-eye-dropper"></i></button></p>
-        <p class="control"><button class="button" id="toolHueBrush"><i class="fas fa-adjust"></i></button></p>
-        <p class="control"><button class="button" id="toolText"><i class="fas fa-font"></i></button></p>
+        <p class="control"><button title="Move" class="button" id="toolMove"><i class="fas fa-arrows-alt"></i></button></p>
+        <p class="control"><button title="Brush" class="button is-link" id="toolPencil"><i class="fas fa-paintbrush"></i></button></p>
+        <p class="control"><button title="Rectangle" class="button" id="toolRect"><i class="fas fa-square"></i></button></p>
+        <p class="control"><button title="Fill" class="button" id="toolFill"><i class="fas fa-fill-drip"></i></button></p>
+        <p class="control"><button title="Eraser" class="button" id="toolEraser"><i class="fas fa-eraser"></i></button></p>
+        <p class="control"><button title="Eyedropper" class="button" id="toolEyedropper"><i class="fas fa-eye-dropper"></i></button></p>
+        <p class="control"><button title="Hue Brush" class="button" id="toolHueBrush"><i class="fas fa-adjust"></i></button></p>
+        <p class="control"><button title="Text" class="button" id="toolText"><i class="fas fa-font"></i></button></p>
     </div>
     <label>Color:<input type="color" id="colorPicker" value="#ff0000"></label>
     <label>Brush/Font Size:<input type="range" id="brushSize" min="1" max="16" value="1"></label>
     <div class="field has-addons">
-        <p class="control"><button class="button" id="undoBtn"><i class="fas fa-undo"></i></button></p>
-        <p class="control"><button class="button" id="redoBtn"><i class="fas fa-redo"></i></button></p>
+        <p class="control"><button title="Undo" class="button" id="undoBtn"><i class="fas fa-undo"></i></button></p>
+        <p class="control"><button title="Redo" class="button" id="redoBtn"><i class="fas fa-redo"></i></button></p>
     </div>
     <div class="field has-addons">
-        <p class="control"><button class="button" id="saveBtn"><i class="fas fa-download"></i></button></p>
-        <p class="control"><button class="button" id="loadBtn"><i class="fas fa-upload"></i></button></p>
+        <p class="control"><button title="Download" class="button" id="saveBtn"><i class="fas fa-download"></i></button></p>
+        <p class="control"><button title="Upload" class="button" id="loadBtn"><i class="fas fa-upload"></i></button></p>
     </div>
     <input type="file" id="fileInput" style="display:none">
 </div>

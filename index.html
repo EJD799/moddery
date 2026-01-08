@@ -207,13 +207,21 @@
       <button class="modal-close is-large" aria-label="close" onclick="closeEditProjDlg();"></button>
     </div>
 
-    <div id="selectPackIconDlg" title="Select Pack Icon">
-        <div class="textureMenu" id="selectPackIconMenu"></div>
-
-        <div class="textureDialogButtons">
-            <button id="selectPackIconCancelBtn" onclick="closeSelectPackIconDlg()">Cancel</button>
-            <button id="selectPackIconSelectBtn" onclick="selectPackIcon()">Select</button>
+    <div class="modal" id="selectPackIconDlg">
+      <div class="modal-background"></div>
+      <div class="modal-content" style="width:300px;height:500px;">
+        <div class="card" id="selectPackIconDlgCard" style="padding:16px;">
+          <center>
+            <h4 class="title is-4">Edit Project</h4>
+            <div class="textureMenu" id="selectPackIconMenu"></div>
+            <div class="textureDialogButtons">
+                <button class="button" id="selectPackIconCancelBtn" onclick="closeSelectPackIconDlg()">Cancel</button>
+                <button class="button is-primary" id="selectPackIconSelectBtn" onclick="selectPackIcon()">Select</button>
+            </div>
+          </center>
         </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeSelectPackIconDlg();"></button>
     </div>
 
     <div id="selectScriptEntryDlg" title="Select Script Entry Point">
@@ -284,8 +292,8 @@
               <input type="file" id="addAssetUploadInput" style="display:none" accept=".png, .wav, .json, .mcstructure">
             </div>
             <div id="addAssetBlankDiv">
-              W <input class="input" id="addAssetBlankBoxW" type="number" class="smallInput">
-              H <input class="input" id="addAssetBlankBoxH" type="number" class="smallInput">
+              W <input class="input smallInput" id="addAssetBlankBoxW" type="number">
+              H <input class="input smallInput" id="addAssetBlankBoxH" type="number">
             </div>
             <br><br>
             <label for="addAssetNameBox">Asset Name</label>

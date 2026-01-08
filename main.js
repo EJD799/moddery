@@ -1,4 +1,4 @@
-const appVersion = "1.1.76";
+const appVersion = "1.1.77";
 const buildDate = "1/8/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -275,16 +275,8 @@ function closeNewProjDlg() {
   newProjDlg.classList.remove("is-active");
 }
 
-$("#selectPackIconDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 500,
-  width: 500
-});
-$("#selectPackIconDlg").dialog("close");
-
 function openSelectPackIconDlg() {
-  $("#selectPackIconDlg").dialog("open");
+  selectPackIconDlg.classList.add("is-active");
   textures = getTextureList();
   let selectPackIconMenu = document.getElementById("selectPackIconMenu");
   selectPackIconMenu.innerHTML = "";
@@ -330,10 +322,10 @@ function openSelectPackIconDlg() {
 let selectedPackIcon = "";
 
 function closeSelectPackIconDlg() {
-  $("#selectPackIconDlg").dialog("close");
+  selectPackIconDlg.classList.remove("is-active");
 }
 function selectPackIcon() {
-  $("#selectPackIconDlg").dialog("close");
+  closeSelectPackIconDlg();
   const selected = document.querySelector('input[name="selectedPackIcon"]:checked');
   if (selected.value) {
     const packIconNameText = document.getElementById("packIconText");
@@ -346,9 +338,6 @@ function selectPackIcon() {
     }
   }
 }
-
-$("#selectPackIconCancelBtn").button();
-$("#selectPackIconSelectBtn").button();
 
 // Select Script Entry Point Dialog
 

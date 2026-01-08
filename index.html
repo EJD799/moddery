@@ -225,32 +225,43 @@
         </div>
     </div>
 
-    <div id="addElementDlg" title="Add Element">
-      <center>
-        <label for="addElementNameBox">Element Name</label>
-        <input type="text" name="addElementNameBox" id="addElementNameBox" placeholder="Element Name">
-        <br><br>
-        <label for="addElementIDBox">Element Identifier</label>
-        <input type="text" name="addElementIDBox" id="addElementIDBox" placeholder="Element ID">
-        <br><br>
-        <label for="addElementType">Element Type</label>
-        <select name="addElementType" id="addElementType">
-          <option>Block</option>
-          <option>Item</option>
-          <option>Entity</option>
-          <option>Recipe</option>
-          <option>Function</option>
-          <option>Script</option>
-          <option>Loot Table</option>
-          <option>Trade Table</option>
-          <option disabled>Command</option>
-          <option disabled>Biome</option>
-          <option>Structure</option>
-        </select>
-        <br><br>
-        <button id="addElementCancelBtn" onclick="closeAddElementDlg()">Cancel</button>
-        <button id="addElementAddBtn" onclick="addElement()">Add</button>
-      </center>
+    <div class="modal" id="addElementDlg">
+      <div class="modal-background"></div>
+      <div class="modal-content" style="width:400px;height:500px;">
+        <div class="card" id="addElementDlgCard" style="padding:16px;">
+          <center>
+            <h4 class="title is-4">Add Element</h4>
+            <label for="addElementNameBox">Element Name</label>
+            <input class="input" type="text" name="addElementNameBox" id="addElementNameBox" placeholder="Element Name">
+            <br><br>
+            <label for="addElementIDBox">Element Identifier</label>
+            <input class="input" type="text" name="addElementIDBox" id="addElementIDBox" placeholder="Element ID">
+            <br><br>
+            <label for="addElementType">Element Type</label>
+            <div class="select">
+              <select name="addElementType" id="addElementType">
+                <option selected>Block</option>
+                <option>Item</option>
+                <option>Entity</option>
+                <option>Recipe</option>
+                <option>Function</option>
+                <option>Script</option>
+                <option>Loot Table</option>
+                <option>Trade Table</option>
+                <option disabled>Command</option>
+                <option disabled>Biome</option>
+                <option>Structure</option>
+                <option disabled>Advancement</option>
+                <option disabled>Dialog</option>
+              </select>
+            </div>
+            <br><br>
+            <button class="button" id="addElementCancelBtn" onclick="closeAddElementDlg()">Cancel</button>
+            <button class="button is-primary" id="addElementAddBtn" onclick="addElement()">Add</button>
+          </center>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeAddElementDlg();"></button>
     </div>
 
     <div id="addAssetDlg" title="Add Asset">

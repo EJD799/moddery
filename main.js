@@ -1,4 +1,4 @@
-const appVersion = "1.1.73";
+const appVersion = "1.1.74";
 const buildDate = "1/7/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -123,16 +123,6 @@ window.addEventListener('resize', updateTabHeight);
 
 $("#toolbar").menu();
 $("#tabs").tabs();
-$("#addElementDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 400,
-  width: 500
-});
-$("#addElementDlg").dialog("close");
-$("#addElementType").selectmenu();
-$("#addElementCancelBtn").button();
-$("#addElementAddBtn").button();
 $("#addAssetDlg").dialog({
   position: { my: "center", at: "center", of: window },
   resizable: false,
@@ -835,10 +825,10 @@ function openProj(file) {
 
 
 function openAddElementDlg() {
-  $("#addElementDlg").dialog("open");
+  addElementDlg.classList.add("is-active");
 }
 function closeAddElementDlg() {
-  $("#addElementDlg").dialog("close");
+  addElementDlg.classList.remove("is-active");
 }
 function openAddAssetDlg() {
   $("#addAssetDlg").dialog("open");

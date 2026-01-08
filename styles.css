@@ -729,19 +729,19 @@ input:disabled::placeholder {
 }
 
 .ui-tabs-tab:not(.ui-tabs-active) .tabCloseIcon:hover {
-    color: var(--app-tab-bar-background1);
+    background: var(--app-tab-bar-background1);
 }
 
 .ui-tabs-active .tabCloseIcon:hover {
-    color: var(--app-selected-tab-background1);
+    background: var(--app-selected-tab-background1);
 }
 
 .ui-tabs-tab:not(.ui-tabs-active) .tabCloseIcon:active {
-    color: var(--app-tab-bar-background2);
+    background: var(--app-tab-bar-background2);
 }
 
 .ui-tabs-active .tabCloseIcon:active {
-    color: var(--app-selected-tab-background2);
+    background: var(--app-selected-tab-background2);
 }
 
 #tabs-1, #tabs-2, .elementTabArea {

@@ -1,4 +1,4 @@
-const appVersion = "1.1.79";
+const appVersion = "1.1.80";
 const buildDate = "1/8/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -339,18 +339,8 @@ function selectPackIcon() {
   }
 }
 
-// Select Script Entry Point Dialog
-
-$("#selectScriptEntryDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 500,
-  width: 500
-});
-$("#selectScriptEntryDlg").dialog("close");
-
 async function openSelectScriptEntryDlg() {
-  $("#selectScriptEntryDlg").dialog("open");
+  selectScriptEntryDlg.classList.add("is-active");
   scripts = await getScriptList();
   let selectScriptEntryMenu = document.getElementById("selectScriptEntryMenu");
   selectScriptEntryMenu.innerHTML = "";
@@ -385,10 +375,10 @@ async function openSelectScriptEntryDlg() {
 let selectedScriptEntry = "";
 
 function closeSelectScriptEntryDlg() {
-  $("#selectScriptEntryDlg").dialog("close");
+  selectScriptEntryDlg.classList.remove("is-active");
 }
 function selectScriptEntry() {
-  $("#selectScriptEntryDlg").dialog("close");
+  closeSelectScriptEntryDlg();
   const selected = document.querySelector('input[name="selectedScriptEntry"]:checked');
   if (selected.value) {
     const scriptEntryNameText = document.getElementById("scriptEntryText");
@@ -401,9 +391,6 @@ function selectScriptEntry() {
     }
   }
 }
-
-$("#selectScriptEntryCancelBtn").button();
-$("#selectScriptEntrySelectBtn").button();
 
 function openEditProjDlg() {
   editProjDlg.classList.add("is-active");

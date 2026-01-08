@@ -212,7 +212,7 @@
       <div class="modal-content" style="width:400px;height:550px;">
         <div class="card" id="selectPackIconDlgCard" style="padding:16px;">
           <center>
-            <h4 class="title is-4">Edit Project</h4>
+            <h4 class="title is-4">Select Pack Icon</h4>
             <div class="textureMenu" id="selectPackIconMenu"></div>
             <div class="textureDialogButtons">
                 <button class="button" id="selectPackIconCancelBtn" onclick="closeSelectPackIconDlg()">Cancel</button>
@@ -224,13 +224,21 @@
       <button class="modal-close is-large" aria-label="close" onclick="closeSelectPackIconDlg();"></button>
     </div>
 
-    <div id="selectScriptEntryDlg" title="Select Script Entry Point">
-        <div class="textureMenu" id="selectScriptEntryMenu"></div>
-
-        <div class="textureDialogButtons">
-            <button id="selectScriptEntryCancelBtn" onclick="closeSelectScriptEntryDlg()">Cancel</button>
-            <button id="selectScriptEntrySelectBtn" onclick="selectScriptEntry()">Select</button>
+    <div class="modal" id="selectScriptEntryDlg">
+      <div class="modal-background"></div>
+      <div class="modal-content" style="width:400px;height:550px;">
+        <div class="card" id="selectScriptEntryDlgCard" style="padding:16px;">
+          <center>
+            <h4 class="title is-4">Select Script Entry Point</h4>
+            <div class="textureMenu" id="selectScriptEntryMenu"></div>
+            <div class="textureDialogButtons">
+                <button class="button" id="selectScriptEntryCancelBtn" onclick="closeSelectScriptEntryDlg()">Cancel</button>
+                <button class="button is-primary" id="selectScriptEntrySelectBtn" onclick="selectScriptEntry()">Select</button>
+            </div>
+          </center>
         </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeSelectScriptEntryDlg();"></button>
     </div>
 
     <div class="modal" id="addElementDlg">

@@ -1,4 +1,4 @@
-const appVersion = "1.1.71";
+const appVersion = "1.1.72";
 const buildDate = "1/7/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -2877,71 +2877,6 @@ function decodeText(text) {
   return text.replaceAll("_space_", " ").replaceAll("_dot_", ".").replaceAll("_op_", "(").replaceAll("_cp_", ")");
 }
 
-function createElementDropdown(elementID, type) {
-  let menu = document.createElement("ul");
-  menu.setAttribute("class", "sublist");
-  let menuItem;
-  if (type == "asset") {
-    menu.setAttribute("id", elementID + "_assetMenu");
-    menuItem = document.createElement("li");
-    menuItem.innerHTML = `<div><i class="fas fa-circle-info"></i> Info</div>`;
-    menuItem.setAttribute("onclick", `openElementInfo('${elementID}', 'asset')`);
-    menu.appendChild(menuItem);
-    menuItem = document.createElement("li");
-    menuItem.innerHTML = `<div><i class="fas fa-pencil"></i> Rename</div>`;
-    menuItem.setAttribute("onclick", `openRenameElement('${elementID}', 'asset')`);
-    menu.appendChild(menuItem);
-    menuItem = document.createElement("li");
-    menuItem.innerHTML = `<div class="deleteBtn"><i class="fas fa-trash"></i> Delete</div>`;
-    menuItem.setAttribute("onclick", `openDeleteElement('${elementID}', 'asset')`);
-    menu.appendChild(menuItem);
-    document.body.appendChild(menu);
-    $(`#${elementID}_assetMenu`).menu();
-    $(`#${elementID}_assetOptionBtn`).on("click", function () {
-      $(`#${elementID}_assetMenu`).show().position({
-        my: "left top",
-        at: "left bottom",
-        of: $(`#${elementID}_assetOptionBtn`)
-      });
-    });
-    $(`#${elementID}_assetMenu`).hide();
-    $(document).on('click', function (e) {
-      if (!$(e.target).closest($(`#${elementID}_assetMenu`)).length && !$(e.target).is($(`#${elementID}_assetOptionBtn`))) {
-          $(`#${elementID}_assetMenu`).hide();
-      }
-    });
-  } else {
-    menu.setAttribute("id", elementID + "_elementMenu");
-    menuItem = document.createElement("li");
-    menuItem.innerHTML = `<div><i class="fas fa-circle-info"></i> Info</div>`;
-    menuItem.setAttribute("onclick", `openElementInfo('${elementID}', 'element')`);
-    menu.appendChild(menuItem);
-    menuItem = document.createElement("li");
-    menuItem.innerHTML = `<div><i class="fas fa-pencil"></i> Rename</div>`;
-    menuItem.setAttribute("onclick", `openRenameElement('${elementID}', 'element')`);
-    menu.appendChild(menuItem);
-    menuItem = document.createElement("li");
-    menuItem.innerHTML = `<div class="deleteBtn"><i class="fas fa-trash"></i> Delete</div>`;
-    menuItem.setAttribute("onclick", `openDeleteElement('${elementID}', 'element')`);
-    menu.appendChild(menuItem);
-    document.body.appendChild(menu);
-    $(`#${elementID}_elementMenu`).menu();
-    $(`#${elementID}_optionBtn`).on("click", function () {
-      $(`#${elementID}_elementMenu`).show().position({
-        my: "left top",
-        at: "left bottom",
-        of: $(`#${elementID}_optionBtn`)
-      });
-    });
-    $(`#${elementID}_elementMenu`).hide();
-    $(document).on('click', function (e) {
-      if (!$(e.target).closest($(`#${elementID}_elementMenu`)).length && !$(e.target).is($(`#${elementID}_optionBtn`))) {
-          $(`#${elementID}_elementMenu`).hide();
-      }
-    });
-  }
-}
-
 function removeElementDropdown(elementID, type) {
   if (type == "element") {
     $(`#${elementID}_elementMenu`).remove();
@@ -3136,6 +3071,7 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
       `;
       if (fileType == "png" || fileType == "wav") {
         center.appendChild(editBtn);
+        center.appendChild(document.createTextNode(" "));
       }
       center.appendChild(optionsBtn);
       assetBox.appendChild(center);
@@ -3621,6 +3557,7 @@ async function renameElement() {
       `;
       if (fileType == "png" || fileType == "wav") {
         center.appendChild(editBtn);
+        center.appendChild(document.createTextNode(" "));
       }
       center.appendChild(optionsBtn);
       assetBox.appendChild(center);

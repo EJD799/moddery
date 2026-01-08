@@ -11,10 +11,12 @@ body {
 html[data-theme=dark] {
     --app-white-btn-background: var(--bulma-scheme-main);
     --app-white-btn-color: var(--bulma-white-l);
+    --app-tab-bar-background: #222224;
 }
 html[data-theme=light] {
     --app-white-btn-background: var(--bulma-white-l);
     --app-white-btn-color: var(--bulma-white-invert-l);
+    --app-tab-bar-background: #e3e3e8;
 }
 
 #toolbar {
@@ -644,6 +646,12 @@ input:disabled::placeholder {
   padding: 0;
   border: 0;
   border-radius: 0;
+}
+
+#tabBar {
+    border: 0;
+    border-radius: 0;
+    background: var(--app-tab-bar-background) !important;
 }
 
 #tabs-1, #tabs-2, .elementTabArea {

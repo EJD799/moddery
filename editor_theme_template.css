@@ -10,4 +10,6 @@ html[data-theme=themeName] {
     --bulma-info: #000000;
     --app-white-btn-background: #000000;
     --app-white-btn-color: #000000;
+    --app-tab-bar-background: #000000;
+    
 }

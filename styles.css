@@ -3,8 +3,8 @@
     --app-welcome-background: var(--bulma-background);
     --app-main-tabs-background: var(--bulma-background);
     --app-selected-tab-color: var(--bulma-link);
+    --app-selected-tab-border: var(--bulma-link);
     --app-deselected-tab-color: var(--bulma-text);
-    --app-deselected-tab-border: #888888;
 }
 body {
     background: #111111;
@@ -17,6 +17,7 @@ html[data-theme=dark] {
     --app-tab-bar-background: #3b3b43;
     --app-tab-bar-background1: #42424b;
     --app-tab-bar-background2: #52525e;
+    --app-deselected-tab-border: #545454;
 }
 html[data-theme=light] {
     --app-white-btn-background: var(--bulma-white-l);
@@ -24,6 +25,7 @@ html[data-theme=light] {
     --app-tab-bar-background: #e3e3e8;
     --app-tab-bar-background1: #d2d2db;
     --app-tab-bar-background2: #c6c6cd;
+    --app-deselected-tab-border: #c5c5c5;
 }
 
 #toolbar {
@@ -678,7 +680,7 @@ input:disabled::placeholder {
 .ui-tabs-active {
     background: var(--app-main-tabs-background) !important;
     border-bottom: 0 !important;
-    border-color: var(--app-selected-tab-color) !important;
+    border-color: var(--app-selected-tab-border) !important;
 }
 
 .ui-tabs-active .ui-tabs-anchor {
@@ -688,7 +690,7 @@ input:disabled::placeholder {
 .ui-tabs-tab:not(.ui-tabs-active) {
     background: var(--app-tab-bar-background) !important;
     border-bottom: 0 !important;
-    border-color: var(--app-deselected-tab-color) !important;
+    border-color: var(--app-deselected-tab-border) !important;
 }
 
 .ui-tabs-tab:not(.ui-tabs-active):hover {

@@ -660,7 +660,8 @@ input:disabled::placeholder {
 
 .tabBarBtn {
     background: var(--app-tab-bar-background) !important;
-    height: 40px;
+    height: 40px !important;
+    color: var(--bulma-text) !important;
 }
 
 .tabBarBtn:hover {

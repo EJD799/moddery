@@ -1,5 +1,5 @@
-const appVersion = "1.1.75";
-const buildDate = "1/7/2026";
+const appVersion = "1.1.76";
+const buildDate = "1/8/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -123,20 +123,9 @@ window.addEventListener('resize', updateTabHeight);
 
 $("#toolbar").menu();
 $("#tabs").tabs();
-$("#addAssetDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 400,
-  width: 500
-});
-$("#addAssetDlg").dialog("close");
-$("#addAssetUploadBtn").button();
-$("#addAssetCancelBtn").button();
-$("#addAssetAddBtn").button();
 $("#addAssetBlankDiv").hide();
-$("#addAssetModeMenu").selectmenu();
-$("#addAssetModeMenu").on("selectmenuchange", function (event, ui) {
-  addAssetMode = ui.item.value;
+addAssetModeMenu.addEventListener("change", function (event) {
+  addAssetMode = addAssetModeMenu.value;
   if (addAssetMode == "upload") {
     $("#addAssetUploadDiv").show();
     $("#addAssetBlankDiv").hide();
@@ -832,10 +821,10 @@ function closeAddElementDlg() {
   addElementDlg.classList.remove("is-active");
 }
 function openAddAssetDlg() {
-  $("#addAssetDlg").dialog("open");
+  addAssetDlg.classList.add("is-active");
 }
 function closeAddAssetDlg() {
-  $("#addAssetDlg").dialog("close");
+  addAssetDlg.classList.remove("is-active");
 }
 
 function waitForIframeLoad(iframe) {
@@ -3273,10 +3262,6 @@ async function saveProjectAs() {
     await saveProject();
   }
 }
-
-$("#editProjBtn").button();
-$("#addElementBtn").button();
-$("#addAssetBtn").button();
 
 function getTabContent(role, elementID) {
   if (role == "Function") {

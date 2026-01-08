@@ -97,9 +97,9 @@
 
     <div id="tabs">
       <ul id="tabBar">
-        <li><button onclick="openEditProjDlg()" id="editProjBtn"><i class="fas fa-newspaper"></i></button></li>
-        <li><button onclick="openAddElementDlg()" id="addElementBtn">+ <i class="fas fa-cubes"></i></button></li>
-        <li><button onclick="openAddAssetDlg()" id="addAssetBtn">+ <i class="fas fa-image"></i></button></li>
+        <li><button class="button is-light" onclick="openEditProjDlg()" id="editProjBtn"><i class="fas fa-newspaper"></i></button></li>
+        <li><button class="button is-light" onclick="openAddElementDlg()" id="addElementBtn">+ <i class="fas fa-cubes"></i></button></li>
+        <li><button class="button is-light" onclick="openAddAssetDlg()" id="addAssetBtn">+ <i class="fas fa-image"></i></button></li>
         <li><a href="#tabs-1"><i class="fas fa-cubes"></i> Elements</a></li>
         <li><a href="#tabs-2"><i class="fas fa-image"></i> Assets</a></li>
       </ul>
@@ -264,30 +264,39 @@
       <button class="modal-close is-large" aria-label="close" onclick="closeAddElementDlg();"></button>
     </div>
 
-    <div id="addAssetDlg" title="Add Asset">
-      <center>
-        <span>Upload an asset to add it to your project. Accepts PNG textures, WAV audio, JSON geometry files, and MCSTRUCTURE files.</span>
-        <br><br>
-        <select id="addAssetModeMenu">
-          <option value="upload">Upload</option>
-          <option value="blank">Blank Image</option>
-        </select>
-        <br><br>
-        <div id="addAssetUploadDiv">
-          <button onclick="document.getElementById('addAssetUploadInput').click()" id="addAssetUploadBtn">Upload...</button>
-          <input type="file" id="addAssetUploadInput" style="display:none" accept=".png, .wav, .json, .mcstructure">
+    <div class="modal" id="addAssetDlg">
+      <div class="modal-background"></div>
+      <div class="modal-content" style="width:400px;height:600px;">
+        <div class="card" id="addAssetDlgCard" style="padding:16px;">
+          <center>
+            <h4 class="title is-4">Add Asset</h4>
+            <span>Upload an asset to add it to your project, or create a blank texture to edit. Accepts PNG textures, WAV audio, JSON geometry files, and MCSTRUCTURE files.</span>
+            <br><br>
+            <div class="select">
+              <select id="addAssetModeMenu">
+                <option value="upload">Upload</option>
+                <option value="blank">Blank Image</option>
+              </select>
+            </div>
+            <br><br>
+            <div id="addAssetUploadDiv">
+              <button class="button" onclick="document.getElementById('addAssetUploadInput').click()" id="addAssetUploadBtn">Upload...</button>
+              <input type="file" id="addAssetUploadInput" style="display:none" accept=".png, .wav, .json, .mcstructure">
+            </div>
+            <div id="addAssetBlankDiv">
+              W <input class="input" id="addAssetBlankBoxW" type="number" class="smallInput">
+              H <input class="input" id="addAssetBlankBoxH" type="number" class="smallInput">
+            </div>
+            <br><br>
+            <label for="addAssetNameBox">Asset Name</label>
+            <input class="input" type="text" id="addAssetNameBox" name="addAssetNameBox" placeholder="Asset Name">
+            <br><br>
+            <button class="button" id="addAssetCancelBtn" onclick="closeAddAssetDlg()">Cancel</button>
+            <button class="button is-primary" id="addAssetAddBtn" onclick="addAsset()">Add</button>
+          </center>
         </div>
-        <div id="addAssetBlankDiv">
-          W <input id="addAssetBlankBoxW" type="number" class="smallInput">
-          H <input id="addAssetBlankBoxH" type="number" class="smallInput">
-        </div>
-        <br><br>
-        <label for="addAssetNameBox">Asset Name</label>
-        <input type="text" id="addAssetNameBox" name="addAssetNameBox" placeholder="Asset Name">
-        <br><br>
-        <button id="addAssetCancelBtn" onclick="closeAddAssetDlg()">Cancel</button>
-        <button id="addAssetAddBtn" onclick="addAsset()">Add</button>
-      </center>
+      </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeAddAssetDlg();"></button>
     </div>
 
     <div class="modal" id="exportDlg">

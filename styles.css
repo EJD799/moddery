@@ -12,11 +12,15 @@ html[data-theme=dark] {
     --app-white-btn-background: var(--bulma-scheme-main);
     --app-white-btn-color: var(--bulma-white-l);
     --app-tab-bar-background: #222224;
+    --app-tab-bar-background1: #3c3c40;
+    --app-tab-bar-background2: #5b5b62;
 }
 html[data-theme=light] {
     --app-white-btn-background: var(--bulma-white-l);
     --app-white-btn-color: var(--bulma-white-invert-l);
     --app-tab-bar-background: #e3e3e8;
+    --app-tab-bar-background1: #c9c9cd;
+    --app-tab-bar-background2: #a3a3a8;
 }
 
 #toolbar {
@@ -652,6 +656,19 @@ input:disabled::placeholder {
     border: 0;
     border-radius: 0;
     background: var(--app-tab-bar-background) !important;
+}
+
+#tabBarBtn {
+    background: var(--app-tab-bar-background) !important;
+    height: 40px;
+}
+
+#tabBarBtn:hover {
+    background: var(--app-tab-bar-background1) !important;
+}
+
+#tabBarBtn:active {
+    background: var(--app-tab-bar-background2) !important;
 }
 
 #tabs-1, #tabs-2, .elementTabArea {

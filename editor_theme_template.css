@@ -11,5 +11,6 @@ html[data-theme=themeName] {
     --app-white-btn-background: #000000;
     --app-white-btn-color: #000000;
     --app-tab-bar-background: #000000;
-    
+    --app-tab-bar-background1: #000000;
+    --app-tab-bar-background2: #000000;
 }

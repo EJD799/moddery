@@ -658,16 +658,16 @@ input:disabled::placeholder {
     background: var(--app-tab-bar-background) !important;
 }
 
-#tabBarBtn {
+.tabBarBtn {
     background: var(--app-tab-bar-background) !important;
     height: 40px;
 }
 
-#tabBarBtn:hover {
+.tabBarBtn:hover {
     background: var(--app-tab-bar-background1) !important;
 }
 
-#tabBarBtn:active {
+.tabBarBtn:active {
     background: var(--app-tab-bar-background2) !important;
 }
 

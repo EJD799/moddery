@@ -11,16 +11,16 @@ body {
 html[data-theme=dark] {
     --app-white-btn-background: var(--bulma-scheme-main);
     --app-white-btn-color: var(--bulma-white-l);
-    --app-tab-bar-background: #222224;
-    --app-tab-bar-background1: #3c3c40;
-    --app-tab-bar-background2: #5b5b62;
+    --app-tab-bar-background: #3b3b43;
+    --app-tab-bar-background1: #42424b;
+    --app-tab-bar-background2: #52525e;
 }
 html[data-theme=light] {
     --app-white-btn-background: var(--bulma-white-l);
     --app-white-btn-color: var(--bulma-white-invert-l);
     --app-tab-bar-background: #e3e3e8;
-    --app-tab-bar-background1: #c9c9cd;
-    --app-tab-bar-background2: #a3a3a8;
+    --app-tab-bar-background1: #d2d2db;
+    --app-tab-bar-background2: #c6c6cd;
 }
 
 #toolbar {

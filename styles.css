@@ -2,6 +2,8 @@
     --tab-height: 44px;
     --app-welcome-background: var(--bulma-background);
     --app-main-tabs-background: var(--bulma-background);
+    --app-selected-tab-color: var(--bulma-link);
+    --app-deselected-tab-color: var(--bulma-text);
 }
 body {
     background: #111111;
@@ -660,7 +662,7 @@ input:disabled::placeholder {
 
 .tabBarBtn {
     background: var(--app-tab-bar-background) !important;
-    height: 40px !important;
+    height: 39px !important;
     color: var(--bulma-text) !important;
 }
 
@@ -670,6 +672,30 @@ input:disabled::placeholder {
 
 .tabBarBtn:active {
     background: var(--app-tab-bar-background2) !important;
+}
+
+.ui-tabs-active {
+    background: var(--app-main-tabs-background) !important;
+    border-bottom: 0 !important;
+    border-color: var(--app-selected-tab-color) !important;
+}
+
+.ui-tabs-active .ui-tabs-anchor {
+    color: var(--app-selected-tab-color) !important;
+}
+
+.ui-tabs-tab:not(.ui-tabs-active) {
+    background: var(--app-tab-bar-background) !important;
+    border-bottom: 0 !important;
+    border-color: var(--app-deselected-tab-color) !important;
+}
+
+.ui-tabs-tab:not(.ui-tabs-active) .ui-tabs-anchor {
+    color: var(--app-deselected-tab-color) !important;
+}
+
+.ui-tabs-tab {
+    transition: var(--bulma-duration);
 }
 
 #tabs-1, #tabs-2, .elementTabArea {

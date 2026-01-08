@@ -1,4 +1,4 @@
-const appVersion = "1.1.74";
+const appVersion = "1.1.75";
 const buildDate = "1/7/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -813,6 +813,7 @@ function openProj(file) {
         setTimeout(function() {
           closeLoader();
           savingText.innerHTML = "<i class='fa-solid fa-circle-check'></i> Saved";
+          $("#addElementType").val("Block");
         }, 500);
       } else {
         alert("The uploaded file is not a valid Moddery project!");
@@ -3846,67 +3847,18 @@ window.addEventListener('beforeunload', (event) => {
   }
 });
 
-let boxToValidate = newProjNamespaceBox;
-boxToValidate.addEventListener("input", function (e) {
-  const value = boxToValidate.value;
+function attachValidation(input, validator, ignoreEmpty = true) {
+  input.addEventListener("input", () => {
+    if (validator(input.value) || (ignoreEmpty && input.value == "")) {
+      input.classList.remove("invalidTextBox");
+    } else {
+      input.classList.add("invalidTextBox");
+    }
+  });
+}
 
-  if (isValidElementID(value)) {
-    // Valid → remove the "invalid" class if it exists
-    boxToValidate.classList.remove("invalidTextBox");
-  } else {
-    // Invalid → add the "invalid" class
-    boxToValidate.classList.add("invalidTextBox");
-  }
-});
-
-boxToValidate = editProjNamespaceBox;
-boxToValidate.addEventListener("input", function (e) {
-  const value = boxToValidate.value;
-
-  if (isValidElementID(value)) {
-    // Valid → remove the "invalid" class if it exists
-    boxToValidate.classList.remove("invalidTextBox");
-  } else {
-    // Invalid → add the "invalid" class
-    boxToValidate.classList.add("invalidTextBox");
-  }
-});
-
-boxToValidate = addElementNameBox;
-boxToValidate.addEventListener("input", function (e) {
-  const value = boxToValidate.value;
-
-  if (isValidElementName(value)) {
-    // Valid → remove the "invalid" class if it exists
-    boxToValidate.classList.remove("invalidTextBox");
-  } else {
-    // Invalid → add the "invalid" class
-    boxToValidate.classList.add("invalidTextBox");
-  }
-});
-
-boxToValidate = addElementIDBox;
-boxToValidate.addEventListener("input", function (e) {
-  const value = boxToValidate.value;
-
-  if (isValidElementID(value)) {
-    // Valid → remove the "invalid" class if it exists
-    boxToValidate.classList.remove("invalidTextBox");
-  } else {
-    // Invalid → add the "invalid" class
-    boxToValidate.classList.add("invalidTextBox");
-  }
-});
-
-boxToValidate = addAssetNameBox;
-boxToValidate.addEventListener("input", function (e) {
-  const value = boxToValidate.value;
-
-  if (isValidAssetName(value)) {
-    // Valid → remove the "invalid" class if it exists
-    boxToValidate.classList.remove("invalidTextBox");
-  } else {
-    // Invalid → add the "invalid" class
-    boxToValidate.classList.add("invalidTextBox");
-  }
-});
+attachValidation(newProjNamespaceBox, isValidElementID);
+attachValidation(editProjNamespaceBox, isValidElementID);
+attachValidation(addElementNameBox, isValidElementName);
+attachValidation(addElementIDBox, isValidElementID);
+attachValidation(addAssetNameBox, isValidAssetName);

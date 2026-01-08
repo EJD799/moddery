@@ -641,6 +641,9 @@ input:disabled::placeholder {
 #tabs {
   height: calc(100vh - var(--menubar-height));
   overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
 }
 
 #tabs-1, #tabs-2, .elementTabArea {

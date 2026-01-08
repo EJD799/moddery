@@ -17,4 +17,6 @@ html[data-theme=themeName] {
     --app-selected-tab-border: #000000;
     --app-deselected-tab-color: #000000;
     --app-deselected-tab-border: #000000;
+    --app-selected-tab-background1: #000000;
+    --app-selected-tab-background2: #000000;
 }

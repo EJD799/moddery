@@ -1,4 +1,4 @@
-const appVersion = "1.1.89";
+const appVersion = "1.1.90";
 const buildDate = "1/8/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -9,7 +9,7 @@ var projZip;
 var projManifest;
 
 var tabCounter = 3;
-var tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>";
+var tabTemplate = `<li><a href='#{href}'>#{label}</a> <span class='ui-icon-close tabCloseIcon' role='presentation'><i class="fa-solid fa-x"></i></span></li>`;
 var tabs = $("#tabs");
 
 var elementCount = 0;

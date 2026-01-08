@@ -6,10 +6,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
 <link rel="stylesheet" href="https://ejd799.github.io/BulmaColoredInputs/main.css">
+<link rel="stylesheet" href="../styles.css">
 <style>
 html, body {
     margin: 0; padding: 0; height: 100%;
-    font-family: Verdana, sans-serif; background: #111; color: #fff;
+    font-family: Verdana, sans-serif; background: var(--app-main-tabs-background); color: var(--bulma-text);
     display: flex; flex-direction: column;
 }
 #toolbar {
@@ -108,13 +109,16 @@ input[type="range"] {
 <body>
 
 <div id="toolbar">
-    <button id="toolPencil" class="active"><i class="fas fa-paintbrush"></i>Brush</button>
-    <button id="toolRect"><i class="fas fa-square"></i>Rectangle</button>
-    <button id="toolFill"><i class="fas fa-fill-drip"></i>Fill</button>
-    <button id="toolEraser"><i class="fas fa-eraser"></i>Eraser</button>
-    <button id="toolEyedropper"><i class="fas fa-eye-dropper"></i>Eyedropper</button>
-    <button id="toolHueBrush"><i class="fas fa-adjust"></i>Hue Brush</button>
-    <button id="toolText"><i class="fas fa-font"></i>Text</button>
+    <div class="field has-addons">
+        <p class="control"><button class="button" id="toolMove"><i class="fas fa-arrows-alt"></i>Move</button></p>
+        <p class="control"><button class="button is-link" id="toolPencil"><i class="fas fa-paintbrush"></i>Brush</button></p>
+        <p class="control"><button class="button" id="toolRect"><i class="fas fa-square"></i>Rectangle</button></p>
+        <p class="control"><button class="button" id="toolFill"><i class="fas fa-fill-drip"></i>Fill</button></p>
+        <p class="control"><button class="button" id="toolEraser"><i class="fas fa-eraser"></i>Eraser</button></p>
+        <p class="control"><button class="button" id="toolEyedropper"><i class="fas fa-eye-dropper"></i>Eyedropper</button></p>
+        <p class="control"><button class="button" id="toolHueBrush"><i class="fas fa-adjust"></i>Hue Brush</button></p>
+        <p class="control"><button class="button" id="toolText"><i class="fas fa-font"></i>Text</button></p>
+    </div>
     <label>Color:<input type="color" id="colorPicker" value="#ff0000"></label>
     <label>Brush/Font Size:<input type="range" id="brushSize" min="1" max="16" value="1"></label>
     <button id="undoBtn"><i class="fas fa-undo"></i>Undo</button>
@@ -350,6 +354,7 @@ canvas.addEventListener('touchcancel',handleEnd,{passive:false});
 
 // Toolbar
 const toolButtons={
+    move:document.getElementById('toolMove'),
     pencil:document.getElementById('toolPencil'),
     rect:document.getElementById('toolRect'),
     fill:document.getElementById('toolFill'),
@@ -359,10 +364,6 @@ const toolButtons={
     text:document.getElementById('toolText'),
     move: null
 };
-const moveBtn=document.createElement('button');
-moveBtn.innerHTML='<i class="fas fa-arrows-alt"></i>Move';
-document.getElementById('toolbar').prepend(moveBtn);
-toolButtons.move=moveBtn;
 
 function selectTool(tool){
     currentTool=tool;

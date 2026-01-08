@@ -481,6 +481,8 @@ input:disabled::placeholder {
 
 #exportLog {
     font-family: "Courier New", "Lucida Console", monospace;
+    height: 250px;
+    overflow: auto;
 }
 
 .logTextInfo {

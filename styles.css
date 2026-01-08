@@ -484,13 +484,13 @@ input:disabled::placeholder {
 }
 
 .logTextInfo {
-    color: white;
+    color: var(--bulma-text);
 }
 .logTextWarn {
-    color: rgb(255, 255, 114);
+    color: var(--bulma-warning);
 }
 .logTextError {
-    color: #ff837d;
+    color: var(--bulma-danger);
 }
 
 [id$="-menu"][aria-labelledby$="-button"] {

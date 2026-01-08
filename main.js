@@ -1,4 +1,4 @@
-const appVersion = "1.1.69";
+const appVersion = "1.1.70";
 const buildDate = "1/7/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -155,17 +155,6 @@ $("#addAssetModeMenu").on("selectmenuchange", function (event, ui) {
     $("#addAssetBlankDiv").show();
   }
 });
-
-$("#exportDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 400,
-  width: 500
-});
-$("#exportDlg").dialog("close");
-$("#exportDlgModeBox").selectmenu();
-$("#exportDlgCancelBtn").button();
-$("#exportDlgExportBtn").button();
 
 let signInMode = "in";
 let signedIn = false;
@@ -2082,10 +2071,10 @@ function logExporter(text, type = "info") {
 
 
 function openExportDlg() {
-  $("#exportDlg").dialog("open");
+  exportDlg.classList.add("is-active");
 }
 function closeExportDlg() {
-  $("#exportDlg").dialog("close");
+  exportDlg.classList.remove("is-active");
 }
 async function exportProj() {
   openLoader();

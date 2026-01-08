@@ -279,22 +279,31 @@
       </center>
     </div>
 
-    <div id="exportDlg" title="Export Project">
-      <center>
-        <label for="exportDlgModeBox">Export Mode</label>
-        <select id="exportDlgModeBox">
-          <option value="1mcaddon">Addon (.mcaddon)</option>
-          <option value="1zip">Addon (.zip)</option>
-          <option value="2mcpack">Packs (.mcpack)</option>
-          <option value="2zip">Packs (.zip)</option>
-        </select>
-        <br><br>
-        <iframe id="exporterFrame"></iframe>
-        <div id="exportLog"></div>
-        <br><br>
-        <button onclick="closeExportDlg()" id="exportDlgCancelBtn">Cancel</button>
-        <button onclick="exportProj()" id="exportDlgExportBtn">Export</button>
-      </center>
+    <div class="modal" id="exportDlg">
+      <div class="modal-background"></div>
+      <div class="modal-content" style="width:300px;height:500px;">
+        <div class="card" id="exportDlgCard" style="padding:16px;">
+          <center>
+            <h4 class="title is-4">Export Project</h4>
+            <label for="exportDlgModeBox">Export Mode</label>
+            <div class="select">
+              <select id="exportDlgModeBox">
+                <option value="1mcaddon">Addon (.mcaddon)</option>
+                <option value="1zip">Addon (.zip)</option>
+                <option value="2mcpack">Packs (.mcpack)</option>
+                <option value="2zip">Packs (.zip)</option>
+              </select>
+            </div>
+            <br><br>
+            <iframe id="exporterFrame"></iframe>
+            <div id="exportLog"></div>
+            <br><br>
+            <button class="button" onclick="closeExportDlg()" id="exportDlgCancelBtn">Cancel</button>
+            <button class="button is-primary" onclick="exportProj()" id="exportDlgExportBtn">Export</button>
+          </center>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close" onclick="closeSignInDlg();"></button>
     </div>
 
     <div class="modal" id="optionsDlg">

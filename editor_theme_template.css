@@ -15,4 +15,5 @@ html[data-theme=themeName] {
     --app-tab-bar-background2: #000000;
     --app-selected-tab-color: #000000;
     --app-deselected-tab-color: #000000;
+    --app-deselected-tab-border: #000000;
 }

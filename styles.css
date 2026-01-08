@@ -4,6 +4,7 @@
     --app-main-tabs-background: var(--bulma-background);
     --app-selected-tab-color: var(--bulma-link);
     --app-deselected-tab-color: var(--bulma-text);
+    --app-deselected-tab-border: #888888;
 }
 body {
     background: #111111;
@@ -688,6 +689,14 @@ input:disabled::placeholder {
     background: var(--app-tab-bar-background) !important;
     border-bottom: 0 !important;
     border-color: var(--app-deselected-tab-color) !important;
+}
+
+.ui-tabs-tab:not(.ui-tabs-active):hover {
+    background: var(--app-tab-bar-background1) !important;
+}
+
+.ui-tabs-tab:not(.ui-tabs-active):active {
+    background: var(--app-tab-bar-background2) !important;
 }
 
 .ui-tabs-tab:not(.ui-tabs-active) .ui-tabs-anchor {

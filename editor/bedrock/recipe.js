@@ -76,7 +76,7 @@ function openItemPickerDialog() {
 
     filteredItems = filterItems("");
 
-    $("#itemPickerDialog").dialog("open");
+    itemPickerDialog.classList.add("is-active");
 
     updateLayout();
     renderVisibleItems();
@@ -187,7 +187,7 @@ $("#itemPickerSelectBtn").on("click", function () {
 });
 
 function closeItemPicker() {
-    $("#itemPickerDialog").dialog("close");
+    itemPickerDialog.classList.remove("is-active");
     // --- RESET SELECTION ---
     selectedItemId = null;                       // clear the selected ID
     $(".itemPickBtn").removeClass("selected");   // remove visual highlight
@@ -198,17 +198,6 @@ function closeItemPicker() {
     // Optional: clear search box
     $("#itemSearchBox").val("");
 }
-
-$("#itemPickerDialog").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 510,
-  width: 500
-});
-$("#itemPickerDialog").dialog("close");
-
-$("#itemPickerCancelBtn").button();
-$("#itemPickerSelectBtn").button();
 
 function copySlot(a, b) {
     currentSlot = b;

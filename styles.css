@@ -494,6 +494,9 @@ input:disabled::placeholder {
     color: #404040;
     opacity: 1;
 }
+.input:disabled {
+    border: var(--app-disabled-input-border);
+}
 
 #exporterFrame {
     position: absolute;

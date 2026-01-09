@@ -20,19 +20,13 @@
             }
             body {
                 color: var(--bulma-text);
-                font-family: Verdana, sans-serif;
                 background: var(--app-main-tabs-background);
                 padding-left: 18px;
+                padding-top: 18px;
             }
             .ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
                 z-index: 2000 !important; /* Use !important if necessary to override existing styles */
             }
-            .itemIconBtnImg {
-                -webkit-user-drag: none;
-                user-select: none;
-                pointer-events: none;
-            }
-            
         </style>
     </head>
     <body>
@@ -74,17 +68,26 @@
         <button class="button itemIconBtn" id="recipeBtn9" onclick="selectItem(9)"><img id="recipeBtnImg9" class="itemIconBtnImg"></button>
         <br>
 
-        <div id="itemPickerDialog" title="Select Item" style="display:none;">
-            <input id="itemSearchBox" type="text" placeholder="Search items..." style="width:100%; margin-bottom:8px;">
-            <div id="itemPickerViewport">
-                <div id="itemPickerScroller"></div>
+        <div class="modal" id="itemPickerDialog">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:500px;height:550px;">
+                <div class="card" style="padding:16px;">
+                    <center>
+                        <h4 class="title is-4">Select Item</h4>
+                    </center>
+                    <input class="input" id="itemSearchBox" type="text" placeholder="Search items..." style="width:100%; margin-bottom:8px;">
+                    <div id="itemPickerViewport">
+                        <div id="itemPickerScroller"></div>
+                    </div>
+                    <br>
+                    <center>
+                        <input type="number" class="input smallInput" id="itemDataBox" placeholder="Data">
+                        <button class="button" id="itemPickerCancelBtn" onclick="closeItemPicker()">Cancel</button>
+                        <button class="button is-primary" id="itemPickerSelectBtn" disabled>Select</button>
+                    </center>
+                </div>
             </div>
-            <br>
-            <center>
-                <input type="number" class="smallInput" id="itemDataBox" placeholder="Data">
-                <button id="itemPickerCancelBtn" onclick="closeItemPicker()">Cancel</button>
-                <button id="itemPickerSelectBtn" disabled>Select</button>
-            </center>
+            <button class="modal-close is-large" aria-label="close" onclick="closeItemPicker();"></button>
         </div>
 
         <script src="../../libs.js"></script>

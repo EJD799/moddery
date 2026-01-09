@@ -1,79 +1,93 @@
-<link rel="stylesheet" href="../../jquery-ui.min.css">
-<link rel="stylesheet" href="../../jquery-ui.theme.min.css">
-<link rel="stylesheet" href="../../styles.css">
-<script src="../../jquery-3.7.1.min.js"></script>
-<script src="../../jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
-<style>
-    input {
-        padding: 10px;
-    }
-    body {
-        color: white;
-        font-family: Verdana, sans-serif;
-        background: #111111;
-        padding-left: 18px;
-    }
-    .ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
-        z-index: 2000 !important; /* Use !important if necessary to override existing styles */
-    }
-    .itemIconBtnImg {
-        -webkit-user-drag: none;
-        user-select: none;
-        pointer-events: none;
-    }
-</style>
+<html>
+    <head>
+        <link rel="stylesheet" href="../../jquery-ui.min.css">
+        <link rel="stylesheet" href="../../jquery-ui.theme.min.css">
+        <link rel="stylesheet" href="../../styles.css">
+        <script src="../../jquery-3.7.1.min.js"></script>
+        <script src="../../jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
 
-<label for="elementIDBox">Element Name (Editor)</label>
-<input name="elementIDBox" id="elementIDBox" placeholder="Element ID" disabled>
-<br><br>
-<label for="recipeIDBox">Recipe ID</label>
-<input name="recipeIDBox" id="recipeIDBox" placeholder="Recipe ID">
-<br><br>
-<label for="recipeTypeMenu">Recipe Type</label>
-<select id="recipeTypeMenu" name="recipeTypeMenu">
-  <option value="crafting" selected>Crafting Table</option>
-  <option value="crafting_shapeless">Crafting Table (Shapeless)</option>
-  <option value="stonecutter">Stonecutter</option>
-  <option value="furnace">Furnace</option>
-  <option value="blast_furnace">Blast Furnace</option>
-  <option value="smoker">Smoker</option>
-  <option value="campfire">Campfire</option>
-  <option value="soul_campfire">Soul Campfire</option>
-  <option value="brewing">Brewing Stand</option>
-</select>
-<br><br>
-<button id="recipeBtn1" class="itemIconBtn" onclick="selectItem(1)"><img id="recipeBtnImg1" class="itemIconBtnImg"></button>
-<button id="recipeBtn2" class="itemIconBtn" onclick="selectItem(2)"><img id="recipeBtnImg2" class="itemIconBtnImg"></button>
-<button id="recipeBtn3" class="itemIconBtn" onclick="selectItem(3)"><img id="recipeBtnImg3" class="itemIconBtnImg"></button>
-<br>
-<button id="recipeBtn4" class="itemIconBtn" onclick="selectItem(4)"><img id="recipeBtnImg4" class="itemIconBtnImg"></button>
-<button id="recipeBtn5" class="itemIconBtn" onclick="selectItem(5)"><img id="recipeBtnImg5" class="itemIconBtnImg"></button>
-<button id="recipeBtn6" class="itemIconBtn" onclick="selectItem(6)"><img id="recipeBtnImg6" class="itemIconBtnImg"></button>
-<i class="fas fa-arrow-right largeIcon"></i>
-<button id="recipeBtn10" class="itemIconBtn" onclick="selectItem(10)"><img id="recipeBtnImg10" class="itemIconBtnImg"></button>
-<span> Quantity </span>
-<input id="outputQuantityBox" class="smallInput" type="number">
-<br>
-<button id="recipeBtn7" class="itemIconBtn" onclick="selectItem(7)"><img id="recipeBtnImg7" class="itemIconBtnImg"></button>
-<button id="recipeBtn8" class="itemIconBtn" onclick="selectItem(8)"><img id="recipeBtnImg8" class="itemIconBtnImg"></button>
-<button id="recipeBtn9" class="itemIconBtn" onclick="selectItem(9)"><img id="recipeBtnImg9" class="itemIconBtnImg"></button>
-<br>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+        <link rel="stylesheet" href="https://ejd799.github.io/BulmaColoredInputs/main.css">
+        <link rel="stylesheet" href="../../styles.css">
 
-<div id="itemPickerDialog" title="Select Item" style="display:none;">
-    <input id="itemSearchBox" type="text" placeholder="Search items..." style="width:100%; margin-bottom:8px;">
-    <div id="itemPickerViewport">
-        <div id="itemPickerScroller"></div>
-    </div>
-    <br>
-    <center>
-        <input type="number" class="smallInput" id="itemDataBox" placeholder="Data">
-        <button id="itemPickerCancelBtn" onclick="closeItemPicker()">Cancel</button>
-        <button id="itemPickerSelectBtn" disabled>Select</button>
-    </center>
-</div>
+        <style id="themeStyleElement"></style>
 
-<script src="../../libs.js"></script>
-<script src="recipe.js"></script>
-<script src="../../item_definitions.js"></script>
+        <style>
+            input {
+                padding: 10px;
+            }
+            body {
+                color: var(--bulma-text);
+                font-family: Verdana, sans-serif;
+                background: var(--app-main-tabs-background);
+                padding-left: 18px;
+            }
+            .ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
+                z-index: 2000 !important; /* Use !important if necessary to override existing styles */
+            }
+            .itemIconBtnImg {
+                -webkit-user-drag: none;
+                user-select: none;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body>
+        <label for="elementIDBox">Element Name (Editor)</label>
+        <input class="input" name="elementIDBox" id="elementIDBox" placeholder="Element ID" disabled>
+        <br><br>
+        <label for="recipeIDBox">Recipe ID</label>
+        <input class="input" name="recipeIDBox" id="recipeIDBox" placeholder="Recipe ID">
+        <br><br>
+        <label for="recipeTypeMenu">Recipe Type</label>
+        <div class="select">
+            <select id="recipeTypeMenu" name="recipeTypeMenu">
+            <option value="crafting" selected>Crafting Table</option>
+            <option value="crafting_shapeless">Crafting Table (Shapeless)</option>
+            <option value="stonecutter">Stonecutter</option>
+            <option value="furnace">Furnace</option>
+            <option value="blast_furnace">Blast Furnace</option>
+            <option value="smoker">Smoker</option>
+            <option value="campfire">Campfire</option>
+            <option value="soul_campfire">Soul Campfire</option>
+            <option value="brewing">Brewing Stand</option>
+            </select>
+        </div>
+        <br><br>
+        <button class="button" id="recipeBtn1" class="itemIconBtn" onclick="selectItem(1)"><img id="recipeBtnImg1" class="itemIconBtnImg"></button>
+        <button class="button" id="recipeBtn2" class="itemIconBtn" onclick="selectItem(2)"><img id="recipeBtnImg2" class="itemIconBtnImg"></button>
+        <button class="button" id="recipeBtn3" class="itemIconBtn" onclick="selectItem(3)"><img id="recipeBtnImg3" class="itemIconBtnImg"></button>
+        <br>
+        <button class="button" id="recipeBtn4" class="itemIconBtn" onclick="selectItem(4)"><img id="recipeBtnImg4" class="itemIconBtnImg"></button>
+        <button class="button" id="recipeBtn5" class="itemIconBtn" onclick="selectItem(5)"><img id="recipeBtnImg5" class="itemIconBtnImg"></button>
+        <button class="button" id="recipeBtn6" class="itemIconBtn" onclick="selectItem(6)"><img id="recipeBtnImg6" class="itemIconBtnImg"></button>
+        <i class="fas fa-arrow-right largeIcon"></i>
+        <button class="button" id="recipeBtn10" class="itemIconBtn" onclick="selectItem(10)"><img id="recipeBtnImg10" class="itemIconBtnImg"></button>
+        <span> Quantity </span>
+        <input class="input" id="outputQuantityBox" class="smallInput" type="number">
+        <br>
+        <button class="button" id="recipeBtn7" class="itemIconBtn" onclick="selectItem(7)"><img id="recipeBtnImg7" class="itemIconBtnImg"></button>
+        <button class="button" id="recipeBtn8" class="itemIconBtn" onclick="selectItem(8)"><img id="recipeBtnImg8" class="itemIconBtnImg"></button>
+        <button class="button" id="recipeBtn9" class="itemIconBtn" onclick="selectItem(9)"><img id="recipeBtnImg9" class="itemIconBtnImg"></button>
+        <br>
+
+        <div id="itemPickerDialog" title="Select Item" style="display:none;">
+            <input id="itemSearchBox" type="text" placeholder="Search items..." style="width:100%; margin-bottom:8px;">
+            <div id="itemPickerViewport">
+                <div id="itemPickerScroller"></div>
+            </div>
+            <br>
+            <center>
+                <input type="number" class="smallInput" id="itemDataBox" placeholder="Data">
+                <button id="itemPickerCancelBtn" onclick="closeItemPicker()">Cancel</button>
+                <button id="itemPickerSelectBtn" disabled>Select</button>
+            </center>
+        </div>
+
+        <script src="../../libs.js"></script>
+        <script src="recipe.js"></script>
+        <script src="../../item_definitions.js"></script>
+    </body>
+</html>

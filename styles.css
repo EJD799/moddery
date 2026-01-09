@@ -8,6 +8,7 @@
     --app-image-editor-toolbar-background: var(--bulma-background);
     --app-image-editor-background: var(--bulma-scheme-main);
     --app-blockly-background: var(--bulma-scheme-main);
+    --app-blockly-toolbox-background: var(--bulma-background);
 }
 body {
     background: #111111;
@@ -24,6 +25,7 @@ html[data-theme=dark] {
     --app-deselected-tab-border: #545454;
     --app-selected-tab-background1: #3b3b43;
     --app-selected-tab-background2: #42424b;
+    --app-blockly-toolbox-flyout-background: #3b3b4350;
 }
 html[data-theme=light] {
     --app-white-btn-background: var(--bulma-white-l);
@@ -35,6 +37,7 @@ html[data-theme=light] {
     --app-deselected-tab-border: #c5c5c5;
     --app-selected-tab-background1: #e3e3e8;
     --app-selected-tab-background2: #d2d2db;
+    --app-blockly-toolbox-flyout-background: #e3e3e850;
 }
 
 #toolbar {
@@ -807,5 +810,13 @@ progress {
 /* Blockly theme styling */
 
 .blocklyMainBackground {
-    background: var(--app-blockly-background);
+    fill: var(--app-blockly-background) !important;
+}
+
+.blocklyToolbox {
+    background: var(--app-blockly-toolbox-background) !important;
+}
+
+.blocklyToolboxFlyout {
+    background: var(--app-blockly-toolbox-flyout-background) !important;
 }

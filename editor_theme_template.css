@@ -23,4 +23,6 @@ html[data-theme=themeName] {
     --app-image-editor-toolbar-background: #000000;
     --app-image-editor-background: #000000;
     --app-blockly-background: #000000;
+    --app-blockly-toolbox-background: #000000;
+    --app-blockly-toolbox-flyout-background: #000000;
 }

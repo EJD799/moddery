@@ -1,4 +1,4 @@
-const appVersion = "1.1.105";
+const appVersion = "1.1.106";
 const buildDate = "1/9/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -25,7 +25,7 @@ var autosaveEnabled = true;
 var storageMode = "";
 var editorTheme = "system";
 let customThemes = {
-  
+
 };
 let currentProjectId = null;
 let projDeleteID;
@@ -529,7 +529,7 @@ if (getCookie("editorTheme")) {
     autoThemeChange();
   } else {
     document.documentElement.setAttribute("data-theme", editorTheme);
-    handleThemeChange();
+    handleFrameThemeChange();
   }
 } else {
   editorTheme = "system";
@@ -545,7 +545,7 @@ themeMenu.addEventListener("change", function(e) {
     autoThemeChange();
   } else {
     document.documentElement.setAttribute("data-theme", editorTheme);
-    handleThemeChange();
+    handleFrameThemeChange();
   }
 });
 
@@ -555,10 +555,10 @@ function autoThemeChange() {
   } else {
     document.documentElement.setAttribute("data-theme", "light");
   }
-  handleThemeChange();
+  handleFrameThemeChange();
 }
 
-function handleThemeChange() {
+function handleFrameThemeChange() {
   let themeName;
   let importTheme;
   if (editorTheme == "system") {

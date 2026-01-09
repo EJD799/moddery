@@ -22,4 +22,5 @@ html[data-theme=themeName] {
     --app-selected-tab-background2: #000000;
     --app-image-editor-toolbar-background: #000000;
     --app-image-editor-background: #000000;
+    --app-blockly-background: #000000;
 }

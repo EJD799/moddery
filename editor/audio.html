@@ -8,12 +8,13 @@
 
 <style>
   body {
-    background: var(--bulma-background);
+    background: var(--app-main-tabs-background);
+    padding: 16px;
   }
 </style>
 
 <media-theme-tailwind-audio
-  style="--media-primary-color: #ffffff; --media-secondary-color: #222222; --media-accent-color: #00498f; width: 100%;">
+  style="--media-primary-color: var(--bulma-text); --media-secondary-color: var(--app-black-white); --media-accent-color: var(--bulma-primary); width: 100%; height: 64px;">
   <audio
     slot="media"
     id="audioElement"

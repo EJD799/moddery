@@ -9,6 +9,7 @@
     --app-image-editor-background: var(--bulma-scheme-main);
     --app-blockly-background: var(--bulma-scheme-main);
     --app-blockly-toolbox-background: var(--bulma-background);
+    --app-black-white: var(--bulma-scheme-main);
 }
 body {
     background: #111111;

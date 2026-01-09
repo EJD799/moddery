@@ -24,64 +24,6 @@ html, body {
 }
 canvas { image-rendering: pixelated; display: block; }
 
-/* Remove default appearance for all sliders */
-input[type="range"] {
-    -webkit-appearance: none;
-    width: 120px; /* can be any width */
-    height: 8px;
-    border-radius: 4px;
-    background: #555; /* fallback */
-    outline: none;
-}
-
-/* WebKit (Chrome, Safari, Edge) */
-input[type="range"]::-webkit-slider-runnable-track {
-    height: 8px;
-    border-radius: 4px;
-    background: linear-gradient(to right, #00498f 0%, #00498f var(--value, 0%), #555 var(--value, 0%), #555 100%);
-}
-
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: #fff;
-    border: 2px solid #00498f;
-    margin-top: -4px; /* center thumb on track */
-    cursor: pointer;
-}
-
-/* Firefox */
-input[type="range"]::-moz-range-track {
-    height: 8px;
-    border-radius: 4px;
-    background: linear-gradient(to right, #00498f 0%, #00498f var(--value, 0%), #555 var(--value, 0%), #555 100%);
-}
-
-input[type="range"]::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: #fff;
-    border: 2px solid #00498f;
-    cursor: pointer;
-}
-
-/* Safari/Edge fix for value variable fallback */
-input[type="range"]::-ms-track {
-    width: 100%;
-    height: 8px;
-    background: transparent;
-    border-color: transparent;
-    color: transparent;
-}
-
-/* Optional: initialize CSS variable for all sliders */
-input[type="range"] {
-    --value: 0%;
-}
-
 #toolbar button {
     text-align: center;
     padding-right: 12px;
@@ -146,8 +88,12 @@ input[type="range"] {
             <input type="color" id="colorPicker" value="#ff0000">
         </div>
     </div>
-    <label for="brushSize">Brush/Font Size:</label>
-    <input type="range" id="brushSize" min="1" max="16" value="1">
+    <div class="field">
+        <div class="control">
+            <label for="brushSize">Brush/Font Size:</label>
+        </div>
+    </div>
+    <input class="is-primary" type="range" id="brushSize" min="1" max="16" value="1">
     <div class="field has-addons">
         <p class="control"><button title="Undo" class="button" id="undoBtn"><i class="fas fa-undo"></i></button></p>
         <p class="control"><button title="Redo" class="button" id="redoBtn"><i class="fas fa-redo"></i></button></p>

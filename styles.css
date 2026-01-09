@@ -821,3 +821,7 @@ progress {
 .blocklyToolboxFlyout {
     background: var(--app-blockly-toolbox-flyout-background) !important;
 }
+
+.normalInput {
+    width: 200px;
+}

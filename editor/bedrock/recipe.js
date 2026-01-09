@@ -6,20 +6,6 @@ function addItemToBeginning(obj, key, value) {
     return { [key]: value, ...obj };
 }
 
-$("#recipeTypeMenu").selectmenu();
-$("#recipeBtn1").button();
-$("#recipeBtn2").button();
-$("#recipeBtn3").button();
-$("#recipeBtn4").button();
-$("#recipeBtn5").button();
-$("#recipeBtn6").button();
-$("#recipeBtn7").button();
-$("#recipeBtn8").button();
-$("#recipeBtn9").button();
-$("#recipeBtn10").button();
-
-$('input').addClass("ui-widget ui-widget-content ui-corner-all");
-
 const actionItems = {
     "special_remove": {
         name: "Remove Item",
@@ -322,7 +308,6 @@ function loadProject(data) {
     $("#recipeIDBox").val(data.id);
     if (data.recipeType) {
         $("#recipeTypeMenu").val(data.recipeType);
-        $("#recipeTypeMenu").selectmenu("refresh");
     }
     $("#outputQuantityBox").val(data.outputQuantity);
     window.setTimeout(function() {
@@ -386,8 +371,8 @@ function enableSlot(num) {
 function disableSlot(num) {
     document.getElementById(`recipeBtn${num}`).style.display = "none";
 }
-$("#recipeTypeMenu").on("selectmenuchange", function (e, ui) {
-    changeGridType(ui.item.value);
+recipeTypeMenu.addEventListener("change", function (e) {
+    changeGridType(recipeTypeMenu.value);
 });
 
 $(function () {

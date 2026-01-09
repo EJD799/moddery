@@ -1,4 +1,4 @@
-const appVersion = "1.1.104";
+const appVersion = "1.1.105";
 const buildDate = "1/9/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -24,6 +24,9 @@ var deleteElementType;
 var autosaveEnabled = true;
 var storageMode = "";
 var editorTheme = "system";
+let customThemes = {
+  
+};
 let currentProjectId = null;
 let projDeleteID;
 
@@ -526,6 +529,7 @@ if (getCookie("editorTheme")) {
     autoThemeChange();
   } else {
     document.documentElement.setAttribute("data-theme", editorTheme);
+    handleThemeChange();
   }
 } else {
   editorTheme = "system";
@@ -541,6 +545,7 @@ themeMenu.addEventListener("change", function(e) {
     autoThemeChange();
   } else {
     document.documentElement.setAttribute("data-theme", editorTheme);
+    handleThemeChange();
   }
 });
 
@@ -549,6 +554,38 @@ function autoThemeChange() {
     document.documentElement.setAttribute("data-theme", "dark");
   } else {
     document.documentElement.setAttribute("data-theme", "light");
+  }
+  handleThemeChange();
+}
+
+function handleThemeChange() {
+  let themeName;
+  let importTheme;
+  if (editorTheme == "system") {
+    if (getThemePreference() == "dark") {
+      themeName = "dark";
+      importTheme = false;
+    } else {
+      themeName = "light";
+      importTheme = false;
+    }
+  } else if (editorTheme == "light") {
+    themeName = "light";
+    importTheme = false;
+  } else if (editorTheme == "dark") {
+    themeName = "dark";
+    importTheme = false;
+  } else {
+    themeName = editorTheme;
+    importTheme = customThemes[editorTheme].stylesheet;
+  }
+  let iframes = document.querySelectorAll("iframe");
+  for (let i = 0; i < iframes.length; i++) {
+    let iframe = iframes[i];
+    if (importTheme) {
+      iframe.contentWindow.themeStyleElement.innerHTML = importTheme;
+    }
+    iframe.contentWindow.document.documentElement.setAttribute("data-theme", themeName);
   }
 }
 
@@ -3615,6 +3652,7 @@ async function addTab(role, elementID) {
       });
     }
   };
+  handleThemeChange();
   updateTabHeight();
 }
 

@@ -1,4 +1,4 @@
-const appVersion = "1.1.117";
+const appVersion = "1.1.118";
 const buildDate = "1/9/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -27,6 +27,7 @@ var editorTheme = "system";
 let customThemes = {
 
 };
+var generalThemeType;
 let currentProjectId = null;
 let projDeleteID;
 
@@ -565,19 +566,24 @@ function handleFrameThemeChange() {
     if (getThemePreference() == "dark") {
       themeName = "dark";
       importTheme = false;
+      generalThemeType = "dark";
     } else {
       themeName = "light";
       importTheme = false;
+      generalThemeType = "light";
     }
   } else if (editorTheme == "light") {
     themeName = "light";
     importTheme = false;
+    generalThemeType = "light";
   } else if (editorTheme == "dark") {
     themeName = "dark";
     importTheme = false;
+    generalThemeType = "dark";
   } else {
     themeName = editorTheme;
     importTheme = customThemes[editorTheme].stylesheet;
+    generalThemeType = customThemes[editorTheme].generalType;
   }
   let iframes = document.querySelectorAll("iframe");
   for (let i = 0; i < iframes.length; i++) {
@@ -586,6 +592,9 @@ function handleFrameThemeChange() {
       iframe.contentWindow.themeStyleElement.innerHTML = importTheme;
     }
     iframe.contentWindow.document.documentElement.setAttribute("data-theme", themeName);
+    if (iframe.contentWindow.onThemeChange) {
+      iframe.contentWindow.onThemeChange(themeName, importTheme, generalThemeType);
+    }
   }
 }
 

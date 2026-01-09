@@ -2,18 +2,25 @@ var elementData = {};
 var currentGrid = [["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0]];
 var currentSlot = 0;
 
+function onThemeChange(name, style, type) {
+    if (type == "light") {
+        actionItems.special_remove.texture = "/moddery/custom_textures/special_remove_light.png";
+        actionItems.special_custom.texture = "/moddery/custom_textures/special_custom_light.png";
+    }
+}
+
 function addItemToBeginning(obj, key, value) {
     return { [key]: value, ...obj };
 }
 
-const actionItems = {
+let actionItems = {
     "special_remove": {
         name: "Remove Item",
-        texture: "/moddery/custom_textures/special_remove.png"
+        texture: "/moddery/custom_textures/special_remove_dark.png"
     },
     "special_custom": {
         name: "Custom Item",
-        texture: "/moddery/custom_textures/special_custom.png"
+        texture: "/moddery/custom_textures/special_custom_dark.png"
     }
 };
 
@@ -70,7 +77,7 @@ const rowHeight = btnSize;
 
 function openItemPickerDialog() {
     selectedItemId = null;
-    $("#itemPickerSelectBtn").prop("disabled", true);
+    itemPickerSelectBtn.disabled = true;
     $("#itemDataBox").val("0");
     $("#itemDataBox").hide();
 
@@ -168,7 +175,7 @@ $("#itemPickerScroller").on("click", ".itemPickBtn", function () {
         $("#itemDataBox").hide();
         $("#itemDataBox").val("0");
     }
-    $("#itemPickerSelectBtn").button("option", "disabled", false);
+    itemPickerSelectBtn.disabled = false;
 });
 
 // Search handler
@@ -192,8 +199,7 @@ function closeItemPicker() {
     selectedItemId = null;                       // clear the selected ID
     $(".itemPickBtn").removeClass("selected");   // remove visual highlight
 
-    // Disable the select button again (jQuery UI)
-    $("#itemPickerSelectBtn").button("option", "disabled", true);
+    itemPickerSelectBtn.disabled = true;
 
     // Optional: clear search box
     $("#itemSearchBox").val("");

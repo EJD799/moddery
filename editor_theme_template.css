@@ -20,4 +20,6 @@ html[data-theme=themeName] {
     --app-deselected-tab-border: #000000;
     --app-selected-tab-background1: #000000;
     --app-selected-tab-background2: #000000;
+    --app-image-editor-toolbar-background: #000000;
+    --app-image-editor-background: #000000;
 }

@@ -5,6 +5,8 @@
     --app-selected-tab-color: var(--bulma-link);
     --app-selected-tab-border: var(--bulma-link);
     --app-deselected-tab-color: var(--bulma-text);
+    --app-image-editor-toolbar-background: var(--bulma-scheme-main);
+    --app-image-editor-background: var(--bulma-background);
 }
 body {
     background: #111111;

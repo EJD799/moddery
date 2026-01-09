@@ -252,12 +252,7 @@ input[type="number"] {
 }
 
 input[type=color] {
-    padding: 3px !important;
-}
-
-input[type=color]:hover {
-    background: #00498f !important;
-    cursor: pointer;
+    outline: 0 !important;
 }
 
 /* Layout inside the dialog */

@@ -6,8 +6,34 @@ function onThemeChange(name, style, type) {
     if (type == "light") {
         actionItems.special_remove.texture = "/moddery/custom_textures/special_remove_light.png";
         actionItems.special_custom.texture = "/moddery/custom_textures/special_custom_light.png";
+    } else {
+        actionItems.special_remove.texture = "/moddery/custom_textures/special_remove_dark.png";
+        actionItems.special_custom.texture = "/moddery/custom_textures/special_custom_dark.png";
     }
+    replaceSpecialCustomImages(type);
 }
+
+function replaceSpecialCustomImages(theme) {
+  const images = document.querySelectorAll("img");
+
+  for (let i = 0; i < images.length; i++) {
+    const img = images[i];
+    const src = img.getAttribute("src");
+
+    if (!src) continue;
+
+    if (
+      src.endsWith("special_custom_dark.png") ||
+      src.endsWith("special_custom_light.png")
+    ) {
+      img.src = src.replace(
+        /special_custom_(dark|light)\.png$/,
+        `special_custom_${theme}.png`
+      );
+    }
+  }
+}
+
 
 function addItemToBeginning(obj, key, value) {
     return { [key]: value, ...obj };
@@ -235,7 +261,11 @@ function renderSlot(slot, value, original) {
     } else if (original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) {
         slotImage.setAttribute("src", replaceShortURLs(itemDefinitions["minecraft:" + value].texture));
     } else if (original == "special_custom" && !Object.keys(itemDefinitions).includes(value) && !Object.keys(customItems).includes(value)) {
-        slotImage.setAttribute("src", "/moddery/custom_textures/special_custom.png");
+        if (window.parent.generalThemeType == "dark") {
+            slotImage.setAttribute("src", "/moddery/custom_textures/special_custom_dark.png");
+        } else {
+            slotImage.setAttribute("src", "/moddery/custom_textures/special_custom_light.png");
+        }
     } else {
         if (Object.keys(customItems).includes(value)) {
             slotImage.setAttribute("src", customItems[value].texture);

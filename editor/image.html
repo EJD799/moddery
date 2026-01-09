@@ -17,28 +17,7 @@ html, body {
     display: flex; gap: 4px; padding: 4px; background: #222;
     align-items: center; flex-wrap: wrap;
 }
-/*#toolbar button {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 4px 8px;
-    background: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-}
-#toolbar input[type=color], #toolbar input[type=range] {
-    gap: 4px;
-    padding: 4px 8px;
-    background: #333;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    margin-left: 4px;
-}
-#toolbar button.active { background: #555; }
-#toolbar button:hover, #toolbar input[type=color]:hover { background: #00498f; }*/
+
 #canvasContainer {
     flex: 1; position: relative; overflow: hidden; background: #222;
     display: flex; justify-content: center; align-items: center; cursor: crosshair;
@@ -107,6 +86,45 @@ input[type="range"] {
     text-align: center;
     padding-right: 12px;
 }
+
+#colorPicker {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+/* Chrome / Edge / Safari */
+#colorPicker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+#colorPicker::-webkit-color-swatch {
+  border: none;
+  border-radius: 4px; /* optional */
+}
+
+/* Firefox */
+#colorPicker::-moz-color-swatch {
+  border: none;
+  border-radius: 4px; /* optional */
+}
+
+/* Optional Bulma-style affordances */
+#colorPicker:hover {
+  outline: 1px solid var(--bulma-border);
+}
+
+#colorPicker:focus-visible {
+  outline: 2px solid var(--bulma-link);
+  outline-offset: 2px;
+}
+
 </style>
 </head>
 <body>
@@ -122,7 +140,14 @@ input[type="range"] {
         <p class="control"><button title="Hue Brush" class="button" id="toolHueBrush"><i class="fas fa-adjust"></i></button></p>
         <p class="control"><button title="Text" class="button" id="toolText"><i class="fas fa-font"></i></button></p>
     </div>
-    <label>Color:<input type="color" id="colorPicker" value="#ff0000"></label>
+    <label>
+        Color:
+        <div class="field">
+            <div class="control button">
+                <input type="color" id="colorPicker" value="#ff0000">
+            </div>
+        </div>
+    </label>
     <label>Brush/Font Size:<input type="range" id="brushSize" min="1" max="16" value="1"></label>
     <div class="field has-addons">
         <p class="control"><button title="Undo" class="button" id="undoBtn"><i class="fas fa-undo"></i></button></p>

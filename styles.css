@@ -27,6 +27,7 @@ html[data-theme=dark] {
     --app-selected-tab-background1: #3b3b43;
     --app-selected-tab-background2: #42424b;
     --app-blockly-toolbox-flyout-background: #3b3b4350;
+    --app-disabled-input-border: #626271;
 }
 html[data-theme=light] {
     --app-white-btn-background: var(--bulma-white-l);
@@ -39,6 +40,7 @@ html[data-theme=light] {
     --app-selected-tab-background1: #e3e3e8;
     --app-selected-tab-background2: #d2d2db;
     --app-blockly-toolbox-flyout-background: #e3e3e850;
+    --app-disabled-input-border: #b3b3bb;
 }
 
 #toolbar {
@@ -289,6 +291,13 @@ input[type=color] {
     width: 50px;
     height: 50px;
     vertical-align: middle;
+    padding: 6px !important;
+}
+
+.itemIconBtnImg {
+    -webkit-user-drag: none;
+    user-select: none;
+    pointer-events: none;
 }
 
 .largeIcon {

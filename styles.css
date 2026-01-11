@@ -314,6 +314,7 @@ input[type=color] {
     height: 350px;
     overflow-y: scroll;
     border: 1px solid #666;
+    border-radius: 6px;
 }
 
 #itemPickerScroller {
@@ -337,8 +338,8 @@ input[type=color] {
 }
 
 .itemPickBtn.selected {
-    border-color: #00aaff;
-    background-color: rgba(0,170,255,0.15);
+    border-color: var(--bulma-link);
+    background-color: var(--bulma-link-light);
 }
 
 .itemIconBtn {

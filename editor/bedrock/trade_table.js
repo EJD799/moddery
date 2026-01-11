@@ -47,6 +47,7 @@ function addTier(customID = false) {
     div.appendChild(nameLabel);
     let nameBox = document.createElement("input");
     nameBox.setAttribute("id", `tierNameBox${newID}`);
+    nameBox.setAttribute("class", "input normalInput");
     nameBox.setAttribute("value", `Tier ${newID}`);
     nameBox.addEventListener("change", function(e) {
         currentTiers[newID - 1][0] = nameBox.value;
@@ -59,7 +60,7 @@ function addTier(customID = false) {
     div.appendChild(xpLabel);
     let xpBox = document.createElement("input");
     xpBox.setAttribute("id", `tierXpBox${newID}`);
-    xpBox.setAttribute("class", "smallInput");
+    xpBox.setAttribute("class", "input smallInput");
     xpBox.setAttribute("type", "number");
     xpBox.setAttribute("value", "0");
     xpBox.addEventListener("change", function(e) {
@@ -67,10 +68,11 @@ function addTier(customID = false) {
     });
     div.appendChild(xpBox);
     div.appendChild(document.createTextNode(" "));
-    let deleteBtn = document.createElement("i");
+    let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("id", `tierDeleteBtn${newID}`);
-    deleteBtn.setAttribute("class", "fas fa-trash deleteIcon");
+    deleteBtn.setAttribute("class", "button is-danger newDeleteBtn");
     deleteBtn.setAttribute("onclick", `removeTier(${newID})`);
+    deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`
     div.appendChild(deleteBtn);
     container.appendChild(div);
     $('input').addClass("ui-widget ui-widget-content ui-corner-all");
@@ -113,7 +115,7 @@ function addItem(customID = false) {
     div.appendChild(document.createTextNode(" "));
     let btn1QuantityBox1 = document.createElement("input");
     btn1QuantityBox1.setAttribute("id", `itemQuantityBox${newID}a1`);
-    btn1QuantityBox1.setAttribute("class", "smallInput");
+    btn1QuantityBox1.setAttribute("class", "input smallInput");
     btn1QuantityBox1.setAttribute("type", "number");
     btn1QuantityBox1.setAttribute("value", "1");
     btn1QuantityBox1.addEventListener("change", function(e) {
@@ -122,7 +124,7 @@ function addItem(customID = false) {
     div.appendChild(btn1QuantityBox1);
     let btn1QuantityBox2 = document.createElement("input");
     btn1QuantityBox2.setAttribute("id", `itemQuantityBox${newID}a2`);
-    btn1QuantityBox2.setAttribute("class", "smallInput");
+    btn1QuantityBox2.setAttribute("class", "input smallInput");
     btn1QuantityBox2.setAttribute("type", "number");
     btn1QuantityBox2.setAttribute("value", "1");
     btn1QuantityBox2.addEventListener("change", function(e) {
@@ -145,7 +147,7 @@ function addItem(customID = false) {
     div.appendChild(document.createTextNode(" "));
     let btn2QuantityBox1 = document.createElement("input");
     btn2QuantityBox1.setAttribute("id", `itemQuantityBox${newID}b1`);
-    btn2QuantityBox1.setAttribute("class", "smallInput");
+    btn2QuantityBox1.setAttribute("class", "input smallInput");
     btn2QuantityBox1.setAttribute("type", "number");
     btn2QuantityBox1.setAttribute("value", "1");
     btn2QuantityBox1.addEventListener("change", function(e) {
@@ -154,7 +156,7 @@ function addItem(customID = false) {
     div.appendChild(btn2QuantityBox1);
     let btn2QuantityBox2 = document.createElement("input");
     btn2QuantityBox2.setAttribute("id", `itemQuantityBox${newID}b2`);
-    btn2QuantityBox2.setAttribute("class", "smallInput");
+    btn2QuantityBox2.setAttribute("class", "input smallInput");
     btn2QuantityBox2.setAttribute("type", "number");
     btn2QuantityBox2.setAttribute("value", "1");
     btn2QuantityBox2.addEventListener("change", function(e) {
@@ -182,7 +184,7 @@ function addItem(customID = false) {
     div.appendChild(document.createTextNode(" "));
     let btn3QuantityBox1 = document.createElement("input");
     btn3QuantityBox1.setAttribute("id", `itemQuantityBox${newID}c1`);
-    btn3QuantityBox1.setAttribute("class", "smallInput");
+    btn3QuantityBox1.setAttribute("class", "input smallInput");
     btn3QuantityBox1.setAttribute("type", "number");
     btn3QuantityBox1.setAttribute("value", "1");
     btn3QuantityBox1.addEventListener("change", function(e) {
@@ -191,7 +193,7 @@ function addItem(customID = false) {
     div.appendChild(btn3QuantityBox1);
     let btn3QuantityBox2 = document.createElement("input");
     btn3QuantityBox2.setAttribute("id", `itemQuantityBox${newID}c2`);
-    btn3QuantityBox2.setAttribute("class", "smallInput");
+    btn3QuantityBox2.setAttribute("class", "input smallInput");
     btn3QuantityBox2.setAttribute("type", "number");
     btn3QuantityBox2.setAttribute("value", "1");
     btn3QuantityBox2.addEventListener("change", function(e) {
@@ -205,26 +207,24 @@ function addItem(customID = false) {
     label.setAttribute("for", `itemTierBox${newID}`);
     label.innerHTML = " Tier ";
     div.appendChild(label);
+    let tierBoxContainer = document.createElement("div");
+    tierBoxContainer.setAttribute("class", "select");
     let tierBox = document.createElement("select");
     tierBox.setAttribute("id", `itemTierBox${newID}`);
     tierBox.innerHTML = generateSelectContents(currentTiers.map(item => item[0]));
-    div.appendChild(tierBox);
+    tierBoxContainer.appendChild(tierBox);
+    div.appendChild(tierBoxContainer);
     div.appendChild(document.createTextNode(" "));
-    let deleteBtn = document.createElement("i");
+    let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("id", `itemDeleteBtn${newID}`);
-    deleteBtn.setAttribute("class", "fas fa-trash deleteIcon");
+    deleteBtn.setAttribute("class", "button is-danger newDeleteBtn");
     deleteBtn.setAttribute("onclick", `removeItem(${newID})`);
+    deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`;
     div.appendChild(deleteBtn);
     container.appendChild(div);
-    $(`#itemBtn${newID}a`).button();
-    $(`#itemBtn${newID}b`).button();
-    $(`#itemBtn${newID}c`).button();
-    $(`#itemTierBox${newID}`).selectmenu({
-        change: function (event, ui) {
-            currentItems[newID - 1].tier = ui.item.value;
-        }
+    document.getElementById(`#itemTierBox${newID}`).addEventListener("change", function(e) {
+        currentItems[newID - 1].tier = e.target.value;
     });
-    $('input').addClass("ui-widget ui-widget-content ui-corner-all");
     initializeDraggableIcons();
 }
 
@@ -237,13 +237,41 @@ function removeItem(id) {
     loadItemList(currentItems);
 }
 
+function onThemeChange(name, style, type) {
+    if (type == "light") {
+        actionItems.special_remove.texture = "/moddery/custom_textures/special_remove_light.png";
+        actionItems.special_custom.texture = "/moddery/custom_textures/special_custom_light.png";
+    } else {
+        actionItems.special_remove.texture = "/moddery/custom_textures/special_remove_dark.png";
+        actionItems.special_custom.texture = "/moddery/custom_textures/special_custom_dark.png";
+    }
+    replaceSpecialCustomImages(type);
+}
+
+function replaceSpecialCustomImages(theme) {
+  const images = document.querySelectorAll("img");
+
+  for (let i = 0; i < images.length; i++) {
+    const img = images[i];
+    const src = img.getAttribute("src");
+
+    if (!src) continue;
+
+    if (
+      src.endsWith("special_custom_dark.png") ||
+      src.endsWith("special_custom_light.png")
+    ) {
+      img.src = src.replace(
+        /special_custom_(dark|light)\.png$/,
+        `special_custom_${theme}.png`
+      );
+    }
+  }
+}
+
 function addItemToBeginning(obj, key, value) {
     return { [key]: value, ...obj };
 }
-
-$("#addTierBtn").button();
-$("#addItemBtn").button();
-$("input").addClass("ui-widget ui-widget-content ui-corner-all");
 
 const actionItems = {
     "special_remove": {
@@ -299,6 +327,7 @@ window.setTimeout(async function() {
             };
         }
     }));
+    onThemeChange(null, null, window.parent.generalThemeType);
 }, 100);
 
 let selectedItemId = null;
@@ -309,13 +338,13 @@ const rowHeight = btnSize;
 
 function openItemPickerDialog() {
     selectedItemId = null;
-    $("#itemPickerSelectBtn").prop("disabled", true);
+    itemPickerSelectBtn.disabled = true;
     $("#itemDataBox").val("0");
     $("#itemDataBox").hide();
 
     filteredItems = filterItems("");
 
-    $("#itemPickerDialog").dialog("open");
+    itemPickerDialog.classList.add("is-active");
 
     updateLayout();
     renderVisibleItems();
@@ -407,7 +436,7 @@ $("#itemPickerScroller").on("click", ".itemPickBtn", function () {
         $("#itemDataBox").hide();
         $("#itemDataBox").val("0");
     }
-    $("#itemPickerSelectBtn").button("option", "disabled", false);
+    itemPickerSelectBtn.disabled = false;
 });
 
 // Search handler
@@ -426,28 +455,16 @@ $("#itemPickerSelectBtn").on("click", function () {
 });
 
 function closeItemPicker() {
-    $("#itemPickerDialog").dialog("close");
+    itemPickerDialog.classList.remove("is-active");
     // --- RESET SELECTION ---
     selectedItemId = null;                       // clear the selected ID
     $(".itemPickBtn").removeClass("selected");   // remove visual highlight
 
-    // Disable the select button again (jQuery UI)
-    $("#itemPickerSelectBtn").button("option", "disabled", true);
+    itemPickerSelectBtn.disabled = true;
 
     // Optional: clear search box
     $("#itemSearchBox").val("");
 }
-
-$("#itemPickerDialog").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 510,
-  width: 500
-});
-$("#itemPickerDialog").dialog("close");
-
-$("#itemPickerCancelBtn").button();
-$("#itemPickerSelectBtn").button();
 
 function copySlot(from, to) {
     const fromParsed = parseSlot(from);
@@ -510,7 +527,11 @@ function renderSlot(slot, subslot, value, original) {
             texture = replaceShortURLs(itemDefinitions[value].texture);
             title = itemDefinitions[value].name;
         } else {
-            texture = "/moddery/custom_textures/special_custom.png";
+            if (window.parent.generalThemeType == "dark") {
+                slotImage.setAttribute("src", "/moddery/custom_textures/special_custom_dark.png");
+            } else {
+                slotImage.setAttribute("src", "/moddery/custom_textures/special_custom_light.png");
+            }
             title = value;
         }
 
@@ -611,9 +632,6 @@ function loadItemList(data) {
         const $tierBox = $(`#itemTierBox${i + 1}`);
 
         $tierBox.val(tier);
-
-        // IMPORTANT: tell jQuery UI to re-sync the UI
-        $tierBox.selectmenu("refresh");
     }
 }
 

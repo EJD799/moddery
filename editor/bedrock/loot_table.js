@@ -43,7 +43,7 @@ function addItem(customID = false) {
     deleteBtn.setAttribute("id", `itemDeleteBtn${newID}`);
     deleteBtn.setAttribute("class", "button is-danger newDeleteBtn");
     deleteBtn.setAttribute("onclick", `removeItem(${newID})`);
-    deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`
+    deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`;
     div.appendChild(deleteBtn);
     container.appendChild(div);
     initializeDraggableIcons();

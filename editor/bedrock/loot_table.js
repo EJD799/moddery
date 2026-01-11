@@ -16,7 +16,7 @@ function addItem(customID = false) {
     div.setAttribute("id", `itemDiv${newID}`);
     let btn = document.createElement("button");
     btn.setAttribute("id", `itemBtn${newID}`);
-    btn.setAttribute("class", "itemIconBtn");
+    btn.setAttribute("class", "button itemIconBtn");
     btn.setAttribute("onclick", `selectItem(${newID})`);
     let img = document.createElement("img");
     img.setAttribute("id", `itemBtnImg${newID}`);
@@ -31,7 +31,7 @@ function addItem(customID = false) {
     div.appendChild(label);
     let weightBox = document.createElement("input");
     weightBox.setAttribute("id", `itemWeightBox${newID}`);
-    weightBox.setAttribute("class", "smallInput");
+    weightBox.setAttribute("class", "input smallInput");
     weightBox.setAttribute("type", "number");
     weightBox.setAttribute("value", "1");
     weightBox.addEventListener("change", function(e) {
@@ -39,14 +39,14 @@ function addItem(customID = false) {
     });
     div.appendChild(weightBox);
     div.appendChild(document.createTextNode(" "));
-    let deleteBtn = document.createElement("i");
+    let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("id", `itemDeleteBtn${newID}`);
-    deleteBtn.setAttribute("class", "fas fa-trash deleteIcon");
+    deleteBtn.setAttribute("class", "button is-danger is-small");
     deleteBtn.setAttribute("onclick", `removeItem(${newID})`);
+    deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`
     div.appendChild(deleteBtn);
     container.appendChild(div);
     $(`#itemBtn${newID}`).button();
-    $('input').addClass("ui-widget ui-widget-content ui-corner-all");
     initializeDraggableIcons();
 }
 
@@ -55,12 +55,41 @@ function removeItem(id) {
     loadItemList(currentItems);
 }
 
+function onThemeChange(name, style, type) {
+    if (type == "light") {
+        actionItems.special_remove.texture = "/moddery/custom_textures/special_remove_light.png";
+        actionItems.special_custom.texture = "/moddery/custom_textures/special_custom_light.png";
+    } else {
+        actionItems.special_remove.texture = "/moddery/custom_textures/special_remove_dark.png";
+        actionItems.special_custom.texture = "/moddery/custom_textures/special_custom_dark.png";
+    }
+    replaceSpecialCustomImages(type);
+}
+
+function replaceSpecialCustomImages(theme) {
+  const images = document.querySelectorAll("img");
+
+  for (let i = 0; i < images.length; i++) {
+    const img = images[i];
+    const src = img.getAttribute("src");
+
+    if (!src) continue;
+
+    if (
+      src.endsWith("special_custom_dark.png") ||
+      src.endsWith("special_custom_light.png")
+    ) {
+      img.src = src.replace(
+        /special_custom_(dark|light)\.png$/,
+        `special_custom_${theme}.png`
+      );
+    }
+  }
+}
+
 function addItemToBeginning(obj, key, value) {
     return { [key]: value, ...obj };
 }
-
-$("#addItemBtn").button();
-$("input").addClass("ui-widget ui-widget-content ui-corner-all");
 
 const actionItems = {
     "special_remove": {
@@ -116,6 +145,7 @@ window.setTimeout(async function() {
             };
         }
     }));
+    onThemeChange(null, null, window.parent.generalThemeType);
 }, 100);
 
 let selectedItemId = null;
@@ -126,13 +156,13 @@ const rowHeight = btnSize;
 
 function openItemPickerDialog() {
     selectedItemId = null;
-    $("#itemPickerSelectBtn").prop("disabled", true);
+    itemPickerSelectBtn.disabled = true;
     $("#itemDataBox").val("0");
     $("#itemDataBox").hide();
 
     filteredItems = filterItems("");
 
-    $("#itemPickerDialog").dialog("open");
+    itemPickerDialog.classList.add("is-active");
 
     updateLayout();
     renderVisibleItems();
@@ -243,28 +273,16 @@ $("#itemPickerSelectBtn").on("click", function () {
 });
 
 function closeItemPicker() {
-    $("#itemPickerDialog").dialog("close");
+    itemPickerDialog.classList.remove("is-active");
     // --- RESET SELECTION ---
     selectedItemId = null;                       // clear the selected ID
     $(".itemPickBtn").removeClass("selected");   // remove visual highlight
 
-    // Disable the select button again (jQuery UI)
-    $("#itemPickerSelectBtn").button("option", "disabled", true);
+    itemPickerSelectBtn.disabled = true;
 
     // Optional: clear search box
     $("#itemSearchBox").val("");
 }
-
-$("#itemPickerDialog").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 510,
-  width: 500
-});
-$("#itemPickerDialog").dialog("close");
-
-$("#itemPickerCancelBtn").button();
-$("#itemPickerSelectBtn").button();
 
 function copySlot(a, b) {
     currentSlot = b;
@@ -298,7 +316,11 @@ function renderSlot(slot, value, original) {
     } else if (original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) {
         slotImage.setAttribute("src", replaceShortURLs(itemDefinitions["minecraft:" + value].texture));
     } else if (original == "special_custom" && !Object.keys(itemDefinitions).includes(value) && !Object.keys(customItems).includes(value)) {
-        slotImage.setAttribute("src", "/moddery/custom_textures/special_custom.png");
+        if (window.parent.generalThemeType == "dark") {
+            slotImage.setAttribute("src", "/moddery/custom_textures/special_custom_dark.png");
+        } else {
+            slotImage.setAttribute("src", "/moddery/custom_textures/special_custom_light.png");
+        }
     } else {
         if (Object.keys(customItems).includes(value)) {
             slotImage.setAttribute("src", customItems[value].texture);

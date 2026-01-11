@@ -331,6 +331,7 @@ input[type=color] {
     border: 1px solid transparent;
     cursor: pointer;
     image-rendering: pixelated;
+    border-radius: 4px;
 }
 
 .itemPickBtn:hover {

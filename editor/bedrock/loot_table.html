@@ -1,60 +1,76 @@
-<link rel="stylesheet" href="../../jquery-ui.min.css">
-<link rel="stylesheet" href="../../jquery-ui.theme.min.css">
-<link rel="stylesheet" href="../../styles.css">
-<script src="../../jquery-3.7.1.min.js"></script>
-<script src="../../jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
-<style>
-    input {
-        padding: 10px;
-    }
-    body {
-        color: white;
-        font-family: Verdana, sans-serif;
-        background: #111111;
-        padding-left: 18px;
-    }
-    .ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
-        z-index: 2000 !important; /* Use !important if necessary to override existing styles */
-    }
-    .itemIconBtnImg {
-        -webkit-user-drag: none;
-        user-select: none;
-        pointer-events: none;
-    }
-</style>
+<html>
+    <head>
+        <link rel="stylesheet" href="../../jquery-ui.min.css">
+        <link rel="stylesheet" href="../../jquery-ui.theme.min.css">
+        <link rel="stylesheet" href="../../styles.css">
+        <script src="../../jquery-3.7.1.min.js"></script>
+        <script src="../../jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
 
-<label for="elementIDBox">Element Name (Editor)</label>
-<input name="elementIDBox" id="elementIDBox" placeholder="Element ID" disabled>
-<br><br>
-<label for="lootTableIDBox">Loot Table ID</label>
-<input name="lootTableIDBox" id="lootTableIDBox" placeholder="Loot Table ID">
-<br><br>
-<label for="rollCountBox1">Roll Count</label>
-<input name="rollCountBox1" id="rollCountBox1" type="number" class="smallInput" value="5">
-<span>-</span>
-<input name="rollCountBox2" id="rollCountBox2" type="number" class="smallInput" value="10">
-<br><br>
-<h3>Items <button id="addItemBtn" onclick="addItem()">+ Add Item</button></h3>
-<div id="containerDiv">
-    
-</div>
-<br>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+        <link rel="stylesheet" href="https://ejd799.github.io/BulmaColoredInputs/main.css">
+        <link rel="stylesheet" href="../../styles.css">
 
-<div id="itemPickerDialog" title="Select Item" style="display:none;">
-    <input id="itemSearchBox" type="text" placeholder="Search items..." style="width:100%; margin-bottom:8px;">
-    <div id="itemPickerViewport">
-        <div id="itemPickerScroller"></div>
-    </div>
-    <br>
-    <center>
-        <input type="number" class="smallInput" id="itemDataBox" placeholder="Data">
-        <button id="itemPickerCancelBtn" onclick="closeItemPicker()">Cancel</button>
-        <button id="itemPickerSelectBtn" disabled>Select</button>
-    </center>
-</div>
+        <style id="themeStyleElement"></style>
 
-<script src="../../libs.js"></script>
-<script src="loot_table.js"></script>
-<script src="../../item_definitions.js"></script>
+        <style>
+            input {
+                padding: 10px;
+            }
+            body {
+                color: var(--bulma-text);
+                background: var(--app-main-tabs-background);
+                padding-left: 18px;
+                padding-top: 18px;
+            }
+            .ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
+                z-index: 2000 !important; /* Use !important if necessary to override existing styles */
+            }
+        </style>
+    </head>
+    <body>
+        <label for="elementIDBox">Element Name (Editor)</label>
+        <input class="input normalInput" name="elementIDBox" id="elementIDBox" placeholder="Element ID" disabled>
+        <br><br>
+        <label for="lootTableIDBox">Loot Table ID</label>
+        <input class="input normalInput" name="lootTableIDBox" id="lootTableIDBox" placeholder="Loot Table ID">
+        <br><br>
+        <label for="rollCountBox1">Roll Count</label>
+        <input class="input smallInput" name="rollCountBox1" id="rollCountBox1" type="number" value="5">
+        <span>-</span>
+        <input class="input smallInput" name="rollCountBox2" id="rollCountBox2" type="number" value="10">
+        <br><br>
+        <h3>Items <button class="button is-primary" id="addItemBtn" onclick="addItem()">+ Add Item</button></h3>
+        <div id="containerDiv">
+            
+        </div>
+        <br>
+
+        <div class="modal" id="itemPickerDialog">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:500px;height:550px;">
+                <div class="card" style="padding:16px;">
+                    <center>
+                        <h4 class="title is-4">Select Item</h4>
+                    </center>
+                    <input class="input" id="itemSearchBox" type="text" placeholder="Search items..." style="width:100%; margin-bottom:8px;">
+                    <div id="itemPickerViewport">
+                        <div id="itemPickerScroller"></div>
+                    </div>
+                    <br>
+                    <center>
+                        <input type="number" class="input smallInput" id="itemDataBox" placeholder="Data">
+                        <button class="button" id="itemPickerCancelBtn" onclick="closeItemPicker()">Cancel</button>
+                        <button class="button is-primary" id="itemPickerSelectBtn" disabled>Select</button>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeItemPicker();"></button>
+        </div>
+
+        <script src="../../libs.js"></script>
+        <script src="loot_table.js"></script>
+        <script src="../../item_definitions.js"></script>
+    </body>
+</html>

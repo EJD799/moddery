@@ -93,6 +93,7 @@ window.setTimeout(async function() {
             };
         }
     }));
+    onThemeChange(null, null, window.parent.generalThemeType);
 }, 100);
 
 let selectedItemId = null;

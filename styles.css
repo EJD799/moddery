@@ -496,7 +496,7 @@ input:disabled::placeholder {
     opacity: 1;
 }
 .input:disabled {
-    border: var(--app-disabled-input-border);
+    border-color: var(--app-disabled-input-border);
 }
 
 #exporterFrame {

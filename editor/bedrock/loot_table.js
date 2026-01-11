@@ -253,7 +253,7 @@ $("#itemPickerScroller").on("click", ".itemPickBtn", function () {
         $("#itemDataBox").hide();
         $("#itemDataBox").val("0");
     }
-    $("#itemPickerSelectBtn").button("option", "disabled", false);
+    itemPickerSelectBtn.disabled = false;
 });
 
 // Search handler

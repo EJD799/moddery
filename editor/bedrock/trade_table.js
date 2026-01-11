@@ -75,7 +75,6 @@ function addTier(customID = false) {
     deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`
     div.appendChild(deleteBtn);
     container.appendChild(div);
-    $('input').addClass("ui-widget ui-widget-content ui-corner-all");
     loadItemList(currentItems);
 }
 
@@ -212,6 +211,9 @@ function addItem(customID = false) {
     let tierBox = document.createElement("select");
     tierBox.setAttribute("id", `itemTierBox${newID}`);
     tierBox.innerHTML = generateSelectContents(currentTiers.map(item => item[0]));
+    tierBox.addEventListener("change", function(e) {
+        currentItems[newID - 1].tier = e.target.value;
+    });
     tierBoxContainer.appendChild(tierBox);
     div.appendChild(tierBoxContainer);
     div.appendChild(document.createTextNode(" "));
@@ -222,9 +224,6 @@ function addItem(customID = false) {
     deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`;
     div.appendChild(deleteBtn);
     container.appendChild(div);
-    document.getElementById(`#itemTierBox${newID}`).addEventListener("change", function(e) {
-        currentItems[newID - 1].tier = e.target.value;
-    });
     initializeDraggableIcons();
 }
 

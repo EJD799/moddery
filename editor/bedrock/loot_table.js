@@ -41,12 +41,11 @@ function addItem(customID = false) {
     div.appendChild(document.createTextNode(" "));
     let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("id", `itemDeleteBtn${newID}`);
-    deleteBtn.setAttribute("class", "button is-danger is-small");
+    deleteBtn.setAttribute("class", "button is-danger newDeleteBtn");
     deleteBtn.setAttribute("onclick", `removeItem(${newID})`);
     deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`
     div.appendChild(deleteBtn);
     container.appendChild(div);
-    $(`#itemBtn${newID}`).button();
     initializeDraggableIcons();
 }
 

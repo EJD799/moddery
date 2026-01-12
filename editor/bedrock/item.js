@@ -718,70 +718,11 @@ function centerDialogViewport(selector) {
     });
 }
 
-
-$("#categoryBox").selectmenu();
-$("#itemTextureBtn").button();
-$("#addComponentBtn").button();
-$("#addComponentCancelBtn").button();
-$("#addComponentAddBtn").button();
-$("#selectTextureCancelBtn").button();
-$("#selectTextureSelectBtn").button();
-// new start
-$("#selectTextureSelectBtn2").button();
-$("#selectTableSelectBtn").button();
-$("#selectTableCancelBtn").button();
-$("#selectTableDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 500,
-  width: 500
-});
-$("#selectTableDlg").dialog("close");
-// new end
-$('input').addClass("ui-widget ui-widget-content ui-corner-all");
-
-$("#addComponentDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 200,
-  width: 500
-});
-$("#addComponentDlg").dialog("close");
-$("#selectTextureDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 500,
-  width: 500
-});
-$("#selectTextureDlg").dialog("close");
-$("#deleteDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 150,
-  width: 300,
-  closeOnEscape: false
-});
-$("#deleteDlg").dialog("close");
-$("#deleteDlgCancel").button();
-$("#deleteDlgConfirm").button();
-
-// new start
-$("#advEditor").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 400,
-  width: 400,
-  closeOnEscape: false
-});
-$("#advEditor").dialog("close");
-$("#advEditorSave").button();
-// new end
-
 function addComponent() {
-  $("#addComponentDlg").dialog("open");
+    addComponentDlg.classList.add("is-active");
 }
 function closeAddComponentDlg() {
-  $("#addComponentDlg").dialog("close");
+    addComponentDlg.classList.remove("is-active");
 }
 function removeSpaces(str) {
     return str.replaceAll(" ", "_s_");
@@ -917,9 +858,6 @@ function createComponent(type) {
                 newComponentDOM.addEventListener("change", event => {
                     updateInput(typeName, inputName, event.target.value);
                 });
-
-                // Add to dropdown registration list for jQuery UI
-                dropdownsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
 
                 // Append to the element box
                 elementBox.appendChild(newComponentDOM);
@@ -1094,20 +1032,6 @@ function createComponent(type) {
             elementBox.appendChild(document.createElement("br"));
         }
         parentDiv.appendChild(elementBox);
-        for (let k = 0; k < dropdownsToRegister.length; k++) {
-            const [typeName, inputName] = dropdownsToRegister[k];
-            $("#" + typeName + inputName).selectmenu({
-                change: function (event, ui) {
-                    updateInput(typeName, inputName, ui.item.value);
-                }
-            });
-        }
-        // new start
-        for (let k = 0; k < buttonsToRegister.length; k++) {
-            const [typeName, inputName] = buttonsToRegister[k];
-            $("#" + typeName + inputName + "_btn").button();
-        }
-        // new end
         $(".tooltipIcon").tooltip({
             show: { effect: "fadeIn", duration: 200, delay: 0 },
             hide: { effect: "fadeOut", duration: 200, delay: 0 },
@@ -1115,7 +1039,7 @@ function createComponent(type) {
         });
         $('input').addClass("ui-widget ui-widget-content ui-corner-all");
     }
-    $("#addComponentDlg").dialog("close");
+    addComponentDlg.classList.remove("is-active");
 }
 function openSelectTextureDlg(component, input, mode) {
     // new start
@@ -1132,7 +1056,7 @@ function openSelectTextureDlg(component, input, mode) {
         $("#selectTextureSelectBtn2").hide();
     }
     // new end
-    $("#selectTextureDlg").dialog("open");
+    selectTextureDlg.classList.add("is-active");
     textures = window.parent.getTextureList();
     let selectTextureMenu = document.getElementById("selectTextureMenu");
     selectTextureMenu.innerHTML = "";
@@ -1175,10 +1099,10 @@ function openSelectTextureDlg(component, input, mode) {
     }
 }
 function closeSelectTextureDlg() {
-  $("#selectTextureDlg").dialog("close");
+    selectTextureDlg.classList.remove("is-active");
 }
 function selectTexture() {
-    $("#selectTextureDlg").dialog("close");
+    closeSelectTextureDlg();
     const selected = document.querySelector('input[name="selectedTexture"]:checked');
     if (selected.value) {
         const textureNameText = document.getElementById("textureNameText");
@@ -1209,7 +1133,7 @@ function selectCompTexture() {
         }
     }
 
-    $("#selectTextureDlg").dialog("close");
+    closeSelectTextureDlg();
 }
 
 
@@ -1227,7 +1151,7 @@ async function openSelectTableDlg(component, input, type) {
         $("#selectTableDlg").dialog("option", "title", "Select Loot Table");
         tables = await window.parent.getLootTableList();
     }
-    $("#selectTableDlg").dialog("open");
+    openSelectTableDlg.classList.add("is-active");
     let selectTableMenu = document.getElementById("selectTableMenu");
     selectTableMenu.innerHTML = "";
     for (let i = 0; i < tables.length; i++) {
@@ -1258,7 +1182,7 @@ async function openSelectTableDlg(component, input, type) {
     }
 }
 function closeSelectTableDlg() {
-    $("#selectTableDlg").dialog("close");
+    selectTableDlg.classList.remove("is-active");
 }
 function selectTable() {
     const selected = document.querySelector('input[name="selectedTable"]:checked');
@@ -1277,10 +1201,9 @@ function selectTable() {
         }
     }
 
-    $("#selectTableDlg").dialog("close");
+    closeSelectTableDlg();
 }
 // new end
-$("#addComponentType").selectmenu();
 
 function saveProject() {
     return {
@@ -1301,7 +1224,6 @@ function loadProject(data) {
     $("#nameBox").val(data.displayName);
     if ((data?.invCategory ?? false)) {
         $("#categoryBox").val(data.invCategory);
-        $("#categoryBox").selectmenu("refresh");
     }
     $("#stackSizeBox").val(data.maxStackSize);
     selectedTexture = data.texture;
@@ -1323,9 +1245,6 @@ function loadComponents(data) {
                     $(removeSpaces(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`)).prop("checked", data[Object.keys(data)[i]][componentInputDefs[j].name]);
                 } else {
                     $(removeSpaces(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`)).val(data[Object.keys(data)[i]][componentInputDefs[j].name]);
-                    if (componentInputDefs[j].type == "dropdown") {
-                        $(removeSpaces(`#${Object.keys(data)[i]}${componentInputDefs[j].name}`)).selectmenu("refresh");
-                    }
                 }
                 currentItemComponents[Object.keys(data)[i]][componentInputDefs[j].name] = data[Object.keys(data)[i]][componentInputDefs[j].name];
             }
@@ -1344,11 +1263,11 @@ function deleteComponent(name) {
 }
 
 function closeDeleteComponent() {
-    $("#deleteDlg").dialog("close");
+    deleteDlg.classList.remove("is-active");
 }
 
 function openDeleteComponent(name) {
-    $("#deleteDlg").dialog("open");
+    deleteDlg.classList.add("is-active");
     let deleteDlgText = document.getElementById("deleteDlgText");
     let deleteDlgConfirm = document.getElementById("deleteDlgConfirm");
     deleteDlgText.innerHTML = `Are you sure you want to delete the component "${name}"?`;
@@ -1366,7 +1285,7 @@ function openAdvInputEditor(component, input, type) {
     advEditorComponent = component;
     advEditorInput = input;
     advEditorType = type;
-    $("#advEditor").dialog("open");
+    advEditor.classList.add("is-active");
     if (type == "list") {
         changeAdvInputMode("list");
         if (typeof currentItemComponents[addSpaces(component)][addSpaces(input)] != "object") {
@@ -1379,7 +1298,7 @@ function openAdvInputEditor(component, input, type) {
     }
 }
 function closeAdvInputEditor() {
-    $("#advEditor").dialog("close");
+    advEditor.classList.remove("is-active");
 }
 function saveAdvInput() {
     let component = advEditorComponent;
@@ -1424,7 +1343,6 @@ function advEditorRemoveItem(id) {
         advEditorAddItem(advEditorType, advEditorCurrentData[i], i);
     }
 }
-$("#advEditorListAddBtn").button();
 // new end
 
 

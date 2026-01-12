@@ -549,7 +549,7 @@ function createComponent(type) {
         newComponentObj[componentDefinitions[type].inputs[i].name] = newComponentDefault;
     }
     if (!Object.keys(currentBlockComponents).includes(type)) {
-        currentItemComponents[type] = newComponentObj;
+        currentBlockComponents[type] = newComponentObj;
         var parentDiv = document.getElementById("componentsBox");
         var elementBox = document.createElement("div");
         elementBox.setAttribute("class", "card componentbox");

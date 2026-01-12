@@ -535,6 +535,8 @@ input:disabled::placeholder {
 }
 .inputEditBtn {
     height: 41px;
+    width: 41px;
+    padding-left: 21px;
 }
 
 .projListItem {

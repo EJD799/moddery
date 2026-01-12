@@ -816,6 +816,7 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 newComponentDOM.setAttribute("type", "color");
+                newComponentDOM.setAttribute("class", "newColorPicker");
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
                 newComponentDOM.addEventListener("change", event => {

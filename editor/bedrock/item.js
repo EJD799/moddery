@@ -917,7 +917,6 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("class", "button is-primary inputEditBtn");
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
                 newComponentDOM.setAttribute("onclick", `openAdvInputEditor("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "list")`);
-                buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
                 elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "texture") {
                 newComponentDOM = document.createElement("label");
@@ -947,7 +946,6 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("class", "button is-primary inputEditBtn");
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
                 newComponentDOM.setAttribute("onclick", `openSelectTextureDlg("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "component")`);
-                buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
                 elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "loot_table") {
                 newComponentDOM = document.createElement("label");
@@ -977,7 +975,6 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("class", "button is-primary inputEditBtn");
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
                 newComponentDOM.setAttribute("onclick", `openSelectTableDlg("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "loot_table")`);
-                buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
                 elementBox.appendChild(newComponentDOM);
             } else if (newComponentType == "trade_table") {
                 newComponentDOM = document.createElement("label");
@@ -1007,7 +1004,6 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("class", "button is-primary inputEditBtn");
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
                 newComponentDOM.setAttribute("onclick", `openSelectTableDlg("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "trade_table")`);
-                buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
                 elementBox.appendChild(newComponentDOM);
             }/* new end */ else {
                 newComponentDOM = document.createElement("label");

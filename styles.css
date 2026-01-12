@@ -332,6 +332,7 @@ input[type=color] {
     cursor: pointer;
     image-rendering: pixelated;
     border-radius: 4px;
+    transition: var(--bulma-duration);
 }
 
 .itemPickBtn:hover {

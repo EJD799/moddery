@@ -103,7 +103,7 @@ function addItem(customID = false) {
 
     let btn1 = document.createElement("button");
     btn1.setAttribute("id", `itemBtn${newID}a`);
-    btn1.setAttribute("class", "itemIconBtn");
+    btn1.setAttribute("class", "button itemIconBtn");
     btn1.setAttribute("onclick", `selectItem('${newID}a')`);
     let img1 = document.createElement("img");
     img1.setAttribute("id", `itemBtnImg${newID}a`);
@@ -134,7 +134,7 @@ function addItem(customID = false) {
 
     let btn2 = document.createElement("button");
     btn2.setAttribute("id", `itemBtn${newID}b`);
-    btn2.setAttribute("class", "itemIconBtn");
+    btn2.setAttribute("class", "button itemIconBtn");
     btn2.setAttribute("onclick", `selectItem('${newID}b')`);
     let img2 = document.createElement("img");
     img2.setAttribute("id", `itemBtnImg${newID}b`);
@@ -172,7 +172,7 @@ function addItem(customID = false) {
 
     let btn3 = document.createElement("button");
     btn3.setAttribute("id", `itemBtn${newID}c`);
-    btn3.setAttribute("class", "itemIconBtn");
+    btn3.setAttribute("class", "button itemIconBtn");
     btn3.setAttribute("onclick", `selectItem('${newID}c')`);
     let img3 = document.createElement("img");
     img3.setAttribute("id", `itemBtnImg${newID}c`);

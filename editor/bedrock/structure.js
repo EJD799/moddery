@@ -1,20 +1,5 @@
-$("#typeBox").selectmenu();
-$("#directionBox").selectmenu();
-$("#structureFileBtn").button();
-$("#selectStructureCancelBtn").button();
-$("#selectStructureSelectBtn").button();
-$('input').addClass("ui-widget ui-widget-content ui-corner-all");
-
-$("#selectStructureDlg").dialog({
-  position: { my: "center", at: "center", of: window },
-  resizable: false,
-  height: 500,
-  width: 500
-});
-$("#selectStructureDlg").dialog("close");
-
 function openSelectStructureDlg() {
-  $("#selectStructureDlg").dialog("open");
+  selectStructureDlg.classList.add("is-active");
   textures = window.parent.getStructureList();
   let selectStructureMenu = document.getElementById("selectStructureMenu");
   selectStructureMenu.innerHTML = "";
@@ -46,10 +31,10 @@ function openSelectStructureDlg() {
   }
 }
 function closeSelectStructureDlg() {
-  $("#selectStructureDlg").dialog("close");
+  selectStructureDlg.classList.remove("is-active");
 }
 function selectStructure() {
-    $("#selectStructureDlg").dialog("close");
+    closeSelectStructureDlg();
     const selected = document.querySelector('input[name="selectedStructure"]:checked');
     if (selected.value) {
 		const structureNameText = document.getElementById("structureNameText");

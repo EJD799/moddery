@@ -837,6 +837,9 @@ function createComponent(type) {
                 // Add space before the dropdown
                 elementBox.appendChild(document.createTextNode(" "));
 
+
+                let inputContainer = document.createElement("div");
+                inputContainer.setAttribute("class", "select");
                 // Create <select> element
                 newComponentDOM = document.createElement("select");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
@@ -861,7 +864,8 @@ function createComponent(type) {
                 });
 
                 // Append to the element box
-                elementBox.appendChild(newComponentDOM);
+                inputContainer.appendChild(newComponentDOM);
+                elementBox.appendChild(inputContainer);
             } else if (newComponentType == "boolean") {
                 newComponentDOM = document.createElement("label");
                 newComponentDOM.setAttribute("for", newComponentTypeName + newComponentInputName);

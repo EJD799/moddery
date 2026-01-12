@@ -752,7 +752,7 @@ function createComponent(type) {
         currentItemComponents[type] = newComponentObj;
         var parentDiv = document.getElementById("componentsBox");
         var elementBox = document.createElement("div");
-        elementBox.setAttribute("class", "componentbox");
+        elementBox.setAttribute("class", "card componentbox");
         elementBox.setAttribute("id", "componentbox_" + removeSpaces(type));
         var elementBoxTitle = document.createElement("h3");
         elementBoxTitle.innerHTML = type + " ";
@@ -1037,7 +1037,6 @@ function createComponent(type) {
             hide: { effect: "fadeOut", duration: 200, delay: 0 },
             track: false
         });
-        $('input').addClass("ui-widget ui-widget-content ui-corner-all");
     }
     addComponentDlg.classList.remove("is-active");
 }
@@ -1332,7 +1331,6 @@ function advEditorAddItem(mode, value, idVal = -1) {
         advEditorListContent.appendChild(deleteBtn);
         advEditorListContent.appendChild(document.createElement("br"));
     }
-    $('input').addClass("ui-widget ui-widget-content ui-corner-all");
 }
 function advEditorRemoveItem(id) {
     if (advEditorType == "list") {

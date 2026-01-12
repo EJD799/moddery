@@ -152,26 +152,40 @@
             <button class="modal-close is-large" aria-label="close" onclick="closeSelectTextureDlg();"></button>
         </div>
 
-		<div id="advEditor" title="Edit Input">
-            <center>
-                <div id="advEditorContentList">
-                <button id="advEditorListAddBtn" onclick="advEditorAddItem('list', '', -1)">+ Add Item</button>
-                <br><br>
-                <div id="advEditorListContent"></div>
+        <div class="modal" id="advEditor">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:300px;height:200px;">
+                <div class="card" id="advEditorCard" style="padding:16px;">
+                    <center>
+                        <h4 id="advEditorTitle" class="title is-4">Edit Input</h4>
+                        <div id="advEditorContentList">
+                        <button class="button is-primary" id="advEditorListAddBtn" onclick="advEditorAddItem('list', '', -1)">+ Add Item</button>
+                        <br><br>
+                        <div id="advEditorListContent"></div>
+                        </div>
+                        <br><br>
+                        <button class="button is-primary" id="advEditorSave" onclick="saveAdvInput()">Save</button>
+                    </center>
                 </div>
-                <br><br>
-                <button id="advEditorSave" onclick="saveAdvInput()">Save</button>
-            </center>
-		</div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeDeleteComponent();"></button>
+        </div>
 		<!-- new end -->
 
-		<div id="deleteDlg" title="Delete Component?">
-            <center>
-                <span id="deleteDlgText"></span><br><br>
-                <button id="deleteDlgCancel" onclick="closeDeleteComponent()">Cancel</button>
-                <button id="deleteDlgConfirm" class="redBtn">Delete</button>
-            </center>
-		</div>
+        <div class="modal" id="deleteDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:300px;height:200px;">
+                <div class="card" id="deleteDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 id="selectTableDlgTitle" class="title is-4">Delete Component?</h4>
+                        <span id="deleteDlgText"></span><br><br>
+                        <button class="button" id="deleteDlgCancel" onclick="closeDeleteComponent()">Cancel</button>
+                        <button class="button is-danger" id="deleteDlgConfirm">Delete</button>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeDeleteComponent();"></button>
+        </div>
 
 		<script src="item.js"></script>
 		<script src="../../libs.js"></script>

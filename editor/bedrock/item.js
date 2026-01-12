@@ -763,8 +763,6 @@ function createComponent(type) {
         elementBoxDelete.innerHTML = `<i class="fas fa-trash"></i>`;
         elementBoxTitle.appendChild(elementBoxDelete);
         elementBox.appendChild(elementBoxTitle);
-        let dropdownsToRegister = [];
-        let buttonsToRegister = []; // new
         for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
             newComponentType = componentDefinitions[type].inputs[i].type;
             newComponentInputName = componentDefinitions[type].inputs[i].name;
@@ -788,6 +786,7 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("class", "input normalInput");
                 newComponentDOM.setAttribute("type", "number");
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
@@ -904,14 +903,14 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 newComponentDOM.setAttribute("disabled", "true");
-                newComponentDOM.setAttribute("class", "almostFullInput");
+                newComponentDOM.setAttribute("class", "input almostFullInput");
                 newComponentDOM.setAttribute("value", "[]");
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
                 elementBox.appendChild(newComponentDOM);
                 newComponentDOM = document.createElement("button");
                 newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
-                newComponentDOM.setAttribute("class", "inputEditBtn");
+                newComponentDOM.setAttribute("class", "button is-primary inputEditBtn");
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
                 newComponentDOM.setAttribute("onclick", `openAdvInputEditor("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "list")`);
                 buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
@@ -934,14 +933,14 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 newComponentDOM.setAttribute("disabled", "true");
-                newComponentDOM.setAttribute("class", "almostFullInput");
+                newComponentDOM.setAttribute("class", "input almostFullInput");
                 newComponentDOM.setAttribute("value", "");
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
                 elementBox.appendChild(newComponentDOM);
                 newComponentDOM = document.createElement("button");
                 newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
-                newComponentDOM.setAttribute("class", "inputEditBtn");
+                newComponentDOM.setAttribute("class", "button is-primary inputEditBtn");
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
                 newComponentDOM.setAttribute("onclick", `openSelectTextureDlg("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "component")`);
                 buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
@@ -964,14 +963,14 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 newComponentDOM.setAttribute("disabled", "true");
-                newComponentDOM.setAttribute("class", "almostFullInput");
+                newComponentDOM.setAttribute("class", "input almostFullInput");
                 newComponentDOM.setAttribute("value", "");
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
                 elementBox.appendChild(newComponentDOM);
                 newComponentDOM = document.createElement("button");
                 newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
-                newComponentDOM.setAttribute("class", "inputEditBtn");
+                newComponentDOM.setAttribute("class", "button is-primary inputEditBtn");
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
                 newComponentDOM.setAttribute("onclick", `openSelectTableDlg("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "loot_table")`);
                 buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
@@ -994,14 +993,14 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 newComponentDOM.setAttribute("disabled", "true");
-                newComponentDOM.setAttribute("class", "almostFullInput");
+                newComponentDOM.setAttribute("class", "input almostFullInput");
                 newComponentDOM.setAttribute("value", "");
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
                 elementBox.appendChild(newComponentDOM);
                 newComponentDOM = document.createElement("button");
                 newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
-                newComponentDOM.setAttribute("class", "inputEditBtn");
+                newComponentDOM.setAttribute("class", "button is-primary inputEditBtn");
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
                 newComponentDOM.setAttribute("onclick", `openSelectTableDlg("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "trade_table")`);
                 buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
@@ -1023,6 +1022,7 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("class", "input normalInput");
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
                 newComponentDOM.addEventListener("change", event => {

@@ -893,6 +893,7 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("type", "checkbox");
+                newComponentDOM.setAttribute("class", "is-primary");
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
                 newComponentDOM.addEventListener("change", event => {

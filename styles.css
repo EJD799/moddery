@@ -177,7 +177,7 @@ input[type="number"] {
 }
 
 .tooltipIcon:hover {
-    color: #75abff;
+    color: var(--bulma-link);
 }
 
 .deleteIcon:hover {

@@ -549,16 +549,18 @@ function createComponent(type) {
         newComponentObj[componentDefinitions[type].inputs[i].name] = newComponentDefault;
     }
     if (!Object.keys(currentBlockComponents).includes(type)) {
-        currentBlockComponents[type] = newComponentObj;
+        currentItemComponents[type] = newComponentObj;
         var parentDiv = document.getElementById("componentsBox");
         var elementBox = document.createElement("div");
-        elementBox.setAttribute("class", "componentbox");
+        elementBox.setAttribute("class", "card componentbox");
         elementBox.setAttribute("id", "componentbox_" + removeSpaces(type));
-        var elementBoxTitle = document.createElement("h3");
+        var elementBoxTitle = document.createElement("h5");
+        elementBoxTitle.setAttribute("class", "title is-5");
         elementBoxTitle.innerHTML = type + " ";
-        var elementBoxDelete = document.createElement("i");
-        elementBoxDelete.setAttribute("class", "fas fa-trash deleteIcon");
+        var elementBoxDelete = document.createElement("button");
+        elementBoxDelete.setAttribute("class", "button is-danger newDeleteBtn");
         elementBoxDelete.setAttribute("onclick", `openDeleteComponent('${type}')`);
+        elementBoxDelete.innerHTML = `<i class="fas fa-trash"></i>`;
         elementBoxTitle.appendChild(elementBoxDelete);
         elementBox.appendChild(elementBoxTitle);
         for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
@@ -854,7 +856,7 @@ function createComponent(type) {
 
 function generateTextureSelector(id, name) {
     return `<label for="blockTextureBtn${id}">${name}: <span id="textureNameText${id}">No texture selected</span></label>
-<button name="blockTextureBtn${id}" id="blockTextureBtn${id}" onclick="openSelectTextureDlg(false, false, 'default', ${id})">Select Texture</button>
+<button class="button" name="blockTextureBtn${id}" id="blockTextureBtn${id}" onclick="openSelectTextureDlg(false, false, 'default', ${id})">Select Texture</button>
 <br><br>`;
 }
 

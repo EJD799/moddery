@@ -10,7 +10,7 @@ function openSelectStructureDlg() {
     let itemTitle;
     let itemRadio;
     selectStructureMenuItem = document.createElement("div");
-    selectStructureMenuItem.setAttribute("class", "textureMenuItem");
+    selectStructureMenuItem.setAttribute("class", "card textureMenuItem");
     itemRadio = document.createElement("input");
     itemRadio.setAttribute("type", "radio");
     itemRadio.setAttribute("name", "selectedStructure");

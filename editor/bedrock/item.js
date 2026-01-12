@@ -807,6 +807,10 @@ function createComponent(type) {
                     elementBox.appendChild(newComponentDOM);
                 }
                 elementBox.appendChild(document.createTextNode(" "));
+                let container1 = document.createElement("div");
+                container1.setAttribute("class", "field");
+                let container2 = document.createElement("div");
+                container2.setAttribute("class", "control button");
                 newComponentDOM = document.createElement("input");
                 newComponentDOM.setAttribute("name", newComponentTypeName + newComponentInputName);
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
@@ -817,7 +821,12 @@ function createComponent(type) {
                 newComponentDOM.addEventListener("change", event => {
                     updateInput(typeName, inputName, event.target.value);
                 });
-                elementBox.appendChild(newComponentDOM);
+                container2.addEventListener("click", event => {
+                    newComponentDOM.click();
+                });
+                container2.appendChild(newComponentDOM);
+                container1.appendChild(container2);
+                elementBox.appendChild(container1);
             } else if (newComponentType == "dropdown") {
                 // Create label
                 newComponentDOM = document.createElement("label");

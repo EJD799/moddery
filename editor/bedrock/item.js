@@ -1066,7 +1066,7 @@ function openSelectTextureDlg(component, input, mode) {
         let itemTitle;
         let itemRadio;
         selectTextureMenuItem = document.createElement("div");
-        selectTextureMenuItem.setAttribute("class", "textureMenuItem");
+        selectTextureMenuItem.setAttribute("class", "card textureMenuItem");
         itemRadio = document.createElement("input");
         itemRadio.setAttribute("type", "radio");
         itemRadio.setAttribute("name", "selectedTexture");
@@ -1144,10 +1144,10 @@ async function openSelectTableDlg(component, input, type) {
     advEditorType = type;
     let tables;
     if (type == "trade_table") {
-        $("#selectTableDlg").dialog("option", "title", "Select Trade Table");
+        selectTableDlgTitle.innerHTML = "Select Trade Table";
         tables = await window.parent.getTradeTableList();
     } else {
-        $("#selectTableDlg").dialog("option", "title", "Select Loot Table");
+        selectTableDlgTitle.innerHTML = "Select Loot Table";
         tables = await window.parent.getLootTableList();
     }
     openSelectTableDlg.classList.add("is-active");
@@ -1160,7 +1160,7 @@ async function openSelectTableDlg(component, input, type) {
         let itemTitle;
         let itemRadio;
         selectTableMenuItem = document.createElement("div");
-        selectTableMenuItem.setAttribute("class", "textureMenuItem");
+        selectTableMenuItem.setAttribute("class", "card textureMenuItem");
         itemRadio = document.createElement("input");
         itemRadio.setAttribute("type", "radio");
         itemRadio.setAttribute("name", "selectedTable");

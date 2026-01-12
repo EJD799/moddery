@@ -130,6 +130,7 @@ input {
     display: inline-block;
     margin: 10px;
     vertical-align: middle;
+    overflow: auto;
 }
 .versionBox {
     width: 40px !important;

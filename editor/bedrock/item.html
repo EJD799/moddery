@@ -54,7 +54,7 @@
 		<br><br>
 		<label for="itemTextureBtn">Item Texture: <span id="textureNameText">No texture selected</span></label>
 		<button class="button" name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg()">Select Texture</button><br><br>
-		<span class="title is-4">Components <button id="addComponentBtn" onclick="addComponent()">+ Add Component</button></span>
+		<span class="title is-4">Components <button class="button is-primary" id="addComponentBtn" onclick="addComponent()">+ Add Component</button></span>
 		<div id="componentsBox"></div>
 
         <div class="modal" id="addComponentDlg">
@@ -113,45 +113,64 @@
             <button class="modal-close is-large" aria-label="close" onclick="closeAddComponentDlg();"></button>
         </div>
 
-		<div id="selectTextureDlg" title="Select Texture">
-			<div class="textureMenu" id="selectTextureMenu"></div>
+        <div class="modal" id="selectTextureDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:400px;height:550px;">
+                <div class="card" id="selectTextureDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 class="title is-4">Select Texture</h4>
+                        <div class="textureMenu" id="selectTextureMenu"></div>
 
-			<div class="textureDialogButtons">
-				<button id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
-				<button id="selectTextureSelectBtn" onclick="selectTexture()">Select</button>
-				<button id="selectTextureSelectBtn2" onclick="selectCompTexture()">Select</button>
-			</div>
-		</div>
+                        <div class="textureDialogButtons">
+                            <button class="button" id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
+                            <button class="button is-primary" id="selectTextureSelectBtn" onclick="selectTexture()">Select</button>
+                            <button class="button is-primary" id="selectTextureSelectBtn2" onclick="selectCompTexture()">Select</button>
+                        </div>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeSelectTextureDlg();"></button>
+        </div>
 
 		<!-- new start -->
-		<div id="selectTableDlg" title="">
-			<div class="textureMenu" id="selectTableMenu"></div>
 
-			<div class="textureDialogButtons">
-				<button id="selectTableCancelBtn" onclick="closeSelectTableDlg()">Cancel</button>
-				<button id="selectTableSelectBtn" onclick="selectTable()">Select</button>
-			</div>
-		</div>
+        <div class="modal" id="selectTableDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:400px;height:550px;">
+                <div class="card" id="selectTableDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 id="selectTableDlgTitle" class="title is-4">Select Table</h4>
+                        <div class="textureMenu" id="selectTableMenu"></div>
+
+                        <div class="textureDialogButtons">
+                            <button class="button" id="selectTableCancelBtn" onclick="closeSelectTableDlg()">Cancel</button>
+                            <button class="button is-primary" id="selectTableSelectBtn" onclick="selectTable()">Select</button>
+                        </div>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeSelectTextureDlg();"></button>
+        </div>
 
 		<div id="advEditor" title="Edit Input">
-		<center>
-			<div id="advEditorContentList">
-			<button id="advEditorListAddBtn" onclick="advEditorAddItem('list', '', -1)">+ Add Item</button>
-			<br><br>
-			<div id="advEditorListContent"></div>
-			</div>
-			<br><br>
-			<button id="advEditorSave" onclick="saveAdvInput()">Save</button>
-		</center>
+            <center>
+                <div id="advEditorContentList">
+                <button id="advEditorListAddBtn" onclick="advEditorAddItem('list', '', -1)">+ Add Item</button>
+                <br><br>
+                <div id="advEditorListContent"></div>
+                </div>
+                <br><br>
+                <button id="advEditorSave" onclick="saveAdvInput()">Save</button>
+            </center>
 		</div>
 		<!-- new end -->
 
 		<div id="deleteDlg" title="Delete Component?">
-		<center>
-			<span id="deleteDlgText"></span><br><br>
-			<button id="deleteDlgCancel" onclick="closeDeleteComponent()">Cancel</button>
-			<button id="deleteDlgConfirm" class="redBtn">Delete</button>
-		</center>
+            <center>
+                <span id="deleteDlgText"></span><br><br>
+                <button id="deleteDlgCancel" onclick="closeDeleteComponent()">Cancel</button>
+                <button id="deleteDlgConfirm" class="redBtn">Delete</button>
+            </center>
 		</div>
 
 		<script src="item.js"></script>

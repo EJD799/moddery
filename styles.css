@@ -176,6 +176,9 @@ input[type="number"] {
     background: #d40000;
 }
 
+.tooltipIcon {
+    transition: var(--bulma-duration);
+}
 .tooltipIcon:hover {
     color: var(--bulma-link);
 }

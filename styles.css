@@ -902,7 +902,6 @@ progress {
   align-items: center;
   gap: 16px;
   padding: 12px;
-  border: 1px solid #ddd;
   border-radius: 8px;
 }
 
@@ -927,5 +926,5 @@ progress {
 .welcomeInfoItemText p {
   margin: 0;
   font-size: 0.9rem;
-  color: #555;
+  color: var(--bulma-text);
 }

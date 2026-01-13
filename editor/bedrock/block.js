@@ -519,10 +519,10 @@ function centerDialogViewport(selector) {
 }
 
 function addComponent() {
-  addComponentDlg.classList.add("is-active");
+    addComponentDlg.classList.add("is-active");
 }
 function closeAddComponentDlg() {
-  addComponentDlg.classList.remove("is-active");
+    addComponentDlg.classList.remove("is-active");
 }
 function removeSpaces(str) {
     return str.replaceAll(" ", "_s_");

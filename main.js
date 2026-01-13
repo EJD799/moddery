@@ -1,4 +1,4 @@
-const appVersion = "2.0.8";
+const appVersion = "2.0.9";
 const buildDate = "1/13/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -126,6 +126,8 @@ async function addCustomTheme(input) {
   menuOption.setAttribute("value", data.id);
   menuOption.innerHTML = data.name;
   themeMenu.appendChild(menuOption);
+
+  setCookie("customThemes", JSON.stringify(customThemes), 399);
 }
 
 function arraysEqual(a, b) {
@@ -561,6 +563,18 @@ autosaveBox.addEventListener("change", function(e) {
 
 
 let themeMenu = document.getElementById("themeMenu");
+
+if (getCookie("customThemes")) {
+  customThemes = JSON.parse(getCookie("customThemes"));
+  let themeList = Object.keys(customThemes);
+  for (let i = 0; i < themeList.length; i++) {
+    let data = customThemes[themeList[i]];
+    let menuOption = document.createElement("option");
+    menuOption.setAttribute("value", themeList[i]);
+    menuOption.innerHTML = data.name;
+    themeMenu.appendChild(menuOption);
+  }
+}
 
 if (getCookie("editorTheme")) {
   editorTheme = getCookie("editorTheme");

@@ -907,6 +907,7 @@ progress {
 
 .welcomeInfoItemReverse {
   flex-direction: row-reverse;
+  text-align: right;
 }
 
 .welcomeInfoItem img {

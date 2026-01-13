@@ -118,11 +118,11 @@
         <button onclick="openNewProjDlg()" class="button is-primary"><i class="fas fa-file"></i> New Project</button>
         <button onclick="openProjDlg()" class="button"><i class="fas fa-folder-open"></i> Open Project</button>
         <br><br>
-        <div id="welcomeInfoBox1">
+        <div class="card" id="welcomeInfoBox1">
           <div class="welcomeInfoItem">
             <img src="images/screenshot1.png">
             <div class="welcomeInfoItemText">
-              <h4>Item One</h4>
+              <h5 class="title is-5">Item One</h5>
               <p>This is a short description for the first item.</p>
             </div>
           </div>
@@ -130,7 +130,7 @@
           <div class="welcomeInfoItem welcomeInfoItemReverse">
             <img src="images/screenshot2.png">
             <div class="welcomeInfoItemText">
-              <h4>Item Two</h4>
+              <h5 class="title is-5">Item Two</h5>
               <p>This is a short description for the second item.</p>
             </div>
           </div>
@@ -138,7 +138,7 @@
           <div class="welcomeInfoItem">
             <img src="images/screenshot3.png">
             <div class="welcomeInfoItemText">
-              <h4>Item Three</h4>
+              <h5 class="title is-5">Item Three</h5>
               <p>This is a short description for the third item.</p>
             </div>
           </div>
@@ -403,7 +403,7 @@
           <div id="optionsContent2">
             <h3 class="title is-3">Account</h3>
             <p>Coming Soon!</p><br>
-            <div>
+            <div style="display:none;">
               <p id="accountNameText">Not signed in</p>
               <button id="signInBtn" class="button is-primary" onclick="if(signedIn){signOut();}else{openSignInDlg();}">Sign In</button>
             </div>

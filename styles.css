@@ -891,5 +891,39 @@ progress {
 }
 
 #welcomeInfoBox1 {
-    text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.welcomeInfoItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.welcomeInfoItemReverse {
+  flex-direction: row-reverse;
+}
+
+.welcomeInfoItem img {
+  width: 150px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.welcomeInfoItemText h4 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+.welcomeInfoItemText p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
 }

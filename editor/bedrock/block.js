@@ -887,7 +887,7 @@ function openSelectTextureDlg(component, input, mode, textureToSelect) {
         let itemTitle;
         let itemRadio;
         selectTextureMenuItem = document.createElement("div");
-        selectTextureMenuItem.setAttribute("class", "textureMenuItem");
+        selectTextureMenuItem.setAttribute("class", "card textureMenuItem");
         itemRadio = document.createElement("input");
         itemRadio.setAttribute("type", "radio");
         itemRadio.setAttribute("name", "selectedTexture");
@@ -1004,7 +1004,7 @@ async function openSelectTableDlg(component, input, type) {
         let itemTitle;
         let itemRadio;
         selectTableMenuItem = document.createElement("div");
-        selectTableMenuItem.setAttribute("class", "textureMenuItem");
+        selectTableMenuItem.setAttribute("class", "card textureMenuItem");
         itemRadio = document.createElement("input");
         itemRadio.setAttribute("type", "radio");
         itemRadio.setAttribute("name", "selectedTable");
@@ -1060,7 +1060,7 @@ function openSelectModelDlg() {
     let itemTitle;
     let itemRadio;
     selectModelMenuItem = document.createElement("div");
-    selectModelMenuItem.setAttribute("class", "textureMenuItem");
+    selectModelMenuItem.setAttribute("class", "card textureMenuItem");
     itemRadio = document.createElement("input");
     itemRadio.setAttribute("type", "radio");
     itemRadio.setAttribute("name", "selectedModel");

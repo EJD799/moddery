@@ -2025,20 +2025,20 @@ function createComponent(type) {
         newComponentObj[componentDefinitions[type].inputs[i].name] = newComponentDefault;
     }
     if (!Object.keys(currentEntityComponents).includes(type)) {
-        currentEntityComponents[type] = newComponentObj;
+        currentBlockComponents[type] = newComponentObj;
         var parentDiv = document.getElementById("componentsBox");
         var elementBox = document.createElement("div");
-        elementBox.setAttribute("class", "componentbox");
+        elementBox.setAttribute("class", "card componentbox");
         elementBox.setAttribute("id", "componentbox_" + removeSpaces(type));
-        var elementBoxTitle = document.createElement("h3");
+        var elementBoxTitle = document.createElement("h5");
+        elementBoxTitle.setAttribute("class", "title is-5");
         elementBoxTitle.innerHTML = type + " ";
-        var elementBoxDelete = document.createElement("i");
-        elementBoxDelete.setAttribute("class", "fas fa-trash deleteIcon");
+        var elementBoxDelete = document.createElement("button");
+        elementBoxDelete.setAttribute("class", "button is-danger newDeleteBtn");
         elementBoxDelete.setAttribute("onclick", `openDeleteComponent('${type}')`);
+        elementBoxDelete.innerHTML = `<i class="fas fa-trash"></i>`;
         elementBoxTitle.appendChild(elementBoxDelete);
         elementBox.appendChild(elementBoxTitle);
-        let dropdownsToRegister = [];
-        let buttonsToRegister = []; // new
         for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
             newComponentType = componentDefinitions[type].inputs[i].type;
             newComponentInputName = componentDefinitions[type].inputs[i].name;

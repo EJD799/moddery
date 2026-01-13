@@ -1,4 +1,4 @@
-const appVersion = "2.0.7";
+const appVersion = "2.0.8";
 const buildDate = "1/13/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -102,7 +102,13 @@ async function getURLContents(url) {
   return contents;
 }
 
-async function addCustomTheme(data) {
+async function addCustomTheme(input) {
+  let data;
+  if (typeof data == "string") {
+    data = JSON.parse(input);
+  } else {
+    data = input;
+  }
   let id = data.id;
   let cssFile;
   if (data.stylesheet.startsWith("http")) {
@@ -617,6 +623,9 @@ function handleFrameThemeChange() {
     themeName = editorTheme;
     importTheme = customThemes[editorTheme].stylesheet;
     generalThemeType = customThemes[editorTheme].generalType;
+  }
+  if (importTheme) {
+    themeStyleElement.innerHTML = importTheme;
   }
   let iframes = document.querySelectorAll("iframe");
   for (let i = 0; i < iframes.length; i++) {

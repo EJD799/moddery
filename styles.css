@@ -558,13 +558,13 @@ input:disabled::placeholder {
     color: #d40000 !important;
 }
 
-#welcomeInfoBox {
+#welcomeInfoBox1 {
     padding: 10px;
     border-radius: 10px;
     text-align: left;
     width: 700px;
     height: 400px;
-    display: inline-block;
+    /*display: inline-block;*/
     margin: 10px;
 }
 

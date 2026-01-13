@@ -1,4 +1,4 @@
-const appVersion = "2.0.2";
+const appVersion = "2.0.3";
 const buildDate = "1/13/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -243,11 +243,13 @@ function switchOptionsTab(tab) {
   optionsTab3.classList.remove("is-active");
   optionsTab4.classList.remove("is-active");
   optionsTab5.classList.remove("is-active");
+  optionsTab6.classList.remove("is-active");
   $("#optionsContent1").hide();
   $("#optionsContent2").hide();
   $("#optionsContent3").hide();
   $("#optionsContent4").hide();
   $("#optionsContent5").hide();
+  $("#optionsContent6").hide();
   document.getElementById(`optionsTab${tab}`).classList.add("is-active");
   $(`#optionsContent${tab}`).show();
 }

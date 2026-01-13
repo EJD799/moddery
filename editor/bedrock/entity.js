@@ -2362,8 +2362,8 @@ function createComponent(type) {
 
 function generateTextureSelector(id) {
     return `<label for="entityTextureBtn${id}"> <span id="textureNameText${id}">No texture selected</span></label>
-<button name="entityTextureBtn${id}" id="entityTextureBtn${id}" onclick="openSelectTextureDlg(false, false, 'default', ${id})">Select Texture</button>
-<i class="fas fa-trash deleteIcon" onclick="removeTexture(${id})"></i>
+<button class="button" name="entityTextureBtn${id}" id="entityTextureBtn${id}" onclick="openSelectTextureDlg(false, false, 'default', ${id})">Select Texture</button>
+<button class="button is-danger newDeleteBtn" onclick="removeTexture(${id})"><i class="fas fa-trash"></i></button>
 <br><br>`;
 }
 
@@ -2596,6 +2596,7 @@ function addTexture(name = "", value = "", i = currentEntityTextures.length, add
     let div = document.createElement("div");
     div.innerHTML = generateTextureSelector(i + 1);
     let nameBox = document.createElement("input");
+    nameBox.setAttribute("class", "input normalInput");
     nameBox.setAttribute("id", `textureNameBox${i + 1}`);
     nameBox.addEventListener("change", function() {
         currentEntityTextures[i][0] = nameBox.value;

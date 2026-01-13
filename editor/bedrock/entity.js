@@ -2025,7 +2025,7 @@ function createComponent(type) {
         newComponentObj[componentDefinitions[type].inputs[i].name] = newComponentDefault;
     }
     if (!Object.keys(currentEntityComponents).includes(type)) {
-        currentBlockComponents[type] = newComponentObj;
+        currentEntityComponents[type] = newComponentObj;
         var parentDiv = document.getElementById("componentsBox");
         var elementBox = document.createElement("div");
         elementBox.setAttribute("class", "card componentbox");

@@ -1,4 +1,4 @@
-const appVersion = "2.0.15";
+const appVersion = "2.0.16";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -640,6 +640,7 @@ function handleFrameThemeChange() {
       generalThemeType = customThemes[editorTheme].generalType;
     } else {
       editorTheme = "system";
+      setCookie("editorTheme", "system", 399);
       autoThemeChange();
     }
   }

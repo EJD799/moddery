@@ -2794,9 +2794,10 @@ function advEditorAddItem(mode, value, idVal = -1) {
             advEditorCurrentData[id] = event.target.value;
         });
         advEditorListContent.appendChild(textBox);
-        let deleteBtn = document.createElement("i");
-        deleteBtn.setAttribute("class", "fas fa-trash deleteIcon");
+        let deleteBtn = document.createElement("button");
+        deleteBtn.setAttribute("class", "button is-danger newDeleteBtn");
         deleteBtn.setAttribute("onclick", `advEditorRemoveItem(${id})`);
+        deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`;
         advEditorListContent.appendChild(document.createTextNode(" "));
         advEditorListContent.appendChild(deleteBtn);
         advEditorListContent.appendChild(document.createElement("br"));
@@ -2806,9 +2807,10 @@ function advEditorAddItem(mode, value, idVal = -1) {
 
         let title = document.createElement("h4");
         title.innerHTML = `Seat ${id + 1} `;
-        let deleteBtn = document.createElement("i");
-        deleteBtn.setAttribute("class", "fas fa-trash deleteIcon");
+        let deleteBtn = document.createElement("button");
+        deleteBtn.setAttribute("class", "button is-danger newDeleteBtn");
         deleteBtn.setAttribute("onclick", `advEditorRemoveItem(${id})`);
+        deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`;
         title.appendChild(deleteBtn);
         advEditorSeatsContent.appendChild(title);
 
@@ -2819,7 +2821,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox1.setAttribute("id", `advEditorSeatsItem${id}a`);
         textBox1.setAttribute("value", seat.lock_rider_rotation ?? 181);
         textBox1.setAttribute("type", "number");
-        textBox1.setAttribute("class", "smallInput");
+        textBox1.setAttribute("class", "input smallInput");
         textBox1.addEventListener("change", event => {
             advEditorCurrentData[id].lock_rider_rotation = Number(event.target.value);
         });
@@ -2834,7 +2836,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox2.setAttribute("id", `advEditorSeatsItem${id}b`);
         textBox2.setAttribute("value", seat.max_rider_count ?? 0);
         textBox2.setAttribute("type", "number");
-        textBox2.setAttribute("class", "smallInput");
+        textBox2.setAttribute("class", "input smallInput");
         textBox2.addEventListener("change", event => {
             advEditorCurrentData[id].max_rider_count = Number(event.target.value);
         });
@@ -2849,7 +2851,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox3.setAttribute("id", `advEditorSeatsItem${id}c`);
         textBox3.setAttribute("value", seat.min_rider_count ?? 0);
         textBox3.setAttribute("type", "number");
-        textBox3.setAttribute("class", "smallInput");
+        textBox3.setAttribute("class", "input smallInput");
         textBox3.addEventListener("change", event => {
             advEditorCurrentData[id].min_rider_count = Number(event.target.value);
         });
@@ -2864,7 +2866,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox4a.setAttribute("id", `advEditorSeatsItem${id}d1`);
         textBox4a.setAttribute("value", seat.position?.[0] ?? 0);
         textBox4a.setAttribute("type", "number");
-        textBox4a.setAttribute("class", "smallInput");
+        textBox4a.setAttribute("class", "input smallInput");
         textBox4a.addEventListener("change", event => {
             if (typeof advEditorCurrentData[id].position == "object") {
                 advEditorCurrentData[id].position[0] = Number(event.target.value);
@@ -2881,7 +2883,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox4b.setAttribute("id", `advEditorSeatsItem${id}d2`);
         textBox4b.setAttribute("value", seat.position?.[1] ?? 0);
         textBox4b.setAttribute("type", "number");
-        textBox4b.setAttribute("class", "smallInput");
+        textBox4b.setAttribute("class", "input smallInput");
         textBox4b.addEventListener("change", event => {
             if (typeof advEditorCurrentData[id].position == "object") {
                 advEditorCurrentData[id].position[1] = Number(event.target.value);
@@ -2898,7 +2900,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox4c.setAttribute("id", `advEditorSeatsItem${id}d3`);
         textBox4c.setAttribute("value", seat.position?.[2] ?? 0);
         textBox4c.setAttribute("type", "number");
-        textBox4c.setAttribute("class", "smallInput");
+        textBox4c.setAttribute("class", "input smallInput");
         textBox4c.addEventListener("change", event => {
             if (typeof advEditorCurrentData[id].position == "object") {
                 advEditorCurrentData[id].position[2] = Number(event.target.value);
@@ -2917,7 +2919,7 @@ function advEditorAddItem(mode, value, idVal = -1) {
         textBox5.setAttribute("id", `advEditorSeatsItem${id}e`);
         textBox5.setAttribute("value", seat.rotate_rider_by ?? 0);
         textBox5.setAttribute("type", "number");
-        textBox5.setAttribute("class", "smallInput");
+        textBox5.setAttribute("class", "input smallInput");
         textBox5.addEventListener("change", event => {
             advEditorCurrentData[id].rotate_rider_by = Number(event.target.value);
         });

@@ -1376,9 +1376,10 @@ function advEditorAddItem(mode, value, idVal = -1) {
             advEditorCurrentData[id] = event.target.value;
         });
         advEditorListContent.appendChild(textBox);
-        let deleteBtn = document.createElement("i");
-        deleteBtn.setAttribute("class", "fas fa-trash deleteIcon");
+        let deleteBtn = document.createElement("button");
+        deleteBtn.setAttribute("class", "button is-danger newDeleteBtn");
         deleteBtn.setAttribute("onclick", `advEditorRemoveItem(${id})`);
+        deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`;
         advEditorListContent.appendChild(document.createTextNode(" "));
         advEditorListContent.appendChild(deleteBtn);
         advEditorListContent.appendChild(document.createElement("br"));

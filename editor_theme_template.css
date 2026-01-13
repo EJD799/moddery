@@ -27,4 +27,5 @@ html[data-theme=themeName] {
     --app-blockly-toolbox-flyout-background: #000000;
     --app-black-white: #000000;
     --app-disabled-input-border: #000000;
+    --bulma-background: #000000;
 }

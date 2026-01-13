@@ -127,7 +127,7 @@ async function addCustomTheme(input) {
   menuOption.innerHTML = data.name;
   themeMenu.appendChild(menuOption);
 
-  setCookie("customThemes", JSON.stringify(customThemes), 399);
+  setCookie("customThemes", JSON.stringify(customThemes), 399, true);
 }
 
 function arraysEqual(a, b) {
@@ -564,8 +564,8 @@ autosaveBox.addEventListener("change", function(e) {
 
 let themeMenu = document.getElementById("themeMenu");
 
-if (getCookie("customThemes")) {
-  customThemes = JSON.parse(getCookie("customThemes"));
+if (getCookie("customThemes", true)) {
+  customThemes = JSON.parse(getCookie("customThemes", true));
   let themeList = Object.keys(customThemes);
   for (let i = 0; i < themeList.length; i++) {
     let data = customThemes[themeList[i]];

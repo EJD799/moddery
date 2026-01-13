@@ -98,22 +98,51 @@ function getFormattedDateTime() {
   return `${pad(month)}/${pad(day)}/${year} at ${pad(hours)}:${pad(minutes)}:${pad(seconds)} ${ampm}`;
 }
 
-function setCookie(name,value,days) {
+function encodeForCookie(text) {
+  // Convert to UTF-8 bytes, then Base64
+  return btoa(
+    encodeURIComponent(text)
+      .replace(/%([0-9A-F]{2})/g, (_, p1) =>
+        String.fromCharCode(parseInt(p1, 16))
+      )
+  );
+}
+function decodeFromCookie(encoded) {
+  return decodeURIComponent(
+    Array.from(atob(encoded), c =>
+      "%" + c.charCodeAt(0).toString(16).padStart(2, "0")
+    ).join("")
+  );
+}
+
+function setCookie(name,value,days,encode=false) {
     var expires = "";
     if (days) {
         var date = new Date();
         date.setTime(date.getTime() + (days*24*60*60*1000));
         expires = "; expires=" + date.toUTCString();
     }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    let contents = "";
+    if (encode) {
+        contents = encodeForCookie(value);
+    } else {
+        contents = value;
+    }
+    document.cookie = name + "=" + contents + expires + "; path=/";
 }
-function getCookie(name) {
+function getCookie(name,decode=false) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
     for(var i=0;i < ca.length;i++) {
         var c = ca[i];
         while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        if (c.indexOf(nameEQ) == 0) {
+            if (decode) {
+                return decodeFromCookie(c.substring(nameEQ.length,c.length));
+            } else {
+                return c.substring(nameEQ.length,c.length);
+            }
+        }
     }
     return null;
 }

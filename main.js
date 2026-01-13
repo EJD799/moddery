@@ -1,4 +1,4 @@
-const appVersion = "2.0.6";
+const appVersion = "2.0.7";
 const buildDate = "1/13/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -90,6 +90,37 @@ document.addEventListener("DOMContentLoaded", function(){
     finishSignIn(currentUsername, currentPassword);
   }
 });
+
+async function getURLContents(url) {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}`);
+  }
+
+  const contents = await response.text(); // or .json()
+  return contents;
+}
+
+async function addCustomTheme(data) {
+  let id = data.id;
+  let cssFile;
+  if (data.stylesheet.startsWith("http")) {
+    cssFile = await getURLContents(data.stylesheet);
+  } else {
+    cssFile = data.stylesheet;
+  }
+  customThemes[id] = {
+    name: data.name,
+    stylesheet: cssFile,
+    generalType: data.generalType
+  };
+
+  let menuOption = document.createElement("option");
+  menuOption.setAttribute("value", data.id);
+  menuOption.innerHTML = data.name;
+  themeMenu.appendChild(menuOption);
+}
 
 function arraysEqual(a, b) {
   if (!Array.isArray(a) || !Array.isArray(b)) return false;

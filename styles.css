@@ -889,3 +889,7 @@ progress {
   outline: 2px solid var(--bulma-link);
   outline-offset: 2px;
 }
+
+#welcomeInfoBox1 {
+    text-align: left;
+}

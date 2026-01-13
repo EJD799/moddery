@@ -30,29 +30,30 @@
     </head>
     <body>
         <label for="elementIDBox">Element Name (Editor)</label>
-        <input name="elementIDBox" id="elementIDBox" placeholder="Element ID" disabled>
+        <input class="input normalInput" name="elementIDBox" id="elementIDBox" placeholder="Element ID" disabled>
         <br><br>
         <label for="entityIDBox">Entity ID</label>
-        <input name="entityIDBox" id="entityIDBox" placeholder="Entity ID">
+        <input class="input normalInput" name="entityIDBox" id="entityIDBox" placeholder="Entity ID">
         <br><br>
         <label for="nameBox">Entity Name</label>
-        <input name="nameBox" id="nameBox" placeholder="Entity Name">
+        <input class="input normalInput" name="nameBox" id="nameBox" placeholder="Entity Name">
         <br><br>
         <label for="enableAttachablesBox">Enable Attachables</label>
-        <input name="enableAttachablesBox" id="enableAttachablesBox" type="checkbox">
+        <input class="is-primary" name="enableAttachablesBox" id="enableAttachablesBox" type="checkbox">
         <br><br>
         <label for="hideArmorBox">Hide Armor</label>
-        <input name="hideArmorBox" id="hideArmorBox" type="checkbox">
+        <input class="is-primary" name="hideArmorBox" id="hideArmorBox" type="checkbox">
         <br><br>
         <label for="modelBtn">Entity Model: <span id="modelNameText">No model selected</span></label>
-        <button name="modelBtn" id="modelBtn" onclick="openSelectModelDlg()">Select Model</button>
-        <h3>Entity Textures <button id="addTextureBtn" onclick="addTexture()">+ Add Texture</button></h3>
+        <button class="button" name="modelBtn" id="modelBtn" onclick="openSelectModelDlg()">Select Model</button>
+        <span class="title is-5">Entity Textures <button class="button is-primary" id="addTextureBtn" onclick="addTexture()">+ Add Texture</button></span>
         <label for="entityTextureBtn0">Default: <span id="textureNameText0">No texture selected</span></label>
-        <button name="entityTextureBtn0" id="entityTextureBtn0" onclick="openSelectTextureDlg(false, false, 'default', 0)">Select Texture</button>
+        <button class="button" name="entityTextureBtn0" id="entityTextureBtn0" onclick="openSelectTextureDlg(false, false, 'default', 0)">Select Texture</button>
         <br><br>
         <div id="additionalTexturesDiv"></div>
-        <h3>Components <button id="addComponentBtn" onclick="addComponent()">+ Add Component</button></h3>
+        <span class="title is-4">Components <button class="button is-primary" id="addComponentBtn" onclick="addComponent()">+ Add Component</button></span>
         <div id="componentsBox"></div>
+        
         <div id="addComponentDlg" title="Add Component">
             <center>
                 <label for="addComponentType">Component Type</label>

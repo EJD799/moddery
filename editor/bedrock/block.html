@@ -60,98 +60,147 @@
             <button class="button" name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg(false, false, 'default', -1)">Select Texture</button>
             <br><br>
         </div>
-        <h3>Block Textures</h3>
+        <h5 class="title is-5">Block Textures</h5>
         <label for="blockTextureBtn0">Default: <span id="textureNameText0">No texture selected</span></label>
         <button class="button" name="blockTextureBtn0" id="blockTextureBtn0" onclick="openSelectTextureDlg(false, false, 'default', 0)">Select Texture</button>
         <br><br>
         <div id="additionalTexturesDiv"></div>
         <span class="title is-4">Components <button class="button is-primary" id="addComponentBtn" onclick="addComponent()">+ Add Component</button></span>
         <div id="componentsBox"></div>
-        
-        <div id="addComponentDlg" title="Add Component">
-            <center>
-                <label for="addComponentType">Component Type</label>
-                <div class="select">
-                    <select name="addComponentType" id="addComponentType">
-                        <option>Placement Direction</option>
-                        <option>Placement Position</option>
-                        <option>Collision Box</option>
-                        <!--<option>Block Tint</option>-->
-                        <option>Crafting Table</option>
-                        <option>Destructible by Explosion</option>
-                        <option>Destructible by Mining</option>
-                        <option>Destruction Particles</option>
-                        <option>Flammable</option>
-                        <option>Flower Pottable</option>
-                        <option>Friction</option>
-                        <option>Interactable</option>
-                        <option>Light Dampening</option>
-                        <option>Light Emission</option>
-                        <option>Liquid Detection</option>
-                        <option>Loot</option>
-                        <option>Map Color</option>
-                        <option>Movable</option>
-                        <option>Precipitation Interactions</option>
-                        <option>Random Offset</option>
-                        <option>Redstone Conductivity</option>
-                        <option>Redstone Producer</option>
-                        <option>Replaceable</option>
-                        <option>Selection Box</option>
-                    </select>
+
+        <div class="modal" id="addComponentDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:400px;height:300px;">
+                <div class="card" id="addComponentDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 class="title is-4">Add Component</h4>
+                        <label for="addComponentType">Component Type</label>
+                        <div class="select">
+                            <select name="addComponentType" id="addComponentType">
+                                <option>Placement Direction</option>
+                                <option>Placement Position</option>
+                                <option>Collision Box</option>
+                                <!--<option>Block Tint</option>-->
+                                <option>Crafting Table</option>
+                                <option>Destructible by Explosion</option>
+                                <option>Destructible by Mining</option>
+                                <option>Destruction Particles</option>
+                                <option>Flammable</option>
+                                <option>Flower Pottable</option>
+                                <option>Friction</option>
+                                <option>Interactable</option>
+                                <option>Light Dampening</option>
+                                <option>Light Emission</option>
+                                <option>Liquid Detection</option>
+                                <option>Loot</option>
+                                <option>Map Color</option>
+                                <option>Movable</option>
+                                <option>Precipitation Interactions</option>
+                                <option>Random Offset</option>
+                                <option>Redstone Conductivity</option>
+                                <option>Redstone Producer</option>
+                                <option>Replaceable</option>
+                                <option>Selection Box</option>
+                            </select>
+                        </div>
+                        <br><br>
+                        <button class="button" id="addComponentCancelBtn" onclick="closeAddComponentDlg()">Cancel</button>
+                        <button class="button is-primary" id="addComponentAddBtn" onclick="createComponent($('#addComponentType').val())">Add</button>
+                    </center>
                 </div>
-                <br><br>
-                <button id="addComponentCancelBtn" onclick="closeAddComponentDlg()">Cancel</button>
-                <button id="addComponentAddBtn" onclick="createComponent($('#addComponentType').val())">Add</button>
-            </center>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeAddComponentDlg();"></button>
         </div>
 
-        <div id="selectTextureDlg" title="Select Texture">
-            <div class="textureMenu" id="selectTextureMenu"></div>
+        <div class="modal" id="selectTextureDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:400px;height:550px;">
+                <div class="card" id="selectTextureDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 class="title is-4">Select Texture</h4>
+                        <div class="textureMenu" id="selectTextureMenu"></div>
 
-            <div class="textureDialogButtons">
-                <button id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
-                <button id="selectTextureSelectBtn" onclick="selectTexture(currentTextureSelecting)">Select</button>
+                        <div class="textureDialogButtons">
+                            <button class="button" id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
+                            <button class="button is-primary" id="selectTextureSelectBtn" onclick="selectTexture(currentTextureSelecting)">Select</button>
+                            <button class="button is-primary" id="selectTextureSelectBtn2" onclick="selectCompTexture()">Select</button>
+                        </div>
+                    </center>
+                </div>
             </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeSelectTextureDlg();"></button>
         </div>
 
-        <div id="selectModelDlg" title="Select Model">
-            <div class="textureMenu" id="selectModelMenu"></div>
+        <div class="modal" id="selectModelDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:400px;height:550px;">
+                <div class="card" id="selectModelDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 class="title is-4">Select Model</h4>
+                        <div class="textureMenu" id="selectModelMenu"></div>
 
-            <div class="textureDialogButtons">
-                <button id="selectModelCancelBtn" onclick="closeSelectModelDlg()">Cancel</button>
-                <button id="selectModelSelectBtn" onclick="selectModel(currentModelSelecting)">Select</button>
+                        <div class="textureDialogButtons">
+                            <button class="button" id="selectModelCancelBtn" onclick="closeSelectModelDlg()">Cancel</button>
+                            <button class="button is-primary" id="selectModelSelectBtn" onclick="selectModel(currentModelSelecting)">Select</button>
+                        </div>
+                    </center>
+                </div>
             </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeSelectModelDlg();"></button>
         </div>
 
         <!-- new start -->
-        <div id="selectTableDlg" title="">
-            <div class="textureMenu" id="selectTableMenu"></div>
+        <div class="modal" id="selectTableDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:400px;height:550px;">
+                <div class="card" id="selectTableDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 id="selectTableDlgTitle" class="title is-4">Select Table</h4>
+                        <div class="textureMenu" id="selectTableMenu"></div>
 
-            <div class="textureDialogButtons">
-                <button id="selectTableCancelBtn" onclick="closeSelectTableDlg()">Cancel</button>
-                <button id="selectTableSelectBtn" onclick="selectTable()">Select</button>
+                        <div class="textureDialogButtons">
+                            <button class="button" id="selectTableCancelBtn" onclick="closeSelectTableDlg()">Cancel</button>
+                            <button class="button is-primary" id="selectTableSelectBtn" onclick="selectTable()">Select</button>
+                        </div>
+                    </center>
+                </div>
             </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeSelectTextureDlg();"></button>
         </div>
 
-        <div id="advEditor" title="Edit Input">
-        <center>
-            <div id="advEditorContentList">
-            <button id="advEditorListAddBtn" onclick="advEditorAddItem('list', '', -1)">+ Add Item</button>
-            <br><br>
-            <div id="advEditorListContent"></div>
+        <div class="modal" id="advEditor">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:400px;height:500px;">
+                <div class="card" id="advEditorCard" style="padding:16px;">
+                    <center>
+                        <h4 id="advEditorTitle" class="title is-4">Edit Input</h4>
+                        <div id="advEditorContentList">
+                        <button class="button is-primary" id="advEditorListAddBtn" onclick="advEditorAddItem('list', '', -1)">+ Add Item</button>
+                        <br><br>
+                        <div id="advEditorListContent"></div>
+                        </div>
+                        <br><br>
+                        <button class="button is-primary" id="advEditorSave" onclick="saveAdvInput()">Save</button>
+                    </center>
+                </div>
             </div>
-            <br><br>
-            <button id="advEditorSave" onclick="saveAdvInput()">Save</button>
-        </center>
+            <button class="modal-close is-large" aria-label="close" onclick="saveAdvInput();"></button>
         </div>
         <!-- new end -->
 
-        <div id="deleteDlg" title="Delete Component?">
-        <center>
-            <span id="deleteDlgText"></span><br><br>
-            <button id="deleteDlgCancel" onclick="closeDeleteComponent()">Cancel</button>
-            <button id="deleteDlgConfirm" class="redBtn">Delete</button>
-        </center>
+        <div class="modal" id="deleteDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:300px;height:200px;">
+                <div class="card" id="deleteDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 id="selectTableDlgTitle" class="title is-4">Delete Component?</h4>
+                        <span id="deleteDlgText"></span><br><br>
+                        <button class="button" id="deleteDlgCancel" onclick="closeDeleteComponent()">Cancel</button>
+                        <button class="button is-danger" id="deleteDlgConfirm">Delete</button>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeDeleteComponent();"></button>
         </div>
 
         <script src="../../libs.js"></script>

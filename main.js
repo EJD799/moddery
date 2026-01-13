@@ -1,4 +1,4 @@
-const appVersion = "2.0.12";
+const appVersion = "2.0.13";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -644,12 +644,14 @@ function handleFrameThemeChange() {
   let iframes = document.querySelectorAll("iframe");
   for (let i = 0; i < iframes.length; i++) {
     let iframe = iframes[i];
-    if (importTheme) {
-      iframe.contentWindow.themeStyleElement.innerHTML = importTheme;
-    }
-    iframe.contentWindow.document.documentElement.setAttribute("data-theme", themeName);
-    if (iframe.contentWindow.onThemeChange) {
-      iframe.contentWindow.onThemeChange(themeName, importTheme, generalThemeType);
+    if (iframe?.contentWindow?.themeStyleElement ?? false) {
+      if (importTheme) {
+        iframe.contentWindow.themeStyleElement.innerHTML = importTheme;
+      }
+      iframe.contentWindow.document.documentElement.setAttribute("data-theme", themeName);
+      if (iframe.contentWindow.onThemeChange) {
+        iframe.contentWindow.onThemeChange(themeName, importTheme, generalThemeType);
+      }
     }
   }
 }

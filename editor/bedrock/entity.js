@@ -2310,17 +2310,16 @@ function createComponent(type) {
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName));
                 newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
                 newComponentDOM.setAttribute("disabled", "true");
-                newComponentDOM.setAttribute("class", "almostFullInput");
+                newComponentDOM.setAttribute("class", "input almostFullInput");
                 newComponentDOM.setAttribute("value", "[]");
                 let typeName = newComponentTypeName;
                 let inputName = newComponentInputName;
                 elementBox.appendChild(newComponentDOM);
                 newComponentDOM = document.createElement("button");
                 newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
-                newComponentDOM.setAttribute("class", "inputEditBtn");
+                newComponentDOM.setAttribute("class", "button is-primary inputEditBtn");
                 newComponentDOM.setAttribute("id", removeSpaces(newComponentTypeName + newComponentInputName) + "_btn");
                 newComponentDOM.setAttribute("onclick", `openAdvInputEditor("${removeSpaces(newComponentTypeName)}", "${removeSpaces(newComponentInputName)}", "seat_selector")`);
-                buttonsToRegister.push([removeSpaces(newComponentTypeName), removeSpaces(newComponentInputName)]);
                 elementBox.appendChild(newComponentDOM);
             }/* new end */ else {
                 newComponentDOM = document.createElement("label");

@@ -168,7 +168,7 @@ function createThemeBox(id, name, isBuiltIn = false) {
         id="themeBoxDelete_${id}"
         onclick="removeTheme('${id}')"
         style="display:none">
-        Delete
+        <i class="fas fa-trash"></i>
       </button>
     </div>
   `;
@@ -193,10 +193,10 @@ async function addCustomTheme(input) {
     generalType: data.generalType
   };
 
-  // CREATE THE UI BOX 👇
-  if (!document.getElementById(`themeBox_${id}`)) {
-    createThemeBox(id, data.name, false);
-  }
+  createThemeBox(id, data.name, {
+    installed: true,
+    isCustom: true
+  });
 
   // Add to select menu
   if (!themeMenu.querySelector(`option[value="${id}"]`)) {

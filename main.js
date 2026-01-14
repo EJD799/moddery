@@ -1,4 +1,4 @@
-const appVersion = "2.1.6";
+const appVersion = "2.1.7";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -222,7 +222,7 @@ async function addCustomTheme(input) {
     themeMenu.appendChild(opt);
   }*/
 
-  setCookie("customThemes", JSON.stringify(customThemes), 399, true);
+  localStorage.setItem("customThemes", JSON.stringify(customThemes));
   updateThemeSelector();
 }
 
@@ -240,7 +240,7 @@ function removeTheme(id) {
 
   document.getElementById(`themeBox_${id}`)?.remove();
 
-  setCookie("customThemes", JSON.stringify(customThemes), 399, true);
+  localStorage.setItem("customThemes", JSON.stringify(customThemes));
   updateThemeSelector();
 }
 
@@ -293,7 +293,7 @@ async function themeSelectorBtnAction(themeId, btnIndex) {
     themeMenu.appendChild(opt);
   }
 
-  setCookie("customThemes", JSON.stringify(customThemes), 399, true);
+  localStorage.setItem("customThemes", JSON.stringify(customThemes));
   updateThemeSelector();
 }*/
 
@@ -333,7 +333,7 @@ function removeTheme(id) {
     //removeOptionByValue(themeMenu, id);
   }
 
-  setCookie("customThemes", JSON.stringify(customThemes), 399, true);
+  localStorage.setItem("customThemes", JSON.stringify(customThemes));
   updateThemeSelector();
 }
 
@@ -417,7 +417,7 @@ function removeCustomTheme(name) {
     autoThemeChange();
   }
   delete customThemes[name];
-  setCookie("customThemes", JSON.stringify(customThemes), 399, true);
+  localStorage.setItem("customThemes", JSON.stringify(customThemes));
   removeOptionByValue(themeMenu, name);
 }
 async function addCustomTheme(input) {
@@ -445,7 +445,7 @@ async function addCustomTheme(input) {
   menuOption.innerHTML = data.name;
   themeMenu.appendChild(menuOption);
 
-  setCookie("customThemes", JSON.stringify(customThemes), 399, true);
+  localStorage.setItem("customThemes", JSON.stringify(customThemes));
 }*/
 
 function arraysEqual(a, b) {
@@ -883,8 +883,8 @@ autosaveBox.addEventListener("change", function(e) {
 
 //let themeMenu = document.getElementById("themeMenu");
 
-if (getCookie("customThemes", true)) {
-  customThemes = JSON.parse(getCookie("customThemes", true));
+if (localStorage.getItem("customThemes")) {
+  customThemes = JSON.parse(localStorage.getItem("customThemes") || "{}");
   for (const id in customThemes) {
     createThemeBox(id, customThemes[id].name, {
       installed: true,

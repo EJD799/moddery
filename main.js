@@ -1,4 +1,4 @@
-const appVersion = "2.1.4";
+const appVersion = "2.1.5";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -126,7 +126,6 @@ function selectTheme(id) {
   if (editorTheme === id) return;
 
   editorTheme = id;
-  themeMenu.value = id;
   setCookie("editorTheme", id, 399);
 
   if (id === "system") {

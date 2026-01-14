@@ -64,7 +64,7 @@ html[data-theme=minecraft] {
 }
 
 .menubar {
-    background-size: contain;
+    background-size: cover;
     image-rendering: pixelated;
 }
 

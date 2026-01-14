@@ -582,7 +582,7 @@ input:disabled::placeholder {
   height: 3.25rem; /* Bulma navbar height */
   padding: 0 1rem;
 
-  background-color: var(--app-menubar-background);
+  background: var(--app-menubar-background);
   border-bottom: 1px solid var(--bulma-border);
   color: var(--app-menubar-color);
 

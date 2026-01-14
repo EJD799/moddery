@@ -60,12 +60,13 @@ html[data-theme=minecraft] {
     --app-disabled-input-border: #b3b3bb;
 
     --app-menubar-background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYpmHs0u2PQlnMKOU9unJD7nALmVMHWCnvAQ&s);
-    --app-menubar-color: #ffffff;
+    --app-menubar-color: var(--bulma-text);
 }
 
 .menubar {
     background-size: cover;
     image-rendering: pixelated;
+    background-repeat: no-repeat;
 }
 
 .button {

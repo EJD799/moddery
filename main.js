@@ -1,4 +1,4 @@
-const appVersion = "2.0.24";
+const appVersion = "2.0.25";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -131,8 +131,9 @@ function selectTheme(id) {
     loadDefaultTheme(id);
   } else {
     applyThemeCss(customThemes[id].stylesheet);
+    document.documentElement.setAttribute("data-theme", id);
   }
-
+  handleFrameThemeChange();
   updateThemeSelector();
 }
 
@@ -255,7 +256,7 @@ async function themeSelectorBtnAction(themeId, btnIndex) {
   }
 }
 
-async function addCustomTheme(input) {
+/*async function addCustomTheme(input) {
   const data = typeof input === "string" ? JSON.parse(input) : input;
   const id = data.id;
 
@@ -282,7 +283,7 @@ async function addCustomTheme(input) {
 
   setCookie("customThemes", JSON.stringify(customThemes), 399, true);
   updateThemeSelector();
-}
+}*/
 
 async function addThemePrompt() {
   const url = prompt("Enter the theme JSON URL:");
@@ -406,7 +407,7 @@ function removeCustomTheme(name) {
   delete customThemes[name];
   setCookie("customThemes", JSON.stringify(customThemes), 399, true);
   removeOptionByValue(themeMenu, name);
-}*/
+}
 async function addCustomTheme(input) {
   let data;
   if (typeof data == "string") {
@@ -433,7 +434,7 @@ async function addCustomTheme(input) {
   themeMenu.appendChild(menuOption);
 
   setCookie("customThemes", JSON.stringify(customThemes), 399, true);
-}
+}*/
 
 function arraysEqual(a, b) {
   if (!Array.isArray(a) || !Array.isArray(b)) return false;
@@ -877,6 +878,11 @@ if (getCookie("customThemes", true)) {
       isCustom: true
     });
   }
+  for (const id in builtInThemes) {
+    if (!document.getElementById(`themeBox_${id}`)) {
+      createThemeBox(id, builtInThemes[id].name, true);
+    }
+  }
 
   updateThemeSelector();
   let themeList = Object.keys(customThemes);
@@ -899,6 +905,7 @@ if (getCookie("editorTheme")) {
     handleFrameThemeChange();
   }
   selectTheme(editorTheme);
+  updateThemeSelector();
 } else {
   editorTheme = "system";
   $("#themeMenu").val("system");

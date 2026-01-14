@@ -928,3 +928,13 @@ progress {
   font-size: 0.9rem;
   color: var(--bulma-text);
 }
+
+.themeBox {
+    padding: 16px;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    display: inline-block;
+    margin-right: 10px;
+    text-align: center;
+}

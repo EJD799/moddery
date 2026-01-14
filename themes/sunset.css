@@ -1,4 +1,4 @@
-html[data-theme=themeName] {
+html[data-theme=sunset] {
     --app-welcome-background: var(--bulma-background);
     --app-main-tabs-background: var(--bulma-background);
 

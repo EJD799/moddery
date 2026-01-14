@@ -10,6 +10,8 @@
     --app-blockly-background: var(--bulma-scheme-main);
     --app-blockly-toolbox-background: var(--bulma-background);
     --app-black-white: var(--bulma-scheme-main);
+    --app-menubar-background: var(--bulma-scheme-main);
+    --app-menubar-color: var(--bulma-text);
 }
 body {
     background: #111111;
@@ -580,9 +582,9 @@ input:disabled::placeholder {
   height: 3.25rem; /* Bulma navbar height */
   padding: 0 1rem;
 
-  background-color: var(--bulma-scheme-main);
+  background-color: var(--app-menubar-background);
   border-bottom: 1px solid var(--bulma-border);
-  color: var(--bulma-text);
+  color: var(--app-menubar-color);
 
   flex-shrink: 0;
 }

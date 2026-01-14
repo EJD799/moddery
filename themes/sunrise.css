@@ -58,4 +58,7 @@ html[data-theme=sunrise] {
 
     --app-black-white: var(--bulma-scheme-main);
     --app-disabled-input-border: #b3b3bb;
+
+    --app-menubar-background: var(--bulma-scheme-main);
+    --app-menubar-color: var(--bulma-text);
 }

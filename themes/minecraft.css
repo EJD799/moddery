@@ -58,6 +58,14 @@ html[data-theme=minecraft] {
 
     --app-black-white: var(--bulma-scheme-main);
     --app-disabled-input-border: #b3b3bb;
+
+    --app-menubar-background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYpmHs0u2PQlnMKOU9unJD7nALmVMHWCnvAQ&s);
+    --app-menubar-color: #ffffff;
+}
+
+.menubar {
+    background-size: contain;
+    image-rendering: pixelated;
 }
 
 .button {

@@ -1,4 +1,4 @@
-const appVersion = "2.0.29";
+const appVersion = "2.0.30";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -152,32 +152,34 @@ function applyThemeCss(cssText) {
 }
 
 function createThemeBox(id, name, isBuiltIn = false) {
-  const box = document.createElement("div");
-  box.className = "card themeBox";
-  box.id = `themeBox_${id}`;
+  if (!document.getElementById(`themeBox_${id}`)) {
+    const box = document.createElement("div");
+    box.className = "card themeBox";
+    box.id = `themeBox_${id}`;
 
-  box.innerHTML = `
-    <h5 class="title is-5">${name}</h5>
+    box.innerHTML = `
+      <h5 class="title is-5">${name}</h5>
 
-    <div class="buttons">
-      <button
-        class="button is-primary"
-        id="themeBoxBtn1_${id}"
-        onclick="themeSelectorBtnAction('${id}', 1)">
-        ${isThemeInstalled(id) ? "Select" : "Install"}
-      </button>
+      <div class="buttons">
+        <button
+          class="button is-primary"
+          id="themeBoxBtn1_${id}"
+          onclick="themeSelectorBtnAction('${id}', 1)">
+          ${isThemeInstalled(id) ? "Select" : "Install"}
+        </button>
 
-      <button
-        class="button is-danger newDeleteBtn"
-        id="themeBoxDelete_${id}"
-        onclick="removeTheme('${id}')"
-        style="display:none">
-        <i class="fas fa-trash"></i>
-      </button>
-    </div>
-  `;
+        <button
+          class="button is-danger newDeleteBtn"
+          id="themeBoxDelete_${id}"
+          onclick="removeTheme('${id}')"
+          style="display:none">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    `;
 
-  document.getElementById("themesContainer").appendChild(box);
+    document.getElementById("themesContainer").appendChild(box);
+  }
 }
 
 async function addCustomTheme(input) {

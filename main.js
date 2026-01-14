@@ -1,4 +1,4 @@
-const appVersion = "2.0.21";
+const appVersion = "2.0.22";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -867,8 +867,12 @@ let themeMenu = document.getElementById("themeMenu");
 if (getCookie("customThemes", true)) {
   customThemes = JSON.parse(getCookie("customThemes", true));
   for (const id in customThemes) {
-    addCustomThemeBox(id, customThemes[id].name);
+    createThemeBox(id, customThemes[id].name, {
+      installed: true,
+      isCustom: true
+    });
   }
+
   updateThemeSelector();
   let themeList = Object.keys(customThemes);
   for (let i = 0; i < themeList.length; i++) {

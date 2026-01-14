@@ -1,4 +1,4 @@
-const appVersion = "2.1.1";
+const appVersion = "2.1.2";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -138,7 +138,7 @@ function selectTheme(id) {
   } else {
     applyThemeCss(customThemes[id].stylesheet);
     document.documentElement.setAttribute("data-theme", id);
-    if (customThemes[id].generalThemeType == "dark") {
+    if (customThemes[id].generalType == "dark") {
       document.documentElement.classList.add("theme-dark");
     } else {
       document.documentElement.classList.remove("theme-dark");
@@ -595,6 +595,7 @@ $("#optionsContent2").hide();
 $("#optionsContent3").hide();
 $("#optionsContent4").hide();
 $("#optionsContent5").hide();
+$("#optionsContent6").hide();
 function switchOptionsTab(tab) {
   optionsTab1.classList.remove("is-active");
   optionsTab2.classList.remove("is-active");

@@ -1,4 +1,4 @@
-const appVersion = "2.0.22";
+const appVersion = "2.0.23";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -133,16 +133,18 @@ function selectTheme(id) {
   updateThemeSelector();
 }
 
-function applyThemeCss(cssText) {
-  let styleEl = document.getElementById("customEditorThemeStyle");
-
-  if (!styleEl) {
-    styleEl = document.createElement("style");
-    styleEl.id = "customEditorThemeStyle";
-    document.head.appendChild(styleEl);
+function loadDefaultTheme(mode) {
+  document.documentElement.setAttribute("data-theme", mode);
+  if (mode == "system") {
+    autoThemeChange();
   }
+  handleFrameThemeChange();
+}
 
-  styleEl.textContent = cssText;
+function applyThemeCss(cssText) {
+  let styleEl = document.getElementById("themeStyleElement");
+  styleEl.innerHTML = cssText;
+  handleFrameThemeChange();
 }
 
 function createThemeBox(id, name, isBuiltIn = false) {

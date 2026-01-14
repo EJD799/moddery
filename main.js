@@ -1,5 +1,5 @@
-const appVersion = "2.1.7";
-const buildDate = "1/14/2026";
+const appVersion = "2.1.8";
+const buildDate = "1/15/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -4280,3 +4280,9 @@ attachValidation(editProjNamespaceBox, isValidElementID);
 attachValidation(addElementNameBox, isValidElementName);
 attachValidation(addElementIDBox, isValidElementID);
 attachValidation(addAssetNameBox, isValidAssetName);
+
+for (const id in builtInThemes) {
+  if (!document.getElementById(`themeBox_${id}`)) {
+    createThemeBox(id, builtInThemes[id].name, true);
+  }
+}

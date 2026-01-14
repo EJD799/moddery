@@ -1,4 +1,4 @@
-const appVersion = "2.0.30";
+const appVersion = "2.0.31";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -169,7 +169,7 @@ function createThemeBox(id, name, isBuiltIn = false) {
         </button>
 
         <button
-          class="button is-danger newDeleteBtn"
+          class="button is-danger newDeleteBtn2"
           id="themeBoxDelete_${id}"
           onclick="removeTheme('${id}')"
           style="display:none">

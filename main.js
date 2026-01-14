@@ -1,4 +1,4 @@
-const appVersion = "2.0.18";
+const appVersion = "2.0.19";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -24,6 +24,7 @@ var deleteElementType;
 var autosaveEnabled = true;
 var storageMode = "";
 var editorTheme = "system";
+let defaultThemes = ["system", "light", "dark"];
 let customThemes = {
 
 };
@@ -108,6 +109,30 @@ async function getURLContents(url) {
   const contents = await response.text(); // or .json()
   return contents;
 }
+
+
+function updateThemeSelector() {
+  let allThemes = defaultThemes + Object.keys(customThemes);
+  for (let i = 0; i < allThemes.length; i++) {
+    if (allThemes[i] == editorTheme) {
+
+    } else {
+      
+    }
+  }
+}
+function selectTheme(name) {
+  updateThemeSelector();
+}
+
+async function addThemePrompt() {
+  let themeURL = prompt("Enter the theme URL:");
+  if (themeURL) {
+    let file = await getURLContents(themeURL);
+    addCustomTheme(file);
+  }
+}
+
 function removeCustomTheme(name) {
   if (editorTheme == name) {
     editorTheme = "system";
@@ -602,11 +627,13 @@ if (getCookie("editorTheme")) {
     document.documentElement.setAttribute("data-theme", editorTheme);
     handleFrameThemeChange();
   }
+  selectTheme(editorTheme);
 } else {
   editorTheme = "system";
   $("#themeMenu").val("system");
   setCookie("editorTheme", "system", 399);
   autoThemeChange();
+  selectTheme("system");
 }
 
 themeMenu.addEventListener("change", function(e) {
@@ -618,6 +645,7 @@ themeMenu.addEventListener("change", function(e) {
     document.documentElement.setAttribute("data-theme", editorTheme);
     handleFrameThemeChange();
   }
+  selectTheme(editorTheme);
 });
 
 function autoThemeChange() {

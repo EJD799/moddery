@@ -133,6 +133,100 @@ function selectTheme(id) {
   updateThemeSelector();
 }
 
+function applyThemeCss(cssText) {
+  let styleEl = document.getElementById("customEditorThemeStyle");
+
+  if (!styleEl) {
+    styleEl = document.createElement("style");
+    styleEl.id = "customEditorThemeStyle";
+    document.head.appendChild(styleEl);
+  }
+
+  styleEl.textContent = cssText;
+}
+
+function createThemeBox(id, name, isBuiltIn = false) {
+  const box = document.createElement("div");
+  box.className = "card themeBox";
+  box.id = `themeBox_${id}`;
+
+  box.innerHTML = `
+    <h5 class="title is-5">${name}</h5>
+
+    <div class="buttons">
+      <button
+        class="button is-primary"
+        id="themeBoxBtn1_${id}"
+        onclick="themeSelectorBtnAction('${id}', 1)">
+        ${isThemeInstalled(id) ? "Select" : "Install"}
+      </button>
+
+      <button
+        class="button is-danger newDeleteBtn"
+        id="themeBoxDelete_${id}"
+        onclick="removeTheme('${id}')"
+        style="display:none">
+        Delete
+      </button>
+    </div>
+  `;
+
+  document.getElementById("themesContainer").appendChild(box);
+}
+
+async function addCustomTheme(input) {
+  const data = typeof input === "string" ? JSON.parse(input) : input;
+  const id = data.id;
+
+  let cssFile;
+  if (data.stylesheet.startsWith("http")) {
+    cssFile = await getURLContents(data.stylesheet);
+  } else {
+    cssFile = data.stylesheet;
+  }
+
+  customThemes[id] = {
+    name: data.name,
+    stylesheet: cssFile,
+    generalType: data.generalType
+  };
+
+  // CREATE THE UI BOX 👇
+  if (!document.getElementById(`themeBox_${id}`)) {
+    createThemeBox(id, data.name, false);
+  }
+
+  // Add to select menu
+  if (!themeMenu.querySelector(`option[value="${id}"]`)) {
+    const opt = document.createElement("option");
+    opt.value = id;
+    opt.textContent = data.name;
+    themeMenu.appendChild(opt);
+  }
+
+  setCookie("customThemes", JSON.stringify(customThemes), 399, true);
+  updateThemeSelector();
+}
+
+function removeTheme(id) {
+  if (defaultThemes.includes(id)) return;
+
+  if (editorTheme === id) {
+    selectTheme("system");
+  }
+
+  if (customThemes[id]) {
+    delete customThemes[id];
+    removeOptionByValue(themeMenu, id);
+  }
+
+  document.getElementById(`themeBox_${id}`)?.remove();
+
+  setCookie("customThemes", JSON.stringify(customThemes), 399, true);
+  updateThemeSelector();
+}
+
+
 async function themeSelectorBtnAction(themeId, btnIndex) {
   const btn = document.getElementById(`themeBoxBtn${btnIndex}_${themeId}`);
 
@@ -772,6 +866,10 @@ let themeMenu = document.getElementById("themeMenu");
 
 if (getCookie("customThemes", true)) {
   customThemes = JSON.parse(getCookie("customThemes", true));
+  for (const id in customThemes) {
+    addCustomThemeBox(id, customThemes[id].name);
+  }
+  updateThemeSelector();
   let themeList = Object.keys(customThemes);
   for (let i = 0; i < themeList.length; i++) {
     let data = customThemes[themeList[i]];

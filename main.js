@@ -1,4 +1,4 @@
-const appVersion = "2.1.0";
+const appVersion = "2.1.1";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -29,7 +29,7 @@ let customThemes = {};
 let builtInThemes = {
   "sunrise": {
     name: "Sunrise",
-    url: "https://ejd799.github.io/moddery/themes/sunrise.json"
+    url: "https://ejd799.github.io/moddery/themes/sunrise.json",
   },
   "sunset": {
     name: "Sunset",
@@ -131,11 +131,18 @@ function selectTheme(id) {
 
   if (id === "system") {
     autoThemeChange();
+    document.documentElement.classList.remove("theme-dark");
   } else if (defaultThemes.includes(id)) {
     loadDefaultTheme(id);
+    document.documentElement.classList.remove("theme-dark");
   } else {
     applyThemeCss(customThemes[id].stylesheet);
     document.documentElement.setAttribute("data-theme", id);
+    if (customThemes[id].generalThemeType == "dark") {
+      document.documentElement.classList.add("theme-dark");
+    } else {
+      document.documentElement.classList.remove("theme-dark");
+    }
   }
   handleFrameThemeChange();
   updateThemeSelector();
@@ -925,11 +932,12 @@ themeMenu.addEventListener("change", function(e) {
   setCookie("editorTheme", editorTheme, 399);
   if (editorTheme == "system") {
     autoThemeChange();
+    selectTheme(editorTheme);
   } else {
     document.documentElement.setAttribute("data-theme", editorTheme);
+    selectTheme(editorTheme);
     handleFrameThemeChange();
   }
-  selectTheme(editorTheme);
 });
 
 function autoThemeChange() {

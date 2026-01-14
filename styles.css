@@ -853,9 +853,9 @@ progress {
     padding-right: 10px;
 }
 .newDeleteBtn2 {
-    width: 40px;
-    height: 40px;
-    padding-left: 22px;
+    width: 40px !important;
+    height: 40px  !important;
+    padding-left: 22px !important;
 }
 
 .newColorPicker {

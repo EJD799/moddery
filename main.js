@@ -1,4 +1,4 @@
-const appVersion = "2.0.31";
+const appVersion = "2.0.32";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -30,6 +30,10 @@ let builtInThemes = {
   "sunrise": {
     name: "Sunrise",
     url: "https://ejd799.github.io/moddery/themes/sunrise.json"
+  },
+  "sunset": {
+    name: "Sunset",
+    url: "https://ejd799.github.io/moddery/themes/sunset.json"
   }
 };
 var generalThemeType;

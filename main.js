@@ -1,4 +1,4 @@
-const appVersion = "2.1.3";
+const appVersion = "2.1.4";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -994,6 +994,13 @@ function handleFrameThemeChange() {
         iframe.contentWindow.themeStyleElement.innerHTML = importTheme;
       }
       iframe.contentWindow.document.documentElement.setAttribute("data-theme", themeName);
+      if (customThemes[editorTheme]) {
+        if (customThemes[editorTheme].generalType == "dark") {
+          iframe.contentWindow.document.documentElement.classList.add("theme-dark");
+        } else {
+          iframe.contentWindow.document.documentElement.classList.remove("theme-dark");
+        }
+      }
       if (iframe.contentWindow.onThemeChange) {
         iframe.contentWindow.onThemeChange(themeName, importTheme, generalThemeType);
       }
@@ -4065,6 +4072,7 @@ async function addTab(role, elementID) {
     }
   };
   handleThemeChange();
+  handleFrameThemeChange();
   updateTabHeight();
 }
 

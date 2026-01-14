@@ -1,4 +1,4 @@
-const appVersion = "2.0.19";
+const appVersion = "2.0.20";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -25,7 +25,8 @@ var autosaveEnabled = true;
 var storageMode = "";
 var editorTheme = "system";
 let defaultThemes = ["system", "light", "dark"];
-let customThemes = {
+let customThemes = {};
+let builtInThemes = {
 
 };
 var generalThemeType;
@@ -110,14 +111,177 @@ async function getURLContents(url) {
   return contents;
 }
 
+function isThemeInstalled(id) {
+  return defaultThemes.includes(id) || customThemes[id];
+}
 
+function selectTheme(id) {
+  if (editorTheme === id) return;
+
+  editorTheme = id;
+  themeMenu.value = id;
+  setCookie("editorTheme", id, 399);
+
+  if (id === "system") {
+    autoThemeChange();
+  } else if (defaultThemes.includes(id)) {
+    loadDefaultTheme(id);
+  } else {
+    applyThemeCss(customThemes[id].stylesheet);
+  }
+
+  updateThemeSelector();
+}
+
+async function themeSelectorBtnAction(themeId, btnIndex) {
+  const btn = document.getElementById(`themeBoxBtn${btnIndex}_${themeId}`);
+
+  // Already installed → select
+  if (isThemeInstalled(themeId)) {
+    selectTheme(themeId);
+    return;
+  }
+
+  // Install built-in theme
+  btn.classList.add("is-loading");
+
+  try {
+    const jsonText = await getURLContents(builtInThemes[themeId].url);
+    await addCustomTheme(jsonText);
+    selectTheme(themeId);
+  } catch (err) {
+    console.error("Theme install failed:", err);
+  } finally {
+    btn.classList.remove("is-loading");
+  }
+}
+
+async function addCustomTheme(input) {
+  const data = typeof input === "string" ? JSON.parse(input) : input;
+  const id = data.id;
+
+  let cssFile;
+  if (data.stylesheet.startsWith("http")) {
+    cssFile = await getURLContents(data.stylesheet);
+  } else {
+    cssFile = data.stylesheet;
+  }
+
+  customThemes[id] = {
+    name: data.name,
+    stylesheet: cssFile,
+    generalType: data.generalType
+  };
+
+  // Add to select menu
+  if (!themeMenu.querySelector(`option[value="${id}"]`)) {
+    const opt = document.createElement("option");
+    opt.value = id;
+    opt.textContent = data.name;
+    themeMenu.appendChild(opt);
+  }
+
+  setCookie("customThemes", JSON.stringify(customThemes), 399, true);
+  updateThemeSelector();
+}
+
+async function addThemePrompt() {
+  const url = prompt("Enter the theme JSON URL:");
+  if (!url) return;
+
+  try {
+    const jsonText = await getURLContents(url);
+    const data = JSON.parse(jsonText);
+
+    await addCustomTheme(data);
+    selectTheme(data.id);
+  } catch (err) {
+    alert("Failed to add theme");
+    console.error(err);
+  }
+}
+
+function removeTheme(id) {
+  // Default themes cannot be removed
+  if (defaultThemes.includes(id)) return;
+
+  // If selected, revert to system
+  if (editorTheme === id) {
+    selectTheme("system");
+  }
+
+  // Built-in → uninstall
+  if (builtInThemes[id]) {
+    delete customThemes[id];
+  }
+
+  // Custom → remove entirely
+  if (customThemes[id]) {
+    delete customThemes[id];
+    removeOptionByValue(themeMenu, id);
+  }
+
+  setCookie("customThemes", JSON.stringify(customThemes), 399, true);
+  updateThemeSelector();
+}
+
+function updateThemeSelector() {
+  const allThemeIds = [
+    ...defaultThemes,
+    ...Object.keys(builtInThemes),
+    ...Object.keys(customThemes)
+  ];
+
+  for (const id of allThemeIds) {
+    const btn = document.getElementById(`themeBoxBtn1_${id}`);
+    const deleteBtn = document.getElementById(`themeBoxDelete_${id}`);
+
+    if (!btn) continue;
+
+    const installed = isThemeInstalled(id);
+    const selected = editorTheme === id;
+
+    // Button label & state
+    if (selected) {
+      btn.textContent = "Selected";
+      btn.disabled = true;
+    } else {
+      btn.disabled = false;
+      btn.textContent = installed ? "Select" : "Install";
+    }
+
+    // Delete button
+    if (deleteBtn) {
+      deleteBtn.style.display =
+        installed && !defaultThemes.includes(id)
+          ? ""
+          : "none";
+    }
+  }
+}
+
+
+/*async function themeSelectorBtnAction(theme, id) {
+  let btn = document.getElementById(`themeBoxBtn${id}_${theme}`);
+  if (defaultThemes.includes(theme) || Object.keys(customThemes).includes(theme)) {
+    if (editorTheme != theme) {
+      selectTheme(theme);
+    }
+  } else {
+    btn.classList.add("is-loading");
+    let data = await getURLContents(builtInThemes[theme].url);
+    addCustomTheme(data);
+    btn.classList.remove("is-loading");
+    updateThemeSelector();
+  }
+}
 function updateThemeSelector() {
   let allThemes = defaultThemes + Object.keys(customThemes);
   for (let i = 0; i < allThemes.length; i++) {
     if (allThemes[i] == editorTheme) {
 
     } else {
-      
+
     }
   }
 }
@@ -143,7 +307,7 @@ function removeCustomTheme(name) {
   delete customThemes[name];
   setCookie("customThemes", JSON.stringify(customThemes), 399, true);
   removeOptionByValue(themeMenu, name);
-}
+}*/
 async function addCustomTheme(input) {
   let data;
   if (typeof data == "string") {

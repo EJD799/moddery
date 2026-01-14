@@ -1,4 +1,4 @@
-const appVersion = "2.1.8";
+const appVersion = "2.1.9";
 const buildDate = "1/15/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -34,6 +34,10 @@ let builtInThemes = {
   "sunset": {
     name: "Sunset",
     url: "https://ejd799.github.io/moddery/themes/sunset.json"
+  },
+  "minecraft": {
+    name: "Minecraft",
+    url: "https://ejd799.github.io/moddery/themes/minecraft.json"
   }
 };
 var generalThemeType;

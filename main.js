@@ -1,4 +1,4 @@
-const appVersion = "2.1.5";
+const appVersion = "2.1.6";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -4069,9 +4069,9 @@ async function addTab(role, elementID) {
         frame.contentWindow.loadProject(await fileToDataURL(data));
       });
     }
+    handleFrameThemeChange();
   };
   handleThemeChange();
-  handleFrameThemeChange();
   updateTabHeight();
 }
 

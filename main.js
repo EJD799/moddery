@@ -1,4 +1,4 @@
-const appVersion = "2.0.23";
+const appVersion = "2.0.24";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -27,7 +27,10 @@ var editorTheme = "system";
 let defaultThemes = ["system", "light", "dark"];
 let customThemes = {};
 let builtInThemes = {
-
+  "sunrise": {
+    name: "Sunrise",
+    url: "https://ejd799.github.io/moddery/themes/sunrise.css"
+  }
 };
 var generalThemeType;
 let currentProjectId = null;

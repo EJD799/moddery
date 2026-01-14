@@ -1,0 +1,61 @@
+html[data-theme=sunrise] {
+    --app-welcome-background: var(--bulma-background);
+    --app-main-tabs-background: var(--bulma-background);
+
+    --bulma-text: hsl(221deg, 14%, 29%);
+    --bulma-background: hsl(221deg, 14%, 96%);
+    --bulma-scheme-main: hsl(221deg, 14%, 100%);
+
+    /* PRIMARY */
+    --bulma-primary-h: 31deg;
+    --bulma-primary-s: 100%;
+    --bulma-primary-l: 71%;
+
+    /* LINK */
+    --bulma-link-h: 266deg;
+    --bulma-link-s: 100%;
+    --bulma-link-l: 73%;
+
+    /* INFO */
+    --bulma-info-h: 198deg;
+    --bulma-info-s: 100%;
+    --bulma-info-l: 70%;
+
+    /* SUCCESS */
+    --bulma-success-h: 153deg;
+    --bulma-success-s: 100%;
+    --bulma-success-l: 53%;
+
+    /* WARNING */
+    --bulma-warning-h: 42deg;
+    --bulma-warning-s: 100%;
+    --bulma-warning-l: 53%;
+
+    /* DANGER */
+    --bulma-danger-h: 348deg;
+    --bulma-danger-s: 100%;
+    --bulma-danger-l: 70%;
+
+    --app-white-btn-background: var(--bulma-white-l);
+    --app-white-btn-color: var(--bulma-white-invert-l);
+
+    --app-tab-bar-background: #e3e3e8;
+    --app-tab-bar-background1: #d2d2db;
+    --app-tab-bar-background2: #c6c6cd;
+    --app-tab-bar-background3: #b3b3bb;
+    --app-selected-tab-color: var(--bulma-link);
+    --app-selected-tab-border: var(--bulma-link);
+    --app-deselected-tab-color: var(--bulma-text);
+    --app-deselected-tab-border: #c5c5c5;
+    --app-selected-tab-background1: #e3e3e8;
+    --app-selected-tab-background2: #d2d2db;
+
+    --app-image-editor-toolbar-background: var(--bulma-background);
+    --app-image-editor-background: var(--bulma-scheme-main);
+    --app-blockly-background: var(--bulma-scheme-main);
+    --app-blockly-toolbox-background: var(--bulma-background);
+    --app-blockly-toolbox-flyout-background: #e3e3e850;
+
+    --app-black-white: var(--bulma-scheme-main);
+    --app-disabled-input-border: #b3b3bb;
+}

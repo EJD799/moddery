@@ -62,30 +62,49 @@ html[data-theme=minecraft] {
 
 .button {
     background: url(https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures/block/dirt.png);
+    background-size: contain;
+    image-rendering: pixelated;
+    color: white;
 }
 .button:hover {
     background: url(https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures/block/grass_block_side.png);
+    background-size: contain;
+    image-rendering: pixelated;
 }
 .button:active {
     background: url(https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures/block/grass_block_top.png);
+    background-size: contain;
+    image-rendering: pixelated;
 }
 
 .button.is-primary {
     background: url(https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures/block/stone.png);
+    background-size: contain;
+    image-rendering: pixelated;
 }
 .button.is-primary:hover {
     background: url(https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures/block/diamond_ore.png);
+    background-size: contain;
+    image-rendering: pixelated;
 }
 .button.is-primary:active {
     background: url(https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures/block/diamond_block.png);
+    background-size: contain;
+    image-rendering: pixelated;
 }
 
 .button.is-danger {
     background: url(https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures/block/stone.png);
+    background-size: contain;
+    image-rendering: pixelated;
 }
 .button.is-danger:hover {
     background: url(https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures/block/redstone_ore.png);
+    background-size: contain;
+    image-rendering: pixelated;
 }
 .button.is-danger:active {
     background: url(https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21.10/assets/minecraft/textures/block/redstone_block.png);
+    background-size: contain;
+    image-rendering: pixelated;
 }

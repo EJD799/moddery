@@ -1,4 +1,4 @@
-const appVersion = "2.0.16";
+const appVersion = "2.0.17";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -90,7 +90,14 @@ document.addEventListener("DOMContentLoaded", function(){
     finishSignIn(currentUsername, currentPassword);
   }
 });
-
+function removeOptionByValue(selectEl, value) {
+  for (let i = selectEl.options.length - 1; i >= 0; i--) {
+    if (selectEl.options[i].value === value) {
+      selectEl.remove(i);
+      return; // remove only first match
+    }
+  }
+}
 async function getURLContents(url) {
   const response = await fetch(url);
 
@@ -101,7 +108,17 @@ async function getURLContents(url) {
   const contents = await response.text(); // or .json()
   return contents;
 }
-
+function removeCustomTheme(name) {
+  if (editorTheme == name) {
+    editorTheme = "system";
+    setCookie("editorTheme", "system", 399);
+    themeMenu.value = "system";
+    autoThemeChange();
+  }
+  delete customThemes[name];
+  setCookie("customThemes", JSON.stringify(customThemes), 399, true);
+  removeOptionByValue(themeMenu, name);
+}
 async function addCustomTheme(input) {
   let data;
   if (typeof data == "string") {
@@ -641,6 +658,7 @@ function handleFrameThemeChange() {
     } else {
       editorTheme = "system";
       setCookie("editorTheme", "system", 399);
+      themeMenu.value = "system";
       autoThemeChange();
     }
   }

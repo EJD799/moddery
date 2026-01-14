@@ -1,4 +1,4 @@
-const appVersion = "2.1.2";
+const appVersion = "2.1.3";
 const buildDate = "1/14/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -216,12 +216,12 @@ async function addCustomTheme(input) {
   });
 
   // Add to select menu
-  if (!themeMenu.querySelector(`option[value="${id}"]`)) {
+  /*if (!themeMenu.querySelector(`option[value="${id}"]`)) {
     const opt = document.createElement("option");
     opt.value = id;
     opt.textContent = data.name;
     themeMenu.appendChild(opt);
-  }
+  }*/
 
   setCookie("customThemes", JSON.stringify(customThemes), 399, true);
   updateThemeSelector();
@@ -236,7 +236,7 @@ function removeTheme(id) {
 
   if (customThemes[id]) {
     delete customThemes[id];
-    removeOptionByValue(themeMenu, id);
+    //removeOptionByValue(themeMenu, id);
   }
 
   document.getElementById(`themeBox_${id}`)?.remove();
@@ -331,7 +331,7 @@ function removeTheme(id) {
   // Custom → remove entirely
   if (customThemes[id]) {
     delete customThemes[id];
-    removeOptionByValue(themeMenu, id);
+    //removeOptionByValue(themeMenu, id);
   }
 
   setCookie("customThemes", JSON.stringify(customThemes), 399, true);
@@ -882,7 +882,7 @@ autosaveBox.addEventListener("change", function(e) {
 });
 
 
-let themeMenu = document.getElementById("themeMenu");
+//let themeMenu = document.getElementById("themeMenu");
 
 if (getCookie("customThemes", true)) {
   customThemes = JSON.parse(getCookie("customThemes", true));
@@ -899,19 +899,19 @@ if (getCookie("customThemes", true)) {
   }
 
   updateThemeSelector();
-  let themeList = Object.keys(customThemes);
+  /*let themeList = Object.keys(customThemes);
   for (let i = 0; i < themeList.length; i++) {
     let data = customThemes[themeList[i]];
     let menuOption = document.createElement("option");
     menuOption.setAttribute("value", themeList[i]);
     menuOption.innerHTML = data.name;
     themeMenu.appendChild(menuOption);
-  }
+  }*/
 }
 
 if (getCookie("editorTheme")) {
   editorTheme = getCookie("editorTheme");
-  $("#themeMenu").val(getCookie("editorTheme"));
+  //$("#themeMenu").val(getCookie("editorTheme"));
   if (editorTheme == "system") {
     autoThemeChange();
   } else {
@@ -922,13 +922,13 @@ if (getCookie("editorTheme")) {
   updateThemeSelector();
 } else {
   editorTheme = "system";
-  $("#themeMenu").val("system");
+  //$("#themeMenu").val("system");
   setCookie("editorTheme", "system", 399);
   autoThemeChange();
   selectTheme("system");
 }
 
-themeMenu.addEventListener("change", function(e) {
+/*themeMenu.addEventListener("change", function(e) {
   editorTheme = themeMenu.value;
   setCookie("editorTheme", editorTheme, 399);
   if (editorTheme == "system") {
@@ -939,7 +939,7 @@ themeMenu.addEventListener("change", function(e) {
     selectTheme(editorTheme);
     handleFrameThemeChange();
   }
-});
+});*/
 
 function autoThemeChange() {
   if (getThemePreference() == "dark") {
@@ -979,7 +979,7 @@ function handleFrameThemeChange() {
     } else {
       editorTheme = "system";
       setCookie("editorTheme", "system", 399);
-      themeMenu.value = "system";
+      //themeMenu.value = "system";
       autoThemeChange();
     }
   }

@@ -36,7 +36,7 @@ html[data-theme=sunset] {
     --bulma-danger-s: 100%;
     --bulma-danger-l: 70%;
 
-    --app-white-btn-background: var(--bulma-white-invert-l);
+    --app-white-btn-background: var(--bulma-background);
     --app-white-btn-color: var(--bulma-white-l);
 
     --app-tab-bar-background: #3b3b43;

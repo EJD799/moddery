@@ -1,4 +1,4 @@
-const appVersion = "2.1.26";
+const appVersion = "2.1.27";
 const buildDate = "1/15/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -101,6 +101,10 @@ let projectTypes = {
         url: "editor/audio.html",
         icon: "fas fa-volume-high"
       },
+      "Text": {
+        url: "editor/text.html",
+        icon: "fa-regular fa-file"
+      },
       "default": {
         url: "about:blank",
         icon: "fa-regular fa-file"
@@ -113,7 +117,61 @@ let projectTypes = {
   },
   "je_dp": {
     name: "Java Datapack",
-    shortname: "Datapack"
+    shortname: "Datapack",
+    editors: {
+      "Function": {
+        url: "editor/javadp/function.html",
+        icon: "fas fa-terminal"
+      },
+      "Item": {
+        url: "editor/javadp/item.html",
+        icon: "fa-regular fa-gem"
+      },
+      "Block": {
+        url: "editor/javadp/block.html",
+        icon: "fas fa-cube"
+      },
+      "Biome": {
+        url: "editor/javadp/biome.html",
+        icon: "fas fa-tree"
+      },
+      "Structure": {
+        url: "editor/javadp/structure.html",
+        icon: "fas fa-cubes"
+      },
+      "Recipe": {
+        url: "editor/javadp/recipe.html",
+        icon: "fas fa-table-cells"
+      },
+      "Entity": {
+        url: "editor/javadp/entity.html",
+        icon: "fas fa-paw"
+      },
+      "Loot Table": {
+        url: "editor/javadp/loot_table.html",
+        icon: "fas fa-coins"
+      },
+      "Trade Table": {
+        url: "editor/javadp/trade_table.html",
+        icon: "fas fa-right-left"
+      },
+      "Image": {
+        url: "editor/image.html",
+        icon: "fas fa-image"
+      },
+      "Audio": {
+        url: "editor/audio.html",
+        icon: "fas fa-volume-high"
+      },
+      "Text": {
+        url: "editor/text.html",
+        icon: "fa-regular fa-file"
+      },
+      "default": {
+        url: "about:blank",
+        icon: "fa-regular fa-file"
+      }
+    }
   },
   "je_rp": {
     name: "Java Resource Pack",
@@ -131,17 +189,73 @@ let projectTypes = {
     name: "Java Spigot Plugin",
     shortname: "Spigot Plugin"
   },
-  "nexo": {
-    name: "Nexo Addon",
-    shortname: "Nexo Addon"
-  },
   "mtr_je": {
     name: "MTR Content (Java)",
-    shortname: "MTR Content"
+    shortname: "MTR Content",
+    editors: {
+      "Vehicle": {
+        url: "editor/mtrje/vehicle.html",
+        icon: "fas fa-train-subway"
+      },
+      "Sign": {
+        url: "editor/mtrje/sign.html",
+        icon: "fas fa-signs-post"
+      },
+      "PIDS": {
+        url: "editor/mtrje/pids.html",
+        icon: "fas fa-sign-hanging"
+      },
+      "Image": {
+        url: "editor/image.html",
+        icon: "fas fa-image"
+      },
+      "Audio": {
+        url: "editor/audio.html",
+        icon: "fas fa-volume-high"
+      },
+      "Sound": {
+        url: "editor/mtrje/sound.html",
+        icon: "fas fa-volume-high"
+      },
+      "default": {
+        url: "about:blank",
+        icon: "fa-regular fa-file"
+      }
+    }
   },
   "mtr_be": {
     name: "MTR Content (Bedrock)",
-    shortname: "MTR Content"
+    shortname: "MTR Content",
+    editors: {
+      "Vehicle": {
+        url: "editor/mtrbe/vehicle.html",
+        icon: "fas fa-train-subway"
+      },
+      "Sign": {
+        url: "editor/mtrbe/sign.html",
+        icon: "fas fa-signs-post"
+      },
+      "PIDS": {
+        url: "editor/mtrbe/pids.html",
+        icon: "fas fa-sign-hanging"
+      },
+      "Image": {
+        url: "editor/image.html",
+        icon: "fas fa-image"
+      },
+      "Audio": {
+        url: "editor/audio.html",
+        icon: "fas fa-volume-high"
+      },
+      "Sound": {
+        url: "editor/mtrbe/sound.html",
+        icon: "fas fa-volume-high"
+      },
+      "default": {
+        url: "about:blank",
+        icon: "fa-regular fa-file"
+      }
+    }
   }
 };
 

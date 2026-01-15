@@ -26,7 +26,7 @@ const bedrockMolangDefinitions = Blockly.common.createBlockDefinitionsFromJsonAr
             name: 'VALUE',
             check: null
         }
-    ]
+    ],
     previousStatement: null,
     colour: 45,
     deletable: false,
@@ -43,10 +43,7 @@ var bedrockMolangToolbox = {
         "name": "Queries",
         "colour": 160,
         "contents": [
-          {
-            "kind": "block",
-            "type": "always_day"
-          },
+
         ]
       },
       {
@@ -54,10 +51,7 @@ var bedrockMolangToolbox = {
         "name": "Variables",
         "colour": 10,
         "contents": [
-          {
-            "kind": "block",
-            "type": "clear_inv"
-          },
+          
         ]
       },
       {
@@ -65,10 +59,7 @@ var bedrockMolangToolbox = {
         "name": "Temporary Variables",
         "colour": 80,
         "contents": [
-          {
-            "kind": "block",
-            "type": "set_block"
-          },
+          
         ]
       },
       {
@@ -76,10 +67,7 @@ var bedrockMolangToolbox = {
         "name": "Context Variables",
         "colour": 230,
         "contents": [
-          {
-            "kind": "block",
-            "type": "run_command"
-          },
+          
         ]
       },
       {
@@ -87,10 +75,7 @@ var bedrockMolangToolbox = {
         "name": "Math and Logic",
         "colour": 300,
         "contents": [
-          {
-            "kind": "block",
-            "type": "addobjective"
-          },
+          
         ]
       },
       {
@@ -98,10 +83,7 @@ var bedrockMolangToolbox = {
         "name": "Loops",
         "colour": 360,
         "contents": [
-          {
-            "kind": "block",
-            "type": "addobjective"
-          },
+          
         ]
       }
     ]

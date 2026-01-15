@@ -156,7 +156,7 @@ const bedrockMolangDefinitions =
                     name: "CODE",
                     check: null
                 }
-            ]
+            ],
             previousStatement: null,
             nextStatement: null
         },

@@ -1,4 +1,4 @@
-const appVersion = "2.1.18";
+const appVersion = "2.1.19";
 const buildDate = "1/15/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -255,8 +255,8 @@ async function themeSelectorBtnAction(themeId, btnIndex) {
 
   // Already installed → select
   if (isThemeInstalled(themeId)) {
-    selectTheme(themeId);
     themeStyleElement.innerHTML = "";
+    selectTheme(themeId);
     return;
   }
 

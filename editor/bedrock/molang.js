@@ -1,189 +1,305 @@
 // Create the definition.
-const bedrockMolangDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
-  {
-    type: 'q_armor_texture_slot',
-    message0: 'armor texture slot %1',
-    colour: 160,
-    args0: [
-      {
-        type: 'input_value',
-        name: 'SLOT',
-        check: null
-      }
-    ],
-    output: null
-  },
-  {
-    type: 'q_armor_material_slot',
-    message0: 'armor material slot %1',
-    colour: 160,
-    args0: [
-      {
-        type: 'input_value',
-        name: 'SLOT',
-        check: null
-      }
-    ],
-    output: null
-  },
-  {
-    type: 'armor_slot_menu',
-    message0: '%1',
-    colour: 160,
-    args0: [
-      {
-        type: 'field_dropdown',
-        name: 'SLOT',
-        options: [
-            ["helmet", "0"],
-            ["chestplate", "1"],
-            ["leggings", "2"],
-            ["boots", "3"]
-        ]
-      }
-    ],
-    output: null
-  },
-  {
-    type: "return_val",
-    message0: "return %1",
-    args0: [
+const bedrockMolangDefinitions =
+    Blockly.common.createBlockDefinitionsFromJsonArray([
         {
-            type: 'input_value',
-            name: 'VALUE',
-            check: null
-        }
-    ],
-    previousStatement: null,
-    colour: 45,
-    deletable: false,
-    movable: false,
-    editable: false
-  }
-]);
+            type: "q_armor_texture_slot",
+            message0: "armor texture slot %1",
+            colour: 160,
+            args0: [
+                {
+                    type: "input_value",
+                    name: "SLOT",
+                    check: null,
+                },
+            ],
+            output: null,
+        },
+        {
+            type: "q_armor_material_slot",
+            message0: "armor material slot %1",
+            colour: 160,
+            args0: [
+                {
+                    type: "input_value",
+                    name: "SLOT",
+                    check: null,
+                },
+            ],
+            output: null,
+        },
+        {
+            type: "armor_slot_menu",
+            message0: "%1",
+            colour: 160,
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "SLOT",
+                    options: [
+                        ["helmet", "0"],
+                        ["chestplate", "1"],
+                        ["leggings", "2"],
+                        ["boots", "3"],
+                    ],
+                },
+            ],
+            output: null,
+        },
+        {
+            type: "v_set",
+            message0: "set variable %1 to %2",
+            colour: 10,
+            args0: [
+                {
+                    type: "field_input",
+                    name: "VAR",
+                    spellcheck: false,
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE",
+                    check: null,
+                },
+            ],
+            output: null,
+        },
+        {
+            type: "v_get_custom",
+            message0: "get variable %1",
+            colour: 10,
+            args0: [
+                {
+                    type: "field_input",
+                    name: "VAR",
+                    spellcheck: false,
+                },
+            ],
+            output: null,
+        },
+        {
+            type: "v_get_built_in",
+            message0: "get variable %1",
+            colour: 10,
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "VAR",
+                    options: [
+                        ["a", "a"],
+                        ["b", "b"],
+                    ],
+                },
+            ],
+            output: null,
+        },
+        {
+            type: "t_set",
+            message0: "set temporary variable %1 to %2",
+            colour: 80,
+            args0: [
+                {
+                    type: "field_input",
+                    name: "VAR",
+                    spellcheck: false,
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE",
+                    check: null,
+                },
+            ],
+            output: null,
+        },
+        {
+            type: "t_get",
+            message0: "get temporary variable %1",
+            colour: 80,
+            args0: [
+                {
+                    type: "field_input",
+                    name: "VAR",
+                    spellcheck: false,
+                },
+            ],
+            output: null,
+        },
+        {
+            type: "c_get",
+            message0: "get variable %1",
+            colour: 230,
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "VAR",
+                    options: [
+                        ["a", "a"],
+                        ["b", "b"],
+                    ],
+                },
+            ],
+            output: null,
+        },
+        {
+            type: "return_val",
+            message0: "return %1",
+            args0: [
+                {
+                    type: "input_value",
+                    name: "VALUE",
+                    check: null,
+                },
+            ],
+            previousStatement: null,
+            colour: 45,
+            deletable: false,
+            movable: false,
+            editable: false,
+        },
+    ]);
 
 var bedrockMolangToolbox = {
-    "kind": "categoryToolbox",
-    "contents": [
-      {
-        "kind": "category",
-        "name": "Queries",
-        "colour": 160,
-        "contents": [
-            {
-                kind: 'block',
-                type: 'q_armor_texture_slot',
-                inputs: {
-                    SLOT: { shadow: { type: 'armor_slot_menu' } },
-                }
-            },
-            {
-                kind: 'block',
-                type: 'q_armor_material_slot',
-                inputs: {
-                    SLOT: { shadow: { type: 'armor_slot_menu' } },
-                }
-            },
-        ]
-      },
-      {
-        "kind": "category",
-        "name": "Variables",
-        "colour": 10,
-        "contents": [
-          
-        ]
-      },
-      {
-        "kind": "category",
-        "name": "Temporary Variables",
-        "colour": 80,
-        "contents": [
-          
-        ]
-      },
-      {
-        "kind": "category",
-        "name": "Context Variables",
-        "colour": 230,
-        "contents": [
-          
-        ]
-      },
-      {
-        "kind": "category",
-        "name": "Math and Logic",
-        "colour": 300,
-        "contents": [
-          
-        ]
-      },
-      {
-        "kind": "category",
-        "name": "Loops",
-        "colour": 360,
-        "contents": [
-          
-        ]
-      }
-    ]
-  };
+    kind: "categoryToolbox",
+    contents: [
+        {
+            kind: "category",
+            name: "Queries",
+            colour: 160,
+            contents: [
+                {
+                    kind: "block",
+                    type: "q_armor_texture_slot",
+                    inputs: {
+                        SLOT: { shadow: { type: "armor_slot_menu" } },
+                    },
+                },
+                {
+                    kind: "block",
+                    type: "q_armor_material_slot",
+                    inputs: {
+                        SLOT: { shadow: { type: "armor_slot_menu" } },
+                    },
+                },
+            ],
+        },
+        {
+            kind: "category",
+            name: "Variables",
+            colour: 10,
+            contents: [
+                {
+                    kind: "block",
+                    type: "v_set",
+                    inputs: {
+                        VALUE: { shadow: { type: "math_number" } },
+                    },
+                },
+                {
+                    kind: "block",
+                    type: "v_get_custom"
+                },
+                {
+                    kind: "block",
+                    type: "v_get_built_in"
+                },
+            ],
+        },
+        {
+            kind: "category",
+            name: "Temporary Variables",
+            colour: 80,
+            contents: [
+                {
+                    kind: "block",
+                    type: "t_set",
+                    inputs: {
+                        VALUE: { shadow: { type: "math_number" } },
+                    },
+                },
+                {
+                    kind: "block",
+                    type: "t_get"
+                },
+            ],
+        },
+        {
+            kind: "category",
+            name: "Context Variables",
+            colour: 230,
+            contents: [
+                {
+                    kind: "block",
+                    type: "c_get"
+                },
+            ],
+        },
+        {
+            kind: "category",
+            name: "Math and Logic",
+            colour: 300,
+            contents: [
 
+            ],
+        },
+        {
+            kind: "category",
+            name: "Loops",
+            colour: 360,
+            contents: [
 
-
+            ],
+        },
+    ],
+};
 
 // Apply the no_disable_menu logic to all blocks
-Blockly.BlockSvg.prototype.customContextMenu = function(menuOptions) {
-  // Filter out "Disable block" entries
-  for (let i = menuOptions.length - 1; i >= 0; i--) {
-    if (menuOptions[i].text && menuOptions[i].text.includes('Disable')) {
-      menuOptions.splice(i, 1);
+Blockly.BlockSvg.prototype.customContextMenu = function (menuOptions) {
+    // Filter out "Disable block" entries
+    for (let i = menuOptions.length - 1; i >= 0; i--) {
+        if (menuOptions[i].text && menuOptions[i].text.includes("Disable")) {
+            menuOptions.splice(i, 1);
+        }
     }
-  }
 };
 
 Blockly.common.defineBlocks(bedrockMolangDefinitions);
-var workspace = Blockly.inject('blocklyDiv', {
-  toolbox: bedrockMolangToolbox,
-  move: {
-    scrollbars: {
-      horizontal: true,
-      vertical: true
+var workspace = Blockly.inject("blocklyDiv", {
+    toolbox: bedrockMolangToolbox,
+    move: {
+        scrollbars: {
+            horizontal: true,
+            vertical: true,
+        },
+        drag: true,
+        wheel: true,
     },
-    drag: true,
-    wheel: true
-  },
-  renderer: 'zelos',
-  zoom: {
-    controls: true,
-    wheel: true,
-    startScale: 0.75, // smaller scale (0.5–1.0 is common)
-    maxScale: 1.2,
-    minScale: 0.5,
-    scaleSpeed: 1.1
-  }
+    renderer: "zelos",
+    zoom: {
+        controls: true,
+        wheel: true,
+        startScale: 0.75, // smaller scale (0.5–1.0 is common)
+        maxScale: 1.2,
+        minScale: 0.5,
+        scaleSpeed: 1.1,
+    },
 });
-const startBlock = workspace.newBlock('return_val');
+const startBlock = workspace.newBlock("return_val");
 startBlock.initSvg();
 startBlock.render();
 startBlock.setDeletable(false);
 startBlock.moveBy(50, 50);
 
-
-
-
 function loadProject(data) {
-  Blockly.serialization.workspaces.load(data, workspace);
+    Blockly.serialization.workspaces.load(data, workspace);
 }
 function saveProject() {
-  return Blockly.serialization.workspaces.save(workspace);
+    return Blockly.serialization.workspaces.save(workspace);
 }
 function generateCode() {
-  const code = Blockly.BedrockFunction.workspaceToCode(workspace);
-  console.log("Generated code:");
-  console.log(code);
-  return code;
+    const code = Blockly.BedrockFunction.workspaceToCode(workspace);
+    console.log("Generated code:");
+    console.log(code);
+    return code;
 }
-document.addEventListener('keydown', e => {
-  if (e.key === 'g') generateCode();
+document.addEventListener("keydown", (e) => {
+    if (e.key === "g") generateCode();
 });

@@ -176,8 +176,13 @@ const bedrockMolangDefinitions =
                     type: "field_dropdown",
                     name: "VAR",
                     options: [
-                        ["a", "a"],
-                        ["b", "b"],
+                        ["block face", "block_face"],
+                        ["cardinal block face placed on", "cardinal_block_face_placed_on"],
+                        ["count", "count"],
+                        ["item slot", "item_slot"],
+                        ["other item", "other"],
+                        ["owning entity", "owning_entity"],
+                        ["player off-hand arm height", "player_offhand_arm_height"]
                     ],
                 },
             ],
@@ -192,8 +197,7 @@ const bedrockMolangDefinitions =
                     type: "field_dropdown",
                     name: "VAR",
                     options: [
-                        ["a", "a"],
-                        ["b", "b"],
+                        ["is first person", "is_first_person"]
                     ],
                 },
             ],

@@ -158,8 +158,37 @@ const bedrockMolangDefinitions =
                 }
             ],
             previousStatement: null,
-            nextStatement: null,
-            inputsInline: true
+            nextStatement: null
+        },
+        {
+            type: "math_comparison",
+            message0: "%1 %2 %3",
+            colour: 300,
+            args0: [
+                {
+                    type: "input_value",
+                    name: "VALUE1",
+                    check: null
+                },
+                {
+                    type: "field_dropdown",
+                    name: "OPERATOR",
+                    options: [
+                        ["=", "=="],
+                        ["≠", "!="],
+                        [">", ">"],
+                        ["<", "<"],
+                        ["≥", ">="],
+                        ["≤", "<="]
+                    ]
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE2",
+                    check: null
+                },
+            ],
+            output: null,
         },
         {
             type: "loop_break",
@@ -273,7 +302,14 @@ var bedrockMolangToolbox = {
             name: "Math and Logic",
             colour: 300,
             contents: [
-
+                {
+                    kind: "block",
+                    type: "math_comparison",
+                    inputs: {
+                        VALUE1: { shadow: { type: "math_number" } },
+                        VALUE2: { shadow: { type: "math_number" } },
+                    },
+                },
             ],
         },
         {

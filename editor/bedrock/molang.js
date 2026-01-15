@@ -345,7 +345,8 @@ const bedrockMolangDefinitions =
                         ["+", "+"],
                         ["-", "-"],
                         ["*", "*"],
-                        ["/", "/"]
+                        ["/", "/"],
+                        ["^", "^"]
                     ]
                 },
                 {
@@ -429,8 +430,7 @@ const bedrockMolangDefinitions =
                         ["atan2", "atan2"],
                         ["max", "max"],
                         ["min", "min"],
-                        ["mod", "mod"],
-                        [""]
+                        ["mod", "mod"]
                     ]
                 },
                 {
@@ -441,6 +441,62 @@ const bedrockMolangDefinitions =
                 {
                     type: "input_value",
                     name: "VALUE2",
+                    check: null
+                }
+            ],
+            output: null,
+            inputsInline: true
+        },
+        {
+            type: "math_clamp",
+            message0: "constrain %1 between %2 and %3",
+            colour: 300,
+            args0: [
+                {
+                    type: "input_value",
+                    name: "VALUE",
+                    check: null
+                },
+                {
+                    type: "input_value",
+                    name: "MIN",
+                    check: null
+                },
+                {
+                    type: "input_value",
+                    name: "MAX",
+                    check: null
+                }
+            ],
+            output: null,
+            inputsInline: true
+        },
+        {
+            type: "math_lerp",
+            message0: "%1 between %2 and %3 by %4",
+            colour: 300,
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "MODE",
+                    options: [
+                        ["lerp", "lerp"],
+                        ["lerprotate", "lerprotate"]
+                    ]
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE1",
+                    check: null
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE2",
+                    check: null
+                },
+                {
+                    type: "input_value",
+                    name: "T",
                     check: null
                 }
             ],
@@ -606,10 +662,35 @@ var bedrockMolangToolbox = {
                 },
                 {
                     kind: "block",
-                    type: "math_func1",
+                    type: "math_func_1",
+                    inputs: {
+                        VALUE: { shadow: { type: "math_number" } }
+                    },
+                },
+                {
+                    kind: "block",
+                    type: "math_func_2",
                     inputs: {
                         VALUE1: { shadow: { type: "math_number" } },
                         VALUE2: { shadow: { type: "math_number" } },
+                    },
+                },
+                {
+                    kind: "block",
+                    type: "math_clamp",
+                    inputs: {
+                        VALUE: { shadow: { type: "math_number" } },
+                        MIN: { shadow: { type: "math_number" } },
+                        MAX: { shadow: { type: "math_number" } },
+                    },
+                },
+                {
+                    kind: "block",
+                    type: "math_lerp",
+                    inputs: {
+                        VALUE1: { shadow: { type: "math_number" } },
+                        VALUE2: { shadow: { type: "math_number" } },
+                        T: { shadow: { type: "math_number" } },
                     },
                 },
             ],

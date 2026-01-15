@@ -243,6 +243,62 @@ const bedrockMolangDefinitions =
             inputsInline: true
         },
         {
+            type: "math_arithmetic",
+            message0: "%1 %2 %3",
+            colour: 300,
+            args0: [
+                {
+                    type: "input_value",
+                    name: "VALUE1",
+                    check: null
+                },
+                {
+                    type: "field_dropdown",
+                    name: "OPERATOR",
+                    options: [
+                        ["+", "+"],
+                        ["-", "-"],
+                        ["*", "*"],
+                        ["/", "/"]
+                    ]
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE2",
+                    check: null
+                },
+            ],
+            output: null,
+            inputsInline: true
+        },
+        {
+            type: "math_random",
+            message0: "pick random %1 from %2 to %3",
+            colour: 300,
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "MODE",
+                    options: [
+                        ["float", "float"],
+                        ["integer", "integer"]
+                    ]
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE1",
+                    check: null
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE2",
+                    check: null
+                },
+            ],
+            output: null,
+            inputsInline: true
+        },
+        {
             type: "loop_break",
             message0: "break",
             colour: 360,
@@ -369,6 +425,22 @@ var bedrockMolangToolbox = {
                 {
                     kind: "block",
                     type: "math_if_else",
+                    inputs: {
+                        VALUE1: { shadow: { type: "math_number" } },
+                        VALUE2: { shadow: { type: "math_number" } },
+                    },
+                },
+                {
+                    kind: "block",
+                    type: "math_arithmetic",
+                    inputs: {
+                        VALUE1: { shadow: { type: "math_number" } },
+                        VALUE2: { shadow: { type: "math_number" } },
+                    },
+                },
+                {
+                    kind: "block",
+                    type: "math_random",
                     inputs: {
                         VALUE1: { shadow: { type: "math_number" } },
                         VALUE2: { shadow: { type: "math_number" } },

@@ -189,6 +189,7 @@ const bedrockMolangDefinitions =
                 },
             ],
             output: "Boolean",
+            inputsInline: true
         },
         {
             type: "loop_break",

@@ -1,4 +1,20 @@
+@font-face {
+  font-family: "Mojang";
+  src: url("themes/Mojang-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Mojang";
+  src: url("themes/Mojang-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
 html[data-theme=minecraft] {
+    font-family: "Mojang" !important;
+
     --app-welcome-background: var(--bulma-background);
     --app-main-tabs-background: var(--bulma-background);
 

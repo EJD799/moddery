@@ -1,4 +1,4 @@
-const appVersion = "2.1.17";
+const appVersion = "2.1.18";
 const buildDate = "1/15/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -921,6 +921,9 @@ if (getCookie("editorTheme")) {
     autoThemeChange();
   } else {
     document.documentElement.setAttribute("data-theme", editorTheme);
+    if (!["light", "dark", "system"].includes(editorTheme) && customThemes[editorTheme].generalType == "dark") {
+      document.documentElement.classList.add("theme-dark");
+    }
     handleFrameThemeChange();
   }
   selectTheme(editorTheme);

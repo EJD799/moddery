@@ -78,6 +78,19 @@ const bedrockMolangDefinitions =
             output: null,
         },
         {
+            type: "v_get_custom_bool",
+            message0: "get variable %1",
+            colour: 10,
+            args0: [
+                {
+                    type: "field_input",
+                    name: "VAR",
+                    spellcheck: false,
+                },
+            ],
+            output: "Boolean",
+        },
+        {
             type: "v_get_built_in",
             message0: "get variable %1",
             colour: 10,
@@ -92,6 +105,22 @@ const bedrockMolangDefinitions =
                 },
             ],
             output: null,
+        },
+        {
+            type: "v_get_built_in_bool",
+            message0: "get variable %1",
+            colour: 10,
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "VAR",
+                    options: [
+                        ["a", "a"],
+                        ["b", "b"],
+                    ],
+                },
+            ],
+            output: "Boolean",
         },
         {
             type: "t_set",
@@ -126,8 +155,21 @@ const bedrockMolangDefinitions =
             output: null,
         },
         {
+            type: "t_get_bool",
+            message0: "get temporary variable %1",
+            colour: 80,
+            args0: [
+                {
+                    type: "field_input",
+                    name: "VAR",
+                    spellcheck: false,
+                },
+            ],
+            output: "Boolean",
+        },
+        {
             type: "c_get",
-            message0: "get variable %1",
+            message0: "get context variable %1",
             colour: 230,
             args0: [
                 {
@@ -140,6 +182,22 @@ const bedrockMolangDefinitions =
                 },
             ],
             output: null,
+        },
+        {
+            type: "c_get_bool",
+            message0: "get context variable %1",
+            colour: 230,
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "VAR",
+                    options: [
+                        ["a", "a"],
+                        ["b", "b"],
+                    ],
+                },
+            ],
+            output: "Boolean",
         },
         {
             type: "loop_repeat",
@@ -372,7 +430,15 @@ var bedrockMolangToolbox = {
                 },
                 {
                     kind: "block",
+                    type: "v_get_custom_bool"
+                },
+                {
+                    kind: "block",
                     type: "v_get_built_in"
+                },
+                {
+                    kind: "block",
+                    type: "v_get_built_in_bool"
                 },
             ],
         },
@@ -392,6 +458,10 @@ var bedrockMolangToolbox = {
                     kind: "block",
                     type: "t_get"
                 },
+                {
+                    kind: "block",
+                    type: "t_get_bool"
+                },
             ],
         },
         {
@@ -402,6 +472,10 @@ var bedrockMolangToolbox = {
                 {
                     kind: "block",
                     type: "c_get"
+                },
+                {
+                    kind: "block",
+                    type: "c_get_bool"
                 },
             ],
         },

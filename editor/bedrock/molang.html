@@ -1,0 +1,49 @@
+<!-- Load Blockly core -->
+<script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
+<!-- Load the default blocks -->
+<script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
+<!-- Load a message file -->
+<script src="https://unpkg.com/blockly/msg/en.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+<link rel="stylesheet" href="https://ejd799.github.io/BulmaColoredInputs/main.css">
+<link rel="stylesheet" href="../../styles.css">
+
+<style id="themeStyleElement"></style>
+
+<style>
+  body {
+    padding: 0;
+    margin: 0;
+  }
+    /* 1. Remove yellow block selection outline */
+  .blocklyPathSelected {
+    stroke: none !important;
+    stroke-width: 0 !important;
+  }
+
+  /* 2. Keep normal fill for selected block */
+  .blocklySelected .blocklyPath {
+    fill-opacity: 1 !important;
+  }
+
+  /* 3. Dark drop shadow on dragging blocks */
+  .blocklyDragging {
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+  }
+
+  /* 4. Subtle opacity on dragged block paths */
+  .blocklyDragging .blocklyPath {
+    opacity: 0.95;
+  }
+
+  /* Only remove outline when clicking with mouse */
+  *:focus {
+    outline: none; /* Remove default blue outline */
+  }
+
+</style>
+
+<div id="blocklyDiv" style="height: 100%; width: 100%;"></div>
+<script src="molang.js"></script>
+<script src="molang_generator.js"></script>

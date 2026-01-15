@@ -1,4 +1,4 @@
-const appVersion = "2.1.24";
+const appVersion = "2.1.25";
 const buildDate = "1/15/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -51,7 +51,61 @@ let addAssetMode = "upload";
 let projectTypes = {
   "be_addon": {
     name: "Bedrock Addon",
-    shortname: "Addon"
+    shortname: "Addon",
+    editors: {
+      "Function": {
+        url: "editor/bedrock/function.html",
+        icon: "fas fa-terminal"
+      },
+      "Script": {
+        url: "editor/bedrock/script.html",
+        icon: "fas fa-code"
+      },
+      "Item": {
+        url: "editor/bedrock/item.html",
+        icon: "fa-regular fa-gem"
+      },
+      "Block": {
+        url: "editor/bedrock/block.html",
+        icon: "fas fa-cube"
+      },
+      "Biome": {
+        url: "editor/bedrock/biome.html",
+        icon: "fas fa-tree"
+      },
+      "Structure": {
+        url: "editor/bedrock/structure.html",
+        icon: "fas fa-cubes"
+      },
+      "Recipe": {
+        url: "editor/bedrock/recipe.html",
+        icon: "fas fa-table-cells"
+      },
+      "Entity": {
+        url: "editor/bedrock/entity.html",
+        icon: "fas fa-paw"
+      },
+      "Loot Table": {
+        url: "editor/bedrock/loot_table.html",
+        icon: "fas fa-coins"
+      },
+      "Trade Table": {
+        url: "editor/bedrock/trade_table.html",
+        icon: "fas fa-right-left"
+      },
+      "Image": {
+        url: "editor/image.html",
+        icon: "fas fa-image"
+      },
+      "Audio": {
+        url: "editor/audio.html",
+        icon: "fas fa-volume-high"
+      }
+      "default": {
+        url: "about:blank",
+        icon: "fa-regular fa-file"
+      }
+    }
   },
   "be_rp": {
     name: "Bedrock Resource Pack",
@@ -3704,7 +3758,12 @@ async function saveProjectAs() {
 }
 
 function getTabContent(role, elementID) {
-  if (role == "Function") {
+  if (Object.keys(projectTypes.be_addon.editors).includes(role)) {
+    return `<iframe src="${projectTypes.be_addon.editors[role].url}" class="elementFrame" id="${elementID}_frame"></iframe>`;
+  } else {
+    return "Coming Soon!";
+  }
+  /*if (role == "Function") {
     return '<iframe src="editor/bedrock/function.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else if (role == "Script") {
     return '<iframe src="editor/bedrock/script.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
@@ -3730,7 +3789,7 @@ function getTabContent(role, elementID) {
     return '<iframe src="editor/audio.html" class="elementFrame" id="' + elementID + '_frame"></iframe>';
   } else {
     return "Coming soon!";
-  }
+  }*/
 }
 
 function shouldRemoveMargin(role) {
@@ -4014,7 +4073,12 @@ async function getFilteredElements(type) {
 }
 
 function getElementTabIcon(type) {
-  if (type == "Image") {
+  if (Object.keys(projectTypes.be_addon.editors).includes(type)) {
+    return `<i class="${projectTypes.be_addon.editors[type].icon}"></i>`;
+  } else {
+    return `<i class="fa-regular fa-file"></i>`;
+  }
+  /*if (type == "Image") {
     return `<i class="fas fa-image"></i>`;
   } else if (type == "Audio") {
     return `<i class="fas fa-volume-high"></i>`;
@@ -4038,7 +4102,7 @@ function getElementTabIcon(type) {
     return `<i class="fas fa-cubes"></i>`;
   } else {
     return `<i class="fa-regular fa-file"></i>`;
-  }
+  }*/
 }
 
 async function addTab(role, elementID) {

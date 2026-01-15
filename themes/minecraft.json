@@ -2,5 +2,5 @@
     "name": "Minecraft",
     "id": "minecraft",
     "stylesheet": "https://ejd799.github.io/moddery/themes/minecraft.css",
-    "generalType": "light"
+    "generalType": "dark"
 }

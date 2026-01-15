@@ -192,6 +192,57 @@ const bedrockMolangDefinitions =
             inputsInline: true
         },
         {
+            type: "math_boolean_logic",
+            message0: "%1 %2 %3",
+            colour: 300,
+            args0: [
+                {
+                    type: "input_value",
+                    name: "VALUE1",
+                    check: "Boolean"
+                },
+                {
+                    type: "field_dropdown",
+                    name: "OPERATOR",
+                    options: [
+                        ["and", "&&"],
+                        ["or", "||"]
+                    ]
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE2",
+                    check: "Boolean"
+                },
+            ],
+            output: "Boolean",
+            inputsInline: true
+        },
+        {
+            type: "math_if_else",
+            message0: "if %1 then %2 else %3",
+            colour: 300,
+            args0: [
+                {
+                    type: "input_value",
+                    name: "CONDITION",
+                    check: "Boolean"
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE1",
+                    check: null
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE2",
+                    check: null
+                },
+            ],
+            output: null,
+            inputsInline: true
+        },
+        {
             type: "loop_break",
             message0: "break",
             colour: 360,
@@ -306,6 +357,18 @@ var bedrockMolangToolbox = {
                 {
                     kind: "block",
                     type: "math_comparison",
+                    inputs: {
+                        VALUE1: { shadow: { type: "math_number" } },
+                        VALUE2: { shadow: { type: "math_number" } },
+                    },
+                },
+                {
+                    kind: "block",
+                    type: "math_boolean_logic",
+                },
+                {
+                    kind: "block",
+                    type: "math_if_else",
                     inputs: {
                         VALUE1: { shadow: { type: "math_number" } },
                         VALUE2: { shadow: { type: "math_number" } },

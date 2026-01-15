@@ -1,4 +1,4 @@
-const appVersion = "2.1.25";
+const appVersion = "2.1.26";
 const buildDate = "1/15/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -100,7 +100,7 @@ let projectTypes = {
       "Audio": {
         url: "editor/audio.html",
         icon: "fas fa-volume-high"
-      }
+      },
       "default": {
         url: "about:blank",
         icon: "fa-regular fa-file"

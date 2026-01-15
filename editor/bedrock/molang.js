@@ -1,21 +1,48 @@
 // Create the definition.
 const bedrockMolangDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
-    type: 'always_day',
-    message0: 'set always day to %1',
+    type: 'q_armor_texture_slot',
+    message0: 'armor texture slot %1',
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'SLOT',
+        check: null
+      }
+    ],
+    output: null
+  },
+  {
+    type: 'q_armor_material_slot',
+    message0: 'armor material slot %1',
+    colour: 160,
+    args0: [
+      {
+        type: 'input_value',
+        name: 'SLOT',
+        check: null
+      }
+    ],
+    output: null
+  },
+  {
+    type: 'armor_slot_menu',
+    message0: '%1',
     colour: 160,
     args0: [
       {
         type: 'field_dropdown',
-        name: 'VALUE',
+        name: 'SLOT',
         options: [
-          ["true", "true"],
-          ["false", "false"]
+            ["helmet", "0"],
+            ["chestplate", "1"],
+            ["leggings", "2"],
+            ["boots", "3"]
         ]
       }
     ],
-    previousStatement: null,
-    nextStatement: null,
+    output: null
   },
   {
     type: "return_val",
@@ -43,7 +70,20 @@ var bedrockMolangToolbox = {
         "name": "Queries",
         "colour": 160,
         "contents": [
-
+            {
+                kind: 'block',
+                type: 'q_armor_texture_slot',
+                inputs: {
+                    SLOT: { shadow: { type: 'armor_slot_menu' } },
+                }
+            },
+            {
+                kind: 'block',
+                type: 'q_armor_material_slot',
+                inputs: {
+                    SLOT: { shadow: { type: 'armor_slot_menu' } },
+                }
+            },
         ]
       },
       {

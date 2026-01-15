@@ -188,7 +188,7 @@ const bedrockMolangDefinitions =
                     check: null
                 },
             ],
-            output: null,
+            output: "Boolean",
         },
         {
             type: "loop_break",

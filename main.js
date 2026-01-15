@@ -1,4 +1,4 @@
-const appVersion = "2.1.43";
+const appVersion = "2.1.44";
 const buildDate = "1/15/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -311,8 +311,10 @@ function selectTheme(id) {
     document.documentElement.setAttribute("data-theme", id);
     if (customThemes[id].generalType == "dark") {
       document.documentElement.classList.add("theme-dark");
+      document.documentElement.classList.remove("theme-light");
     } else {
       document.documentElement.classList.remove("theme-dark");
+      document.documentElement.classList.add("theme-light");
     }
   }
   handleFrameThemeChange();
@@ -1091,8 +1093,12 @@ if (getCookie("editorTheme")) {
     document.documentElement.setAttribute("data-theme", editorTheme);
     if (!["light", "dark", "system"].includes(editorTheme) && customThemes[editorTheme].generalType == "dark") {
       document.documentElement.classList.add("theme-dark");
+      document.documentElement.classList.remove("theme-light");
     } else {
       document.documentElement.classList.remove("theme-dark");
+      if (!["light", "dark", "system"].includes(editorTheme)) {
+        document.documentElement.classList.add("theme-light");
+      }
     }
     handleFrameThemeChange();
   }
@@ -1175,8 +1181,10 @@ function handleFrameThemeChange() {
       if (customThemes[editorTheme]) {
         if (customThemes[editorTheme].generalType == "dark") {
           iframe.contentWindow.document.documentElement.classList.add("theme-dark");
+          iframe.contentWindow.document.documentElement.classList.remove("theme-light");
         } else {
           iframe.contentWindow.document.documentElement.classList.remove("theme-dark");
+          iframe.contentWindow.document.documentElement.classList.add("theme-light");
         }
       }
       if (iframe.contentWindow.onThemeChange) {

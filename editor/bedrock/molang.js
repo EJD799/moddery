@@ -2,23 +2,18 @@
 const bedrockMolangDefinitions =
     Blockly.common.createBlockDefinitionsFromJsonArray([
         {
-            type: "q_armor_texture_slot",
-            message0: "armor texture slot %1",
+            type: "q_armor_x_slot",
+            message0: "armor %1 slot %2",
             colour: 160,
             args0: [
                 {
-                    type: "input_value",
-                    name: "SLOT",
-                    check: null,
+                    type: "field_dropdown",
+                    name: "TYPE",
+                    options: [
+                        ["texture", "texture"],
+                        ["material", "material"]
+                    ]
                 },
-            ],
-            output: null,
-        },
-        {
-            type: "q_armor_material_slot",
-            message0: "armor material slot %1",
-            colour: 160,
-            args0: [
                 {
                     type: "input_value",
                     name: "SLOT",
@@ -390,6 +385,69 @@ const bedrockMolangDefinitions =
             inputsInline: true
         },
         {
+            type: "math_func_1",
+            message0: "%1 %2",
+            colour: 300,
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "MODE",
+                    options: [
+                        ["round", "round"],
+                        ["abs", "abs"],
+                        ["acos", "acos"],
+                        ["asin", "asin"],
+                        ["atan", "atan"],
+                        ["ceil", "ceil"],
+                        ["cos", "cos"],
+                        ["exp", "exp"],
+                        ["hermite blend", "hermite_blend"],
+                        ["ln", "ln"],
+                        ["sin", "sin"],
+                        ["sqrt", "sqrt"],
+                        ["trunc", "trunc"]
+                    ]
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE",
+                    check: null
+                }
+            ],
+            output: null,
+            inputsInline: true
+        },
+        {
+            type: "math_func_2",
+            message0: "%1 %2 %3",
+            colour: 300,
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "MODE",
+                    options: [
+                        ["atan2", "atan2"],
+                        ["max", "max"],
+                        ["min", "min"],
+                        ["mod", "mod"],
+                        [""]
+                    ]
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE1",
+                    check: null
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE2",
+                    check: null
+                }
+            ],
+            output: null,
+            inputsInline: true
+        },
+        {
             type: "loop_break",
             message0: "break",
             colour: 360,
@@ -431,14 +489,7 @@ var bedrockMolangToolbox = {
             contents: [
                 {
                     kind: "block",
-                    type: "q_armor_texture_slot",
-                    inputs: {
-                        SLOT: { shadow: { type: "armor_slot_menu" } },
-                    },
-                },
-                {
-                    kind: "block",
-                    type: "q_armor_material_slot",
+                    type: "q_armor_x_slot",
                     inputs: {
                         SLOT: { shadow: { type: "armor_slot_menu" } },
                     },
@@ -548,6 +599,14 @@ var bedrockMolangToolbox = {
                 {
                     kind: "block",
                     type: "math_random",
+                    inputs: {
+                        VALUE1: { shadow: { type: "math_number" } },
+                        VALUE2: { shadow: { type: "math_number" } },
+                    },
+                },
+                {
+                    kind: "block",
+                    type: "math_func1",
                     inputs: {
                         VALUE1: { shadow: { type: "math_number" } },
                         VALUE2: { shadow: { type: "math_number" } },

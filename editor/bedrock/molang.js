@@ -61,7 +61,8 @@ const bedrockMolangDefinitions =
                     check: null,
                 },
             ],
-            output: null,
+            previousStatement: null,
+            nextStatement: null
         },
         {
             type: "v_get_custom",
@@ -108,7 +109,8 @@ const bedrockMolangDefinitions =
                     check: null,
                 },
             ],
-            output: null,
+            previousStatement: null,
+            nextStatement: null
         },
         {
             type: "t_get",

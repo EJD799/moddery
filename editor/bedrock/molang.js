@@ -158,7 +158,8 @@ const bedrockMolangDefinitions =
                 }
             ],
             previousStatement: null,
-            nextStatement: null
+            nextStatement: null,
+            inputsInline: true
         },
         {
             type: "loop_break",

@@ -142,6 +142,39 @@ const bedrockMolangDefinitions =
             output: null,
         },
         {
+            type: "loop_repeat",
+            message0: "repeat %1 times %2",
+            colour: 360,
+            args0: [
+                {
+                    type: "input_value",
+                    name: "TIMES",
+                    check: null
+                }
+                {
+                    type: "input_statement",
+                    name: "CODE",
+                    check: null
+                }
+            ]
+            previousStatement: null,
+            nextStatement: null
+        },
+        {
+            type: "loop_break",
+            message0: "break",
+            colour: 360,
+            previousStatement: null,
+            nextStatement: null
+        },
+        {
+            type: "loop_continue",
+            message0: "continue",
+            colour: 360,
+            previousStatement: null,
+            nextStatement: null
+        },
+        {
             type: "return_val",
             message0: "return %1",
             args0: [
@@ -247,7 +280,21 @@ var bedrockMolangToolbox = {
             name: "Loops",
             colour: 360,
             contents: [
-
+                {
+                    kind: "block",
+                    type: "loop_repeat",
+                    inputs: {
+                        TIMES: { shadow: { type: "math_number" } },
+                    },
+                },
+                {
+                    kind: "block",
+                    type: "loop_break"
+                },
+                {
+                    kind: "block",
+                    type: "loop_continue"
+                },
             ],
         },
     ],

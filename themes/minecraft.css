@@ -7,14 +7,14 @@ html[data-theme=minecraft] {
     --bulma-scheme-main: hsl(221deg, 14%, 100%);
 
     /* PRIMARY */
-    --bulma-primary-h: 171deg;
+    --bulma-primary-h: 129deg;
     --bulma-primary-s: 100%;
-    --bulma-primary-l: 41%;
+    --bulma-primary-l: 40%;
 
     /* LINK */
-    --bulma-link-h: 233deg;
+    --bulma-link-h: 129deg;
     --bulma-link-s: 100%;
-    --bulma-link-l: 63%;
+    --bulma-link-l: 40%;
 
     /* INFO */
     --bulma-info-h: 198deg;

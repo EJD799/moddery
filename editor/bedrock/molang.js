@@ -150,7 +150,7 @@ const bedrockMolangDefinitions =
                     type: "input_value",
                     name: "TIMES",
                     check: null
-                }
+                },
                 {
                     type: "input_statement",
                     name: "CODE",

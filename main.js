@@ -1,4 +1,4 @@
-const appVersion = "2.1.50";
+const appVersion = "2.1.51";
 const buildDate = "1/17/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3673,7 +3673,7 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
         <div class="dropdown-content" style="color:var(--bulma-text);">
           <a class="dropdown-item" onclick="openElementInfo('${fileNameEncoded}', 'asset')"><i class="fas fa-circle-info"></i> Info</a>
           <a class="dropdown-item" onclick="openRenameElement('${fileNameEncoded}', 'asset')"><i class="fas fa-pencil"></i> Rename</a>
-          <a class="dropdown-item" onclick="downloadElement('${elementName}', 'asset')"><i class="fas fa-download"></i> Download</a>
+          <a class="dropdown-item" onclick="downloadElement('${fileNameEncoded}', 'asset')"><i class="fas fa-download"></i> Download</a>
           <a class="dropdown-item dropdownDelete" style="color:var(--bulma-danger)!important;" onclick="openDeleteElement('${fileNameEncoded}', 'asset')"><i class="fas fa-trash"></i> Delete</a>
         </div>
       </div>
@@ -4162,7 +4162,7 @@ async function renameElement() {
         <div class="dropdown-content" style="color:var(--bulma-text);">
           <a class="dropdown-item" onclick="openElementInfo('${fileNameEncoded}', 'asset')"><i class="fas fa-circle-info"></i> Info</a>
           <a class="dropdown-item" onclick="openRenameElement('${fileNameEncoded}', 'asset')"><i class="fas fa-pencil"></i> Rename</a>
-          <a class="dropdown-item" onclick="downloadElement('${elementName}', 'asset')"><i class="fas fa-download"></i> Download</a>
+          <a class="dropdown-item" onclick="downloadElement('${fileNameEncoded}', 'asset')"><i class="fas fa-download"></i> Download</a>
           <a class="dropdown-item dropdownDelete" style="color:var(--bulma-danger)!important;" onclick="openDeleteElement('${fileNameEncoded}', 'asset')"><i class="fas fa-trash"></i> Delete</a>
         </div>
       </div>

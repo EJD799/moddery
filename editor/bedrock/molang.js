@@ -23,6 +23,54 @@ const bedrockMolangDefinitions =
             output: null,
         },
         {
+            type: "q_is_name",
+            message0: "is name %1",
+            colour: 160,
+            args0: [
+                {
+                    type: "input_value",
+                    name: "NAME",
+                    check: null,
+                }
+            ],
+            output: "Boolean",
+        },
+        {
+            type: "q_is_item_name",
+            message0: "is item name in slot %1 %2 item id %3",
+            colour: 160,
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "SLOT",
+                    options: [
+                        ["main hand", "slot.weapon.mainhand"],
+                        ["off-hand", "slot.weapon.offhand"],
+                        ["head", "slot.armor.head"],
+                        ["chest", "slot.armor.chest"],
+                        ["legs", "slot.armor.legs"],
+                        ["feet", "slot.armor.feet"],
+                        ["horse armor", "slot.armor"],
+                        ["saddle", "slot.saddle"],
+                        ["hotbar", "slot.hotbar"],
+                        ["inventory", "slot.inventory"],
+                        ["ender chest", "slot.enderchest"]
+                    ]
+                },
+                {
+                    type: "input_value",
+                    name: "SLOT_NUMBER",
+                    check: null,
+                },
+                {
+                    type: "input_value",
+                    name: "ITEM",
+                    check: null,
+                },
+            ],
+            output: "Boolean",
+        },
+        {
             type: "armor_slot_menu",
             message0: "%1",
             colour: 160,
@@ -550,6 +598,21 @@ var bedrockMolangToolbox = {
                         SLOT: { shadow: { type: "armor_slot_menu" } },
                     },
                 },
+                {
+                    kind: "block",
+                    type: "q_is_name",
+                    inputs: {
+                        NAME: { shadow: { type: "text" } },
+                    },
+                },
+                {
+                    kind: "block",
+                    type: "q_is_item_name",
+                    inputs: {
+                        SLOT_NUMBER: { shadow: { type: "math_number" } },
+                        ITEM: { shadow: { type: "text" } },
+                    },
+                },
             ],
         },
         {
@@ -714,6 +777,17 @@ var bedrockMolangToolbox = {
                 {
                     kind: "block",
                     type: "loop_continue"
+                },
+            ],
+        },
+        {
+            kind: "category",
+            name: "Text",
+            colour: "#505050",
+            contents: [
+                {
+                    kind: "block",
+                    type: "text"
                 },
             ],
         },

@@ -1,4 +1,4 @@
-const appVersion = "2.1.46";
+const appVersion = "2.1.47";
 const buildDate = "1/16/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -1186,6 +1186,9 @@ function handleFrameThemeChange() {
           iframe.contentWindow.document.documentElement.classList.remove("theme-dark");
           iframe.contentWindow.document.documentElement.classList.add("theme-light");
         }
+      } else {
+        iframe.contentWindow.document.documentElement.classList.remove("theme-dark");
+        iframe.contentWindow.document.documentElement.classList.remove("theme-light");
       }
       if (iframe.contentWindow.onThemeChange) {
         iframe.contentWindow.onThemeChange(themeName, importTheme, generalThemeType);

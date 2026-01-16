@@ -3038,6 +3038,7 @@ async function exportProj() {
 
         languageFile += `entity.${namespacedID}.name=${elementFile.displayName}\n`;
         languageFile += `action.hint.exit.${namespacedID}=Press SHIFT to dismount\n`;
+        languageFile += `item.spawn_egg.entity.${namespacedID}=${elementFile.displayName} Spawn Egg\n`;
       } else if (role == "Structure") {
         let exportObj1 = {
           "format_version": formatVersion,

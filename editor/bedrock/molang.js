@@ -684,7 +684,7 @@ var bedrockMolangToolbox = {
         },
         {
             kind: "category",
-            name: "Math and Logic",
+            name: "Math & Logic",
             colour: 300,
             contents: [
                 {
@@ -782,12 +782,16 @@ var bedrockMolangToolbox = {
         },
         {
             kind: "category",
-            name: "Text",
+            name: "Text & Numbers",
             colour: "#505050",
             contents: [
                 {
                     kind: "block",
                     type: "text"
+                },
+                {
+                    kind: "block",
+                    type: "math_number"
                 },
             ],
         },

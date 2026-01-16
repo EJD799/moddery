@@ -1,4 +1,4 @@
-const appVersion = "2.1.47";
+const appVersion = "2.1.48";
 const buildDate = "1/16/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -2685,7 +2685,9 @@ async function exportProj() {
   exportLog.innerHTML = "";
   exportZip1 = new JSZip();
   exportZip2 = new JSZip();
-  let packIcon = await projZip.folder("assets").file(projManifest.packIcon).async("blob");
+  if (projManifest.packIcon) {
+    let packIcon = await projZip.folder("assets").file(projManifest.packIcon).async("blob");
+  }
   exportZip1.file("pack_icon.png", packIcon);
   exportZip2.file("pack_icon.png", packIcon);
   let bpManifest = {

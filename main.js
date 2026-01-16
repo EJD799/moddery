@@ -1,5 +1,5 @@
-const appVersion = "2.1.48";
-const buildDate = "1/16/2026";
+const appVersion = "2.1.50";
+const buildDate = "1/17/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -39,6 +39,9 @@ let builtInThemes = {
     name: "Minecraft",
     url: "https://ejd799.github.io/moddery/themes/minecraft.json"
   }
+};
+let themeIcons = {
+
 };
 var generalThemeType;
 let currentProjectId = null;
@@ -3534,7 +3537,8 @@ function addElement(loadingProj) {
         <div class="dropdown-content" style="color:var(--bulma-text);">
           <a class="dropdown-item" onclick="openElementInfo('${elementName}', 'element')"><i class="fas fa-circle-info"></i> Info</a>
           <a class="dropdown-item" onclick="openRenameElement('${elementName}', 'element')"><i class="fas fa-pencil"></i> Rename</a>
-          <a class="dropdown-item" style="color:var(--bulma-danger)!important;" onclick="openDeleteElement('${elementName}', 'element')"><i class="fas fa-trash"></i> Delete</a>
+          <a class="dropdown-item" onclick="downloadElement('${elementName}', 'element')"><i class="fas fa-download"></i> Download</a>
+          <a class="dropdown-item dropdownDelete" style="color:var(--bulma-danger)!important;" onclick="openDeleteElement('${elementName}', 'element')"><i class="fas fa-trash"></i> Delete</a>
         </div>
       </div>
     </div>
@@ -3669,7 +3673,8 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
         <div class="dropdown-content" style="color:var(--bulma-text);">
           <a class="dropdown-item" onclick="openElementInfo('${fileNameEncoded}', 'asset')"><i class="fas fa-circle-info"></i> Info</a>
           <a class="dropdown-item" onclick="openRenameElement('${fileNameEncoded}', 'asset')"><i class="fas fa-pencil"></i> Rename</a>
-          <a class="dropdown-item" style="color:var(--bulma-danger)!important;" onclick="openDeleteElement('${fileNameEncoded}', 'asset')"><i class="fas fa-trash"></i> Delete</a>
+          <a class="dropdown-item" onclick="downloadElement('${elementName}', 'asset')"><i class="fas fa-download"></i> Download</a>
+          <a class="dropdown-item dropdownDelete" style="color:var(--bulma-danger)!important;" onclick="openDeleteElement('${fileNameEncoded}', 'asset')"><i class="fas fa-trash"></i> Delete</a>
         </div>
       </div>
       `;
@@ -4099,7 +4104,8 @@ async function renameElement() {
         <div class="dropdown-content" style="color:var(--bulma-text);">
           <a class="dropdown-item" onclick="openElementInfo('${elementName}', 'element')"><i class="fas fa-circle-info"></i> Info</a>
           <a class="dropdown-item" onclick="openRenameElement('${elementName}', 'element')"><i class="fas fa-pencil"></i> Rename</a>
-          <a class="dropdown-item" style="color:var(--bulma-danger)!important;" onclick="openDeleteElement('${elementName}', 'element')"><i class="fas fa-trash"></i> Delete</a>
+          <a class="dropdown-item" onclick="downloadElement('${elementName}', 'element')"><i class="fas fa-download"></i> Download</a>
+          <a class="dropdown-item dropdownDelete" style="color:var(--bulma-danger)!important;" onclick="openDeleteElement('${elementName}', 'element')"><i class="fas fa-trash"></i> Delete</a>
         </div>
       </div>
     </div>
@@ -4156,7 +4162,8 @@ async function renameElement() {
         <div class="dropdown-content" style="color:var(--bulma-text);">
           <a class="dropdown-item" onclick="openElementInfo('${fileNameEncoded}', 'asset')"><i class="fas fa-circle-info"></i> Info</a>
           <a class="dropdown-item" onclick="openRenameElement('${fileNameEncoded}', 'asset')"><i class="fas fa-pencil"></i> Rename</a>
-          <a class="dropdown-item" style="color:var(--bulma-danger)!important;" onclick="openDeleteElement('${fileNameEncoded}', 'asset')"><i class="fas fa-trash"></i> Delete</a>
+          <a class="dropdown-item" onclick="downloadElement('${elementName}', 'asset')"><i class="fas fa-download"></i> Download</a>
+          <a class="dropdown-item dropdownDelete" style="color:var(--bulma-danger)!important;" onclick="openDeleteElement('${fileNameEncoded}', 'asset')"><i class="fas fa-trash"></i> Delete</a>
         </div>
       </div>
       `;

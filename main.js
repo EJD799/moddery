@@ -1,4 +1,4 @@
-const appVersion = "2.1.53";
+const appVersion = "2.2.0";
 const buildDate = "1/17/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -1256,7 +1256,7 @@ async function openProjDlg() {
       const [handle] = await window.showOpenFilePicker({
         types: [{
           description: "Moddery Project",
-          accept: { "application/zip": [".zip"] }
+          accept: { "application/zip": [".mdry", ".zip"] }
         }]
       });
 
@@ -1340,7 +1340,7 @@ async function downloadProjectDB(id) {
   const info = projects.find(p => p.id === id);
 
   const filename =
-    (info?.name || "project") + ".zip";
+    (info?.name || "project") + ".mdry";
 
   // 3. Create a temporary download URL
   const url = URL.createObjectURL(blob);
@@ -3859,10 +3859,10 @@ async function saveProject() {
 async function saveProjectAs() {
   if (storageMode == "file_system") {
     projFileHandle = await window.showSaveFilePicker({
-      suggestedName: (projManifest?.name || "project") + ".zip",
+      suggestedName: (projManifest?.name || "project") + ".mdry",
       types: [{
         description: "Moddery Project",
-        accept: { "application/zip": [".zip"] }
+        accept: { "application/zip": [".mdry"] }
       }]
     });
 
@@ -3874,7 +3874,7 @@ async function saveProjectAs() {
     const blob = await projZip.generateAsync({ type: "blob" });
 
     const filename =
-      (projManifest?.name || "project") + ".zip";
+      (projManifest?.name || "project") + ".mdry";
 
     const url = URL.createObjectURL(blob);
 
@@ -4028,12 +4028,45 @@ function closeDeleteElement() {
   deleteDlg.classList.remove("is-active");
 }
 
-function downloadElement(elementID, type) {
+async function downloadElement(elementID, type) {
   if (type == "asset") {
-
+    let file = await projZip.folder("assets").file(decodeText(elementID)).async("arraybuffer");
+    downloadArrayBuffer(file, decodeText(elementID));
   } else {
-    
+    let elementZip = new JSZip();
+    let file1 = await projZip.folder("elements").file(`${elementID}.json`).async("string");
+    let file1Data = JSON.parse(file1);
+    let file2 = false;
+    if (file1Data.type == "Script" || file1Data.type == "Function") {
+      file2 = await projZip.folder("elements").file(`${elementID}.code.json`).async("string");
+      elementZip.file(`${elementID}.code.json`, file2);
+    }
+    elementZip.file(`${elementID}.json`, file1);
+
+    const zipBlob = await elementZip.generateAsync({ type: "blob" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(zipBlob);
+    a.download = `${elementID}.mdryelem`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(a.href);
   }
+}
+
+async function downloadArrayBuffer(arrayBuffer, filename, mimeType = "application/octet-stream") {
+  const blob = new Blob([arrayBuffer], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+
+  // Cleanup
+  a.remove();
+  URL.revokeObjectURL(url);
 }
 
 async function renameZipFile(zip, oldPath, newPath) {

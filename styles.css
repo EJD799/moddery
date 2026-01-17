@@ -945,3 +945,21 @@ progress {
     margin-right: 10px;
     text-align: center;
 }
+
+.dropdown-item.dropdownDelete:hover,
+.dropdown-item.dropdownDelete:focus {
+  background-color: color-mix(
+    in srgb,
+    var(--bulma-danger) 13%,
+    transparent
+  );
+}
+
+.dropdown-item.dropdownDelete:active {
+  background-color: color-mix(
+    in srgb,
+    var(--bulma-danger) 23%,
+    transparent
+  );
+  color: var(--bulma-danger) !important;
+}

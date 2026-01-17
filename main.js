@@ -1,4 +1,4 @@
-const appVersion = "2.1.52";
+const appVersion = "2.1.53";
 const buildDate = "1/17/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -4026,6 +4026,14 @@ function closeRenameElement() {
 }
 function closeDeleteElement() {
   deleteDlg.classList.remove("is-active");
+}
+
+function downloadElement(elementID, type) {
+  if (type == "asset") {
+
+  } else {
+    
+  }
 }
 
 async function renameZipFile(zip, oldPath, newPath) {

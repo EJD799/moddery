@@ -32,9 +32,9 @@ html[data-theme=minecraft] {
     --bulma-warning-l: 53%;
 
     /* DANGER */
-    --bulma-danger-h: 348deg;
-    --bulma-danger-s: 100%;
-    --bulma-danger-l: 70%;
+    --bulma-danger-h: 360deg;
+    --bulma-danger-s: 87%;
+    --bulma-danger-l: 61%;
 
     --app-white-btn-background: var(--bulma-background);
     --app-white-btn-color: var(--bulma-white-l);
@@ -61,6 +61,8 @@ html[data-theme=minecraft] {
 
     --app-menubar-background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYpmHs0u2PQlnMKOU9unJD7nALmVMHWCnvAQ&s);
     --app-menubar-color: var(--bulma-text);
+
+    --bulma-duration: 0;
 }
 
 .menubar {

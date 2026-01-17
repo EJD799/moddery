@@ -1,4 +1,4 @@
-const appVersion = "2.2.2";
+const appVersion = "2.2.3";
 const buildDate = "1/17/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -664,16 +664,20 @@ window.addEventListener('resize', updateTabHeight);
 $("#toolbar").menu();
 $("#tabs").tabs();
 $("#addAssetBlankDiv").hide();
-addAssetModeMenu.addEventListener("change", function (event) {
-  addAssetMode = addAssetModeMenu.value;
-  if (addAssetMode == "upload") {
+
+function addAssetTabChange(tab) {
+  if (tab == 1) {
     $("#addAssetUploadDiv").show();
     $("#addAssetBlankDiv").hide();
+    addAssetTab1.classList.add("is-active");
+    addAssetTab2.classList.remove("is-active");
   } else {
     $("#addAssetUploadDiv").hide();
     $("#addAssetBlankDiv").show();
+    addAssetTab1.classList.remove("is-active");
+    addAssetTab2.classList.add("is-active");
   }
-});
+}
 
 let signInMode = "in";
 let signedIn = false;

@@ -1,4 +1,4 @@
-const appVersion = "2.2.0";
+const appVersion = "2.2.1";
 const buildDate = "1/17/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -1315,6 +1315,53 @@ async function openProjDlg() {
     }
   }
 };
+
+document.getElementById("importProjectInput").addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  // Basic validation
+  if (!file.name.match(/\.(mdry|zip)$/i)) {
+    alert("Please select a Moddery project (.mdry)");
+    return;
+  }
+
+  // 1️⃣ Load project
+  await openProj(file); // your existing function
+
+  // 2️⃣ Store in IndexedDB
+  const db = await openProjectDB();
+
+  const tx = db.transaction(
+    ["projects", "projectInfo"],
+    "readwrite"
+  );
+
+  tx.objectStore("projects").put({
+    id: currentProjectId,
+    blob: file
+  });
+
+  tx.objectStore("projectInfo").put({
+    id: currentProjectId,
+    name: projManifest.name,
+    type: projManifest.type,
+    namespace: projManifest.namespace,
+    lastSaved: Date.now()
+  });
+
+  await new Promise((resolve, reject) => {
+    tx.oncomplete = resolve;
+    tx.onerror = reject;
+  });
+
+  // Reset input so same file can be imported again
+  e.target.value = "";
+});
+
+function importProject() {
+  document.getElementById("importProjectInput").click();
+}
 
 function closeOpenProjDlg() {
   openProjDBDlg.classList.remove("is-active");

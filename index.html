@@ -540,6 +540,7 @@
           <center>
             <span class="title is-4">Projects</span>
             <button class="button is-primary" id="openProjDBDlgNewBtn" onclick="closeOpenProjDlg();openNewProjDlg();">+ New Project</button>
+            <button class="button" id="openProjDBDlgImportBtn" onclick="closeOpenProjDlg();importProject();"><i class="fas fa-file-import"></i> Import</button>
             <div id="openProjDBDlgContent"></div>
           </center>
         </div>
@@ -563,6 +564,8 @@
     </div>
 
     <input id="openFileInput" type="file" accept=".zip">
+
+    <input type="file" id="importProjectInput" accept=".mdry,.zip" style="display:none">
 
     <script src="libs.js"></script>
     <script src="database_libs.js"></script>

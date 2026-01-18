@@ -1,4 +1,4 @@
-const appVersion = "2.2.6";
+const appVersion = "2.2.7";
 const buildDate = "1/19/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3635,6 +3635,7 @@ async function addElement(loadingProj) {
   closeAddElementDlg();
   $("#addElementNameBox").val("");
   $("#addElementIDBox").val("");
+  addElementNameText.innerHTML = "Select a file";
   if (projFileHandle) {
     if (autosaveEnabled) {
       saveProject();

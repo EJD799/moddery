@@ -278,29 +278,41 @@
         <div class="card" id="addElementDlgCard" style="padding:16px;">
           <center>
             <h4 class="title is-4">Add Element</h4>
-            <label for="addElementNameBox">Element Name</label>
-            <input class="input" type="text" name="addElementNameBox" id="addElementNameBox" placeholder="Element Name">
-            <br><br>
-            <label for="addElementIDBox">Element Identifier</label>
-            <input class="input" type="text" name="addElementIDBox" id="addElementIDBox" placeholder="Element ID">
-            <br><br>
-            <label for="addElementType">Element Type</label>
-            <div class="select">
-              <select name="addElementType" id="addElementType">
-                <option selected>Block</option>
-                <option>Item</option>
-                <option>Entity</option>
-                <option>Recipe</option>
-                <option>Function</option>
-                <option>Script</option>
-                <option>Loot Table</option>
-                <option>Trade Table</option>
-                <option disabled>Command</option>
-                <option disabled>Biome</option>
-                <option>Structure</option>
-                <option disabled>Advancement</option>
-                <option disabled>Dialog</option>
-              </select>
+            <div class="tabs is-centered" id="addElementTabs">
+              <ul>
+                <li id="addElementTab1" onclick="addElementTabChange(1)" class="is-active"><a>Create New</a></li>
+                <li id="addElementTab2" onclick="addElementTabChange(2)"><a>Import</a></li>
+              </ul>
+            </div>
+            <div id="addElementBlankDiv">
+              <label for="addElementNameBox">Element Name</label>
+              <input class="input" type="text" name="addElementNameBox" id="addElementNameBox" placeholder="Element Name">
+              <br><br>
+              <label for="addElementIDBox">Element Identifier</label>
+              <input class="input" type="text" name="addElementIDBox" id="addElementIDBox" placeholder="Element ID">
+              <br><br>
+              <label for="addElementType">Element Type</label>
+              <div class="select">
+                <select name="addElementType" id="addElementType">
+                  <option selected>Block</option>
+                  <option>Item</option>
+                  <option>Entity</option>
+                  <option>Recipe</option>
+                  <option>Function</option>
+                  <option>Script</option>
+                  <option>Loot Table</option>
+                  <option>Trade Table</option>
+                  <option disabled>Command</option>
+                  <option disabled>Biome</option>
+                  <option>Structure</option>
+                  <option disabled>Advancement</option>
+                  <option disabled>Dialog</option>
+                </select>
+              </div>
+            </div>
+            <div id="addElementUploadDiv">
+              <button class="button" onclick="document.getElementById('addElementUploadInput').click()" id="addElementUploadBtn">Upload...</button>
+              <input type="file" id="addElementUploadInput" style="display:none" accept=".mdryelem">
             </div>
             <br><br>
             <button class="button" id="addElementCancelBtn" onclick="closeAddElementDlg()">Cancel</button>
@@ -318,11 +330,11 @@
           <center>
             <h4 class="title is-4">Add Asset</h4>
             <div class="tabs is-centered" id="addAssetTabs">
-            <ul>
-              <li id="addAssetTab1" onclick="addAssetTabChange(1)" class="is-active"><a>Upload</a></li>
-              <li id="addAssetTab2" onclick="addAssetTabChange(2)"><a>Blank Image</a></li>
-            </ul>
-          </div>
+              <ul>
+                <li id="addAssetTab1" onclick="addAssetTabChange(1)" class="is-active"><a>Upload</a></li>
+                <li id="addAssetTab2" onclick="addAssetTabChange(2)"><a>Blank Image</a></li>
+              </ul>
+            </div>
             <div id="addAssetUploadDiv">
               <span>Upload an asset to add it to your project, or create a blank texture to edit. Accepts PNG textures, WAV audio, JSON geometry files, and MCSTRUCTURE files.</span>
               <br><br>

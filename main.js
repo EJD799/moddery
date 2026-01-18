@@ -1,5 +1,5 @@
-const appVersion = "2.2.4";
-const buildDate = "1/17/2026";
+const appVersion = "2.2.5";
+const buildDate = "1/19/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -49,6 +49,7 @@ let projDeleteID;
 
 var editorScriptList;
 
+let addElementMode = "blank";
 let addAssetMode = "upload";
 
 let projectTypes = {
@@ -663,7 +664,24 @@ window.addEventListener('resize', updateTabHeight);
 
 $("#toolbar").menu();
 $("#tabs").tabs();
+$("#addElementUploadDiv").hide();
 $("#addAssetBlankDiv").hide();
+
+function addElementTabChange(tab) {
+  if (tab == 1) {
+    $("#addElementUploadDiv").hide();
+    $("#addElementBlankDiv").show();
+    addElementTab1.classList.add("is-active");
+    addElementTab2.classList.remove("is-active");
+    addElementMode = "blank";
+  } else {
+    $("#addElementUploadDiv").show();
+    $("#addElementBlankDiv").hide();
+    addElementTab1.classList.remove("is-active");
+    addElementTab2.classList.add("is-active");
+    addElementMode = "upload";
+  }
+}
 
 function addAssetTabChange(tab) {
   if (tab == 1) {
@@ -671,11 +689,13 @@ function addAssetTabChange(tab) {
     $("#addAssetBlankDiv").hide();
     addAssetTab1.classList.add("is-active");
     addAssetTab2.classList.remove("is-active");
+    addAssetMode = "upload";
   } else {
     $("#addAssetUploadDiv").hide();
     $("#addAssetBlankDiv").show();
     addAssetTab1.classList.remove("is-active");
     addAssetTab2.classList.add("is-active");
+    addAssetMode = "blank";
   }
 }
 

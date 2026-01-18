@@ -1,4 +1,4 @@
-const appVersion = "2.2.7";
+const appVersion = "2.2.8";
 const buildDate = "1/19/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3570,8 +3570,16 @@ async function addElement(loadingProj) {
   const elementExists =
     fileListInFolder("elements").includes(name + ".json");
 
-  const validName = isValidElementName(name);
-  const validID = isValidElementID(id);
+
+  let validName;
+  let validID;
+  if (addElementMode == "upload") {
+    validName = true;
+    validID = true;
+  } else {
+    validName = isValidElementName(name);
+    validID = isValidElementID(id);
+  }
 
   if (elementExists && !loadingProj) {
     alert("That element already exists!");

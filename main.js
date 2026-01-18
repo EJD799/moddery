@@ -1,4 +1,4 @@
-const appVersion = "2.2.8";
+const appVersion = "2.2.9";
 const buildDate = "1/19/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3595,8 +3595,10 @@ async function addElement(loadingProj) {
         let elementZip = new JSZip();
         elementZip.loadAsync(addElementUploadInput.files[0]);
         let fileList = fileListInFolder("", "", elementZip).filter(n => !n.startsWith("__MACOSX") && !n.endsWith(".DS_Store"));
+        console.log(fileList);
         for (let i = 0; i < fileList.length; i++) {
           let file = await elementZip.file(fileList[i]).async("string");
+          console.log(file);
           projZip.folder("elements").file(fileList[i], file);
           if (fileList[i].endsWith(".json") && !fileList[i].endsWith(".code.json")) {
             let fileData = JSON.parse(file);

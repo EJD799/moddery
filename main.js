@@ -1,4 +1,4 @@
-const appVersion = "2.2.5";
+const appVersion = "2.2.6";
 const buildDate = "1/19/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3563,7 +3563,7 @@ function removeElementDropdown(elementID, type) {
   }
 }
 
-function addElement(loadingProj) {
+async function addElement(loadingProj) {
   const name = $("#addElementNameBox").val();
   const id = $("#addElementIDBox").val();
 
@@ -3583,12 +3583,28 @@ function addElement(loadingProj) {
     alert("The element ID is invalid! Allowed characters: a-z, 0-9, _");
   } else {
     if (!loadingProj) {
-      var elementJSON = {
-        "name": $("#addElementNameBox").val(),
-        "id": $("#addElementIDBox").val(),
-        "type": $("#addElementType").val()
-      };
-      projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
+      if (addElementMode == "upload") {
+        let elementZip = new JSZip();
+        elementZip.loadAsync(addElementUploadInput.files[0]);
+        let fileList = fileListInFolder("", "", elementZip).filter(n => !n.startsWith("__MACOSX") && !n.endsWith(".DS_Store"));
+        for (let i = 0; i < fileList.length; i++) {
+          let file = await elementZip.file(fileList[i]).async("string");
+          projZip.folder("elements").file(fileList[i], file);
+          if (fileList[i].endsWith(".json") && !fileList[i].endsWith(".code.json")) {
+            let fileData = JSON.parse(file);
+            $("#addElementNameBox").val(fileData.name);
+            $("#addElementIDBox").val(fileData.id);
+            $("#addElementType").val(fileData.type);
+          }
+        }
+      } else {
+        var elementJSON = {
+          "name": $("#addElementNameBox").val(),
+          "id": $("#addElementIDBox").val(),
+          "type": $("#addElementType").val()
+        };
+        projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
+      }
       addTab($("#addElementType").val(), $("#addElementNameBox").val());
     }
     elementCount++;
@@ -3643,6 +3659,9 @@ document.addEventListener("click", (e) => {
   }
 });
 
+addElementUploadInput.addEventListener("change", (event) => {
+  addElementNameText.innerHTML = addElementUploadInput.files[0].name;
+});
 
 addAssetUploadInput.addEventListener("change", (event) => {
   addAssetNameBox.value = addAssetUploadInput.files[0].name;

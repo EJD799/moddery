@@ -1,4 +1,4 @@
-const appVersion = "2.2.9";
+const appVersion = "2.2.10";
 const buildDate = "1/19/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3593,7 +3593,7 @@ async function addElement(loadingProj) {
     if (!loadingProj) {
       if (addElementMode == "upload") {
         let elementZip = new JSZip();
-        elementZip.loadAsync(addElementUploadInput.files[0]);
+        await elementZip.loadAsync(addElementUploadInput.files[0]);
         let fileList = fileListInFolder("", "", elementZip).filter(n => !n.startsWith("__MACOSX") && !n.endsWith(".DS_Store"));
         console.log(fileList);
         for (let i = 0; i < fileList.length; i++) {

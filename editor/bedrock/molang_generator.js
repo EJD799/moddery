@@ -201,6 +201,14 @@ Blockly.BedrockMolang.forBlock['math_arithmetic'] = function(block) {
   const code = `${getInput(block, "VALUE1")} ${block.getFieldValue("OPERATOR")} ${getInput(block, "VALUE2")}`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
+Blockly.BedrockMolang.forBlock['math_pi'] = function(block) {
+  const code = `math.pi`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+/*Blockly.BedrockMolang.forBlock['math_random'] = function(block) {
+  const code = `${getInput(block, "VALUE1")} ${block.getFieldValue("OPERATOR")} ${getInput(block, "VALUE2")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};*/
 
 
 Blockly.BedrockMolang.workspaceToCode = function (workspace) {

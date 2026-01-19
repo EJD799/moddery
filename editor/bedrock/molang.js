@@ -612,6 +612,12 @@ const bedrockMolangDefinitions =
             inputsInline: true
         },
         {
+            type: "math_pi",
+            message0: "pi",
+            colour: 300,
+            output: null,
+        },
+        {
             type: "math_random",
             message0: "pick random %1 from %2 to %3",
             colour: 300,
@@ -620,8 +626,8 @@ const bedrockMolangDefinitions =
                     type: "field_dropdown",
                     name: "MODE",
                     options: [
-                        ["float", "float"],
-                        ["integer", "integer"]
+                        ["float", ""],
+                        ["integer", "_integer"]
                     ]
                 },
                 {
@@ -999,6 +1005,10 @@ var bedrockMolangToolbox = {
                         VALUE1: { shadow: { type: "math_number" } },
                         VALUE2: { shadow: { type: "math_number" } },
                     },
+                },
+                {
+                    kind: "block",
+                    type: "math_pi"
                 },
                 {
                     kind: "block",

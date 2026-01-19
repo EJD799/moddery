@@ -82,12 +82,24 @@ Blockly.BedrockMolang.forBlock['q_is_jumping'] = function(block) {
   const code = `q.is_jumping`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
+Blockly.BedrockMolang.forBlock['q_is_roaring'] = function(block) {
+  const code = `q.is_roaring`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
 Blockly.BedrockMolang.forBlock['q_modified_move_speed'] = function(block) {
   const code = `q.modified_move_speed`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
 Blockly.BedrockMolang.forBlock['q_on_fire_time'] = function(block) {
   const code = `q.on_fire_time`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['q_scoreboard'] = function(block) {
+  const code = `q.scoreboard(${getInput(block, "OBJECTIVE")})`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['q_structural_integrity'] = function(block) {
+  const code = `q.structural_integrity`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
 

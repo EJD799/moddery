@@ -101,6 +101,12 @@ const bedrockMolangDefinitions =
             output: "Boolean",
         },
         {
+            type: "q_is_roaring",
+            message0: "is roaring",
+            colour: 160,
+            output: "Boolean",
+        },
+        {
             type: "q_modified_move_speed",
             message0: "modified move speed",
             colour: 160,
@@ -124,6 +130,12 @@ const bedrockMolangDefinitions =
                 },
             ],
             output: "Boolean",
+        },
+        {
+            type: "q_structural_integrity",
+            message0: "minecart/boat structural integrity",
+            colour: 160,
+            output: null,
         },
         {
             type: "armor_slot_menu",
@@ -690,6 +702,10 @@ var bedrockMolangToolbox = {
                 },
                 {
                     kind: "block",
+                    type: "q_is_roaring"
+                },
+                {
+                    kind: "block",
                     type: "q_modified_move_speed"
                 },
                 {
@@ -702,6 +718,10 @@ var bedrockMolangToolbox = {
                     inputs: {
                         OBJECTIVE: { shadow: { type: "text" } },
                     },
+                },
+                {
+                    kind: "block",
+                    type: "q_structural_integrity"
                 },
             ],
         },

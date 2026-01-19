@@ -1,4 +1,4 @@
-const appVersion = "2.2.10";
+const appVersion = "2.2.11";
 const buildDate = "1/19/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3614,8 +3614,8 @@ async function addElement(loadingProj) {
           "type": $("#addElementType").val()
         };
         projZip.folder("elements").file($("#addElementNameBox").val() + ".json", JSON.stringify(elementJSON));
+        addTab($("#addElementType").val(), $("#addElementNameBox").val());
       }
-      addTab($("#addElementType").val(), $("#addElementNameBox").val());
     }
     elementCount++;
     var parentDiv = document.getElementById("tabs-1");

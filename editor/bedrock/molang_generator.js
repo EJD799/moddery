@@ -36,6 +36,7 @@ Blockly.BedrockMolang.forBlock['return_val'] = function(block) {
 `;
   return code;
 };
+
 Blockly.BedrockMolang.forBlock['item_slot_menu'] = function(block) {
   const code = `'${block.getFieldValue("SLOT")}'`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
@@ -59,6 +60,34 @@ Blockly.BedrockMolang.forBlock['q_is_name'] = function(block) {
 };
 Blockly.BedrockMolang.forBlock['q_is_item_name'] = function(block) {
   const code = `q.is_item_name_any(${getInput(block, "SLOT")}, ${getInput(block, "SLOT_NUMBER")}, ${getInput(block, "ITEM")})`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['q_is_enchanted'] = function(block) {
+  const code = `q.is_enchanted`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['q_is_eating'] = function(block) {
+  const code = `q.is_eating`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['q_is_ghost'] = function(block) {
+  const code = `q.is_ghost`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['q_is_grazing'] = function(block) {
+  const code = `q.is_grazing`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['q_is_jumping'] = function(block) {
+  const code = `q.is_jumping`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['q_modified_move_speed'] = function(block) {
+  const code = `q.modified_move_speed`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['q_on_fire_time'] = function(block) {
+  const code = `q.on_fire_time`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
 

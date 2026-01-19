@@ -129,7 +129,7 @@ const bedrockMolangDefinitions =
                     check: null,
                 },
             ],
-            output: "Boolean",
+            output: null,
         },
         {
             type: "q_structural_integrity",

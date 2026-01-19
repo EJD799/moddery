@@ -155,6 +155,55 @@ const bedrockMolangDefinitions =
             output: null,
         },
         {
+            type: "q_movement_direction",
+            message0: "movement direction on axis %1",
+            args0: [
+                {
+                    type: "input_value",
+                    name: "AXIS",
+                    check: null
+                }
+            ],
+            colour: 160,
+            output: null,
+        },
+        {
+            type: "q_block_has_tag",
+            message0: "%1 x %2 y %3 z %4 has tag %5",
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "MODE",
+                    options: [
+                        ["relative block", "relative_block"],
+                        ["block neighbor", "block_neighbor"]
+                    ]
+                },
+                {
+                    type: "input_value",
+                    name: "X_POS",
+                    check: null
+                },
+                {
+                    type: "input_value",
+                    name: "Y_POS",
+                    check: null
+                },
+                {
+                    type: "input_value",
+                    name: "Z_POS",
+                    check: null
+                },
+                {
+                    type: "input_value",
+                    name: "TAG",
+                    check: null
+                }
+            ],
+            colour: 160,
+            output: "Boolean",
+        },
+        {
             type: "q_time_of_day",
             message0: "time of day",
             colour: 160,
@@ -173,6 +222,23 @@ const bedrockMolangDefinitions =
                         ["chestplate", "1"],
                         ["leggings", "2"],
                         ["boots", "3"],
+                    ],
+                },
+            ],
+            output: null,
+        },
+        {
+            type: "axis_menu",
+            message0: "%1",
+            colour: 160,
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "SLOT",
+                    options: [
+                        ["x", "0"],
+                        ["y", "1"],
+                        ["z", "2"],
                     ],
                 },
             ],
@@ -753,6 +819,23 @@ var bedrockMolangToolbox = {
                 {
                     kind: "block",
                     type: "q_time_of_day"
+                },
+                {
+                    kind: "block",
+                    type: "q_movement_direction",
+                    inputs: {
+                        AXIS: { shadow: { type: "axis_menu" } },
+                    },
+                },
+                {
+                    kind: "block",
+                    type: "q_block_has_tag",
+                    inputs: {
+                        X_POS: { shadow: { type: "math_number" } },
+                        Y_POS: { shadow: { type: "math_number" } },
+                        Z_POS: { shadow: { type: "math_number" } },
+                        TAG: { shadow: { type: "text" } },
+                    },
                 },
             ],
         },

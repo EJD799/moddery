@@ -106,6 +106,14 @@ Blockly.BedrockMolang.forBlock['q_target_rotation'] = function(block) {
   const code = `q.target_${block.getFieldValue("AXIS")}_rotation`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
+Blockly.BedrockMolang.forBlock['q_movement_direction'] = function(block) {
+  const code = `q.movement_direction(${getInput(block, "AXIS")})`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['q_block_has_tag'] = function(block) {
+  const code = `q.${block.getFieldValue("MODE")}_has_any_tag(${getInput(block, "X_POS")}, ${getInput(block, "Y_POS")}, ${getInput(block, "Z_POS")}, ${getInput(block, "TAG")})`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
 
 
 Blockly.BedrockMolang.workspaceToCode = function (workspace) {

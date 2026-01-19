@@ -37,7 +37,7 @@ const bedrockMolangDefinitions =
         },
         {
             type: "q_is_item_name",
-            message0: "is item name in slot %1 %2 item id %3",
+            message0: "is item in slot %1 %2 id %3",
             colour: 160,
             args0: [
                 {
@@ -68,6 +68,7 @@ const bedrockMolangDefinitions =
                     check: null,
                 },
             ],
+            inputsInline: true,
             output: "Boolean",
         },
         {

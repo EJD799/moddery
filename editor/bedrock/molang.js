@@ -539,6 +539,25 @@ const bedrockMolangDefinitions =
             inputsInline: true
         },
         {
+            type: "math_if",
+            message0: "if %1 then %2",
+            colour: 300,
+            args0: [
+                {
+                    type: "input_value",
+                    name: "CONDITION",
+                    check: "Boolean"
+                },
+                {
+                    type: "input_value",
+                    name: "VALUE",
+                    check: null
+                }
+            ],
+            output: null,
+            inputsInline: true
+        },
+        {
             type: "math_if_else",
             message0: "if %1 then %2 else %3",
             colour: 300,
@@ -957,6 +976,13 @@ var bedrockMolangToolbox = {
                 {
                     kind: "block",
                     type: "math_boolean_logic",
+                },
+                {
+                    kind: "block",
+                    type: "math_if",
+                    inputs: {
+                        VALUE: { shadow: { type: "math_number" } }
+                    },
                 },
                 {
                     kind: "block",

@@ -181,6 +181,27 @@ Blockly.BedrockMolang.forBlock['loop_continue'] = function(block) {
   return code;
 };
 
+Blockly.BedrockMolang.forBlock['math_comparison'] = function(block) {
+  const code = `${getInput(block, "VALUE1")} ${block.getFieldValue("OPERATOR")} ${getInput(block, "VALUE2")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['math_boolean_logic'] = function(block) {
+  const code = `${getInput(block, "VALUE1")} ${block.getFieldValue("OPERATOR")} ${getInput(block, "VALUE2")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['math_if'] = function(block) {
+  const code = `${getInput(block, "CONDITION")} ? ${getInput(block, "VALUE")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['math_if_else'] = function(block) {
+  const code = `${getInput(block, "CONDITION")} ? ${getInput(block, "VALUE1")} : ${getInput(block, "VALUE2")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['math_arithmetic'] = function(block) {
+  const code = `${getInput(block, "VALUE1")} ${block.getFieldValue("OPERATOR")} ${getInput(block, "VALUE2")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+
 
 Blockly.BedrockMolang.workspaceToCode = function (workspace) {
   // Find the return block

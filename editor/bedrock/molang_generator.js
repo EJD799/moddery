@@ -16,22 +16,22 @@ Blockly.BedrockMolang = new Blockly.Generator('BedrockMolang');
 Blockly.BedrockMolang.ORDER_ATOMIC = 0;
 
 
-Blockly.BedrockMolang['text'] = function(block) {
+Blockly.BedrockMolang.forBlock['text'] = function(block) {
   const text = block.getFieldValue('TEXT');
   const escaped = text
     .replace(/\\/g, '\\\\')
     .replace(/'/g, "\\'");
   return [`'${escaped}'`, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
-Blockly.BedrockMolang['math_number'] = function(block) {
+Blockly.BedrockMolang.forBlock['math_number'] = function(block) {
   const num = block.getFieldValue('NUM');
   return [num, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
-Blockly.BedrockMolang['math_boolean'] = function(block) {
+Blockly.BedrockMolang.forBlock['math_boolean'] = function(block) {
   const value = block.getFieldValue('BOOL');
   return [value, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
-Blockly.BedrockMolang['return_val'] = function(block) {
+Blockly.BedrockMolang.forBlock['return_val'] = function(block) {
   const code = `return ${getInput(block, "VALUE")};
 `;
   return code;

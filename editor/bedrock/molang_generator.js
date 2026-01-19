@@ -166,8 +166,8 @@ Blockly.BedrockMolang.forBlock['c_get_bool'] = function(block) {
 
 Blockly.BedrockMolang.forBlock['loop_repeat'] = function(block) {
   const code = `loop(${getInput(block, "TIMES")}, {
-${getStatement(block, "CODE")}
-});`;
+${getStatement(block, "CODE")}});
+`;
   return code;
 };
 Blockly.BedrockMolang.forBlock['loop_break'] = function(block) {

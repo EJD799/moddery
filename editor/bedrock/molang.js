@@ -101,6 +101,31 @@ const bedrockMolangDefinitions =
             output: "Boolean",
         },
         {
+            type: "q_modified_move_speed",
+            message0: "modified move speed",
+            colour: 160,
+            output: null,
+        },
+        {
+            type: "q_on_fire_time",
+            message0: "on fire time",
+            colour: 160,
+            output: null,
+        },
+        {
+            type: "q_scoreboard",
+            message0: "scoreboard value in objective %1",
+            colour: 160,
+            args0: [
+                {
+                    type: "input_value",
+                    name: "OBJECTIVE",
+                    check: null,
+                },
+            ],
+            output: "Boolean",
+        },
+        {
             type: "armor_slot_menu",
             message0: "%1",
             colour: 160,
@@ -662,6 +687,21 @@ var bedrockMolangToolbox = {
                 {
                     kind: "block",
                     type: "q_is_jumping"
+                },
+                {
+                    kind: "block",
+                    type: "q_modified_move_speed"
+                },
+                {
+                    kind: "block",
+                    type: "q_on_fire_time"
+                },
+                {
+                    kind: "block",
+                    type: "q_scoreboard",
+                    inputs: {
+                        OBJECTIVE: { shadow: { type: "text" } },
+                    },
                 },
             ],
         },

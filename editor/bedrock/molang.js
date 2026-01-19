@@ -71,6 +71,36 @@ const bedrockMolangDefinitions =
             output: "Boolean",
         },
         {
+            type: "q_is_enchanted",
+            message0: "is enchanted",
+            colour: 160,
+            output: "Boolean",
+        },
+        {
+            type: "q_is_eating",
+            message0: "is eating",
+            colour: 160,
+            output: "Boolean",
+        },
+        {
+            type: "q_is_ghost",
+            message0: "is ghost",
+            colour: 160,
+            output: "Boolean",
+        },
+        {
+            type: "q_is_grazing",
+            message0: "is grazing",
+            colour: 160,
+            output: "Boolean",
+        },
+        {
+            type: "q_is_jumping",
+            message0: "is jumping",
+            colour: 160,
+            output: "Boolean",
+        },
+        {
             type: "armor_slot_menu",
             message0: "%1",
             colour: 160,
@@ -612,6 +642,26 @@ var bedrockMolangToolbox = {
                         SLOT_NUMBER: { shadow: { type: "math_number" } },
                         ITEM: { shadow: { type: "text" } },
                     },
+                },
+                {
+                    kind: "block",
+                    type: "q_is_enchanted"
+                },
+                {
+                    kind: "block",
+                    type: "q_is_eating"
+                },
+                {
+                    kind: "block",
+                    type: "q_is_ghost"
+                },
+                {
+                    kind: "block",
+                    type: "q_is_grazing"
+                },
+                {
+                    kind: "block",
+                    type: "q_is_jumping"
                 },
             ],
         },

@@ -102,6 +102,10 @@ Blockly.BedrockMolang.forBlock['q_structural_integrity'] = function(block) {
   const code = `q.structural_integrity`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
+Blockly.BedrockMolang.forBlock['q_target_rotation'] = function(block) {
+  const code = `q.target_${block.getFieldValue("AXIS")}_rotation`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
 
 
 Blockly.BedrockMolang.workspaceToCode = function (workspace) {

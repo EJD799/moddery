@@ -201,6 +201,7 @@ const bedrockMolangDefinitions =
                 }
             ],
             colour: 160,
+            inputsInline: true,
             output: "Boolean",
         },
         {

@@ -452,6 +452,22 @@ const bedrockMolangDefinitions =
             nextStatement: null
         },
         {
+            type: "math_boolean",
+            message0: "%1",
+            colour: 300,
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "BOOL",
+                    options: [
+                        ["true", "true"],
+                        ["false", "false"]
+                    ]
+                }
+            ],
+            output: "Boolean",
+        },
+        {
             type: "math_comparison",
             message0: "%1 %2 %3",
             colour: 300,
@@ -914,6 +930,10 @@ var bedrockMolangToolbox = {
             contents: [
                 {
                     kind: "block",
+                    type: "math_boolean",
+                },
+                {
+                    kind: "block",
                     type: "math_comparison",
                     inputs: {
                         VALUE1: { shadow: { type: "math_number" } },
@@ -1067,7 +1087,7 @@ function saveProject() {
     return Blockly.serialization.workspaces.save(workspace);
 }
 function generateCode() {
-    const code = Blockly.BedrockFunction.workspaceToCode(workspace);
+    const code = Blockly.BedrockMolang.workspaceToCode(workspace);
     console.log("Generated code:");
     console.log(code);
     return code;

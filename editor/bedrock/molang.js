@@ -626,8 +626,8 @@ const bedrockMolangDefinitions =
                     type: "field_dropdown",
                     name: "MODE",
                     options: [
-                        ["float", ""],
-                        ["integer", "_integer"]
+                        ["float", "random"],
+                        ["integer", "random_integer"]
                     ]
                 },
                 {

@@ -45,7 +45,7 @@ Blockly.BedrockMolang.workspaceToCode = function (workspace) {
   );
   if (!returnBlock) return '';
 
-  // Walk upward, collecting blocks
+  // Walk upward from return_val, collecting blocks
   const blocks = [];
   let current =
     returnBlock.previousConnection &&
@@ -58,16 +58,27 @@ Blockly.BedrockMolang.workspaceToCode = function (workspace) {
       current.previousConnection.targetBlock();
   }
 
-  // Reverse to restore top → bottom order
+  // Restore execution order (top → bottom)
   blocks.reverse();
 
   let code = '';
+
+  // Generate code for all blocks before return
   for (const block of blocks) {
-    const line = Blockly.BedrockMolang.blockToCode(block);
-    if (typeof line === 'string') code += line;
+    const line = this.blockToCode(block);
+    if (typeof line === 'string') {
+      code += line;
+    }
   }
 
-  return Blockly.BedrockMolang.finish(code);
+  // Generate the return statement itself
+  const returnCode = this.blockToCode(returnBlock);
+  if (typeof returnCode === 'string') {
+    code += returnCode;
+  }
+
+  return this.finish(code);
 };
+
 
 Blockly.BedrockMolang.finish = function(code) { return code; };

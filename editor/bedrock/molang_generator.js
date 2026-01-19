@@ -94,6 +94,10 @@ Blockly.BedrockMolang.forBlock['q_on_fire_time'] = function(block) {
   const code = `q.on_fire_time`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
+Blockly.BedrockMolang.forBlock['q_time_of_day'] = function(block) {
+  const code = `q.time_of_day`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
 Blockly.BedrockMolang.forBlock['q_scoreboard'] = function(block) {
   const code = `q.scoreboard(${getInput(block, "OBJECTIVE")})`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
@@ -112,6 +116,51 @@ Blockly.BedrockMolang.forBlock['q_movement_direction'] = function(block) {
 };
 Blockly.BedrockMolang.forBlock['q_block_has_tag'] = function(block) {
   const code = `q.${block.getFieldValue("MODE")}_has_any_tag(${getInput(block, "X_POS")}, ${getInput(block, "Y_POS")}, ${getInput(block, "Z_POS")}, ${getInput(block, "TAG")})`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+
+Blockly.BedrockMolang.forBlock['v_set'] = function(block) {
+  const code = `v.${block.getFieldValue("VAR")} = ${getInput(block, "VALUE")};
+`;
+  return code;
+};
+Blockly.BedrockMolang.forBlock['t_set'] = function(block) {
+  const code = `t.${block.getFieldValue("VAR")} = ${getInput(block, "VALUE")};
+`;
+  return code;
+};
+
+Blockly.BedrockMolang.forBlock['v_get_custom'] = function(block) {
+  const code = `v.${block.getFieldValue("VAR")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['v_get_custom_bool'] = function(block) {
+  const code = `v.${block.getFieldValue("VAR")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['t_get'] = function(block) {
+  const code = `t.${block.getFieldValue("VAR")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['t_get_bool'] = function(block) {
+  const code = `t.${block.getFieldValue("VAR")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+
+Blockly.BedrockMolang.forBlock['v_get_built_in'] = function(block) {
+  const code = `v.${block.getFieldValue("VAR")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['v_get_built_in_bool'] = function(block) {
+  const code = `v.${block.getFieldValue("VAR")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['c_get'] = function(block) {
+  const code = `v.${block.getFieldValue("VAR")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['c_get_bool'] = function(block) {
+  const code = `v.${block.getFieldValue("VAR")}`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
 

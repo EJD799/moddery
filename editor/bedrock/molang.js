@@ -138,6 +138,28 @@ const bedrockMolangDefinitions =
             output: null,
         },
         {
+            type: "q_target_rotation",
+            message0: "target %1 rotation",
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "AXIS",
+                    options: [
+                        ["x", "x"],
+                        ["y", "y"]
+                    ]
+                }
+            ],
+            colour: 160,
+            output: null,
+        },
+        {
+            type: "q_time_of_day",
+            message0: "time of day",
+            colour: 160,
+            output: null,
+        },
+        {
             type: "armor_slot_menu",
             message0: "%1",
             colour: 160,
@@ -722,6 +744,14 @@ var bedrockMolangToolbox = {
                 {
                     kind: "block",
                     type: "q_structural_integrity"
+                },
+                {
+                    kind: "block",
+                    type: "q_target_rotation"
+                },
+                {
+                    kind: "block",
+                    type: "q_time_of_day"
                 },
             ],
         },

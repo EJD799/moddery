@@ -41,6 +41,30 @@ const bedrockMolangDefinitions =
             colour: 160,
             args0: [
                 {
+                    type: "input_value",
+                    name: "SLOT",
+                    check: null
+                },
+                {
+                    type: "input_value",
+                    name: "SLOT_NUMBER",
+                    check: null,
+                },
+                {
+                    type: "input_value",
+                    name: "ITEM",
+                    check: null,
+                },
+            ],
+            inputsInline: true,
+            output: "Boolean",
+        },
+        {
+            type: "item_slot_menu",
+            message0: "%1",
+            colour: 160,
+            args0: [
+                {
                     type: "field_dropdown",
                     name: "SLOT",
                     options: [
@@ -56,20 +80,9 @@ const bedrockMolangDefinitions =
                         ["inventory", "slot.inventory"],
                         ["ender chest", "slot.enderchest"]
                     ]
-                },
-                {
-                    type: "input_value",
-                    name: "SLOT_NUMBER",
-                    check: null,
-                },
-                {
-                    type: "input_value",
-                    name: "ITEM",
-                    check: null,
-                },
+                }
             ],
-            inputsInline: true,
-            output: "Boolean",
+            output: null,
         },
         {
             type: "q_is_enchanted",
@@ -235,7 +248,7 @@ const bedrockMolangDefinitions =
             args0: [
                 {
                     type: "field_dropdown",
-                    name: "SLOT",
+                    name: "AXIS",
                     options: [
                         ["x", "0"],
                         ["y", "1"],
@@ -782,6 +795,7 @@ var bedrockMolangToolbox = {
                     kind: "block",
                     type: "q_is_item_name",
                     inputs: {
+                        SLOT: { shadow: { type: "item_slot_menu" } },
                         SLOT_NUMBER: { shadow: { type: "math_number" } },
                         ITEM: { shadow: { type: "text" } },
                     },

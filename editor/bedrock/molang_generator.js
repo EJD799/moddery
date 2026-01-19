@@ -36,6 +36,31 @@ Blockly.BedrockMolang.forBlock['return_val'] = function(block) {
 `;
   return code;
 };
+Blockly.BedrockMolang.forBlock['item_slot_menu'] = function(block) {
+  const code = `'${block.getFieldValue("SLOT")}'`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['armor_slot_menu'] = function(block) {
+  const code = `${block.getFieldValue("SLOT")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['axis_menu'] = function(block) {
+  const code = `${block.getFieldValue("AXIS")}`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+
+Blockly.BedrockMolang.forBlock['q_armor_x_slot'] = function(block) {
+  const code = `q.armor_${block.getFieldValue("TYPE")}_slot(${getInput(block, "SLOT")})`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['q_is_name'] = function(block) {
+  const code = `q.is_name_any(${getInput(block, "NAME")})`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
+Blockly.BedrockMolang.forBlock['q_is_item_name'] = function(block) {
+  const code = `q.is_item_name_any(${getInput(block, "SLOT")}, ${getInput(block, "SLOT_NUMBER")}, ${getInput(block, "ITEM")})`;
+  return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
+};
 
 
 Blockly.BedrockMolang.workspaceToCode = function (workspace) {

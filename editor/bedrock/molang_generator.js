@@ -156,11 +156,11 @@ Blockly.BedrockMolang.forBlock['v_get_built_in_bool'] = function(block) {
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
 Blockly.BedrockMolang.forBlock['c_get'] = function(block) {
-  const code = `v.${block.getFieldValue("VAR")}`;
+  const code = `c.${block.getFieldValue("VAR")}`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
 Blockly.BedrockMolang.forBlock['c_get_bool'] = function(block) {
-  const code = `v.${block.getFieldValue("VAR")}`;
+  const code = `c.${block.getFieldValue("VAR")}`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
 

@@ -1268,7 +1268,7 @@ bedrockExporter.runExport = async function() {
   let elementsList = fileListInFolder("elements").filter(item => !item.endsWith(".code.json"));
   let assetsList = fileListInFolder("assets");
   loaderText.innerHTML = "Exporting Project... (0%)";
-  let progressBarMax = elementsList.length + 1;
+  progressBarMax = elementsList.length + 1;
   loaderProgress.setAttribute("max", progressBarMax),
   loaderProgress.value = "0";
   let itemTextureFile = {
@@ -1748,12 +1748,10 @@ bedrockExporter.runExport = async function() {
         }
         exportZip1.folder("features").file(`${elementFile.id}_feature.json`, JSON.stringify(exportObj1, null, 4));
         exportZip1.folder("feature_rules").file(`${elementFile.id}_feature_rule.json`, JSON.stringify(exportObj2, null, 4));
-        console.log("element file");
-        console.log(elementFile);
-        console.log("project zip");
-        console.log(projZip);
-        let structureFile = await projZip.folder("assets").file(elementFile.structure).async("blob");
-        exportZip1.folder("structures").file(`${elementFile.id}.mcstructure`, structureFile);
+        if (elementFile.structure) {
+            let structureFile = await projZip.folder("assets").file(elementFile.structure).async("blob");
+            exportZip1.folder("structures").file(`${elementFile.id}.mcstructure`, structureFile);
+        }
       } else if (role == "Recipe") {
         let craftingGrid = elementFile.craftingGrid;
         let exportObj = {

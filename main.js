@@ -1,4 +1,4 @@
-const appVersion = "2.2.53";
+const appVersion = "2.2.54";
 const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -51,6 +51,8 @@ var editorScriptList;
 
 let addElementMode = "blank";
 let addAssetMode = "upload";
+
+let progressBarMax;
 
 let projectTypes = {
   "be_addon": {

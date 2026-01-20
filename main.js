@@ -1,4 +1,4 @@
-const appVersion = "2.2.56";
+const appVersion = "2.2.57";
 const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -54,7 +54,7 @@ let addAssetMode = "upload";
 
 let progressBarMax;
 
-let projectTypeMenuList = {
+let projectTypeMenuOptions = {
   "Bedrock Edition": [
     ["Addon", "be_addon"],
     ["Resource Pack", "be_rp"]
@@ -416,6 +416,23 @@ document.addEventListener("DOMContentLoaded", function(){
     accountNameText.innerHTML = `Signing in...`;
     signInBtn.classList.add("is-loading");
     finishSignIn(currentUsername, currentPassword);
+  }
+
+  projectTypeMenuKeys = Object.keys(projectTypeMenuOptions)
+  for (let i = 0; i < projectTypeMenuKeys.length; i++) {
+    let optgroup = document.createElement("optgroup");
+    optgroup.setAttribute("label", projectTypeMenuKeys[i]);
+    let groupOptions = projectTypeMenuOptions[projectTypeMenuKeys[i]];
+    for (let j = 0; j < groupOptions.length; j++) {
+      let option = document.createElement("option");
+      option.innerHTML = groupOptions[j][0];
+      option.setAttribute("value", groupOptions[j][1]);
+      if (projectTypes[groupOptions[j][1]].disabled) {
+        option.setAttribute("disabled", "true");
+      }
+      optgroup.appendChild(option);
+    }
+    newProjType.appendChild(optgroup);
   }
 });
 function removeOptionByValue(selectEl, value) {

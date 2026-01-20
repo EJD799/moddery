@@ -1,5 +1,5 @@
-const appVersion = "2.2.47";
-const buildDate = "1/19/2026";
+const appVersion = "2.2.48";
+const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -4035,8 +4035,8 @@ async function saveProjectAs() {
 }
 
 function getTabContent(role, elementID) {
-  if (Object.keys(projectTypes.be_addon.editors).includes(role)) {
-    return `<iframe src="${projectTypes.be_addon.editors[role].url}" class="elementFrame" id="${elementID}_frame"></iframe>`;
+  if (Object.keys(projectTypes[projManifest.type].editors).includes(role)) {
+    return `<iframe src="${projectTypes[projManifest.type].editors[role].url}" class="elementFrame" id="${elementID}_frame"></iframe>`;
   } else {
     return "Coming Soon!";
   }
@@ -4393,8 +4393,8 @@ async function getFilteredElements(type) {
 }
 
 function getElementTabIcon(type) {
-  if (Object.keys(projectTypes.be_addon.editors).includes(type)) {
-    return `<i class="${projectTypes.be_addon.editors[type].icon}"></i>`;
+  if (Object.keys(projectTypes[projManifest.type].editors).includes(type)) {
+    return `<i class="${projectTypes[projManifest.type].editors[type].icon}"></i>`;
   } else {
     return `<i class="fa-regular fa-file"></i>`;
   }
@@ -4449,15 +4449,15 @@ async function addTab(role, elementID) {
   openElements[id] = [role, elementID];
   var frame = document.getElementById(elementID + "_frame");
   frame.onload = function() {
-    if ((role == "Function") || (role == "Script")) {
+    if (projectTypes[projManifest.type].editors[role].saveType == "code") {
       projZip.folder("elements").file(elementID + ".code.json").async("string").then(function (data) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
-    } else if ((role == "Item") || (role == "Recipe") || (role == "Entity") || (role == "Biome") || (role == "Structure") || (role == "Block") || (role == "Loot Table") || (role == "Trade Table")) {
+    } else if (projectTypes[projManifest.type].editors[role].saveType == "regular") {
       projZip.folder("elements").file(elementID + ".json").async("string").then(function (data) {
         frame.contentWindow.loadProject(JSON.parse(data));
       });
-    } else if ((role == "Image") || (role == "Audio")) {
+    } else if (projectTypes[projManifest.type].editors[role].saveType == "media") {
       projZip.folder("assets").file(decodeText(elementID)).async("blob").then(async function (data) {
         frame.contentWindow.loadProject(await fileToDataURL(data));
       });
@@ -4500,13 +4500,13 @@ function dataURItoFile(dataURI, filename) {
 }
 
 async function saveElement(elementTab) {
-  if ((elementTab[0] == "Function") || (elementTab[0] == "Script")) {
+  if (projectTypes[projManifest.type].editors[elementTab[0]].saveType == "code") {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("elements").file(elementTab[1] + ".code.json", JSON.stringify(frame.contentWindow.saveProject()));
-  } else if ((elementTab[0] == "Item") || (elementTab[0] == "Recipe") || (elementTab[0] == "Entity") || (elementTab[0] == "Biome") || (elementTab[0] == "Structure") || (elementTab[0] == "Block") || (elementTab[0] == "Loot Table") || (elementTab[0] == "Trade Table")) {
+  } else if (projectTypes[projManifest.type].editors[elementTab[0]].saveType == "regular") {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("elements").file(elementTab[1] + ".json", JSON.stringify(frame.contentWindow.saveProject()));
-  } else if (elementTab[0] == "Image") {
+  } else if (projectTypes[projManifest.type].editors[elementTab[0]].saveType == "media") {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("assets").file(decodeText(elementTab[1]), dataURItoFile(frame.contentWindow.saveProject(), elementTab[1] + ".png"));
     var preview = document.getElementById(elementTab[1] + "_preview");

@@ -1,4 +1,4 @@
-const appVersion = "2.2.58";
+const appVersion = "2.2.59";
 const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -1201,6 +1201,7 @@ function createProject() {
     if (storageMode == "local_storage") {
       currentProjectId = bpUUID;
     }
+    updateMenusForProjectType();
   }
 }
 
@@ -1659,6 +1660,7 @@ function openProj(file) {
           savingText.innerHTML = "<i class='fa-solid fa-circle-check'></i> Saved";
           $("#addElementType").val("Block");
         }, 500);
+        updateMenusForProjectType();
       } else {
         alert("The uploaded file is not a valid Moddery project!");
         closeLoader();
@@ -1668,6 +1670,22 @@ function openProj(file) {
   });
 }
 
+function updateMenusForProjectType() {
+  let editors = projectTypes[projManifest.type].editors;
+  let editorList = Object.keys(editors);
+  for (let i = 0; i < editorList.length; i++) {
+    let editorItem = editors[editorList[i]];
+    let editorName = editorList[i];
+    if (editorItem.show > 0) {
+      let option = document.createElement("option");
+      option.innerHTML = editorName;
+      if (editorItem.show == 2) {
+        option.setAttribute("disabled", "true");
+      }
+      addElementType.appendChild(option);
+    }
+  }
+}
 
 function openAddElementDlg() {
   addElementDlg.classList.add("is-active");

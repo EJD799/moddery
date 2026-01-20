@@ -66,11 +66,9 @@ function loadProject(data) {
     $("#structureIDBox").val(data.id);
     if ((data?.structureType ?? false)) {
         $("#typeBox").val(data.structureType);
-        $("#typeBox").selectmenu("refresh");
     }
     if ((data?.direction ?? false)) {
         $("#directionBox").val(data.direction);
-        $("#directionBox").selectmenu("refresh");
     }
     selectedStructure = data.structure;
     if (selectedStructure) {

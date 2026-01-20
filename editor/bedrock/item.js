@@ -157,7 +157,7 @@ const componentDefinitions = {
                 tooltip: "How fast the item can break blocks, in seconds."
             },
             {
-                type: "text",
+                type: "molang",
                 name: "block",
                 label: "Block Type Filter",
                 tooltip: "Which types of blocks can be broken at this speed. Enter a Molang query."

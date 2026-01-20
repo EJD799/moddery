@@ -206,15 +206,15 @@ Blockly.BedrockMolang.forBlock['math_pi'] = function(block) {
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
 Blockly.BedrockMolang.forBlock['math_random'] = function(block) {
-  const code = `math.${getInput(block, "MODE")}(${getInput(block, "VALUE1")}, ${getInput(block, "VALUE2")})`;
+  const code = `math.${block.getFieldValue("MODE")}(${getInput(block, "VALUE1")}, ${getInput(block, "VALUE2")})`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
 Blockly.BedrockMolang.forBlock['math_func_1'] = function(block) {
-  const code = `math.${getInput(block, "MODE")}(${getInput(block, "VALUE")})`;
+  const code = `math.${block.getFieldValue("MODE")}(${getInput(block, "VALUE")})`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
 Blockly.BedrockMolang.forBlock['math_func_2'] = function(block) {
-  const code = `math.${getInput(block, "MODE")}(${getInput(block, "VALUE1")}, ${getInput(block, "VALUE2")})`;
+  const code = `math.${block.getFieldValue("MODE")}(${getInput(block, "VALUE1")}, ${getInput(block, "VALUE2")})`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
 Blockly.BedrockMolang.forBlock['math_clamp'] = function(block) {
@@ -222,7 +222,7 @@ Blockly.BedrockMolang.forBlock['math_clamp'] = function(block) {
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
 Blockly.BedrockMolang.forBlock['math_lerp'] = function(block) {
-  const code = `math.${getInput(block, "MODE")}(${getInput(block, "VALUE1")}, ${getInput(block, "VALUE2")}, ${getInput(block, "T")})`;
+  const code = `math.${block.getFieldValue("MODE")}(${getInput(block, "VALUE1")}, ${getInput(block, "VALUE2")}, ${getInput(block, "T")})`;
   return [code, Blockly.BedrockMolang.ORDER_ATOMIC];
 };
 

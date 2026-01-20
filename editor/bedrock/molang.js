@@ -1130,10 +1130,10 @@ startBlock.render();
 startBlock.setDeletable(false);
 startBlock.moveBy(50, 50);
 
-function loadProject(data) {
+function loadMolangProject(data) {
     Blockly.serialization.workspaces.load(data, workspace);
 }
-function saveProject() {
+function saveMolangProject() {
     return Blockly.serialization.workspaces.save(workspace);
 }
 function generateCode() {

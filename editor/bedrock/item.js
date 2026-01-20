@@ -718,31 +718,6 @@ function centerDialogViewport(selector) {
     });
 }
 
-function onThemeChange(themeName, importTheme, generalThemeType) {
-    let iframes = document.querySelectorAll("iframe");
-    for (let i = 0; i < iframes.length; i++) {
-        let iframe = iframes[i];
-        if (iframe?.contentWindow?.themeStyleElement ?? false) {
-            if (importTheme) {
-                iframe.contentWindow.themeStyleElement.innerHTML = importTheme;
-            }
-            iframe.contentWindow.document.documentElement.setAttribute("data-theme", themeName);
-            if (window.parent.customThemes[themeName]) {
-                if (generalThemeType == "dark") {
-                    iframe.contentWindow.document.documentElement.classList.add("theme-dark");
-                    iframe.contentWindow.document.documentElement.classList.remove("theme-light");
-                } else {
-                    iframe.contentWindow.document.documentElement.classList.remove("theme-dark");
-                    iframe.contentWindow.document.documentElement.classList.add("theme-light");
-                }
-            } else {
-                iframe.contentWindow.document.documentElement.classList.remove("theme-dark");
-                iframe.contentWindow.document.documentElement.classList.remove("theme-light");
-            }
-        }
-    }
-}
-
 function addComponent() {
     addComponentDlg.classList.add("is-active");
 }

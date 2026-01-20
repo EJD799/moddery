@@ -102,6 +102,10 @@ let itemsPerRow = 0;
 const btnSize = 50;       // 32px + borders/padding
 const rowHeight = btnSize;
 
+editedItemDefinitions = Object.fromEntries(
+  Object.entries(itemDefinitions).filter(([key, value]) => value.filter != "java")
+);
+
 function openItemPickerDialog() {
     selectedItemId = null;
     itemPickerSelectBtn.disabled = true;
@@ -118,7 +122,7 @@ function openItemPickerDialog() {
 
 function filterItems(query) {
     const q = query.toLowerCase();
-    return Object.entries(itemDefinitions).filter(([id, d]) =>
+    return Object.entries(editedItemDefinitions).filter(([id, d]) =>
         d.name.toLowerCase().includes(q)
     );
 }
@@ -196,7 +200,7 @@ $("#itemPickerScroller").on("click", ".itemPickBtn", function () {
     $(this).addClass("selected");
 
     selectedItemId = $(this).data("id");
-    if (itemDefinitions[selectedItemId]?.data ?? false) {
+    if (editedItemDefinitions[selectedItemId]?.data ?? false) {
         $("#itemDataBox").show();
     } else {
         $("#itemDataBox").hide();
@@ -259,9 +263,9 @@ function renderSlot(slot, value, original) {
     let slotImage = document.getElementById("recipeBtnImg" + slot);
     if (original == "special_remove") {
         slotImage.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
-    } else if (original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) {
-        slotImage.setAttribute("src", replaceShortURLs(itemDefinitions["minecraft:" + value].texture));
-    } else if (original == "special_custom" && !Object.keys(itemDefinitions).includes(value) && !Object.keys(customItems).includes(value)) {
+    } else if (original == "special_custom" && Object.keys(editedItemDefinitions).includes("minecraft:" + value)) {
+        slotImage.setAttribute("src", replaceShortURLs(editedItemDefinitions["minecraft:" + value].texture));
+    } else if (original == "special_custom" && !Object.keys(editedItemDefinitions).includes(value) && !Object.keys(customItems).includes(value)) {
         if (window.parent.generalThemeType == "dark") {
             slotImage.setAttribute("src", "/moddery/custom_textures/special_custom_dark.png");
         } else {
@@ -271,19 +275,19 @@ function renderSlot(slot, value, original) {
         if (Object.keys(customItems).includes(value)) {
             slotImage.setAttribute("src", customItems[value].texture);
         } else {
-            slotImage.setAttribute("src", replaceShortURLs(itemDefinitions[value].texture));
+            slotImage.setAttribute("src", replaceShortURLs(editedItemDefinitions[value].texture));
         }
     }
     let slotBtn = document.getElementById("recipeBtn" + slot);
     if (original == "special_remove") {
         slotBtn.setAttribute("title", "");
-    } else if ((original == "special_custom" && Object.keys(itemDefinitions).includes("minecraft:" + value)) || (itemDefinitions["minecraft:" + value]?.name ?? false)) {
-        slotBtn.setAttribute("title", itemDefinitions["minecraft:" + value].name);
-    } else if ((itemDefinitions[value]?.name ?? false)) {
+    } else if ((original == "special_custom" && Object.keys(editedItemDefinitions).includes("minecraft:" + value)) || (editedItemDefinitions["minecraft:" + value]?.name ?? false)) {
+        slotBtn.setAttribute("title", editedItemDefinitions["minecraft:" + value].name);
+    } else if ((editedItemDefinitions[value]?.name ?? false)) {
         if (Object.keys(customItems).includes(value)) {
             slotBtn.setAttribute("title", customItems[value].name);
         } else {
-            slotBtn.setAttribute("title", itemDefinitions[value].name);
+            slotBtn.setAttribute("title", editedItemDefinitions[value].name);
         }
     } else {
         if (Object.keys(customItems).includes(value)) {

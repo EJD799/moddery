@@ -11,6 +11,13 @@
         <link rel="stylesheet" href="https://ejd799.github.io/BulmaColoredInputs/main.css">
         <link rel="stylesheet" href="../../styles.css">
 
+        <!-- Load Blockly core -->
+        <script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
+        <!-- Load the default blocks -->
+        <script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
+        <!-- Load a message file -->
+        <script src="https://unpkg.com/blockly/msg/en.js"></script>
+
         <style id="themeStyleElement"></style>
 
         <style>
@@ -26,6 +33,33 @@
 			.ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
 				z-index: 2000 !important; /* Use !important if necessary to override existing styles */
 			}
+
+
+            /* 1. Remove yellow block selection outline */
+            .blocklyPathSelected {
+                stroke: none !important;
+                stroke-width: 0 !important;
+            }
+
+            /* 2. Keep normal fill for selected block */
+            .blocklySelected .blocklyPath {
+                fill-opacity: 1 !important;
+            }
+
+            /* 3. Dark drop shadow on dragging blocks */
+            .blocklyDragging {
+                filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+            }
+
+            /* 4. Subtle opacity on dragged block paths */
+            .blocklyDragging .blocklyPath {
+                opacity: 0.95;
+            }
+
+            /* Only remove outline when clicking with mouse */
+            *:focus {
+                outline: none; /* Remove default blue outline */
+            }
 		</style>
 	</head>
 	<body>

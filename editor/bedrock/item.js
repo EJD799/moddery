@@ -1358,6 +1358,15 @@ function advEditorRemoveItem(id) {
 }
 // new end
 
+// new2s
+function openMolangEditor(component, input, type) {
+    advEditor.classList.add("is-active");
+}
+function closeMolangEditor() {
+    advEditor.classList.remove("is-active");
+}
+// new2e
+
 
 
 

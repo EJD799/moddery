@@ -1,4 +1,4 @@
-const appVersion = "2.2.46";
+const appVersion = "2.2.47";
 const buildDate = "1/19/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -59,59 +59,73 @@ let projectTypes = {
     editors: {
       "Function": {
         url: "editor/bedrock/function.html",
-        icon: "fas fa-terminal"
+        icon: "fas fa-terminal",
+        saveType: "code"
       },
       "Script": {
         url: "editor/bedrock/script.html",
-        icon: "fas fa-code"
+        icon: "fas fa-code",
+        saveType: "code"
       },
       "Item": {
         url: "editor/bedrock/item.html",
-        icon: "fa-regular fa-gem"
+        icon: "fa-regular fa-gem",
+        saveType: "regular"
       },
       "Block": {
         url: "editor/bedrock/block.html",
-        icon: "fas fa-cube"
+        icon: "fas fa-cube",
+        saveType: "regular"
       },
       "Biome": {
         url: "editor/bedrock/biome.html",
-        icon: "fas fa-tree"
+        icon: "fas fa-tree",
+        saveType: "regular"
       },
       "Structure": {
         url: "editor/bedrock/structure.html",
-        icon: "fas fa-cubes"
+        icon: "fas fa-cubes",
+        saveType: "regular"
       },
       "Recipe": {
         url: "editor/bedrock/recipe.html",
-        icon: "fas fa-table-cells"
+        icon: "fas fa-table-cells",
+        saveType: "regular"
       },
       "Entity": {
         url: "editor/bedrock/entity.html",
-        icon: "fas fa-paw"
+        icon: "fas fa-paw",
+        saveType: "regular"
       },
       "Loot Table": {
         url: "editor/bedrock/loot_table.html",
-        icon: "fas fa-coins"
+        icon: "fas fa-coins",
+        saveType: "regular"
       },
       "Trade Table": {
         url: "editor/bedrock/trade_table.html",
-        icon: "fas fa-right-left"
+        icon: "fas fa-right-left",
+        saveType: "regular"
       },
       "Image": {
         url: "editor/image.html",
-        icon: "fas fa-image"
+        icon: "fas fa-image",
+        saveType: "media"
       },
       "Audio": {
         url: "editor/audio.html",
-        icon: "fas fa-volume-high"
+        icon: "fas fa-volume-high",
+        saveType: "media"
       },
       "Text": {
         url: "editor/text.html",
-        icon: "fa-regular fa-file"
+        icon: "fa-regular fa-file",
+        saveType: "media"
       },
       "default": {
         url: "about:blank",
-        icon: "fa-regular fa-file"
+        icon: "fa-regular fa-file",
+        saveType: "regular"
       }
     }
   },
@@ -125,55 +139,68 @@ let projectTypes = {
     editors: {
       "Function": {
         url: "editor/javadp/function.html",
-        icon: "fas fa-terminal"
+        icon: "fas fa-terminal",
+        saveType: "code"
       },
       "Item": {
         url: "editor/javadp/item.html",
-        icon: "fa-regular fa-gem"
+        icon: "fa-regular fa-gem",
+        saveType: "regular"
       },
       "Block": {
         url: "editor/javadp/block.html",
-        icon: "fas fa-cube"
+        icon: "fas fa-cube",
+        saveType: "regular"
       },
       "Biome": {
         url: "editor/javadp/biome.html",
-        icon: "fas fa-tree"
+        icon: "fas fa-tree",
+        saveType: "regular"
       },
       "Structure": {
         url: "editor/javadp/structure.html",
-        icon: "fas fa-cubes"
+        icon: "fas fa-cubes",
+        saveType: "regular"
       },
       "Recipe": {
         url: "editor/javadp/recipe.html",
-        icon: "fas fa-table-cells"
+        icon: "fas fa-table-cells",
+        saveType: "regular"
       },
       "Entity": {
         url: "editor/javadp/entity.html",
-        icon: "fas fa-paw"
+        icon: "fas fa-paw",
+        saveType: "regular"
       },
       "Loot Table": {
         url: "editor/javadp/loot_table.html",
-        icon: "fas fa-coins"
+        icon: "fas fa-coins",
+        saveType: "regular"
       },
       "Trade Table": {
         url: "editor/javadp/trade_table.html",
-        icon: "fas fa-right-left"
+        icon: "fas fa-right-left",
+        saveType: "regular"
       },
       "Image": {
         url: "editor/image.html",
-        icon: "fas fa-image"
+        icon: "fas fa-image",
+        saveType: "media"
       },
       "Audio": {
         url: "editor/audio.html",
-        icon: "fas fa-volume-high"
+        icon: "fas fa-volume-high",
+        saveType: "media"
       },
       "Text": {
         url: "editor/text.html",
-        icon: "fa-regular fa-file"
+        icon: "fa-regular fa-file",
+        saveType: "media"
       },
       "default": {
         url: "about:blank",
-        icon: "fa-regular fa-file"
+        icon: "fa-regular fa-file",
+        saveType: "regular"
       }
     }
   },
@@ -199,31 +226,38 @@ let projectTypes = {
     editors: {
       "Vehicle": {
         url: "editor/mtrje/vehicle.html",
-        icon: "fas fa-train-subway"
+        icon: "fas fa-train-subway",
+        saveType: "regular"
       },
       "Sign": {
         url: "editor/mtrje/sign.html",
-        icon: "fas fa-signs-post"
+        icon: "fas fa-signs-post",
+        saveType: "regular"
       },
       "PIDS": {
         url: "editor/mtrje/pids.html",
-        icon: "fas fa-sign-hanging"
+        icon: "fas fa-sign-hanging",
+        saveType: "regular"
       },
       "Image": {
         url: "editor/image.html",
-        icon: "fas fa-image"
+        icon: "fas fa-image",
+        saveType: "media"
       },
       "Audio": {
         url: "editor/audio.html",
-        icon: "fas fa-volume-high"
+        icon: "fas fa-volume-high",
+        saveType: "media"
       },
       "Sound": {
         url: "editor/mtrje/sound.html",
-        icon: "fas fa-volume-high"
+        icon: "fas fa-volume-high",
+        saveType: "regular"
       },
       "default": {
         url: "about:blank",
-        icon: "fa-regular fa-file"
+        icon: "fa-regular fa-file",
+        saveType: "regular"
       }
     }
   },
@@ -233,31 +267,38 @@ let projectTypes = {
     editors: {
       "Vehicle": {
         url: "editor/mtrbe/vehicle.html",
-        icon: "fas fa-train-subway"
+        icon: "fas fa-train-subway",
+        saveType: "regular"
       },
       "Sign": {
         url: "editor/mtrbe/sign.html",
-        icon: "fas fa-signs-post"
+        icon: "fas fa-signs-post",
+        saveType: "regular"
       },
       "PIDS": {
         url: "editor/mtrbe/pids.html",
-        icon: "fas fa-sign-hanging"
+        icon: "fas fa-sign-hanging",
+        saveType: "regular"
       },
       "Image": {
         url: "editor/image.html",
-        icon: "fas fa-image"
+        icon: "fas fa-image",
+        saveType: "media"
       },
       "Audio": {
         url: "editor/audio.html",
-        icon: "fas fa-volume-high"
+        icon: "fas fa-volume-high",
+        saveType: "media"
       },
       "Sound": {
         url: "editor/mtrbe/sound.html",
-        icon: "fas fa-volume-high"
+        icon: "fas fa-volume-high",
+        saveType: "regular"
       },
       "default": {
         url: "about:blank",
-        icon: "fa-regular fa-file"
+        icon: "fa-regular fa-file",
+        saveType: "regular"
       }
     }
   }

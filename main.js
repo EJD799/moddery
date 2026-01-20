@@ -1,4 +1,4 @@
-const appVersion = "2.2.54";
+const appVersion = "2.2.55";
 const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -1701,7 +1701,7 @@ async function exportProj() {
   exportLog.innerHTML = "";
   
   if (projManifest.type == "be_addon") {
-    bedrockExporter.runExport();
+    await bedrockExporter.runExport();
   }
 
   loaderText.innerHTML = `Exporting Project... (100%)`;

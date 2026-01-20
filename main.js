@@ -1,4 +1,4 @@
-const appVersion = "2.2.52";
+const appVersion = "2.2.53";
 const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -56,6 +56,12 @@ let projectTypes = {
   "be_addon": {
     name: "Bedrock Addon",
     shortname: "Addon",
+    exportOptions: [
+      ["Addon (.mcaddon)", "1mcaddon"],
+      ["Addon (.zip)", "1zip"],
+      ["Packs (.mcpack)", "2mcpack"],
+      ["Packs (.zip)", "2zip"]
+    ],
     editors: {
       "Function": {
         url: "editor/bedrock/function.html",
@@ -145,11 +151,20 @@ let projectTypes = {
   },
   "be_rp": {
     name: "Bedrock Resource Pack",
-    shortname: "Resource Pack"
+    shortname: "Resource Pack",
+    disabled: true,
+    exportOptions: [
+      ["Pack (.mcpack)", "mcpack"],
+      ["Pack (.zip)", "zip"]
+    ],
   },
   "je_dp": {
     name: "Java Datapack",
     shortname: "Datapack",
+    disabled: true,
+    exportOptions: [
+      ["Packs (.zip)", "2zip"]
+    ],
     editors: {
       "Function": {
         url: "editor/javadp/function.html",
@@ -233,23 +248,43 @@ let projectTypes = {
   },
   "je_rp": {
     name: "Java Resource Pack",
-    shortname: "Resource Pack"
+    shortname: "Resource Pack",
+    disabled: true,
+    exportOptions: [
+      ["Pack (.zip)", "zip"]
+    ],
   },
   "je_forge": {
     name: "Java Forge Mod",
-    shortname: "Forge Mod"
+    shortname: "Forge Mod",
+    disabled: true,
+    exportOptions: [
+      ["Mod (.jar)", "jar"]
+    ],
   },
   "je_fabric": {
     name: "Java Fabric Mod",
-    shortname: "Fabric Mod"
+    shortname: "Fabric Mod",
+    disabled: true,
+    exportOptions: [
+      ["Mod (.jar)", "jar"]
+    ],
   },
   "je_spigot": {
     name: "Java Spigot Plugin",
-    shortname: "Spigot Plugin"
+    shortname: "Spigot Plugin",
+    disabled: true,
+    exportOptions: [
+      ["Plugin (.jar)", "jar"]
+    ],
   },
   "mtr_je": {
     name: "MTR Content (Java)",
     shortname: "MTR Content",
+    disabled: true,
+    exportOptions: [
+      ["Pack (.zip)", "zip"]
+    ],
     editors: {
       "Vehicle": {
         url: "editor/mtrje/vehicle.html",
@@ -298,6 +333,13 @@ let projectTypes = {
   "mtr_be": {
     name: "MTR Content (Bedrock)",
     shortname: "MTR Content",
+    disabled: true,
+    exportOptions: [
+      ["Addon (.mcaddon)", "1mcaddon"],
+      ["Addon (.zip)", "1zip"],
+      ["Packs (.mcpack)", "2mcpack"],
+      ["Packs (.zip)", "2zip"]
+    ],
     editors: {
       "Vehicle": {
         url: "editor/mtrbe/vehicle.html",

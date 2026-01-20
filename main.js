@@ -1,4 +1,4 @@
-const appVersion = "2.2.59";
+const appVersion = "2.2.60";
 const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -180,7 +180,6 @@ let projectTypes = {
   "je_dp": {
     name: "Java Datapack",
     shortname: "Datapack",
-    disabled: true,
     exportOptions: [
       ["Packs (.zip)", "2zip"]
     ],

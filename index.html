@@ -208,9 +208,11 @@
             <label for="packIconBtn">Pack Icon: <span id="packIconText">No icon selected</span></label>
             <button class="button" name="packIconBtn" id="packIconBtn" onclick="openSelectPackIconDlg()">Select Icon</button>
             <br><br>
-            <label for="scriptEntryBtn">Pack Icon: <span id="scriptEntryText">No script entry point selected</span></label>
-            <button class="button" name="scriptEntryBtn" id="scriptEntryBtn" onclick="openSelectScriptEntryDlg()">Select Script Entry Point</button>
-            <br><br>
+            <div id="scriptEntryDiv">
+              <label for="scriptEntryBtn">Script Entry Point: <span id="scriptEntryText">No script entry point selected</span></label>
+              <button class="button" name="scriptEntryBtn" id="scriptEntryBtn" onclick="openSelectScriptEntryDlg()">Select Script Entry Point</button>
+              <br><br>
+            </div>
             <label for="editProjDescriptionBox">Description</label>
             <textarea class="textarea" name="editProjDescriptionBox" id="editProjDescriptionBox"></textarea>
             <br><br>

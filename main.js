@@ -1,4 +1,4 @@
-const appVersion = "2.2.60";
+const appVersion = "2.2.61";
 const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -80,6 +80,14 @@ let projectTypes = {
       ["Addon (.zip)", "1zip"],
       ["Packs (.mcpack)", "2mcpack"],
       ["Packs (.zip)", "2zip"]
+    ],
+    features: ["scriptEntry"],
+    supportedVersions: [
+      "1.21.90",
+      "1.21.100",
+      "1.21.110",
+      "1.21.120",
+      "1.21.130"
     ],
     editors: {
       "Function": {
@@ -171,6 +179,14 @@ let projectTypes = {
   "be_rp": {
     name: "Bedrock Resource Pack",
     shortname: "Resource Pack",
+    features: [],
+    supportedVersions: [
+      "1.21.90",
+      "1.21.100",
+      "1.21.110",
+      "1.21.120",
+      "1.21.130"
+    ],
     disabled: true,
     exportOptions: [
       ["Pack (.mcpack)", "mcpack"],
@@ -180,6 +196,23 @@ let projectTypes = {
   "je_dp": {
     name: "Java Datapack",
     shortname: "Datapack",
+    features: [],
+    supportedVersions: [
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3/1.20.4",
+      "1.20.5/1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.2/1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7/1.21.8",
+      "1.21.9/1.21.10",
+      "1.21.11"
+    ],
     exportOptions: [
       ["Packs (.zip)", "2zip"]
     ],
@@ -267,6 +300,23 @@ let projectTypes = {
   "je_rp": {
     name: "Java Resource Pack",
     shortname: "Resource Pack",
+    features: [],
+    supportedVersions: [
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3/1.20.4",
+      "1.20.5/1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.2/1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7/1.21.8",
+      "1.21.9/1.21.10",
+      "1.21.11"
+    ],
     disabled: true,
     exportOptions: [
       ["Pack (.zip)", "zip"]
@@ -275,6 +325,23 @@ let projectTypes = {
   "je_forge": {
     name: "Java Forge Mod",
     shortname: "Forge Mod",
+    features: ["scriptEntry"],
+    supportedVersions: [
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3/1.20.4",
+      "1.20.5/1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.2/1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7/1.21.8",
+      "1.21.9/1.21.10",
+      "1.21.11"
+    ],
     disabled: true,
     exportOptions: [
       ["Mod (.jar)", "jar"]
@@ -283,6 +350,23 @@ let projectTypes = {
   "je_fabric": {
     name: "Java Fabric Mod",
     shortname: "Fabric Mod",
+    features: ["scriptEntry"],
+    supportedVersions: [
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3/1.20.4",
+      "1.20.5/1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.2/1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7/1.21.8",
+      "1.21.9/1.21.10",
+      "1.21.11"
+    ],
     disabled: true,
     exportOptions: [
       ["Mod (.jar)", "jar"]
@@ -291,33 +375,60 @@ let projectTypes = {
   "je_spigot": {
     name: "Java Spigot Plugin",
     shortname: "Spigot Plugin",
+    features: ["scriptEntry"],
+    supportedVersions: [
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3/1.20.4",
+      "1.20.5/1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.2/1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7/1.21.8",
+      "1.21.9/1.21.10",
+      "1.21.11"
+    ],
     disabled: true,
     exportOptions: [
       ["Plugin (.jar)", "jar"]
     ],
   },
-  "mtr_je": {
-    name: "MTR Content (Java)",
-    shortname: "MTR Content",
+  "mtr3_je": {
+    name: "MTR3 Content (Java)",
+    shortname: "MTR3 Content",
+    features: [],
+    supportedVersions: [
+      "1.16.2-1.16.5",
+      "1.17.x",
+      "1.18.x",
+      "1.19",
+      "1.19.2-1.19.4",
+      "1.20-1.20.1",
+      "1.20.4"
+    ],
     disabled: true,
     exportOptions: [
       ["Pack (.zip)", "zip"]
     ],
     editors: {
       "Vehicle": {
-        url: "editor/mtrje/vehicle.html",
+        url: "editor/mtr3je/vehicle.html",
         icon: "fas fa-train-subway",
         saveType: "regular",
         show: 1
       },
       "Sign": {
-        url: "editor/mtrje/sign.html",
+        url: "editor/mtr3je/sign.html",
         icon: "fas fa-signs-post",
         saveType: "regular",
         show: 1
       },
       "PIDS": {
-        url: "editor/mtrje/pids.html",
+        url: "editor/mtr3je/pids.html",
         icon: "fas fa-sign-hanging",
         saveType: "regular",
         show: 1
@@ -335,7 +446,69 @@ let projectTypes = {
         show: 0
       },
       "Sound": {
-        url: "editor/mtrje/sound.html",
+        url: "editor/mtr3je/sound.html",
+        icon: "fas fa-volume-high",
+        saveType: "regular",
+        show: 1
+      },
+      "default": {
+        url: "about:blank",
+        icon: "fa-regular fa-file",
+        saveType: "regular",
+        show: 0
+      }
+    }
+  },
+  "mtr4_je": {
+    name: "MTR4 Content (Java)",
+    shortname: "MTR4 Content",
+    features: [],
+    supportedVersions: [
+      "1.16.2-1.16.5",
+      "1.17.x",
+      "1.18.x",
+      "1.19",
+      "1.19.2-1.19.4",
+      "1.20-1.20.1",
+      "1.20.4"
+    ],
+    disabled: true,
+    exportOptions: [
+      ["Pack (.zip)", "zip"]
+    ],
+    editors: {
+      "Vehicle": {
+        url: "editor/mtr4je/vehicle.html",
+        icon: "fas fa-train-subway",
+        saveType: "regular",
+        show: 1
+      },
+      "Sign": {
+        url: "editor/mtr4je/sign.html",
+        icon: "fas fa-signs-post",
+        saveType: "regular",
+        show: 1
+      },
+      "PIDS": {
+        url: "editor/mtr4je/pids.html",
+        icon: "fas fa-sign-hanging",
+        saveType: "regular",
+        show: 1
+      },
+      "Image": {
+        url: "editor/image.html",
+        icon: "fas fa-image",
+        saveType: "media",
+        show: 0
+      },
+      "Audio": {
+        url: "editor/audio.html",
+        icon: "fas fa-volume-high",
+        saveType: "media",
+        show: 0
+      },
+      "Sound": {
+        url: "editor/mtr4je/sound.html",
         icon: "fas fa-volume-high",
         saveType: "regular",
         show: 1
@@ -351,6 +524,10 @@ let projectTypes = {
   "mtr_be": {
     name: "MTR Content (Bedrock)",
     shortname: "MTR Content",
+    features: [],
+    supportedVersions: [
+      "1.21.130"
+    ],
     disabled: true,
     exportOptions: [
       ["Addon (.mcaddon)", "1mcaddon"],
@@ -1670,8 +1847,11 @@ function openProj(file) {
 }
 
 function updateMenusForProjectType() {
-  let editors = projectTypes[projManifest.type].editors;
+  let projectType = projectTypes[projManifest.type];
+
+  let editors = projectType.editors;
   let editorList = Object.keys(editors);
+
   for (let i = 0; i < editorList.length; i++) {
     let editorItem = editors[editorList[i]];
     let editorName = editorList[i];
@@ -1683,6 +1863,21 @@ function updateMenusForProjectType() {
       }
       addElementType.appendChild(option);
     }
+  }
+
+  if (projectType.features.includes("scriptEntry")) {
+    $("#scriptEntryDiv").show();
+  } else {
+    $("#scriptEntryDiv").hide();
+  }
+
+  let versions = projectType.supportedVersions;
+
+  for (let i = 0; i < versionList.length; i++) {
+    let version = versions[i];
+    let option = document.createElement("option");
+    option.innerHTML = version;
+    editProjMCVersionBox.appendChild(option);
   }
 }
 

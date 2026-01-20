@@ -209,12 +209,9 @@
         <!-- new2s -->
         <div class="modal" id="molangEditor">
             <div class="modal-background"></div>
-            <div class="modal-content" style="width:600px;height:600px;">
+            <div class="modal-content" style="width:700px;height:600px;">
                 <div class="card" id="molangEditorCard" style="padding:16px;">
-                    <center>
-                        <h4 id="molangEditorTitle" class="title is-4">Edit Molang</h4>
-                        <div id="blocklyDiv" style="height: 100%; width: 100%;"></div>
-                    </center>
+                    <div id="blocklyDiv" style="height: calc(100% - 35px); width: 100%;"></div>
                 </div>
             </div>
             <button class="modal-close is-large" aria-label="close" onclick="saveMolangInput();"></button>

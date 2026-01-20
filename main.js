@@ -1,4 +1,4 @@
-const appVersion = "2.2.55";
+const appVersion = "2.2.56";
 const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -54,6 +54,23 @@ let addAssetMode = "upload";
 
 let progressBarMax;
 
+let projectTypeMenuList = {
+  "Bedrock Edition": [
+    ["Addon", "be_addon"],
+    ["Resource Pack", "be_rp"]
+  ],
+  "Java Edition": [
+    ["Datapack", "je_dp"],
+    ["Resource Pack", "je_rp"],
+    ["Forge Mod", "je_forge"],
+    ["Fabric Mod", "je_fabric"],
+    ["Spigot Plugin", "je_spigot"],
+  ],
+  "Other": [
+    ["MTR Content (Java)", "mtr_je"],
+    ["MTR Content (Bedrock)", "mtr_be"]
+  ]
+}
 let projectTypes = {
   "be_addon": {
     name: "Bedrock Addon",

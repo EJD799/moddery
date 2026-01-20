@@ -1,4 +1,4 @@
-const appVersion = "2.2.61";
+const appVersion = "2.2.62";
 const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -89,6 +89,7 @@ let projectTypes = {
       "1.21.120",
       "1.21.130"
     ],
+    disabled: false,
     editors: {
       "Function": {
         url: "editor/bedrock/function.html",
@@ -213,6 +214,7 @@ let projectTypes = {
       "1.21.9/1.21.10",
       "1.21.11"
     ],
+    disabled: false,
     exportOptions: [
       ["Packs (.zip)", "2zip"]
     ],
@@ -1873,10 +1875,9 @@ function updateMenusForProjectType() {
 
   let versions = projectType.supportedVersions;
 
-  for (let i = 0; i < versionList.length; i++) {
-    let version = versions[i];
+  for (let i = 0; i < versions.length; i++) {
     let option = document.createElement("option");
-    option.innerHTML = version;
+    option.innerHTML = versions[i];
     editProjMCVersionBox.appendChild(option);
   }
 }

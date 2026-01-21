@@ -1,4 +1,4 @@
-const appVersion = "2.2.70";
+const appVersion = "2.2.71";
 const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -152,6 +152,12 @@ let projectTypes = {
         saveType: "regular",
         show: 1
       },
+      "Painting": {
+        url: "editor/bedrock/painting.html",
+        icon: "fas fa-palette",
+        saveType: "regular",
+        show: 2
+      },
       "Image": {
         url: "editor/image.html",
         icon: "fas fa-image",
@@ -200,9 +206,6 @@ let projectTypes = {
     shortname: "Datapack",
     features: [],
     supportedVersions: [
-      "1.20",
-      "1.20.1",
-      "1.20.2",
       "1.20.3/1.20.4",
       "1.20.5/1.20.6",
       "1.21",
@@ -283,6 +286,18 @@ let projectTypes = {
       "Enchantment": {
         url: "editor/javadp/enchantment.html",
         icon: "fas fa-wand-magic-sparkles",
+        saveType: "regular",
+        show: 1
+      },
+      "Armor Trim": {
+        url: "editor/javadp/armor_trim.html",
+        icon: "fas fa-shirt",
+        saveType: "regular",
+        show: 1
+      },
+      "Painting": {
+        url: "editor/javadp/painting.html",
+        icon: "fas fa-palette",
         saveType: "regular",
         show: 1
       },

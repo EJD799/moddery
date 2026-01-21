@@ -94,6 +94,9 @@ window.setTimeout(async function() {
         }
     }));
     onThemeChange(null, null, window.parent.generalThemeType);
+    editedItemDefinitions = Object.fromEntries(
+        Object.entries(itemDefinitions).filter(([key, value]) => value.filter != "bedrock")
+    );
 }, 100);
 
 let selectedItemId = null;
@@ -101,10 +104,6 @@ let filteredItems = [];   // after search
 let itemsPerRow = 0;
 const btnSize = 50;       // 32px + borders/padding
 const rowHeight = btnSize;
-
-editedItemDefinitions = Object.fromEntries(
-  Object.entries(itemDefinitions).filter(([key, value]) => value.filter != "java")
-);
 
 function openItemPickerDialog() {
     selectedItemId = null;

@@ -106,6 +106,14 @@ const btnSize = 50;       // 32px + borders/padding
 const rowHeight = btnSize;
 
 function openItemPickerDialog() {
+    if (!editedItemDefinitions) {
+        console.log("Glitch detected.");
+        console.log("Retrying item definitions...");
+        editedItemDefinitions = Object.fromEntries(
+            Object.entries(itemDefinitions).filter(([key, value]) => value.filter != "bedrock")
+        );
+    }
+    
     selectedItemId = null;
     itemPickerSelectBtn.disabled = true;
     $("#itemDataBox").val("0");

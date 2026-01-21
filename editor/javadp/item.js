@@ -107,6 +107,14 @@ const rowHeight = btnSize;
 let baseItemType = "";
 
 function openItemPickerDialog() {
+    if (!editedItemDefinitions) {
+        console.log("Glitch detected.");
+        console.log("Retrying item definitions...");
+        editedItemDefinitions = Object.fromEntries(
+            Object.entries(itemDefinitions).filter(([key, value]) => value.filter != "bedrock")
+        );
+    }
+    
     selectedItemId = null;
     itemPickerSelectBtn.disabled = true;
     $("#itemDataBox").val("0");

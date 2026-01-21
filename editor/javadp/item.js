@@ -114,7 +114,7 @@ function openItemPickerDialog() {
             Object.entries(itemDefinitions).filter(([key, value]) => value.filter != "bedrock")
         );
     }
-    
+
     selectedItemId = null;
     itemPickerSelectBtn.disabled = true;
     $("#itemDataBox").val("0");
@@ -328,7 +328,49 @@ function addSpaces(str) {
     return str.replaceAll("_s_", " ");
 }
 // new end
-
+function openSelectTextureDlg(component, input, mode) {
+    selectTextureDlg.classList.add("is-active");
+    textures = window.parent.getTextureList();
+    let selectTextureMenu = document.getElementById("selectTextureMenu");
+    selectTextureMenu.innerHTML = "";
+    for (let i = 0; i < textures.length; i++) {
+        let selectTextureMenuItem;
+        let previewBox;
+        let preview;
+        let itemTitle;
+        let itemRadio;
+        selectTextureMenuItem = document.createElement("div");
+        selectTextureMenuItem.setAttribute("class", "card textureMenuItem");
+        itemRadio = document.createElement("input");
+        itemRadio.setAttribute("type", "radio");
+        itemRadio.setAttribute("name", "selectedTexture");
+        itemRadio.setAttribute("class", "textureRadio");
+        itemRadio.setAttribute("value", textures[i]);
+        selectTextureMenuItem.appendChild(itemRadio);
+        if (textures[i] != "None") {
+            previewBox = document.createElement("div");
+            previewBox.setAttribute("class", "smallPreviewBox");
+            preview = document.createElement("img");
+            window.parent.projZip.folder("assets").file(textures[i]).async("blob").then(async function (file) {
+            preview.setAttribute("src", await window.parent.fileToDataURL(file));
+            });
+            preview.setAttribute("id", window.parent.encodeText(textures[i]) + "_preview");
+            previewBox.appendChild(preview);
+            selectTextureMenuItem.appendChild(previewBox);
+        }
+        itemTitle = document.createElement("span");
+        itemTitle.setAttribute("class", "textureMenuTitle");
+        itemTitle.innerHTML = textures[i];
+        selectTextureMenuItem.appendChild(itemTitle);
+        selectTextureMenu.appendChild(selectTextureMenuItem);
+        selectTextureMenuItem.addEventListener("click", () => {
+        const itemRadio = selectTextureMenuItem.querySelector('input[type="radio"]');
+        if (itemRadio) {
+            itemRadio.checked = true;  // select this radio
+        }
+        });
+    }
+}
 function closeSelectTextureDlg() {
     selectTextureDlg.classList.remove("is-active");
 }

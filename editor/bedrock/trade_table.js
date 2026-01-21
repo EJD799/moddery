@@ -327,6 +327,10 @@ window.setTimeout(async function() {
         }
     }));
     onThemeChange(null, null, window.parent.generalThemeType);
+
+    editedItemDefinitions = Object.fromEntries(
+        Object.entries(itemDefinitions).filter(([key, value]) => value.filter != "java")
+    );
 }, 100);
 
 let selectedItemId = null;
@@ -351,7 +355,7 @@ function openItemPickerDialog() {
 
 function filterItems(query) {
     const q = query.toLowerCase();
-    return Object.entries(itemDefinitions).filter(([id, d]) =>
+    return Object.entries(editedItemDefinitions).filter(([id, d]) =>
         d.name.toLowerCase().includes(q)
     );
 }
@@ -429,7 +433,7 @@ $("#itemPickerScroller").on("click", ".itemPickBtn", function () {
     $(this).addClass("selected");
 
     selectedItemId = $(this).data("id");
-    if (itemDefinitions[selectedItemId]?.data ?? false) {
+    if (editedItemDefinitions[selectedItemId]?.data ?? false) {
         $("#itemDataBox").show();
     } else {
         $("#itemDataBox").hide();
@@ -519,12 +523,12 @@ function renderSlot(slot, subslot, value, original) {
         if (customItems[value]) {
             texture = customItems[value].texture;
             title = customItems[value].name;
-        } else if (itemDefinitions["minecraft:" + value]) {
-            texture = replaceShortURLs(itemDefinitions["minecraft:" + value].texture);
-            title = itemDefinitions["minecraft:" + value].name;
-        } else if (itemDefinitions[value]) {
-            texture = replaceShortURLs(itemDefinitions[value].texture);
-            title = itemDefinitions[value].name;
+        } else if (editedItemDefinitions["minecraft:" + value]) {
+            texture = replaceShortURLs(editedItemDefinitions["minecraft:" + value].texture);
+            title = editedItemDefinitions["minecraft:" + value].name;
+        } else if (editedItemDefinitions[value]) {
+            texture = replaceShortURLs(editedItemDefinitions[value].texture);
+            title = editedItemDefinitions[value].name;
         } else {
             if (window.parent.generalThemeType == "dark") {
                 slotImage.setAttribute("src", "/moddery/custom_textures/special_custom_dark.png");

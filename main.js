@@ -1,4 +1,4 @@
-const appVersion = "2.2.68";
+const appVersion = "2.2.69";
 const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -67,7 +67,8 @@ let projectTypeMenuOptions = {
     ["Spigot Plugin", "je_spigot"],
   ],
   "Other": [
-    ["MTR Content (Java)", "mtr_je"],
+    ["MTR3 Content (Java)", "mtr3_je"],
+    ["MTR4 Content (Java)", "mtr4_je"],
     ["MTR Content (Bedrock)", "mtr_be"]
   ]
 }

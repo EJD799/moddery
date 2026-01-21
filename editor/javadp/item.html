@@ -11,13 +11,6 @@
         <link rel="stylesheet" href="https://ejd799.github.io/BulmaColoredInputs/main.css">
         <link rel="stylesheet" href="../../styles.css">
 
-        <!-- Load Blockly core -->
-        <script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
-        <!-- Load the default blocks -->
-        <script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
-        <!-- Load a message file -->
-        <script src="https://unpkg.com/blockly/msg/en.js"></script>
-
         <style id="themeStyleElement"></style>
 
         <style>
@@ -33,33 +26,6 @@
 			.ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
 				z-index: 2000 !important; /* Use !important if necessary to override existing styles */
 			}
-
-
-            /* 1. Remove yellow block selection outline */
-            .blocklyPathSelected {
-                stroke: none !important;
-                stroke-width: 0 !important;
-            }
-
-            /* 2. Keep normal fill for selected block */
-            .blocklySelected .blocklyPath {
-                fill-opacity: 1 !important;
-            }
-
-            /* 3. Dark drop shadow on dragging blocks */
-            .blocklyDragging {
-                filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-            }
-
-            /* 4. Subtle opacity on dragged block paths */
-            .blocklyDragging .blocklyPath {
-                opacity: 0.95;
-            }
-
-            /* Only remove outline when clicking with mouse */
-            *:focus {
-                outline: none; /* Remove default blue outline */
-            }
 		</style>
 	</head>
 	<body>
@@ -72,80 +38,11 @@
 		<label for="nameBox">Item Name</label>
 		<input class="input normalInput" name="nameBox" id="nameBox" placeholder="Item Name">
 		<br><br>
-		<label for="categoryBox">Inventory Category</label>
-        <div class="select">
-            <select name="categoryBox" id="categoryBox">
-                <option value="construction">Construction</option>
-                <option value="equipment">Equipment</option>
-                <option value="items" selected>Items</option>
-                <option value="nature">Nature</option>
-                <option value="none">None</option>
-            </select>
-        </div>
-		<br><br>
-		<label for="stackSizeBox">Max Stack Size</label>
-		<input class="input smallInput" type="number" name="stackSizeBox" id="stackSizeBox" placeholder="Max Stack Size">
-		<br><br>
+        <label for="baseItemBox">Base Item Type</label>
+        <button class="button itemIconBtn" id="baseItemBox" onclick="selectItem(1)"><img id="baseItemBoxImg" class="itemIconBtnImg"></button>
+        <br><br>
 		<label for="itemTextureBtn">Item Texture: <span id="textureNameText">No texture selected</span></label>
-		<button class="button" name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg()">Select Texture</button><br><br>
-		<span class="title is-4">Components <button class="button is-primary" id="addComponentBtn" onclick="addComponent()">+ Add Component</button></span>
-		<div id="componentsBox"></div>
-
-        <div class="modal" id="addComponentDlg">
-            <div class="modal-background"></div>
-            <div class="modal-content" style="width:400px;height:300px;">
-                <div class="card" id="addComponentDlgCard" style="padding:16px;">
-                    <center>
-                        <h4 class="title is-4">Add Component</h4>
-                        <label for="addComponentType">Component Type</label>
-                        <div class="select">
-                            <select name="addComponentType" id="addComponentType">
-                                <!--<option>Test</option>-->
-                                <option>Allow Off Hand</option>
-                                <option>Block Placer</option>
-                                <option>Bundle Interaction</option>
-                                <option>Can Destroy in Creative</option>
-                                <option>Compostable</option>
-                                <option>Cooldown</option>
-                                <option>Damage</option>
-                                <option>Digger</option>
-                                <option>Durability</option>
-                                <option>Dyeable</option>
-                                <option>Enchantable</option>
-                                <option>Entity Placer</option>
-                                <option>Fire Resistant</option>
-                                <option>Food</option>
-                                <option>Fuel</option>
-                                <option>Glint</option>
-                                <option>Hand Equipped</option>
-                                <option>Hover Text Color</option>
-                                <option>Interact Button</option>
-                                <!--<option>Kinetic Weapon</option>-->
-                                <option>Liquid Clipped</option>
-                                <!--<option>Piercing Weapon</option>-->
-                                <option>Projectile</option>
-                                <option>Rarity</option>
-                                <option>Record</option>
-                                <option>Repairable</option>
-                                <option>Shooter</option>
-                                <option>Should Despawn</option>
-                                <option>Storage Item</option>
-                                <option>Swing Duration</option>
-                                <option>Tags</option>
-                                <option>Throwable</option>
-                                <option>Use Animation</option>
-                                <option>Use Modifiers</option>
-                                <option>Wearable</option>
-                            </select>
-                        </div>
-                        <br><br>
-                        <button class="button" id="addComponentCancelBtn" onclick="closeAddComponentDlg()">Cancel</button>
-                        <button class="button is-primary" id="addComponentAddBtn" onclick="createComponent($('#addComponentType').val())">Add</button>
-                    </center>
-                </div>
-            </div>
-            <button class="modal-close is-large" aria-label="close" onclick="closeAddComponentDlg();"></button>
-        </div>
+		<button class="button" name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg()">Select Texture</button>
 
         <div class="modal" id="selectTextureDlg">
             <div class="modal-background"></div>
@@ -166,76 +63,30 @@
             <button class="modal-close is-large" aria-label="close" onclick="closeSelectTextureDlg();"></button>
         </div>
 
-		<!-- new start -->
-
-        <div class="modal" id="selectTableDlg">
+        <div class="modal" id="itemPickerDialog">
             <div class="modal-background"></div>
-            <div class="modal-content" style="width:400px;height:550px;">
-                <div class="card" id="selectTableDlgCard" style="padding:16px;">
+            <div class="modal-content" style="width:500px;height:550px;">
+                <div class="card" style="padding:16px;">
                     <center>
-                        <h4 id="selectTableDlgTitle" class="title is-4">Select Table</h4>
-                        <div class="textureMenu" id="selectTableMenu"></div>
-
-                        <div class="textureDialogButtons">
-                            <button class="button" id="selectTableCancelBtn" onclick="closeSelectTableDlg()">Cancel</button>
-                            <button class="button is-primary" id="selectTableSelectBtn" onclick="selectTable()">Select</button>
-                        </div>
+                        <h4 class="title is-4">Select Item</h4>
+                    </center>
+                    <input class="input" id="itemSearchBox" type="text" placeholder="Search items..." style="width:100%; margin-bottom:8px;">
+                    <div id="itemPickerViewport">
+                        <div id="itemPickerScroller"></div>
+                    </div>
+                    <br>
+                    <center>
+                        <input type="number" class="input smallInput" id="itemDataBox" placeholder="Data">
+                        <button class="button" id="itemPickerCancelBtn" onclick="closeItemPicker()">Cancel</button>
+                        <button class="button is-primary" id="itemPickerSelectBtn" disabled>Select</button>
                     </center>
                 </div>
             </div>
-            <button class="modal-close is-large" aria-label="close" onclick="closeSelectTextureDlg();"></button>
-        </div>
-
-        <div class="modal" id="advEditor">
-            <div class="modal-background"></div>
-            <div class="modal-content" style="width:400px;height:500px;">
-                <div class="card" id="advEditorCard" style="padding:16px;">
-                    <center>
-                        <h4 id="advEditorTitle" class="title is-4">Edit Input</h4>
-                        <div id="advEditorContentList">
-                        <button class="button is-primary" id="advEditorListAddBtn" onclick="advEditorAddItem('list', '', -1)">+ Add Item</button>
-                        <br><br>
-                        <div id="advEditorListContent"></div>
-                        </div>
-                        <br><br>
-                        <button class="button is-primary" id="advEditorSave" onclick="saveAdvInput()">Save</button>
-                    </center>
-                </div>
-            </div>
-            <button class="modal-close is-large" aria-label="close" onclick="saveAdvInput();"></button>
-        </div>
-		<!-- new end -->
-
-        <!-- new2s -->
-        <div class="modal" id="molangEditor">
-            <div class="modal-background"></div>
-            <div class="modal-content" style="width:700px;height:600px;">
-                <div class="card" id="molangEditorCard" style="padding:16px;">
-                    <div id="blocklyDiv" style="height: calc(100% - 35px); width: 100%;"></div>
-                </div>
-            </div>
-            <button class="modal-close is-large" aria-label="close" onclick="saveMolangInput();"></button>
-        </div>
-        <!-- new2e -->
-
-        <div class="modal" id="deleteDlg">
-            <div class="modal-background"></div>
-            <div class="modal-content" style="width:300px;height:200px;">
-                <div class="card" id="deleteDlgCard" style="padding:16px;">
-                    <center>
-                        <h4 id="selectTableDlgTitle" class="title is-4">Delete Component?</h4>
-                        <span id="deleteDlgText"></span><br><br>
-                        <button class="button" id="deleteDlgCancel" onclick="closeDeleteComponent()">Cancel</button>
-                        <button class="button is-danger" id="deleteDlgConfirm">Delete</button>
-                    </center>
-                </div>
-            </div>
-            <button class="modal-close is-large" aria-label="close" onclick="closeDeleteComponent();"></button>
+            <button class="modal-close is-large" aria-label="close" onclick="closeItemPicker();"></button>
         </div>
 
 		<script src="item.js"></script>
 		<script src="../../libs.js"></script>
-        <script src="molang.js"></script>
-        <script src="molang_generator.js"></script>
+        <script src="../../item_definitions.js"></script>
 	</body>
 </html>

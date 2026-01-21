@@ -1,4 +1,4 @@
-const appVersion = "2.2.69";
+const appVersion = "2.2.70";
 const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -271,6 +271,18 @@ let projectTypes = {
       "Dimension": {
         url: "editor/javadp/dimension.html",
         icon: "fas fa-earth-americas",
+        saveType: "regular",
+        show: 1
+      },
+      "Advancement": {
+        url: "editor/javadp/advancement.html",
+        icon: "fas fa-circle-up",
+        saveType: "regular",
+        show: 1
+      },
+      "Enchantment": {
+        url: "editor/javadp/enchantment.html",
+        icon: "fas fa-wand-magic-sparkles",
         saveType: "regular",
         show: 1
       },

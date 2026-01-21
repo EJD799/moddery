@@ -1,4 +1,4 @@
-const appVersion = "2.2.67";
+const appVersion = "2.2.68";
 const buildDate = "1/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -267,9 +267,9 @@ let projectTypes = {
         saveType: "regular",
         show: 1
       },
-      "Trade Table": {
-        url: "editor/javadp/trade_table.html",
-        icon: "fas fa-right-left",
+      "Dimension": {
+        url: "editor/javadp/dimension.html",
+        icon: "fas fa-earth-americas",
         saveType: "regular",
         show: 1
       },

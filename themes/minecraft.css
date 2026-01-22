@@ -65,6 +65,8 @@ html[data-theme=minecraft] {
     --bulma-duration: 0;
     --bulma-control-radius: 0;
     --bulma-card-radius: 0;
+    --bulma-input-radius: 0 !important;
+    --bulma-radius: 0 !important;
 }
 
 .menubar {

@@ -63,6 +63,8 @@ html[data-theme=minecraft] {
     --app-menubar-color: var(--bulma-text);
 
     --bulma-duration: 0;
+    --bulma-control-radius: 0;
+    --bulma-card-radius: 0;
 }
 
 .menubar {

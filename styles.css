@@ -554,11 +554,11 @@ input:disabled::placeholder {
 }
 
 .invalidTextBox {
-    color: #d40000 !important;
-    border-color: #d40000 !important;
+    color: var(--bulma-danger) !important;
+    border-color: var(--bulma-danger) !important;
 }
 .invalidTextBox::placeholder {
-    color: #d40000 !important;
+    color: var(--bulma-danger) !important;
 }
 
 #welcomeInfoBox1 {

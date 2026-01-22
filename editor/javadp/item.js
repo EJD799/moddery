@@ -537,3 +537,15 @@ boxToValidate2.addEventListener("input", function (e) {
     boxToValidate2.classList.add("invalidTextBox");
   }
 });
+
+$(function () {
+    $("#itemPickerDialog").tooltip({
+        items: ".itemPickBtn",      // apply tooltips to buttons
+        content: function() {
+            return $(this).attr("title"); // use the existing title attribute
+        },
+        show: { effect: "fadeIn", duration: 200, delay: 0 },
+        hide: { effect: "fadeOut", duration: 200, delay: 0 },
+        track: true                 // tooltip follows the mouse
+    });
+});

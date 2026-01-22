@@ -51,7 +51,48 @@ let actionItems = {
 };
 
 let customItems = {};
+let customItemList = window?.parent?.getCustomItems?.() ?? [];
 window.addEventListener("load", async function() {
+    await Promise.all(customItemList.map(async (item) => {
+        if (item.type == "Block") {
+            if (item.hasItem) {
+                let blob = await window.parent.projZip.folder("assets").file(item.textures.item).async("blob");
+                let texture = await window.parent.fileToDataURL(blob);
+                customItems[item.id] = {
+                    name: item.displayName,
+                    texture: texture
+                };
+            } else if (item.model == "Full Block") {
+                let blob1 = await window.parent.projZip.folder("assets").file(item.textures["1"]).async("blob");
+                let texture1 = await window.parent.fileToDataURL(blob1);
+                let blob2 = await window.parent.projZip.folder("assets").file(item.textures["3"]).async("blob");
+                let texture2 = await window.parent.fileToDataURL(blob2);
+                let blob3 = await window.parent.projZip.folder("assets").file(item.textures["5"]).async("blob");
+                let texture3 = await window.parent.fileToDataURL(blob3);
+
+                let isoTexture = await makeIsometricCube(texture1, texture2, texture3);
+
+                customItems[item.id] = {
+                    name: item.displayName,
+                    texture: isoTexture
+                };
+            } else {
+                let blob = await window.parent.projZip.folder("assets").file(item.textures.default).async("blob");
+                let texture = await window.parent.fileToDataURL(blob);
+                customItems[item.id] = {
+                    name: item.displayName,
+                    texture: texture
+                };
+            }
+        } else {
+            let blob = await window.parent.projZip.folder("assets").file(item.texture).async("blob");
+            let texture = await window.parent.fileToDataURL(blob);
+            customItems[item.id] = {
+                name: item.displayName,
+                texture: texture
+            };
+        }
+    }));
     onThemeChange(null, null, window.parent.generalThemeType);
     editedItemDefinitions = Object.fromEntries(
         Object.entries(itemDefinitions).filter(([key, value]) => value.filter != "bedrock")

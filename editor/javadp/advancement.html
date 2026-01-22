@@ -1,0 +1,95 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="../../jquery-ui.min.css">
+		<link rel="stylesheet" href="../../jquery-ui.theme.min.css">
+		<script src="../../jquery-3.7.1.min.js"></script>
+		<script src="../../jquery-ui.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
+		
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+        <link rel="stylesheet" href="https://ejd799.github.io/BulmaColoredInputs/main.css">
+        <link rel="stylesheet" href="../../styles.css">
+
+        <style id="themeStyleElement"></style>
+
+        <style>
+			input {
+				padding: 10px;
+			}
+			body {
+                color: var(--bulma-text);
+                background: var(--app-main-tabs-background);
+                padding-left: 18px;
+                padding-top: 18px;
+            }
+			.ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
+				z-index: 2000 !important; /* Use !important if necessary to override existing styles */
+			}
+		</style>
+	</head>
+	<body>
+		<label for="elementIDBox">Element Name (Editor)</label>
+		<input class="input normalInput" id="elementIDBox" placeholder="Element ID" disabled>
+		<br><br>
+		<label for="advancementIDBox">Item ID</label>
+		<input class="input normalInput" id="advancementIDBox" placeholder="Advancement ID">
+		<br><br>
+        <label for="numericIDBox">Numeric ID (7-digit)</label>
+		<input class="input normalInput" id="numericIDBox" placeholder="Numeric ID" type="number">
+        <button class="button inputEditBtn" onclick="randomizeNumericID()"><i class="fas fa-shuffle"></i></button>
+		<br><br>
+		<label for="nameBox">Item Name</label>
+		<input class="input normalInput" id="nameBox" placeholder="Item Name">
+		<br><br>
+        <label for="baseItemBox">Base Item Type</label>
+        <button class="button itemIconBtn" id="baseItemBox" onclick="selectItem(1)"><img id="baseItemBoxImg" class="itemIconBtnImg"></button>
+        <br><br>
+		<label for="itemTextureBtn">Item Texture: <span id="textureNameText">No texture selected</span></label>
+		<button class="button" name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg()">Select Texture</button>
+
+        <div class="modal" id="selectTextureDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:400px;height:550px;">
+                <div class="card" id="selectTextureDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 class="title is-4">Select Texture</h4>
+                        <div class="textureMenu" id="selectTextureMenu"></div>
+
+                        <div class="textureDialogButtons">
+                            <button class="button" id="selectTextureCancelBtn" onclick="closeSelectTextureDlg()">Cancel</button>
+                            <button class="button is-primary" id="selectTextureSelectBtn" onclick="selectTexture()">Select</button>
+                        </div>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeSelectTextureDlg();"></button>
+        </div>
+
+        <div class="modal" id="itemPickerDialog">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:500px;height:550px;">
+                <div class="card" style="padding:16px;">
+                    <center>
+                        <h4 class="title is-4">Select Item</h4>
+                    </center>
+                    <input class="input" id="itemSearchBox" type="text" placeholder="Search items..." style="width:100%; margin-bottom:8px;">
+                    <div id="itemPickerViewport">
+                        <div id="itemPickerScroller"></div>
+                    </div>
+                    <br>
+                    <center>
+                        <input type="number" class="input smallInput" id="itemDataBox" placeholder="Data">
+                        <button class="button" id="itemPickerCancelBtn" onclick="closeItemPicker()">Cancel</button>
+                        <button class="button is-primary" id="itemPickerSelectBtn" disabled>Select</button>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeItemPicker();"></button>
+        </div>
+
+		<script src="item.js"></script>
+		<script src="../../libs.js"></script>
+        <script src="../../item_definitions.js"></script>
+	</body>
+</html>

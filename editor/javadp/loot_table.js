@@ -156,6 +156,7 @@ let filteredItems = [];   // after search
 let itemsPerRow = 0;
 const btnSize = 50;       // 32px + borders/padding
 const rowHeight = btnSize;
+let editedItemDefinitions = false;
 
 function openItemPickerDialog() {
     if (!editedItemDefinitions) {

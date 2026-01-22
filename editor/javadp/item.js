@@ -401,7 +401,7 @@ function saveProject() {
     return {
         name: elementData.name,
         id: $("#itemIDBox").val(),
-        numericID: $("#numericIDBox"),
+        numericID: $("#numericIDBox").val(),
         type: "Item",
         displayName: $("#nameBox").val(),
         baseItemType: baseItemType,
@@ -424,11 +424,13 @@ function loadProject(data) {
         randomizeNumericID();
     }
     baseItemType = data.baseItemType;
-    if (baseItemType[0] == "") {
-        renderSlot("", "special_remove");
-    } else {
-        renderSlot(baseItemType[0], "special_custom");
-    }
+    window.setTimeout(function() {
+        if (baseItemType[0] == "") {
+            renderSlot("", "special_remove");
+        } else {
+            renderSlot(baseItemType[0], "special_custom");
+        }
+    }, 200);
 }
 
 

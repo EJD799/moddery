@@ -285,7 +285,7 @@ const actionItems = {
 
 let customItems = {};
 let customItemList = window?.parent?.getCustomItems?.() ?? [];
-window.setTimeout(async function() {
+window.addEventListener("load", async function() {
     await Promise.all(customItemList.map(async (item) => {
         if (item.type == "Block") {
             if (item.hasItem) {
@@ -331,7 +331,7 @@ window.setTimeout(async function() {
     editedItemDefinitions = Object.fromEntries(
         Object.entries(itemDefinitions).filter(([key, value]) => value.filter != "java")
     );
-}, 100);
+});
 
 let selectedItemId = null;
 let filteredItems = [];   // after search

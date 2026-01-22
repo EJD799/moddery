@@ -738,6 +738,7 @@ input:disabled::placeholder {
 
 .ui-tabs-tab {
     transition: var(--bulma-duration);
+    border-radius: var(--bulma-control-radius) var(--bulma-control-radius) 0px 0px;
 }
 
 .tabCloseIcon {

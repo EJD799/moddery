@@ -122,3 +122,7 @@ html[data-theme=minecraft] {
     background-size: contain;
     image-rendering: pixelated;
 }
+
+html[data-theme=minecraft] .card {
+    border-radius: 0 !important;
+}

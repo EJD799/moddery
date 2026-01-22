@@ -395,6 +395,7 @@ function random7DigitString() {
 }
 function randomizeNumericID() {
     $("#numericIDBox").val(random7DigitString());
+    numericIDBox.classList.remove("invalidTextBox");
 }
 
 function saveProject() {

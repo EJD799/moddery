@@ -83,12 +83,12 @@ html[data-theme=minecraft] {
     color: white;
 }
 .button:hover {
-    background: url(themes/grass_side.png);
+    background: url(https://ejd799.github.io/moddery/themes/grass_side.png);
     background-size: contain;
     image-rendering: pixelated;
 }
 .button:active {
-    background: url(themes/grass_top.png);
+    background: url(https://ejd799.github.io/moddery/themes/grass_top.png);
     background-size: contain;
     image-rendering: pixelated;
 }

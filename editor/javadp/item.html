@@ -30,13 +30,17 @@
 	</head>
 	<body>
 		<label for="elementIDBox">Element Name (Editor)</label>
-		<input class="input normalInput" name="elementIDBox" id="elementIDBox" placeholder="Element ID" disabled>
+		<input class="input normalInput" id="elementIDBox" placeholder="Element ID" disabled>
 		<br><br>
 		<label for="itemIDBox">Item ID</label>
-		<input class="input normalInput" name="itemIDBox" id="itemIDBox" placeholder="Item ID">
+		<input class="input normalInput" id="itemIDBox" placeholder="Item ID">
+		<br><br>
+        <label for="numericIDBox">Numeric ID (7-digit)</label>
+		<input class="input normalInput" id="numericIDBox" placeholder="Numeric ID" type="number">
+        <button class="button inputEditBtn" onclick="randomizeNumericID()"><i class="fas fa-shuffle"></i></button>
 		<br><br>
 		<label for="nameBox">Item Name</label>
-		<input class="input normalInput" name="nameBox" id="nameBox" placeholder="Item Name">
+		<input class="input normalInput" id="nameBox" placeholder="Item Name">
 		<br><br>
         <label for="baseItemBox">Base Item Type</label>
         <button class="button itemIconBtn" id="baseItemBox" onclick="selectItem(1)"><img id="baseItemBoxImg" class="itemIconBtnImg"></button>

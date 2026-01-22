@@ -390,10 +390,18 @@ function selectTexture() {
     }
 }
 
+function random7DigitString() {
+    return Math.floor(Math.random() * 10_000_000).toString().padStart(7, '0');
+}
+function randomizeNumericID() {
+    $("#internalIDBox").val(random7DigitString());
+}
+
 function saveProject() {
     return {
         name: elementData.name,
         id: $("#itemIDBox").val(),
+        numericID: $("#numericIDBox"),
         type: "Item",
         displayName: $("#nameBox").val(),
         baseItemType: baseItemType,
@@ -404,6 +412,7 @@ function loadProject(data) {
     elementData = data;
     $("#elementIDBox").val(data.name);
     $("#itemIDBox").val(data.id);
+    $("#numericIDBox").val(data.numericID);
     $("#nameBox").val(data.displayName);
     selectedTexture = data.texture;
     if (selectedTexture) {
@@ -411,11 +420,14 @@ function loadProject(data) {
     } else {
         document.getElementById("textureNameText").innerHTML = "No texture selected";
     }
+    if (!data.numericID ?? false) {
+        randomizeNumericID();
+    }
     baseItemType = data.baseItemType;
-    if (baseItemType == "") {
+    if (baseItemType[0] == "") {
         renderSlot("", "special_remove");
     } else {
-        renderSlot(baseItemType, "special_custom");
+        renderSlot(baseItemType[0], "special_custom");
     }
 }
 
@@ -544,5 +556,22 @@ boxToValidate.addEventListener("input", function (e) {
   } else {
     // Invalid → add the "invalid" class
     boxToValidate.classList.add("invalidTextBox");
+  }
+});
+
+function isValidNumericID(num) {
+  return /^\d{7}$/.test(num);
+}
+
+let boxToValidate2 = numericIDBox;
+boxToValidate2.addEventListener("input", function (e) {
+  const value = boxToValidate2.value;
+
+  if (isValidNumericID(value)) {
+    // Valid → remove the "invalid" class if it exists
+    boxToValidate2.classList.remove("invalidTextBox");
+  } else {
+    // Invalid → add the "invalid" class
+    boxToValidate2.classList.add("invalidTextBox");
   }
 });

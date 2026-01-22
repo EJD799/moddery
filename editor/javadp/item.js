@@ -394,7 +394,7 @@ function random7DigitString() {
     return Math.floor(Math.random() * 10_000_000).toString().padStart(7, '0');
 }
 function randomizeNumericID() {
-    $("#internalIDBox").val(random7DigitString());
+    $("#numericIDBox").val(random7DigitString());
 }
 
 function saveProject() {

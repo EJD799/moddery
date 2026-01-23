@@ -39,8 +39,10 @@
 		<input class="input normalInput" id="titleBox" placeholder="Advancement Title">
 		<br><br>
         <label for="descriptionBox">Advancement Description</label>
-		<textarea class="textarea normalInput has-fixed-size" id="descriptionBox" placeholder="Advancement Description" rows="10"></textarea>
-		<br><br>
+        <div class="normalTextarea">
+		    <textarea class="textarea has-fixed-size" id="descriptionBox" placeholder="Advancement Description" rows="3"></textarea>
+		</div>
+        <br><br>
         <label for="iconItemBtn">Icon Item</label>
         <button class="button itemIconBtn" id="iconItemBtn" onclick="selectItem(1)"><img id="iconItemBtnImg" class="itemIconBtnImg"></button>
         <br><br>
@@ -93,7 +95,7 @@
             <button class="modal-close is-large" aria-label="close" onclick="closeItemPicker();"></button>
         </div>
 
-		<script src="item.js"></script>
+		<script src="advancement.js"></script>
 		<script src="../../libs.js"></script>
         <script src="../../item_definitions.js"></script>
 	</body>

@@ -970,3 +970,7 @@ progress {
   );
   color: var(--bulma-danger) !important;
 }
+
+.normalTextarea {
+    width: 300px;
+}

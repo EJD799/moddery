@@ -541,7 +541,7 @@ $(function () {
 
 });
 
-let boxToValidate = itemIDBox;
+let boxToValidate = advancementIDBox;
 boxToValidate.addEventListener("input", function (e) {
   const value = boxToValidate.value;
 

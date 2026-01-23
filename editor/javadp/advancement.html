@@ -32,22 +32,27 @@
 		<label for="elementIDBox">Element Name (Editor)</label>
 		<input class="input normalInput" id="elementIDBox" placeholder="Element ID" disabled>
 		<br><br>
-		<label for="advancementIDBox">Item ID</label>
+		<label for="advancementIDBox">Advancement ID</label>
 		<input class="input normalInput" id="advancementIDBox" placeholder="Advancement ID">
 		<br><br>
-        <label for="numericIDBox">Numeric ID (7-digit)</label>
-		<input class="input normalInput" id="numericIDBox" placeholder="Numeric ID" type="number">
-        <button class="button inputEditBtn" onclick="randomizeNumericID()"><i class="fas fa-shuffle"></i></button>
+		<label for="titleBox">Advancement Title</label>
+		<input class="input normalInput" id="titleBox" placeholder="Advancement Title">
 		<br><br>
-		<label for="nameBox">Item Name</label>
-		<input class="input normalInput" id="nameBox" placeholder="Item Name">
+        <label for="descriptionBox">Advancement Description</label>
+		<textarea class="textarea normalInput has-fixed-size" id="descriptionBox" placeholder="Advancement Description" rows="10">
 		<br><br>
-        <label for="baseItemBox">Base Item Type</label>
-        <button class="button itemIconBtn" id="baseItemBox" onclick="selectItem(1)"><img id="baseItemBoxImg" class="itemIconBtnImg"></button>
+        <label for="iconItemBtn">Icon Item</label>
+        <button class="button itemIconBtn" id="iconItemBtn" onclick="selectItem(1)"><img id="iconItemBtnImg" class="itemIconBtnImg"></button>
         <br><br>
-		<label for="itemTextureBtn">Item Texture: <span id="textureNameText">No texture selected</span></label>
-		<button class="button" name="itemTextureBtn" id="itemTextureBtn" onclick="openSelectTextureDlg()">Select Texture</button>
-
+        <label for="frameMenu">Frame Style</label>
+        <div class="select">
+            <select id="frameMenu">
+                <option value="task">&#xE003; Task</option>
+                <option value="goal">&#xE002; Goal</option>
+                <option value="challenge">&#xE001; Challenge</option>
+            </select>
+        </div>
+        
         <div class="modal" id="selectTextureDlg">
             <div class="modal-background"></div>
             <div class="modal-content" style="width:400px;height:550px;">

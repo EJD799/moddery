@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "ModderyIcons";
+    src: url("https://ejd799.github.io/moddery/ModderyIcons.ttf") format("truetype");
+}
+
 :root {
     --tab-height: 44px;
     --app-welcome-background: var(--bulma-background);
@@ -12,6 +17,7 @@
     --app-black-white: var(--bulma-scheme-main);
     --app-menubar-background: var(--bulma-scheme-main);
     --app-menubar-color: var(--bulma-text);
+    --bulma-family-primary: "ModderyIcons", Inter, "SF Pro", "Segoe UI", Roboto, Oxygen, Ubuntu, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 body {
     background: #111111;

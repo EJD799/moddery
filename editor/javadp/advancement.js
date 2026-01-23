@@ -104,7 +104,7 @@ let filteredItems = [];   // after search
 let itemsPerRow = 0;
 const btnSize = 50;       // 32px + borders/padding
 const rowHeight = btnSize;
-let baseItemType = "";
+let iconItemType = "";
 let editedItemDefinitions = false;
 
 function openItemPickerDialog() {
@@ -254,11 +254,11 @@ function setItem(value) {
     } else {
         itemID = value;
     }
-    baseItemType = [itemID, Number($("#itemDataBox").val())];
+    iconItemType = [itemID, Number($("#itemDataBox").val())];
     renderSlot(itemID, value);
 }
 function renderSlot(value, original) {
-    let slotImage = document.getElementById("baseItemBoxImg");
+    let slotImage = document.getElementById("iconItemBtnImg");
     if (original == "special_remove") {
         slotImage.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
     } else if (original == "special_custom" && Object.keys(editedItemDefinitions).includes("minecraft:" + value)) {
@@ -276,7 +276,7 @@ function renderSlot(value, original) {
             slotImage.setAttribute("src", replaceShortURLs(editedItemDefinitions[value].texture));
         }
     }
-    let slotBtn = document.getElementById("baseItemBox");
+    let slotBtn = document.getElementById("iconItemBtn");
     if (original == "special_remove") {
         slotBtn.setAttribute("title", "");
     } else if ((original == "special_custom" && Object.keys(editedItemDefinitions).includes("minecraft:" + value)) || (editedItemDefinitions["minecraft:" + value]?.name ?? false)) {
@@ -294,7 +294,7 @@ function renderSlot(value, original) {
             slotBtn.setAttribute("title", value);
         }
     }
-    $("#baseItemBox").tooltip({
+    $("#iconItemBtn").tooltip({
         content: function() {
             return $(this).attr("title");
         },
@@ -401,35 +401,27 @@ function randomizeNumericID() {
 function saveProject() {
     return {
         name: elementData.name,
-        id: $("#itemIDBox").val(),
-        numericID: $("#numericIDBox").val(),
-        type: "Item",
-        displayName: $("#nameBox").val(),
-        baseItemType: baseItemType,
-        texture: selectedTexture
+        id: $("#advancementIDBox").val(),
+        type: "Advancement",
+        title: $("#titleBox").val(),
+        description: $("#descriptionBox").val(),
+        iconItemType: iconItemType,
+        frameStyle: $("#frameMenu").val()
     };
 }
 function loadProject(data) {
     elementData = data;
     $("#elementIDBox").val(data.name);
-    $("#itemIDBox").val(data.id);
-    $("#numericIDBox").val(data.numericID);
-    $("#nameBox").val(data.displayName);
-    selectedTexture = data.texture;
-    if (selectedTexture) {
-        document.getElementById("textureNameText").innerHTML = selectedTexture;
-    } else {
-        document.getElementById("textureNameText").innerHTML = "No texture selected";
-    }
-    if (!data.numericID ?? false) {
-        randomizeNumericID();
-    }
-    baseItemType = data.baseItemType;
+    $("#advancementIDBox").val(data.id);
+    $("#titleBox").val(data.title);
+    $("#descriptionBox").val(data.description);
+    $("#frameMenu").val(data.frameStyle);
+    iconItemType = data.iconItemType;
     window.setTimeout(function() {
-        if (baseItemType[0] == "") {
+        if (iconItemType[0] == "") {
             renderSlot("", "special_remove");
         } else {
-            renderSlot(baseItemType[0], "special_custom");
+            renderSlot(iconItemType[0], "special_custom");
         }
     }, 200);
 }

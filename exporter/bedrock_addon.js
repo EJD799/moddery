@@ -1,11 +1,12 @@
 let bedrockExporter = {};
 
 bedrockExporter.parseCraftingGrid = function(grid) {
-  if (!isBedrockShapedRecipeValid(grid)) {
-    logExporter("Invalid crafting recipe!", "warn");
-  }
   // Normalize to 3x3 item-only array
   const items = grid.slice(0, 9).map(cell => cell?.[0] ?? "");
+
+  if (!isBedrockShapedRecipeValid(items)) {
+    logExporter("This recipe may not work properly due to a bug with Minecraft Bedrock Edition", "warn");
+  }
 
   // Convert to rows
   let rows = [

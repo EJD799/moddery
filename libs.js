@@ -219,52 +219,43 @@ function isBedrockShapedRecipeValid(recipeArray) {
         return false;
     }
 
-    // Extract 3x3 grid, ignore output slot (index 9)
     const grid = recipeArray
         .slice(0, 9)
-        .map(e => e && e[0] ? 1 : 0);
+        .map(e => (e && e[0]) ? 1 : 0);
 
-    // Helper to count filled slots
-    const count = arr => arr.reduce((a, b) => a + b, 0);
+    const filled = grid
+        .map((v, i) => v ? i : -1)
+        .filter(i => i !== -1);
 
-    // Check rows
-    for (let r = 0; r < 3; r++) {
-        const row = grid.slice(r * 3, r * 3 + 3);
-        if (count(row) >= 2) return true;
-    }
+    if (filled.length === 0) return false;
 
-    // Check columns
-    for (let c = 0; c < 3; c++) {
-        const col = [grid[c], grid[c + 3], grid[c + 6]];
-        if (count(col) >= 2) return true;
-    }
+    const visited = new Set();
+    const stack = [filled[0]];
 
-    // Check orthogonal adjacency
-    const directions = [
-        [1, 0],  // down
-        [-1, 0], // up
-        [0, 1],  // right
-        [0, -1]  // left
-    ];
-
-    for (let i = 0; i < 9; i++) {
-        if (!grid[i]) continue;
-
+    const neighbors = i => {
         const x = i % 3;
         const y = Math.floor(i / 3);
+        return [
+            [x + 1, y],
+            [x - 1, y],
+            [x, y + 1],
+            [x, y - 1]
+        ]
+        .filter(([nx, ny]) => nx >= 0 && nx < 3 && ny >= 0 && ny < 3)
+        .map(([nx, ny]) => ny * 3 + nx)
+        .filter(n => grid[n]);
+    };
 
-        for (const [dx, dy] of directions) {
-            const nx = x + dx;
-            const ny = y + dy;
-            if (nx < 0 || nx > 2 || ny < 0 || ny > 2) continue;
-
-            const ni = ny * 3 + nx;
-            if (grid[ni]) return true;
+    while (stack.length) {
+        const i = stack.pop();
+        if (visited.has(i)) continue;
+        visited.add(i);
+        for (const n of neighbors(i)) {
+            if (!visited.has(n)) stack.push(n);
         }
     }
 
-    // Fails all structural checks
-    return false;
+    return visited.size === filled.length;
 }
 
 function isValidElementName(value) {

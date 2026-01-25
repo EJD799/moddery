@@ -1,5 +1,5 @@
-const appVersion = "2.2.95";
-const buildDate = "1/23/2026";
+const appVersion = "2.2.96";
+const buildDate = "1/26/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -1969,19 +1969,23 @@ function closeExportDlg() {
   exportDlg.classList.remove("is-active");
 }
 async function exportProj() {
-  openLoader();
-  loaderText.innerHTML = "Exporting Project...";
-  loaderProgress.setAttribute("max", "0"),
-  loaderProgress.value = "0";
+  exportLoaderText.innerHTML = "Exporting Project...";
+  exportLoaderProgress.setAttribute("max", "0"),
+  exportLoaderProgress.value = "0";
   exportLog.innerHTML = "";
   
   if (projManifest.type == "be_addon") {
     await bedrockExporter.runExport();
   }
 
-  loaderText.innerHTML = `Exporting Project... (100%)`;
-  loaderProgress.value = progressBarMax;
-  closeLoader();
+  exportLoaderText.innerHTML = `Exporting Project... (100%)`;
+  exportLoaderProgress.value = progressBarMax;
+
+  window.setTimeout(function(){
+    exportLoaderText.innerHTML = "";
+    exportLoaderProgress.setAttribute("max", "0"),
+    exportLoaderProgress.value = "0";
+  }, 500);
 }
 
 function openLoader() {

@@ -1267,10 +1267,10 @@ bedrockExporter.runExport = async function() {
   exportZip2.file("manifest.json", JSON.stringify(rpManifest, null, 4));
   let elementsList = fileListInFolder("elements").filter(item => !item.endsWith(".code.json"));
   let assetsList = fileListInFolder("assets");
-  loaderText.innerHTML = "Exporting Project... (0%)";
+  exportLoaderText.innerHTML = "Exporting Project... (0%)";
   progressBarMax = elementsList.length + 1;
-  loaderProgress.setAttribute("max", progressBarMax),
-  loaderProgress.value = "0";
+  exportLoaderProgress.setAttribute("max", progressBarMax),
+  exportLoaderProgress.value = "0";
   let itemTextureFile = {
     "resource_pack_name": projManifest.namespace,
     "texture_name": "atlas.items",
@@ -1928,8 +1928,8 @@ bedrockExporter.runExport = async function() {
     /*} catch(err) {
       logExporter(err, "error");
     }*/
-    loaderText.innerHTML = `Exporting Project... (${Math.round((loaderProgress.value / progressBarMax) * 100)}%)`;
-    loaderProgress.value = (i + 1).toString();
+    exportLoaderText.innerHTML = `Exporting Project... (${Math.round((exportLoaderProgress.value / progressBarMax) * 100)}%)`;
+    exportLoaderProgress.value = (i + 1).toString();
   }
   exportZip2.folder("textures").file("item_texture.json", JSON.stringify(itemTextureFile, null, 4));
   exportZip2.folder("textures").file("terrain_texture.json", JSON.stringify(terrainTextureFile, null, 4));

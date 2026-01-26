@@ -1,11 +1,11 @@
 let bedrockExporter = {};
 
-bedrockExporter.parseCraftingGrid = function(grid) {
+bedrockExporter.parseCraftingGrid = function(grid, type, name) {
   // Normalize to 3x3 item-only array
   const items = grid.slice(0, 9).map(cell => cell?.[0] ?? "");
 
   if (!isBedrockShapedRecipeValid(items)) {
-    logExporter("This recipe may not work properly due to a bug with Minecraft Bedrock Edition", "warn");
+    logExporter(`⚠ The shaped recipe <i>${name}</i> may not work correctly in Minecraft Bedrock Edition due to known crafting pattern issues.`, "warn");
   }
 
   // Convert to rows
@@ -1760,7 +1760,7 @@ bedrockExporter.runExport = async function() {
         };
         let parsedGrid;
         if (elementFile.recipeType == "crafting") {
-          parsedGrid = bedrockExporter.parseCraftingGrid(craftingGrid, "crafting");
+          parsedGrid = bedrockExporter.parseCraftingGrid(craftingGrid, "crafting", elementFile.name);
           let ingredients = Object.values(parsedGrid[1]);
           let unlock = [];
           for (let j = 0; j < ingredients.length; j++) {

@@ -1,4 +1,4 @@
-const appVersion = "2.2.98";
+const appVersion = "2.2.99";
 const buildDate = "1/26/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -1907,6 +1907,15 @@ function updateMenusForProjectType() {
     let option = document.createElement("option");
     option.innerHTML = versions[i];
     editProjMCVersionBox.appendChild(option);
+  }
+
+  let exportModes = projectType.exportOptions;
+
+  for (let i = 0; i < exportModes.length; i++) {
+    let option = document.createElement("option");
+    option.innerHTML = exportModes[i][0];
+    option.value = exportModes[i][1];
+    exportDlgModeBox.appendChild(option);
   }
 }
 

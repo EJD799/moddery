@@ -186,6 +186,9 @@ bedrockExporter.parseItemComponents = function(file) {
     newObj["minecraft:liquid_clipped"] = component.main;
   }
   // Piercing Weapon
+  if (keys.includes("Pottery Sherd")) {
+    newObj["minecraft:decorated_pot_sherds"] = {};
+  }
   if (keys.includes("Projectile")) {
     let component = components["Projectile"];
     newObj["minecraft:projectile"] = {
@@ -1293,6 +1296,7 @@ bedrockExporter.runExport = async function() {
       let exportedFile2;
       let exportedFile3;
       let exportedFile4;
+      let decoratedPotFile = false;
       if (role == "Function") {
         exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/function.html";
         let elementCode = JSON.parse(await projZip.folder("elements").file(elementsList[i].replace(".json", ".code.json")).async("string"));
@@ -1340,7 +1344,32 @@ bedrockExporter.runExport = async function() {
           let texture = await projZip.folder("assets").file(elementFile.texture).async("blob");
           exportZip2.folder("textures").folder("items").file(elementFile.texture, texture);
         }
-        languageFile += `item.${namespacedID}=${elementFile.displayName}\n`;
+        if (typeof itemComponents["minecraft:decorated_pot_sherds"] == "object") {
+          itemComponents["minecraft:tags"] = {
+            "tags": ["minecraft:decorated_pot_sherds"]
+          };
+          itemComponents["minecraft:display_name"] = {
+            "value": `item.${namespacedID}=${elementFile.displayName}.name\n`
+          };
+          languageFile += `item.${namespacedID}=${elementFile.displayName}.name\n`;
+          if (!decoratedPotFile) {
+            decoratedPotFile = {
+              "format_version": "1.8.0",
+              "minecraft:client_entity": {
+                "description": {
+                  "identifier": "minecraft:decorated_pot",
+                  "textures": {}
+                }
+              }
+            };
+          }
+          decoratedPotFile["minecraft:client_entity"].description.textures[elementFile.id] = `textures/blocks/${elementFile.id}_pattern`;
+          let potTexture = await projZip.folder("assets").file(itemComponents["minecraft:decorated_pot_sherds"].texture).async("blob");
+          exportZip2.folder("textures").folder("blocks").file(`textures/blocks/${elementFile.id}_pattern.png`, potTexture);
+          delete itemComponents["minecraft:decorated_pot_sherds"];
+        } else {
+          languageFile += `item.${namespacedID}=${elementFile.displayName}\n`;
+        }
         let exportObj = {
           "format_version": formatVersion,
           "minecraft:item": {

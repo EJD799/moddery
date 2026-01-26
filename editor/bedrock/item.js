@@ -401,6 +401,19 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Pottery Sherd": {
+        name: "Pottery Sherd",
+        id: "minecraft:decorated_pot_sherds",
+        inputs: [
+            {
+                type: "texture",
+                name: "texture",
+                label: "Block Texture",
+                tooltip: "The texture for the pot to use as a block."
+            }
+        ],
+        requires: false
+    },
     "Projectile": {
         name: "Projectile",
         id: "minecraft:projectile",

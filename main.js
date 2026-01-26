@@ -1,4 +1,4 @@
-const appVersion = "2.2.106";
+const appVersion = "2.2.107";
 const buildDate = "1/26/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -165,12 +165,6 @@ let projectTypes = {
       "Armor Trim": {
         url: "editor/bedrock/armor_trim.html",
         icon: "fas fa-shirt",
-        saveType: "regular",
-        show: 1
-      },
-      "Pottery Sherd": {
-        url: "editor/bedrock/pottery_sherd.html",
-        icon: "fas fa-play",
         saveType: "regular",
         show: 1
       },

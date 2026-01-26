@@ -1,0 +1,74 @@
+html[data-theme=rainbow] {
+    --app-welcome-background: var(--bulma-background);
+    --app-main-tabs-background: var(--bulma-background);
+
+    --bulma-text: hsl(221deg, 14%, 71%);
+    --bulma-background: hsl(221deg, 14%, 14%);
+    --bulma-scheme-main: hsl(221deg, 14%, 9%);
+
+    /* PRIMARY */
+    --bulma-primary-h: 266deg;
+    --bulma-primary-s: 100%;
+    --bulma-primary-l: 73%;
+
+    /* LINK */
+    --bulma-link-h: 31deg;
+    --bulma-link-s: 100%;
+    --bulma-link-l: 71%;
+
+    /* INFO */
+    --bulma-info-h: 198deg;
+    --bulma-info-s: 100%;
+    --bulma-info-l: 70%;
+
+    /* SUCCESS */
+    --bulma-success-h: 153deg;
+    --bulma-success-s: 100%;
+    --bulma-success-l: 53%;
+
+    /* WARNING */
+    --bulma-warning-h: 42deg;
+    --bulma-warning-s: 100%;
+    --bulma-warning-l: 53%;
+
+    /* DANGER */
+    --bulma-danger-h: 348deg;
+    --bulma-danger-s: 100%;
+    --bulma-danger-l: 70%;
+
+    --app-white-btn-background: var(--bulma-background);
+    --app-white-btn-color: var(--bulma-white-l);
+
+    --app-tab-bar-background: #3b3b43;
+    --app-tab-bar-background1: #42424b;
+    --app-tab-bar-background2: #52525e;
+    --app-tab-bar-background3: #626271;
+    --app-selected-tab-color: var(--bulma-link);
+    --app-selected-tab-border: var(--bulma-link);
+    --app-deselected-tab-color: var(--bulma-text);
+    --app-deselected-tab-border: #545454;
+    --app-selected-tab-background1: #3b3b43;
+    --app-selected-tab-background2: #42424b;
+
+    --app-image-editor-toolbar-background: var(--bulma-background);
+    --app-image-editor-background: var(--bulma-scheme-main);
+    --app-blockly-background: var(--bulma-scheme-main);
+    --app-blockly-toolbox-background: var(--bulma-background);
+    --app-blockly-toolbox-flyout-background: #3b3b4350;
+
+    --app-black-white: var(--bulma-scheme-main);
+    --app-disabled-input-border: #626271;
+
+    --app-menubar-background: var(--bulma-scheme-main);
+    --app-menubar-color: var(--bulma-text);
+}
+
+.button.is-primary {
+    background: linear-gradient(90deg,rgba(255, 105, 187, 1) 0%, rgba(255, 107, 107, 1) 14%, rgba(255, 186, 102, 1) 28%, rgba(240, 230, 89, 1) 43%, rgba(147, 255, 84, 1) 56%, rgba(83, 237, 206, 1) 70%, rgba(79, 120, 255, 1) 84%, rgba(170, 83, 237, 1) 100%);
+}
+.button.is-primary:hover {
+    background: linear-gradient(90deg,rgba(252, 130, 197, 1) 0%, rgba(255, 132, 132, 1) 14%, rgba(255, 211, 127, 1) 28%, rgba(255, 255, 114, 1) 43%, rgba(172, 255, 109, 1) 56%, rgba(108, 252, 231, 1) 70%, rgba(104, 145, 255, 1) 84%, rgba(195, 108, 252, 1) 100%);
+}
+.button.is-primary:active {
+    background: linear-gradient(90deg,rgba(255, 155, 222, 1) 0%, rgba(255, 157, 157, 1) 14%, rgba(255, 236, 152, 1) 28%, rgba(255, 255, 139, 1) 43%, rgba(197, 255, 134, 1) 56%, rgba(133, 255, 255, 1) 70%, rgba(129, 170, 255, 1) 84%, rgba(220, 133, 255, 1) 100%);
+}

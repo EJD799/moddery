@@ -409,6 +409,9 @@ function saveProject() {
         frameStyle: $("#frameMenu").val(),
         parent: $("#parentMenu").val(),
         backgroundTexture: selectedTexture,
+        showToast: showToastBox.checked,
+        announceToChat: announceToChatBox.checked,
+        hidden: hiddenBox.checked
     };
 }
 function loadProject(data) {
@@ -426,6 +429,9 @@ function loadProject(data) {
     } else {
         document.getElementById("textureNameText").innerHTML = "No texture selected";
     }
+    showToastBox.checked = data.showToast ?? true;
+    announceToChatBox.checked = data.announceToChat ?? true;
+    hiddenBox.checked = data.hidden ?? false;
     window.setTimeout(function() {
         if (iconItemType[0] == "") {
             renderSlot("", "special_remove");

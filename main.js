@@ -1,4 +1,4 @@
-const appVersion = "2.2.102";
+const appVersion = "2.2.103";
 const buildDate = "1/26/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -158,6 +158,18 @@ let projectTypes = {
         saveType: "regular",
         show: 2
       },
+      "Armor Trim": {
+        url: "editor/bedrock/armor_trim.html",
+        icon: "fas fa-shirt",
+        saveType: "regular",
+        show: 1
+      },
+      "Pottery Sherd": {
+        url: "editor/bedrock/pottery_sherd.html",
+        icon: "fas fa-play",
+        saveType: "regular",
+        show: 1
+      },
       "Image": {
         url: "editor/image.html",
         icon: "fas fa-image",
@@ -298,6 +310,18 @@ let projectTypes = {
       "Painting": {
         url: "editor/javadp/painting.html",
         icon: "fas fa-palette",
+        saveType: "regular",
+        show: 1
+      },
+      "Banner Pattern": {
+        url: "editor/javadp/banner_pattern.html",
+        icon: "fas fa-scroll",
+        saveType: "regular",
+        show: 1
+      },
+      "Dialog": {
+        url: "editor/javadp/dialog.html",
+        icon: "fas fa-window-maximize",
         saveType: "regular",
         show: 1
       },

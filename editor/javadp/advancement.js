@@ -406,7 +406,9 @@ function saveProject() {
         title: $("#titleBox").val(),
         description: $("#descriptionBox").val(),
         iconItemType: iconItemType,
-        frameStyle: $("#frameMenu").val()
+        frameStyle: $("#frameMenu").val(),
+        parent: $("#parentMenu").val(),
+        backgroundTexture: selectedTexture,
     };
 }
 function loadProject(data) {
@@ -417,6 +419,13 @@ function loadProject(data) {
     $("#descriptionBox").val(data.description);
     $("#frameMenu").val(data.frameStyle);
     iconItemType = data.iconItemType;
+    $("#parentMenu").val(data.parent);
+    selectedTexture = data.texture;
+    if (selectedTexture) {
+        document.getElementById("textureNameText").innerHTML = selectedTexture;
+    } else {
+        document.getElementById("textureNameText").innerHTML = "No texture selected";
+    }
     window.setTimeout(function() {
         if (iconItemType[0] == "") {
             renderSlot("", "special_remove");

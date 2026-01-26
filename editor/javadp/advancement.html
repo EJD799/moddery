@@ -42,7 +42,7 @@
         <div class="normalTextarea">
 		    <textarea class="textarea has-fixed-size" id="descriptionBox" placeholder="Advancement Description" rows="3"></textarea>
 		</div>
-        <br><br>
+        <br>
         <label for="iconItemBtn">Icon Item</label>
         <button class="button itemIconBtn" id="iconItemBtn" onclick="selectItem(1)"><img id="iconItemBtnImg" class="itemIconBtnImg"></button>
         <br><br>
@@ -53,6 +53,18 @@
                 <option value="goal">&#xE002; Goal</option>
                 <option value="challenge">&#xE001; Challenge</option>
             </select>
+        </div>
+        <br><br>
+        <label for="parentMenu">Advancement Parent</label>
+        <div class="select">
+            <select id="parentMenu">
+                <option value="root">Root</option>
+            </select>
+        </div>
+        <br><br>
+        <div class="backgroundTextureSelector">
+            <label for="backgroundTextureBtn">Item Texture: <span id="textureNameText">No texture selected</span></label>
+            <button class="button" name="backgroundTextureBtn" id="backgroundTextureBtn" onclick="openSelectTextureDlg()">Select Texture</button>
         </div>
         
         <div class="modal" id="selectTextureDlg">

@@ -49,7 +49,7 @@ bedrockExporter.parseCraftingGrid = function(grid, type, name) {
   return [pattern, key];
 };
 
-bedrockExporter.parseItemComponents = function(file) {
+bedrockExporter.parseItemComponents = async function(file) {
   let components = file.components;
   let keys = Object.keys(components);
   let newObj = {};
@@ -1332,7 +1332,7 @@ bedrockExporter.runExport = async function() {
         }
         exportZip1.folder("scripts").file(`${elementFile.id}.js`, exportedFile1);
       } else if (role == "Item") {
-        let itemComponents = bedrockExporter.parseItemComponents(elementFile);
+        let itemComponents = await bedrockExporter.parseItemComponents(elementFile);
         let textureID = `${projManifest.namespace}:${elementFile.texture.replace(".png", "")}`;
         itemComponents["minecraft:icon"] = textureID;
         if (!Object.keys(itemTextureFile.texture_data).includes(textureID)) {

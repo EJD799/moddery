@@ -1364,6 +1364,7 @@ bedrockExporter.runExport = async function() {
             };
           }
           decoratedPotFile["minecraft:client_entity"].description.textures[elementFile.id] = `textures/blocks/${elementFile.id}_pattern`;
+          console.log(itemComponents);
           let potTexture = await projZip.folder("assets").file(itemComponents["minecraft:decorated_pot_sherds"].texture).async("blob");
           exportZip2.folder("textures").folder("blocks").file(`textures/blocks/${elementFile.id}_pattern.png`, potTexture);
           delete itemComponents["minecraft:decorated_pot_sherds"];

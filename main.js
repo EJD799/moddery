@@ -1,4 +1,4 @@
-const appVersion = "2.2.103";
+const appVersion = "2.2.104";
 const buildDate = "1/26/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -156,7 +156,7 @@ let projectTypes = {
         url: "editor/bedrock/painting.html",
         icon: "fas fa-palette",
         saveType: "regular",
-        show: 2
+        show: 1
       },
       "Armor Trim": {
         url: "editor/bedrock/armor_trim.html",
@@ -316,6 +316,12 @@ let projectTypes = {
       "Banner Pattern": {
         url: "editor/javadp/banner_pattern.html",
         icon: "fas fa-scroll",
+        saveType: "regular",
+        show: 1
+      },
+      "Music Disc": {
+        url: "editor/javadp/music_disc.html",
+        icon: "fas fa-compact-disc",
         saveType: "regular",
         show: 1
       },

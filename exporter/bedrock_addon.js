@@ -1352,9 +1352,9 @@ bedrockExporter.runExport = async function() {
             "tags": ["minecraft:decorated_pot_sherds"]
           };
           itemComponents["minecraft:display_name"] = {
-            "value": `item.${namespacedID}=${elementFile.displayName}.name\n`
+            "value": `item.${namespacedID}=${elementFile.displayName}.name`
           };
-          languageFile += `item.${namespacedID}=${elementFile.displayName}.name\n`;
+          languageFile += `item.${namespacedID}.name=${elementFile.displayName}\n`;
           if (!decoratedPotFile) {
             decoratedPotFile = {
               "format_version": "1.8.0",
@@ -1369,7 +1369,7 @@ bedrockExporter.runExport = async function() {
           decoratedPotFile["minecraft:client_entity"].description.textures[elementFile.id] = `textures/blocks/${elementFile.id}_pattern`;
           console.log(itemComponents);
           let potTexture = await projZip.folder("assets").file(itemComponents["minecraft:decorated_pot_sherds"].texture).async("blob");
-          exportZip2.folder("textures").folder("blocks").file(`textures/blocks/${elementFile.id}_pattern.png`, potTexture);
+          exportZip2.folder("textures").folder("blocks").file(`${elementFile.id}_pattern.png`, potTexture);
           delete itemComponents["minecraft:decorated_pot_sherds"];
         } else {
           languageFile += `item.${namespacedID}=${elementFile.displayName}\n`;

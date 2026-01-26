@@ -1,4 +1,4 @@
-const appVersion = "2.2.99";
+const appVersion = "2.2.100";
 const buildDate = "1/26/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -640,6 +640,8 @@ document.addEventListener("DOMContentLoaded", function(){
     }
     newProjType.appendChild(optgroup);
   }
+
+  $("#navbarExport").hide();
 });
 function removeOptionByValue(selectEl, value) {
   for (let i = selectEl.options.length - 1; i >= 0; i--) {
@@ -1378,6 +1380,9 @@ function createProject() {
     closeNewProjDlg();
     document.getElementById("tabs").hidden = false;
     document.getElementById("welcome").hidden = true;
+    $("#navbarNew").hide();
+    $("#navbarOpen").hide();
+    $("#navbarExport").show();
     document.getElementById("savingBox").style.display = "block";
     projZip = new JSZip();
     let bpUUID = crypto.randomUUID();
@@ -1834,6 +1839,9 @@ function openProj(file) {
         selectedScriptEntry = manifest.scriptEntry;
         document.getElementById("tabs").hidden = false;
         document.getElementById("welcome").hidden = true;
+        $("#navbarNew").hide();
+        $("#navbarOpen").hide();
+        $("#navbarExport").show();
         document.getElementById("savingBox").style.display = "block";
         savingText.innerHTML = "<i class='loadingSpinner'></i> Opening Project...";
         elementFolderList = fileListInFolder("elements");

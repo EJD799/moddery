@@ -668,6 +668,9 @@ input:disabled::placeholder {
 
 /* Dropdown clickable items */
 .menubar .navbar-dropdown a.navbar-item:hover {
+  background-color: var(--bulma-scheme-main-bis);
+}
+.menubar .navbar-dropdown a.navbar-item:active {
   background-color: var(--bulma-scheme-main-ter);
 }
 

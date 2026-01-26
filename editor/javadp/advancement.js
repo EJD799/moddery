@@ -420,7 +420,7 @@ function loadProject(data) {
     $("#frameMenu").val(data.frameStyle);
     iconItemType = data.iconItemType;
     $("#parentMenu").val(data.parent);
-    selectedTexture = data.texture;
+    selectedTexture = data.backgroundTexture;
     if (selectedTexture) {
         document.getElementById("textureNameText").innerHTML = selectedTexture;
     } else {
@@ -560,23 +560,6 @@ boxToValidate.addEventListener("input", function (e) {
   } else {
     // Invalid → add the "invalid" class
     boxToValidate.classList.add("invalidTextBox");
-  }
-});
-
-function isValidNumericID(num) {
-  return /^\d{7}$/.test(num);
-}
-
-let boxToValidate2 = numericIDBox;
-boxToValidate2.addEventListener("input", function (e) {
-  const value = boxToValidate2.value;
-
-  if (isValidNumericID(value)) {
-    // Valid → remove the "invalid" class if it exists
-    boxToValidate2.classList.remove("invalidTextBox");
-  } else {
-    // Invalid → add the "invalid" class
-    boxToValidate2.classList.add("invalidTextBox");
   }
 });
 

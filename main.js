@@ -1,4 +1,4 @@
-const appVersion = "2.2.116";
+const appVersion = "2.2.117";
 const buildDate = "1/26/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -153,18 +153,6 @@ let projectTypes = {
       "Trade Table": {
         url: "editor/bedrock/trade_table.html",
         icon: "fas fa-right-left",
-        saveType: "regular",
-        show: 1
-      },
-      "Painting": {
-        url: "editor/bedrock/painting.html",
-        icon: "fas fa-palette",
-        saveType: "regular",
-        show: 1
-      },
-      "Armor Trim": {
-        url: "editor/bedrock/armor_trim.html",
-        icon: "fas fa-shirt",
         saveType: "regular",
         show: 1
       },

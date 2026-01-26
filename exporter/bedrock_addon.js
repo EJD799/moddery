@@ -1194,6 +1194,7 @@ bedrockExporter.parseEntityComponents = async function(file) {
 bedrockExporter.runExport = async function() {
   exportZip1 = new JSZip();
   exportZip2 = new JSZip();
+  let decoratedPotFile = false;
   if (projManifest.packIcon) {
     let packIcon = await projZip.folder("assets").file(projManifest.packIcon).async("blob");
     exportZip1.file("pack_icon.png", packIcon);
@@ -1299,7 +1300,6 @@ bedrockExporter.runExport = async function() {
       let exportedFile2;
       let exportedFile3;
       let exportedFile4;
-      let decoratedPotFile = false;
       if (role == "Function") {
         exporterFrame.src = "https://ejd799.github.io/moddery/editor/bedrock/function.html";
         let elementCode = JSON.parse(await projZip.folder("elements").file(elementsList[i].replace(".json", ".code.json")).async("string"));
@@ -1969,6 +1969,9 @@ bedrockExporter.runExport = async function() {
   exportZip2.folder("textures").file("terrain_texture.json", JSON.stringify(terrainTextureFile, null, 4));
   exportZip2.folder("texts").file("en_US.lang", languageFile);
   exportZip2.folder("texts").file("languages.json", JSON.stringify(["en_US"]));
+  if (decoratedPotFile) {
+    exportZip2.folder("entity").file("decorated_pot.json", JSON.stringify(decoratedPotFile));
+  }
   if (exportDlgModeBox.value === "1mcaddon" || exportDlgModeBox.value === "1zip") {
     // One file containing both BP and RP
 

@@ -1,4 +1,4 @@
-const appVersion = "2.2.100";
+const appVersion = "2.2.101";
 const buildDate = "1/26/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -641,6 +641,8 @@ document.addEventListener("DOMContentLoaded", function(){
     newProjType.appendChild(optgroup);
   }
 
+  $("#navbarSave").hide();
+  $("#navbarSaveAs").hide();
   $("#navbarExport").hide();
 });
 function removeOptionByValue(selectEl, value) {
@@ -1382,6 +1384,8 @@ function createProject() {
     document.getElementById("welcome").hidden = true;
     $("#navbarNew").hide();
     $("#navbarOpen").hide();
+    $("#navbarSave").show();
+    $("#navbarSaveAs").show();
     $("#navbarExport").show();
     document.getElementById("savingBox").style.display = "block";
     projZip = new JSZip();
@@ -1841,6 +1845,8 @@ function openProj(file) {
         document.getElementById("welcome").hidden = true;
         $("#navbarNew").hide();
         $("#navbarOpen").hide();
+        $("#navbarSave").show();
+        $("#navbarSaveAs").show();
         $("#navbarExport").show();
         document.getElementById("savingBox").style.display = "block";
         savingText.innerHTML = "<i class='loadingSpinner'></i> Opening Project...";

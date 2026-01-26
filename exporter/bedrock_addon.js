@@ -187,7 +187,9 @@ bedrockExporter.parseItemComponents = async function(file) {
   }
   // Piercing Weapon
   if (keys.includes("Pottery Sherd")) {
-    newObj["minecraft:decorated_pot_sherds"] = {};
+    newObj["minecraft:decorated_pot_sherds"] = {
+      texture: component.texture
+    };
   }
   if (keys.includes("Projectile")) {
     let component = components["Projectile"];

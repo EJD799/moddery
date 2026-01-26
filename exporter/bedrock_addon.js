@@ -1352,7 +1352,7 @@ bedrockExporter.runExport = async function() {
             "tags": ["minecraft:decorated_pot_sherds"]
           };
           itemComponents["minecraft:display_name"] = {
-            "value": `item.${namespacedID}=${elementFile.displayName}.name`
+            "value": `item.${namespacedID}.name=${elementFile.displayName}`
           };
           languageFile += `item.${namespacedID}.name=${elementFile.displayName}\n`;
           if (!decoratedPotFile) {

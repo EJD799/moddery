@@ -61,12 +61,8 @@ html[data-theme=rainbow] {
 
     --app-menubar-background: var(--bulma-scheme-main);
     --app-menubar-color: var(--bulma-text);
-}
 
-html[data-theme=rainbow] .button.is-primary {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(
+    --rainbow1: linear-gradient(
     90deg,
     rgba(255, 105, 187, 1) 0%,
     rgba(255, 107, 107, 1) 14%,
@@ -79,68 +75,37 @@ html[data-theme=rainbow] .button.is-primary {
   );
 }
 
-/* Hover layer */
+html[data-theme=rainbow] .button.is-primary {
+  position: relative;
+  overflow: hidden;
+  background: var(--rainbow1);
+}
+
+/* Single overlay layer (hover + active) */
 html[data-theme=rainbow] .button.is-primary::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(252, 130, 197, 1) 0%,
-    rgba(255, 132, 132, 1) 14%,
-    rgba(255, 211, 127, 1) 28%,
-    rgba(255, 255, 114, 1) 43%,
-    rgba(172, 255, 109, 1) 56%,
-    rgba(108, 252, 231, 1) 70%,
-    rgba(104, 145, 255, 1) 84%,
-    rgba(195, 108, 252, 1) 100%
-  );
+  background: var(--rainbow1);
   opacity: 0;
-  transition: var(--bulma-duration);
   pointer-events: none;
+
+  /* Lightening effect */
+  filter: brightness(1.12) saturate(1.05);
+
+  transition:
+    opacity var(--bulma-duration) ease,
+    filter var(--bulma-duration) ease;
 }
 
-/* Active layer */
-html[data-theme=rainbow] .button.is-primary::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 155, 222, 1) 0%,
-    rgba(255, 157, 157, 1) 14%,
-    rgba(255, 236, 152, 1) 28%,
-    rgba(255, 255, 139, 1) 43%,
-    rgba(197, 255, 134, 1) 56%,
-    rgba(133, 255, 255, 1) 70%,
-    rgba(129, 170, 255, 1) 84%,
-    rgba(220, 133, 255, 1) 100%
-  );
-  opacity: 0;
-  transition: var(--bulma-duration);
-  pointer-events: none;
-}
-
-/* State toggles */
+/* Hover */
 html[data-theme=rainbow] .button.is-primary:hover::before {
   opacity: 1;
 }
 
-html[data-theme=rainbow] .button.is-primary:active::after {
+/* Active (slightly stronger, faster like Bulma) */
+html[data-theme=rainbow] .button.is-primary:active::before {
   opacity: 1;
-}
-
-html[data-theme=rainbow] .button.is-primary {
-  position: relative;
-  z-index: 0;
-}
-
-html[data-theme=rainbow] .button.is-primary {
-  position: relative;
-  z-index: 0;
-}
-
-html[data-theme=rainbow] .button.is-primary::before,
-html[data-theme=rainbow] .button.is-primary::after {
-  z-index: -1;
+  filter: brightness(1.18) saturate(1.08);
+  transition-duration: 0.12s;
 }

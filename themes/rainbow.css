@@ -63,12 +63,12 @@ html[data-theme=rainbow] {
     --app-menubar-color: var(--bulma-text);
 }
 
-.button.is-primary {
+html[data-theme=rainbow] .button.is-primary {
     background: linear-gradient(90deg,rgba(255, 105, 187, 1) 0%, rgba(255, 107, 107, 1) 14%, rgba(255, 186, 102, 1) 28%, rgba(240, 230, 89, 1) 43%, rgba(147, 255, 84, 1) 56%, rgba(83, 237, 206, 1) 70%, rgba(79, 120, 255, 1) 84%, rgba(170, 83, 237, 1) 100%);
 }
-.button.is-primary:hover {
+html[data-theme=rainbow] .button.is-primary:hover {
     background: linear-gradient(90deg,rgba(252, 130, 197, 1) 0%, rgba(255, 132, 132, 1) 14%, rgba(255, 211, 127, 1) 28%, rgba(255, 255, 114, 1) 43%, rgba(172, 255, 109, 1) 56%, rgba(108, 252, 231, 1) 70%, rgba(104, 145, 255, 1) 84%, rgba(195, 108, 252, 1) 100%);
 }
-.button.is-primary:active {
+html[data-theme=rainbow] .button.is-primary:active {
     background: linear-gradient(90deg,rgba(255, 155, 222, 1) 0%, rgba(255, 157, 157, 1) 14%, rgba(255, 236, 152, 1) 28%, rgba(255, 255, 139, 1) 43%, rgba(197, 255, 134, 1) 56%, rgba(133, 255, 255, 1) 70%, rgba(129, 170, 255, 1) 84%, rgba(220, 133, 255, 1) 100%);
 }

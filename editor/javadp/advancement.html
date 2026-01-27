@@ -59,6 +59,7 @@
         <div class="select">
             <select id="parentMenu">
                 <option value="root">Root</option>
+                <optgroup label="Custom"></optgroup>
                 <optgroup label="Minecraft">
                     <option value="minecraft:story/root">Minecraft</option>
                     <option value="minecraft:story/mine_stone">Stone Age</option>
@@ -93,6 +94,9 @@
                     <option value="minecraft:nether/get_wither_skull">Spooky Scary Skeleton</option>
                     <option value="minecraft:nether/obtain_blaze_rod">Into Fire</option>
                     <option value="minecraft:nether/charge_respawn_anchor">Not Quite "Nine" Lives</option>
+                    <option value="minecraft:nether/ride_strider_in_overworld_lava">Feels Like Home</option>
+                    <option value="minecraft:nether/explore_nether">Hot Tourist Destinations</option>
+                    <option value="minecraft:nether/summon_wither">Withering Heights</option>
                 </optgroup>
             </select>
         </div>
@@ -101,7 +105,7 @@
             <label for="backgroundTextureBtn">Item Texture: <span id="textureNameText">No texture selected</span></label>
             <button class="button" name="backgroundTextureBtn" id="backgroundTextureBtn" onclick="openSelectTextureDlg()">Select Texture</button>
         </div>
-        <br><br>
+        <br>
         <label for="showToastBox">Show Toast</label>
         <input id="showToastBox" type="checkbox" class="is-primary" checked>
         <br><br>
@@ -110,6 +114,7 @@
         <br><br>
         <label for="hiddenBox">Hidden</label>
         <input id="hiddenBox" type="checkbox" class="is-primary">
+        <br><br>
         
         <div class="modal" id="selectTextureDlg">
             <div class="modal-background"></div>

@@ -135,12 +135,12 @@ html[data-theme=rainbow] .button.is-primary {
   z-index: 0;
 }
 
-html[data-theme=rainbow] .button.is-primary::before,
-html[data-theme=rainbow] .button.is-primary::after {
+html[data-theme=rainbow] .button.is-primary {
+  position: relative;
   z-index: 0;
 }
 
-html[data-theme=rainbow] .button.is-primary > * {
-  position: relative;
-  z-index: 1;
+html[data-theme=rainbow] .button.is-primary::before,
+html[data-theme=rainbow] .button.is-primary::after {
+  z-index: -1;
 }

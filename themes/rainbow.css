@@ -12,9 +12,9 @@ html[data-theme=rainbow] {
     --bulma-primary-l: 73%;
 
     /* LINK */
-    --bulma-link-h: 31deg;
+    --bulma-link-h: 313deg;
     --bulma-link-s: 100%;
-    --bulma-link-l: 71%;
+    --bulma-link-l: 68%;
 
     /* INFO */
     --bulma-info-h: 198deg;
@@ -82,8 +82,8 @@ html[data-theme=rainbow] {
     );
     --rainbow3: linear-gradient(
         90deg,
-        rgba(255, 104, 162, 1) 0%,
-        rgba(252, 108, 108, 1) 70%
+        rgb(255, 104, 182) 0%,
+        rgb(252, 108, 108) 70%
     );
 }
 

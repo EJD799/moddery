@@ -63,49 +63,66 @@ html[data-theme=rainbow] {
     --app-menubar-color: var(--bulma-text);
 
     --rainbow1: linear-gradient(
-    90deg,
-    rgba(255, 105, 187, 1) 0%,
-    rgba(255, 107, 107, 1) 14%,
-    rgba(255, 186, 102, 1) 28%,
-    rgba(240, 230, 89, 1) 43%,
-    rgba(147, 255, 84, 1) 56%,
-    rgba(83, 237, 206, 1) 70%,
-    rgba(79, 120, 255, 1) 84%,
-    rgba(170, 83, 237, 1) 100%
-  );
+        90deg,
+        rgba(255, 105, 187, 1) 0%,
+        rgba(255, 107, 107, 1) 14%,
+        rgba(255, 186, 102, 1) 28%,
+        rgba(240, 230, 89, 1) 43%,
+        rgba(147, 255, 84, 1) 56%,
+        rgba(83, 237, 206, 1) 70%,
+        rgba(79, 120, 255, 1) 84%,
+        rgba(170, 83, 237, 1) 100%
+    );
+    --rainbow2: linear-gradient(
+        90deg,
+        rgba(104, 147, 255, 1) 0%,
+        rgba(156, 108, 252, 1) 33%,
+        rgba(194, 108, 252, 1) 67%,
+        rgba(250, 108, 252, 1) 100%
+    );
+    --rainbow3: linear-gradient(
+        90deg,
+        rgba(255, 104, 162, 1) 0%,
+        rgba(252, 108, 108, 1) 70%
+    );
 }
 
 html[data-theme=rainbow] .button.is-primary {
   position: relative;
   overflow: hidden;
+
+  /* KEEP the background on the button */
   background: var(--rainbow1);
+
+  transition: filter var(--bulma-duration) var(--bulma-easing);
 }
 
-/* Single overlay layer (hover + active) */
-html[data-theme=rainbow] .button.is-primary::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--rainbow1);
-  opacity: 0;
-  pointer-events: none;
+html[data-theme=rainbow] .button.is-link {
+  position: relative;
+  overflow: hidden;
 
-  /* Lightening effect */
-  filter: brightness(1.12) saturate(1.05);
+  /* KEEP the background on the button */
+  background: var(--rainbow2);
 
-  transition:
-    opacity var(--bulma-duration) ease,
-    filter var(--bulma-duration) ease;
+  transition: filter var(--bulma-duration) var(--bulma-easing);
+}
+
+html[data-theme=rainbow] .button.is-danger {
+  position: relative;
+  overflow: hidden;
+
+  /* KEEP the background on the button */
+  background: var(--rainbow3);
+
+  transition: filter var(--bulma-duration) var(--bulma-easing);
 }
 
 /* Hover */
-html[data-theme=rainbow] .button.is-primary:hover::before {
-  opacity: 1;
+html[data-theme=rainbow] .button.is-primary:hover, html[data-theme=rainbow] .button.is-link:hover, html[data-theme=rainbow] .button.is-danger:hover {
+  filter: brightness(1.25) saturate(1.15);
 }
 
-/* Active (slightly stronger, faster like Bulma) */
-html[data-theme=rainbow] .button.is-primary:active::before {
-  opacity: 1;
-  filter: brightness(1.18) saturate(1.08);
-  transition-duration: 0.12s;
+/* Active */
+html[data-theme=rainbow] .button.is-primary:active, html[data-theme=rainbow] .button.is-link:active, html[data-theme=rainbow] .button.is-danger:active {
+  filter: brightness(1.45) saturate(1.2);
 }

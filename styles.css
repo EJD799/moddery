@@ -977,3 +977,7 @@ progress {
 .normalTextarea {
     width: 300px;
 }
+
+.modal-background {
+    background-color: #00000060 !important;
+}

@@ -270,6 +270,7 @@ input[type="number"] {
 
 .textureRadio {
     margin-left: 10px;
+    accent-color: var(--bulma-link);
 }
 
 input[type=color] {

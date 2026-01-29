@@ -432,7 +432,7 @@ function loadProject(data) {
     announceToChatBox.checked = data.announceToChat ?? true;
     hiddenBox.checked = data.hidden ?? false;
     window.setTimeout(async function() {
-        if (iconItemType[0] == "") {
+        if ((iconItemType?.[0] ?? "no") == "") {
             renderSlot("", "special_remove");
         } else {
             renderSlot(iconItemType[0], "special_custom");
@@ -447,8 +447,21 @@ function loadProject(data) {
             customSection.appendChild(option);
         }
         $("#parentMenu").val(data.parent);
+        if (data.parent == "root") {
+            $("#backgroundTextureSelector").show();
+        } else {
+            $("#backgroundTextureSelector").hide();
+        }
     }, 200);
 }
+
+parentMenu.addEventListener("change", function() {
+    if (parentMenu.value == "root") {
+        $("#backgroundTextureSelector").show();
+    } else {
+        $("#backgroundTextureSelector").hide();
+    }
+});
 
 
 // Run after jQuery, jQuery UI and TouchPunch are loaded and after dialogs exist.

@@ -422,7 +422,6 @@ function loadProject(data) {
     $("#descriptionBox").val(data.description);
     $("#frameMenu").val(data.frameStyle);
     iconItemType = data.iconItemType;
-    $("#parentMenu").val(data.parent);
     selectedTexture = data.backgroundTexture;
     if (selectedTexture) {
         document.getElementById("textureNameText").innerHTML = selectedTexture;
@@ -432,12 +431,22 @@ function loadProject(data) {
     showToastBox.checked = data.showToast ?? true;
     announceToChatBox.checked = data.announceToChat ?? true;
     hiddenBox.checked = data.hidden ?? false;
-    window.setTimeout(function() {
+    window.setTimeout(async function() {
         if (iconItemType[0] == "") {
             renderSlot("", "special_remove");
         } else {
             renderSlot(iconItemType[0], "special_custom");
         }
+
+        let customAdvancements = (await window.parent.getFilteredElements("Advancement")).filter(n => n.name != elementData.name);
+        for (let i = 0; i < customAdvancements.length; i++) {
+            let advancementData = customAdvancements[i];
+            let option = document.createElement("option");
+            option.innerHTML = advancementData.title;
+            option.setAttribute("value", `${window.parent.projManifest.namespace}:${advancementData.id}`);
+            customSection.appendChild(option);
+        }
+        $("#parentMenu").val(data.parent);
     }, 200);
 }
 

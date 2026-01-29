@@ -432,7 +432,7 @@ function loadProject(data) {
     announceToChatBox.checked = data.announceToChat ?? true;
     hiddenBox.checked = data.hidden ?? false;
     window.setTimeout(async function() {
-        if ((iconItemType?.[0] ?? "no") == "") {
+        if (iconItemType?.[0] === "" || typeof iconItemType != "object") {
             renderSlot("", "special_remove");
         } else {
             renderSlot(iconItemType[0], "special_custom");

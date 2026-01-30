@@ -1,4 +1,4 @@
-const appVersion = "2.2.136";
+const appVersion = "2.2.137";
 const buildDate = "1/30/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -1921,9 +1921,11 @@ function updateMenusForProjectType() {
   for (let i = 0; i < editorList.length; i++) {
     let editorItem = editors[editorList[i]];
     let editorName = editorList[i];
+    let editorFormattedName = `<i class="${editorItem.icon}"></i> ${editorName}`;
     if (editorItem.show > 0) {
       let option = document.createElement("option");
-      option.innerHTML = editorName;
+      option.innerHTML = editorFormattedName;
+      option.value = editorName;
       if (editorItem.show == 2) {
         option.setAttribute("disabled", "true");
       }

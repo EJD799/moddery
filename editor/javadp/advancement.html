@@ -215,6 +215,16 @@
         <label for="hiddenBox">Hidden</label>
         <input id="hiddenBox" type="checkbox" class="is-primary">
         <br><br>
+        <h5 class="title is-5">Rewards</h5>
+        <label for="rewardXPBox">Experience Points</label>
+        <input id="rewardXPBox" class="input smallInput" placeholder="XP">
+        <br><br>
+        <label for="lootTableBtn">Loot Table: <span id="lootTableNameText">No loot table selected</span></label>
+        <button class="button" name="lootTableBtn" id="lootTableBtn" onclick="openSelectLootTableDlg()">Select Loot Table</button>
+        <br><br>
+        <label for="functionBtn">Function: <span id="functionNameText">No function selected</span></label>
+        <button class="button" name="functionBtn" id="functionBtn" onclick="openSelectFunctionDlg()">Select Function</button>
+        
         
         <div class="modal" id="selectTextureDlg">
             <div class="modal-background"></div>
@@ -232,6 +242,42 @@
                 </div>
             </div>
             <button class="modal-close is-large" aria-label="close" onclick="closeSelectTextureDlg();"></button>
+        </div>
+
+        <div class="modal" id="selectLootTableDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:400px;height:550px;">
+                <div class="card" id="selectLootTableDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 class="title is-4">Select Loot Table</h4>
+                        <div class="textureMenu" id="selectLootTableMenu"></div>
+
+                        <div class="textureDialogButtons">
+                            <button class="button" id="selectLootTableCancelBtn" onclick="closeSelectLootTableDlg()">Cancel</button>
+                            <button class="button is-primary" id="selectLootTableSelectBtn" onclick="selectLootTable()">Select</button>
+                        </div>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeSelectLootTableDlg();"></button>
+        </div>
+
+        <div class="modal" id="selectFunctionDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:400px;height:550px;">
+                <div class="card" id="selectFunctionDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 class="title is-4">Select Function</h4>
+                        <div class="textureMenu" id="selectFunctionMenu"></div>
+
+                        <div class="textureDialogButtons">
+                            <button class="button" id="selectFunctionCancelBtn" onclick="closeSelectFunctionDlg()">Cancel</button>
+                            <button class="button is-primary" id="selectFunctionSelectBtn" onclick="selectFunction()">Select</button>
+                        </div>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeSelectFunctionDlg();"></button>
         </div>
 
         <div class="modal" id="itemPickerDialog">

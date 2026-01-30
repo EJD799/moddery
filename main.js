@@ -1,4 +1,4 @@
-const appVersion = "2.2.133";
+const appVersion = "2.2.134";
 const buildDate = "1/30/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -666,7 +666,6 @@ document.addEventListener("DOMContentLoaded", function(){
   bulmaSelectmenu.attachMenu(addElementType);
   bulmaSelectmenu.attachMenu(exportDlgModeBox);
   bulmaSelectmenu.attachMenu(storageModeBox);
-  bulmaSelectmenu.attachMenu(newProjType);
 });
 function removeOptionByValue(selectEl, value) {
   for (let i = selectEl.options.length - 1; i >= 0; i--) {

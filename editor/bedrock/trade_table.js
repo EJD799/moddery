@@ -215,6 +215,7 @@ function addItem(customID = false) {
         currentItems[newID - 1].tier = e.target.value;
     });
     tierBoxContainer.appendChild(tierBox);
+    bulmaSelectmenu.attachMenu(tierBox);
     div.appendChild(tierBoxContainer);
     div.appendChild(document.createTextNode(" "));
     let deleteBtn = document.createElement("button");

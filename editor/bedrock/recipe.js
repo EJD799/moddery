@@ -622,3 +622,7 @@ boxToValidate.addEventListener("input", function (e) {
     boxToValidate.classList.add("invalidTextBox");
   }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    bulmaSelectmenu.attachMenu(recipeTypeMenu);
+});

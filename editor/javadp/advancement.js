@@ -602,3 +602,8 @@ $(function () {
         track: true                 // tooltip follows the mouse
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    bulmaSelectmenu.attachMenu(frameMenu);
+    bulmaSelectmenu.attachMenu(parentMenu);
+});

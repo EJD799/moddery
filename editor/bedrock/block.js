@@ -672,6 +672,7 @@ function createComponent(type) {
                 newComponentDOM.addEventListener("change", event => {
                     updateInput(typeName, inputName, event.target.value);
                 });
+                bulmaSelectmenu.attachMenu(newComponentDOM);
 
                 // Append to the element box
                 inputContainer.appendChild(newComponentDOM);
@@ -1522,4 +1523,9 @@ boxToValidate.addEventListener("input", function (e) {
     // Invalid → add the "invalid" class
     boxToValidate.classList.add("invalidTextBox");
   }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    bulmaSelectmenu.attachMenu(categoryBox);
+    bulmaSelectmenu.attachMenu(addComponentType);
 });

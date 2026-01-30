@@ -513,7 +513,12 @@ function saveProject() {
         backgroundTexture: selectedTexture,
         showToast: showToastBox.checked,
         announceToChat: announceToChatBox.checked,
-        hidden: hiddenBox.checked
+        hidden: hiddenBox.checked,
+        rewards: {
+            xp: $("#rewardXPBox").val(),
+            lootTable: selectedLootTable,
+            function: selectedFunction
+        }
     };
 }
 function loadProject(data) {
@@ -529,6 +534,18 @@ function loadProject(data) {
         document.getElementById("textureNameText").innerHTML = selectedTexture;
     } else {
         document.getElementById("textureNameText").innerHTML = "No texture selected";
+    }
+    selectedLootTable = data.rewards.lootTable;
+    if (selectedLootTable) {
+        document.getElementById("lootTableNameText").innerHTML = selectedLootTable;
+    } else {
+        document.getElementById("lootTableNameText").innerHTML = "No loot table selected";
+    }
+    selectedFunction = data.rewards.function;
+    if (selectedFunction) {
+        document.getElementById("functionNameText").innerHTML = selectedFunction;
+    } else {
+        document.getElementById("functionNameText").innerHTML = "No function selected";
     }
     showToastBox.checked = data.showToast ?? true;
     announceToChatBox.checked = data.announceToChat ?? true;

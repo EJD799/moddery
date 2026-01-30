@@ -1,6 +1,8 @@
 let textures;
 let elementData = {};
 let selectedTexture;
+let selectedLootTable;
+let selectedFunction;
 
 function onThemeChange(name, style, type) {
     if (type == "light") {
@@ -329,6 +331,106 @@ function addSpaces(str) {
     return str.replaceAll("_s_", " ");
 }
 // new end
+function openSelectLootTableDlg(component, input, mode) {
+    selectLootTableDlg.classList.add("is-active");
+    textures = window.parent.getLootTableList();
+    let selectLootTableMenu = document.getElementById("selectLootTableMenu");
+    selectLootTableMenu.innerHTML = "";
+    for (let i = 0; i < textures.length; i++) {
+        let selectLootTableMenuItem;
+        let itemTitle;
+        let itemRadio;
+        selectLootTableMenuItem = document.createElement("div");
+        selectLootTableMenuItem.setAttribute("class", "card textureMenuItem");
+        itemRadio = document.createElement("input");
+        itemRadio.setAttribute("type", "radio");
+        itemRadio.setAttribute("name", "selectedLootTable");
+        itemRadio.setAttribute("class", "textureRadio");
+        itemRadio.setAttribute("value", textures[i]);
+        selectTextureMenuItem.appendChild(itemRadio);
+        itemTitle = document.createElement("span");
+        itemTitle.setAttribute("class", "textureMenuTitle");
+        itemTitle.innerHTML = textures[i];
+        selectTextureMenuItem.appendChild(itemTitle);
+        selectTextureMenu.appendChild(selectLootTableMenuItem);
+        selectTextureMenuItem.addEventListener("click", () => {
+            const itemRadio = selectLootTableMenuItem.querySelector('input[type="radio"]');
+            if (itemRadio) {
+                itemRadio.checked = true;  // select this radio
+            }
+        });
+    }
+}
+function closeSelectLootTableDlg() {
+    selectLootTableDlg.classList.remove("is-active");
+}
+function selectLootTable() {
+    closeSelectLootTableDlg();
+    const selected = document.querySelector('input[name="selectedLootTable"]:checked');
+    if (selected.value) {
+        const lootTableNameText = document.getElementById("lootTableNameText");
+        if (selected.value == "None") {
+            lootTableNameText.innerHTML = "No loot table selected";
+            selectedLootTable = "";
+        } else {
+            lootTableNameText.innerHTML = selected.value;
+            selectedLootTable = selected.value;
+        }
+    }
+}
+
+
+
+function openSelectFunctionDlg(component, input, mode) {
+    selectFunctionDlg.classList.add("is-active");
+    textures = window.parent.getFunctionList();
+    let selectFunctionMenu = document.getElementById("selectFunctionMenu");
+    selectFunctionMenu.innerHTML = "";
+    for (let i = 0; i < textures.length; i++) {
+        let selectFunctionMenuItem;
+        let itemTitle;
+        let itemRadio;
+        selectFunctionMenuItem = document.createElement("div");
+        selectFunctionMenuItem.setAttribute("class", "card textureMenuItem");
+        itemRadio = document.createElement("input");
+        itemRadio.setAttribute("type", "radio");
+        itemRadio.setAttribute("name", "selectedFunction");
+        itemRadio.setAttribute("class", "textureRadio");
+        itemRadio.setAttribute("value", textures[i]);
+        selectFunctionMenuItem.appendChild(itemRadio);
+        itemTitle = document.createElement("span");
+        itemTitle.setAttribute("class", "textureMenuTitle");
+        itemTitle.innerHTML = textures[i];
+        selectFunctionMenuItem.appendChild(itemTitle);
+        selectFunctionMenu.appendChild(selectFunctionMenuItem);
+        selectFunctionMenuItem.addEventListener("click", () => {
+            const itemRadio = selectFunctionMenuItem.querySelector('input[type="radio"]');
+            if (itemRadio) {
+                itemRadio.checked = true;  // select this radio
+            }
+        });
+    }
+}
+function closeSelectFunctionDlg() {
+    selectFunctionDlg.classList.remove("is-active");
+}
+function selectFunction() {
+    closeSelectFunctionDlg();
+    const selected = document.querySelector('input[name="selectedFunction"]:checked');
+    if (selected.value) {
+        const functionNameText = document.getElementById("functionNameText");
+        if (selected.value == "None") {
+            functionNameText.innerHTML = "No function selected";
+            selectedFunction = "";
+        } else {
+            functionNameText.innerHTML = selected.value;
+            selectedFunction = selected.value;
+        }
+    }
+}
+
+
+
 function openSelectTextureDlg(component, input, mode) {
     selectTextureDlg.classList.add("is-active");
     textures = window.parent.getTextureList();
@@ -365,10 +467,10 @@ function openSelectTextureDlg(component, input, mode) {
         selectTextureMenuItem.appendChild(itemTitle);
         selectTextureMenu.appendChild(selectTextureMenuItem);
         selectTextureMenuItem.addEventListener("click", () => {
-        const itemRadio = selectTextureMenuItem.querySelector('input[type="radio"]');
-        if (itemRadio) {
-            itemRadio.checked = true;  // select this radio
-        }
+            const itemRadio = selectTextureMenuItem.querySelector('input[type="radio"]');
+            if (itemRadio) {
+                itemRadio.checked = true;  // select this radio
+            }
         });
     }
 }

@@ -1,4 +1,4 @@
-const appVersion = "2.2.132";
+const appVersion = "2.2.133";
 const buildDate = "1/30/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -660,6 +660,13 @@ document.addEventListener("DOMContentLoaded", function(){
   $("#navbarSave").hide();
   $("#navbarSaveAs").hide();
   $("#navbarExport").hide();
+
+  bulmaSelectmenu.attachMenu(newProjType);
+  bulmaSelectmenu.attachMenu(editProjMCVersionBox);
+  bulmaSelectmenu.attachMenu(addElementType);
+  bulmaSelectmenu.attachMenu(exportDlgModeBox);
+  bulmaSelectmenu.attachMenu(storageModeBox);
+  bulmaSelectmenu.attachMenu(newProjType);
 });
 function removeOptionByValue(selectEl, value) {
   for (let i = selectEl.options.length - 1; i >= 0; i--) {

@@ -3,6 +3,7 @@ let elementData = {};
 let selectedTexture;
 let selectedLootTable;
 let selectedFunction;
+let criteriaData = {};
 
 function onThemeChange(name, style, type) {
     if (type == "light") {
@@ -518,7 +519,8 @@ function saveProject() {
             xp: $("#rewardXPBox").val(),
             lootTable: selectedLootTable,
             function: selectedFunction
-        }
+        },
+        criteria: criteriaData
     };
 }
 function loadProject(data) {
@@ -551,6 +553,9 @@ function loadProject(data) {
     showToastBox.checked = data.showToast ?? true;
     announceToChatBox.checked = data.announceToChat ?? true;
     hiddenBox.checked = data.hidden ?? false;
+    if (data.criteria) {
+        loadCriteria(data.criteria);
+    }
     window.setTimeout(async function() {
         if (iconItemType?.[0] === "" || typeof iconItemType != "object") {
             renderSlot("", "special_remove");
@@ -573,6 +578,10 @@ function loadProject(data) {
             $("#backgroundTextureSelector").hide();
         }
     }, 200);
+}
+
+function loadCriteria(data) {
+    criteriaData = data;
 }
 
 parentMenu.addEventListener("change", function() {

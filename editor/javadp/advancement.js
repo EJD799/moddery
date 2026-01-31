@@ -331,9 +331,9 @@ function addSpaces(str) {
     return str.replaceAll("_s_", " ");
 }
 // new end
-function openSelectLootTableDlg(component, input, mode) {
+async function openSelectLootTableDlg(component, input, mode) {
     selectLootTableDlg.classList.add("is-active");
-    textures = window.parent.getLootTableList();
+    textures = await window.parent.getLootTableList();
     let selectLootTableMenu = document.getElementById("selectLootTableMenu");
     selectLootTableMenu.innerHTML = "";
     for (let i = 0; i < textures.length; i++) {
@@ -381,9 +381,9 @@ function selectLootTable() {
 
 
 
-function openSelectFunctionDlg(component, input, mode) {
+async function openSelectFunctionDlg(component, input, mode) {
     selectFunctionDlg.classList.add("is-active");
-    textures = window.parent.getFunctionList();
+    textures = await window.parent.getFunctionList();
     let selectFunctionMenu = document.getElementById("selectFunctionMenu");
     selectFunctionMenu.innerHTML = "";
     for (let i = 0; i < textures.length; i++) {

@@ -529,19 +529,19 @@ function loadProject(data) {
     $("#descriptionBox").val(data.description);
     $("#frameMenu").val(data.frameStyle);
     iconItemType = data.iconItemType;
-    selectedTexture = data.backgroundTexture;
+    selectedTexture = data?.backgroundTexture ?? false;
     if (selectedTexture) {
         document.getElementById("textureNameText").innerHTML = selectedTexture;
     } else {
         document.getElementById("textureNameText").innerHTML = "No texture selected";
     }
-    selectedLootTable = data.rewards.lootTable;
+    selectedLootTable = data?.rewards?.lootTable ?? false;
     if (selectedLootTable) {
         document.getElementById("lootTableNameText").innerHTML = selectedLootTable;
     } else {
         document.getElementById("lootTableNameText").innerHTML = "No loot table selected";
     }
-    selectedFunction = data.rewards.function;
+    selectedFunction = data?.rewards?.function ?? false;
     if (selectedFunction) {
         document.getElementById("functionNameText").innerHTML = selectedFunction;
     } else {

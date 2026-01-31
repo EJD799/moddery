@@ -982,3 +982,8 @@ progress {
 .modal-background {
     background-color: #00000060 !important;
 }
+
+#editProjBtn {
+    font-family: "ModderyIcons" !important;
+    font-size: large !important;
+}

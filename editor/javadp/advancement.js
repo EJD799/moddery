@@ -347,13 +347,13 @@ async function openSelectLootTableDlg(component, input, mode) {
         itemRadio.setAttribute("name", "selectedLootTable");
         itemRadio.setAttribute("class", "textureRadio");
         itemRadio.setAttribute("value", textures[i]);
-        selectTextureMenuItem.appendChild(itemRadio);
+        selectLootTableMenuItem.appendChild(itemRadio);
         itemTitle = document.createElement("span");
         itemTitle.setAttribute("class", "textureMenuTitle");
         itemTitle.innerHTML = textures[i];
-        selectTextureMenuItem.appendChild(itemTitle);
-        selectTextureMenu.appendChild(selectLootTableMenuItem);
-        selectTextureMenuItem.addEventListener("click", () => {
+        selectLootTableMenuItem.appendChild(itemTitle);
+        selectLootTableMenu.appendChild(selectLootTableMenuItem);
+        selectLootTableMenuItem.addEventListener("click", () => {
             const itemRadio = selectLootTableMenuItem.querySelector('input[type="radio"]');
             if (itemRadio) {
                 itemRadio.checked = true;  // select this radio

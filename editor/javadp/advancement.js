@@ -528,6 +528,7 @@ function loadProject(data) {
     $("#titleBox").val(data.title);
     $("#descriptionBox").val(data.description);
     $("#frameMenu").val(data.frameStyle);
+    $("#rewardXPBox").val(data.rewards?.xp ?? 0);
     iconItemType = data.iconItemType;
     selectedTexture = data?.backgroundTexture ?? false;
     if (selectedTexture) {

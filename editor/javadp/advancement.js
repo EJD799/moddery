@@ -3,7 +3,7 @@ let elementData = {};
 let selectedTexture;
 let selectedLootTable;
 let selectedFunction;
-let criteriaData = {};
+let criteriaData = [];
 
 function onThemeChange(name, style, type) {
     if (type == "light") {
@@ -580,8 +580,372 @@ function loadProject(data) {
     }, 200);
 }
 
+function addCriteria() {
+    criteriaData.push({
+        name: "",
+        trigger: "",
+        fields: {}
+    });
+    createCriteria(criteriaData.length);
+}
+
+function createCriteria(id) {
+    let newComponentObj = {};
+    let newComponentType;
+    let newComponentDefault;
+    let newComponentDOM;
+    for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
+        newComponentType = componentDefinitions[type].inputs[i].type
+        if (newComponentType == "number") {
+            newComponentDefault = 0;
+        } else if (newComponentType == "boolean") {
+            newComponentDefault = false;
+        } else {
+            newComponentDefault = "";
+        }
+        newComponentObj[componentDefinitions[type].inputs[i].name] = newComponentDefault;
+    }
+    if (true) {
+        currentItemComponents[type] = newComponentObj;
+        var parentDiv = document.getElementById("criteriaBox");
+        var elementBox = document.createElement("div");
+        elementBox.setAttribute("class", "card componentbox");
+        elementBox.setAttribute("id", "componentbox_" + removeSpaces(type));
+        var elementBoxTitle = document.createElement("input");
+        elementBoxTitle.setAttribute("class", "input almostFullInput");
+        elementBoxTitle.addEventListener("change", function(e) {
+            criteriaData[id].name = elementBoxTitle.value;
+        });
+        var elementBoxDelete = document.createElement("button");
+        elementBoxDelete.setAttribute("class", "button is-danger newDeleteBtn");
+        elementBoxDelete.setAttribute("onclick", `openDeleteComponent('${type}')`);
+        elementBoxDelete.innerHTML = `<i class="fas fa-trash"></i>`;
+        elementBoxTitle.appendChild(elementBoxDelete);
+        elementBox.appendChild(elementBoxTitle);
+        var elementBoxDropdownBox = document.createElement("div");
+        var elementBoxDropdown = document.createElement("select");
+        elementBoxDropdown.innerHTML = generateSelectContents(Object.keys(componentDefinitions));
+        bulmaSelectmenu.attachMenu(elementBoxDropdown);
+        elementBoxDropdown.addEventListener("change", function(e) {
+            changeCriteriaType(id, elementBoxDropdown.value);
+        });
+        elementBoxDropdownBox.appendChild(elementBoxDropdown);
+        elementBox.appendChild(elementBoxDropdownBox);
+        for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
+            newComponentType = componentDefinitions[type].inputs[i].type;
+            newComponentInputName = componentDefinitions[type].inputs[i].name;
+            newComponentInputLabel = componentDefinitions[type].inputs[i].label;
+            newComponentInputTooltip = componentDefinitions[type].inputs[i].tooltip;
+            newComponentTypeName = componentDefinitions[type].name;
+            if (newComponentType == "number") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("id", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("class", "input normalInput");
+                newComponentDOM.setAttribute("type", "number");
+                let typeName = id;
+                let inputName = newComponentInputName;
+                newComponentDOM.addEventListener("change", event => {
+                    updateInput(typeName, inputName, Number(event.target.value));
+                });
+                elementBox.appendChild(newComponentDOM);
+            } else if (newComponentType == "color") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                let container1 = document.createElement("div");
+                container1.setAttribute("class", "field");
+                let container2 = document.createElement("div");
+                container2.setAttribute("class", "control button");
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("id", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("type", "color");
+                newComponentDOM.setAttribute("class", "newColorPicker");
+                let typeName = id;
+                let inputName = newComponentInputName;
+                newComponentDOM.addEventListener("change", event => {
+                    updateInput(typeName, inputName, event.target.value);
+                });
+                container2.addEventListener("click", event => {
+                    newComponentDOM.click();
+                });
+                container2.appendChild(newComponentDOM);
+                container1.appendChild(container2);
+                elementBox.appendChild(container1);
+            } else if (newComponentType == "dropdown") {
+                // Create label
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+
+                // Optional tooltip icon
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    const tooltipIcon = document.createElement("i");
+                    tooltipIcon.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    tooltipIcon.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(tooltipIcon);
+                }
+
+                // Add space before the dropdown
+                elementBox.appendChild(document.createTextNode(" "));
+
+
+                let inputContainer = document.createElement("div");
+                inputContainer.setAttribute("class", "select");
+                // Create <select> element
+                newComponentDOM = document.createElement("select");
+                newComponentDOM.setAttribute("id", `criteria${id}_${newComponentInputName}`);
+
+                // Retrieve and add options from component definition
+                const newComponentInputOptions = componentDefinitions[type].inputs[i].options;
+                if (Array.isArray(newComponentInputOptions)) {
+                    for (const optVal of newComponentInputOptions) {
+                        const opt = document.createElement("option");
+                        opt.value = optVal;
+                        opt.textContent = optVal;
+                        newComponentDOM.appendChild(opt);
+                    }
+                }
+
+                // Attach event listener
+                const typeName = id;
+                const inputName = newComponentInputName;
+                newComponentDOM.addEventListener("change", event => {
+                    updateInput(typeName, inputName, event.target.value);
+                });
+                bulmaSelectmenu.attachMenu(newComponentDOM);
+
+                // Append to the element box
+                inputContainer.appendChild(newComponentDOM);
+                elementBox.appendChild(inputContainer);
+            } else if (newComponentType == "boolean") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("id", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.setAttribute("type", "checkbox");
+                newComponentDOM.setAttribute("class", "is-primary");
+                let typeName = id;
+                let inputName = newComponentInputName;
+                newComponentDOM.addEventListener("change", event => {
+                    updateInput(typeName, inputName, event.target.checked);
+                });
+                elementBox.appendChild(newComponentDOM);
+            }/* new start */ else if (newComponentType == "list") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("id", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("disabled", "true");
+                newComponentDOM.setAttribute("class", "input almostFullInput");
+                newComponentDOM.setAttribute("value", "[]");
+                let typeName = id;
+                let inputName = newComponentInputName;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("button");
+                newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
+                newComponentDOM.setAttribute("class", "button is-primary inputEditBtn");
+                newComponentDOM.setAttribute("id", `criteria${id}_${newComponentInputName}` + "_btn");
+                newComponentDOM.setAttribute("onclick", `openAdvInputEditor("${id}", "${removeSpaces(newComponentInputName)}", "list")`);
+                elementBox.appendChild(newComponentDOM);
+            } else if (newComponentType == "texture") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("id", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("disabled", "true");
+                newComponentDOM.setAttribute("class", "input almostFullInput");
+                newComponentDOM.setAttribute("value", "");
+                let typeName = id;
+                let inputName = newComponentInputName;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("button");
+                newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
+                newComponentDOM.setAttribute("class", "button is-primary inputEditBtn");
+                newComponentDOM.setAttribute("id", `criteria${id}_${newComponentInputName}` + "_btn");
+                newComponentDOM.setAttribute("onclick", `openSelectTextureDlg("${id}", "${removeSpaces(newComponentInputName)}", "component")`);
+                elementBox.appendChild(newComponentDOM);
+            } else if (newComponentType == "loot_table") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("id", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("disabled", "true");
+                newComponentDOM.setAttribute("class", "input almostFullInput");
+                newComponentDOM.setAttribute("value", "");
+                let typeName = id;
+                let inputName = newComponentInputName;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("button");
+                newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
+                newComponentDOM.setAttribute("class", "button is-primary inputEditBtn");
+                newComponentDOM.setAttribute("id", `criteria${id}_${newComponentInputName}` + "_btn");
+                newComponentDOM.setAttribute("onclick", `openSelectTableDlg("${id}", "${removeSpaces(newComponentInputName)}", "loot_table")`);
+                elementBox.appendChild(newComponentDOM);
+            } else if (newComponentType == "trade_table") {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("id", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("disabled", "true");
+                newComponentDOM.setAttribute("class", "input almostFullInput");
+                newComponentDOM.setAttribute("value", "");
+                let typeName = id;
+                let inputName = newComponentInputName;
+                elementBox.appendChild(newComponentDOM);
+                newComponentDOM = document.createElement("button");
+                newComponentDOM.innerHTML = `<i class="fas fa-pencil"></i>`;
+                newComponentDOM.setAttribute("class", "button is-primary inputEditBtn");
+                newComponentDOM.setAttribute("id", `criteria${id}_${newComponentInputName}` + "_btn");
+                newComponentDOM.setAttribute("onclick", `openSelectTableDlg("${id}", "${removeSpaces(newComponentInputName)}", "trade_table")`);
+                elementBox.appendChild(newComponentDOM);
+            }/* new end */ else {
+                newComponentDOM = document.createElement("label");
+                newComponentDOM.setAttribute("for", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.innerHTML = newComponentInputLabel;
+                elementBox.appendChild(newComponentDOM);
+                if (newComponentInputTooltip) {
+                    elementBox.appendChild(document.createTextNode(" "));
+                    newComponentDOM = document.createElement("i");
+                    newComponentDOM.setAttribute("class", "fas fa-circle-info tooltipIcon");
+                    newComponentDOM.setAttribute("title", newComponentInputTooltip);
+                    elementBox.appendChild(newComponentDOM);
+                }
+                elementBox.appendChild(document.createTextNode(" "));
+                newComponentDOM = document.createElement("input");
+                newComponentDOM.setAttribute("id", `criteria${id}_${newComponentInputName}`);
+                newComponentDOM.setAttribute("placeholder", newComponentInputLabel);
+                newComponentDOM.setAttribute("class", "input normalInput");
+                let typeName = id;
+                let inputName = newComponentInputName;
+                newComponentDOM.addEventListener("change", event => {
+                    updateInput(typeName, inputName, event.target.value);
+                });
+                elementBox.appendChild(newComponentDOM);
+            }
+            elementBox.appendChild(document.createElement("br"));
+            elementBox.appendChild(document.createElement("br"));
+        }
+        parentDiv.appendChild(elementBox);
+        $(".tooltipIcon").tooltip({
+            show: { effect: "fadeIn", duration: 200, delay: 0 },
+            hide: { effect: "fadeOut", duration: 200, delay: 0 },
+            track: false
+        });
+    }
+    addComponentDlg.classList.remove("is-active");
+}
+
+function updateInput(id, input, value) {
+    criteriaData[id].inputs[input] = value;
+}
+
 function loadCriteria(data) {
     criteriaData = data;
+    for (let i = 0; i < data.length; i++) {
+        
+    }
+}
+
+function changeCriteriaType(id, value) {
+    criteriaData[id].type = value;
+    criteriaData[id].fields = {};
+    criteriaBox.innerHTML = "";
+    loadCriteria(criteriaData);
+}
+
+function closeDeleteCriteria() {
+    deleteDlg.classList.remove("is-active");
+}
+
+function openDeleteCriteria(id) {
+    deleteDlg.classList.add("is-active");
+    let deleteDlgText = document.getElementById("deleteDlgText");
+    let deleteDlgConfirm = document.getElementById("deleteDlgConfirm");
+    deleteDlgText.innerHTML = `Are you sure you want to delete the criteria "${criteriaData[id].name}"?`;
+    deleteDlgConfirm.setAttribute("onclick", `deleteCriteria("${id}")`);
+}
+
+function deleteCriteria(id) {
+    delete criteriaData[id];
 }
 
 parentMenu.addEventListener("change", function() {

@@ -228,28 +228,6 @@
         <span class="title is-4">Criteria <button class="button is-primary" id="addCriteriaBtn" onclick="addCriteria()">+ Add Criterion</button></span>
 		<div id="criteriaBox"></div>
         
-
-        <div class="modal" id="addCriteriaDlg">
-            <div class="modal-background"></div>
-            <div class="modal-content" style="width:400px;height:300px;">
-                <div class="card" id="addCriteriaDlgCard" style="padding:16px;">
-                    <center>
-                        <h4 class="title is-4">Add Criterion</h4>
-                        <label for="addCriteriaType">Criterion Type</label>
-                        <div class="select">
-                            <select name="addCriteriaType" id="addCriteriaType">
-                                
-                            </select>
-                        </div>
-                        <br><br>
-                        <button class="button" id="addCriteriaCancelBtn" onclick="closeAddCriteriaDlg()">Cancel</button>
-                        <button class="button is-primary" id="addCriteriaAddBtn" onclick="createCriteria($('#addCriteriaType').val())">Add</button>
-                    </center>
-                </div>
-            </div>
-            <button class="modal-close is-large" aria-label="close" onclick="closeAddCriteriaDlg();"></button>
-        </div>
-        
         <div class="modal" id="selectTextureDlg">
             <div class="modal-background"></div>
             <div class="modal-content" style="width:400px;height:550px;">

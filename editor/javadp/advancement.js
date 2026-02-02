@@ -645,6 +645,7 @@ function createCriteria(id) {
         elementBox.appendChild(elementBoxTitle);
         elementBox.appendChild(elementBoxDelete);
         elementBox.appendChild(document.createElement("br"));
+        elementBox.appendChild(document.createElement("br"));
         var elementBoxDropdownBox = document.createElement("div");
         elementBoxDropdownBox.setAttribute("class", "select");
         var elementBoxDropdown = document.createElement("select");
@@ -941,7 +942,7 @@ function createCriteria(id) {
 }
 
 function updateInput(id, input, value) {
-    criteriaData[id].inputs[input] = value;
+    criteriaData[id].fields[input] = value;
 }
 
 function loadCriteria(data) {
@@ -969,6 +970,20 @@ function loadCriteria(data) {
 function changeCriteriaType(id, value) {
     criteriaData[id].trigger = value;
     criteriaData[id].fields = {};
+    let def = componentDefinitions[value];
+    for (let i = 0; i < def.inputs.length; i++) {
+        let type = defs.inputs[i].type;
+        let defaultValue;
+        if (type == "boolean") {
+            defaultValue = false;
+        } else if (type == "number") {
+            defaultValue = 0;
+        } else {
+            defaultValue = "";
+        }
+
+        criteriaData[id].fields[defs.inputs[i].name] = defaultValue;
+    }
     criteriaBox.innerHTML = "";
     loadCriteria(criteriaData);
 }

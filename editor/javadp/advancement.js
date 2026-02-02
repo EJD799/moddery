@@ -652,7 +652,7 @@ function createCriteria(id) {
         });
         elementBoxDropdownBox.appendChild(elementBoxDropdown);
         elementBox.appendChild(elementBoxDropdownBox);
-        let type = criteriaData[id].type;
+        let type = criteriaData[id].trigger;
         for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
             newComponentType = componentDefinitions[type].inputs[i].type;
             newComponentInputName = componentDefinitions[type].inputs[i].name;

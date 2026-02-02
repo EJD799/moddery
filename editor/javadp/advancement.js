@@ -12,15 +12,27 @@ const componentDefinitions = {
         inputs: [],
         requires: false
     },
-    "Test": {
-        name: "test",
-        id: "test",
+    "Allay Drop Item on Block": {
+        name: "Allay Drop Item on Block",
+        id: "minecraft:allay_drop_item_on_block",
         inputs: [
             {
-                type: "boolean",
-                name: "main",
-                label: "Allow Off Hand",
-                tooltip: "Whether the item can be wielded in the off-hand."
+                type: "text",
+                name: "biome",
+                label: "Biome",
+                tooltip: "The biome required."
+            },
+            {
+                type: "list",
+                name: "blocks",
+                label: "Blocks",
+                tooltip: "The blocks the item can be dropped on."
+            },
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The items that can be dropped."
             }
         ],
         requires: false

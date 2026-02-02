@@ -79,10 +79,14 @@ const componentDefinitions = {
         id: "minecraft:bee_nest_destroyed",
         inputs: [
             {
-                type: "text",
+                type: "dropdown",
                 name: "block",
-                label: "block",
-                tooltip: "The block that was destroyed."
+                label: "Block",
+                tooltip: "The block that was destroyed.",
+                options: [
+                    "minecraft:bee_nest",
+                    "minecraft:beehive"
+                ]
             },
             {
                 type: "list",
@@ -105,6 +109,96 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Bred Animals": {
+        name: "Bred Animals",
+        id: "minecraft:bred_animals",
+        inputs: [
+            {
+                type: "list",
+                name: "animals",
+                label: "Animals",
+                tooltip: "The animals that can be bred."
+            }
+        ],
+        requires: false
+    },
+    "Brewed Potion": {
+        name: "Brewed Potion",
+        id: "minecraft:brewed_potion",
+        inputs: [
+            {
+                type: "text",
+                name: "potion",
+                label: "Potion",
+                tooltip: "The potion type to accept."
+            }
+        ],
+        requires: false
+    },
+    "Changed Dimension": {
+        name: "Changed Dimension",
+        id: "minecraft:changed_dimension",
+        inputs: [
+            {
+                type: "text",
+                name: "from",
+                label: "From",
+                tooltip: "The dimension traveled from."
+            },
+            {
+                type: "text",
+                name: "to",
+                label: "To",
+                tooltip: "The dimension traveled to."
+            }
+        ],
+        requires: false
+    },
+    "Channeled Lightning": {
+        name: "Channeled Lightning",
+        id: "minecraft:channeled_lightning",
+        inputs: [
+            {
+                type: "list",
+                name: "victims",
+                label: "Victims",
+                tooltip: "The list of entities that must be hit."
+            }
+        ],
+        requires: false
+    },
+    "Construct Beacon": {
+        name: "Construct Beacon",
+        id: "minecraft:construct_beacon",
+        inputs: [
+            {
+                type: "number",
+                name: "min_level",
+                label: "Min Level",
+                tooltip: "The minimum level of the beacon."
+            },
+            {
+                type: "number",
+                name: "max_level",
+                label: "Max Level",
+                tooltip: "The maximum level of the beacon."
+            }
+        ],
+        requires: false
+    },
+    /*"": {
+        name: "",
+        id: "minecraft:",
+        inputs: [
+            {
+                type: "text",
+                name: "from",
+                label: "From",
+                tooltip: "The dimension traveled from."
+            }
+        ],
+        requires: false
+    },*/
 }
 
 function onThemeChange(name, style, type) {

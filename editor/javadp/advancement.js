@@ -972,7 +972,7 @@ function changeCriteriaType(id, value) {
     criteriaData[id].fields = {};
     let def = componentDefinitions[value];
     for (let i = 0; i < def.inputs.length; i++) {
-        let type = defs.inputs[i].type;
+        let type = def.inputs[i].type;
         let defaultValue;
         if (type == "boolean") {
             defaultValue = false;
@@ -982,7 +982,7 @@ function changeCriteriaType(id, value) {
             defaultValue = "";
         }
 
-        criteriaData[id].fields[defs.inputs[i].name] = defaultValue;
+        criteriaData[id].fields[def.inputs[i].name] = defaultValue;
     }
     criteriaBox.innerHTML = "";
     loadCriteria(criteriaData);

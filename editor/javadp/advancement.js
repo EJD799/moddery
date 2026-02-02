@@ -1046,10 +1046,10 @@ function openAdvInputEditor(component, input, type) {
     advEditor.classList.add("is-active");
     if (type == "list") {
         changeAdvInputMode("list");
-        if (typeof currentItemComponents[addSpaces(component)][addSpaces(input)] != "object") {
-            currentItemComponents[addSpaces(component)][addSpaces(input)] = [];
+        if (typeof criteriaData[component].fields[addSpaces(input)] != "object") {
+            criteriaData[component].fields[addSpaces(input)] = [];
         }
-        advEditorCurrentData = currentItemComponents[addSpaces(component)][addSpaces(input)];
+        advEditorCurrentData = criteriaData[component].fields[addSpaces(input)];
         for (let i = 0; i < advEditorCurrentData.length; i++) {
             advEditorAddItem("list", advEditorCurrentData[i], i);
         }

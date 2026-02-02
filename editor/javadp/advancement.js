@@ -186,6 +186,51 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Consume Item": {
+        name: "Consume Item",
+        id: "minecraft:consume_item",
+        inputs: [
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The list of items that can be consumed."
+            }
+        ],
+        requires: false
+    },
+    "Crafter Recipe Crafted": {
+        name: "Crafter Recipe Crafted",
+        id: "minecraft:crafter_recipe_crafted",
+        inputs: [
+            {
+                type: "text",
+                name: "recipe_id",
+                label: "Recipe ID",
+                tooltip: "The ID of the recipe."
+            }
+        ],
+        requires: false
+    },
+    "Cured Zombie Villager": {
+        name: "Cured Zombie Villager",
+        id: "minecraft:cured_zombie_villager",
+        inputs: [],
+        requires: false
+    },
+    "Default Block Use": {
+        name: "Default Block Use",
+        id: "minecraft:default_block_use",
+        inputs: [
+            {
+                type: "list",
+                name: "blocks",
+                label: "Blocks",
+                tooltip: "The list of blocks to accept."
+            }
+        ],
+        requires: false
+    },
     /*"": {
         name: "",
         id: "minecraft:",

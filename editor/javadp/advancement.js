@@ -631,6 +631,7 @@ function createCriteria(id) {
         });
         elementBoxDropdownBox.appendChild(elementBoxDropdown);
         elementBox.appendChild(elementBoxDropdownBox);
+        let type = criteriaData[id].type;
         for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
             newComponentType = componentDefinitions[type].inputs[i].type;
             newComponentInputName = componentDefinitions[type].inputs[i].name;
@@ -919,9 +920,22 @@ function updateInput(id, input, value) {
 }
 
 function loadCriteria(data) {
-    criteriaData = data;
-    for (let i = 0; i < data.length; i++) {
-        
+    if (data) {
+        criteriaData = data;
+        for (let i = 0; i < data.length; i++) {
+            createCriteria(i);
+            let fields = data[i].fields;
+            let definition = componentDefinitions[data[i].type];
+            for (let j = 0; j < Object.keys(fields).length; j++) {
+                let inputType = definition.inputs.type;
+                let el = document.getElementById(`criteria${i}_${Object.keys(fields)[j]}`);
+                if (inputType == "boolean") {
+                    el.checked = fields[Object.keys(fields)[j]];
+                } else {
+                    el.value = fields[Object.keys(fields)[j]];
+                }
+            }
+        }
     }
 }
 
@@ -946,6 +960,8 @@ function openDeleteCriteria(id) {
 
 function deleteCriteria(id) {
     delete criteriaData[id];
+    criteriaBox.innerHTML = "";
+    loadCriteria(criteriaData);
 }
 
 parentMenu.addEventListener("change", function() {

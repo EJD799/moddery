@@ -616,7 +616,7 @@ function createCriteria(id) {
     let newComponentType;
     let newComponentDefault;
     let newComponentDOM;
-    for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
+    /*for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
         newComponentType = componentDefinitions[type].inputs[i].type
         if (newComponentType == "number") {
             newComponentDefault = 0;
@@ -626,13 +626,12 @@ function createCriteria(id) {
             newComponentDefault = "";
         }
         newComponentObj[componentDefinitions[type].inputs[i].name] = newComponentDefault;
-    }
+    }*/
     if (true) {
-        currentItemComponents[type] = newComponentObj;
         var parentDiv = document.getElementById("criteriaBox");
         var elementBox = document.createElement("div");
         elementBox.setAttribute("class", "card componentbox");
-        elementBox.setAttribute("id", "componentbox_" + removeSpaces(type));
+        elementBox.setAttribute("id", "componentbox_" + id);
         var elementBoxTitle = document.createElement("input");
         elementBoxTitle.setAttribute("class", "input almostFullInput");
         elementBoxTitle.addEventListener("change", function(e) {
@@ -640,7 +639,7 @@ function createCriteria(id) {
         });
         var elementBoxDelete = document.createElement("button");
         elementBoxDelete.setAttribute("class", "button is-danger newDeleteBtn");
-        elementBoxDelete.setAttribute("onclick", `openDeleteComponent('${type}')`);
+        elementBoxDelete.setAttribute("onclick", `openDeleteComponent(${id})`);
         elementBoxDelete.innerHTML = `<i class="fas fa-trash"></i>`;
         elementBoxTitle.appendChild(elementBoxDelete);
         elementBox.appendChild(elementBoxTitle);
@@ -977,7 +976,7 @@ function openDeleteCriteria(id) {
     let deleteDlgText = document.getElementById("deleteDlgText");
     let deleteDlgConfirm = document.getElementById("deleteDlgConfirm");
     deleteDlgText.innerHTML = `Are you sure you want to delete the criteria "${criteriaData[id].name}"?`;
-    deleteDlgConfirm.setAttribute("onclick", `deleteCriteria("${id}")`);
+    deleteDlgConfirm.setAttribute("onclick", `deleteCriteria(${id})`);
 }
 
 function deleteCriteria(id) {

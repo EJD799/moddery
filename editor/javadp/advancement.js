@@ -6,7 +6,7 @@ let selectedFunction;
 let criteriaData = [];
 
 const componentDefinitions = {
-    "": {
+    "Select a trigger": {
         name: "",
         id: "",
         inputs: [],
@@ -650,7 +650,7 @@ function createCriteria(id) {
         elementBoxDropdownBox.setAttribute("class", "select");
         var elementBoxDropdown = document.createElement("select");
         elementBoxDropdown.setAttribute("id", `elementBoxDropdown${id}`);
-        elementBoxDropdown.innerHTML = generateSelectContents(Object.keys(componentDefinitions));
+        elementBoxDropdown.innerHTML = generateSelectContents(Object.keys(componentDefinitions)).replace(">Select a trigger", " disabled> Select a trigger");
         bulmaSelectmenu.attachMenu(elementBoxDropdown);
         elementBoxDropdown.addEventListener("change", function(e) {
             changeCriteriaType(id, elementBoxDropdown.value);
@@ -951,7 +951,7 @@ function loadCriteria(data) {
         for (let i = 0; i < data.length; i++) {
             createCriteria(i);
             let fields = data[i].fields;
-            let definition = componentDefinitions[data[i].type];
+            let definition = componentDefinitions[data[i].trigger];
             for (let j = 0; j < Object.keys(fields).length; j++) {
                 let inputType = definition.inputs.type;
                 let el = document.getElementById(`criteria${i}_${Object.keys(fields)[j]}`);

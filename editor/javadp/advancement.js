@@ -608,7 +608,7 @@ function addCriteria() {
         trigger: "",
         fields: {}
     });
-    createCriteria(criteriaData.length);
+    createCriteria(criteriaData.length - 1);
 }
 
 function createCriteria(id) {
@@ -641,10 +641,13 @@ function createCriteria(id) {
         elementBoxDelete.setAttribute("class", "button is-danger newDeleteBtn");
         elementBoxDelete.setAttribute("onclick", `openDeleteComponent(${id})`);
         elementBoxDelete.innerHTML = `<i class="fas fa-trash"></i>`;
-        elementBoxTitle.appendChild(elementBoxDelete);
         elementBox.appendChild(elementBoxTitle);
+        elementBox.appendChild(elementBoxDelete);
+        elementBox.appendChild(document.createElement("br"));
         var elementBoxDropdownBox = document.createElement("div");
+        elementBoxDropdownBox.setAttribute("class", "select");
         var elementBoxDropdown = document.createElement("select");
+        elementBoxDropdown.setAttribute("id", `elementBoxDropdown${id}`);
         elementBoxDropdown.innerHTML = generateSelectContents(Object.keys(componentDefinitions));
         bulmaSelectmenu.attachMenu(elementBoxDropdown);
         elementBoxDropdown.addEventListener("change", function(e) {
@@ -652,6 +655,7 @@ function createCriteria(id) {
         });
         elementBoxDropdownBox.appendChild(elementBoxDropdown);
         elementBox.appendChild(elementBoxDropdownBox);
+        elementBox.appendChild(document.createElement("br"));
         let type = criteriaData[id].trigger;
         for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
             newComponentType = componentDefinitions[type].inputs[i].type;
@@ -933,7 +937,6 @@ function createCriteria(id) {
             track: false
         });
     }
-    addComponentDlg.classList.remove("is-active");
 }
 
 function updateInput(id, input, value) {

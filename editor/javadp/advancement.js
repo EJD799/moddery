@@ -662,13 +662,14 @@ function createCriteria(id) {
         elementBoxDropdownBox.setAttribute("class", "select");
         var elementBoxDropdown = document.createElement("select");
         elementBoxDropdown.setAttribute("id", `elementBoxDropdown${id}`);
-        elementBoxDropdown.innerHTML = generateSelectContents(Object.keys(componentDefinitions)).replace("></select>", " disabled>Select a trigger</select>");
+        elementBoxDropdown.innerHTML = generateSelectContents(Object.keys(componentDefinitions)).replace("></option>", " value=\"\" disabled>Select a trigger</option>");
         bulmaSelectmenu.attachMenu(elementBoxDropdown);
         elementBoxDropdown.addEventListener("change", function(e) {
             changeCriteriaType(id, elementBoxDropdown.value);
         });
         elementBoxDropdownBox.appendChild(elementBoxDropdown);
         elementBox.appendChild(elementBoxDropdownBox);
+        elementBox.appendChild(document.createElement("br"));
         elementBox.appendChild(document.createElement("br"));
         let type = criteriaData[id].trigger;
         for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {

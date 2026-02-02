@@ -42,6 +42,69 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Any Block Use": {
+        name: "Any Block Use",
+        id: "minecraft:any_block_use",
+        inputs: [
+            {
+                type: "list",
+                name: "blocks",
+                label: "Blocks",
+                tooltip: "The blocks the item can be dropped on."
+            },
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The items that can be dropped."
+            }
+        ],
+        requires: false
+    },
+    "Avoid Vibration": {
+        name: "Avoid Vibration",
+        id: "minecraft:avoid_vibration",
+        inputs: [
+            {
+                type: "text",
+                name: "biome",
+                label: "Biome",
+                tooltip: "The biome required."
+            }
+        ],
+        requires: false
+    },
+    "Bee Nest Destroyed": {
+        name: "Bee Nest Destroyed",
+        id: "minecraft:bee_nest_destroyed",
+        inputs: [
+            {
+                type: "text",
+                name: "block",
+                label: "block",
+                tooltip: "The block that was destroyed."
+            },
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The items that can be dropped."
+            },
+            {
+                type: "number",
+                name: "min_bees_inside",
+                label: "Min Bees Inside",
+                tooltip: "The minimum number of bees inside the nest."
+            },
+            {
+                type: "number",
+                name: "max_bees_inside",
+                label: "Max Bees Inside",
+                tooltip: "The maximum number of bees inside the nest."
+            }
+        ],
+        requires: false
+    },
 }
 
 function onThemeChange(name, style, type) {

@@ -825,7 +825,8 @@ function addCriteria() {
     criteriaData.push({
         name: "",
         trigger: "",
-        fields: {}
+        fields: {},
+        required: false
     });
     createCriteria(criteriaData.length - 1);
 }
@@ -864,6 +865,17 @@ function createCriteria(id) {
         elementBox.appendChild(elementBoxTitle);
         elementBox.appendChild(elementBoxDelete);
         elementBox.appendChild(document.createElement("br"));
+        var elementBoxRequired = document.createElement("input");
+        elementBoxRequired.setAttribute("class", "is-primary");
+        elementBoxRequired.setAttribute("id", `componentRequired_${id}`);
+        elementBoxRequired.addEventListener("change", function(e) {
+            criteriaData[id].required = elementBoxRequired.checked;
+        });
+        elementBox.appendChild(elementBoxRequired);
+        var elementBoxRequiredLabel = document.createElement("label");
+        elementBoxRequiredLabel.setAttribute("for", `componentRequired_${id}`);
+        elementBoxRequiredLabel.innerHTML = "Required";
+        elementBox.appendChild(elementBoxRequiredLabel);
         elementBox.appendChild(document.createElement("br"));
         var elementBoxDropdownBox = document.createElement("div");
         elementBoxDropdownBox.setAttribute("class", "select");
@@ -1182,6 +1194,7 @@ function loadCriteria(data) {
                 }
             }
             document.getElementById(`componentTitle_${i}`).value = criteriaData[i].name;
+            document.getElementById(`componentRequired_${i}`).checked = criteriaData[i].required;
             document.getElementById(`elementBoxDropdown${i}`).value = criteriaData[i].trigger;
         }
     }

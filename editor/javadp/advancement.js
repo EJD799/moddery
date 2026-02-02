@@ -1063,7 +1063,7 @@ function saveAdvInput() {
     let input = advEditorInput;
     let type = advEditorType;
     let data = advEditorCurrentData;
-    $(`#${component}${input}`).val(data.toString());
+    $(`#criteria${component}_${input}`).val(data.toString());
     updateInput(component, input, data);
     closeAdvInputEditor();
 }

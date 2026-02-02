@@ -634,6 +634,7 @@ function createCriteria(id) {
         elementBox.setAttribute("id", "componentbox_" + id);
         var elementBoxTitle = document.createElement("input");
         elementBoxTitle.setAttribute("class", "input almostFullInput");
+        elementBoxTitle.setAttribute("id", `componentTitle_${id}`);
         elementBoxTitle.addEventListener("change", function(e) {
             criteriaData[id].name = elementBoxTitle.value;
         });
@@ -959,6 +960,8 @@ function loadCriteria(data) {
                     el.value = fields[Object.keys(fields)[j]];
                 }
             }
+            document.getElementById(`componentTitle_${i}`).value = criteriaData[i].name;
+            document.getElementById(`elementBoxDropdown${i}`).value = criteriaData[i].trigger;
         }
     }
 }

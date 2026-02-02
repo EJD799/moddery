@@ -5,6 +5,11 @@ let selectedLootTable;
 let selectedFunction;
 let criteriaData = [];
 
+let advEditorComponent;
+let advEditorInput;
+let advEditorType;
+let advEditorCurrentData;
+
 const componentDefinitions = {
     "": {
         name: "",
@@ -1026,6 +1031,77 @@ parentMenu.addEventListener("change", function() {
         $("#backgroundTextureSelector").hide();
     }
 });
+
+
+function changeAdvInputMode(mode) {
+    if (mode == "list") {
+        $("#advEditorContentList").show();
+        advEditorListContent.innerHTML = "";
+    }
+}
+function openAdvInputEditor(component, input, type) {
+    advEditorComponent = component;
+    advEditorInput = input;
+    advEditorType = type;
+    advEditor.classList.add("is-active");
+    if (type == "list") {
+        changeAdvInputMode("list");
+        if (typeof currentItemComponents[addSpaces(component)][addSpaces(input)] != "object") {
+            currentItemComponents[addSpaces(component)][addSpaces(input)] = [];
+        }
+        advEditorCurrentData = currentItemComponents[addSpaces(component)][addSpaces(input)];
+        for (let i = 0; i < advEditorCurrentData.length; i++) {
+            advEditorAddItem("list", advEditorCurrentData[i], i);
+        }
+    }
+}
+function closeAdvInputEditor() {
+    advEditor.classList.remove("is-active");
+}
+function saveAdvInput() {
+    let component = advEditorComponent;
+    let input = advEditorInput;
+    let type = advEditorType;
+    let data = advEditorCurrentData;
+    $(`#${component}${input}`).val(data.toString());
+    updateInput(component, input, data);
+    closeAdvInputEditor();
+}
+function advEditorAddItem(mode, value, idVal = -1) {
+    let id;
+    if (idVal >= 0) {
+        id = idVal;
+    } else {
+        id = advEditorCurrentData.length;
+        advEditorCurrentData[id] = value;
+    }
+    if (mode == "list") {
+        let textBox = document.createElement("input");
+        textBox.setAttribute("id", `advEditorListItem${id}`);
+        textBox.setAttribute("value", value);
+        textBox.setAttribute("class", "input normalInput");
+        textBox.addEventListener("change", event => {
+            advEditorCurrentData[id] = event.target.value;
+        });
+        advEditorListContent.appendChild(textBox);
+        let deleteBtn = document.createElement("button");
+        deleteBtn.setAttribute("class", "button is-danger newDeleteBtn");
+        deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`;
+        deleteBtn.setAttribute("onclick", `advEditorRemoveItem(${id})`);
+        advEditorListContent.appendChild(document.createTextNode(" "));
+        advEditorListContent.appendChild(deleteBtn);
+        advEditorListContent.appendChild(document.createElement("br"));
+    }
+}
+function advEditorRemoveItem(id) {
+    if (advEditorType == "list") {
+        advEditorListContent.innerHTML = "";
+    }
+    advEditorCurrentData.splice(id, 1);
+    for (let i = 0; i < advEditorCurrentData.length; i++) {
+        advEditorAddItem(advEditorType, advEditorCurrentData[i], i);
+    }
+}
 
 
 // Run after jQuery, jQuery UI and TouchPunch are loaded and after dialogs exist.

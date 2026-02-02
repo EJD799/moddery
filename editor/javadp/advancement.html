@@ -282,6 +282,25 @@
             <button class="modal-close is-large" aria-label="close" onclick="closeSelectFunctionDlg();"></button>
         </div>
 
+        <div class="modal" id="advEditor">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:400px;height:500px;">
+                <div class="card" id="advEditorCard" style="padding:16px;">
+                    <center>
+                        <h4 id="advEditorTitle" class="title is-4">Edit Input</h4>
+                        <div id="advEditorContentList">
+                        <button class="button is-primary" id="advEditorListAddBtn" onclick="advEditorAddItem('list', '', -1)">+ Add Item</button>
+                        <br><br>
+                        <div id="advEditorListContent"></div>
+                        </div>
+                        <br><br>
+                        <button class="button is-primary" id="advEditorSave" onclick="saveAdvInput()">Save</button>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="saveAdvInput();"></button>
+        </div>
+
         <div class="modal" id="itemPickerDialog">
             <div class="modal-background"></div>
             <div class="modal-content" style="width:500px;height:550px;">

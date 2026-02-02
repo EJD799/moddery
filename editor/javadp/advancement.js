@@ -967,7 +967,7 @@ function loadCriteria(data) {
 }
 
 function changeCriteriaType(id, value) {
-    criteriaData[id].type = value;
+    criteriaData[id].trigger = value;
     criteriaData[id].fields = {};
     criteriaBox.innerHTML = "";
     loadCriteria(criteriaData);

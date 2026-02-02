@@ -5,6 +5,28 @@ let selectedLootTable;
 let selectedFunction;
 let criteriaData = [];
 
+const componentDefinitions = {
+    "": {
+        name: "",
+        id: "",
+        inputs: [],
+        requires: false
+    },
+    "Test": {
+        name: "test",
+        id: "test",
+        inputs: [
+            {
+                type: "boolean",
+                name: "main",
+                label: "Allow Off Hand",
+                tooltip: "Whether the item can be wielded in the off-hand."
+            }
+        ],
+        requires: false
+    },
+}
+
 function onThemeChange(name, style, type) {
     if (type == "light") {
         actionItems.special_remove.texture = "/moddery/custom_textures/special_remove_light.png";

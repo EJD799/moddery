@@ -1,4 +1,4 @@
-const appVersion = "2.2.175";
+const appVersion = "2.2.176";
 const buildDate = "2/3/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -2914,7 +2914,12 @@ async function addTab(role, elementID) {
       });
     } else if (projectTypes[projManifest.type].editors[role].saveType == "media") {
       projZip.folder("assets").file(decodeText(elementID)).async("blob").then(async function (data) {
-        frame.contentWindow.loadProject(await fileToDataURL(data));
+        if (role == "Audio") {
+          let auxiliary = await projZip.folder("auxiliaryData").file(decodeText(elementID).replace(".wav", ".json")).async("string");
+          frame.contentWindow.loadProject([(await fileToDataURL(data)), JSON.parse(auxiliary)]);
+        } else {
+          frame.contentWindow.loadProject(await fileToDataURL(data));
+        }
       });
     }
     handleFrameThemeChange();
@@ -2966,6 +2971,10 @@ async function saveElement(elementTab) {
     projZip.folder("assets").file(decodeText(elementTab[1]), dataURItoFile(frame.contentWindow.saveProject(), elementTab[1] + ".png"));
     var preview = document.getElementById(elementTab[1] + "_preview");
     preview.src = frame.contentWindow.saveProject();
+  }
+
+  if (elementTab[0] == "Audio") {
+    projZip.folder("auxiliaryData").file(decodeText(elementTab[1]).replace(".wav", ".json"), frame.contentWindow.saveProject());
   }
 }
 

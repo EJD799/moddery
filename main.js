@@ -1,4 +1,4 @@
-const appVersion = "2.2.181";
+const appVersion = "2.2.182";
 const buildDate = "2/4/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -2983,7 +2983,7 @@ async function saveElement(elementTab) {
 
   if (elementTab[0] == "Audio") {
     var frame = document.getElementById(elementTab[1] + "_frame");
-    projZip.folder("auxiliaryData").file(decodeText(elementTab[1]).replace(".wav", ".json"), frame.contentWindow.saveProject());
+    projZip.folder("auxiliaryData").file(decodeText(elementTab[1]).replace(".wav", ".json"), JSON.stringify(frame.contentWindow.saveProject()));
   }
 }
 

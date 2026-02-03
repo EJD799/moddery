@@ -906,7 +906,7 @@ function createCriteria(id) {
         });
         var elementBoxDelete = document.createElement("button");
         elementBoxDelete.setAttribute("class", "button is-danger newDeleteBtn");
-        elementBoxDelete.setAttribute("onclick", `openDeleteComponent(${id})`);
+        elementBoxDelete.setAttribute("onclick", `openDeleteCriteria(${id})`);
         elementBoxDelete.innerHTML = `<i class="fas fa-trash"></i>`;
         elementBox.appendChild(elementBoxTitle);
         elementBox.appendChild(elementBoxDelete);
@@ -921,7 +921,7 @@ function createCriteria(id) {
         elementBox.appendChild(elementBoxRequired);
         var elementBoxRequiredLabel = document.createElement("label");
         elementBoxRequiredLabel.setAttribute("for", `componentRequired_${id}`);
-        elementBoxRequiredLabel.innerHTML = "Required";
+        elementBoxRequiredLabel.innerHTML = " Required";
         elementBox.appendChild(elementBoxRequiredLabel);
         elementBox.appendChild(document.createElement("br"));
         var elementBoxDropdownBox = document.createElement("div");
@@ -929,6 +929,7 @@ function createCriteria(id) {
         var elementBoxDropdown = document.createElement("select");
         elementBoxDropdown.setAttribute("id", `elementBoxDropdown${id}`);
         elementBoxDropdown.innerHTML = generateSelectContents(Object.keys(componentDefinitions)).replace("></option>", " value=\"\" disabled>Select a trigger</option>");
+        elementBoxDropdown.value = "";
         bulmaSelectmenu.attachMenu(elementBoxDropdown);
         elementBoxDropdown.addEventListener("change", function(e) {
             changeCriteriaType(id, elementBoxDropdown.value);
@@ -1281,7 +1282,7 @@ function openDeleteCriteria(id) {
 }
 
 function deleteCriteria(id) {
-    delete criteriaData[id];
+    criteriaData.splice(id, 1);
     criteriaBox.innerHTML = "";
     loadCriteria(criteriaData);
 }

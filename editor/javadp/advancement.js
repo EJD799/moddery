@@ -275,6 +275,19 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Enter Block": {
+        name: "Enter Block",
+        id: "minecraft:enter_block",
+        inputs: [
+            {
+                type: "text",
+                name: "block",
+                label: "Block",
+                tooltip: "The block ID to accept."
+            }
+        ],
+        requires: false
+    },
     /*"": {
         name: "",
         id: "minecraft:",
@@ -880,17 +893,6 @@ function createCriteria(id) {
     let newComponentType;
     let newComponentDefault;
     let newComponentDOM;
-    /*for (let i = 0; i < componentDefinitions[type].inputs.length; i++) {
-        newComponentType = componentDefinitions[type].inputs[i].type
-        if (newComponentType == "number") {
-            newComponentDefault = 0;
-        } else if (newComponentType == "boolean") {
-            newComponentDefault = false;
-        } else {
-            newComponentDefault = "";
-        }
-        newComponentObj[componentDefinitions[type].inputs[i].name] = newComponentDefault;
-    }*/
     if (true) {
         var parentDiv = document.getElementById("criteriaBox");
         var elementBox = document.createElement("div");
@@ -911,6 +913,7 @@ function createCriteria(id) {
         elementBox.appendChild(document.createElement("br"));
         var elementBoxRequired = document.createElement("input");
         elementBoxRequired.setAttribute("class", "is-primary");
+        elementBoxRequired.setAttribute("type", "checkbox");
         elementBoxRequired.setAttribute("id", `componentRequired_${id}`);
         elementBoxRequired.addEventListener("change", function(e) {
             criteriaData[id].required = elementBoxRequired.checked;

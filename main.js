@@ -1,4 +1,4 @@
-const appVersion = "2.2.178";
+const appVersion = "2.2.179";
 const buildDate = "2/4/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -2919,7 +2919,10 @@ async function addTab(role, elementID) {
           try {
             auxiliary = await projZip.folder("auxiliaryData").file(decodeText(elementID).replace(".wav", ".json")).async("string");
           } catch(e) {
-            auxiliary = "{}";
+            auxiliary = JSON.stringify({
+              id: "",
+              category: "neutral"
+            });
           }
           frame.contentWindow.loadProject([(await fileToDataURL(data)), JSON.parse(auxiliary)]);
         } else {

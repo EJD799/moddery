@@ -1,5 +1,5 @@
-const appVersion = "2.2.176";
-const buildDate = "2/3/2026";
+const appVersion = "2.2.177";
+const buildDate = "2/4/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -2258,7 +2258,7 @@ async function addAsset(loadingProj, fileToLoad, fileToLoadName) {
         editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'wav')`);
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
         editBtn.setAttribute("class", "button is-primary");
-        editBtn.innerHTML = `<i class="fas fa-volume-low"></i> View`;
+        editBtn.innerHTML = `<i class="fas fa-volume-low"></i> Edit`;
       }
       optionsBtn = document.createElement("div");
       optionsBtn.setAttribute("class", "dropdown");
@@ -2788,7 +2788,7 @@ async function renameElement() {
         editBtn.setAttribute("onclick", `editAsset('${fileNameEncoded}', 'wav')`);
         editBtn.setAttribute("id", `${fileNameEncoded}_assetEditBtn`);
         editBtn.setAttribute("class", "button is-primary");
-        editBtn.innerHTML = `<i class="fas fa-volume-low"></i> View`;
+        editBtn.innerHTML = `<i class="fas fa-volume-low"></i> Edit`;
       }
       optionsBtn = document.createElement("div");
       optionsBtn.setAttribute("class", "dropdown");
@@ -3127,15 +3127,7 @@ window.addEventListener('beforeunload', (event) => {
   }
 });
 
-function attachValidation(input, validator, ignoreEmpty = true) {
-  input.addEventListener("input", () => {
-    if (validator(input.value) || (ignoreEmpty && input.value == "")) {
-      input.classList.remove("invalidTextBox");
-    } else {
-      input.classList.add("invalidTextBox");
-    }
-  });
-}
+
 
 attachValidation(newProjNamespaceBox, isValidElementID);
 attachValidation(editProjNamespaceBox, isValidElementID);

@@ -4,6 +4,9 @@
 <link rel="stylesheet" href="https://ejd799.github.io/BulmaColoredInputs/main.css">
 <link rel="stylesheet" href="../styles.css">
 
+<link rel="stylesheet" href="https://ejd799.github.io/BulmaSelectmenu/selectmenu.css">
+<script src="https://ejd799.github.io/BulmaSelectmenu/selectmenu.js"></script>
+
 <style id="themeStyleElement"></style>
 
 <style>
@@ -22,15 +25,49 @@
     ></audio>
 </media-theme-tailwind-audio>
 <br><br>
-
+<label for="soundIDBox">Sound ID</label>
+<input id="soundIDBox" class="input normalInput" placeholder="Sound ID">
+<br><br>
+<label for="categoryBox">Category</label>
+<div class="select">
+    <select id="categoryBox">
+        <option value="block">Block</option>
+        <option value="bottle">Bottle</option>
+        <option value="bucket">Bucket</option>
+        <option value="hostile">Hostile</option>
+        <option value="music">Music</option>
+        <option value="neutral">Neutral</option>
+        <option value="player">Player</option>
+        <option value="record">Record</option>
+        <option value="ui">UI</option>
+        <option value="weather">Weather</option>
+    </select>
+</div>
 
 
 <script>
+    bulmaSelectmenu.attachMenu(categoryBox);
+
     function loadProject(data) {
         audioElement.setAttribute("src", data[0].replace("application/octet-stream", "audio/wav"));
-        
+        soundIDBox.value = data[1].id;
+        categoryBox.value = data[1].category;
     }
     function saveProject() {
-
+        return {
+            id: soundIDBox.value,
+            category: categoryBox.value
+        };
     }
+
+    function attachValidation(input, validator, ignoreEmpty = true) {
+        input.addEventListener("input", () => {
+            if (validator(input.value) || (ignoreEmpty && input.value == "")) {
+                input.classList.remove("invalidTextBox");
+            } else {
+                input.classList.add("invalidTextBox");
+            }
+        });
+    }
+    attachValidation(soundIDBox, isValidElementID);
 </script>

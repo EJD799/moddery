@@ -1,4 +1,4 @@
-const appVersion = "2.2.182";
+const appVersion = "2.2.183";
 const buildDate = "2/4/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -1426,6 +1426,7 @@ function createProject() {
     projZip.file("manifest.json", JSON.stringify(projManifest));
     projZip.folder("elements");
     projZip.folder("assets");
+    projZip.folder("auxiliaryData");
     $("#newProjNameBox").val("");
     $("#newProjNamespaceBox").val("");
     setNotSaved(true);

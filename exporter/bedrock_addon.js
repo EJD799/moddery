@@ -1972,6 +1972,19 @@ bedrockExporter.runExport = async function() {
   if (decoratedPotFile) {
     exportZip2.folder("entity").file("decorated_pot.json", JSON.stringify(decoratedPotFile));
   }
+
+  let audioFiles = fileListInFolder("auxiliaryData", false, projZip);
+  for (let i = 0; i < audioFiles.length; i++) {
+    let audioData;
+    try {
+      audioData = JSON.parse(await projZip.folder("auxiliaryData").file(audioFiles[i]));
+    } catch(e) {}
+
+    let audioFile = projZip.folder("assets").file(audioFiles[i].replace(".json", ".wav")).async("arraybuffer");
+
+    exportZip2.folder("sounds").file(audioFiles[i].replace(".json", ".wav"), audioFile);
+  }
+
   if (exportDlgModeBox.value === "1mcaddon" || exportDlgModeBox.value === "1zip") {
     // One file containing both BP and RP
 

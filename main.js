@@ -1,4 +1,4 @@
-const appVersion = "2.2.184";
+const appVersion = "2.2.185";
 const buildDate = "2/4/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3137,7 +3137,15 @@ window.addEventListener('beforeunload', (event) => {
   }
 });
 
-
+function attachValidation(input, validator, ignoreEmpty = true) {
+    input.addEventListener("input", () => {
+        if (validator(input.value) || (ignoreEmpty && input.value == "")) {
+            input.classList.remove("invalidTextBox");
+        } else {
+            input.classList.add("invalidTextBox");
+        }
+    });
+}
 
 attachValidation(newProjNamespaceBox, isValidElementID);
 attachValidation(editProjNamespaceBox, isValidElementID);

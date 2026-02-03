@@ -231,6 +231,50 @@ const componentDefinitions = {
         ],
         requires: false
     },
+    "Effects Changed": {
+        name: "Effects Changed",
+        id: "minecraft:effects_changed",
+        inputs: [
+            {
+                type: "list",
+                name: "effects",
+                label: "Effects",
+                tooltip: "The status effects needed."
+            }
+        ],
+        requires: false
+    },
+    "Enchanted Item": {
+        name: "Enchanted Item",
+        id: "minecraft:enchanted_item",
+        inputs: [
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The items to accept."
+            },
+            {
+                type: "list",
+                name: "enchantments",
+                label: "Enchantments",
+                tooltip: "The enchantments to accept."
+            },
+            {
+                type: "number",
+                name: "min_level",
+                label: "Min Level",
+                tooltip: "The minimum level of the enchantment."
+            },
+            {
+                type: "number",
+                name: "max_level",
+                label: "Max Level",
+                tooltip: "The maximum level of the enchantment."
+            }
+        ],
+        requires: false
+    },
     /*"": {
         name: "",
         id: "minecraft:",

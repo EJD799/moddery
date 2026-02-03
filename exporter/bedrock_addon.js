@@ -1970,10 +1970,14 @@ bedrockExporter.runExport = async function() {
   exportZip2.folder("texts").file("en_US.lang", languageFile);
   exportZip2.folder("texts").file("languages.json", JSON.stringify(["en_US"]));
   if (decoratedPotFile) {
-    exportZip2.folder("entity").file("decorated_pot.json", JSON.stringify(decoratedPotFile));
+    exportZip2.folder("entity").file("decorated_pot.json", JSON.stringify(decoratedPotFile, null, 4));
   }
 
   let audioFiles = fileListInFolder("auxiliaryData", false, projZip);
+  let soundDefinitionFile = {
+    "format_version": "1.14.0",
+    "sound_definitions": {}
+  };
   for (let i = 0; i < audioFiles.length; i++) {
     let audioData;
     try {
@@ -1982,7 +1986,16 @@ bedrockExporter.runExport = async function() {
 
     let audioFile = projZip.folder("assets").file(audioFiles[i].replace(".json", ".wav")).async("arraybuffer");
 
-    exportZip2.folder("sounds").file(audioFiles[i].replace(".json", ".wav"), audioFile);
+    exportZip2.folder("sounds").file(audioData.id + ".wav", audioFile);
+
+    soundDefinitionFile.sound_definitions[audioData.id] = {
+      "category": audioData.category,
+      "sounds": [`sounds/${audioData.id}`]
+    };
+  }
+
+  if (audioFiles.length > 0) {
+    exportZip2.folder("sounds").file("sound_definitions.json", JSON.stringify(soundDefinitionFile, null, 4));
   }
 
   if (exportDlgModeBox.value === "1mcaddon" || exportDlgModeBox.value === "1zip") {

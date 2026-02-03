@@ -1,4 +1,4 @@
-const appVersion = "2.2.179";
+const appVersion = "2.2.180";
 const buildDate = "2/4/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -2974,7 +2974,7 @@ async function saveElement(elementTab) {
   } else if (projectTypes[projManifest.type].editors[elementTab[0]].saveType == "regular") {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("elements").file(elementTab[1] + ".json", JSON.stringify(frame.contentWindow.saveProject()));
-  } else if (projectTypes[projManifest.type].editors[elementTab[0]].saveType == "media") {
+  } else if (projectTypes[projManifest.type].editors[elementTab[0]].saveType == "media" && elementTab[0] != "Audio") {
     var frame = document.getElementById(elementTab[1] + "_frame");
     projZip.folder("assets").file(decodeText(elementTab[1]), dataURItoFile(frame.contentWindow.saveProject(), elementTab[1] + ".png"));
     var preview = document.getElementById(elementTab[1] + "_preview");

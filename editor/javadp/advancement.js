@@ -14,8 +14,7 @@ const componentDefinitions = {
     "": {
         name: "",
         id: "",
-        inputs: [],
-        requires: false
+        inputs: []
     },
     "Allay Drop Item on Block": {
         name: "Allay Drop Item on Block",
@@ -39,8 +38,7 @@ const componentDefinitions = {
                 label: "Items",
                 tooltip: "The items that can be dropped."
             }
-        ],
-        requires: false
+        ]
     },
     "Any Block Use": {
         name: "Any Block Use",
@@ -58,8 +56,7 @@ const componentDefinitions = {
                 label: "Items",
                 tooltip: "The items that can be dropped."
             }
-        ],
-        requires: false
+        ]
     },
     "Avoid Vibration": {
         name: "Avoid Vibration",
@@ -71,8 +68,7 @@ const componentDefinitions = {
                 label: "Biome",
                 tooltip: "The biome required."
             }
-        ],
-        requires: false
+        ]
     },
     "Bee Nest Destroyed": {
         name: "Bee Nest Destroyed",
@@ -106,8 +102,7 @@ const componentDefinitions = {
                 label: "Max Bees Inside",
                 tooltip: "The maximum number of bees inside the nest."
             }
-        ],
-        requires: false
+        ]
     },
     "Bred Animals": {
         name: "Bred Animals",
@@ -119,8 +114,7 @@ const componentDefinitions = {
                 label: "Animals",
                 tooltip: "The animals that can be bred."
             }
-        ],
-        requires: false
+        ]
     },
     "Brewed Potion": {
         name: "Brewed Potion",
@@ -132,8 +126,7 @@ const componentDefinitions = {
                 label: "Potion",
                 tooltip: "The potion type to accept."
             }
-        ],
-        requires: false
+        ]
     },
     "Changed Dimension": {
         name: "Changed Dimension",
@@ -151,8 +144,7 @@ const componentDefinitions = {
                 label: "To",
                 tooltip: "The dimension traveled to."
             }
-        ],
-        requires: false
+        ]
     },
     "Channeled Lightning": {
         name: "Channeled Lightning",
@@ -164,8 +156,7 @@ const componentDefinitions = {
                 label: "Victims",
                 tooltip: "The list of entities that must be hit."
             }
-        ],
-        requires: false
+        ]
     },
     "Construct Beacon": {
         name: "Construct Beacon",
@@ -183,8 +174,7 @@ const componentDefinitions = {
                 label: "Max Level",
                 tooltip: "The maximum level of the beacon."
             }
-        ],
-        requires: false
+        ]
     },
     "Consume Item": {
         name: "Consume Item",
@@ -196,8 +186,7 @@ const componentDefinitions = {
                 label: "Items",
                 tooltip: "The list of items that can be consumed."
             }
-        ],
-        requires: false
+        ]
     },
     "Crafter Recipe Crafted": {
         name: "Crafter Recipe Crafted",
@@ -209,14 +198,12 @@ const componentDefinitions = {
                 label: "Recipe ID",
                 tooltip: "The ID of the recipe."
             }
-        ],
-        requires: false
+        ]
     },
     "Cured Zombie Villager": {
         name: "Cured Zombie Villager",
         id: "minecraft:cured_zombie_villager",
-        inputs: [],
-        requires: false
+        inputs: []
     },
     "Default Block Use": {
         name: "Default Block Use",
@@ -228,8 +215,7 @@ const componentDefinitions = {
                 label: "Blocks",
                 tooltip: "The list of blocks to accept."
             }
-        ],
-        requires: false
+        ]
     },
     "Effects Changed": {
         name: "Effects Changed",
@@ -241,8 +227,7 @@ const componentDefinitions = {
                 label: "Effects",
                 tooltip: "The status effects needed."
             }
-        ],
-        requires: false
+        ]
     },
     "Enchanted Item": {
         name: "Enchanted Item",
@@ -272,8 +257,7 @@ const componentDefinitions = {
                 label: "Max Level",
                 tooltip: "The maximum level of the enchantment."
             }
-        ],
-        requires: false
+        ]
     },
     "Enter Block": {
         name: "Enter Block",
@@ -285,8 +269,7 @@ const componentDefinitions = {
                 label: "Block",
                 tooltip: "The block ID to accept."
             }
-        ],
-        requires: false
+        ]
     },
     "Entity Hurt Player": {
         name: "Entity Hurt Player",
@@ -316,8 +299,7 @@ const componentDefinitions = {
                 label: "Max Damage",
                 tooltip: "The maximum amount of damage to accept."
             }
-        ],
-        requires: false
+        ]
     },
     "Entity Killed Player": {
         name: "Entity Killed Player",
@@ -329,8 +311,43 @@ const componentDefinitions = {
                 label: "Entities",
                 tooltip: "The source entities to accept."
             }
-        ],
-        requires: false
+        ]
+    },
+    "Fall After Explosion": {
+        name: "Fall After Explosion",
+        id: "minecraft:fall_after_explosion",
+        inputs: [
+            {
+                type: "number",
+                name: "min_distance",
+                label: "Min Distance",
+                tooltip: "The minimum amount of distance to accept."
+            },
+            {
+                type: "number",
+                name: "max_distance",
+                label: "Max Distance",
+                tooltip: "The maximum amount of distance to accept."
+            }
+        ]
+    },
+    "Fall From Height": {
+        name: "Fall From Height",
+        id: "minecraft:fall_from_height",
+        inputs: [
+            {
+                type: "number",
+                name: "min_distance",
+                label: "Min Distance",
+                tooltip: "The minimum amount of distance to accept."
+            },
+            {
+                type: "number",
+                name: "max_distance",
+                label: "Max Distance",
+                tooltip: "The maximum amount of distance to accept."
+            }
+        ]
     },
     /*"": {
         name: "",
@@ -342,8 +359,7 @@ const componentDefinitions = {
                 label: "From",
                 tooltip: "The dimension traveled from."
             }
-        ],
-        requires: false
+        ]
     },*/
 }
 

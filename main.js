@@ -1,4 +1,4 @@
-const appVersion = "2.2.177";
+const appVersion = "2.2.178";
 const buildDate = "2/4/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -2915,7 +2915,12 @@ async function addTab(role, elementID) {
     } else if (projectTypes[projManifest.type].editors[role].saveType == "media") {
       projZip.folder("assets").file(decodeText(elementID)).async("blob").then(async function (data) {
         if (role == "Audio") {
-          let auxiliary = await projZip.folder("auxiliaryData").file(decodeText(elementID).replace(".wav", ".json")).async("string");
+          let auxiliary;
+          try {
+            auxiliary = await projZip.folder("auxiliaryData").file(decodeText(elementID).replace(".wav", ".json")).async("string");
+          } catch(e) {
+            auxiliary = "{}";
+          }
           frame.contentWindow.loadProject([(await fileToDataURL(data)), JSON.parse(auxiliary)]);
         } else {
           frame.contentWindow.loadProject(await fileToDataURL(data));

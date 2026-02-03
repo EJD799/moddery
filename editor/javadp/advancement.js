@@ -985,7 +985,7 @@ function createCriteria(id) {
         elementBox.appendChild(elementBoxRequiredLabel);
         elementBox.appendChild(document.createElement("br"));
         var elementBoxDropdownBox = document.createElement("div");
-        elementBoxDropdownBox.setAttribute("class", "select");
+        elementBoxDropdownBox.setAttribute("class", "select is-searchable");
         var elementBoxDropdown = document.createElement("select");
         elementBoxDropdown.setAttribute("id", `elementBoxDropdown${id}`);
         elementBoxDropdown.innerHTML = generateSelectContents(Object.keys(componentDefinitions)).replace("></option>", " value=\"\" disabled>Select a trigger</option>");

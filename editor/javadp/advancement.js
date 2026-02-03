@@ -1282,6 +1282,7 @@ function openDeleteCriteria(id) {
 }
 
 function deleteCriteria(id) {
+    deleteDlg.classList.remove("is-active");
     criteriaData.splice(id, 1);
     criteriaBox.innerHTML = "";
     loadCriteria(criteriaData);

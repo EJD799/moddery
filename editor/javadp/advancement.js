@@ -495,6 +495,36 @@ const componentDefinitions = {
             }
         ]
     },
+    "Levitation": {
+        name: "Levitation",
+        id: "minecraft:levitation",
+        inputs: [
+            {
+                type: "number",
+                name: "min_distance",
+                label: "Min Distance",
+                tooltip: "The minimum distance that the player levitated."
+            },
+            {
+                type: "number",
+                name: "max_distance",
+                label: "Max Distance",
+                tooltip: "The maximum distance that the player levitated."
+            },
+            {
+                type: "number",
+                name: "min_duration",
+                label: "Min Duration",
+                tooltip: "The minimum duration of the status effect."
+            },
+            {
+                type: "number",
+                name: "max_duration",
+                label: "Max Duration",
+                tooltip: "The maximum duration of the status effect."
+            }
+        ]
+    },
     /*"": {
         name: "",
         id: "minecraft:",

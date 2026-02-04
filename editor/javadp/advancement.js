@@ -842,6 +842,58 @@ const componentDefinitions = {
         id: "minecraft:tick",
         inputs: []
     },
+    "Used Ender Eye": {
+        name: "Used Ender Eye",
+        id: "minecraft:used_ender_eye",
+        inputs: [
+            {
+                type: "number",
+                name: "min_distance",
+                label: "Min Distance",
+                tooltip: "The minimum distance between the player and the stronghold."
+            },
+            {
+                type: "number",
+                name: "max_distance",
+                label: "Max Distance",
+                tooltip: "The maximum distance between the player and the stronghold."
+            }
+        ]
+    },
+    "Used Totem": {
+        name: "Used Totem",
+        id: "minecraft:used_totem",
+        inputs: []
+    },
+    "Using Item": {
+        name: "Using Item",
+        id: "minecraft:using_item",
+        inputs: [
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The list of item IDs to accept."
+            }
+        ]
+    },
+    "Villager Trade": {
+        name: "Villager Trade",
+        id: "minecraft:villager_trade",
+        inputs: [
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The list of item IDs to accept."
+            }
+        ]
+    },
+    "Voluntary Exile": {
+        name: "Voluntary Exile",
+        id: "minecraft:voluntary_exile",
+        inputs: []
+    }
     /*"": {
         name: "",
         id: "minecraft:",

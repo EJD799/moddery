@@ -1043,6 +1043,6 @@ Blockly.JavaScript.forBlock['form_gui_image'] = function (block) {
     let texture = block.getFieldValue("TEXTURE");
     guiTextures.push(texture);
 
-    let code = `textures/custom_gui/${texture.replace(".png", "")}`;
+    let code = `'textures/custom_gui/${texture.replace(".png", "")}'`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };

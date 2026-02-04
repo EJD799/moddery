@@ -349,6 +349,42 @@ const componentDefinitions = {
             }
         ]
     },
+    "Filled Bucket": {
+        name: "Filled Bucket",
+        id: "minecraft:filled_bucket",
+        inputs: [
+            {
+                type: "dropdown",
+                name: "result_item",
+                label: "Result Item",
+                tooltip: "The result item after filling the bucket.",
+                options: [
+                    "minecraft:water_bucket",
+                    "minecraft:lava_bucket",
+                    "minecraft:milk_bucket",
+                    "minecraft:powder_snow_bucket",
+                    "minecraft:axolotl_bucket",
+                    "minecraft:cod_bucket",
+                    "minecraft:pufferfish_bucket",
+                    "minecraft:salmon_bucket",
+                    "minecraft:tadpole_bucket",
+                    "minecraft:tropical_fish_bucket",
+                ]
+            }
+        ]
+    },
+    "Fishing Rod Hooked": {
+        name: "Fishing Rod Hooked",
+        id: "minecraft:fishing_rod_hooked",
+        inputs: [
+            {
+                type: "text",
+                name: "item",
+                label: "Item",
+                tooltip: "The ID of the item that was caught."
+            }
+        ]
+    },
     /*"": {
         name: "",
         id: "minecraft:",

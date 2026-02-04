@@ -801,6 +801,47 @@ const componentDefinitions = {
             }
         ]
     },
+    "Thrown Item Picked Up by Entity": {
+        name: "Thrown Item Picked Up by Entity",
+        id: "minecraft:thrown_item_picked_up_by_entity",
+        inputs: [
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The list of item IDs to accept."
+            },
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The list of entity IDs to accept."
+            }
+        ]
+    },
+    "Thrown Item Picked Up by Player": {
+        name: "Thrown Item Picked Up by Player",
+        id: "minecraft:thrown_item_picked_up_by_player",
+        inputs: [
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The list of item IDs to accept."
+            },
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The list of entity IDs to accept."
+            }
+        ]
+    },
+    "Tick": {
+        name: "Tick",
+        id: "minecraft:tick",
+        inputs: []
+    },
     /*"": {
         name: "",
         id: "minecraft:",

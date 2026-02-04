@@ -550,7 +550,7 @@ const componentDefinitions = {
                 name: "max_distance",
                 label: "Max Distance",
                 tooltip: "The maximum distance that the player traveled, in Overworld blocks."
-            },
+            }
         ]
     },
     "Placed Block": {
@@ -696,6 +696,55 @@ const componentDefinitions = {
                 tooltip: "The ID of the unlocked recipe."
             }
         ]
+    },
+    "Ride Entity in Lava": {
+        name: "Ride Entity in Lava",
+        id: "minecraft:ride_entity_in_lava",
+        inputs: [
+            {
+                type: "number",
+                name: "min_distance",
+                label: "Min Distance",
+                tooltip: "The minimum distance that the player traveled on the entity."
+            },
+            {
+                type: "number",
+                name: "max_distance",
+                label: "Max Distance",
+                tooltip: "The maximum distance that the player traveled on the entity."
+            }
+        ]
+    },
+    "Shot Crossbow": {
+        name: "Shot Crossbow",
+        id: "minecraft:shot_crossbow",
+        inputs: []
+    },
+    "Slept in Bed": {
+        name: "Slept in Bed",
+        id: "minecraft:slept_in_bed",
+        inputs: []
+    },
+    "Slide Down Block": {
+        name: "Slide Down Block",
+        id: "minecraft:slide_down_block",
+        inputs: [
+            {
+                type: "dropdown",
+                name: "block",
+                label: "Block",
+                tooltip: "The block the player must slide down.",
+                options: [
+                    "minecraft:slime_block",
+                    "minecraft:honey_block"
+                ]
+            }
+        ]
+    },
+    "Started Riding": {
+        name: "Started Riding",
+        id: "minecraft:started_riding",
+        inputs: []
     },
     /*"": {
         name: "",

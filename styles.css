@@ -1,6 +1,11 @@
 @font-face {
     font-family: "ModderyIcons";
-    src: url("https://ejd799.github.io/moddery/ModderyIcons.ttf") format("truetype");
+    src: url("https://ejd799.github.io/moddery/fonts/ModderyIcons.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Mojangles";
+    src: url("https://ejd799.github.io/moddery/fonts/mojangles.ttf") format("truetype");
 }
 
 :root {

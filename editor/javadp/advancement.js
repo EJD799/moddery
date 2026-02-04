@@ -746,6 +746,61 @@ const componentDefinitions = {
         id: "minecraft:started_riding",
         inputs: []
     },
+    "Summoned Entity": {
+        name: "Summoned Entity",
+        id: "minecraft:summoned_entity",
+        inputs: [
+            {
+                type: "dropdown",
+                name: "entity",
+                label: "Entity",
+                tooltip: "The entity that must be summoned.",
+                options: [
+                    "minecraft:iron_golem",
+                    "minecraft:copper_golem",
+                    "minecraft:snow_golem",
+                    "minecraft:ender_dragon",
+                    "minecraft:wither"
+                ]
+            }
+        ]
+    },
+    "Tame Animal": {
+        name: "Tame Animal",
+        id: "minecraft:tame_animal",
+        inputs: [
+            {
+                type: "list",
+                name: "entities",
+                label: "Entities",
+                tooltip: "The list of entity IDs to accept."
+            }
+        ]
+    },
+    "Target Hit": {
+        name: "Target Hit",
+        id: "minecraft:target_hit",
+        inputs: [
+            {
+                type: "list",
+                name: "projectiles",
+                label: "Projectiles",
+                tooltip: "The list of projectiles that can hit the target block."
+            },
+            {
+                type: "number",
+                name: "min_signal_strength",
+                label: "Min Signal Strength",
+                tooltip: "The minimum signal strength outputted by the target block."
+            },
+            {
+                type: "number",
+                name: "max_signal_strength",
+                label: "Max Signal Strength",
+                tooltip: "The maximum signal strength outputted by the target block."
+            }
+        ]
+    },
     /*"": {
         name: "",
         id: "minecraft:",

@@ -385,6 +385,64 @@ const componentDefinitions = {
             }
         ]
     },
+    "Hero of the Village": {
+        name: "Hero of the Village",
+        id: "minecraft:hero_of_the_village",
+        inputs: []
+    },
+    "Impossible": {
+        name: "Impossible",
+        id: "minecraft:impossible",
+        inputs: []
+    },
+    "Inventory Changed": {
+        name: "Inventory Changed",
+        id: "minecraft:inventory_changed",
+        inputs: [
+            {
+                type: "text",
+                name: "item",
+                label: "Item",
+                tooltip: "The ID of the item that must be added."
+            },
+            {
+                type: "number",
+                name: "min_count",
+                label: "Minimum Count",
+                tooltip: "The minimum stack size of the item required."
+            }
+        ]
+    },
+    "Item Durability Changed": {
+        name: "Item Durability Changed",
+        id: "minecraft:item_durability_changed",
+        inputs: [
+            {
+                type: "number",
+                name: "min_change",
+                label: "Minimum Change",
+                tooltip: "The minimum amount of durability change."
+            },
+            {
+                type: "number",
+                name: "max_change",
+                label: "Maximum Change",
+                tooltip: "The maximum amount of durability change."
+            },
+            {
+                type: "number",
+                name: "min_remaining",
+                label: "Minimum Remaining",
+                tooltip: "The minimum amount of durability remaining."
+            },
+            {
+                type: "number",
+                name: "max_remaining",
+                label: "Maximum Remaining",
+                tooltip: "The maximum amount of durability remaining."
+            }
+        ]
+    },
     /*"": {
         name: "",
         id: "minecraft:",

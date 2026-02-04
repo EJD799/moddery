@@ -525,6 +525,34 @@ const componentDefinitions = {
             }
         ]
     },
+    "Lightning Strike": {
+        name: "Lightning Strike",
+        id: "minecraft:lightning_strike",
+        inputs: []
+    },
+    "Location": {
+        name: "Location",
+        id: "minecraft:location",
+        inputs: []
+    },
+    "Nether Travel": {
+        name: "Nether Travel",
+        id: "minecraft:nether_travel",
+        inputs: [
+            {
+                type: "number",
+                name: "min_distance",
+                label: "Min Distance",
+                tooltip: "The minimum distance that the player traveled, in Overworld blocks."
+            },
+            {
+                type: "number",
+                name: "max_distance",
+                label: "Max Distance",
+                tooltip: "The maximum distance that the player traveled, in Overworld blocks."
+            },
+        ]
+    },
     /*"": {
         name: "",
         id: "minecraft:",

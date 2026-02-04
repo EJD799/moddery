@@ -1981,7 +1981,7 @@ bedrockExporter.runExport = async function() {
   for (let i = 0; i < audioFiles.length; i++) {
     let audioData;
     try {
-      audioData = JSON.parse(await projZip.folder("auxiliaryData").file(audioFiles[i]));
+      audioData = JSON.parse(await projZip.folder("auxiliaryData").file(audioFiles[i]).async("string"));
     } catch(e) {}
 
     let audioFile = await projZip.folder("assets").file(audioFiles[i].replace(".json", ".wav")).async("arraybuffer");

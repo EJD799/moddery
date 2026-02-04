@@ -4139,7 +4139,7 @@ Blockly.common.defineBlocks({
       // ----- NAME (FieldInput instead of appendValueInput) -----
       this.appendDummyInput("NAME_INPUT")
           .appendField("custom gui texture")
-          .appendField(new Blockly.FieldDropdown(textureOptions), "TEXTURE");
+          .appendField(new Blockly.FieldDropdown(textureOptions.map(n => [n, n])), "TEXTURE");
 
       this.setOutput(true);
       this.setColour(210);

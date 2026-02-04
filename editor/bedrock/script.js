@@ -3110,6 +3110,7 @@ const bedrockScriptToolbox = {
         { kind: 'label', text: 'Action Forms'},
         { kind: 'block', type: 'form_body', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } } } },
         { kind: 'block', type: 'form_button', inputs: { TEXT: { shadow: { type: 'text', fields: { TEXT: "" } } }, IMAGE: { shadow: { type: 'text', fields: { TEXT: "" } } } }},
+        { kind: 'block', type: 'form_gui_image'},
         { kind: 'block', type: 'form_response_action'},
         { kind: 'sep'},
         { kind: 'label', text: 'Message Forms'},
@@ -3987,6 +3988,11 @@ if (scriptOptions.length == 0) {
   scriptOptions = [["No Scripts", "no_script"]];
 }
 
+let textureOptions = window?.parent?.editorTextureList ?? [["No Textures", "no_textures"]];
+if (textureOptions.length == 0) {
+  textureOptions = [["No Textures", "no_textures"]];
+}
+
 Blockly.common.defineBlocks({
   custom_function_import: {
     init: function () {
@@ -4118,6 +4124,25 @@ Blockly.common.defineBlocks({
           this.updateParameters_();
         });
       }
+    },
+  },
+});
+
+
+
+Blockly.common.defineBlocks({
+  form_gui_image: {
+    init: function () {
+      this.parameterCount_ = 0;
+      this.parameterData_ = this.parameterData_ || [];
+
+      // ----- NAME (FieldInput instead of appendValueInput) -----
+      this.appendDummyInput("NAME_INPUT")
+          .appendField("custom gui texture")
+          .appendField(new Blockly.FieldDropdown(textureOptions), "TEXTURE");
+
+      this.setOutput(true);
+      this.setColour(210);
     },
   },
 });

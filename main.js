@@ -1,4 +1,4 @@
-const appVersion = "2.2.187";
+const appVersion = "2.2.188";
 const buildDate = "2/4/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -52,6 +52,7 @@ let currentProjectId = null;
 let projDeleteID;
 
 var editorScriptList;
+var editorTextureList;
 
 let addElementMode = "blank";
 let addAssetMode = "upload";
@@ -2884,6 +2885,7 @@ function getElementTabIcon(type) {
 async function addTab(role, elementID) {
   if (role == "Script") {
     editorScriptList = (await getScriptList(2)).filter(item => item[0] != elementID);
+    editorTextureList = getTextureList().filter(n => n != "None");
   }
   var label = `${getElementTabIcon(role)} ${decodeText(elementID)}`,
     id = "tabs-" + tabCounter,

@@ -987,17 +987,3 @@ progress {
     font-family: "ModderyIcons" !important;
     font-size: large !important;
 }
-
-
-#dialogEditorDiv {
-    background: url(https://ejd799.github.io/moddery/images/dp_dialog_bg.png);
-    width: 800px;
-    height: 450px;
-}
-
-#dialogEditorContainer {
-    width: 100%;
-    height: 100%;
-    overflow-x: auto;
-    overflow-y: auto;
-}

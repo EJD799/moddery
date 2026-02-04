@@ -23,30 +23,52 @@
             body {
                 color: var(--bulma-text);
                 background: var(--app-main-tabs-background);
-                padding-left: 18px;
-                padding-top: 18px;
             }
             .ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
                 z-index: 2000 !important; /* Use !important if necessary to override existing styles */
             }
+
+            #dialogEditorDiv {
+                background: url(https://ejd799.github.io/moddery/images/dp_dialog_bg.png);
+                width: 800px;
+                height: 450px;
+            }
+
+            #dialogEditorContainer {
+                width: 100%;
+                height: 100%;
+                overflow-x: auto;
+                overflow-y: auto;
+                vertical-align: center;
+                text-align: center;
+                align-content: center;
+            }
+
+            #optionsDiv {
+                padding-left: 18px;
+                padding-top: 18px;
+                padding-bottom: 18px;
+            }
         </style>
     </head>
     <body>
-        <label for="elementIDBox">Element Name (Editor)</label>
-        <input class="input normalInput" id="elementIDBox" placeholder="Element ID" disabled>
+        <div id="optionsDiv">
+            <label for="elementIDBox">Element Name (Editor)</label>
+            <input class="input normalInput" id="elementIDBox" placeholder="Element ID" disabled>
 
-        <label for="dialogIDBox">Dialog ID</label>
-        <input class="input normalInput" id="dialogIDBox" placeholder="Dialog ID">
+            <label for="dialogIDBox">Dialog ID</label>
+            <input class="input normalInput" id="dialogIDBox" placeholder="Dialog ID">
 
-        <label for="dialogTypeMenu">Dialog Type</label>
-        <div class="select">
-            <select id="dialogTypeMenu">
-                <option value="notice" selected>Notice</option>
-                <option value="confirmation">Confirmation</option>
-                <option value="multi_action">Multi Action</option>
-                <option value="dialog_list">Dialog List</option>
-                <option value="server_links">Server Links</option>
-            </select>
+            <label for="dialogTypeMenu">Dialog Type</label>
+            <div class="select">
+                <select id="dialogTypeMenu">
+                    <option value="notice" selected>Notice</option>
+                    <option value="confirmation">Confirmation</option>
+                    <option value="multi_action">Multi Action</option>
+                    <option value="dialog_list">Dialog List</option>
+                    <option value="server_links">Server Links</option>
+                </select>
+            </div>
         </div>
 
         <div id="dialogEditorContainer">

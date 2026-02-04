@@ -553,6 +553,36 @@ const componentDefinitions = {
             },
         ]
     },
+    "Placed Block": {
+        name: "Placed Block",
+        id: "minecraft:placed_block",
+        inputs: [
+            {
+                type: "list",
+                name: "blocks",
+                label: "Blocks",
+                tooltip: "The list of block IDs to accept."
+            },
+            {
+                type: "text",
+                name: "biome",
+                label: "Biome",
+                tooltip: "The required biome for the advancement."
+            }
+        ]
+    },
+    "Player Generates Container Loot": {
+        name: "Player Generates Container Loot",
+        id: "minecraft:player_generates_container_loot",
+        inputs: [
+            {
+                type: "text",
+                name: "loot_table",
+                label: "Loot Table",
+                tooltip: "The loot table the player must generate."
+            }
+        ]
+    },
     /*"": {
         name: "",
         id: "minecraft:",

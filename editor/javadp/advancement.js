@@ -443,6 +443,58 @@ const componentDefinitions = {
             }
         ]
     },
+    "Item Used on Block": {
+        name: "Item Used on Block",
+        id: "minecraft:item_used_on_block",
+        inputs: [
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The IDs of the items to accept."
+            },
+            {
+                type: "list",
+                name: "blocks",
+                label: "Blocks",
+                tooltip: "The IDs of the blocks to accept."
+            }
+        ]
+    },
+    "Kill Mob Near Sculk Catalyst": {
+        name: "Kill Mob Near Sculk Catalyst",
+        id: "minecraft:kill_mob_near_sculk_catalyst",
+        inputs: [
+            {
+                type: "list",
+                name: "entities",
+                label: "entities",
+                tooltip: "The IDs of the entities to accept."
+            }
+        ]
+    },
+    "Killed by Arrow": {
+        name: "Killed by Arrow",
+        id: "minecraft:killed_by_arrow",
+        inputs: [
+            {
+                type: "dropdown",
+                name: "weapon",
+                label: "Weapon",
+                tooltip: "The weapon the arrow was fired from.",
+                options: [
+                    "minecraft:bow",
+                    "minecraft:crossbow"
+                ]
+            },
+            {
+                type: "list",
+                name: "entities",
+                label: "entities",
+                tooltip: "The IDs of the victim entities to accept."
+            }
+        ]
+    },
     /*"": {
         name: "",
         id: "minecraft:",

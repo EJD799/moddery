@@ -625,6 +625,78 @@ const componentDefinitions = {
             }
         ]
     },
+    "Player Interacted with Entity": {
+        name: "Player Interacted with Entity",
+        id: "minecraft:player_interacted_with_entity",
+        inputs: [
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The IDs of the items to accept."
+            },
+            {
+                type: "list",
+                name: "entities",
+                label: "Entities",
+                tooltip: "The IDs of the entities to accept."
+            }
+        ]
+    },
+    "Player Killed Entity": {
+        name: "Player Killed Entity",
+        id: "minecraft:player_killed_entity",
+        inputs: [
+            {
+                type: "list",
+                name: "entities",
+                label: "Entities",
+                tooltip: "The IDs of the entities to accept."
+            }
+        ]
+    },
+    "Player Sheared Equipment": {
+        name: "Player Sheared Equipment",
+        id: "minecraft:player_sheared_equipment",
+        inputs: [
+            {
+                type: "list",
+                name: "entities",
+                label: "Entities",
+                tooltip: "The IDs of the entities to accept."
+            },
+            {
+                type: "list",
+                name: "items",
+                label: "Items",
+                tooltip: "The IDs of the equipment items to accept."
+            }
+        ]
+    },
+    "Recipe Crafted": {
+        name: "Recipe Crafted",
+        id: "minecraft:recipe_crafted",
+        inputs: [
+            {
+                type: "text",
+                name: "recipe",
+                label: "Recipe ID",
+                tooltip: "The ID of the crafted recipe."
+            }
+        ]
+    },
+    "Recipe Unlocked": {
+        name: "Recipe Unlocked",
+        id: "minecraft:recipe_unlocked",
+        inputs: [
+            {
+                type: "text",
+                name: "recipe",
+                label: "Recipe ID",
+                tooltip: "The ID of the unlocked recipe."
+            }
+        ]
+    },
     /*"": {
         name: "",
         id: "minecraft:",
@@ -1237,6 +1309,7 @@ function createCriteria(id) {
         var elementBoxTitle = document.createElement("input");
         elementBoxTitle.setAttribute("class", "input almostFullInput");
         elementBoxTitle.setAttribute("id", `componentTitle_${id}`);
+        elementBoxTitle.setAttribute("placeholder", "Criterion Name");
         elementBoxTitle.addEventListener("change", function(e) {
             criteriaData[id].name = elementBoxTitle.value;
         });

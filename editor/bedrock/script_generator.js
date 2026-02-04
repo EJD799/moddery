@@ -1039,7 +1039,7 @@ Blockly.JavaScript.forBlock['text_print'] = function(block) {
     return code;
 };
 
-Blockly.JavaScript.forBlock['form_gui_texture'] = function (block) {
+Blockly.JavaScript.forBlock['form_gui_image'] = function (block) {
     let texture = block.getFieldValue("TEXTURE");
     guiTextures.push(texture);
 

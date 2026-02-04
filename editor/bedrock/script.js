@@ -4255,10 +4255,12 @@ function loadProject(data) {
 function saveProject() {
   return Blockly.serialization.workspaces.save(workspace);
 }
+let guiTextures = [];
 function generateCode() {
+  guiTextures = [];
   const code = Blockly.JavaScript.workspaceToCode(workspace);
   console.log(code);
-  return code;
+  return [code, guiTextures];
 }
 /*document.addEventListener('keydown', e => {
   if (e.key === 'g') generateCode();

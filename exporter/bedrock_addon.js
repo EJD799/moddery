@@ -1319,7 +1319,7 @@ bedrockExporter.runExport = async function() {
         await waitForIframeReady(exporterFrame, "loadProject");
         exporterFrame.contentWindow.loadProject(elementCode);
         if (exporterFrame.contentWindow?.generateCode) {
-          exportedFile1 = exporterFrame.contentWindow.generateCode();
+          exportedFile1 = exporterFrame.contentWindow.generateCode()[0];
           if (projManifest.scriptEntry == elementFile.name) {
             exportedFile1 += `world.beforeEvents.worldInitialize.subscribe(data => {
     data.blockComponentRegistry.registerCustomComponent(
@@ -1334,6 +1334,12 @@ bedrockExporter.runExport = async function() {
           exportedFile1 = "";
         }
         exportZip1.folder("scripts").file(`${elementFile.id}.js`, exportedFile1);
+
+        let guiTextures = exporterFrame.contentWindow.generateCode()[1];
+        for (let j = 0; j < guiTextures.length; j++) {
+          let textureFile = await projZip.folder("assets").file(guiTextures[j]).async("arraybuffer");
+          exportZip2.folder("textures").folder("custom_gui").file(guiTextures[j], textureFile);
+        }
       } else if (role == "Item") {
         let itemComponents = await bedrockExporter.parseItemComponents(elementFile);
         let textureID = `${projManifest.namespace}:${elementFile.texture.replace(".png", "")}`;

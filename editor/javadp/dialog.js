@@ -568,7 +568,7 @@ $(function () {
 
 });
 
-let boxToValidate = recipeIDBox;
+let boxToValidate = dialogIDBox;
 boxToValidate.addEventListener("input", function (e) {
   const value = boxToValidate.value;
 
@@ -582,5 +582,5 @@ boxToValidate.addEventListener("input", function (e) {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    bulmaSelectmenu.attachMenu(recipeTypeMenu);
+    bulmaSelectmenu.attachMenu(dialogTypeMenu);
 });

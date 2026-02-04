@@ -583,6 +583,48 @@ const componentDefinitions = {
             }
         ]
     },
+    "Player Hurt Entity": {
+        name: "Player Hurt Entity",
+        id: "minecraft:player_hurt_entity",
+        inputs: [
+            {
+                type: "list",
+                name: "entities",
+                label: "Entities",
+                tooltip: "The list of entity IDs to accept."
+            },
+            {
+                type: "boolean",
+                name: "blocked",
+                label: "Blocked",
+                tooltip: "Whether the damage must be successfully blocked."
+            },
+            {
+                type: "number",
+                name: "min_dealt",
+                label: "Min Damage Dealt",
+                tooltip: "The minimum amount of damage dealt."
+            },
+            {
+                type: "number",
+                name: "max_dealt",
+                label: "Max Damage Dealt",
+                tooltip: "The maximum amount of damage dealt."
+            },
+            {
+                type: "number",
+                name: "min_taken",
+                label: "Min Damage Taken",
+                tooltip: "The minimum amount of damage taken."
+            },
+            {
+                type: "number",
+                name: "max_taken",
+                label: "Max Damage Taken",
+                tooltip: "The maximum amount of damage taken."
+            }
+        ]
+    },
     /*"": {
         name: "",
         id: "minecraft:",

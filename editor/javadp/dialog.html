@@ -36,12 +36,15 @@
 
             #dialogEditorContainer {
                 width: calc(100% - 300px);
-                height: calc(100% - 76px);
                 overflow-x: auto;
                 overflow-y: auto;
                 align-items: center;
                 display: flex;
                 justify-content: center;
+                background: var(--app-black-white);
+                border-radius: 0 0.75rem 0 0;
+                flex: 1; /* takes remaining space */
+                height: 100%;
             }
 
             #optionsDiv {
@@ -52,8 +55,15 @@
 
             #dialogToolbox {
                 width: 292px;
-                height: calc(100% - 84px);
+                flex-shrink: 0; /* prevents shrinking */
+                height: calc(100% - 8px);
                 margin: 4px;
+                padding: 16px;
+            }
+
+            #dialogWorkspace {
+                display: flex;
+                height: calc(100% - 76px); /* adjust if needed */
             }
         </style>
     </head>
@@ -77,15 +87,16 @@
             </div>
         </div>
 
+        <div id="dialogWorkspace">
+            <div id="dialogEditorContainer">
+                <div id="dialogEditorDiv">
 
-        <div id="dialogEditorContainer">
-            <div id="dialogEditorDiv">
-
+                </div>
             </div>
-        </div>
 
-        <div id="dialogToolbox" class="card">
-            <h4 class="title is-4">Controls</h4>
+            <div id="dialogToolbox" class="card">
+                <h4 class="title is-4">Controls</h4>
+            </div>
         </div>
         
 

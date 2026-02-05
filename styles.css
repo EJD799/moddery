@@ -992,3 +992,7 @@ progress {
     font-family: "ModderyIcons" !important;
     font-size: large !important;
 }
+
+.hidden {
+    display: none;
+}

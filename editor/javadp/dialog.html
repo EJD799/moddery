@@ -179,6 +179,43 @@
             <button class="modal-close is-large" aria-label="close" onclick="closeItemPicker();"></button>
         </div>
 
+        <div class="modal" id="deleteDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:300px;height:200px;">
+                <div class="card" id="deleteDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 id="deleteDlgTitle" class="title is-4">Delete Object?</h4>
+                        <span id="deleteDlgText"></span><br><br>
+                        <button class="button" id="deleteDlgCancel" onclick="closeDeleteObj()">Cancel</button>
+                        <button class="button is-danger" id="deleteDlgConfirm">Delete</button>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeDeleteObj();"></button>
+        </div>
+
+        <div class="modal" id="editObjDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:300px;height:400px;">
+                <div class="card" id="editObjDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 id="editObjDlgTitle" class="title is-4">Edit Object</h4>
+
+                        <div id="editObj_title">
+                            <label for="editObj_title_1">Internal Title</label>
+                            <input class="input normalInput" id="editObj_title_1" placeholder="Internal Title">
+                            <label for="editObj_title_2">External Title</label>
+                            <input class="input normalInput" id="editObj_title_2" placeholder="External Title">
+                        </div>
+
+                        <button class="button" id="editObjDlgCancel" onclick="closeEditObj();">Cancel</button>
+                        <button class="button is-primary" id="editObjDlgConfirm" onclick="saveObj();">Save</button>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeEditObj();"></button>
+        </div>
+
         <script src="../../libs.js"></script>
         <script src="dialog.js"></script>
         <script src="../../item_definitions.js"></script>

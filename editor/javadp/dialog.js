@@ -1,5 +1,4 @@
 var elementData = {};
-var currentGrid = [["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0]];
 var currentSlot = 0;
 
 function onThemeChange(name, style, type) {
@@ -588,6 +587,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 let selectedObj = "";
+let dialogData = {
+    title: {
+        internal: "Title",
+        external: "Title"
+    }
+};
 
 function positionToolbar(menu, button) {
     const rect = button.getBoundingClientRect();
@@ -635,7 +640,15 @@ function showToolbar(element) {
 }
 
 function toolbarAction(btn) {
-
+    if (btn == 1) {
+        editObj();
+    } else if (btn == 2) {
+        moveObj("up");
+    } else if (btn == 3) {
+        moveObj("down");
+    } else if (btn == 4) {
+        openDeleteObj();
+    }
 }
 
 document.addEventListener("mousedown", (e) => {
@@ -650,5 +663,45 @@ function closeToolbar() {
         els[i].classList.remove("dialogSelectedObj");
     }
     objToolbar.classList.add("toolbarHidden");
-    selectedObj = "";
+}
+
+function editObj() {
+    editObjDlg.classList.add("is-active");
+    if (selectedObj == "dialogTitle") {
+        editObj_title.classList.remove("hidden");
+        editObj_title_1.value = dialogData.title.internal;
+        editObj_title_2.value = dialogData.title.external;
+    }
+}
+
+function closeEditObj() {
+    editObjDlg.classList.remove("is-active");
+}
+
+function saveObj() {
+    if (selectedObj == "dialogTitle") {
+        dialogData.title.internal = editObj_title_1.value;
+        dialogData.title.external = editObj_title_2.value;
+    }
+}
+
+function moveObj(direction) {
+
+}
+
+function closeDeleteObj() {
+    deleteDlg.classList.remove("is-active");
+}
+
+function openDeleteObj() {
+    deleteDlg.classList.add("is-active");
+    let deleteDlgText = document.getElementById("deleteDlgText");
+    let deleteDlgConfirm = document.getElementById("deleteDlgConfirm");
+    deleteDlgText.innerHTML = `Are you sure you want to delete the object?`;
+    deleteDlgConfirm.setAttribute("onclick", `deleteCriteria('${selectedObj}')`);
+}
+
+function deleteObj(id) {
+    deleteDlg.classList.remove("is-active");
+
 }

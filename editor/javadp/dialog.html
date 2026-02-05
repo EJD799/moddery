@@ -34,6 +34,9 @@
                 height: 450px;
                 text-align: center;
                 padding: 20px;
+                font-family: Mojangles !important;
+                font-size: small;
+                color: white;
             }
 
             #dialogEditorContainer {
@@ -74,10 +77,15 @@
                 width: 24px;
                 height: 24px;
                 background-size: contain;
+                vertical-align: middle;
             }
             #dialogWarningBtn:hover {
                 background: url(https://ejd799.github.io/moddery/images/dp_dialog/warning_button_hover.png);
                 background-size: contain;
+            }
+            #dialogTitle {
+                vertical-align: middle;
+                margin-right: 10px;
             }
         </style>
     </head>
@@ -104,6 +112,7 @@
         <div id="dialogWorkspace">
             <div id="dialogEditorContainer">
                 <div id="dialogEditorDiv">
+                    <span id="dialogTitle">Test</span>
                     <button id="dialogWarningBtn"></button>
                 </div>
             </div>

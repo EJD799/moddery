@@ -120,13 +120,14 @@
                 text-align: center;
                 image-rendering: pixelated;
                 background: url(https://ejd799.github.io/moddery/images/dp_dialog/button.png);
-                background-size: contain;
+                background-size: 100% 100%;
                 height: 24px;
                 width: 150px;
+                font-size: smaller;
             }
             .dialogActionBtn:hover, .dialogActionBtn.dialogSelectedObj {
                 background: url(https://ejd799.github.io/moddery/images/dp_dialog/button_hover.png);
-                background-size: contain;
+                background-size: 100% 100%;
             }
         </style>
     </head>
@@ -156,7 +157,7 @@
                     <span id="dialogTitle" onclick="showToolbar('dialogTitle');">Title</span>
                     <button id="dialogWarningBtn"></button>
                     <br><br>
-                    <button id="dialogMainAction" class="dialogActionBtn" style="width:150px;">OK</button>
+                    <button id="dialogMainAction" class="dialogActionBtn" style="width:150px;" onclick="showToolbar('dialogTitle');">OK</button>
                 </div>
             </div>
 

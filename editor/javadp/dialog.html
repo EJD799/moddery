@@ -29,7 +29,7 @@
             }
 
             #dialogEditorDiv {
-                background: url(https://ejd799.github.io/moddery/images/dp_dialog_bg.png);
+                background: url(https://ejd799.github.io/moddery/images/dp_dialog/background.png);
                 width: 800px;
                 height: 450px;
             }
@@ -65,6 +65,16 @@
                 display: flex;
                 height: calc(100% - 76px); /* adjust if needed */
             }
+
+            #dialogWarningBtn {
+                image-rendering: pixelated;
+                background: url(https://ejd799.github.io/moddery/images/dp_dialog/warning_button.png);
+                width: 24px;
+                height: 24px;
+            }
+            #dialogWarningBtn:hover {
+                background: url(https://ejd799.github.io/moddery/images/dp_dialog/warning_button_hover.png);
+            }
         </style>
     </head>
     <body>
@@ -90,7 +100,7 @@
         <div id="dialogWorkspace">
             <div id="dialogEditorContainer">
                 <div id="dialogEditorDiv">
-
+                    <button id="dialogWarningBtn"></button>
                 </div>
             </div>
 

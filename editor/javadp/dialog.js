@@ -584,3 +584,60 @@ boxToValidate.addEventListener("input", function (e) {
 document.addEventListener("DOMContentLoaded", function() {
     bulmaSelectmenu.attachMenu(dialogTypeMenu);
 });
+
+
+
+let selectedObj = "";
+
+function positionToolbar(menu, button) {
+    const rect = button.getBoundingClientRect();
+
+    const top = rect.bottom + window.scrollY;
+    const left = rect.left + window.scrollX;
+
+    menu.style.position = "absolute";
+    menu.style.left = `${left}px`;
+    menu.style.top = `${top}px`;
+
+    // Available space below the button
+    const viewportBottom = window.innerHeight + window.scrollY;
+    const availableHeight = viewportBottom - top;
+
+    // Read the CSS max-height (fallback to 300 if missing)
+    const cssMaxHeight = parseFloat(
+        getComputedStyle(menu).maxHeight
+    ) || 300;
+
+    // Clamp max-height so it never overflows
+    menu.style.maxHeight = `${Math.max(
+        0,
+        Math.min(cssMaxHeight, availableHeight - 8)
+    )}px`;
+}
+
+function showToolbar(element) {
+    let el = document.getElementById(element);
+    toolbar.classList.remove("toolbarHidden");
+    positionToolbar(toolbar, el);
+    el.classList.add("dialogSelectedObj");
+    selectedObj = element;
+}
+
+function toolbarAction(btn) {
+
+}
+
+document.addEventListener("mousedown", (e) => {
+    if (!e.target.closest("#toolbar")) {
+        closeToolbar();
+    }
+});
+
+function closeToolbar() {
+    let els = document.querySelectorAll(".dialogSelectedObj");
+    for (let i = 0; i < els.length; i++) {
+        els[i].classList.remove("dialogSelectedObj");
+    }
+    toolbar.classList.add("toolbarHidden");
+    selectedObj = "";
+}

@@ -96,8 +96,22 @@
             #dialogTitle:hover, .dialogText:hover, .dialogItemIcon:hover {
                 border: 1px solid #ffffff50;
             }
-            .dialogSelectedItem {
+            .dialogSelectedObj {
                 border: 1px solid white;
+            }
+
+            #toolbar {
+                width: max-content;
+                height: max-content;
+                padding: 4px;
+                position: absolute;
+            }
+            .toolbarBtn {
+                width: 30px;
+                height: 30px;
+            }
+            .toolbarHidden {
+                display: none;
             }
         </style>
     </head>
@@ -124,7 +138,7 @@
         <div id="dialogWorkspace">
             <div id="dialogEditorContainer">
                 <div id="dialogEditorDiv">
-                    <span id="dialogTitle">Test</span>
+                    <span id="dialogTitle" onclick="showToolbar('dialogTitle');">Test</span>
                     <button id="dialogWarningBtn"></button>
                 </div>
             </div>
@@ -132,6 +146,13 @@
             <div id="dialogToolbox" class="card">
                 <h4 class="title is-4">Controls</h4>
             </div>
+        </div>
+
+        <div class="card toolbarHidden" id="toolbar">
+            <button class="button is-white toolbarBtn" id="toolbarBtn1" onclick="toolbarAction(1);"><i class="fas fa-pencil"></i></button>
+            <button class="button is-white toolbarBtn" id="toolbarBtn2" onclick="toolbarAction(2);"><i class="fas fa-chevron-up"></i></button>
+            <button class="button is-white toolbarBtn" id="toolbarBtn3" onclick="toolbarAction(3);"><i class="fas fa-chevron-down"></i></button>
+            <button class="button is-danger toolbarBtn" id="toolbarBtn4" onclick="toolbarAction(4);"><i class="fas fa-trash"></i></button>
         </div>
         
 

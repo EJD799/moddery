@@ -621,6 +621,17 @@ function showToolbar(element) {
     positionToolbar(objToolbar, el);
     el.classList.add("dialogSelectedObj");
     selectedObj = element;
+    if (element == "dialogTitle" || element == "dialogMainAction") {
+        $("#toolbarBtn1").show();
+        $("#toolbarBtn2").hide();
+        $("#toolbarBtn3").hide();
+        $("#toolbarBtn4").hide();
+    } else {
+        $("#toolbarBtn1").show();
+        $("#toolbarBtn2").show();
+        $("#toolbarBtn3").show();
+        $("#toolbarBtn4").show();
+    }
 }
 
 function toolbarAction(btn) {

@@ -1,4 +1,4 @@
-const appVersion = "2.2.216";
+const appVersion = "2.2.217";
 const buildDate = "2/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -1905,6 +1905,7 @@ function openProj(file) {
           $("#addElementType").val("Block");
         }, 500);
         updateMenusForProjectType();
+        document.getElementById("ui-id-1").click();
       } else {
         alert("The uploaded file is not a valid Moddery project!");
         closeLoader();

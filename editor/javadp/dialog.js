@@ -599,7 +599,7 @@ let dialogData = {
     },
     objects: {
         "dialogMainAction": {
-            type: "actionBtn"
+            type: "actionBtn",
             label: "",
             tooltip: "",
             width: 150,

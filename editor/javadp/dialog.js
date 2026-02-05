@@ -348,6 +348,8 @@ function loadProject(data) {
 
     dialogData = data.dialogData;
     dialogTitle.innerHTML = dialogData.title.internal;
+    dialogMainAction.innerHTML = dialogData.objects["dialogMainAction"].label;
+    dialogMainAction.style.width = dialogData.objects["dialogMainAction"].width;
 }
 
 function loadGrid(data) {
@@ -600,7 +602,7 @@ let dialogData = {
     objects: {
         "dialogMainAction": {
             type: "actionBtn",
-            label: "",
+            label: "OK",
             tooltip: "",
             width: 150,
             special: true

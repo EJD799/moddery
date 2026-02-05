@@ -591,11 +591,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 let selectedObj = "";
+let selectedObjType = "";
 let dialogData = {
     title: {
         internal: "Title",
         external: "Title"
-    }
+    },
+    objects: {
+        "dialogMainAction": {
+            type: "actionBtn"
+            label: "",
+            tooltip: "",
+            width: 150,
+            special: true
+        }
+    },
+    objectOrder: []
 };
 
 function positionToolbar(menu, button) {
@@ -630,6 +641,12 @@ function showToolbar(element) {
     positionToolbar(objToolbar, el);
     el.classList.add("dialogSelectedObj");
     selectedObj = element;
+    if (element == "dialogTitle") {
+        selectedObjType = "title";
+    } else {
+        selectedObjType = dialogData.objects[selectedObj].type;
+    }
+
     if (element == "dialogTitle" || element == "dialogMainAction") {
         $("#toolbarBtn1").show();
         $("#toolbarBtn2").hide();
@@ -671,10 +688,17 @@ function closeToolbar() {
 
 function editObj() {
     editObjDlg.classList.add("is-active");
-    if (selectedObj == "dialogTitle") {
+    if (selectedObjType == "title") {
         editObj_title.classList.remove("hidden");
+        editObj_actionBtn.classList.add("hidden");
         editObj_title_1.value = dialogData.title.internal;
         editObj_title_2.value = dialogData.title.external;
+    } else if (selectedObjType == "actionBtn") {
+        editObj_title.classList.add("hidden");
+        editObj_actionBtn.classList.remove("hidden");
+        editObj_actionBtn_1.value = dialogData.objects[selectedObj].label;
+        editObj_actionBtn_2.value = dialogData.objects[selectedObj].tooltip;
+        editObj_actionBtn_3.value = dialogData.objects[selectedObj].width.toString();
     }
 }
 
@@ -684,10 +708,17 @@ function closeEditObj() {
 
 function saveObj() {
     closeEditObj();
-    if (selectedObj == "dialogTitle") {
+    if (selectedObjType == "title") {
         dialogData.title.internal = editObj_title_1.value;
         dialogData.title.external = editObj_title_2.value;
         dialogTitle.innerHTML = dialogData.title.internal;
+    } else if (selectedObjType == "actionBtn") {
+        dialogData.objects[selectedObj].label = editObj_actionBtn_1.value;
+        dialogData.objects[selectedObj].tooltip = editObj_actionBtn_2.value;
+        dialogData.objects[selectedObj].width = Number(editObj_actionBtn_3.value);
+        let el = document.getElementById(selectedObj);
+        el.innerHTML = dialogData.objects[selectedObj].label;
+        el.style.width = dialogData.objects[selectedObj].width;
     }
 }
 

@@ -335,6 +335,7 @@ function saveProject() {
         id: $("#dialogIDBox").val(),
         type: "Dialog",
         dialogType: $("#dialogTypeMenu").val(),
+        dialogData: dialogData
     };
 }
 function loadProject(data) {
@@ -344,6 +345,9 @@ function loadProject(data) {
     if (data.dialogType) {
         $("#dialogTypeMenu").val(data.dialogType);
     }
+
+    dialogData = data.dialogData;
+    dialogTitle.innerHTML = dialogData.title.internal;
 }
 
 function loadGrid(data) {
@@ -679,9 +683,11 @@ function closeEditObj() {
 }
 
 function saveObj() {
+    closeEditObj();
     if (selectedObj == "dialogTitle") {
         dialogData.title.internal = editObj_title_1.value;
         dialogData.title.external = editObj_title_2.value;
+        dialogTitle.innerHTML = dialogData.title.internal;
     }
 }
 

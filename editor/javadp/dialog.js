@@ -597,15 +597,20 @@ let selectedObjType = "";
 let dialogData = {
     title: {
         internal: "Title",
-        external: "Title"
+        external: "Dialog"
     },
     objects: {
         "dialogMainAction": {
             type: "actionBtn",
             label: "OK",
             tooltip: "",
-            width: 150,
-            special: true
+            width: 150
+        },
+        "dialogSecondaryAction": {
+            type: "actionBtn",
+            label: "Cancel",
+            tooltip: "",
+            width: 150
         }
     },
     objectOrder: []
@@ -649,7 +654,7 @@ function showToolbar(element) {
         selectedObjType = dialogData.objects[selectedObj].type;
     }
 
-    if (element == "dialogTitle" || element == "dialogMainAction") {
+    if (element == "dialogTitle" || element == "dialogMainAction" || element == "dialogSecondaryAction") {
         $("#toolbarBtn1").show();
         $("#toolbarBtn2").hide();
         $("#toolbarBtn3").hide();
@@ -744,3 +749,11 @@ function deleteObj(id) {
     deleteDlg.classList.remove("is-active");
 
 }
+
+dialogTypeMenu.addEventListener("change", function(e) {
+    if (dialogTypeMenu.value == "confirmation") {
+        dialogSecondaryAction.classList.remove("hidden");
+    } else {
+        dialogSecondaryAction.classList.add("hidden");
+    }
+});

@@ -617,8 +617,8 @@ function positionToolbar(menu, button) {
 
 function showToolbar(element) {
     let el = document.getElementById(element);
-    toolbar.classList.remove("toolbarHidden");
-    positionToolbar(toolbar, el);
+    objToolbar.classList.remove("toolbarHidden");
+    positionToolbar(objToolbar, el);
     el.classList.add("dialogSelectedObj");
     selectedObj = element;
 }
@@ -628,7 +628,7 @@ function toolbarAction(btn) {
 }
 
 document.addEventListener("mousedown", (e) => {
-    if (!e.target.closest("#toolbar")) {
+    if (!e.target.closest("#objToolbar")) {
         closeToolbar();
     }
 });
@@ -638,6 +638,6 @@ function closeToolbar() {
     for (let i = 0; i < els.length; i++) {
         els[i].classList.remove("dialogSelectedObj");
     }
-    toolbar.classList.add("toolbarHidden");
+    objToolbar.classList.add("toolbarHidden");
     selectedObj = "";
 }

@@ -352,6 +352,12 @@ function loadProject(data) {
     dialogMainAction.style.width = dialogData.objects["dialogMainAction"].width;
     dialogSecondaryAction.innerHTML = dialogData.objects["dialogSecondaryAction"].label;
     dialogSecondaryAction.style.width = dialogData.objects["dialogSecondaryAction"].width;
+
+    if (dialogTypeMenu.value == "confirmation") {
+        dialogSecondaryAction.classList.remove("hidden");
+    } else {
+        dialogSecondaryAction.classList.add("hidden");
+    }
 }
 
 function loadGrid(data) {

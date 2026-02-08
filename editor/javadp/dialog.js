@@ -350,6 +350,8 @@ function loadProject(data) {
     dialogTitle.innerHTML = dialogData.title.internal;
     dialogMainAction.innerHTML = dialogData.objects["dialogMainAction"].label;
     dialogMainAction.style.width = dialogData.objects["dialogMainAction"].width;
+    dialogSecondaryAction.innerHTML = dialogData.objects["dialogSecondaryAction"].label;
+    dialogSecondaryAction.style.width = dialogData.objects["dialogSecondaryAction"].width;
 }
 
 function loadGrid(data) {
@@ -371,10 +373,6 @@ function enableSlot(num) {
 function disableSlot(num) {
     document.getElementById(`recipeBtn${num}`).style.display = "none";
 }
-
-dialogTypeMenu.addEventListener("change", function (e) {
-    
-});
 
 $(function () {
     $("#itemPickerDialog").tooltip({
@@ -602,13 +600,13 @@ let dialogData = {
     objects: {
         "dialogMainAction": {
             type: "actionBtn",
-            label: "OK",
+            label: "Ok",
             tooltip: "",
             width: 150
         },
         "dialogSecondaryAction": {
             type: "actionBtn",
-            label: "Cancel",
+            label: "_unused",
             tooltip: "",
             width: 150
         }
@@ -750,10 +748,60 @@ function deleteObj(id) {
 
 }
 
-dialogTypeMenu.addEventListener("change", function(e) {
+
+dialogTypeMenu.addEventListener("change", function (e) {
     if (dialogTypeMenu.value == "confirmation") {
         dialogSecondaryAction.classList.remove("hidden");
+        dialogData.objects = {
+            "dialogMainAction": {
+                type: "actionBtn",
+                label: "Yes",
+                tooltip: "",
+                width: 150
+            },
+            "dialogSecondaryAction": {
+                type: "actionBtn",
+                label: "No",
+                tooltip: "",
+                width: 150
+            }
+        };
     } else {
         dialogSecondaryAction.classList.add("hidden");
+        if (dialogTypeMenu.value == "notice") {
+            dialogData.objects = {
+                "dialogMainAction": {
+                    type: "actionBtn",
+                    label: "Ok",
+                    tooltip: "",
+                    width: 150
+                },
+                "dialogSecondaryAction": {
+                    type: "actionBtn",
+                    label: "_unused",
+                    tooltip: "",
+                    width: 150
+                }
+            };
+        } else {
+            dialogData.objects = {
+                "dialogMainAction": {
+                    type: "actionBtn",
+                    label: "Back",
+                    tooltip: "",
+                    width: 150
+                },
+                "dialogSecondaryAction": {
+                    type: "actionBtn",
+                    label: "_unused",
+                    tooltip: "",
+                    width: 150
+                }
+            };
+        }
     }
+    dialogMainAction.innerHTML = dialogData.objects["dialogMainAction"].label;
+    dialogMainAction.style.width = dialogData.objects["dialogMainAction"].width;
+    dialogSecondaryAction.innerHTML = dialogData.objects["dialogSecondaryAction"].label;
+    dialogSecondaryAction.style.width = dialogData.objects["dialogSecondaryAction"].width;
 });

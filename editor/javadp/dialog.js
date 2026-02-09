@@ -359,7 +359,7 @@ function loadProject(data) {
         dialogSecondaryAction.classList.add("hidden");
     }
 
-    if (dialogTypeMenu.value == "notice" || dialogTypeMenu.value == "confirmation") {
+    if (dialogTypeMenu.value == "notice" || dialogTypeMenu.value == "confirmation" || dialogTypeMenu.value == "dialog_list") {
         toolboxBtn_actionBtn.classList.add("hidden");
     } else {
         toolboxBtn_actionBtn.classList.remove("hidden");
@@ -822,7 +822,7 @@ dialogTypeMenu.addEventListener("change", function (e) {
     dialogSecondaryAction.innerHTML = dialogData.objects["dialogSecondaryAction"].label;
     dialogSecondaryAction.style.width = dialogData.objects["dialogSecondaryAction"].width;
 
-    if (dialogTypeMenu.value == "notice" || dialogTypeMenu.value == "confirmation") {
+    if (dialogTypeMenu.value == "notice" || dialogTypeMenu.value == "confirmation" || dialogTypeMenu.value == "dialog_list") {
         toolboxBtn_actionBtn.classList.add("hidden");
     } else {
         toolboxBtn_actionBtn.classList.remove("hidden");

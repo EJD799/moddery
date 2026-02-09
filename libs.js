@@ -315,6 +315,12 @@ function formatTimestamp(ts) {
 }
 
 function getThemePreference() {
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  return prefersDark ? "dark" : "light";
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return prefersDark ? "dark" : "light";
+}
+
+function randomHexString() {
+    return Math.floor(Math.random() * 0x1000000)
+        .toString(16)
+        .padStart(6, "0");
 }

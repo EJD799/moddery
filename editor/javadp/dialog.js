@@ -789,7 +789,32 @@ function openDeleteObj() {
 
 function deleteObj(id) {
     deleteDlg.classList.remove("is-active");
+    
+}
 
+function addObj(type, isNew, id = "") {
+    if (isNew) {
+        id = `dialogObject_${randomHexString()}`;
+        dialogData.objectOrder.push(id);
+        
+        if (type == "actionBtn") {
+            dialogData.objects[id] = {
+                type: "actionBtn",
+                label: "Button",
+                tooltip: "",
+                width: 150
+            };
+
+            let el = document.createElement("button");
+            el.id = id;
+            el.classList.add("dialogActionBtn");
+            el.style.width = "150px";
+            el.setAttribute("onclick", `showToolbar('${id}');`);
+
+            dialogObjectsDiv.appendChild(el);
+        }
+    }
+    
 }
 
 

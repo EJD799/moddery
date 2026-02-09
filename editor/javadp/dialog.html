@@ -149,13 +149,13 @@
     </head>
     <body>
         <div id="optionsDiv">
-            <label for="elementIDBox">Element Name (Editor)</label>
+            <label for="elementIDBox">Name</label>
             <input class="input normalInput" id="elementIDBox" placeholder="Element ID" disabled>
 
-            <label for="dialogIDBox">Dialog ID</label>
+            <label for="dialogIDBox">ID</label>
             <input class="input normalInput" id="dialogIDBox" placeholder="Dialog ID">
 
-            <label for="dialogTypeMenu">Dialog Type</label>
+            <label for="dialogTypeMenu">Type</label>
             <div class="select">
                 <select id="dialogTypeMenu">
                     <option value="notice" selected>Notice</option>
@@ -165,6 +165,8 @@
                     <option value="server_links">Server Links</option>
                 </select>
             </div>
+
+            <button class="button" onclick="openDialogOptionsDlg();"><i class="fas fa-gear"></i> Options</button>
         </div>
 
         <div id="dialogWorkspace">
@@ -274,6 +276,36 @@
                 </div>
             </div>
             <button class="modal-close is-large" aria-label="close" onclick="closeEditObj();"></button>
+        </div>
+
+        <div class="modal" id="dialogOptionsDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:400px;height:500px;">
+                <div class="card" id="dialogOptionsDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 id="dialogOptionsDlgTitle" class="title is-4">Options</h4>
+
+                        <input type="checkbox" id="closeWithEscapeBox" class="is-primary">
+                        <label for="closeWithEscapeBox">Close with Escape Key</label>
+
+                        <input type="checkbox" id="pauseGameBox" class="is-primary">
+                        <label for="pauseGameBox">Pause Game in Singleplayer</label>
+
+                        <label for="afterActionMenu">After Action</label>
+                        <div class="select">
+                            <select id="afterActionMenu">
+                                <option value="close" selected>Close</option>
+                                <option value="none" id="afterActionMenuNone">None</option>
+                                <option value="wait_for_response">Wait for Response</option>
+                            </select>
+                        </div>
+
+                        <br><br>
+                        <button class="button is-primary" onclick="closeDialogOptionsDlg();">Save</button>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeDialogOptionsDlg();"></button>
         </div>
 
         <script src="../../libs.js"></script>

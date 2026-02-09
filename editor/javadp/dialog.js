@@ -335,7 +335,10 @@ function saveProject() {
         id: $("#dialogIDBox").val(),
         type: "Dialog",
         dialogType: $("#dialogTypeMenu").val(),
-        dialogData: dialogData
+        dialogData: dialogData,
+        afterAction: afterActionMenu.value,
+        closeWithEscape: closeWithEscapeBox.checked,
+        pauseGame: pauseGameBox.checked
     };
 }
 function loadProject(data) {
@@ -368,6 +371,16 @@ function loadProject(data) {
         toolboxBtn_dialogLink.classList.remove("hidden");
     } else {
         toolboxBtn_dialogLink.classList.add("hidden");
+    }
+
+    afterActionMenu.value = data.afterAction;
+    pauseGameBox.checked = data.pauseGame;
+    closeWithEscapeBox.checked = data.closeWithEscape;
+
+    if (pauseGameBox.checked) {
+        afterActionMenuNone.disabled = false;
+    } else {
+        afterActionMenuNone.disabled = true;
     }
 }
 
@@ -603,8 +616,22 @@ boxToValidate.addEventListener("input", function (e) {
 
 document.addEventListener("DOMContentLoaded", function() {
     bulmaSelectmenu.attachMenu(dialogTypeMenu);
+    bulmaSelectmenu.attachMenu(afterActionMenu);
+    pauseGameBox.addEventListener("change", function(e) {
+        if (pauseGameBox.checked) {
+            afterActionMenuNone.disabled = false;
+        } else {
+            afterActionMenuNone.disabled = true;
+        }
+    });
 });
 
+function openDialogOptionsDlg() {
+    dialogOptionsDlg.classList.add("is-active");
+}
+function closeDialogOptionsDlg() {
+    dialogOptionsDlg.classList.remove("is-active");
+}
 
 
 let selectedObj = "";

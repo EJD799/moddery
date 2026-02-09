@@ -1194,6 +1194,7 @@ bedrockExporter.parseEntityComponents = async function(file) {
 bedrockExporter.runExport = async function() {
   exportZip1 = new JSZip();
   exportZip2 = new JSZip();
+  let resourcePackRequired = false;
   let decoratedPotFile = false;
   if (projManifest.packIcon) {
     let packIcon = await projZip.folder("assets").file(projManifest.packIcon).async("blob");
@@ -1291,7 +1292,7 @@ bedrockExporter.runExport = async function() {
   };
   let languageFile = "";
   for (let i = 0; i < elementsList.length; i++) {
-    //try {
+    try {
       logExporter("Exporting element: " + elementsList[i], "info");
       let elementFile = JSON.parse(await projZip.folder("elements").file(elementsList[i]).async("string"));
       let namespacedID = `${projManifest.namespace}:${elementFile.id}`;
@@ -1341,6 +1342,7 @@ bedrockExporter.runExport = async function() {
           exportZip2.folder("textures").folder("custom_gui").file(guiTextures[j], textureFile);
         }
       } else if (role == "Item") {
+        resourcePackRequired = true;
         let itemComponents = await bedrockExporter.parseItemComponents(elementFile);
         let textureID = `${projManifest.namespace}:${elementFile.texture.replace(".png", "")}`;
         itemComponents["minecraft:icon"] = textureID;
@@ -1395,6 +1397,7 @@ bedrockExporter.runExport = async function() {
         exportedFile1 = JSON.stringify(exportObj, null, 4);
         exportZip1.folder("items").file(`${elementFile.id}.json`, exportedFile1);
       } else if (role == "Block") {
+        resourcePackRequired = true;
         let parsedFile = await bedrockExporter.parseBlockComponents(elementFile);
         let blockComponents = parsedFile?.[0] ?? {};
         let blockPermutations = parsedFile?.[1] ?? [];
@@ -1509,6 +1512,7 @@ bedrockExporter.runExport = async function() {
         exportedFile1 = JSON.stringify(exportObj, null, 4);
         exportZip1.folder("blocks").file(`${elementFile.id}.json`, exportedFile1);
       } else if (role == "Entity") {
+        resourcePackRequired = true;
         let parsedFile = await bedrockExporter.parseEntityComponents(elementFile);
 
         let exportObj1 = {
@@ -1889,8 +1893,6 @@ bedrockExporter.runExport = async function() {
           exportedFile1 = JSON.stringify(exportObj, null, 4);
           exportZip1.folder("recipes").file(`${elementFile.id}.json`, exportedFile1);
         }
-      } else if (role == "Entity") {
-
       } else if (role == "Loot Table") {
         let exportObj = {
           "pools": [
@@ -1965,9 +1967,9 @@ bedrockExporter.runExport = async function() {
         exportedFile1 = JSON.stringify(exportObj, null, 4);
         exportZip1.folder("trading").file(`${elementFile.id}.json`, exportedFile1);
       }
-    /*} catch(err) {
+    } catch(err) {
       logExporter(err, "error");
-    }*/
+    }
     exportLoaderText.innerHTML = `Exporting Project... (${Math.round((exportLoaderProgress.value / progressBarMax) * 100)}%)`;
     exportLoaderProgress.value = (i + 1).toString();
   }
@@ -2006,6 +2008,16 @@ bedrockExporter.runExport = async function() {
     exportZip2.folder("sounds").file("sound_definitions.json", JSON.stringify(soundDefinitionFile, null, 4));
   }
 
+  if (!resourcePackRequired) {
+    if (exportDlgModeBox.value == "1mcaddon") {
+      exportDlgModeBox.value = "2mcpack";
+      logExporter("This addon does not require a resource pack. Exporting as a behavior pack...", "warn");
+    } else if (exportDlgModeBox.value == "1zip") {
+      exportDlgModeBox.value = "2zip";
+      logExporter("This addon does not require a resource pack. Exporting as a behavior pack...", "warn");
+    }
+  }
+
   if (exportDlgModeBox.value === "1mcaddon" || exportDlgModeBox.value === "1zip") {
     // One file containing both BP and RP
 
@@ -2030,10 +2042,12 @@ bedrockExporter.runExport = async function() {
       `${projManifest.name}_BP.${ext}`
     );
 
-    await downloadZip(
-      exportZip2,
-      `${projManifest.name}_RP.${ext}`
-    );
+    if (resourcePackRequired) {
+      await downloadZip(
+        exportZip2,
+        `${projManifest.name}_RP.${ext}`
+      );
+    }
 
   }
 }

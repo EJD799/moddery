@@ -358,6 +358,17 @@ function loadProject(data) {
     } else {
         dialogSecondaryAction.classList.add("hidden");
     }
+
+    if (dialogTypeMenu.value == "notice" || dialogTypeMenu.value == "confirmation") {
+        toolboxBtn_actionBtn.classList.add("hidden");
+    } else {
+        toolboxBtn_actionBtn.classList.remove("hidden");
+    }
+    if (dialogTypeMenu.value == "dialog_list") {
+        toolboxBtn_dialogLink.classList.remove("hidden");
+    } else {
+        toolboxBtn_dialogLink.classList.add("hidden");
+    }
 }
 
 function loadGrid(data) {
@@ -810,4 +821,17 @@ dialogTypeMenu.addEventListener("change", function (e) {
     dialogMainAction.style.width = dialogData.objects["dialogMainAction"].width;
     dialogSecondaryAction.innerHTML = dialogData.objects["dialogSecondaryAction"].label;
     dialogSecondaryAction.style.width = dialogData.objects["dialogSecondaryAction"].width;
+
+    if (dialogTypeMenu.value == "notice" || dialogTypeMenu.value == "confirmation") {
+        toolboxBtn_actionBtn.classList.add("hidden");
+    } else {
+        toolboxBtn_actionBtn.classList.remove("hidden");
+    }
+    if (dialogTypeMenu.value == "dialog_list") {
+        toolboxBtn_dialogLink.classList.remove("hidden");
+    } else {
+        toolboxBtn_dialogLink.classList.add("hidden");
+    }
+
+    dialogObjectsDiv.innerHTML = "";
 });

@@ -784,12 +784,14 @@ function openDeleteObj() {
     let deleteDlgText = document.getElementById("deleteDlgText");
     let deleteDlgConfirm = document.getElementById("deleteDlgConfirm");
     deleteDlgText.innerHTML = `Are you sure you want to delete the object?`;
-    deleteDlgConfirm.setAttribute("onclick", `deleteCriteria('${selectedObj}')`);
+    deleteDlgConfirm.setAttribute("onclick", `deleteObj('${selectedObj}')`);
 }
 
 function deleteObj(id) {
     deleteDlg.classList.remove("is-active");
-    
+    delete dialogData.objects[id];
+    removeItemInPlace(dialogData.objectOrder, id);
+    document.getElementById(id).remove();
 }
 
 function addObj(type, isNew, id = "") {
@@ -810,6 +812,7 @@ function addObj(type, isNew, id = "") {
             el.classList.add("dialogActionBtn");
             el.style.width = "150px";
             el.setAttribute("onclick", `showToolbar('${id}');`);
+            el.innerHTML = "Button";
 
             dialogObjectsDiv.appendChild(el);
         }

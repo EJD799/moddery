@@ -324,3 +324,10 @@ function randomHexString() {
         .toString(16)
         .padStart(6, "0");
 }
+
+function removeItemInPlace(array, item) {
+    const index = array.indexOf(item);
+    if (index !== -1) {
+        array.splice(index, 1);
+    }
+}

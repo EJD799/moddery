@@ -378,9 +378,9 @@ function loadProject(data) {
     closeWithEscapeBox.checked = data.closeWithEscape;
 
     if (pauseGameBox.checked) {
-        afterActionMenuNone.disabled = false;
-    } else {
         afterActionMenuNone.disabled = true;
+    } else {
+        afterActionMenuNone.disabled = false;
     }
 }
 
@@ -619,9 +619,9 @@ document.addEventListener("DOMContentLoaded", function() {
     bulmaSelectmenu.attachMenu(afterActionMenu);
     pauseGameBox.addEventListener("change", function(e) {
         if (pauseGameBox.checked) {
-            afterActionMenuNone.disabled = false;
-        } else {
             afterActionMenuNone.disabled = true;
+        } else {
+            afterActionMenuNone.disabled = false;
         }
     });
 });

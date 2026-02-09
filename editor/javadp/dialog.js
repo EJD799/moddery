@@ -805,26 +805,33 @@ function addObj(type, isNew, id = "") {
     if (isNew) {
         id = `dialogObject_${randomHexString()}`;
         dialogData.objectOrder.push(id);
+    }
         
-        if (type == "actionBtn") {
+    if (type == "actionBtn") {
+        if (isNew) {
             dialogData.objects[id] = {
                 type: "actionBtn",
                 label: "Button",
                 tooltip: "",
                 width: 150
             };
-
-            let el = document.createElement("button");
-            el.id = id;
-            el.classList.add("dialogActionBtn");
-            el.style.width = "150px";
-            el.setAttribute("onclick", `showToolbar('${id}');`);
-            el.innerHTML = "Button";
-
-            dialogObjectsDiv2.appendChild(el);
-        } else if (type == "text") {
-
         }
+
+        let el = document.createElement("button");
+        el.id = id;
+        el.classList.add("dialogActionBtn");
+        el.style.width = "150px";
+        el.setAttribute("onclick", `showToolbar('${id}');`);
+        el.innerHTML = "Button";
+
+        dialogObjectsDiv2.appendChild(el);
+
+        if (!isNew) {
+            el.style.width = dialogData.objects[id].width + "px";
+            el.innerHTML = dialogData.objects[id].label;
+        }
+    } else if (type == "text") {
+
     }
     
 }

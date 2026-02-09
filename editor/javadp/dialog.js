@@ -382,6 +382,13 @@ function loadProject(data) {
     } else {
         afterActionMenuNone.disabled = false;
     }
+
+
+    let objects = dialogData.objectOrder;
+    for (let i = 0; i < objects.length; i++) {
+        let obj = dialogData.objects[objects[i]];
+        addObj(obj.type, false, objects[i]);
+    }
 }
 
 function loadGrid(data) {
@@ -814,7 +821,9 @@ function addObj(type, isNew, id = "") {
             el.setAttribute("onclick", `showToolbar('${id}');`);
             el.innerHTML = "Button";
 
-            dialogObjectsDiv.appendChild(el);
+            dialogObjectsDiv2.appendChild(el);
+        } else if (type == "text") {
+
         }
     }
     
@@ -888,5 +897,5 @@ dialogTypeMenu.addEventListener("change", function (e) {
         toolboxBtn_dialogLink.classList.add("hidden");
     }
 
-    dialogObjectsDiv.innerHTML = "";
+    dialogObjectsDiv2.innerHTML = "";
 });

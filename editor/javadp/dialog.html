@@ -115,7 +115,7 @@
                 display: none;
             }
 
-            .dialogActionBtn {
+            .dialogActionBtn, .dialogOptSel {
                 padding: 4px;
                 text-align: center;
                 image-rendering: pixelated;
@@ -125,7 +125,7 @@
                 width: 150px;
                 font-size: smaller;
             }
-            .dialogActionBtn:hover, .dialogActionBtn.dialogSelectedObj {
+            .dialogActionBtn:hover, .dialogActionBtn.dialogSelectedObj, .dialogOptSel:hover, .dialogOptSel.dialogSelectedObj {
                 background: url(https://ejd799.github.io/moddery/images/dp_dialog/button_hover.png);
                 background-size: 100% 100%;
             }
@@ -137,9 +137,13 @@
             .controlToolboxItem {
                 text-align: left;
                 vertical-align: middle;
-                width: calc(100% - 32px);
+                width: calc(100% - 16px);
                 height: 50px;
                 padding: 16px;
+                margin-top: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                margin-bottom: 8px !important;
             }
         </style>
     </head>
@@ -179,7 +183,15 @@
             <div id="dialogToolbox" class="card">
                 <h4 class="title is-4">Controls</h4>
 
-                <div class="controlToolboxItem textureMenuItem">Text</div>
+                <div class="card controlToolboxItem textureMenuItem" id="toolboxBtn_text" onclick="addObj('text');">Text</div>
+                <div class="card controlToolboxItem textureMenuItem" id="toolboxBtn_item" onclick="addObj('item');">Item</div>
+                <div class="card controlToolboxItem textureMenuItem" id="toolboxBtn_actionBtn" onclick="addObj('actionBtn');">Button</div>
+                <br>
+                <div class="card controlToolboxItem textureMenuItem" id="toolboxBtn_textBox" onclick="addObj('textBox');">Text Box</div>
+                <div class="card controlToolboxItem textureMenuItem" id="toolboxBtn_checkbox" onclick="addObj('checkbox');">Checkbox</div>
+                <div class="card controlToolboxItem textureMenuItem" id="toolboxBtn_optSel" onclick="addObj('optSel');">Option Selector</div>
+                <div class="card controlToolboxItem textureMenuItem" id="toolboxBtn_slider" onclick="addObj('slider');">Slider</div>
+                <br>
             </div>
         </div>
 

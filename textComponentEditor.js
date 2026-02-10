@@ -1,3 +1,22 @@
+const textComponentColors = {
+    "black": "#000000",
+    "dark_blue": "#0000AA",
+    "dark_green": "#00AA00",
+    "dark_aqua": "#00AAAA",
+    "dark_red": "#AA0000",
+    "dark_purple": "#AA00AA",
+    "gold": "#FFAA00",
+    "gray": "#AAAAAA",
+    "dark_gray": "#555555",
+    "blue": "#5555FF",
+    "green": "#55FF55",
+    "aqua": "#55FFFF",
+    "red": "#FF5555",
+    "light_purple": "#FF55FF",
+    "yellow": "#FFFF55",
+    "white": "#FFFFFF"
+};
+
 function bindTextComponentEditor(editorDiv, textarea) {
     if (!editorDiv || !textarea) return;
 
@@ -68,18 +87,35 @@ function bindTextComponentEditor(editorDiv, textarea) {
             container = container.parentNode;
         }
 
-        if (container.closest?.('[data-obfuscated="true"]')) {
-            // remove obfuscation
-            const span = container.closest('[data-obfuscated="true"]');
-            while (span.firstChild) {
-                span.parentNode.insertBefore(span.firstChild, span);
+        const existing = container.closest?.('[data-obfuscated="true"]');
+
+        if (existing) {
+            // unwrap
+            const parent = existing.parentNode;
+            while (existing.firstChild) {
+                parent.insertBefore(existing.firstChild, existing);
             }
-            span.remove();
+
+            const newRange = document.createRange();
+            newRange.setStartBefore(parent.childNodes[0]);
+            newRange.setEndAfter(parent.childNodes[parent.childNodes.length - 1]);
+
+            existing.remove();
+
+            selection.removeAllRanges();
+            selection.addRange(newRange);
         } else {
-            // apply obfuscation
+            // wrap
             const span = document.createElement("span");
             span.setAttribute("data-obfuscated", "true");
+
             range.surroundContents(span);
+
+            const newRange = document.createRange();
+            newRange.selectNodeContents(span);
+
+            selection.removeAllRanges();
+            selection.addRange(newRange);
         }
     }
 

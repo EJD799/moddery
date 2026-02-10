@@ -747,14 +747,22 @@ function editObj() {
     if (selectedObjType == "title") {
         editObj_title.classList.remove("hidden");
         editObj_actionBtn.classList.add("hidden");
+        editObj_text.classList.add("hidden");
         editObj_title_1.value = dialogData.title.internal;
         editObj_title_2.value = dialogData.title.external;
     } else if (selectedObjType == "actionBtn") {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.remove("hidden");
+        editObj_text.classList.add("hidden");
         editObj_actionBtn_1.value = dialogData.objects[selectedObj].label;
         editObj_actionBtn_2.value = dialogData.objects[selectedObj].tooltip;
         editObj_actionBtn_3.value = dialogData.objects[selectedObj].width.toString();
+    } else if (selectedObjType == "text") {
+        editObj_title.classList.add("hidden");
+        editObj_actionBtn.classList.add("hidden");
+        editObj_text.classList.remove("hidden");
+        editObj_text_1.value = dialogData.objects[selectedObj].contents;
+        editObj_text_2.value = dialogData.objects[selectedObj].width.toString();
     }
 }
 
@@ -772,8 +780,16 @@ function saveObj() {
         dialogData.objects[selectedObj].label = editObj_actionBtn_1.value;
         dialogData.objects[selectedObj].tooltip = editObj_actionBtn_2.value;
         dialogData.objects[selectedObj].width = Number(editObj_actionBtn_3.value);
+
         let el = document.getElementById(selectedObj);
         el.innerHTML = dialogData.objects[selectedObj].label;
+        el.style.width = dialogData.objects[selectedObj].width;
+    } else if (selectedObjType == "text") {
+        dialogData.objects[selectedObj].contents = editObj_text_1.value;
+        dialogData.objects[selectedObj].width = Number(editObj_text_2.value);
+
+        let el = document.getElementById(selectedObj);
+        el.innerHTML = dialogData.objects[selectedObj].contents;
         el.style.width = dialogData.objects[selectedObj].width;
     }
 }
@@ -831,7 +847,27 @@ function addObj(type, isNew, id = "") {
             el.innerHTML = dialogData.objects[id].label;
         }
     } else if (type == "text") {
+        if (isNew) {
+            dialogData.objects[id] = {
+                type: "text",
+                contents: "Text",
+                width: 200
+            };
+        }
 
+        let el = document.createElement("span");
+        el.id = id;
+        el.classList.add("dialogText");
+        el.style.width = "200px";
+        el.setAttribute("onclick", `showToolbar('${id}');`);
+        el.innerHTML = "Text";
+
+        dialogObjectsDiv2.appendChild(el);
+
+        if (!isNew) {
+            el.style.width = dialogData.objects[id].width + "px";
+            el.innerHTML = dialogData.objects[id].contents;
+        }
     }
     
 }

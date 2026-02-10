@@ -151,6 +151,11 @@
                 margin-right: 0 !important;
                 margin-bottom: 8px !important;
             }
+
+            .textComponentEditor {
+                background: black;
+                font-family: Mojangles;
+            }
         </style>
     </head>
     <body>
@@ -259,18 +264,18 @@
 
                         <div id="editObj_title">
                             <label for="editObj_title_1">Internal Title</label>
-                            <input class="input normalInput" id="editObj_title_1" placeholder="Internal Title">
+                            <textarea class="textarea normalInput has-fixed-size textComponentEditor" id="editObj_title_1" placeholder="Internal Title"></textarea>
                             <br><br>
                             <label for="editObj_title_2">External Title</label>
-                            <input class="input normalInput" id="editObj_title_2" placeholder="External Title">
+                            <textarea class="textarea normalInput has-fixed-size textComponentEditor" id="editObj_title_2" placeholder="External Title"></textarea>
                         </div>
 
                         <div id="editObj_actionBtn">
                             <label for="editObj_actionBtn_1">Label</label>
-                            <input class="input normalInput" id="editObj_actionBtn_1" placeholder="Label">
+                            <textarea class="textarea normalInput has-fixed-size textComponentEditor" id="editObj_actionBtn_1" placeholder="Label"></textarea>
                             <br><br>
                             <label for="editObj_actionBtn_2">Tooltip</label>
-                            <input class="input normalInput" id="editObj_actionBtn_2" placeholder="Tooltip">
+                            <textarea class="textarea normalInput has-fixed-size textComponentEditor" id="editObj_actionBtn_2" placeholder="Tooltip"></textarea>
                             <br><br>
                             <label for="editObj_actionBtn_3">Width (1-1024)</label>
                             <input class="input smallInput" id="editObj_actionBtn_3" placeholder="Width" type="number">
@@ -278,7 +283,7 @@
 
                         <div id="editObj_text">
                             <label for="editObj_text_1">Contents</label>
-                            <input class="input normalInput" id="editObj_text_1" placeholder="Label">
+                            <textarea class="textarea normalInput has-fixed-size textComponentEditor" id="editObj_text_1" placeholder="Label"></textarea>
                             <br><br>
                             <label for="editObj_text_2">Width (1-1024)</label>
                             <input class="input smallInput" id="editObj_text_2" placeholder="Width" type="number">

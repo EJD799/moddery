@@ -622,33 +622,6 @@ boxToValidate.addEventListener("input", function (e) {
 });
 
 
-function bindTextComponentEditor(editorDiv, textarea) {
-    if (!editorDiv || !textarea) return;
-
-    const syncFromTextarea = () => {
-        editorDiv.textContent = textarea.value ?? "";
-    };
-
-    const syncToTextarea = () => {
-        textarea.value = editorDiv.textContent;
-    };
-
-    // Initial sync
-    syncFromTextarea();
-
-    editorDiv.setAttribute("contenteditable", "true");
-    editorDiv.setAttribute("data-gramm", "false");
-    editorDiv.setAttribute("spellcheck", "false");
-
-    editorDiv.addEventListener("input", syncToTextarea);
-    editorDiv.addEventListener("blur", syncToTextarea);
-
-    // Expose helpers
-    editorDiv._syncFromTextarea = syncFromTextarea;
-    editorDiv._syncToTextarea = syncToTextarea;
-}
-
-
 document.addEventListener("DOMContentLoaded", function() {
     bulmaSelectmenu.attachMenu(dialogTypeMenu);
     bulmaSelectmenu.attachMenu(afterActionMenu);

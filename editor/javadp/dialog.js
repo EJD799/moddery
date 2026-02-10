@@ -621,14 +621,53 @@ boxToValidate.addEventListener("input", function (e) {
   }
 });
 
+
+function bindTextComponentEditor(editorDiv, textarea) {
+    if (!editorDiv || !textarea) return;
+
+    const syncFromTextarea = () => {
+        editorDiv.textContent = textarea.value ?? "";
+    };
+
+    const syncToTextarea = () => {
+        textarea.value = editorDiv.textContent;
+    };
+
+    // Initial sync
+    syncFromTextarea();
+
+    editorDiv.setAttribute("contenteditable", "true");
+    editorDiv.setAttribute("data-gramm", "false");
+    editorDiv.setAttribute("spellcheck", "false");
+
+    editorDiv.addEventListener("input", syncToTextarea);
+    editorDiv.addEventListener("blur", syncToTextarea);
+
+    // Expose helpers
+    editorDiv._syncFromTextarea = syncFromTextarea;
+    editorDiv._syncToTextarea = syncToTextarea;
+}
+
+
 document.addEventListener("DOMContentLoaded", function() {
     bulmaSelectmenu.attachMenu(dialogTypeMenu);
     bulmaSelectmenu.attachMenu(afterActionMenu);
+
     pauseGameBox.addEventListener("change", function(e) {
         if (pauseGameBox.checked) {
             afterActionMenuNone.disabled = true;
         } else {
             afterActionMenuNone.disabled = false;
+        }
+    });
+
+    document.querySelectorAll(".textComponentEditor[id$='_editor']").forEach(editor => {
+        const textarea = document.getElementById(
+            editor.id.replace("_editor", "")
+        );
+
+        if (textarea) {
+            bindTextComponentEditor(editor, textarea);
         }
     });
 });
@@ -749,19 +788,24 @@ function editObj() {
         editObj_actionBtn.classList.add("hidden");
         editObj_text.classList.add("hidden");
         editObj_title_1.value = dialogData.title.internal;
+        editObj_title_1_editor._syncFromTextarea();
         editObj_title_2.value = dialogData.title.external;
+        editObj_title_2_editor._syncFromTextarea();
     } else if (selectedObjType == "actionBtn") {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.remove("hidden");
         editObj_text.classList.add("hidden");
         editObj_actionBtn_1.value = dialogData.objects[selectedObj].label;
+        editObj_actionBtn_1_editor._syncFromTextarea();
         editObj_actionBtn_2.value = dialogData.objects[selectedObj].tooltip;
+        editObj_actionBtn_2_editor._syncFromTextarea();
         editObj_actionBtn_3.value = dialogData.objects[selectedObj].width.toString();
     } else if (selectedObjType == "text") {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.add("hidden");
         editObj_text.classList.remove("hidden");
         editObj_text_1.value = dialogData.objects[selectedObj].contents;
+        editObj_text_1_editor._syncFromTextarea();
         editObj_text_2.value = dialogData.objects[selectedObj].width.toString();
     }
 }

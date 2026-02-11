@@ -762,6 +762,8 @@ function editObj() {
         editObj_title.classList.remove("hidden");
         editObj_actionBtn.classList.add("hidden");
         editObj_text.classList.add("hidden");
+        editObj_item.classList.add("hidden");
+
         editObj_title_1.value = dialogData.title.internal;
         editObj_title_1_editor._syncFromTextarea();
         editObj_title_2.value = dialogData.title.external;
@@ -770,6 +772,8 @@ function editObj() {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.remove("hidden");
         editObj_text.classList.add("hidden");
+        editObj_item.classList.add("hidden");
+
         editObj_actionBtn_1.value = dialogData.objects[selectedObj].label;
         editObj_actionBtn_1_editor._syncFromTextarea();
         editObj_actionBtn_2.value = dialogData.objects[selectedObj].tooltip;
@@ -779,9 +783,23 @@ function editObj() {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.add("hidden");
         editObj_text.classList.remove("hidden");
+        editObj_item.classList.add("hidden");
+
         editObj_text_1.value = dialogData.objects[selectedObj].contents;
         editObj_text_1_editor._syncFromTextarea();
         editObj_text_2.value = dialogData.objects[selectedObj].width.toString();
+    } else if (selectedObjType == "item") {
+        editObj_title.classList.add("hidden");
+        editObj_actionBtn.classList.add("hidden");
+        editObj_text.classList.add("hidden");
+        editObj_item.classList.remove("hidden");
+
+        editObj_item_2.value = dialogData.objects[selectedObj].stackSize.toString();
+        editObj_item_3.value = dialogData.objects[selectedObj].description;
+        editObj_item_3_editor._syncFromTextarea();
+        editObj_item_4.value = dialogData.objects[selectedObj].descriptionWidth.toString();
+        editObj_item_5.checked = dialogData.objects[selectedObj].showDecoration;
+        editObj_item_6.checked = dialogData.objects[selectedObj].showTooltip;
     }
 }
 
@@ -810,6 +828,17 @@ function saveObj() {
         let el = document.getElementById(selectedObj);
         el.innerHTML = dialogData.objects[selectedObj].contents;
         el.style.width = dialogData.objects[selectedObj].width;
+    } else if (selectedObjType == "item") {
+        dialogData.objects[selectedObj].stackSize = Number(editObj_item_2.value);
+        dialogData.objects[selectedObj].description = editObj_item_3.value;
+        dialogData.objects[selectedObj].descriptionWidth = Number(editObj_item_4.value);
+        dialogData.objects[selectedObj].showDecoration = editObj_item_5.checked;
+        dialogData.objects[selectedObj].showTooltip = editObj_item_6.checked;
+
+        let el = document.getElementById(selectedObj);
+        let description = el.querySelectorAll("div")[0];
+        description.innerHTML = dialogData.objects[selectedObj].description;
+        description.style.width = dialogData.objects[selectedObj].descriptionWidth;
     }
 }
 

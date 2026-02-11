@@ -17,6 +17,9 @@ const textComponentColors = {
     "white": "#FFFFFF"
 };
 
+let currentColorPicker = null;
+let currentEditorInstance = null;
+
 function bindTextComponentEditor(editorDiv, textarea) {
     if (!editorDiv || !textarea) return;
 
@@ -56,9 +59,19 @@ function bindTextComponentEditor(editorDiv, textarea) {
             }
 
             if (cmd === "color") {
+                editorDiv.focus();
+
+                currentColorPicker = btn;
+                currentEditorInstance = editorDiv;
                 textColorPickerCard.classList.remove("toolbarHidden");
                 positionToolbar(textColorPickerCard, btn);
-                console.log("Color picker clicked");
+
+                const currentColor = getCurrentTextColor() || "#FFFFFF";
+
+                textColorPicker.value = currentColor;
+                textColorHex.value = currentColor.toUpperCase();
+                btn.style.borderColor = currentColor;
+
                 return;
             }
 
@@ -181,4 +194,74 @@ function bindTextComponentEditor(editorDiv, textarea) {
     ------------------------------ */
     editorDiv._syncFromTextarea = syncFromTextarea;
     editorDiv._syncToTextarea = syncToTextarea;
+
+    function getCurrentTextColor() {
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return null;
+
+        let node = selection.getRangeAt(0).commonAncestorContainer;
+        if (node.nodeType === Node.TEXT_NODE) {
+            node = node.parentNode;
+        }
+
+        // Look for styled span first
+        const colored = node.closest?.("span[style*='color']");
+        if (colored) {
+            return rgbToHex(getComputedStyle(colored).color);
+        }
+
+        return rgbToHex(getComputedStyle(node).color);
+    }
+}
+
+function applyTextColor(color) {
+    if (!currentEditorInstance) return;
+
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+
+    const range = selection.getRangeAt(0);
+    if (range.collapsed) return;
+
+    const span = document.createElement("span");
+    span.style.color = color;
+
+    range.surroundContents(span);
+
+    const newRange = document.createRange();
+    newRange.selectNodeContents(span);
+    selection.removeAllRanges();
+    selection.addRange(newRange);
+
+    // Sync back to correct textarea
+    if (currentEditorInstance._syncToTextarea) {
+        currentEditorInstance._syncToTextarea();
+    }
+}
+
+
+textColorPicker.addEventListener("change", function () {
+    const color = textColorPicker.value.toUpperCase();
+    textColorHex.value = color;
+    currentColorPicker.style.borderColor = color;
+
+    applyTextColor(color);
+});
+
+textColorHex.addEventListener("change", function () {
+    const color = textColorHex.value.toUpperCase();
+    textColorPicker.value = color;
+    currentColorPicker.style.borderColor = color;
+
+    applyTextColor(color);
+});
+
+function rgbToHex(rgb) {
+    const result = rgb.match(/\d+/g);
+    if (!result) return null;
+
+    return "#" + result
+        .map(x => parseInt(x).toString(16).padStart(2, "0"))
+        .join("")
+        .toUpperCase();
 }

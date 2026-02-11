@@ -56,7 +56,8 @@ function bindTextComponentEditor(editorDiv, textarea) {
             }
 
             if (cmd === "color") {
-                // placeholder
+                textColorPickerCard.classList.remove("toolbarHidden");
+                positionToolbar(textColorPickerCard, btn);
                 console.log("Color picker clicked");
                 return;
             }

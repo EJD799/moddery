@@ -227,14 +227,21 @@ function bindTextComponentEditor(editorDiv, textarea) {
 }
 
 document.addEventListener("selectionchange", () => {
-    if (!currentEditorInstance || !currentColorPicker) return;
+    if (!currentEditorInstance) return;
 
     const selection = window.getSelection();
     if (!selection.rangeCount) return;
 
     const range = selection.getRangeAt(0);
 
+    // Ignore selections outside editor
     if (!currentEditorInstance.contains(range.commonAncestorContainer)) return;
+
+    // ✅ FIX: Always keep savedRange fresh
+    savedRange = range.cloneRange();
+
+    // If color picker isn't open, stop here
+    if (!currentColorPicker) return;
 
     const color = getCurrentTextColorSafe(currentEditorInstance) || "#FFFFFF";
 
@@ -268,18 +275,42 @@ function applyTextColor(color) {
     if (!currentEditorInstance) return;
 
     const selection = window.getSelection();
+    if (!selection.rangeCount) return;
 
-    if (savedRange) {
+    let range = selection.getRangeAt(0);
+
+    // Restore saved range only if selection is outside editor
+    if (savedRange && !currentEditorInstance.contains(range.commonAncestorContainer)) {
         selection.removeAllRanges();
         selection.addRange(savedRange);
+        range = selection.getRangeAt(0);
     }
 
     currentEditorInstance.focus();
-    document.execCommand("foreColor", false, color);
+
+    if (range.collapsed) {
+        // Insert colored span at caret
+        const span = document.createElement("span");
+        span.style.color = color;
+        span.textContent = "\u200B"; // zero-width space
+
+        range.insertNode(span);
+
+        // Move caret inside span
+        range = document.createRange();
+        range.setStart(span.firstChild, 1);
+        range.collapse(true);
+
+        selection.removeAllRanges();
+        selection.addRange(range);
+    } else {
+        document.execCommand("foreColor", false, color);
+    }
 
     currentEditorInstance._syncToTextarea?.();
-    currentEditorInstance?._updateToolbarState?.();
+    currentEditorInstance._updateToolbarState?.();
 }
+
 
 
 textColorPicker.addEventListener("change", function () {

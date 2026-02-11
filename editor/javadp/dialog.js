@@ -859,7 +859,7 @@ function addObj(type, isNew, id = "") {
         el.setAttribute("onclick", `showToolbar('${id}');`);
         el.innerHTML = "Button";
 
-        dialogObjectsDiv2.appendChild(el);
+        dialogObjectsDiv3.appendChild(el);
 
         if (!isNew) {
             el.style.width = dialogData.objects[id].width + "px";
@@ -881,7 +881,7 @@ function addObj(type, isNew, id = "") {
         el.setAttribute("onclick", `showToolbar('${id}');`);
         el.innerHTML = "Text";
 
-        dialogObjectsDiv2.appendChild(el);
+        dialogObjectsDiv1.appendChild(el);
 
         if (!isNew) {
             el.style.width = dialogData.objects[id].width + "px";
@@ -959,5 +959,5 @@ dialogTypeMenu.addEventListener("change", function (e) {
         toolboxBtn_dialogLink.classList.add("hidden");
     }
 
-    dialogObjectsDiv2.innerHTML = "";
+    dialogObjectsDiv3.innerHTML = "";
 });

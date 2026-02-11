@@ -19,6 +19,8 @@ const textComponentColors = {
 
 let currentColorPicker = null;
 let currentEditorInstance = null;
+let savedRange = null;
+
 
 function bindTextComponentEditor(editorDiv, textarea) {
     if (!editorDiv || !textarea) return;
@@ -71,6 +73,11 @@ function bindTextComponentEditor(editorDiv, textarea) {
                 textColorPicker.value = currentColor;
                 textColorHex.value = currentColor.toUpperCase();
                 btn.style.borderColor = currentColor;
+
+                const selection = window.getSelection();
+                if (selection.rangeCount) {
+                    savedRange = selection.getRangeAt(0).cloneRange();
+                }
 
                 return;
             }
@@ -218,25 +225,17 @@ function applyTextColor(color) {
     if (!currentEditorInstance) return;
 
     const selection = window.getSelection();
-    if (!selection.rangeCount) return;
 
-    const range = selection.getRangeAt(0);
-    if (range.collapsed) return;
-
-    const span = document.createElement("span");
-    span.style.color = color;
-
-    range.surroundContents(span);
-
-    const newRange = document.createRange();
-    newRange.selectNodeContents(span);
-    selection.removeAllRanges();
-    selection.addRange(newRange);
-
-    // Sync back to correct textarea
-    if (currentEditorInstance._syncToTextarea) {
-        currentEditorInstance._syncToTextarea();
+    if (savedRange) {
+        selection.removeAllRanges();
+        selection.addRange(savedRange);
     }
+
+    currentEditorInstance.focus();
+    document.execCommand("foreColor", false, color);
+
+    currentEditorInstance._syncToTextarea?.();
+    updateToolbarState();
 }
 
 
@@ -265,3 +264,6 @@ function rgbToHex(rgb) {
         .join("")
         .toUpperCase();
 }
+
+textColorPicker.addEventListener("mousedown", e => e.preventDefault());
+textColorHex.addEventListener("mousedown", e => e.preventDefault());

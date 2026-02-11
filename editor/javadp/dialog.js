@@ -743,6 +743,7 @@ function toolbarAction(btn) {
 document.addEventListener("mousedown", (e) => {
     if (!(e.target.closest("#objToolbar") || e.target.closest("#textColorPickerCard"))) {
         closeToolbar();
+        textColorPickerCard.classList.add("toolbarHidden");
         currentColorPicker = null;
     }
 });

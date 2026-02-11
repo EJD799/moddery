@@ -130,11 +130,18 @@ function bindTextComponentEditor(editorDiv, textarea) {
             selection.removeAllRanges();
             selection.addRange(newRange);
         } else {
-            // wrap
+            // wrap (safe)
             const span = document.createElement("span");
             span.setAttribute("data-obfuscated", "true");
 
-            range.surroundContents(span);
+            try {
+                const contents = range.extractContents();
+                span.appendChild(contents);
+                range.insertNode(span);
+            } catch (err) {
+                console.warn("Obfuscation wrap failed:", err);
+                return;
+            }
 
             const newRange = document.createRange();
             newRange.selectNodeContents(span);

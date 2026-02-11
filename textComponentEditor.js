@@ -343,7 +343,6 @@ textColorPicker.addEventListener("mousedown", e => e.preventDefault());
 
 document.addEventListener("DOMContentLoaded", function() {
     let colors = Object.keys(textComponentColors);
-    textColorPickerCard.appendChild(document.createElement("br"));
     for (let i = 0; i < colors.length; i++) {
         let swatch = document.createElement("button");
         swatch.classList.add("textColorPickerSwatch");
@@ -351,6 +350,10 @@ document.addEventListener("DOMContentLoaded", function() {
         swatch.addEventListener("mousedown", e => e.preventDefault());
         swatch.addEventListener("click", () => selectSwatch(colors[i]));
         textColorPickerCard.appendChild(swatch);
+
+        if (((i + 1) % 4 === 0) && (i + 1) != colors.length) {
+            textColorPickerCard.appendChild(document.createElement("br"));
+        }
     }
 });
 

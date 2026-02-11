@@ -205,6 +205,7 @@ function bindTextComponentEditor(editorDiv, textarea) {
     ------------------------------ */
     editorDiv._syncFromTextarea = syncFromTextarea;
     editorDiv._syncToTextarea = syncToTextarea;
+    editorDiv._updateToolbarState = updateToolbarState;
 
     function getCurrentTextColor() {
         const selection = window.getSelection();
@@ -225,6 +226,44 @@ function bindTextComponentEditor(editorDiv, textarea) {
     }
 }
 
+document.addEventListener("selectionchange", () => {
+    if (!currentEditorInstance || !currentColorPicker) return;
+
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+
+    const range = selection.getRangeAt(0);
+
+    if (!currentEditorInstance.contains(range.commonAncestorContainer)) return;
+
+    const color = getCurrentTextColorSafe(currentEditorInstance) || "#FFFFFF";
+
+    currentColorPicker.style.borderColor = color;
+    textColorPicker.value = color;
+    textColorHex.value = color;
+});
+
+function getCurrentTextColorSafe(editorDiv) {
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return null;
+
+    let node = selection.getRangeAt(0).commonAncestorContainer;
+
+    if (node.nodeType === Node.TEXT_NODE) {
+        node = node.parentNode;
+    }
+
+    if (!editorDiv.contains(node)) return null;
+
+    const colored = node.closest?.("span[style*='color']");
+    if (colored) {
+        return rgbToHex(getComputedStyle(colored).color);
+    }
+
+    return rgbToHex(getComputedStyle(node).color);
+}
+
+
 function applyTextColor(color) {
     if (!currentEditorInstance) return;
 
@@ -239,7 +278,7 @@ function applyTextColor(color) {
     document.execCommand("foreColor", false, color);
 
     currentEditorInstance._syncToTextarea?.();
-    updateToolbarState();
+    currentEditorInstance?._updateToolbarState?.();
 }
 
 

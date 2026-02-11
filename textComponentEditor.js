@@ -48,6 +48,10 @@ function bindTextComponentEditor(editorDiv, textarea) {
         btn.className = "button is-white toolbarBtn";
         btn.innerHTML = `<i class="fas ${icon}"></i>`;
 
+        if (cmd == "color") {
+            btn.classList.add("defaultBorder");
+        }
+
         btn.addEventListener("mousedown", e => e.preventDefault());
 
         btn.addEventListener("click", () => {
@@ -266,4 +270,3 @@ function rgbToHex(rgb) {
 }
 
 textColorPicker.addEventListener("mousedown", e => e.preventDefault());
-textColorHex.addEventListener("mousedown", e => e.preventDefault());

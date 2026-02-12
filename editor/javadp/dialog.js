@@ -301,6 +301,25 @@ function renderSlot(value, original) {
         track: true
     });
 }
+function renderImage(value, original, slotImage) {
+    if (original == "special_remove") {
+        slotImage.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
+    } else if (original == "special_custom" && Object.keys(editedItemDefinitions).includes("minecraft:" + value)) {
+        slotImage.setAttribute("src", replaceShortURLs(editedItemDefinitions["minecraft:" + value].texture));
+    } else if (original == "special_custom" && !Object.keys(editedItemDefinitions).includes(value) && !Object.keys(customItems).includes(value)) {
+        if (window.parent.generalThemeType == "dark") {
+            slotImage.setAttribute("src", "/moddery/custom_textures/special_custom_dark.png");
+        } else {
+            slotImage.setAttribute("src", "/moddery/custom_textures/special_custom_light.png");
+        }
+    } else {
+        if (Object.keys(customItems).includes(value)) {
+            slotImage.setAttribute("src", customItems[value].texture);
+        } else {
+            slotImage.setAttribute("src", replaceShortURLs(editedItemDefinitions[value].texture));
+        }
+    }
+}
 function selectItem() {
     openItemPickerDialog();
 }
@@ -747,6 +766,12 @@ function saveObj() {
         let description = el.querySelectorAll("span")[0];
         description.innerHTML = dialogData.objects[selectedObj].description;
         description.style.width = dialogData.objects[selectedObj].descriptionWidth;
+
+        if (currentItemType == "" || !currentItemType.isArray()) {
+            renderImage("", "special_remove", el.querySelectorAll("img")[0]);
+        } else {
+            renderImage(currentItemType[0], "special_custom", el.querySelectorAll("img")[0]);
+        }
     }
 }
 
@@ -828,7 +853,7 @@ function addObj(type, isNew, id = "") {
         if (isNew) {
             dialogData.objects[id] = {
                 type: "item",
-
+                itemType: ["", 0],
                 stackSize: 1,
                 description: "Description",
                 descriptionWidth: 200,
@@ -851,7 +876,13 @@ function addObj(type, isNew, id = "") {
         let itemText = document.createElement("span");
         itemText.classList.add("dialogItemText");
         el.appendChild(itemText);
-        
+
+        currentItemType = dialogData.objects[id].itemType;
+        if (currentItemType == "" || !currentItemType.isArray()) {
+            renderImage("", "special_remove", itemIcon);
+        } else {
+            renderImage(currentItemType[0], "special_custom", itemIcon);
+        }
 
         dialogObjectsDiv1.appendChild(el);
 

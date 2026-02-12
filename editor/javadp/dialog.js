@@ -682,6 +682,7 @@ function editObj() {
         editObj_actionBtn.classList.add("hidden");
         editObj_text.classList.add("hidden");
         editObj_item.classList.add("hidden");
+        editObj_dialogLink.classList.add("hidden");
 
         editObj_title_1.value = dialogData.title.internal;
         editObj_title_1_editor._syncFromTextarea();
@@ -692,6 +693,7 @@ function editObj() {
         editObj_actionBtn.classList.remove("hidden");
         editObj_text.classList.add("hidden");
         editObj_item.classList.add("hidden");
+        editObj_dialogLink.classList.add("hidden");
 
         editObj_actionBtn_1.value = dialogData.objects[selectedObj].label;
         editObj_actionBtn_1_editor._syncFromTextarea();
@@ -703,6 +705,7 @@ function editObj() {
         editObj_actionBtn.classList.add("hidden");
         editObj_text.classList.remove("hidden");
         editObj_item.classList.add("hidden");
+        editObj_dialogLink.classList.add("hidden");
 
         editObj_text_1.value = dialogData.objects[selectedObj].contents;
         editObj_text_1_editor._syncFromTextarea();
@@ -712,6 +715,7 @@ function editObj() {
         editObj_actionBtn.classList.add("hidden");
         editObj_text.classList.add("hidden");
         editObj_item.classList.remove("hidden");
+        editObj_dialogLink.classList.add("hidden");
 
         editObj_item_2.value = dialogData.objects[selectedObj].stackSize.toString();
         editObj_item_3.value = dialogData.objects[selectedObj].description;
@@ -726,6 +730,14 @@ function editObj() {
         } else {
             renderSlot(currentItemType[0], "special_custom");
         }
+    } else if (selectedObjType == "actionBtn") {
+        editObj_title.classList.add("hidden");
+        editObj_actionBtn.classList.add("hidden");
+        editObj_text.classList.add("hidden");
+        editObj_item.classList.add("hidden");
+        editObj_dialogLink.classList.remove("hidden");
+
+        editObj_dialogLink_1.value = dialogData.objects[selectedObj].dialogID;
     }
 }
 
@@ -772,6 +784,11 @@ function saveObj() {
         } else {
             renderImage(currentItemType[0], "special_custom", el.querySelectorAll("img")[0]);
         }
+    } else if (selectedObjType == "dialogLink") {
+        dialogData.objects[selectedObj].dialogID = editObj_dialogLink_1.value;
+
+        let el = document.getElementById(selectedObj);
+        el.innerHTML = dialogData.objects[selectedObj].dialogID;
     }
 }
 
@@ -890,6 +907,25 @@ function addObj(type, isNew, id = "") {
 
         itemText.style.width = dialogData.objects[id].descriptionWidth + "px";
         itemText.innerHTML = dialogData.objects[id].description;
+    } else if (type == "dialogLink") {
+        if (isNew) {
+            dialogData.objects[id] = {
+                type: "dialogLink",
+                dialogID: ""
+            };
+        }
+
+        let el = document.createElement("button");
+        el.id = id;
+        el.classList.add("dialogActionBtn");
+        el.setAttribute("onclick", `showToolbar('${id}');`);
+        el.innerHTML = "";
+
+        dialogObjectsDiv3.appendChild(el);
+
+        if (!isNew) {
+            el.innerHTML = dialogData.objects[id].dialogID;
+        }
     }
     
 }

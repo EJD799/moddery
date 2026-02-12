@@ -292,7 +292,7 @@ function renderSlot(value, original) {
             slotBtn.setAttribute("title", value);
         }
     }
-    $("#recipeBtn" + slot).tooltip({
+    $("#editObj_item_1").tooltip({
         content: function() {
             return $(this).attr("title");
         },

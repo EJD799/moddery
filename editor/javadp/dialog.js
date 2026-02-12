@@ -702,7 +702,7 @@ function editObj() {
         editObj_item_6.checked = dialogData.objects[selectedObj].showTooltip;
 
         currentItemType = dialogData.objects[selectedObj].itemType;
-        if (currentItemType == "") {
+        if (currentItemType == "" || !currentItemType.isArray()) {
             renderSlot("", "special_remove");
         } else {
             renderSlot(currentItemType[0], "special_custom");

@@ -947,8 +947,8 @@ function addObj(type, isNew, id = "") {
 
         dialogObjectsDiv1.appendChild(el);
 
-        itemText.style.width = dialogData.objects[id].width + "px";
-        itemText.innerHTML = dialogData.objects[id].contents;
+        itemText.style.width = dialogData.objects[id].descriptionWidth + "px";
+        itemText.innerHTML = dialogData.objects[id].description;
     }
     
 }

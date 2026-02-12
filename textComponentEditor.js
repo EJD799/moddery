@@ -352,7 +352,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let colors = Object.keys(textComponentColors);
     for (let i = 0; i < colors.length; i++) {
         let swatch = document.createElement("button");
-        swatch.classList.add("button textColorPickerSwatch");
+        swatch.classList.add("button");
+        swatch.classList.add("textColorPickerSwatch");
         swatch.style.background = textComponentColors[colors[i]];
         swatch.addEventListener("mousedown", e => e.preventDefault());
         swatch.addEventListener("click", () => selectSwatch(colors[i]));

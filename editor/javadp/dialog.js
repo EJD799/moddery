@@ -721,7 +721,7 @@ function editObj() {
         editObj_item_6.checked = dialogData.objects[selectedObj].showTooltip;
 
         currentItemType = dialogData.objects[selectedObj].itemType;
-        if (currentItemType == "" || !currentItemType.isArray()) {
+        if (currentItemType == "" || !Array.isArray(currentItemType)) {
             renderSlot("", "special_remove");
         } else {
             renderSlot(currentItemType[0], "special_custom");
@@ -767,7 +767,7 @@ function saveObj() {
         description.innerHTML = dialogData.objects[selectedObj].description;
         description.style.width = dialogData.objects[selectedObj].descriptionWidth;
 
-        if (currentItemType == "" || !currentItemType.isArray()) {
+        if (currentItemType == "" || !Array.isArray(currentItemType)) {
             renderImage("", "special_remove", el.querySelectorAll("img")[0]);
         } else {
             renderImage(currentItemType[0], "special_custom", el.querySelectorAll("img")[0]);
@@ -878,7 +878,7 @@ function addObj(type, isNew, id = "") {
         el.appendChild(itemText);
 
         currentItemType = dialogData.objects[id].itemType;
-        if (currentItemType == "" || !currentItemType.isArray()) {
+        if (currentItemType == "" || !Array.isArray(currentItemType)) {
             renderImage("", "special_remove", itemIcon);
         } else {
             renderImage(currentItemType[0], "special_custom", itemIcon);

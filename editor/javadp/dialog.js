@@ -730,7 +730,7 @@ function editObj() {
         } else {
             renderSlot(currentItemType[0], "special_custom");
         }
-    } else if (selectedObjType == "actionBtn") {
+    } else if (selectedObjType == "dialogLink") {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.add("hidden");
         editObj_text.classList.add("hidden");

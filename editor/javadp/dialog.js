@@ -705,7 +705,7 @@ function editObj() {
         if (currentItemType == "") {
             renderSlot("", "special_remove");
         } else {
-            renderSlot(currentItemType, "special_custom");
+            renderSlot(currentItemType[0], "special_custom");
         }
     }
 }

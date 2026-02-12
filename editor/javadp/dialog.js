@@ -836,7 +836,7 @@ function saveObj() {
         dialogData.objects[selectedObj].showTooltip = editObj_item_6.checked;
 
         let el = document.getElementById(selectedObj);
-        let description = el.querySelectorAll("div")[0];
+        let description = el.querySelectorAll("span")[0];
         description.innerHTML = dialogData.objects[selectedObj].description;
         description.style.width = dialogData.objects[selectedObj].descriptionWidth;
     }
@@ -916,6 +916,39 @@ function addObj(type, isNew, id = "") {
             el.style.width = dialogData.objects[id].width + "px";
             el.innerHTML = dialogData.objects[id].contents;
         }
+    } else if (type == "item") {
+        if (isNew) {
+            dialogData.objects[id] = {
+                type: "item",
+
+                stackSize: 1,
+                description: "Description",
+                descriptionWidth: 200,
+                showDecoration: true,
+                showTooltip: true
+            };
+        }
+
+        let el = document.createElement("div");
+        el.id = id;
+        el.classList.add("dialogItem");
+        el.setAttribute("onclick", `showToolbar('${id}');`);
+
+        let itemIconBox = document.createElement("div");
+        itemIconBox.classList.add("dialogItemIconBox");
+        let itemIcon = document.createElement("img");
+        itemIcon.classList.add("dialogItemIcon");
+        itemIconBox.appendChild(itemIcon);
+        el.appendChild(itemIconBox);
+        let itemText = document.createElement("span");
+        itemText.classList.add("dialogItemText");
+        el.appendChild(itemText);
+        
+
+        dialogObjectsDiv1.appendChild(el);
+
+        itemText.style.width = dialogData.objects[id].width + "px";
+        itemText.innerHTML = dialogData.objects[id].contents;
     }
     
 }

@@ -88,16 +88,32 @@
                 margin-right: 2px;
             }
 
-            #dialogTitle, .dialogText, .dialogItemIcon {
+            #dialogTitle, .dialogText, .dialogItem {
                 padding: 6px;
                 box-sizing: border-box;
                 border: 1px solid transparent;
             }
-            #dialogTitle:hover, .dialogText:hover, .dialogItemIcon:hover {
+            #dialogTitle:hover, .dialogText:hover, .dialogItem:hover {
                 border: 1px solid #ffffff50;
             }
             .dialogSelectedObj:not(.dialogActionBtn) {
                 border: 1px solid white !important;
+            }
+
+            .dialogItem {
+                width: max-content;
+                height: max-content;
+            }
+            .dialogItemIconBox {
+                width: 24px;
+                height: 24px;
+            }
+            .dialogItemIcon {
+                width: 100%;
+                height: 100%;
+            }
+            .dialogItemText {
+                
             }
 
             .dialogText {

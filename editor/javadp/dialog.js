@@ -878,11 +878,13 @@ function addObj(type, isNew, id = "") {
         el.appendChild(itemText);
 
         currentItemType = dialogData.objects[id].itemType;
-        if (currentItemType == "" || !Array.isArray(currentItemType)) {
-            renderImage("", "special_remove", itemIcon);
-        } else {
-            renderImage(currentItemType[0], "special_custom", itemIcon);
-        }
+        window.setTimeout(function() {
+            if (currentItemType == "" || !Array.isArray(currentItemType)) {
+                renderImage("", "special_remove", itemIcon);
+            } else {
+                renderImage(currentItemType[0], "special_custom", itemIcon);
+            }
+        }, 200);
 
         dialogObjectsDiv1.appendChild(el);
 

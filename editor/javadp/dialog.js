@@ -929,7 +929,7 @@ function addObj(type, isNew, id = "") {
             };
         }
 
-        let el = document.createElement("div");
+        let el = document.createElement("span");
         el.id = id;
         el.classList.add("dialogItem");
         el.setAttribute("onclick", `showToolbar('${id}');`);

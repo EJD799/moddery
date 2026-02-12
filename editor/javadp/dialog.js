@@ -1,5 +1,5 @@
 var elementData = {};
-let selectedItemType = ["", 0];
+let currentItemType = ["", 0];
 
 function onThemeChange(name, style, type) {
     if (type == "light") {
@@ -252,7 +252,7 @@ function setItem(value) {
     } else {
         itemID = value;
     }
-    selectedItemType = [itemID, Number($("#itemDataBox").val())];
+    currentItemType = [itemID, Number($("#itemDataBox").val())];
     renderSlot(itemID, value);
 }
 function renderSlot(value, original) {
@@ -760,7 +760,7 @@ function saveObj() {
         dialogData.objects[selectedObj].descriptionWidth = Number(editObj_item_4.value);
         dialogData.objects[selectedObj].showDecoration = editObj_item_5.checked;
         dialogData.objects[selectedObj].showTooltip = editObj_item_6.checked;
-        dialogData.objects[selectedObj].itemType = selectedItemType;
+        dialogData.objects[selectedObj].itemType = currentItemType;
 
         let el = document.getElementById(selectedObj);
         let description = el.querySelectorAll("span")[0];

@@ -741,6 +741,7 @@ function saveObj() {
         dialogData.objects[selectedObj].descriptionWidth = Number(editObj_item_4.value);
         dialogData.objects[selectedObj].showDecoration = editObj_item_5.checked;
         dialogData.objects[selectedObj].showTooltip = editObj_item_6.checked;
+        dialogData.objects[selectedObj].itemType = selectedItemType;
 
         let el = document.getElementById(selectedObj);
         let description = el.querySelectorAll("span")[0];

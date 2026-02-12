@@ -1,5 +1,5 @@
 var elementData = {};
-var currentSlot = 0;
+let selectedItemType = ["", 0];
 
 function onThemeChange(name, style, type) {
     if (type == "light") {
@@ -243,16 +243,6 @@ function closeItemPicker() {
     $("#itemSearchBox").val("");
 }
 
-function copySlot(a, b) {
-    currentSlot = b;
-    if (currentGrid[a - 1][0] == "") {
-        setItem("special_remove");
-    } else {
-        setItem(currentGrid[a - 1][0]);
-    }
-    console.log(`copying slot ${a} to slot ${b}`);
-}
-
 function setItem(value) {
     let itemID;
     if (value == "special_custom") {
@@ -262,12 +252,11 @@ function setItem(value) {
     } else {
         itemID = value;
     }
-    currentGrid[currentSlot - 1] = [itemID, Number($("#itemDataBox").val())];
-    renderSlot(currentSlot, itemID, value);
-    currentSlot = 0;
+    selectedItemType = [itemID, Number($("#itemDataBox").val())];
+    renderSlot(itemID, value);
 }
-function renderSlot(slot, value, original) {
-    let slotImage = document.getElementById("recipeBtnImg" + slot);
+function renderSlot(value, original) {
+    let slotImage = editObj_item_1_img;
     if (original == "special_remove") {
         slotImage.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==");
     } else if (original == "special_custom" && Object.keys(editedItemDefinitions).includes("minecraft:" + value)) {
@@ -285,7 +274,7 @@ function renderSlot(slot, value, original) {
             slotImage.setAttribute("src", replaceShortURLs(editedItemDefinitions[value].texture));
         }
     }
-    let slotBtn = document.getElementById("recipeBtn" + slot);
+    let slotBtn = editObj_item_1;
     if (original == "special_remove") {
         slotBtn.setAttribute("title", "");
     } else if ((original == "special_custom" && Object.keys(editedItemDefinitions).includes("minecraft:" + value)) || (editedItemDefinitions["minecraft:" + value]?.name ?? false)) {
@@ -312,21 +301,9 @@ function renderSlot(slot, value, original) {
         track: true
     });
 }
-function selectItem(slot) {
+function selectItem() {
     openItemPickerDialog();
-    currentSlot = slot;
 }
-
-/*renderSlot(1, "", "special_remove");
-renderSlot(2, "", "special_remove");
-renderSlot(3, "", "special_remove");
-renderSlot(4, "", "special_remove");
-renderSlot(5, "", "special_remove");
-renderSlot(6, "", "special_remove");
-renderSlot(7, "", "special_remove");
-renderSlot(8, "", "special_remove");
-renderSlot(9, "", "special_remove");
-renderSlot(10, "", "special_remove");*/
 
 
 function saveProject() {
@@ -391,19 +368,6 @@ function loadProject(data) {
     }
 }
 
-function loadGrid(data) {
-    if (data) {
-        currentGrid = data;
-        for (let i = 0; i < 10; i++) {
-            if (currentGrid[i][0] == "") {
-                renderSlot(i + 1, "", "special_remove");
-            } else {
-                renderSlot(i + 1, currentGrid[i][0], "special_custom");
-            }
-        }
-    }
-}
-
 function enableSlot(num) {
     document.getElementById(`recipeBtn${num}`).style.display = "inline-block";
 }
@@ -422,70 +386,6 @@ $(function () {
         track: true                 // tooltip follows the mouse
     });
 });
-
-$(".itemIconBtn").draggable({
-    cancel: false,
-    appendTo: "body",
-    distance: 6,
-    revert: "invalid",
-
-    helper: function () {
-        const img = $(this).find(".itemIconBtnImg");
-
-        // Always return a helper so the real element never moves
-        if (!img.length || !img.attr("src")) {
-            return $("<div>").css({ width: 1, height: 1 });
-        }
-
-        return img.clone().css({
-            width: img.width(),
-            height: img.height(),
-            pointerEvents: "none",
-            zIndex: 1000000
-        });
-    },
-
-    start: function () {
-        const fromId = this.id?.replace("recipeBtn", "");
-        console.log("[DRAG START] from slot:", fromId);
-    }
-});
-
-$(".itemIconBtn").droppable({
-    tolerance: "pointer",
-
-    drop: function (event, ui) {
-        const fromBtn = ui.draggable[0];
-        const toBtn   = this;
-
-        const fromIdRaw = fromBtn?.id?.replace("recipeBtn", "");
-        const toIdRaw   = toBtn?.id?.replace("recipeBtn", "");
-
-        const fromId = parseInt(fromIdRaw, 10);
-        const toId   = parseInt(toIdRaw, 10);
-
-        console.log(
-            "[DROP]",
-            "from:", fromIdRaw, "→", fromId,
-            "| to:", toIdRaw, "→", toId
-        );
-
-        if (
-            !Number.isInteger(fromId) ||
-            !Number.isInteger(toId) ||
-            fromId < 1 || fromId > 10 ||
-            toId < 1 || toId > 10 ||
-            fromId === toId
-        ) {
-            console.warn("[DROP] Invalid slot IDs — copySlot NOT called");
-            return;
-        }
-
-        console.log("[copySlot] Calling copySlot(", fromId, ",", toId, ")");
-        copySlot(fromId, toId);
-    }
-});
-
 
 
 
@@ -800,6 +700,13 @@ function editObj() {
         editObj_item_4.value = dialogData.objects[selectedObj].descriptionWidth.toString();
         editObj_item_5.checked = dialogData.objects[selectedObj].showDecoration;
         editObj_item_6.checked = dialogData.objects[selectedObj].showTooltip;
+
+        currentItemType = dialogData.objects[selectedObj].itemType;
+        if (currentItemType == "") {
+            renderSlot("", "special_remove");
+        } else {
+            renderSlot(currentItemType, "special_custom");
+        }
     }
 }
 

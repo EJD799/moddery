@@ -853,6 +853,13 @@ function saveObj() {
         } else {
             renderImage(currentItemType[0], "special_custom", el.querySelectorAll("img")[0]);
         }
+
+        let stackSizeText = el.querySelectorAll(".dialogItemStackSize")[0];
+        if (dialogData.objects[selectedObj].stackSize == 1) {
+            stackSizeText.innerHTML = "";
+        } else {
+            stackSizeText.innerHTML = dialogData.objects[selectedObj].stackSize.toString();
+        }
     } else if (selectedObjType == "dialogLink") {
         dialogData.objects[selectedObj].dialogID = editObj_dialogLink_1.value;
 
@@ -957,7 +964,10 @@ function addObj(type, isNew, id = "") {
         itemIconBox.classList.add("dialogItemIconBox");
         let itemIcon = document.createElement("img");
         itemIcon.classList.add("dialogItemIcon");
+        let itemStackSize = document.createElement("span");
+        itemStackSize.classList.add("dialogItemStackSize");
         itemIconBox.appendChild(itemIcon);
+        itemIconBox.appendChild(itemStackSize);
         el.appendChild(itemIconBox);
         let itemText = document.createElement("span");
         itemText.classList.add("dialogItemText");
@@ -976,6 +986,12 @@ function addObj(type, isNew, id = "") {
 
         itemText.style.width = dialogData.objects[id].descriptionWidth + "px";
         itemText.innerHTML = dialogData.objects[id].description;
+
+        if (dialogData.objects[id].stackSize == 1) {
+            itemStackSize.innerHTML = "";
+        } else {
+            itemStackSize.innerHTML = dialogData.objects[id].stackSize.toString();
+        }
     } else if (type == "dialogLink") {
         if (isNew) {
             dialogData.objects[id] = {

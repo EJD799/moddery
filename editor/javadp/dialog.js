@@ -844,7 +844,7 @@ function saveObj() {
         dialogData.objects[selectedObj].itemType = currentItemType;
 
         let el = document.getElementById(selectedObj);
-        let description = el.querySelectorAll("span")[0];
+        let description = el.querySelectorAll(".dialogItemText")[0];
         description.innerHTML = dialogData.objects[selectedObj].description;
         description.style.width = dialogData.objects[selectedObj].descriptionWidth;
 

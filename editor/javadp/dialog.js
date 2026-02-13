@@ -684,6 +684,10 @@ function editObj() {
         editObj_text.classList.add("hidden");
         editObj_item.classList.add("hidden");
         editObj_dialogLink.classList.add("hidden");
+        editObj_textBox.classList.add("hidden");
+        editObj_checkbox.classList.add("hidden");
+        editObj_optSel.classList.add("hidden");
+        editObj_slider.classList.add("hidden");
 
         editObj_title_1.value = dialogData.title.internal;
         editObj_title_1_editor._syncFromTextarea();
@@ -695,6 +699,10 @@ function editObj() {
         editObj_text.classList.add("hidden");
         editObj_item.classList.add("hidden");
         editObj_dialogLink.classList.add("hidden");
+        editObj_textBox.classList.add("hidden");
+        editObj_checkbox.classList.add("hidden");
+        editObj_optSel.classList.add("hidden");
+        editObj_slider.classList.add("hidden");
 
         editObj_actionBtn_1.value = dialogData.objects[selectedObj].label;
         editObj_actionBtn_1_editor._syncFromTextarea();
@@ -707,6 +715,10 @@ function editObj() {
         editObj_text.classList.remove("hidden");
         editObj_item.classList.add("hidden");
         editObj_dialogLink.classList.add("hidden");
+        editObj_textBox.classList.add("hidden");
+        editObj_checkbox.classList.add("hidden");
+        editObj_optSel.classList.add("hidden");
+        editObj_slider.classList.add("hidden");
 
         editObj_text_1.value = dialogData.objects[selectedObj].contents;
         editObj_text_1_editor._syncFromTextarea();
@@ -717,6 +729,10 @@ function editObj() {
         editObj_text.classList.add("hidden");
         editObj_item.classList.remove("hidden");
         editObj_dialogLink.classList.add("hidden");
+        editObj_textBox.classList.add("hidden");
+        editObj_checkbox.classList.add("hidden");
+        editObj_optSel.classList.add("hidden");
+        editObj_slider.classList.add("hidden");
 
         editObj_item_2.value = dialogData.objects[selectedObj].stackSize.toString();
         editObj_item_3.value = dialogData.objects[selectedObj].description;
@@ -737,8 +753,60 @@ function editObj() {
         editObj_text.classList.add("hidden");
         editObj_item.classList.add("hidden");
         editObj_dialogLink.classList.remove("hidden");
+        editObj_textBox.classList.add("hidden");
+        editObj_checkbox.classList.add("hidden");
+        editObj_optSel.classList.add("hidden");
+        editObj_slider.classList.add("hidden");
 
         editObj_dialogLink_1.value = dialogData.objects[selectedObj].dialogID;
+    } else if (selectedObjType == "textBox") {
+        editObj_title.classList.add("hidden");
+        editObj_actionBtn.classList.add("hidden");
+        editObj_text.classList.add("hidden");
+        editObj_item.classList.add("hidden");
+        editObj_dialogLink.classList.add("hidden");
+        editObj_textBox.classList.remove("hidden");
+        editObj_checkbox.classList.add("hidden");
+        editObj_optSel.classList.add("hidden");
+        editObj_slider.classList.add("hidden");
+
+        
+    } else if (selectedObjType == "checkbox") {
+        editObj_title.classList.add("hidden");
+        editObj_actionBtn.classList.add("hidden");
+        editObj_text.classList.add("hidden");
+        editObj_item.classList.add("hidden");
+        editObj_dialogLink.classList.add("hidden");
+        editObj_textBox.classList.add("hidden");
+        editObj_checkbox.classList.remove("hidden");
+        editObj_optSel.classList.add("hidden");
+        editObj_slider.classList.add("hidden");
+
+        
+    } else if (selectedObjType == "optSel") {
+        editObj_title.classList.add("hidden");
+        editObj_actionBtn.classList.add("hidden");
+        editObj_text.classList.add("hidden");
+        editObj_item.classList.add("hidden");
+        editObj_dialogLink.classList.add("hidden");
+        editObj_textBox.classList.add("hidden");
+        editObj_checkbox.classList.add("hidden");
+        editObj_optSel.classList.remove("hidden");
+        editObj_slider.classList.add("hidden");
+
+        
+    } else if (selectedObjType == "slider") {
+        editObj_title.classList.add("hidden");
+        editObj_actionBtn.classList.add("hidden");
+        editObj_text.classList.add("hidden");
+        editObj_item.classList.add("hidden");
+        editObj_dialogLink.classList.add("hidden");
+        editObj_textBox.classList.add("hidden");
+        editObj_checkbox.classList.add("hidden");
+        editObj_optSel.classList.add("hidden");
+        editObj_slider.classList.remove("hidden");
+
+        
     }
 }
 

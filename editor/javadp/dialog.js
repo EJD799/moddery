@@ -344,8 +344,9 @@ function loadProject(data) {
     if (data.dialogType) {
         $("#dialogTypeMenu").val(data.dialogType);
     }
-
-    dialogData = data.dialogData;
+    if (data.dialogData) {
+        dialogData = data.dialogData;
+    }
     dialogTitle.innerHTML = dialogData.title.internal;
     dialogMainAction.innerHTML = dialogData.objects["dialogMainAction"].label;
     dialogMainAction.style.width = dialogData.objects["dialogMainAction"].width;

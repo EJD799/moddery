@@ -1,52 +1,68 @@
-<link rel="stylesheet" href="../../jquery-ui.min.css">
-<link rel="stylesheet" href="../../jquery-ui.theme.min.css">
-<link rel="stylesheet" href="../../styles.css">
-<script src="../../jquery-3.7.1.min.js"></script>
-<script src="../../jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
-<style>
-    input {
-        padding: 10px;
-    }
-    body {
-        color: white;
-        font-family: Verdana, sans-serif;
-        background: #111111;
-        padding-left: 18px;
-    }
-    .ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
-        z-index: 2000 !important; /* Use !important if necessary to override existing styles */
-    }
-</style>
+<html>
+    <head>
+        <link rel="stylesheet" href="../../jquery-ui.min.css">
+        <link rel="stylesheet" href="../../jquery-ui.theme.min.css">
+        <link rel="stylesheet" href="../../styles.css">
+        <script src="../../jquery-3.7.1.min.js"></script>
+        <script src="../../jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
 
-<label for="elementIDBox">Element Name (Editor)</label>
-<input name="elementIDBox" id="elementIDBox" placeholder="Element ID" disabled>
-<br><br>
-<label for="biomeIDBox">Biome ID</label>
-<input name="biomeIDBox" id="biomeIDBox" placeholder="Biome ID">
-<br><br>
-<label for="nameBox">Biome Name</label>
-<input name="nameBox" id="nameBox" placeholder="Biome Name">
-<br><br>
-<label for="dimensionBox">Dimension</label>
-<select name="dimensionBox" id="dimensionBox">
-    <option selected>Overworld</option>
-    <option>Nether</option>
-    <option disabled>The End</option>
-</select>
-<br><br>
-<h4>Spawn Location Weighting</h4>
-<label for="frozenWeight">Frozen</label>
-<input type="number" name="frozenWeight" id="frozenWeight" class="smallInput"><br>
-<label for="coldWeight">Cold</label>
-<input type="number" name="coldWeight" id="coldWeight" class="smallInput"><br>
-<label for="mediumWeight">Medium</label>
-<input type="number" name="mediumWeight" id="mediumWeight" class="smallInput"><br>
-<label for="lukewarmWeight">Lukewarm</label>
-<input type="number" name="lukewarmWeight" id="lukewarmWeight" class="smallInput"><br>
-<label for="warmWeight">Warm</label>
-<input type="number" name="warmWeight" id="warmWeight" class="smallInput">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+        <link rel="stylesheet" href="https://ejd799.github.io/BulmaColoredInputs/main.css">
+        <link rel="stylesheet" href="../../styles.css">
 
-<script src="biome.js"></script>
-<script src="../../libs.js"></script>
+        <link rel="stylesheet" href="https://ejd799.github.io/BulmaSelectmenu/selectmenu.css">
+        <script src="https://ejd799.github.io/BulmaSelectmenu/selectmenu.js"></script>
+
+        <style id="themeStyleElement"></style>
+
+        <style>
+            input {
+                padding: 10px;
+            }
+            body {
+                color: var(--bulma-text);
+                background: var(--app-main-tabs-background);
+            }
+            .ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
+                z-index: 2000 !important; /* Use !important if necessary to override existing styles */
+            }
+        </style>
+    </head>
+
+    <body>
+        <label for="elementIDBox">Element Name (Editor)</label>
+        <input class="input normalInput" name="elementIDBox" id="elementIDBox" placeholder="Element ID" disabled>
+        <br><br>
+        <label for="biomeIDBox">Biome ID</label>
+        <input class="input normalInput" name="biomeIDBox" id="biomeIDBox" placeholder="Biome ID">
+        <br><br>
+        <label for="nameBox">Biome Name</label>
+        <input class="input normalInput" name="nameBox" id="nameBox" placeholder="Biome Name">
+        <br><br>
+        <label for="dimensionBox">Dimension</label>
+        <div class="select">
+            <select name="dimensionBox" id="dimensionBox">
+                <option selected>Overworld</option>
+                <option>Nether</option>
+                <option disabled>The End</option>
+            </select>
+        </div>
+        <br><br>
+        <h4>Spawn Location Weighting</h4>
+        <label for="frozenWeight">Frozen</label>
+        <input type="number" name="frozenWeight" id="frozenWeight" class="input smallInput"><br>
+        <label for="coldWeight">Cold</label>
+        <input type="number" name="coldWeight" id="coldWeight" class="input smallInput"><br>
+        <label for="mediumWeight">Medium</label>
+        <input type="number" name="mediumWeight" id="mediumWeight" class="input smallInput"><br>
+        <label for="lukewarmWeight">Lukewarm</label>
+        <input type="number" name="lukewarmWeight" id="lukewarmWeight" class="input smallInput"><br>
+        <label for="warmWeight">Warm</label>
+        <input type="number" name="warmWeight" id="warmWeight" class="input smallInput">
+
+        <script src="biome.js"></script>
+        <script src="../../libs.js"></script>
+    </body>
+</html>

@@ -24,6 +24,8 @@
             body {
                 color: var(--bulma-text);
                 background: var(--app-main-tabs-background);
+                padding-left: 18px;
+                padding-top: 18px;
             }
             .ui-selectmenu-menu { /* Or .ui-autocomplete for autocomplete dropdowns */
                 z-index: 2000 !important; /* Use !important if necessary to override existing styles */
@@ -50,7 +52,7 @@
             </select>
         </div>
         <br><br>
-        <h4>Spawn Location Weighting</h4>
+        <h5 class="title is-5">Spawn Location Weighting</h5>
         <label for="frozenWeight">Frozen</label>
         <input type="number" name="frozenWeight" id="frozenWeight" class="input smallInput"><br>
         <label for="coldWeight">Cold</label>

@@ -1427,7 +1427,15 @@ function openMolangEditor(component, input) {
     molangEditor.classList.add("is-active");
     Blockly.svgResize(workspace);
     let data = currentItemComponents[addSpaces(component)][addSpaces(input)];
-    loadMolangProject(data?.[0] ?? defaultMolangProj);
+    let projectToLoad = data[0];
+    if (!projectToLoad) {
+        projectToLoad = defaultMolangProj;
+    } else if (typeof projectToLoad == "object") {
+        if (Object.keys(projectToLoad).length == 0) {
+            projectToLoad = defaultMolangProj;
+        }
+    }
+    loadMolangProject(projectToLoad);
 }
 function closeMolangEditor() {
     molangEditor.classList.remove("is-active");

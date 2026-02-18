@@ -15,6 +15,7 @@ function saveProject() {
             lukewarm: lukewarmWeight.value,
             warm: warmWeight.value,
         },
+        tags: tagsBox.value,
     };
 }
 function loadProject(data) {
@@ -24,6 +25,7 @@ function loadProject(data) {
     biomeIDBox.value = data.id;
     nameBox.value = data.biomeName ?? "";
     dimensionBox.value = data.dimension ?? "Overworld";
+    tagsBox.value = data.tags ?? "None";
 
     if (data.locWeight) {
         frozenWeight.value = data.locWeight.frozen;
@@ -35,3 +37,4 @@ function loadProject(data) {
 }
 
 bulmaSelectmenu.attachMenu(dimensionBox);
+bulmaSelectmenu.attachMenu(tagsBox);

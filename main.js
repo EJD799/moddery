@@ -1,4 +1,4 @@
-const appVersion = "2.2.297";
+const appVersion = "2.2.298";
 const buildDate = "2/19/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";

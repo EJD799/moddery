@@ -4147,6 +4147,9 @@ Blockly.common.defineBlocks({
   },
 });
 
+var scriptsLoaded = true;
+var texturesLoaded = true;
+
 
 
 var workspace = Blockly.inject('blocklyDiv', {

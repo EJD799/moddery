@@ -103,7 +103,7 @@ bedrockExporter.parseItemComponents = async function(file) {
       "destroy_speeds": [
         {
           "block": {
-            "tags": component.block[1]
+            "tags": component.block[1].replaceAll("\n", "")
           },
           "speed": Number(component.speed)
         }
@@ -1318,9 +1318,13 @@ bedrockExporter.runExport = async function() {
         let elementCode = JSON.parse(await projZip.folder("elements").file(elementsList[i].replace(".json", ".code.json")).async("string"));
         await waitForIframeLoad(exporterFrame);
         await waitForIframeReady(exporterFrame, "loadProject");
+        await waitForIframeReady(exporterFrame, "scriptsLoaded");
+        await waitForIframeReady(exporterFrame, "texturesLoaded");
         exporterFrame.contentWindow.loadProject(elementCode);
+        let codeData = ["", []];
         if (exporterFrame.contentWindow?.generateCode) {
-          exportedFile1 = exporterFrame.contentWindow.generateCode()[0];
+          codeData = exporterFrame.contentWindow.generateCode();
+          exportedFile1 = codeData[0];
           if (projManifest.scriptEntry == elementFile.name) {
             exportedFile1 += `world.beforeEvents.worldInitialize.subscribe(data => {
     data.blockComponentRegistry.registerCustomComponent(
@@ -1336,7 +1340,7 @@ bedrockExporter.runExport = async function() {
         }
         exportZip1.folder("scripts").file(`${elementFile.id}.js`, exportedFile1);
 
-        let guiTextures = exporterFrame.contentWindow.generateCode()[1];
+        let guiTextures = codeData[1];
         for (let j = 0; j < guiTextures.length; j++) {
           let textureFile = await projZip.folder("assets").file(guiTextures[j]).async("arraybuffer");
           exportZip2.folder("textures").folder("custom_gui").file(guiTextures[j], textureFile);

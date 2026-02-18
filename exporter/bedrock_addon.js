@@ -103,7 +103,7 @@ bedrockExporter.parseItemComponents = async function(file) {
       "destroy_speeds": [
         {
           "block": {
-            "tags": component.block
+            "tags": component.block[1]
           },
           "speed": Number(component.speed)
         }

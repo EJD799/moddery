@@ -9,6 +9,9 @@ let advEditorType;
 let advEditorCurrentData;
 let textureSelectorMode;
 let tableSelectorMode;
+
+let currentMolangComponent;
+let currentMolangInput;
 // new end
 
 const componentDefinitions = {
@@ -1373,11 +1376,29 @@ function advEditorRemoveItem(id) {
 // new end
 
 // new2s
-function openMolangEditor(component, input, type) {
+function openMolangEditor(component, input) {
+    currentMolangComponent = component;
+    currentMolangInput = input;
+
     molangEditor.classList.add("is-active");
+    Blockly.svgResize(workspace);
+    let data = currentItemComponents[addSpaces(component)][addSpaces(input)];
+    loadMolangProject(data[0]);
 }
 function closeMolangEditor() {
     molangEditor.classList.remove("is-active");
+}
+function saveMolangInput() {
+    closeMolangEditor();
+
+    let component = currentMolangComponent;
+    let input = currentMolangInput;
+
+    let generatedCode = generateCode();
+    let projData = saveMolangProject();
+
+    $(`#${component}${input}`).val(generatedCode);
+    updateInput(component, input, [projData, generatedCode]);
 }
 // new2e
 

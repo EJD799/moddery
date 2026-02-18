@@ -1,4 +1,4 @@
-const appVersion = "2.2.296";
+const appVersion = "2.2.297";
 const buildDate = "2/19/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -2034,7 +2034,7 @@ async function exportProj() {
   exportLoaderProgress.value = progressBarMax;
 
   window.setTimeout(function(){
-    exportLoaderText.innerHTML = "";
+    exportLoaderText.innerHTML = 'Click "Export" to export the project.';
     exportLoaderProgress.setAttribute("max", "0"),
     exportLoaderProgress.value = "0";
   }, 500);

@@ -19,6 +19,13 @@ function saveProject() {
         },
         tags: tagsBox.value,
         transformations: currentTransformations,
+        netherGenRules: {
+            targetTemp: targetTempBox.value,
+            targetHumid: targetHumidBox.value,
+            targetAlt: targetAltBox.value,
+            targetWeird: targetWeirdBox.value,
+            weight: netherWeightBox.value,
+        },
     };
 }
 function loadProject(data) {
@@ -36,6 +43,14 @@ function loadProject(data) {
         mediumWeight.value = data.locWeight.medium;
         lukewarmWeight.value = data.locWeight.lukewarm;
         warmWeight.value = data.locWeight.warm;
+    }
+
+    if (data.netherGenRules) {
+        targetTempBox.value = data.netherGenRules.targetTemp;
+        targetHumidBox.value = data.netherGenRules.targetHumid;
+        targetAltBox.value = data.netherGenRules.targetAlt;
+        targetWeirdBox.value = data.netherGenRules.targetWeird;
+        netherWeightBox.value = data.netherGenRules.weight;
     }
 
     currentTransformations = data.transformations ?? {

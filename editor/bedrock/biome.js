@@ -69,7 +69,25 @@ function loadProject(data) {
             textureNameText.innerHTML = selection;
         }
     }
+
+    if (dimensionBox.value == "Nether") {
+        $("#netherSection").show();
+        $("#overworldSection").hide();
+    } else {
+        $("#netherSection").hide();
+        $("#overworldSection").show();
+    }
 }
+
+dimensionBox.addEventListener("change", function(e) {
+    if (dimensionBox.value == "Nether") {
+        $("#netherSection").show();
+        $("#overworldSection").hide();
+    } else {
+        $("#netherSection").hide();
+        $("#overworldSection").show();
+    }
+});
 
 bulmaSelectmenu.attachMenu(dimensionBox);
 bulmaSelectmenu.attachMenu(tagsBox);

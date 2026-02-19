@@ -45,6 +45,7 @@ function loadProject(data) {
     transformationsKeys = Object.keys(currentTransformations);
     for (let i = 0; i < transformationsKeys.length; i++) {
         let selection = currentTransformations[transformationsKeys[i]];
+        let textureNameText = document.getElementById("biomeNameText_" + transformationsKeys[i]);
         if (selection == "None") {
             currentTransformations[currentTransformationSelecting] = "";
             textureNameText.innerHTML = "No biome selected";

@@ -1,4 +1,4 @@
-const appVersion = "2.2.299";
+const appVersion = "2.2.300";
 const buildDate = "2/19/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -3049,6 +3049,11 @@ async function getTradeTableList() {
 }
 async function getFunctionList() {
   let list = (await getFilteredElements("Function")).map(obj => obj.name);
+  list.unshift("None");
+  return list;
+}
+async function getBiomeList() {
+  let list = (await getFilteredElements("Biome")).map(obj => obj.name);
   list.unshift("None");
   return list;
 }

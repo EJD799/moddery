@@ -40,7 +40,9 @@ function loadProject(data) {
 
     currentTransformations = data.transformations ?? {
         hills: "",
-        shore: ""
+        shore: "",
+        river: "",
+        mutate: ""
     };
     transformationsKeys = Object.keys(currentTransformations);
     for (let i = 0; i < transformationsKeys.length; i++) {

@@ -38,7 +38,7 @@ function loadProject(data) {
         warmWeight.value = data.locWeight.warm;
     }
 
-    currentTransformations = data.currentTransformations ?? {
+    currentTransformations = data.transformations ?? {
         hills: "",
         shore: ""
     };
@@ -46,11 +46,9 @@ function loadProject(data) {
     for (let i = 0; i < transformationsKeys.length; i++) {
         let selection = currentTransformations[transformationsKeys[i]];
         let textureNameText = document.getElementById("biomeNameText_" + transformationsKeys[i]);
-        if (selection == "None") {
-            currentTransformations[currentTransformationSelecting] = "";
+        if (selection == "") {
             textureNameText.innerHTML = "No biome selected";
         } else {
-            currentTransformations[currentTransformationSelecting] = selection;
             textureNameText.innerHTML = selection;
         }
     }
@@ -62,11 +60,11 @@ bulmaSelectmenu.attachMenu(tagsBox);
 
 async function openSelectBiomeDlg(transformation) {
     currentTransformationSelecting = transformation;
-    let tables;
+    let biomes = await window.parent.getBiomeList();
     selectBiomeDlg.classList.add("is-active");
     let selectBiomeMenu = document.getElementById("selectBiomeMenu");
     selectBiomeMenu.innerHTML = "";
-    for (let i = 0; i < tables.length; i++) {
+    for (let i = 0; i < biomes.length; i++) {
         let selectBiomeMenuItem;
         let previewBox;
         let preview;
@@ -78,11 +76,11 @@ async function openSelectBiomeDlg(transformation) {
         itemRadio.setAttribute("type", "radio");
         itemRadio.setAttribute("name", "selectedBiome");
         itemRadio.setAttribute("class", "textureRadio");
-        itemRadio.setAttribute("value", tables[i]);
+        itemRadio.setAttribute("value", biomes[i]);
         selectBiomeMenuItem.appendChild(itemRadio);
         itemTitle = document.createElement("span");
         itemTitle.setAttribute("class", "textureMenuTitle");
-        itemTitle.innerHTML = tables[i];
+        itemTitle.innerHTML = biomes[i];
         selectBiomeMenuItem.appendChild(itemTitle);
         selectBiomeMenu.appendChild(selectBiomeMenuItem);
         selectBiomeMenuItem.addEventListener("click", () => {

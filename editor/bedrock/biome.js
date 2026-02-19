@@ -63,7 +63,7 @@ bulmaSelectmenu.attachMenu(tagsBox);
 async function openSelectBiomeDlg(transformation) {
     currentTransformationSelecting = transformation;
     let tables;
-    openSelectBiomeDlg.classList.add("is-active");
+    selectBiomeDlg.classList.add("is-active");
     let selectBiomeMenu = document.getElementById("selectBiomeMenu");
     selectBiomeMenu.innerHTML = "";
     for (let i = 0; i < tables.length; i++) {

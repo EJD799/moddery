@@ -1209,7 +1209,7 @@ async function openSelectTableDlg(component, input, type) {
         selectTableDlgTitle.innerHTML = "Select Loot Table";
         tables = await window.parent.getLootTableList();
     }
-    openSelectTableDlg.classList.add("is-active");
+    selectTableDlg.classList.add("is-active");
     let selectTableMenu = document.getElementById("selectTableMenu");
     selectTableMenu.innerHTML = "";
     for (let i = 0; i < tables.length; i++) {

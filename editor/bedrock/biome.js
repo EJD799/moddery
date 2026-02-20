@@ -26,6 +26,7 @@ function saveProject() {
             targetWeird: targetWeirdBox.value,
             weight: netherWeightBox.value,
         },
+        noiseType: noiseTypeBox.value
     };
 }
 function loadProject(data) {
@@ -77,6 +78,8 @@ function loadProject(data) {
         $("#netherSection").hide();
         $("#overworldSection").show();
     }
+
+    noiseTypeBox.value = data.noiseType ?? "default";
 }
 
 dimensionBox.addEventListener("change", function(e) {
@@ -91,6 +94,7 @@ dimensionBox.addEventListener("change", function(e) {
 
 bulmaSelectmenu.attachMenu(dimensionBox);
 bulmaSelectmenu.attachMenu(tagsBox);
+bulmaSelectmenu.attachMenu(noiseTypeBox);
 
 
 async function openSelectBiomeDlg(transformation) {

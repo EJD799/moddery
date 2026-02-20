@@ -1,4 +1,4 @@
-const appVersion = "2.2.308";
+const appVersion = "2.2.309";
 const buildDate = "2/20/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -125,7 +125,7 @@ let projectTypes = {
         url: "editor/bedrock/biome.html",
         icon: "fas fa-tree",
         saveType: "regular",
-        show: 1
+        show: 2
       },
       "Structure": {
         url: "editor/bedrock/structure.html",

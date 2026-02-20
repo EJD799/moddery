@@ -865,6 +865,22 @@ function saveObj() {
 
         let el = document.getElementById(selectedObj);
         el.innerHTML = dialogData.objects[selectedObj].dialogID;
+    } else if (selectedObjType == "textBox") {
+        
+
+        let el = document.getElementById(selectedObj);
+    } else if (selectedObjType == "checkbox") {
+
+
+        let el = document.getElementById(selectedObj);
+    } else if (selectedObjType == "optSel") {
+
+
+        let el = document.getElementById(selectedObj);
+    } else if (selectedObjType == "slider") {
+
+
+        let el = document.getElementById(selectedObj);
     }
 }
 

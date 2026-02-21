@@ -882,6 +882,18 @@ function saveObj() {
         dialogData.objects[selectedObj].height = Number(editObj_textBox_7.value);
 
         let el = document.getElementById(selectedObj);
+
+        let inputText = el.querySelectorAll(".dialogInputText")[0];
+        inputText.innerHTML = dialogData.objects[selectedObj].label;
+
+        let inputBox = el.querySelectorAll("button")[0];
+        inputBox.style.width = dialogData.objects[selectedObj].width + "px";
+        if (dialogData.objects[selectedObj].multiline) {
+            el.style.height = dialogData.objects[selectedObj].height + "px";
+        } else {
+            el.style.height = "24px";
+        }
+        inputBox.innerHTML = dialogData.objects[selectedObj].initialValue;
     } else if (selectedObjType == "checkbox") {
 
 
@@ -1040,6 +1052,36 @@ function addObj(type, isNew, id = "") {
         if (!isNew) {
             el.innerHTML = dialogData.objects[id].dialogID;
         }
+    } else if (type == "textBox") {
+        if (isNew) {
+            dialogData.objects[id] = {
+                type: "textBox",
+                label: "Text Box",
+                initialValue: "",
+                width: 200,
+                maxLength: 32,
+                multiline: false,
+                maxLines: 0,
+                height: 0
+            };
+        }
+
+        let el = document.createElement("span");
+        el.id = id;
+        el.classList.add("dialogInput");
+        el.setAttribute("onclick", `showToolbar('${id}');`);
+
+        let inputText = document.createElement("span");
+        inputText.classList.add("dialogInputText");
+        inputText.innerHTML = "Text Box";
+        el.appendChild(inputText);
+
+        let inputBox = document.createElement("button");
+        inputBox.classList.add("dialogTextBox");
+        inputBox.style.width = "200px";
+        el.style.height = "24px";
+        inputBox.innerHTML = "";
+        el.appendChild(inputBox);
     }
     
 }

@@ -770,7 +770,14 @@ function editObj() {
         editObj_optSel.classList.add("hidden");
         editObj_slider.classList.add("hidden");
 
-        
+        editObj_textBox_1.value = dialogData.objects[selectedObj].label;
+        editObj_textBox_1_editor._syncFromTextarea();
+        editObj_textBox_2.value = dialogData.objects[selectedObj].initialValue;
+        editObj_textBox_3.value = dialogData.objects[selectedObj].width.toString();
+        editObj_textBox_4.value = dialogData.objects[selectedObj].maxLength.toString();
+        editObj_textBox_5.checked = dialogData.objects[selectedObj].multiline;
+        editObj_textBox_6.value = dialogData.objects[selectedObj].maxLines.toString();
+        editObj_textBox_7.value = dialogData.objects[selectedObj].length.toString();
     } else if (selectedObjType == "checkbox") {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.add("hidden");
@@ -866,7 +873,13 @@ function saveObj() {
         let el = document.getElementById(selectedObj);
         el.innerHTML = dialogData.objects[selectedObj].dialogID;
     } else if (selectedObjType == "textBox") {
-        
+        dialogData.objects[selectedObj].label = editObj_textBox_1.value;
+        dialogData.objects[selectedObj].initialValue = editObj_textBox_2.value;
+        dialogData.objects[selectedObj].width = Number(editObj_textBox_3.value);
+        dialogData.objects[selectedObj].maxLength = Number(editObj_textBox_4.value);
+        dialogData.objects[selectedObj].multiline = editObj_textBox_5.checked;
+        dialogData.objects[selectedObj].maxLines = Number(editObj_textBox_6.value);
+        dialogData.objects[selectedObj].height = Number(editObj_textBox_7.value);
 
         let el = document.getElementById(selectedObj);
     } else if (selectedObjType == "checkbox") {

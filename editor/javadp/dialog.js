@@ -778,6 +778,12 @@ function editObj() {
         editObj_textBox_5.checked = dialogData.objects[selectedObj].multiline;
         editObj_textBox_6.value = dialogData.objects[selectedObj].maxLines.toString();
         editObj_textBox_7.value = dialogData.objects[selectedObj].length.toString();
+
+        if (editObj_textBox_5.checked) {
+            $("#editObj_textBox_multilineSection").show();
+        } else {
+            $("#editObj_textBox_multilineSection").hide();
+        }
     } else if (selectedObjType == "checkbox") {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.add("hidden");
@@ -816,6 +822,14 @@ function editObj() {
         
     }
 }
+
+editObj_textBox_5.addEventListener("change", function(e) {
+    if (editObj_textBox_5.checked) {
+        $("#editObj_textBox_multilineSection").show();
+    } else {
+        $("#editObj_textBox_multilineSection").hide();
+    }
+});
 
 function closeEditObj() {
     editObjDlg.classList.remove("is-active");
@@ -1062,7 +1076,7 @@ function addObj(type, isNew, id = "") {
                 maxLength: 32,
                 multiline: false,
                 maxLines: 0,
-                height: 0
+                height: 48
             };
         }
 
@@ -1082,6 +1096,17 @@ function addObj(type, isNew, id = "") {
         el.style.height = "24px";
         inputBox.innerHTML = "";
         el.appendChild(inputBox);
+
+        dialogObjectsDiv2.appendChild(el);
+
+        if (!isNew) {
+            inputText.innerHTML = dialogData.objects[id].label;
+            inputBox.style.width = dialogData.objects[id].width;
+            inputBox.innerHTML = dialogData.objects[id].initialValue;
+            if (dialogData.objects[id].multiline) {
+                el.style.height = dialogData.objects[id].height;
+            }
+        }
     }
     
 }

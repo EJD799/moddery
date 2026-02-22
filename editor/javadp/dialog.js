@@ -528,18 +528,18 @@ $(function () {
 
 });
 
-let boxToValidate = dialogIDBox;
-boxToValidate.addEventListener("input", function (e) {
-  const value = boxToValidate.value;
+function attachValidation(input, validator, ignoreEmpty = true) {
+    input.addEventListener("input", () => {
+        if (validator(input.value) || (ignoreEmpty && input.value == "")) {
+            input.classList.remove("invalidTextBox");
+        } else {
+            input.classList.add("invalidTextBox");
+        }
+    });
+}
 
-  if (isValidElementID(value)) {
-    // Valid → remove the "invalid" class if it exists
-    boxToValidate.classList.remove("invalidTextBox");
-  } else {
-    // Invalid → add the "invalid" class
-    boxToValidate.classList.add("invalidTextBox");
-  }
-});
+attachValidation(dialogIDBox, isValidElementID);
+attachValidation(editObj_textBox_8, isValidElementName);
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -778,6 +778,7 @@ function editObj() {
         editObj_textBox_5.checked = dialogData.objects[selectedObj].multiline;
         editObj_textBox_6.value = dialogData.objects[selectedObj].maxLines.toString();
         editObj_textBox_7.value = dialogData.objects[selectedObj].height.toString();
+        editObj_textBox_8.value = dialogData.objects[selectedObj].key;
 
         if (editObj_textBox_5.checked) {
             $("#editObj_textBox_multilineSection").show();
@@ -894,6 +895,7 @@ function saveObj() {
         dialogData.objects[selectedObj].multiline = editObj_textBox_5.checked;
         dialogData.objects[selectedObj].maxLines = Number(editObj_textBox_6.value);
         dialogData.objects[selectedObj].height = Number(editObj_textBox_7.value);
+        dialogData.objects[selectedObj].key = editObj_textBox_8.value;
 
         let el = document.getElementById(selectedObj);
 
@@ -1076,7 +1078,8 @@ function addObj(type, isNew, id = "") {
                 maxLength: 32,
                 multiline: false,
                 maxLines: 0,
-                height: 48
+                height: 48,
+                key: ""
             };
         }
 
@@ -1108,7 +1111,6 @@ function addObj(type, isNew, id = "") {
             }
         }
     }
-    
 }
 
 

@@ -796,7 +796,10 @@ function editObj() {
         editObj_optSel.classList.add("hidden");
         editObj_slider.classList.add("hidden");
 
-        
+        editObj_textBox_1.value = dialogData.objects[selectedObj].label;
+        editObj_textBox_1_editor._syncFromTextarea();
+        editObj_textBox_2.checked = dialogData.objects[selectedObj].initialValue;
+        editObj_textBox_3.value = dialogData.objects[selectedObj].key;
     } else if (selectedObjType == "optSel") {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.add("hidden");
@@ -911,9 +914,21 @@ function saveObj() {
         }
         inputBox.innerHTML = dialogData.objects[selectedObj].initialValue;
     } else if (selectedObjType == "checkbox") {
-
+        dialogData.objects[selectedObj].label = editObj_checkbox_1.value;
+        dialogData.objects[selectedObj].initialValue = editObj_checkbox_2.checked;
+        dialogData.objects[selectedObj].key = editObj_checkbox_3.value;
 
         let el = document.getElementById(selectedObj);
+
+        let inputText = el.querySelectorAll(".dialogInputText")[0];
+        inputText.innerHTML = dialogData.objects[selectedObj].label;
+
+        let inputBox = el.querySelectorAll(".dialogCheckbox")[0];
+        if (dialogData.objects[selectedObj].initialValue) {
+            inputBox.classList.add("dialogCheckboxChecked");
+        } else {
+            inputBox.classList.remove("dialogCheckboxChecked");
+        }
     } else if (selectedObjType == "optSel") {
 
 
@@ -1108,6 +1123,40 @@ function addObj(type, isNew, id = "") {
             inputBox.innerHTML = dialogData.objects[id].initialValue;
             if (dialogData.objects[id].multiline) {
                 el.style.height = dialogData.objects[id].height;
+            }
+        }
+    } else if (type == "checkbox") {
+        if (isNew) {
+            dialogData.objects[id] = {
+                type: "checkbox",
+                label: "Checkbox",
+                initialValue: false,
+                key: ""
+            };
+        }
+
+        let el = document.createElement("span");
+        el.id = id;
+        el.classList.add("dialogInput");
+        el.setAttribute("onclick", `showToolbar('${id}');`);
+
+        let inputText = document.createElement("span");
+        inputText.classList.add("dialogInputText");
+        inputText.innerHTML = "Checkbox";
+        el.appendChild(inputText);
+
+        let inputBox = document.createElement("button");
+        inputBox.classList.add("dialogCheckbox");
+        el.appendChild(inputBox);
+
+        dialogObjectsDiv2.appendChild(el);
+
+        if (!isNew) {
+            inputText.innerHTML = dialogData.objects[id].label;
+            if (dialogData.objects[id].initialValue) {
+                inputBox.classList.add("dialogCheckboxChecked");
+            } else {
+                inputBox.classList.remove("dialogCheckboxChecked");
             }
         }
     }

@@ -777,7 +777,7 @@ function editObj() {
         editObj_textBox_4.value = dialogData.objects[selectedObj].maxLength.toString();
         editObj_textBox_5.checked = dialogData.objects[selectedObj].multiline;
         editObj_textBox_6.value = dialogData.objects[selectedObj].maxLines.toString();
-        editObj_textBox_7.value = dialogData.objects[selectedObj].length.toString();
+        editObj_textBox_7.value = dialogData.objects[selectedObj].height.toString();
 
         if (editObj_textBox_5.checked) {
             $("#editObj_textBox_multilineSection").show();

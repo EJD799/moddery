@@ -796,10 +796,10 @@ function editObj() {
         editObj_optSel.classList.add("hidden");
         editObj_slider.classList.add("hidden");
 
-        editObj_textBox_1.value = dialogData.objects[selectedObj].label;
-        editObj_textBox_1_editor._syncFromTextarea();
-        editObj_textBox_2.checked = dialogData.objects[selectedObj].initialValue;
-        editObj_textBox_3.value = dialogData.objects[selectedObj].key;
+        editObj_checkbox_1.value = dialogData.objects[selectedObj].label;
+        editObj_checkbox_1_editor._syncFromTextarea();
+        editObj_checkbox_2.checked = dialogData.objects[selectedObj].initialValue;
+        editObj_checkbox_3.value = dialogData.objects[selectedObj].key;
     } else if (selectedObjType == "optSel") {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.add("hidden");

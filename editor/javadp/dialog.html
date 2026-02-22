@@ -130,6 +130,32 @@
                 background-size: 100% 100% !important;
             }
 
+            .dialogCheckbox {
+                vertical-align: middle;
+                height: 24px;
+                width: 24px;
+            }
+            .dialogCheckbox:not(.dialogCheckboxChecked) {
+                background: url(https://ejd799.github.io/moddery/images/dp_dialog/checkbox.png);
+                image-rendering: pixelated;
+                background-size: 100% 100%;
+            }
+            .dialogCheckboxChecked {
+                background: url(https://ejd799.github.io/moddery/images/dp_dialog/checkbox_selected.png);
+                image-rendering: pixelated;
+                background-size: 100% 100%;
+            }
+            .dialogSelectedObj .dialogCheckbox:not(.dialogCheckboxChecked) {
+                background: url(https://ejd799.github.io/moddery/images/dp_dialog/checkbox_hover.png);
+                image-rendering: pixelated;
+                background-size: 100% 100%;
+            }
+            .dialogSelectedObj .dialogCheckboxChecked {
+                background: url(https://ejd799.github.io/moddery/images/dp_dialog/checkbox_selected_hover.png);
+                image-rendering: pixelated;
+                background-size: 100% 100%;
+            }
+
             .dialogItem {
                 width: max-content;
                 height: max-content;

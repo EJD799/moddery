@@ -299,6 +299,23 @@
             #dialogToolbox i {
                 margin-right: 8px;
             }
+
+            #editObj_optSel_optsBar {
+                display: inline;
+            }
+
+            .optSelOptTabLeft {
+                width: 30px;
+                height: 30px;
+                border-radius: var(--bulma-control-radius) 0 0 var(--bulma-control-radius);
+            }
+
+            .optSelOptTabRight {
+                width: 20px;
+                height: 30px;
+                border-radius: 0 var(--bulma-control-radius) var(--bulma-control-radius) 0;
+                padding-right: 12px;
+            }
         </style>
     </head>
     <body>
@@ -530,9 +547,9 @@
                             <input class="input smallInput" id="editObj_optSel_4" placeholder="Value" type="number">
                             <br><br>
                             <div id="editObj_optSel_optsBar">
-                                <button class="button is-primary toolbarBtn">
-                                    1 <button class="button is-danger"><i class="fas fa-x"></i></button>
-                                </button>
+                                <button class="button is-primary optSelOptTabLeft">1</button>
+                                <button class="button is-danger optSelOptTabRight"><i class="fas fa-x"></i></button>
+                                
                             </div>
                             <button class="button is-white toolbarBtn"><i class="fas fa-plus"></i></button>
                             <br><br>

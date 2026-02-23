@@ -823,7 +823,14 @@ function editObj() {
         editObj_optSel.classList.add("hidden");
         editObj_slider.classList.remove("hidden");
 
-        
+        editObj_slider_1.value = dialogData.objects[selectedObj].label;
+        editObj_slider_1_editor._syncFromTextarea();
+        editObj_slider_2.value = dialogData.objects[selectedObj].initialValue.toString();
+        editObj_slider_3.value = dialogData.objects[selectedObj].width.toString();
+        editObj_slider_4.value = dialogData.objects[selectedObj].start.toString();
+        editObj_slider_5.value = dialogData.objects[selectedObj].end.toString();
+        editObj_slider_6.value = dialogData.objects[selectedObj].step.toString();
+        editObj_slider_7.value = dialogData.objects[selectedObj].key;
     }
 }
 
@@ -934,9 +941,17 @@ function saveObj() {
 
         let el = document.getElementById(selectedObj);
     } else if (selectedObjType == "slider") {
-
+        dialogData.objects[selectedObj].label = editObj_slider_1.value;
+        dialogData.objects[selectedObj].initialValue = Number(editObj_slider_2.value);
+        dialogData.objects[selectedObj].width = Number(editObj_slider_3.value);
+        dialogData.objects[selectedObj].start = Number(editObj_slider_4.value);
+        dialogData.objects[selectedObj].end = Number(editObj_slider_5.value);
+        dialogData.objects[selectedObj].step = Number(editObj_slider_6.value);
+        dialogData.objects[selectedObj].key = editObj_slider_7.value;
 
         let el = document.getElementById(selectedObj);
+        el.innerHTML = `${dialogData.objects[selectedObj].label}: ${dialogData.objects[selectedObj].initialValue}`;
+        el.style.width = dialogData.objects[selectedObj].width;
     }
 }
 
@@ -1158,6 +1173,42 @@ function addObj(type, isNew, id = "") {
             } else {
                 inputBox.classList.remove("dialogCheckboxChecked");
             }
+        }
+    } else if (type == "optSel") {
+        if (isNew) {
+            dialogData.objects[id] = {
+                type: "optSel",
+                label: "Options",
+                initialValue: "",
+                key: ""
+            };
+        }
+    } else if (type == "slider") {
+        if (isNew) {
+            dialogData.objects[id] = {
+                type: "slider",
+                label: "Slider",
+                initialValue: 0,
+                width: 200,
+                start: 0,
+                end: 100,
+                step: 1
+                key: ""
+            };
+        }
+
+        let el = document.createElement("button");
+        el.id = id;
+        el.classList.add("dialogSlider");
+        el.style.width = "200px";
+        el.setAttribute("onclick", `showToolbar('${id}');`);
+        el.innerHTML = "Slider: 0";
+
+        dialogObjectsDiv2.appendChild(el);
+
+        if (!isNew) {
+            el.style.width = dialogData.objects[id].width + "px";
+            el.innerHTML = `${dialogData.objects[id].label}: ${dialogData.objects[id].initialValue}`;
         }
     }
 }

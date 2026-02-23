@@ -1192,7 +1192,7 @@ function addObj(type, isNew, id = "") {
                 width: 200,
                 start: 0,
                 end: 100,
-                step: 1
+                step: 1,
                 key: ""
             };
         }

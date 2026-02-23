@@ -96,7 +96,7 @@
             #dialogTitle:hover, .dialogText:hover, .dialogItem:hover, .dialogInput:hover {
                 border: 1px solid #ffffff50;
             }
-            .dialogSelectedObj:not(.dialogActionBtn) {
+            .dialogSelectedObj:not(.dialogActionBtn):not(.dialogSlider) {
                 border: 1px solid white !important;
             }
             
@@ -219,6 +219,22 @@
             }
             .dialogActionBtn:hover, .dialogActionBtn.dialogSelectedObj, .dialogOptSel:hover, .dialogOptSel.dialogSelectedObj {
                 background: url(https://ejd799.github.io/moddery/images/dp_dialog/button_hover.png);
+                background-size: 100% 100%;
+            }
+
+            .dialogSlider {
+                padding: 4px;
+                text-align: center;
+                image-rendering: pixelated;
+                background: url(https://ejd799.github.io/moddery/images/dp_dialog/slider.png);
+                background-size: 100% 100%;
+                height: 24px;
+                width: 200px;
+                font-size: smaller;
+                margin: 2px;
+            }
+            .dialogSlider:hover, .dialogSlider.dialogSelectedObj {
+                background: url(https://ejd799.github.io/moddery/images/dp_dialog/slider_selected.png);
                 background-size: 100% 100%;
             }
 

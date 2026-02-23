@@ -676,6 +676,9 @@ function closeToolbar() {
     objToolbar.classList.add("toolbarHidden");
 }
 
+let currentOptSelData = [];
+let selectedOptSelItem = 0;
+
 function editObj() {
     editObjDlg.classList.add("is-active");
     if (selectedObjType == "title") {
@@ -815,6 +818,7 @@ function editObj() {
         editObj_optSel_1_editor._syncFromTextarea();
         editObj_optSel_2.value = dialogData.objects[selectedObj].width.toString();
         editObj_slider_3.value = dialogData.objects[selectedObj].key;
+        editObj_optSel_4.value = dialogData.objects[selectedObj].initialValue + 1;
     } else if (selectedObjType == "slider") {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.add("hidden");
@@ -943,6 +947,7 @@ function saveObj() {
         dialogData.objects[selectedObj].label = editObj_optSel_1.value;
         dialogData.objects[selectedObj].width = Number(editObj_optSel_2.value);
         dialogData.objects[selectedObj].key = editObj_optSel_3.value;
+        dialogData.objects[selectedObj].initialValue = editObj_optSel_4.value - 1;
 
         let el = document.getElementById(selectedObj);
         el.innerHTML = `${dialogData.objects[selectedObj].label}: ${dialogData.objects[selectedObj].options.filter(n => n[2])[0][0]}`;
@@ -1189,9 +1194,10 @@ function addObj(type, isNew, id = "") {
                 key: "",
                 width: 200,
                 options: [
-                    ["Option A", "option_a", true],
-                    ["Option B", "option_b", false]
-                ]
+                    ["Option A", "option_a"],
+                    ["Option B", "option_b"]
+                ],
+                initialValue: 0
             };
         }
 

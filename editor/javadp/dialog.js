@@ -811,7 +811,10 @@ function editObj() {
         editObj_optSel.classList.remove("hidden");
         editObj_slider.classList.add("hidden");
 
-        
+        editObj_optSel_1.value = dialogData.objects[selectedObj].label;
+        editObj_optSel_1_editor._syncFromTextarea();
+        editObj_optSel_2.value = dialogData.objects[selectedObj].width.toString();
+        editObj_slider_3.value = dialogData.objects[selectedObj].key;
     } else if (selectedObjType == "slider") {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.add("hidden");
@@ -937,9 +940,13 @@ function saveObj() {
             inputBox.classList.remove("dialogCheckboxChecked");
         }
     } else if (selectedObjType == "optSel") {
-
+        dialogData.objects[selectedObj].label = editObj_optSel_1.value;
+        dialogData.objects[selectedObj].width = Number(editObj_optSel_2.value);
+        dialogData.objects[selectedObj].key = editObj_optSel_3.value;
 
         let el = document.getElementById(selectedObj);
+        el.innerHTML = `${dialogData.objects[selectedObj].label}: ${dialogData.objects[selectedObj].options.filter(n => n[2])[0][0]}`;
+        el.style.width = dialogData.objects[selectedObj].width;
     } else if (selectedObjType == "slider") {
         dialogData.objects[selectedObj].label = editObj_slider_1.value;
         dialogData.objects[selectedObj].initialValue = Number(editObj_slider_2.value);
@@ -1179,9 +1186,25 @@ function addObj(type, isNew, id = "") {
             dialogData.objects[id] = {
                 type: "optSel",
                 label: "Options",
-                initialValue: "",
-                key: ""
+                key: "",
+                width: 200,
+                options: [
+                    ["Option A", "option_a", true],
+                    ["Option B", "option_b", false]
+                ]
             };
+        }
+
+        let el = document.createElement("button");
+        el.id = id;
+        el.classList.add("dialogOptSel");
+        el.style.width = "200px";
+        el.setAttribute("onclick", `showToolbar('${id}');`);
+        el.innerHTML = "Options: Option A";
+
+        if (!isNew) {
+            el.style.width = dialogData.objects[id].width + "px";
+            el.innerHTML = `${dialogData.objects[id].label}: ${dialogData.objects[id].options.filter(n => n[2])[0][0]}`;
         }
     } else if (type == "slider") {
         if (isNew) {

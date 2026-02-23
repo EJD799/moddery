@@ -1202,6 +1202,8 @@ function addObj(type, isNew, id = "") {
         el.setAttribute("onclick", `showToolbar('${id}');`);
         el.innerHTML = "Options: Option A";
 
+        dialogObjectsDiv2.appendChild(el);
+
         if (!isNew) {
             el.style.width = dialogData.objects[id].width + "px";
             el.innerHTML = `${dialogData.objects[id].label}: ${dialogData.objects[id].options.filter(n => n[2])[0][0]}`;

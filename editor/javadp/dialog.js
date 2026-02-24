@@ -1257,6 +1257,7 @@ function addOptSelItem(num, isNew) {
     tabBtn1.classList.add("is-light");
     tabBtn1.classList.add("is-primary");
     tabBtn1.setAttribute("onclick", `changeOptSelItem(${num});`);
+    tabBtn1.innerHTML = num + 1;
 
     let tabBtn2 = document.createElement("button");
     tabBtn2.id = `optSelTab2_${num}`;
@@ -1265,6 +1266,7 @@ function addOptSelItem(num, isNew) {
     tabBtn2.classList.add("is-light");
     tabBtn2.classList.add("is-danger");
     tabBtn2.setAttribute("onclick", `removeOptSelItem(${num});`);
+    tabBtn2.innerHTML = `<i class="fas fa-x"></i>`;
 
     editObj_optSel_optsBar.appendChild(tabBtn1);
     editObj_optSel_optsBar.appendChild(tabBtn2);
@@ -1272,6 +1274,10 @@ function addOptSelItem(num, isNew) {
 
 function changeOptSelItem(num) {
 
+}
+
+function removeOptSelItem(num) {
+    
 }
 
 dialogTypeMenu.addEventListener("change", function (e) {

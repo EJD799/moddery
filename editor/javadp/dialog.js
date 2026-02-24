@@ -1282,12 +1282,12 @@ function addOptSelItem(num, isNew) {
     changeOptSelItem(num);
 }
 
-function changeOptSelItem(num, disableOldTab = false) {
-    console.log(num);
-    if (disableOldTab) {
-        document.getElementById(`optSelTab1_${selectedOptSelItem}`).classList.add("is-light");
-        document.getElementById(`optSelTab2_${selectedOptSelItem}`).classList.add("is-light");
-    }
+function changeOptSelItem(num) {
+    editObj_optSel_optsBar.children.forEach(function(n) {
+        n.classList.add("is-light");
+    });
+    //document.getElementById(`optSelTab1_${selectedOptSelItem}`).classList.add("is-light");
+    //document.getElementById(`optSelTab2_${selectedOptSelItem}`).classList.add("is-light");
     selectedOptSelItem = num;
     document.getElementById(`optSelTab1_${num}`).classList.remove("is-light");
     document.getElementById(`optSelTab2_${num}`).classList.remove("is-light");
@@ -1305,6 +1305,7 @@ function removeOptSelItem(num) {
 }
 
 editObj_optSel_5_editor.addEventListener("input", function(e) {
+    console.log(editObj_optSel_5.value);
     currentOptSelData[selectedOptSelItem][0] = editObj_optSel_5.value;
 });
 editObj_optSel_6.addEventListener("input", function(e) {

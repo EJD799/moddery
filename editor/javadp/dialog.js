@@ -390,9 +390,9 @@ function loadProject(data) {
     }
 
 
-    let objectDivs = dialogData.objectOrder;
-    for (let j = 0; j < objectDivs.length; j++) {
-        let objects = objectDivs[j];
+    let objDivs = dialogData.objectOrder;
+    for (let j = 0; j < objDivs.length; j++) {
+        let objects = objDivs[j];
         for (let i = 0; i < objects.length; i++) {
             let obj = dialogData.objects[objects[i]];
             addObj(obj.type, false, objects[i]);
@@ -655,8 +655,17 @@ function showToolbar(element) {
     } else {
         $("#toolbarBtn1").show();
         $("#toolbarBtn2").show();
-        $("#toolbarBtn3").show();
-        $("#toolbarBtn4").show();
+        thisOrder = dialogData.objectOrder[objDivs[selectedObjType] - 1];
+        if (thisOrder[0] == element) {
+            $("#toolbarBtn3").hide();
+        } else {
+            $("#toolbarBtn3").show();
+        }
+        if (thisOrder[thisOrder.length - 1] == element) {
+            $("#toolbarBtn4").hide();
+        } else {
+            $("#toolbarBtn4").show();
+        }
     }
 }
 

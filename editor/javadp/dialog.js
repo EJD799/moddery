@@ -1305,8 +1305,10 @@ function removeOptSelItem(num) {
 }
 
 editObj_optSel_5_editor.addEventListener("input", function(e) {
-    console.log(editObj_optSel_5.value);
-    currentOptSelData[selectedOptSelItem][0] = editObj_optSel_5.value;
+    window.setTimeout(function() {
+        console.log(editObj_optSel_5.value);
+        currentOptSelData[selectedOptSelItem][0] = editObj_optSel_5.value;
+    }, 20);
 });
 editObj_optSel_6.addEventListener("input", function(e) {
     currentOptSelData[selectedOptSelItem][1] = editObj_optSel_6.value;

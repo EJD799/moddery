@@ -654,17 +654,17 @@ function showToolbar(element) {
         $("#toolbarBtn4").hide();
     } else {
         $("#toolbarBtn1").show();
-        $("#toolbarBtn2").show();
+        $("#toolbarBtn4").show();
         thisOrder = dialogData.objectOrder[objDivs[selectedObjType] - 1];
         if (thisOrder[0] == element) {
+            $("#toolbarBtn2").hide();
+        } else {
+            $("#toolbarBtn2").show();
+        }
+        if (thisOrder[thisOrder.length - 1] == element) {
             $("#toolbarBtn3").hide();
         } else {
             $("#toolbarBtn3").show();
-        }
-        if (thisOrder[thisOrder.length - 1] == element) {
-            $("#toolbarBtn4").hide();
-        } else {
-            $("#toolbarBtn4").show();
         }
     }
 }

@@ -721,6 +721,8 @@ function editObj() {
         editObj_actionBtn_2.value = dialogData.objects[selectedObj].tooltip;
         editObj_actionBtn_2_editor._syncFromTextarea();
         editObj_actionBtn_3.value = dialogData.objects[selectedObj].width.toString();
+        editObj_actionBtn_4.value = dialogData.objects[selectedObj].actionType;
+        editObj_actionBtn_5.value = dialogData.objects[selectedObj].actionData;
     } else if (selectedObjType == "text") {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.add("hidden");
@@ -857,6 +859,8 @@ function editObj() {
     }
 }
 
+bulmaSelectmenu.attachMenu(editObj_actionBtn_4);
+
 editObj_textBox_5.addEventListener("change", function(e) {
     if (editObj_textBox_5.checked) {
         $("#editObj_textBox_multilineSection").show();
@@ -879,6 +883,8 @@ function saveObj() {
         dialogData.objects[selectedObj].label = editObj_actionBtn_1.value;
         dialogData.objects[selectedObj].tooltip = editObj_actionBtn_2.value;
         dialogData.objects[selectedObj].width = Number(editObj_actionBtn_3.value);
+        dialogData.objects[selectedObj].actionType = editObj_actionBtn_4.value;
+        dialogData.objects[selectedObj].actionData = editObj_actionBtn_5.value;
 
         let el = document.getElementById(selectedObj);
         el.innerHTML = dialogData.objects[selectedObj].label;
@@ -1019,7 +1025,9 @@ function addObj(type, isNew, id = "") {
                 type: "actionBtn",
                 label: "Button",
                 tooltip: "",
-                width: 150
+                width: 150,
+                actionType: "open_url",
+                actionData: ""
             };
         }
 

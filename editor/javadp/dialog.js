@@ -1,13 +1,22 @@
 var elementData = {};
 let currentItemType = ["", 0];
+let themeSubtleButton = "is-light";
 
 function onThemeChange(name, style, type) {
     if (type == "light") {
         actionItems.special_remove.texture = "/moddery/custom_textures/special_remove_light.png";
         actionItems.special_custom.texture = "/moddery/custom_textures/special_custom_light.png";
+        document.querySelectorAll(".is-dark").forEach(el => {
+            el.classList.replace("is-dark", "is-light");
+        });
+        themeSubtleButton = "is-light";
     } else {
         actionItems.special_remove.texture = "/moddery/custom_textures/special_remove_dark.png";
         actionItems.special_custom.texture = "/moddery/custom_textures/special_custom_dark.png";
+        document.querySelectorAll(".is-light").forEach(el => {
+            el.classList.replace("is-light", "is-dark");
+        });
+        themeSubtleButton = "is-dark";
     }
     replaceSpecialCustomImages(type);
 }
@@ -1262,7 +1271,7 @@ function addOptSelItem(num, isNew) {
     tabBtn1.id = `optSelTab1_${num}`;
     tabBtn1.classList.add("button");
     tabBtn1.classList.add("optSelOptTabLeft");
-    tabBtn1.classList.add("is-light");
+    tabBtn1.classList.add(themeSubtleButton);
     tabBtn1.classList.add("is-primary");
     tabBtn1.setAttribute("onclick", `changeOptSelItem(${num}, true);`);
     tabBtn1.innerHTML = num + 1;
@@ -1271,7 +1280,7 @@ function addOptSelItem(num, isNew) {
     tabBtn2.id = `optSelTab2_${num}`;
     tabBtn2.classList.add("button");
     tabBtn2.classList.add("optSelOptTabRight");
-    tabBtn2.classList.add("is-light");
+    tabBtn2.classList.add(themeSubtleButton);
     tabBtn2.classList.add("is-danger");
     tabBtn2.setAttribute("onclick", `removeOptSelItem(${num});`);
     tabBtn2.innerHTML = `<i class="fas fa-x"></i>`;
@@ -1284,13 +1293,13 @@ function addOptSelItem(num, isNew) {
 
 function changeOptSelItem(num) {
     Array.from(editObj_optSel_optsBar.children).forEach(function(n) {
-        n.classList.add("is-light");
+        n.classList.add(themeSubtleButton);
     });
-    //document.getElementById(`optSelTab1_${selectedOptSelItem}`).classList.add("is-light");
-    //document.getElementById(`optSelTab2_${selectedOptSelItem}`).classList.add("is-light");
     selectedOptSelItem = num;
     document.getElementById(`optSelTab1_${num}`).classList.remove("is-light");
     document.getElementById(`optSelTab2_${num}`).classList.remove("is-light");
+    document.getElementById(`optSelTab1_${num}`).classList.remove("is-dark");
+    document.getElementById(`optSelTab2_${num}`).classList.remove("is-dark");
 
     editObj_optSel_5.value = currentOptSelData[num][0];
     editObj_optSel_5_editor._syncFromTextarea();

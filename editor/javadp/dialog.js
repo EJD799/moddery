@@ -819,6 +819,13 @@ function editObj() {
         editObj_optSel_2.value = dialogData.objects[selectedObj].width.toString();
         editObj_slider_3.value = dialogData.objects[selectedObj].key;
         editObj_optSel_4.value = dialogData.objects[selectedObj].initialValue + 1;
+
+        editObj_optSel_optsBar.innerHTML = "";
+        currentOptSelData = dialogData.objects[selectedObj].options;
+        for (let i = 0; i < currentOptSelData.length; i++) {
+            addOptSelItem(i, false);
+        }
+        changeOptSelItem(0);
     } else if (selectedObjType == "slider") {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.add("hidden");
@@ -948,6 +955,7 @@ function saveObj() {
         dialogData.objects[selectedObj].width = Number(editObj_optSel_2.value);
         dialogData.objects[selectedObj].key = editObj_optSel_3.value;
         dialogData.objects[selectedObj].initialValue = editObj_optSel_4.value - 1;
+        dialogData.objects[selectedObj].options = currentOptSelData;
 
         let el = document.getElementById(selectedObj);
         el.innerHTML = `${dialogData.objects[selectedObj].label}: ${dialogData.objects[selectedObj].options.filter(n => n[2])[0][0]}`;
@@ -1270,6 +1278,8 @@ function addOptSelItem(num, isNew) {
 
     editObj_optSel_optsBar.appendChild(tabBtn1);
     editObj_optSel_optsBar.appendChild(tabBtn2);
+
+    changeOptSelItem(num);
 }
 
 function changeOptSelItem(num) {

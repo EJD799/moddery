@@ -1,4 +1,4 @@
-const appVersion = "2.2.345";
+const appVersion = "2.2.346";
 const buildDate = "2/24/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -238,7 +238,7 @@ let projectTypes = {
         url: "editor/javadp/block.html",
         icon: "fas fa-cube",
         saveType: "regular",
-        show: 1
+        show: 2
       },
       "Biome": {
         url: "editor/javadp/biome.html",
@@ -262,7 +262,7 @@ let projectTypes = {
         url: "editor/javadp/entity.html",
         icon: "fas fa-paw",
         saveType: "regular",
-        show: 1
+        show: 2
       },
       "Loot Table": {
         url: "editor/javadp/loot_table.html",

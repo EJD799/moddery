@@ -723,6 +723,8 @@ function editObj() {
         editObj_actionBtn_3.value = dialogData.objects[selectedObj].width.toString();
         editObj_actionBtn_4.value = dialogData.objects[selectedObj].actionType;
         editObj_actionBtn_5.value = dialogData.objects[selectedObj].actionData;
+
+        changeActionTypeLabels(dialogData.objects[selectedObj].actionType);
     } else if (selectedObjType == "text") {
         editObj_title.classList.add("hidden");
         editObj_actionBtn.classList.add("hidden");
@@ -860,6 +862,23 @@ function editObj() {
 }
 
 bulmaSelectmenu.attachMenu(editObj_actionBtn_4);
+
+let actionTypeLabels = {
+    "open_url": "URL",
+    "run_command": "Command",
+    "suggest_command": "Command",
+    "copy_to_clipboard": "Text to Copy",
+    "show_dialog": "Dialog ID",
+    "custom": "Event ID"
+};
+function changeActionTypeLabels(type) {
+    editObj_actionBtn_5_label.innerHTML = actionTypeLabels[type];
+    editObj_actionBtn_5.setAttribute("placeholder", actionTypeLabels[type]);
+}
+
+editObj_actionBtn_4.addEventListener("change", function(e) {
+    changeActionTypeLabels(editObj_actionBtn_4.value);
+});
 
 editObj_textBox_5.addEventListener("change", function(e) {
     if (editObj_textBox_5.checked) {

@@ -390,10 +390,13 @@ function loadProject(data) {
     }
 
 
-    let objects = dialogData.objectOrder;
-    for (let i = 0; i < objects.length; i++) {
-        let obj = dialogData.objects[objects[i]];
-        addObj(obj.type, false, objects[i]);
+    let objectDivs = dialogData.objectOrder;
+    for (let j = 0; j < objectDivs.length; j++) {
+        let objects = objectDivs[j];
+        for (let i = 0; i < objects.length; i++) {
+            let obj = dialogData.objects[objects[i]];
+            addObj(obj.type, false, objects[i]);
+        }
     }
 }
 
@@ -603,7 +606,7 @@ let dialogData = {
             width: 150
         }
     },
-    objectOrder: []
+    objectOrder: [[], [], []]
 };
 
 function positionToolbar(menu, button) {
@@ -1046,7 +1049,7 @@ let objDivs = {
 function addObj(type, isNew, id = "") {
     if (isNew) {
         id = `dialogObject_${randomHexString()}`;
-        dialogData.objectOrder.push(id);
+        dialogData.objectOrder[objDivs[type] - 1].push(id);
     }
         
     if (type == "actionBtn") {

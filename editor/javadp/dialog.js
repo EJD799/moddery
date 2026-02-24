@@ -1264,7 +1264,7 @@ function addOptSelItem(num, isNew) {
     tabBtn1.classList.add("optSelOptTabLeft");
     tabBtn1.classList.add("is-light");
     tabBtn1.classList.add("is-primary");
-    tabBtn1.setAttribute("onclick", `changeOptSelItem(${num});`);
+    tabBtn1.setAttribute("onclick", `changeOptSelItem(${num}, true);`);
     tabBtn1.innerHTML = num + 1;
 
     let tabBtn2 = document.createElement("button");
@@ -1282,10 +1282,12 @@ function addOptSelItem(num, isNew) {
     changeOptSelItem(num);
 }
 
-function changeOptSelItem(num) {
+function changeOptSelItem(num, disableOldTab = false) {
     console.log(num);
-    document.getElementById(`optSelTab1_${selectedOptSelItem}`).classList.add("is-light");
-    document.getElementById(`optSelTab2_${selectedOptSelItem}`).classList.add("is-light");
+    if (disableOldTab) {
+        document.getElementById(`optSelTab1_${selectedOptSelItem}`).classList.add("is-light");
+        document.getElementById(`optSelTab2_${selectedOptSelItem}`).classList.add("is-light");
+    }
     selectedOptSelItem = num;
     document.getElementById(`optSelTab1_${num}`).classList.remove("is-light");
     document.getElementById(`optSelTab2_${num}`).classList.remove("is-light");

@@ -1273,12 +1273,30 @@ function addOptSelItem(num, isNew) {
 }
 
 function changeOptSelItem(num) {
+    document.getElementById(`optSelTab1_${selectedOptSelItem}`).classList.add("is-light");
+    document.getElementById(`optSelTab2_${selectedOptSelItem}`).classList.add("is-light");
+    selectedOptSelItem = num;
+    document.getElementById(`optSelTab1_${num}`).classList.remove("is-light");
+    document.getElementById(`optSelTab2_${num}`).classList.remove("is-light");
 
+    editObj_optSel_5.value = currentOptSelData[num][0];
+    editObj_optSel_5_editor._syncFromTextarea();
+    editObj_optSel_6.value = currentOptSelData[num][1];
 }
 
 function removeOptSelItem(num) {
-    
+    currentOptSelData.splice(num, 1);
+    document.getElementById(`optSelTab1_${currentOptSelData.length}`).remove();
+    document.getElementById(`optSelTab2_${currentOptSelData.length}`).remove();
+    changeOptSelItem(0);
 }
+
+editObj_optSel_5_editor.addEventListener("input", function(e) {
+    currentOptSelData[selectedOptSelItem][0] = editObj_optSel_5.value;
+});
+editObj_optSel_6.addEventListener("input", function(e) {
+    currentOptSelData[selectedOptSelItem][1] = editObj_optSel_6.value;
+});
 
 dialogTypeMenu.addEventListener("change", function (e) {
     if (dialogTypeMenu.value == "confirmation") {

@@ -958,7 +958,7 @@ function saveObj() {
         dialogData.objects[selectedObj].options = currentOptSelData;
 
         let el = document.getElementById(selectedObj);
-        el.innerHTML = `${dialogData.objects[selectedObj].label}: ${dialogData.objects[selectedObj].options.filter(n => n[2])[0][0]}`;
+        el.innerHTML = `${dialogData.objects[selectedObj].label}: ${dialogData.objects[selectedObj].options[dialogData.objects[selectedObj].initialValue][0]}`;
         el.style.width = dialogData.objects[selectedObj].width;
     } else if (selectedObjType == "slider") {
         dialogData.objects[selectedObj].label = editObj_slider_1.value;
@@ -1283,6 +1283,7 @@ function addOptSelItem(num, isNew) {
 }
 
 function changeOptSelItem(num) {
+    console.log(num);
     document.getElementById(`optSelTab1_${selectedOptSelItem}`).classList.add("is-light");
     document.getElementById(`optSelTab2_${selectedOptSelItem}`).classList.add("is-light");
     selectedOptSelItem = num;

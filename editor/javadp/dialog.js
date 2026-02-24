@@ -1283,7 +1283,7 @@ function addOptSelItem(num, isNew) {
 }
 
 function changeOptSelItem(num) {
-    editObj_optSel_optsBar.children.forEach(function(n) {
+    Array.from(editObj_optSel_optsBar.children).forEach(function(n) {
         n.classList.add("is-light");
     });
     //document.getElementById(`optSelTab1_${selectedOptSelItem}`).classList.add("is-light");

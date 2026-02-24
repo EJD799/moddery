@@ -1315,7 +1315,6 @@ function removeOptSelItem(num) {
 
 editObj_optSel_5_editor.addEventListener("input", function(e) {
     window.setTimeout(function() {
-        console.log(editObj_optSel_5.value);
         currentOptSelData[selectedOptSelItem][0] = editObj_optSel_5.value;
     }, 20);
 });
@@ -1390,5 +1389,7 @@ dialogTypeMenu.addEventListener("change", function (e) {
         toolboxBtn_dialogLink.classList.add("hidden");
     }
 
-    dialogObjectsDiv3.innerHTML = "";
+    if (dialogTypeMenu.value != "multi_action" && dialogTypeMenu.value != "server_links") {
+        dialogObjectsDiv3.innerHTML = "";
+    }
 });

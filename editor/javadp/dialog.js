@@ -1009,7 +1009,7 @@ function saveObj() {
     }
 }
 
-function moveObj(direction) {
+function moveObj(obj, direction) {
 
 }
 
@@ -1027,10 +1027,21 @@ function openDeleteObj() {
 
 function deleteObj(id) {
     deleteDlg.classList.remove("is-active");
+    removeItemInPlace(dialogData.objectOrder[objDivs[dialogData.objects[id].type] - 1], id);
     delete dialogData.objects[id];
-    removeItemInPlace(dialogData.objectOrder, id);
     document.getElementById(id).remove();
 }
+
+let objDivs = {
+    "actionBtn": 3,
+    "text": 1,
+    "item": 1,
+    "dialogLink": 3,
+    "textBox": 2,
+    "checkbox": 2,
+    "optSel": 2,
+    "slider": 2
+};
 
 function addObj(type, isNew, id = "") {
     if (isNew) {

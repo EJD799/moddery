@@ -1244,6 +1244,35 @@ function addObj(type, isNew, id = "") {
     }
 }
 
+function addOptSelItem(num, isNew) {
+    if (isNew) {
+        num = currentOptSelData.length;
+        currentOptSelData.push(["Text", "value"]);
+    }
+
+    let tabBtn1 = document.createElement("button");
+    tabBtn1.id = `optSelTab1_${num}`;
+    tabBtn1.classList.add("button");
+    tabBtn1.classList.add("optSelOptTabLeft");
+    tabBtn1.classList.add("is-light");
+    tabBtn1.classList.add("is-primary");
+    tabBtn1.setAttribute("onclick", `changeOptSelItem(${num});`);
+
+    let tabBtn2 = document.createElement("button");
+    tabBtn2.id = `optSelTab2_${num}`;
+    tabBtn2.classList.add("button");
+    tabBtn2.classList.add("optSelOptTabRight");
+    tabBtn2.classList.add("is-light");
+    tabBtn2.classList.add("is-danger");
+    tabBtn2.setAttribute("onclick", `removeOptSelItem(${num});`);
+
+    editObj_optSel_optsBar.appendChild(tabBtn1);
+    editObj_optSel_optsBar.appendChild(tabBtn2);
+}
+
+function changeOptSelItem(num) {
+
+}
 
 dialogTypeMenu.addEventListener("change", function (e) {
     if (dialogTypeMenu.value == "confirmation") {

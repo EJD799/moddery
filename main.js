@@ -1,4 +1,4 @@
-const appVersion = "2.2.355";
+const appVersion = "2.2.356";
 const buildDate = "2/25/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -1902,7 +1902,7 @@ function openProj(file) {
         setTimeout(function() {
           closeLoader();
           savingText.innerHTML = "<i class='fa-solid fa-circle-check'></i> Saved";
-          $("#addElementType").val("Block");
+          //$("#addElementType").val("Block");
         }, 500);
         updateMenusForProjectType();
         document.getElementById("ui-id-1").click();

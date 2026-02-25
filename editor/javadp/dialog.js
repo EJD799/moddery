@@ -1077,6 +1077,13 @@ function deleteObj(id) {
     document.getElementById(id).remove();
 }
 
+function openAboutWarningDlg() {
+    aboutWarningDlg.classList.add("is-active");
+}
+function closeAboutWarningDlg() {
+    aboutWarningDlg.classList.remove("is-active");
+}
+
 let objDivs = {
     "actionBtn": 3,
     "text": 1,

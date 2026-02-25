@@ -345,7 +345,7 @@
             <div id="dialogEditorContainer">
                 <div id="dialogEditorDiv">
                     <span id="dialogTitle" onclick="showToolbar('dialogTitle');">Title</span>
-                    <button id="dialogWarningBtn"></button>
+                    <button id="dialogWarningBtn" onclick="openAboutWarningDlg();"></button>
                     <br><br>
                     <div id="dialogObjectsDiv1"></div>
                     <br>
@@ -421,6 +421,20 @@
                         <span id="deleteDlgText"></span><br><br>
                         <button class="button" id="deleteDlgCancel" onclick="closeDeleteObj()">Cancel</button>
                         <button class="button is-danger" id="deleteDlgConfirm">Delete</button>
+                    </center>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeDeleteObj();"></button>
+        </div>
+
+        <div class="modal" id="aboutWarningDlg">
+            <div class="modal-background"></div>
+            <div class="modal-content" style="width:400px;height:300px;">
+                <div class="card" id="aboutWarningDlgCard" style="padding:16px;">
+                    <center>
+                        <h4 class="title is-4">Why is there a warning button?</h4>
+                        <span>This button exists to prevent players from getting locked out of their world. This allows the user to close all datapack dialogs. The warning button cannot be removed.</span><br><br>
+                        <button class="button is-primary" onclick="closeAboutWarningDlg();">Close</button>
                     </center>
                 </div>
             </div>

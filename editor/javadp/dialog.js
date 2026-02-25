@@ -1021,8 +1021,41 @@ function saveObj() {
     }
 }
 
-function moveObj(obj, direction) {
+function moveArrayItem(arr, fromIndex, toIndex) {
+    if (toIndex < 0 || toIndex >= arr.length) return;
 
+    const item = arr.splice(fromIndex, 1)[0];
+    arr.splice(toIndex, 0, item);
+}
+function moveDomChild(parent, fromIndex, toIndex) {
+    const children = parent.children;
+
+    if (
+        fromIndex < 0 || fromIndex >= children.length ||
+        toIndex < 0 || toIndex >= children.length
+    ) return;
+
+    const node = children[fromIndex];
+    const reference = children[toIndex];
+
+    parent.insertBefore(node, fromIndex < toIndex
+        ? reference.nextSibling
+        : reference);
+}
+
+function moveObj(direction) {
+    let divNum = objDivs[dialogData.objects[selectedObj].type];
+    let div = document.getElementById(`dialogObjectsDiv${divNum}`);
+    let orderArr = dialogData.objectOrder[divNum - 1];
+    let currentIndex = orderArr.indexOf(selectedObj);
+    if (direction == "up") {
+        moveArrayItem(orderArr, currentIndex, currentIndex - 1);
+        moveDomChild(div, currentIndex, currentIndex - 1);
+    } else {
+        moveArrayItem(orderArr, currentIndex, currentIndex + 1);
+        moveDomChild(div, currentIndex, currentIndex + 1);
+    }
+    closeToolbar();
 }
 
 function closeDeleteObj() {

@@ -1,7 +1,7 @@
-// Minecraft Item DB v1.1 (Modified Build)
-// Java Version: 1.21.11
-// Bedrock Version: 1.21.130
-// 2025 EJD799
+// Minecraft Item DB v1.2 (Modified Build)
+// Java Version: 26.1
+// Bedrock Version: 26.10
+// 2026 EJD799
 // https://github.com/ejd799/minecraft-item-db
 
 const itemDefinitions = {
@@ -6721,4 +6721,8 @@ const itemDefinitions = {
         texture: "https://minecraft.wiki/images/thumb/Purpur_Block_JE2_BE2.png/60px-Purpur_Block_JE2_BE2.png?f2101",
         filter: "bedrock"
     },
+    "minecraft:golden_dandelion": {
+        name: "Golden Dandelion",
+        texture: "https://minecraft.wiki/images/Invicon_Golden_Dandelion.png?32284"
+    }
 };

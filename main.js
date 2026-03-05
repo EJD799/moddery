@@ -1,4 +1,4 @@
-const appVersion = "2.2.360";
+const appVersion = "2.2.361";
 const buildDate = "3/5/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -89,11 +89,8 @@ let projectTypes = {
     ],
     features: ["scriptEntry"],
     supportedVersions: [
-      "1.21.90",
-      "1.21.100",
-      "1.21.110",
-      "1.21.120",
-      "1.21.130"
+      "1.21.130",
+      "26.10"
     ],
     disabled: false,
     editors: {
@@ -188,11 +185,8 @@ let projectTypes = {
     shortname: "Resource Pack",
     features: [],
     supportedVersions: [
-      "1.21.90",
-      "1.21.100",
-      "1.21.110",
-      "1.21.120",
-      "1.21.130"
+      "1.21.130",
+      "26.10"
     ],
     disabled: true,
     exportOptions: [
@@ -349,9 +343,6 @@ let projectTypes = {
     shortname: "Resource Pack",
     features: [],
     supportedVersions: [
-      "1.20",
-      "1.20.1",
-      "1.20.2",
       "1.20.3/1.20.4",
       "1.20.5/1.20.6",
       "1.21",
@@ -362,21 +353,19 @@ let projectTypes = {
       "1.21.6",
       "1.21.7/1.21.8",
       "1.21.9/1.21.10",
-      "1.21.11"
+      "1.21.11",
+      "26.1"
     ],
     disabled: true,
     exportOptions: [
       ["Pack (.zip)", "zip"]
-    ],
+    ]
   },
   "je_forge": {
     name: "Java Forge Mod",
     shortname: "Forge Mod",
     features: ["scriptEntry"],
     supportedVersions: [
-      "1.20",
-      "1.20.1",
-      "1.20.2",
       "1.20.3/1.20.4",
       "1.20.5/1.20.6",
       "1.21",
@@ -387,7 +376,8 @@ let projectTypes = {
       "1.21.6",
       "1.21.7/1.21.8",
       "1.21.9/1.21.10",
-      "1.21.11"
+      "1.21.11",
+      "26.1"
     ],
     disabled: true,
     exportOptions: [

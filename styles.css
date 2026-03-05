@@ -687,20 +687,21 @@ input:disabled::placeholder {
 }
 
 .menubar .navbar-dropdown {
-  position: absolute;
-  z-index: 40;
+    position: absolute;
+    z-index: 40;
 }
 
 :root {
-  --menubar-height: 3.25rem;
+    --menubar-height: 3.25rem;
 }
 
 #tabs {
-  height: calc(100vh - var(--menubar-height));
-  overflow: hidden;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
+    height: calc(100vh - var(--menubar-height));
+    overflow: hidden;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: var(--bulma-background) !important;
 }
 
 #tabBar {

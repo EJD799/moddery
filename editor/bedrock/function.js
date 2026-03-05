@@ -502,6 +502,71 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'damage',
+    message0: 'apply %1 damage to target %2 source %3 type %4',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'AMOUNT',
+      },
+      {
+        type: 'field_input',
+        name: 'TARGET',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'SOURCE',
+        spellcheck: false
+      },
+      {
+        type: 'field_dropdown',
+        name: 'TYPE',
+        options: [
+            ["none", "none"],
+            ["piston", "piston"],
+            ["lava", "lava"],
+            ["campfire", "campfire"],
+            ["fire", "fire"],
+            ["anvil", "anvil"],
+            ["magma", "magma"],
+            ["soul_campfire", "soul_campfire"],
+            ["wither", "wither"],
+            ["falling_block", "falling_block"],
+            ["fireworks", "fireworks"],
+            ["thorns", "thorns"],
+            ["sonic_boom", "sonic_boom"],
+            ["contact", "contact"],
+            ["override", "override"],
+            ["entity_attack", "entity_attack"],
+            ["projectile", "projectile"],
+            ["suffocation", "suffocation"],
+            ["mace_smash", "mace_smash"],
+            ["fall", "fall"],
+            ["starve", "starve"],
+            ["ram_attack", "ram_attack"],
+            ["fire_tick", "fire_tick"],
+            ["stalactite", "stalactite"],
+            ["drowning", "drowning"],
+            ["block_explosion", "block_explosion"],
+            ["entity_explosion", "entity_explosion"],
+            ["void", "void"],
+            ["self_destruct", "self_destruct"],
+            ["magic", "magic"],
+            ["charging", "charging"],
+            ["stalagmite", "stalagmite"],
+            ["fly_into_wall", "fly_into_wall"],
+            ["lightning", "lightning"],
+            ["freezing", "freezing"],
+            ["temperature", "temperature"]
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'tp_e',
     message0: 'teleport %1 to %2',
     colour: 10,
@@ -1000,6 +1065,10 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "player_spawn"
+          },
+          {
+            "kind": "block",
+            "type": "damage"
           },
           {
             "kind": "block",

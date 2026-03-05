@@ -10,12 +10,11 @@ This Minecraft mod builder is unlike the rest. Other ones have to be installed o
 | Mod Type | Status |
 |--|--|
 | Bedrock Addon | In Development - Planned for Jan 2026 |
-| Bedrock Resource Pack | Planned for Mar 2026 |
-| Java Datapack | Planned for Feb 2026 |
-| Java Resource Pack | Planned for Mar 2026 |
-| Java Spigot Plugin | TBD - Probably ~Jun 2026 |
-| Java Forge Mod | TBD - Probably ~Jul 2026 |
-| Java Fabric Mod | TBD - Probably ~Jul 2026 |
-| MTR Custom Resources (Java) | TBD - Probably ~Mar 2026 |
-| MTR Custom Resources (Bedrock) | TBD - Depends on when MTR Bedrock releases |
-| Nexo Addon | Planned for Mar 2026 |
+| Bedrock Resource Pack | Planned for Apr 2026 |
+| Java Datapack | Planned for Mar 2026 |
+| Java Resource Pack | Planned for Apr 2026 |
+| Java Spigot Plugin | TBD |
+| Java Forge Mod | TBD |
+| Java Fabric Mod | TBD |
+| MTR Custom Resources (Java) | TBD - Probably ~Apr 2026 |
+| MTR Custom Resources (Bedrock) | TBD |

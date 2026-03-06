@@ -87,6 +87,12 @@ Blockly.BedrockFunction.forBlock['damage'] = function(block) {
     const z_pos = block.getFieldValue('Z_POS');
     return "setworldspawn " + x_pos + " " + y_pos + " " + z_pos + "\n";
 };
+Blockly.BedrockFunction.forBlock['hud'] = function(block) {
+    const mode = block.getFieldValue('MODE');
+    const element = block.getFieldValue('ELEMENT');
+    const player = block.getFieldValue('PLAYER');
+    return `hud ${player} ${mode} ${element}\n`;
+};
 Blockly.BedrockFunction.forBlock['player_spawn'] = function(block) {
     const player = block.getFieldValue('PLAYER');
     const x_pos = block.getFieldValue('X_POS');

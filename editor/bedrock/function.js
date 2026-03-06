@@ -567,6 +567,48 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'hud',
+    message0: '%1 hud element %2 for %3',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'MODE',
+        options: [
+          ['hide', 'hide'],
+          ['show', 'reset']
+        ]
+      },
+      {
+        type: 'field_dropdown',
+        name: 'ELEMENT',
+        options: [
+          ['all', 'all'],
+          ['air_bubbles', 'air_bubbles'],
+          ['armor', 'armor'],
+          ['crosshair', 'crosshair'],
+          ['health', 'health'],
+          ['horse_health', 'horse_health'],
+          ['hotbar', 'hotbar'],
+          ['hunger', 'hunger'],
+          ['item_text', 'item_text'],
+          ['paperdoll', 'paperdoll'],
+          ['progress_bar', 'progress_bar'],
+          ['status_effects', 'status_effects'],
+          ['tooltips', 'tooltips'],
+          ['touch_controls', 'touch_controls']
+        ]
+      },
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'tp_e',
     message0: 'teleport %1 to %2',
     colour: 10,
@@ -1117,6 +1159,10 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "tag"
+          },
+          {
+            "kind": "block",
+            "type": "hud"
           }
         ]
       },

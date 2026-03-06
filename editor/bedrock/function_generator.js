@@ -93,6 +93,26 @@ Blockly.BedrockFunction.forBlock['hud'] = function(block) {
     const player = block.getFieldValue('PLAYER');
     return `hud ${player} ${mode} ${element}\n`;
 };
+Blockly.BedrockFunction.forBlock['kick'] = function(block) {
+    const player = block.getFieldValue('PLAYER');
+    return `kick ${player}\n`;
+};
+Blockly.BedrockFunction.forBlock['music_play'] = function(block) {
+    const mode = block.getFieldValue('MODE');
+    const track = block.getFieldValue('TRACK');
+    const volume = Number(block.getFieldValue('VOLUME')) / 100;
+    const fade = block.getFieldValue('FADE');
+    const repeat = block.getFieldValue('REPEAT');
+    return `music ${mode} ${track} ${volume} ${fade} ${repeat}\n`;
+};
+Blockly.BedrockFunction.forBlock['music_stop'] = function(block) {
+    const fade = block.getFieldValue('FADE');
+    return `music stop ${fade}\n`;
+};
+Blockly.BedrockFunction.forBlock['music_volume'] = function(block) {
+    const volume = Number(block.getFieldValue('VOLUME')) / 100;
+    return `music volume ${volume}\n`;
+};
 Blockly.BedrockFunction.forBlock['player_spawn'] = function(block) {
     const player = block.getFieldValue('PLAYER');
     const x_pos = block.getFieldValue('X_POS');

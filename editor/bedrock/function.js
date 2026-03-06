@@ -609,6 +609,20 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'kick',
+    message0: 'kick %1 from the game',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'tp_e',
     message0: 'teleport %1 to %2',
     colour: 10,
@@ -944,6 +958,70 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'music_play',
+    message0: '%1 music track %2 at volume %3% fade %4 seconds repeat mode %5',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'MODE',
+        options: [
+          ['play', 'play'],
+          ['queue', 'queue']
+        ]
+      },
+      {
+        type: 'field_input',
+        name: 'TRACK',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'VOLUME'
+      },
+      {
+        type: 'field_number',
+        name: 'FADE'
+      },
+      {
+        type: 'field_dropdown',
+        name: 'REPEAT',
+        options: [
+          ['play once', 'play_once'],
+          ['loop', 'loop']
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'music_stop',
+    message0: 'stop music fade %1 seconds',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'FADE'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'music_volume',
+    message0: 'set music volume to %1%',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'VOLUME'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'addobjective',
     message0: 'add objective %1 display name %2',
     colour: 320,
@@ -1163,7 +1241,11 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "hud"
-          }
+          },
+          {
+            "kind": "block",
+            "type": "kick"
+          },
         ]
       },
       {
@@ -1221,7 +1303,19 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "stopsound"
-          }
+          },
+          {
+            "kind": "block",
+            "type": "music_play"
+          },
+          {
+            "kind": "block",
+            "type": "music_stop"
+          },
+          {
+            "kind": "block",
+            "type": "music_volume"
+          },
         ]
       },
       {

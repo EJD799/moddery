@@ -113,6 +113,12 @@ Blockly.BedrockFunction.forBlock['music_volume'] = function(block) {
     const volume = Number(block.getFieldValue('VOLUME')) / 100;
     return `music volume ${volume}\n`;
 };
+Blockly.BedrockFunction.forBlock['transfer'] = function(block) {
+    const player = block.getFieldValue('PLAYER');
+    const ip = block.getFieldValue('IP');
+    const port = block.getFieldValue('PORT');
+    return `transfer ${player} ${ip} ${port}\n`;
+};
 Blockly.BedrockFunction.forBlock['player_spawn'] = function(block) {
     const player = block.getFieldValue('PLAYER');
     const x_pos = block.getFieldValue('X_POS');

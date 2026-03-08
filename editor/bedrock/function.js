@@ -1022,6 +1022,27 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'transfer',
+    message0: 'transfer %1 to server ip %2 port %3',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PLAYER'
+      },
+      {
+        type: 'field_input',
+        name: 'IP'
+      },
+      {
+        type: 'field_number',
+        name: 'PORT'
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'addobjective',
     message0: 'add objective %1 display name %2',
     colour: 320,
@@ -1315,6 +1336,10 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "music_volume"
+          },
+          {
+            "kind": "block",
+            "type": "transfer"
           },
         ]
       },

@@ -1,3 +1,7 @@
+function getStatement(block, name) {
+    return Blockly.JavaScript.statementToCode(block, name);
+}
+
 Blockly.BedrockFunction = new Blockly.Generator('BedrockFunction');
 
 Blockly.BedrockFunction.forBlock['message'] = function(block) {
@@ -132,6 +136,49 @@ Blockly.BedrockFunction.forBlock['spreadplayers'] = function(block) {
     const min_spread = block.getFieldValue('MIN_SPREAD');
     const range = block.getFieldValue('RANGE');
     return `spreadplayers ${x_pos} ${z_pos} ${min_spread} ${range} ${entities}\n`;
+};
+Blockly.BedrockFunction.forBlock['execute'] = function(block) {
+    const anchored = block.getFieldValue('ANCHORED');
+    const as = block.getFieldValue('AS');
+    const at = block.getFieldValue('AT');
+    const facing_x = block.getFieldValue('FACING_X');
+    const facing_y = block.getFieldValue('FACING_Y');
+    const facing_z = block.getFieldValue('FACING_Z');
+    const in_arg = block.getFieldValue('IN');
+    const pos_x = block.getFieldValue('POS_X');
+    const pos_y = block.getFieldValue('POS_Y');
+    const pos_z = block.getFieldValue('POS_Z');
+    const rot_yaw = block.getFieldValue('ROT_YAW');
+    const rot_pitch = block.getFieldValue('ROT_PITCH');
+    const command = getStatement(block, "COMMAND");
+    let params = "execute ";
+
+    if (anchored) {
+        params += `anchored ${anchored} `;
+    }
+    if (as) {
+        params += `as ${as} `;
+    }
+    if (at) {
+        params += `at ${at} `;
+    }
+    if ((facing_x != "") && (facing_y != "") && (facing_z != "")) {
+        params += `facing ${facing_x} ${facing_y} ${facing_z} `;
+    }
+    if (in_arg) {
+        params += `in ${in_arg} `;
+    }
+    if ((pos_x != "") && (pos_y != "") && (pos_z != "")) {
+        params += `positioned ${pos_x} ${pos_y} ${pos_z} `;
+    }
+    if ((rot_yaw != "") && (rot_pitch != "")) {
+        params += `rotated ${rot_yaw} ${rot_pitch} `;
+    }
+
+    params += "run ";
+    params += command.slice(0, -2);
+
+    return `${params}\n`;
 };
 Blockly.BedrockFunction.forBlock['ride_start'] = function(block) {
     const rider = block.getFieldValue('RIDER');

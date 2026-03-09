@@ -1,5 +1,5 @@
 function getStatement(block, name) {
-    return Blockly.JavaScript.statementToCode(block, name);
+    return Blockly.BedrockFunction.statementToCode(block, name);
 }
 
 Blockly.BedrockFunction = new Blockly.Generator('BedrockFunction');

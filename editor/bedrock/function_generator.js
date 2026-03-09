@@ -51,6 +51,51 @@ Blockly.BedrockFunction.forBlock['clone_blocks'] = function(block) {
     const z_pos3 = block.getFieldValue('Z_POS3');
     return `clone ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} ${x_pos3} ${y_pos3} ${z_pos3}\n`;
 };
+Blockly.BedrockFunction.forBlock['tickingarea_add1'] = function(block) {
+    const x_pos1 = block.getFieldValue('X_POS1');
+    const y_pos1 = block.getFieldValue('Y_POS1');
+    const z_pos1 = block.getFieldValue('Z_POS1');
+    const x_pos2 = block.getFieldValue('X_POS2');
+    const y_pos2 = block.getFieldValue('Y_POS2');
+    const z_pos2 = block.getFieldValue('Z_POS2');
+    const name = block.getFieldValue('NAME');
+    const preload = block.getFieldValue('PRELOAD');
+    return `tickingarea add ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} ${name} ${preload}\n`;
+};
+Blockly.BedrockFunction.forBlock['tickingarea_add2'] = function(block) {
+    const x_pos = block.getFieldValue('X_POS');
+    const y_pos = block.getFieldValue('Y_POS');
+    const z_pos = block.getFieldValue('Z_POS');
+    const radius = block.getFieldValue('RADIUS');
+    const name = block.getFieldValue('NAME');
+    const preload = block.getFieldValue('PRELOAD');
+    return `tickingarea add ${x_pos} ${y_pos} ${z_pos} ${radius} ${name} ${preload}\n`;
+};
+Blockly.BedrockFunction.forBlock['tickingarea_remove1'] = function(block) {
+    const name = block.getFieldValue('NAME');
+    return `tickingarea remove ${name}\n`;
+};
+Blockly.BedrockFunction.forBlock['tickingarea_remove2'] = function(block) {
+    const x_pos = block.getFieldValue('X_POS');
+    const y_pos = block.getFieldValue('Y_POS');
+    const z_pos = block.getFieldValue('Z_POS');
+    return `tickingarea remove ${x_pos} ${y_pos} ${z_pos}\n`;
+};
+Blockly.BedrockFunction.forBlock['tickingarea_removeall'] = function(block) {
+    return `tickingarea remove_all\n`;
+};
+Blockly.BedrockFunction.forBlock['tickingarea_preload1'] = function(block) {
+    const name = block.getFieldValue('NAME');
+    const preload = block.getFieldValue('PRELOAD');
+    return `tickingarea preload ${name} ${preload}\n`;
+};
+Blockly.BedrockFunction.forBlock['tickingarea_preload2'] = function(block) {
+    const x_pos = block.getFieldValue('X_POS');
+    const y_pos = block.getFieldValue('Y_POS');
+    const z_pos = block.getFieldValue('Z_POS');
+    const preload = block.getFieldValue('PRELOAD');
+    return `tickingarea preload ${x_pos} ${y_pos} ${z_pos} ${preload}\n`;
+};
 Blockly.BedrockFunction.forBlock['op_status'] = function(block) {
     const mode = block.getFieldValue('MODE');
     const player = block.getFieldValue('PLAYER');

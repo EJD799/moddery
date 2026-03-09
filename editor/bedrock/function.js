@@ -1125,6 +1125,10 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
         name: 'Z_POS'
       },
       {
+        type: 'field_number',
+        name: 'RADIUS'
+      },
+      {
         type: 'field_input',
         name: 'NAME',
         spellcheck: false

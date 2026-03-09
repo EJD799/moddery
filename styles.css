@@ -573,7 +573,7 @@ input:disabled::placeholder {
     color: var(--bulma-danger) !important;
 }
 
-#welcomeInfoBox1 {
+#welcomeInfoBox1, #welcomeInfoBox2 {
     padding: 10px;
     border-radius: 10px;
     text-align: left;
@@ -581,6 +581,10 @@ input:disabled::placeholder {
     height: max-content;
     /*display: inline-block;*/
     margin: 10px;
+}
+
+#changelogBox {
+    text-align: left !important;
 }
 
 /* =========================

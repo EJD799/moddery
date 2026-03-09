@@ -1086,6 +1086,25 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'scriptevent',
+    message0: 'trigger script event id %1 message %2',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'ID',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'MESSAGE',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'music_play',
     message0: '%1 music track %2 at volume %3% fade %4 seconds repeat mode %5',
     colour: 240,
@@ -1682,6 +1701,10 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "tickingarea_preload2"
+          },
+          {
+            "kind": "block",
+            "type": "scriptevent"
           },
         ]
       },

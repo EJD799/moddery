@@ -120,6 +120,11 @@ Blockly.BedrockFunction.forBlock['structure_load'] = function(block) {
     const name = block.getFieldValue('NAME');
     return `structure delete ${name}\n`;
 };
+Blockly.BedrockFunction.forBlock['scriptevent'] = function(block) {
+    const id = block.getFieldValue('ID');
+    const message = block.getFieldValue('MESSAGE');
+    return `scriptevent ${id} ${message}\n`;
+};
 Blockly.BedrockFunction.forBlock['op_status'] = function(block) {
     const mode = block.getFieldValue('MODE');
     const player = block.getFieldValue('PLAYER');

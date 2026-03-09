@@ -1434,7 +1434,7 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
   },
   {
     type: 'execute',
-    message0: 'execute anchored %1\nas %2\nat %3\nfacing x %4 y %5 z %6\nin %7\npositioned x %8 y %9 z %10\nrotated yaw %11 pitch %12\n%13',
+    message0: 'execute\nanchored %1\nas %2\nat %3\nfacing x %4 y %5 z %6\nin %7\npositioned x %8 y %9 z %10\nrotated yaw %11 pitch %12\nrun %13',
     colour: 240,
     args0: [
       {

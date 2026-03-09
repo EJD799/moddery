@@ -928,6 +928,36 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'spreadplayers',
+    message0: 'spread entities %1 center x %2 z %3 min spread distance %4 range %5',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'ENTITIES',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'MIN_SPREAD'
+      },
+      {
+        type: 'field_number',
+        name: 'RANGE'
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'particle',
     message0: 'show particle %1 at x %2 y %3 z %4',
     colour: 240,
@@ -1579,6 +1609,10 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "kick"
+          },
+          {
+            "kind": "block",
+            "type": "spreadplayers"
           },
         ]
       },

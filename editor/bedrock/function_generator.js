@@ -125,6 +125,14 @@ Blockly.BedrockFunction.forBlock['scriptevent'] = function(block) {
     const message = block.getFieldValue('MESSAGE');
     return `scriptevent ${id} ${message}\n`;
 };
+Blockly.BedrockFunction.forBlock['spreadplayers'] = function(block) {
+    const entities = block.getFieldValue('ENTITIES');
+    const x_pos = block.getFieldValue('X_POS');
+    const z_pos = block.getFieldValue('Z_POS');
+    const min_spread = block.getFieldValue('MIN_SPREAD');
+    const range = block.getFieldValue('RANGE');
+    return `spreadplayers ${x_pos} ${z_pos} ${min_spread} ${range} ${entities}\n`;
+};
 Blockly.BedrockFunction.forBlock['op_status'] = function(block) {
     const mode = block.getFieldValue('MODE');
     const player = block.getFieldValue('PLAYER');

@@ -1433,6 +1433,78 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'execute',
+    message0: 'execute anchored %1\nas %2\nat %3\nfacing x %5 y %6 z %7\nin %8\npositioned x %9 y %10 z %11\nrotated yaw %12 pitch %13\n%14',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'ANCHORED',
+        options: [
+          ['feet', 'feet'],
+          ['eyes', 'eyes']
+        ]
+      },
+      {
+        type: 'field_input',
+        name: 'AS',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'AT',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'FACING_X'
+      },
+      {
+        type: 'field_number',
+        name: 'FACING_Y'
+      },
+      {
+        type: 'field_number',
+        name: 'FACING_Z'
+      },
+      {
+        type: 'field_dropdown',
+        name: 'IN',
+        options: [
+          ['overworld', 'overworld'],
+          ['nether', 'nether'],
+          ['the_end', 'the_end']
+        ]
+      },
+      {
+        type: 'field_number',
+        name: 'POS_X'
+      },
+      {
+        type: 'field_number',
+        name: 'POS_Y'
+      },
+      {
+        type: 'field_number',
+        name: 'POS_Z'
+      },
+      {
+        type: 'field_number',
+        name: 'ROT_YAW'
+      },
+      {
+        type: 'field_number',
+        name: 'ROT_PITCH'
+      },
+      {
+        type: 'input_statement',
+        name: 'COMMAND'
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'addobjective',
     message0: 'add objective %1 display name %2',
     colour: 320,
@@ -1799,6 +1871,10 @@ var bedrockFunctionToolbox = {
             "kind": "block",
             "type": "scriptevent"
           },
+          {
+            "kind": "block",
+            "type": "execute"
+          },
         ]
       },
       {
@@ -1870,6 +1946,13 @@ startBlock.initSvg();
 startBlock.render();
 startBlock.setDeletable(false);
 startBlock.moveBy(50, 50);
+
+Blockly.Blocks['execute'].onchange = function() {
+  const first = this.getInputTargetBlock("COMMAND");
+  if (first && first.getNextBlock()) {
+    first.getNextBlock().unplug();
+  }
+}
 
 
 

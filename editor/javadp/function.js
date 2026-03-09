@@ -152,6 +152,112 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     nextStatement: null,
   },
   {
+    type: 'structure_save',
+    message0: 'save structure name %1 from x %2 y %3 z %4 to x %5 y %6 z %7 save mode %8',
+    colour: 80,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'NAME',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS2'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS2'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS2'
+      },
+      {
+        type: 'field_dropdown',
+        name: 'SAVE_MODE',
+        options: [
+          ['disk', 'disk'],
+          ['memory', 'memory']
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'structure_load',
+    message0: 'load structure name %1 at x %2 y %3 z %4 rotation %5 mirror %6',
+    colour: 80,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'NAME',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      },
+      {
+        type: 'field_dropdown',
+        name: 'ROTATION',
+        options: [
+          ['0_degrees', '0_degrees'],
+          ['90_degrees', '90_degrees'],
+          ['180_degrees', '180_degrees'],
+          ['270_degrees', '270_degrees'],
+        ]
+      },
+      {
+        type: 'field_dropdown',
+        name: 'MIRROR',
+        options: [
+          ['none', 'none'],
+          ['x', 'x'],
+          ['z', 'z'],
+          ['xz', 'xz'],
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'structure_delete',
+    message0: 'delete structure name %1',
+    colour: 80,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'NAME',
+        spellcheck: false
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'op_status',
     message0: '%1 op status to %2',
     colour: 160,
@@ -357,6 +463,14 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     nextStatement: null,
   },
   {
+    type: 'toggledownfall',
+    message0: 'toggle downfall',
+    colour: 240,
+    args0: [],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'effect',
     message0: 'give effect %1 level %2 to %3 for %4 seconds hide particles %5',
     colour: 10,
@@ -492,6 +606,127 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
             ["levels", "levels"]
         ]
       },
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'damage',
+    message0: 'apply %1 damage to target %2 source %3 type %4',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'AMOUNT',
+      },
+      {
+        type: 'field_input',
+        name: 'TARGET',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'SOURCE',
+        spellcheck: false
+      },
+      {
+        type: 'field_dropdown',
+        name: 'TYPE',
+        options: [
+            ["none", "none"],
+            ["piston", "piston"],
+            ["lava", "lava"],
+            ["campfire", "campfire"],
+            ["fire", "fire"],
+            ["anvil", "anvil"],
+            ["magma", "magma"],
+            ["soul_campfire", "soul_campfire"],
+            ["wither", "wither"],
+            ["falling_block", "falling_block"],
+            ["fireworks", "fireworks"],
+            ["thorns", "thorns"],
+            ["sonic_boom", "sonic_boom"],
+            ["contact", "contact"],
+            ["override", "override"],
+            ["entity_attack", "entity_attack"],
+            ["projectile", "projectile"],
+            ["suffocation", "suffocation"],
+            ["mace_smash", "mace_smash"],
+            ["fall", "fall"],
+            ["starve", "starve"],
+            ["ram_attack", "ram_attack"],
+            ["fire_tick", "fire_tick"],
+            ["stalactite", "stalactite"],
+            ["drowning", "drowning"],
+            ["block_explosion", "block_explosion"],
+            ["entity_explosion", "entity_explosion"],
+            ["void", "void"],
+            ["self_destruct", "self_destruct"],
+            ["magic", "magic"],
+            ["charging", "charging"],
+            ["stalagmite", "stalagmite"],
+            ["fly_into_wall", "fly_into_wall"],
+            ["lightning", "lightning"],
+            ["freezing", "freezing"],
+            ["temperature", "temperature"]
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'hud',
+    message0: '%1 hud element %2 for %3',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'MODE',
+        options: [
+          ['hide', 'hide'],
+          ['show', 'reset']
+        ]
+      },
+      {
+        type: 'field_dropdown',
+        name: 'ELEMENT',
+        options: [
+          ['all', 'all'],
+          ['air_bubbles', 'air_bubbles'],
+          ['armor', 'armor'],
+          ['crosshair', 'crosshair'],
+          ['health', 'health'],
+          ['horse_health', 'horse_health'],
+          ['hotbar', 'hotbar'],
+          ['hunger', 'hunger'],
+          ['item_text', 'item_text'],
+          ['paperdoll', 'paperdoll'],
+          ['progress_bar', 'progress_bar'],
+          ['status_effects', 'status_effects'],
+          ['tooltips', 'tooltips'],
+          ['touch_controls', 'touch_controls']
+        ]
+      },
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'kick',
+    message0: 'kick %1 from the game',
+    colour: 10,
+    args0: [
       {
         type: 'field_input',
         name: 'PLAYER',
@@ -680,19 +915,91 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
   },
   {
     type: 'message',
-    message0: 'send message %1 to %2',
+    message0: 'send message %1 to all players',
     colour: 10,
     args0: [
       {
         type: 'field_input',
         name: 'MESSAGE',
         spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'spreadplayers',
+    message0: 'spread entities %1 center x %2 z %3 min spread distance %4 range %5',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'ENTITIES',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'MIN_SPREAD'
+      },
+      {
+        type: 'field_number',
+        name: 'RANGE'
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'ride_start',
+    message0: '%1 start riding on %2',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'RIDER',
+        spellcheck: false
       },
       {
         type: 'field_input',
-        name: 'PLAYER',
+        name: 'VEHICLE',
         spellcheck: false
-      }
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'ride_stop',
+    message0: '%1 stop riding',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'RIDER',
+        spellcheck: false
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'ride_evict',
+    message0: 'evict riders from %1',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'VEHICLE',
+        spellcheck: false
+      },
     ],
     previousStatement: null,
     nextStatement: null,
@@ -747,6 +1054,25 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
           ['actionbar', 'actionbar']
         ]
       }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'tell',
+    message0: 'tell player %1 message %2',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'MESSAGE',
+        spellcheck: false
+      },
     ],
     previousStatement: null,
     nextStatement: null,
@@ -832,6 +1158,356 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
         name: 'PLAYER',
         spellcheck: false
       }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'scriptevent',
+    message0: 'trigger script event id %1 message %2',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'ID',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'MESSAGE',
+        spellcheck: false
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'music_play',
+    message0: '%1 music track %2 at volume %3% fade %4 seconds repeat mode %5',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'MODE',
+        options: [
+          ['play', 'play'],
+          ['queue', 'queue']
+        ]
+      },
+      {
+        type: 'field_input',
+        name: 'TRACK',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'VOLUME'
+      },
+      {
+        type: 'field_number',
+        name: 'FADE'
+      },
+      {
+        type: 'field_dropdown',
+        name: 'REPEAT',
+        options: [
+          ['play once', 'play_once'],
+          ['loop', 'loop']
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'music_stop',
+    message0: 'stop music fade %1 seconds',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'FADE'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'music_volume',
+    message0: 'set music volume to %1%',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'VOLUME'
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'transfer',
+    message0: 'transfer %1 to server ip %2 port %3',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PLAYER'
+      },
+      {
+        type: 'field_input',
+        name: 'IP'
+      },
+      {
+        type: 'field_number',
+        name: 'PORT'
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'tickingarea_add1',
+    message0: 'add ticking area from x %1 y %2 z %3 to x %4 y %5 z %6 name %7 preload %8',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'X_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS2'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS2'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS2'
+      },
+      {
+        type: 'field_input',
+        name: 'NAME',
+        spellcheck: false
+      },
+      {
+        type: 'field_checkbox',
+        name: 'PRELOAD',
+        checked: false
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'tickingarea_add2',
+    message0: 'add circular ticking area center x %1 y %2 z %3 radius %4 name %5 preload %6',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'RADIUS'
+      },
+      {
+        type: 'field_input',
+        name: 'NAME',
+        spellcheck: false
+      },
+      {
+        type: 'field_checkbox',
+        name: 'PRELOAD',
+        checked: false
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'tickingarea_remove1',
+    message0: 'remove ticking area with name %1',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'NAME',
+        spellcheck: false
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'tickingarea_remove2',
+    message0: 'remove ticking area at x %1 y %2 z %3',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'tickingarea_removeall',
+    message0: 'remove all ticking areas',
+    colour: 240,
+    args0: [],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'tickingarea_preload1',
+    message0: 'set ticking area with name %1 to preload %2',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'NAME',
+        spellcheck: false
+      },
+      {
+        type: 'field_checkbox',
+        name: 'PRELOAD',
+        checked: false
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'tickingarea_preload2',
+    message0: 'set ticking area at x %1 y %2 z %3 to preload %4',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      },
+      {
+        type: 'field_checkbox',
+        name: 'PRELOAD',
+        checked: false
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'execute',
+    message0: 'execute\nanchored %1\nas %2\nat %3\nfacing x %4 y %5 z %6\nin %7\npositioned x %8 y %9 z %10\nrotated yaw %11 pitch %12\nrun %13',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'ANCHORED',
+        options: [
+          ['feet', 'feet'],
+          ['eyes', 'eyes']
+        ]
+      },
+      {
+        type: 'field_input',
+        name: 'AS',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'AT',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'FACING_X',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'FACING_Y',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'FACING_Z',
+        spellcheck: false
+      },
+      {
+        type: 'field_dropdown',
+        name: 'IN',
+        options: [
+          ['overworld', 'overworld'],
+          ['nether', 'nether'],
+          ['the end', 'the_end']
+        ]
+      },
+      {
+        type: 'field_input',
+        name: 'POS_X',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'POS_Y',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'POS_Z',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'ROT_YAW',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'ROT_PITCH',
+        spellcheck: false
+      },
+      {
+        type: 'input_statement',
+        name: 'COMMAND'
+      },
     ],
     previousStatement: null,
     nextStatement: null,
@@ -1003,6 +1679,10 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
+            "type": "damage"
+          },
+          {
+            "kind": "block",
             "type": "effect"
           },
           {
@@ -1048,7 +1728,31 @@ var javaFunctionToolbox = {
           {
             "kind": "block",
             "type": "tag"
-          }
+          },
+          {
+            "kind": "block",
+            "type": "hud"
+          },
+          {
+            "kind": "block",
+            "type": "kick"
+          },
+          {
+            "kind": "block",
+            "type": "spreadplayers"
+          },
+          {
+            "kind": "block",
+            "type": "ride_start"
+          },
+          {
+            "kind": "block",
+            "type": "ride_stop"
+          },
+          {
+            "kind": "block",
+            "type": "ride_evict"
+          },
         ]
       },
       {
@@ -1067,7 +1771,19 @@ var javaFunctionToolbox = {
           {
             "kind": "block",
             "type": "clone_blocks"
-          }
+          },
+          {
+            "kind": "block",
+            "type": "structure_save"
+          },
+          {
+            "kind": "block",
+            "type": "structure_load"
+          },
+          {
+            "kind": "block",
+            "type": "structure_delete"
+          },
         ]
       },
       {
@@ -1093,6 +1809,10 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
+            "type": "toggledownfall"
+          },
+          {
+            "kind": "block",
             "type": "particle"
           },
           {
@@ -1101,12 +1821,68 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
+            "type": "tell"
+          },
+          {
+            "kind": "block",
             "type": "playsound"
           },
           {
             "kind": "block",
             "type": "stopsound"
-          }
+          },
+          {
+            "kind": "block",
+            "type": "music_play"
+          },
+          {
+            "kind": "block",
+            "type": "music_stop"
+          },
+          {
+            "kind": "block",
+            "type": "music_volume"
+          },
+          {
+            "kind": "block",
+            "type": "transfer"
+          },
+          {
+            "kind": "block",
+            "type": "tickingarea_add1"
+          },
+          {
+            "kind": "block",
+            "type": "tickingarea_add2"
+          },
+          {
+            "kind": "block",
+            "type": "tickingarea_remove1"
+          },
+          {
+            "kind": "block",
+            "type": "tickingarea_remove2"
+          },
+          {
+            "kind": "block",
+            "type": "tickingarea_removeall"
+          },
+          {
+            "kind": "block",
+            "type": "tickingarea_preload1"
+          },
+          {
+            "kind": "block",
+            "type": "tickingarea_preload2"
+          },
+          {
+            "kind": "block",
+            "type": "scriptevent"
+          },
+          {
+            "kind": "block",
+            "type": "execute"
+          },
         ]
       },
       {
@@ -1178,6 +1954,13 @@ startBlock.initSvg();
 startBlock.render();
 startBlock.setDeletable(false);
 startBlock.moveBy(50, 50);
+
+Blockly.Blocks['execute'].onchange = function() {
+  const first = this.getInputTargetBlock("COMMAND");
+  if (first && first.getNextBlock()) {
+    first.getNextBlock().unplug();
+  }
+}
 
 
 

@@ -1,9 +1,16 @@
+function getInput(block, name) {
+    return Blockly.JavaScript.valueToCode(block, name, Blockly.JavaScript.ORDER_ATOMIC) || '0';
+}
+
+function getStatement(block, name) {
+    return Blockly.JavaFunction.statementToCode(block, name);
+}
+
 Blockly.JavaFunction = new Blockly.Generator('JavaFunction');
 
 Blockly.JavaFunction.forBlock['message'] = function(block) {
-    const player = block.getFieldValue('PLAYER');
     const message = block.getFieldValue('MESSAGE');
-    return `say ${player} ${message}\n`;
+    return `say ${message}\n`;
 };
 Blockly.JavaFunction.forBlock['always_day'] = function(block) {
     const value = block.getFieldValue('VALUE');
@@ -52,6 +59,144 @@ Blockly.JavaFunction.forBlock['clone_blocks'] = function(block) {
     const z_pos3 = block.getFieldValue('Z_POS3');
     return `clone ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} ${x_pos3} ${y_pos3} ${z_pos3}\n`;
 };
+Blockly.JavaFunction.forBlock['tickingarea_add1'] = function(block) {
+    const x_pos1 = block.getFieldValue('X_POS1');
+    const y_pos1 = block.getFieldValue('Y_POS1');
+    const z_pos1 = block.getFieldValue('Z_POS1');
+    const x_pos2 = block.getFieldValue('X_POS2');
+    const y_pos2 = block.getFieldValue('Y_POS2');
+    const z_pos2 = block.getFieldValue('Z_POS2');
+    const name = block.getFieldValue('NAME');
+    const preload = block.getFieldValue('PRELOAD');
+    return `tickingarea add ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} ${name} ${preload.toLowerCase()}\n`;
+};
+Blockly.JavaFunction.forBlock['tickingarea_add2'] = function(block) {
+    const x_pos = block.getFieldValue('X_POS');
+    const y_pos = block.getFieldValue('Y_POS');
+    const z_pos = block.getFieldValue('Z_POS');
+    const radius = block.getFieldValue('RADIUS');
+    const name = block.getFieldValue('NAME');
+    const preload = block.getFieldValue('PRELOAD');
+    return `tickingarea add ${x_pos} ${y_pos} ${z_pos} ${radius} ${name} ${preload.toLowerCase()}\n`;
+};
+Blockly.JavaFunction.forBlock['tickingarea_remove1'] = function(block) {
+    const name = block.getFieldValue('NAME');
+    return `tickingarea remove ${name}\n`;
+};
+Blockly.JavaFunction.forBlock['tickingarea_remove2'] = function(block) {
+    const x_pos = block.getFieldValue('X_POS');
+    const y_pos = block.getFieldValue('Y_POS');
+    const z_pos = block.getFieldValue('Z_POS');
+    return `tickingarea remove ${x_pos} ${y_pos} ${z_pos}\n`;
+};
+Blockly.JavaFunction.forBlock['tickingarea_removeall'] = function(block) {
+    return `tickingarea remove_all\n`;
+};
+Blockly.JavaFunction.forBlock['tickingarea_preload1'] = function(block) {
+    const name = block.getFieldValue('NAME');
+    const preload = block.getFieldValue('PRELOAD');
+    return `tickingarea preload ${name} ${preload.toLowerCase()}\n`;
+};
+Blockly.JavaFunction.forBlock['tickingarea_preload2'] = function(block) {
+    const x_pos = block.getFieldValue('X_POS');
+    const y_pos = block.getFieldValue('Y_POS');
+    const z_pos = block.getFieldValue('Z_POS');
+    const preload = block.getFieldValue('PRELOAD');
+    return `tickingarea preload ${x_pos} ${y_pos} ${z_pos} ${preload.toLowerCase()}\n`;
+};
+Blockly.JavaFunction.forBlock['structure_save'] = function(block) {
+    const name = block.getFieldValue('NAME');
+    const x_pos1 = block.getFieldValue('X_POS1');
+    const y_pos1 = block.getFieldValue('Y_POS1');
+    const z_pos1 = block.getFieldValue('Z_POS1');
+    const x_pos2 = block.getFieldValue('X_POS2');
+    const y_pos2 = block.getFieldValue('Y_POS2');
+    const z_pos2 = block.getFieldValue('Z_POS2');
+    const save_mode = block.getFieldValue('SAVE_MODE');
+    return `structure save ${name} ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} ${save_mode}\n`;
+};
+Blockly.JavaFunction.forBlock['structure_load'] = function(block) {
+    const name = block.getFieldValue('NAME');
+    const x_pos = block.getFieldValue('X_POS');
+    const y_pos = block.getFieldValue('Y_POS');
+    const z_pos = block.getFieldValue('Z_POS');
+    const rotation = block.getFieldValue('ROTATION');
+    const mirror = block.getFieldValue('MIRROR');
+    return `structure load ${name} ${x_pos} ${y_pos} ${z_pos} ${rotation} ${mirror}\n`;
+};
+Blockly.JavaFunction.forBlock['structure_load'] = function(block) {
+    const name = block.getFieldValue('NAME');
+    return `structure delete ${name}\n`;
+};
+Blockly.JavaFunction.forBlock['scriptevent'] = function(block) {
+    const id = block.getFieldValue('ID');
+    const message = block.getFieldValue('MESSAGE');
+    return `scriptevent ${id} ${message}\n`;
+};
+Blockly.JavaFunction.forBlock['spreadplayers'] = function(block) {
+    const entities = block.getFieldValue('ENTITIES');
+    const x_pos = block.getFieldValue('X_POS');
+    const z_pos = block.getFieldValue('Z_POS');
+    const min_spread = block.getFieldValue('MIN_SPREAD');
+    const range = block.getFieldValue('RANGE');
+    return `spreadplayers ${x_pos} ${z_pos} ${min_spread} ${range} ${entities}\n`;
+};
+Blockly.JavaFunction.forBlock['execute'] = function(block) {
+    const anchored = block.getFieldValue('ANCHORED');
+    const as = block.getFieldValue('AS');
+    const at = block.getFieldValue('AT');
+    const facing_x = block.getFieldValue('FACING_X');
+    const facing_y = block.getFieldValue('FACING_Y');
+    const facing_z = block.getFieldValue('FACING_Z');
+    const in_arg = block.getFieldValue('IN');
+    const pos_x = block.getFieldValue('POS_X');
+    const pos_y = block.getFieldValue('POS_Y');
+    const pos_z = block.getFieldValue('POS_Z');
+    const rot_yaw = block.getFieldValue('ROT_YAW');
+    const rot_pitch = block.getFieldValue('ROT_PITCH');
+    const command = getStatement(block, "COMMAND");
+    let params = "execute ";
+
+    if (anchored) {
+        params += `anchored ${anchored} `;
+    }
+    if (as) {
+        params += `as ${as} `;
+    }
+    if (at) {
+        params += `at ${at} `;
+    }
+    if ((facing_x != "") && (facing_y != "") && (facing_z != "")) {
+        params += `facing ${facing_x} ${facing_y} ${facing_z} `;
+    }
+    if (in_arg) {
+        params += `in ${in_arg} `;
+    }
+    if ((pos_x != "") && (pos_y != "") && (pos_z != "")) {
+        params += `positioned ${pos_x} ${pos_y} ${pos_z} `;
+    }
+    if ((rot_yaw != "") && (rot_pitch != "")) {
+        params += `rotated ${rot_yaw} ${rot_pitch} `;
+    }
+
+    params += "run ";
+    params += command.slice(0, -2);
+
+    return `${params}\n`;
+};
+Blockly.JavaFunction.forBlock['ride_start'] = function(block) {
+    const rider = block.getFieldValue('RIDER');
+    const vehicle = block.getFieldValue('VEHICLE');
+    return `ride ${rider} start_riding ${vehicle}\n`;
+};
+Blockly.JavaFunction.forBlock['ride_stop'] = function(block) {
+    const rider = block.getFieldValue('RIDER');
+    return `ride ${rider} stop_riding\n`;
+};
+Blockly.JavaFunction.forBlock['ride_start'] = function(block) {
+    const vehicle = block.getFieldValue('VEHICLE');
+    return `ride ${vehicle} evict_riders\n`;
+};
 Blockly.JavaFunction.forBlock['op_status'] = function(block) {
     const mode = block.getFieldValue('MODE');
     const player = block.getFieldValue('PLAYER');
@@ -75,10 +220,49 @@ Blockly.JavaFunction.forBlock['max_players'] = function(block) {
     return `setmaxplayers ${max_players}\n`;
 };
 Blockly.JavaFunction.forBlock['world_spawn'] = function(block) {
+    const amount = block.getFieldValue('AMOUNT');
+    const cause = block.getFieldValue('TYPE');
+    const damager = block.getFieldValue('SOURCE');
+    const target = block.getFieldValue('TARGET');
+    return `damage ${target} ${amount} ${cause} ${damager}\n`;
+};
+Blockly.JavaFunction.forBlock['damage'] = function(block) {
     const x_pos = block.getFieldValue('X_POS');
     const y_pos = block.getFieldValue('Y_POS');
     const z_pos = block.getFieldValue('Z_POS');
     return "setworldspawn " + x_pos + " " + y_pos + " " + z_pos + "\n";
+};
+Blockly.JavaFunction.forBlock['hud'] = function(block) {
+    const mode = block.getFieldValue('MODE');
+    const element = block.getFieldValue('ELEMENT');
+    const player = block.getFieldValue('PLAYER');
+    return `hud ${player} ${mode} ${element}\n`;
+};
+Blockly.JavaFunction.forBlock['kick'] = function(block) {
+    const player = block.getFieldValue('PLAYER');
+    return `kick ${player}\n`;
+};
+Blockly.JavaFunction.forBlock['music_play'] = function(block) {
+    const mode = block.getFieldValue('MODE');
+    const track = block.getFieldValue('TRACK');
+    const volume = Number(block.getFieldValue('VOLUME')) / 100;
+    const fade = block.getFieldValue('FADE');
+    const repeat = block.getFieldValue('REPEAT');
+    return `music ${mode} ${track} ${volume} ${fade} ${repeat}\n`;
+};
+Blockly.JavaFunction.forBlock['music_stop'] = function(block) {
+    const fade = block.getFieldValue('FADE');
+    return `music stop ${fade}\n`;
+};
+Blockly.JavaFunction.forBlock['music_volume'] = function(block) {
+    const volume = Number(block.getFieldValue('VOLUME')) / 100;
+    return `music volume ${volume}\n`;
+};
+Blockly.JavaFunction.forBlock['transfer'] = function(block) {
+    const player = block.getFieldValue('PLAYER');
+    const ip = block.getFieldValue('IP');
+    const port = block.getFieldValue('PORT');
+    return `transfer ${player} ${ip} ${port}\n`;
 };
 Blockly.JavaFunction.forBlock['player_spawn'] = function(block) {
     const player = block.getFieldValue('PLAYER');
@@ -103,6 +287,9 @@ Blockly.JavaFunction.forBlock['weather'] = function(block) {
     const weather = block.getFieldValue('WEATHER');
     return `weather ${weather}\n`;
 };
+Blockly.JavaFunction.forBlock['toggledownfall'] = function(block) {
+    return `toggledownfall\n`;
+};
 Blockly.JavaFunction.forBlock['effect'] = function(block) {
     const effect = block.getFieldValue('EFFECT');
     const level = block.getFieldValue('LEVEL');
@@ -116,6 +303,11 @@ Blockly.JavaFunction.forBlock['enchant'] = function(block) {
     const enchantment = block.getFieldValue('ENCHANTMENT');
     const level = block.getFieldValue('LEVEL');
     return `enchant ${player} ${enchantment} ${level}\n`;
+};
+Blockly.JavaFunction.forBlock['tell'] = function(block) {
+    const player = block.getFieldValue('PLAYER');
+    const message = block.getFieldValue('MESSAGE');
+    return `tell ${player} ${message}\n`;
 };
 Blockly.JavaFunction.forBlock['xp'] = function(block) {
     const player = block.getFieldValue('PLAYER');

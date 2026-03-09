@@ -582,6 +582,9 @@ input:disabled::placeholder {
     /*display: inline-block;*/
     margin: 10px;
 }
+#welcomeInfoBox2 {
+    padding: 20px;
+}
 
 #changelogBox {
     text-align: left !important;

@@ -1,23 +1,6 @@
 // Create the definition.
 const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
-    type: 'always_day',
-    message0: 'set always day to %1',
-    colour: 160,
-    args0: [
-      {
-        type: 'field_dropdown',
-        name: 'VALUE',
-        options: [
-          ["true", "true"],
-          ["false", "false"]
-        ]
-      }
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
     type: 'clear_inv',
     message0: 'clear inventory of %1 filter item %2 max count %3',
     colour: 10,
@@ -108,7 +91,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
   },
   {
     type: 'clone_blocks',
-    message0: 'clone blocks from x %1 y %2 z %3 to x %4 y %5 z %6 to destination x %7 y %8 z %9',
+    message0: 'clone blocks from x %1 y %2 z %3 to x %4 y %5 z %6 in %7 to destination x %8 y %9 z %10 in %11',
     colour: 80,
     args0: [
       {
@@ -136,6 +119,12 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
         name: 'Z_POS2'
       },
       {
+        type: 'field_input',
+        name: 'FROM_DIMENSION',
+        spellcheck: false,
+        text: "minecraft:overworld"
+      },
+      {
         type: 'field_number',
         name: 'X_POS3'
       },
@@ -146,7 +135,13 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
       {
         type: 'field_number',
         name: 'Z_POS3'
-      }
+      },
+      {
+        type: 'field_input',
+        name: 'TO_DIMENSION',
+        spellcheck: false,
+        text: "minecraft:overworld"
+      },
     ],
     previousStatement: null,
     nextStatement: null,

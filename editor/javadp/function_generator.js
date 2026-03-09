@@ -12,17 +12,13 @@ Blockly.JavaFunction.forBlock['message'] = function(block) {
     const message = block.getFieldValue('MESSAGE');
     return `say ${message}\n`;
 };
-Blockly.JavaFunction.forBlock['always_day'] = function(block) {
-    const value = block.getFieldValue('VALUE');
-    return `alwaysday ${value}\n`;
-};
 Blockly.JavaFunction.forBlock['clear_inv'] = function(block) {
     const player = block.getFieldValue('PLAYER');
     const item_id = block.getFieldValue('ITEM_ID');
     const max_count = block.getFieldValue('MAX_COUNT');
     if (item_id) {
         if (max_count) {
-            return `clear ${player} ${item_id} 0 ${max_count}\n`;
+            return `clear ${player} ${item_id} ${max_count}\n`;
         } else {
             return `clear ${player} ${item_id}\n`;
         }
@@ -48,16 +44,18 @@ Blockly.JavaFunction.forBlock['fill_blocks'] = function(block) {
     return `fill ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} ${block_id}\n`;
 };
 Blockly.JavaFunction.forBlock['clone_blocks'] = function(block) {
+    const from_dimension = block.getFieldValue('FROM_DIMENSION');
     const x_pos1 = block.getFieldValue('X_POS1');
     const y_pos1 = block.getFieldValue('Y_POS1');
     const z_pos1 = block.getFieldValue('Z_POS1');
     const x_pos2 = block.getFieldValue('X_POS2');
     const y_pos2 = block.getFieldValue('Y_POS2');
     const z_pos2 = block.getFieldValue('Z_POS2');
+    const to_dimension = block.getFieldValue('TO_DIMENSION');
     const x_pos3 = block.getFieldValue('X_POS3');
     const y_pos3 = block.getFieldValue('Y_POS3');
     const z_pos3 = block.getFieldValue('Z_POS3');
-    return `clone ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} ${x_pos3} ${y_pos3} ${z_pos3}\n`;
+    return `clone from ${from_dimension} ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} to ${to_dimension} ${x_pos3} ${y_pos3} ${z_pos3}\n`;
 };
 Blockly.JavaFunction.forBlock['tickingarea_add1'] = function(block) {
     const x_pos1 = block.getFieldValue('X_POS1');

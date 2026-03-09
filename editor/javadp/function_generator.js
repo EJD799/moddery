@@ -57,87 +57,14 @@ Blockly.JavaFunction.forBlock['clone_blocks'] = function(block) {
     const z_pos3 = block.getFieldValue('Z_POS3');
     return `clone from ${from_dimension} ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} to ${to_dimension} ${x_pos3} ${y_pos3} ${z_pos3}\n`;
 };
-Blockly.JavaFunction.forBlock['tickingarea_add1'] = function(block) {
-    const x_pos1 = block.getFieldValue('X_POS1');
-    const y_pos1 = block.getFieldValue('Y_POS1');
-    const z_pos1 = block.getFieldValue('Z_POS1');
-    const x_pos2 = block.getFieldValue('X_POS2');
-    const y_pos2 = block.getFieldValue('Y_POS2');
-    const z_pos2 = block.getFieldValue('Z_POS2');
-    const name = block.getFieldValue('NAME');
-    const preload = block.getFieldValue('PRELOAD');
-    return `tickingarea add ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} ${name} ${preload.toLowerCase()}\n`;
-};
-Blockly.JavaFunction.forBlock['tickingarea_add2'] = function(block) {
-    const x_pos = block.getFieldValue('X_POS');
-    const y_pos = block.getFieldValue('Y_POS');
-    const z_pos = block.getFieldValue('Z_POS');
-    const radius = block.getFieldValue('RADIUS');
-    const name = block.getFieldValue('NAME');
-    const preload = block.getFieldValue('PRELOAD');
-    return `tickingarea add ${x_pos} ${y_pos} ${z_pos} ${radius} ${name} ${preload.toLowerCase()}\n`;
-};
-Blockly.JavaFunction.forBlock['tickingarea_remove1'] = function(block) {
-    const name = block.getFieldValue('NAME');
-    return `tickingarea remove ${name}\n`;
-};
-Blockly.JavaFunction.forBlock['tickingarea_remove2'] = function(block) {
-    const x_pos = block.getFieldValue('X_POS');
-    const y_pos = block.getFieldValue('Y_POS');
-    const z_pos = block.getFieldValue('Z_POS');
-    return `tickingarea remove ${x_pos} ${y_pos} ${z_pos}\n`;
-};
-Blockly.JavaFunction.forBlock['tickingarea_removeall'] = function(block) {
-    return `tickingarea remove_all\n`;
-};
-Blockly.JavaFunction.forBlock['tickingarea_preload1'] = function(block) {
-    const name = block.getFieldValue('NAME');
-    const preload = block.getFieldValue('PRELOAD');
-    return `tickingarea preload ${name} ${preload.toLowerCase()}\n`;
-};
-Blockly.JavaFunction.forBlock['tickingarea_preload2'] = function(block) {
-    const x_pos = block.getFieldValue('X_POS');
-    const y_pos = block.getFieldValue('Y_POS');
-    const z_pos = block.getFieldValue('Z_POS');
-    const preload = block.getFieldValue('PRELOAD');
-    return `tickingarea preload ${x_pos} ${y_pos} ${z_pos} ${preload.toLowerCase()}\n`;
-};
-Blockly.JavaFunction.forBlock['structure_save'] = function(block) {
-    const name = block.getFieldValue('NAME');
-    const x_pos1 = block.getFieldValue('X_POS1');
-    const y_pos1 = block.getFieldValue('Y_POS1');
-    const z_pos1 = block.getFieldValue('Z_POS1');
-    const x_pos2 = block.getFieldValue('X_POS2');
-    const y_pos2 = block.getFieldValue('Y_POS2');
-    const z_pos2 = block.getFieldValue('Z_POS2');
-    const save_mode = block.getFieldValue('SAVE_MODE');
-    return `structure save ${name} ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} ${save_mode}\n`;
-};
-Blockly.JavaFunction.forBlock['structure_load'] = function(block) {
-    const name = block.getFieldValue('NAME');
-    const x_pos = block.getFieldValue('X_POS');
-    const y_pos = block.getFieldValue('Y_POS');
-    const z_pos = block.getFieldValue('Z_POS');
-    const rotation = block.getFieldValue('ROTATION');
-    const mirror = block.getFieldValue('MIRROR');
-    return `structure load ${name} ${x_pos} ${y_pos} ${z_pos} ${rotation} ${mirror}\n`;
-};
-Blockly.JavaFunction.forBlock['structure_load'] = function(block) {
-    const name = block.getFieldValue('NAME');
-    return `structure delete ${name}\n`;
-};
-Blockly.JavaFunction.forBlock['scriptevent'] = function(block) {
-    const id = block.getFieldValue('ID');
-    const message = block.getFieldValue('MESSAGE');
-    return `scriptevent ${id} ${message}\n`;
-};
 Blockly.JavaFunction.forBlock['spreadplayers'] = function(block) {
     const entities = block.getFieldValue('ENTITIES');
     const x_pos = block.getFieldValue('X_POS');
     const z_pos = block.getFieldValue('Z_POS');
     const min_spread = block.getFieldValue('MIN_SPREAD');
     const range = block.getFieldValue('RANGE');
-    return `spreadplayers ${x_pos} ${z_pos} ${min_spread} ${range} ${entities}\n`;
+    const respect_teams = block.getFieldValue('RESPECT_TEAMS');
+    return `spreadplayers ${x_pos} ${z_pos} ${min_spread} ${range} ${respect_teams.toLowerCase()} ${entities}\n`;
 };
 Blockly.JavaFunction.forBlock['execute'] = function(block) {
     const anchored = block.getFieldValue('ANCHORED');

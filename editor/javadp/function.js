@@ -147,112 +147,6 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     nextStatement: null,
   },
   {
-    type: 'structure_save',
-    message0: 'save structure name %1 from x %2 y %3 z %4 to x %5 y %6 z %7 save mode %8',
-    colour: 80,
-    args0: [
-      {
-        type: 'field_input',
-        name: 'NAME',
-        spellcheck: false
-      },
-      {
-        type: 'field_number',
-        name: 'X_POS1'
-      },
-      {
-        type: 'field_number',
-        name: 'Y_POS1'
-      },
-      {
-        type: 'field_number',
-        name: 'Z_POS1'
-      },
-      {
-        type: 'field_number',
-        name: 'X_POS2'
-      },
-      {
-        type: 'field_number',
-        name: 'Y_POS2'
-      },
-      {
-        type: 'field_number',
-        name: 'Z_POS2'
-      },
-      {
-        type: 'field_dropdown',
-        name: 'SAVE_MODE',
-        options: [
-          ['disk', 'disk'],
-          ['memory', 'memory']
-        ]
-      }
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'structure_load',
-    message0: 'load structure name %1 at x %2 y %3 z %4 rotation %5 mirror %6',
-    colour: 80,
-    args0: [
-      {
-        type: 'field_input',
-        name: 'NAME',
-        spellcheck: false
-      },
-      {
-        type: 'field_number',
-        name: 'X_POS'
-      },
-      {
-        type: 'field_number',
-        name: 'Y_POS'
-      },
-      {
-        type: 'field_number',
-        name: 'Z_POS'
-      },
-      {
-        type: 'field_dropdown',
-        name: 'ROTATION',
-        options: [
-          ['0_degrees', '0_degrees'],
-          ['90_degrees', '90_degrees'],
-          ['180_degrees', '180_degrees'],
-          ['270_degrees', '270_degrees'],
-        ]
-      },
-      {
-        type: 'field_dropdown',
-        name: 'MIRROR',
-        options: [
-          ['none', 'none'],
-          ['x', 'x'],
-          ['z', 'z'],
-          ['xz', 'xz'],
-        ]
-      }
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'structure_delete',
-    message0: 'delete structure name %1',
-    colour: 80,
-    args0: [
-      {
-        type: 'field_input',
-        name: 'NAME',
-        spellcheck: false
-      },
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
     type: 'op_status',
     message0: '%1 op status to %2',
     colour: 160,
@@ -924,7 +818,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
   },
   {
     type: 'spreadplayers',
-    message0: 'spread entities %1 center x %2 z %3 min spread distance %4 range %5',
+    message0: 'spread entities %1 center x %2 z %3 min spread distance %4 range %5 respect teams %6',
     colour: 10,
     args0: [
       {
@@ -947,6 +841,10 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
       {
         type: 'field_number',
         name: 'RANGE'
+      },
+      {
+        type: 'field_checkbox',
+        name: 'RESPECT_TEAMS'
       },
     ],
     previousStatement: null,
@@ -1158,25 +1056,6 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     nextStatement: null,
   },
   {
-    type: 'scriptevent',
-    message0: 'trigger script event id %1 message %2',
-    colour: 240,
-    args0: [
-      {
-        type: 'field_input',
-        name: 'ID',
-        spellcheck: false
-      },
-      {
-        type: 'field_input',
-        name: 'MESSAGE',
-        spellcheck: false
-      }
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
     type: 'music_play',
     message0: '%1 music track %2 at volume %3% fade %4 seconds repeat mode %5',
     colour: 240,
@@ -1256,172 +1135,6 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
       {
         type: 'field_number',
         name: 'PORT'
-      },
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'tickingarea_add1',
-    message0: 'add ticking area from x %1 y %2 z %3 to x %4 y %5 z %6 name %7 preload %8',
-    colour: 240,
-    args0: [
-      {
-        type: 'field_number',
-        name: 'X_POS1'
-      },
-      {
-        type: 'field_number',
-        name: 'Y_POS1'
-      },
-      {
-        type: 'field_number',
-        name: 'Z_POS1'
-      },
-      {
-        type: 'field_number',
-        name: 'X_POS2'
-      },
-      {
-        type: 'field_number',
-        name: 'Y_POS2'
-      },
-      {
-        type: 'field_number',
-        name: 'Z_POS2'
-      },
-      {
-        type: 'field_input',
-        name: 'NAME',
-        spellcheck: false
-      },
-      {
-        type: 'field_checkbox',
-        name: 'PRELOAD',
-        checked: false
-      },
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'tickingarea_add2',
-    message0: 'add circular ticking area center x %1 y %2 z %3 radius %4 name %5 preload %6',
-    colour: 240,
-    args0: [
-      {
-        type: 'field_number',
-        name: 'X_POS'
-      },
-      {
-        type: 'field_number',
-        name: 'Y_POS'
-      },
-      {
-        type: 'field_number',
-        name: 'Z_POS'
-      },
-      {
-        type: 'field_number',
-        name: 'RADIUS'
-      },
-      {
-        type: 'field_input',
-        name: 'NAME',
-        spellcheck: false
-      },
-      {
-        type: 'field_checkbox',
-        name: 'PRELOAD',
-        checked: false
-      },
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'tickingarea_remove1',
-    message0: 'remove ticking area with name %1',
-    colour: 240,
-    args0: [
-      {
-        type: 'field_input',
-        name: 'NAME',
-        spellcheck: false
-      },
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'tickingarea_remove2',
-    message0: 'remove ticking area at x %1 y %2 z %3',
-    colour: 240,
-    args0: [
-      {
-        type: 'field_number',
-        name: 'X_POS'
-      },
-      {
-        type: 'field_number',
-        name: 'Y_POS'
-      },
-      {
-        type: 'field_number',
-        name: 'Z_POS'
-      },
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'tickingarea_removeall',
-    message0: 'remove all ticking areas',
-    colour: 240,
-    args0: [],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'tickingarea_preload1',
-    message0: 'set ticking area with name %1 to preload %2',
-    colour: 240,
-    args0: [
-      {
-        type: 'field_input',
-        name: 'NAME',
-        spellcheck: false
-      },
-      {
-        type: 'field_checkbox',
-        name: 'PRELOAD',
-        checked: false
-      },
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'tickingarea_preload2',
-    message0: 'set ticking area at x %1 y %2 z %3 to preload %4',
-    colour: 240,
-    args0: [
-      {
-        type: 'field_number',
-        name: 'X_POS'
-      },
-      {
-        type: 'field_number',
-        name: 'Y_POS'
-      },
-      {
-        type: 'field_number',
-        name: 'Z_POS'
-      },
-      {
-        type: 'field_checkbox',
-        name: 'PRELOAD',
-        checked: false
       },
     ],
     previousStatement: null,
@@ -1767,18 +1480,6 @@ var javaFunctionToolbox = {
             "kind": "block",
             "type": "clone_blocks"
           },
-          {
-            "kind": "block",
-            "type": "structure_save"
-          },
-          {
-            "kind": "block",
-            "type": "structure_load"
-          },
-          {
-            "kind": "block",
-            "type": "structure_delete"
-          },
         ]
       },
       {
@@ -1841,38 +1542,6 @@ var javaFunctionToolbox = {
           {
             "kind": "block",
             "type": "transfer"
-          },
-          {
-            "kind": "block",
-            "type": "tickingarea_add1"
-          },
-          {
-            "kind": "block",
-            "type": "tickingarea_add2"
-          },
-          {
-            "kind": "block",
-            "type": "tickingarea_remove1"
-          },
-          {
-            "kind": "block",
-            "type": "tickingarea_remove2"
-          },
-          {
-            "kind": "block",
-            "type": "tickingarea_removeall"
-          },
-          {
-            "kind": "block",
-            "type": "tickingarea_preload1"
-          },
-          {
-            "kind": "block",
-            "type": "tickingarea_preload2"
-          },
-          {
-            "kind": "block",
-            "type": "scriptevent"
           },
           {
             "kind": "block",

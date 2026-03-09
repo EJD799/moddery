@@ -142,6 +142,9 @@ Blockly.BedrockFunction.forBlock['weather'] = function(block) {
     const weather = block.getFieldValue('WEATHER');
     return `weather ${weather}\n`;
 };
+Blockly.BedrockFunction.forBlock['toggledownfall'] = function(block) {
+    return `toggledownfall\n`;
+};
 Blockly.BedrockFunction.forBlock['effect'] = function(block) {
     const effect = block.getFieldValue('EFFECT');
     const level = block.getFieldValue('LEVEL');
@@ -155,6 +158,11 @@ Blockly.BedrockFunction.forBlock['enchant'] = function(block) {
     const enchantment = block.getFieldValue('ENCHANTMENT');
     const level = block.getFieldValue('LEVEL');
     return `enchant ${player} ${enchantment} ${level}\n`;
+};
+Blockly.BedrockFunction.forBlock['tell'] = function(block) {
+    const player = block.getFieldValue('PLAYER');
+    const message = block.getFieldValue('MESSAGE');
+    return `tell ${player} ${message}\n`;
 };
 Blockly.BedrockFunction.forBlock['xp'] = function(block) {
     const player = block.getFieldValue('PLAYER');

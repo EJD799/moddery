@@ -357,6 +357,14 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'toggledownfall',
+    message0: 'toggle downfall',
+    colour: 240,
+    args0: [],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'effect',
     message0: 'give effect %1 level %2 to %3 for %4 seconds hide particles %5',
     colour: 10,
@@ -873,6 +881,25 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'tell',
+    message0: 'tell player %1 message %2',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'MESSAGE',
+        spellcheck: false
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'tag',
     message0: '%1 tag %2 for entity %3',
     colour: 10,
@@ -1311,11 +1338,19 @@ var bedrockFunctionToolbox = {
           },
           {
             "kind": "block",
+            "type": "toggledownfall"
+          },
+          {
+            "kind": "block",
             "type": "particle"
           },
           {
             "kind": "block",
             "type": "title"
+          },
+          {
+            "kind": "block",
+            "type": "tell"
           },
           {
             "kind": "block",

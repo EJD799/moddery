@@ -133,6 +133,19 @@ Blockly.BedrockFunction.forBlock['spreadplayers'] = function(block) {
     const range = block.getFieldValue('RANGE');
     return `spreadplayers ${x_pos} ${z_pos} ${min_spread} ${range} ${entities}\n`;
 };
+Blockly.BedrockFunction.forBlock['ride_start'] = function(block) {
+    const rider = block.getFieldValue('RIDER');
+    const vehicle = block.getFieldValue('VEHICLE');
+    return `ride ${rider} start_riding ${vehicle}\n`;
+};
+Blockly.BedrockFunction.forBlock['ride_stop'] = function(block) {
+    const rider = block.getFieldValue('RIDER');
+    return `ride ${rider} stop_riding\n`;
+};
+Blockly.BedrockFunction.forBlock['ride_start'] = function(block) {
+    const vehicle = block.getFieldValue('VEHICLE');
+    return `ride ${vehicle} evict_riders\n`;
+};
 Blockly.BedrockFunction.forBlock['op_status'] = function(block) {
     const mode = block.getFieldValue('MODE');
     const player = block.getFieldValue('PLAYER');

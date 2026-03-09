@@ -958,6 +958,53 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'ride_start',
+    message0: '%1 start riding on %2',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'RIDER',
+        spellcheck: false
+      },
+      {
+        type: 'field_input',
+        name: 'VEHICLE',
+        spellcheck: false
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'ride_stop',
+    message0: '%1 stop riding',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'RIDER',
+        spellcheck: false
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'ride_evict',
+    message0: 'evict riders from %1',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'VEHICLE',
+        spellcheck: false
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'particle',
     message0: 'show particle %1 at x %2 y %3 z %4',
     colour: 240,
@@ -1613,6 +1660,18 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "spreadplayers"
+          },
+          {
+            "kind": "block",
+            "type": "ride_start"
+          },
+          {
+            "kind": "block",
+            "type": "ride_stop"
+          },
+          {
+            "kind": "block",
+            "type": "ride_evict"
           },
         ]
       },

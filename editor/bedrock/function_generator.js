@@ -189,7 +189,7 @@ Blockly.BedrockFunction.forBlock['ride_stop'] = function(block) {
     const rider = block.getFieldValue('RIDER');
     return `ride ${rider} stop_riding\n`;
 };
-Blockly.BedrockFunction.forBlock['ride_start'] = function(block) {
+Blockly.BedrockFunction.forBlock['ride_evict'] = function(block) {
     const vehicle = block.getFieldValue('VEHICLE');
     return `ride ${vehicle} evict_riders\n`;
 };

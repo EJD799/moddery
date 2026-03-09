@@ -112,15 +112,11 @@ Blockly.JavaFunction.forBlock['execute'] = function(block) {
 Blockly.JavaFunction.forBlock['ride_start'] = function(block) {
     const rider = block.getFieldValue('RIDER');
     const vehicle = block.getFieldValue('VEHICLE');
-    return `ride ${rider} start_riding ${vehicle}\n`;
+    return `ride ${rider} mount ${vehicle}\n`;
 };
 Blockly.JavaFunction.forBlock['ride_stop'] = function(block) {
     const rider = block.getFieldValue('RIDER');
-    return `ride ${rider} stop_riding\n`;
-};
-Blockly.JavaFunction.forBlock['ride_start'] = function(block) {
-    const vehicle = block.getFieldValue('VEHICLE');
-    return `ride ${vehicle} evict_riders\n`;
+    return `ride ${rider} dismount\n`;
 };
 Blockly.JavaFunction.forBlock['op_status'] = function(block) {
     const mode = block.getFieldValue('MODE');

@@ -884,20 +884,6 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     nextStatement: null,
   },
   {
-    type: 'ride_evict',
-    message0: 'evict riders from %1',
-    colour: 10,
-    args0: [
-      {
-        type: 'field_input',
-        name: 'VEHICLE',
-        spellcheck: false
-      },
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
     type: 'particle',
     message0: 'show particle %1 at x %2 y %3 z %4',
     colour: 240,
@@ -1456,10 +1442,6 @@ var javaFunctionToolbox = {
           {
             "kind": "block",
             "type": "ride_stop"
-          },
-          {
-            "kind": "block",
-            "type": "ride_evict"
           },
         ]
       },

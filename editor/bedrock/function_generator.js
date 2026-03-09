@@ -60,7 +60,7 @@ Blockly.BedrockFunction.forBlock['tickingarea_add1'] = function(block) {
     const z_pos2 = block.getFieldValue('Z_POS2');
     const name = block.getFieldValue('NAME');
     const preload = block.getFieldValue('PRELOAD');
-    return `tickingarea add ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} ${name} ${preload}\n`;
+    return `tickingarea add ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} ${name} ${preload.toLowerCase()}\n`;
 };
 Blockly.BedrockFunction.forBlock['tickingarea_add2'] = function(block) {
     const x_pos = block.getFieldValue('X_POS');
@@ -69,7 +69,7 @@ Blockly.BedrockFunction.forBlock['tickingarea_add2'] = function(block) {
     const radius = block.getFieldValue('RADIUS');
     const name = block.getFieldValue('NAME');
     const preload = block.getFieldValue('PRELOAD');
-    return `tickingarea add ${x_pos} ${y_pos} ${z_pos} ${radius} ${name} ${preload}\n`;
+    return `tickingarea add ${x_pos} ${y_pos} ${z_pos} ${radius} ${name} ${preload.toLowerCase()}\n`;
 };
 Blockly.BedrockFunction.forBlock['tickingarea_remove1'] = function(block) {
     const name = block.getFieldValue('NAME');
@@ -87,14 +87,14 @@ Blockly.BedrockFunction.forBlock['tickingarea_removeall'] = function(block) {
 Blockly.BedrockFunction.forBlock['tickingarea_preload1'] = function(block) {
     const name = block.getFieldValue('NAME');
     const preload = block.getFieldValue('PRELOAD');
-    return `tickingarea preload ${name} ${preload}\n`;
+    return `tickingarea preload ${name} ${preload.toLowerCase()}\n`;
 };
 Blockly.BedrockFunction.forBlock['tickingarea_preload2'] = function(block) {
     const x_pos = block.getFieldValue('X_POS');
     const y_pos = block.getFieldValue('Y_POS');
     const z_pos = block.getFieldValue('Z_POS');
     const preload = block.getFieldValue('PRELOAD');
-    return `tickingarea preload ${x_pos} ${y_pos} ${z_pos} ${preload}\n`;
+    return `tickingarea preload ${x_pos} ${y_pos} ${z_pos} ${preload.toLowerCase()}\n`;
 };
 Blockly.BedrockFunction.forBlock['op_status'] = function(block) {
     const mode = block.getFieldValue('MODE');

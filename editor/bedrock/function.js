@@ -809,17 +809,12 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
   },
   {
     type: 'message',
-    message0: 'send message %1 to %2',
+    message0: 'send message %1 to all players',
     colour: 10,
     args0: [
       {
         type: 'field_input',
         name: 'MESSAGE',
-        spellcheck: false
-      },
-      {
-        type: 'field_input',
-        name: 'PLAYER',
         spellcheck: false
       }
     ],

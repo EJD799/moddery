@@ -1,9 +1,8 @@
 Blockly.BedrockFunction = new Blockly.Generator('BedrockFunction');
 
 Blockly.BedrockFunction.forBlock['message'] = function(block) {
-    const player = block.getFieldValue('PLAYER');
     const message = block.getFieldValue('MESSAGE');
-    return `say ${player} ${message}\n`;
+    return `say ${message}\n`;
 };
 Blockly.BedrockFunction.forBlock['always_day'] = function(block) {
     const value = block.getFieldValue('VALUE');

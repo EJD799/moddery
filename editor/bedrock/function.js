@@ -1456,16 +1456,19 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
         spellcheck: false
       },
       {
-        type: 'field_number',
-        name: 'FACING_X'
+        type: 'field_input',
+        name: 'FACING_X',
+        spellcheck: false
       },
       {
-        type: 'field_number',
-        name: 'FACING_Y'
+        type: 'field_input',
+        name: 'FACING_Y',
+        spellcheck: false
       },
       {
-        type: 'field_number',
-        name: 'FACING_Z'
+        type: 'field_input',
+        name: 'FACING_Z',
+        spellcheck: false
       },
       {
         type: 'field_dropdown',
@@ -1477,24 +1480,29 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
         ]
       },
       {
-        type: 'field_number',
-        name: 'POS_X'
+        type: 'field_input',
+        name: 'POS_X',
+        spellcheck: false
       },
       {
-        type: 'field_number',
-        name: 'POS_Y'
+        type: 'field_input',
+        name: 'POS_Y',
+        spellcheck: false
       },
       {
-        type: 'field_number',
-        name: 'POS_Z'
+        type: 'field_input',
+        name: 'POS_Z',
+        spellcheck: false
       },
       {
-        type: 'field_number',
-        name: 'ROT_YAW'
+        type: 'field_input',
+        name: 'ROT_YAW',
+        spellcheck: false
       },
       {
-        type: 'field_number',
-        name: 'ROT_PITCH'
+        type: 'field_input',
+        name: 'ROT_PITCH',
+        spellcheck: false
       },
       {
         type: 'input_statement',

@@ -1476,7 +1476,7 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
         options: [
           ['overworld', 'overworld'],
           ['nether', 'nether'],
-          ['the_end', 'the_end']
+          ['the end', 'the_end']
         ]
       },
       {

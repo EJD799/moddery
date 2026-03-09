@@ -152,6 +152,112 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'structure_save',
+    message0: 'save structure name %1 from x %2 y %3 z %4 to x %5 y %6 z %7 save mode %8',
+    colour: 80,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'NAME',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS1'
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS2'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS2'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS2'
+      },
+      {
+        type: 'field_dropdown',
+        name: 'SAVE_MODE',
+        options: [
+          ['disk', 'disk'],
+          ['memory', 'memory']
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'structure_load',
+    message0: 'load structure name %1 at x %2 y %3 z %4 rotation %5 mirror %6',
+    colour: 80,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'NAME',
+        spellcheck: false
+      },
+      {
+        type: 'field_number',
+        name: 'X_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Y_POS'
+      },
+      {
+        type: 'field_number',
+        name: 'Z_POS'
+      },
+      {
+        type: 'field_dropdown',
+        name: 'ROTATION',
+        options: [
+          ['0_degrees', '0_degrees'],
+          ['90_degrees', '90_degrees'],
+          ['180_degrees', '180_degrees'],
+          ['270_degrees', '270_degrees'],
+        ]
+      },
+      {
+        type: 'field_dropdown',
+        name: 'MIRROR',
+        options: [
+          ['none', 'none'],
+          ['x', 'x'],
+          ['z', 'z'],
+          ['xz', 'xz'],
+        ]
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'structure_delete',
+    message0: 'delete structure name %1',
+    colour: 80,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'NAME',
+        spellcheck: false
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'op_status',
     message0: '%1 op status to %2',
     colour: 160,
@@ -1473,7 +1579,19 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "clone_blocks"
-          }
+          },
+          {
+            "kind": "block",
+            "type": "structure_save"
+          },
+          {
+            "kind": "block",
+            "type": "structure_load"
+          },
+          {
+            "kind": "block",
+            "type": "structure_delete"
+          },
         ]
       },
       {

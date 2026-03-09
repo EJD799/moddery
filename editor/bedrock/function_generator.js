@@ -96,6 +96,30 @@ Blockly.BedrockFunction.forBlock['tickingarea_preload2'] = function(block) {
     const preload = block.getFieldValue('PRELOAD');
     return `tickingarea preload ${x_pos} ${y_pos} ${z_pos} ${preload.toLowerCase()}\n`;
 };
+Blockly.BedrockFunction.forBlock['structure_save'] = function(block) {
+    const name = block.getFieldValue('NAME');
+    const x_pos1 = block.getFieldValue('X_POS1');
+    const y_pos1 = block.getFieldValue('Y_POS1');
+    const z_pos1 = block.getFieldValue('Z_POS1');
+    const x_pos2 = block.getFieldValue('X_POS2');
+    const y_pos2 = block.getFieldValue('Y_POS2');
+    const z_pos2 = block.getFieldValue('Z_POS2');
+    const save_mode = block.getFieldValue('SAVE_MODE');
+    return `structure save ${name} ${x_pos1} ${y_pos1} ${z_pos1} ${x_pos2} ${y_pos2} ${z_pos2} ${save_mode}\n`;
+};
+Blockly.BedrockFunction.forBlock['structure_load'] = function(block) {
+    const name = block.getFieldValue('NAME');
+    const x_pos = block.getFieldValue('X_POS');
+    const y_pos = block.getFieldValue('Y_POS');
+    const z_pos = block.getFieldValue('Z_POS');
+    const rotation = block.getFieldValue('ROTATION');
+    const mirror = block.getFieldValue('MIRROR');
+    return `structure load ${name} ${x_pos} ${y_pos} ${z_pos} ${rotation} ${mirror}\n`;
+};
+Blockly.BedrockFunction.forBlock['structure_load'] = function(block) {
+    const name = block.getFieldValue('NAME');
+    return `structure delete ${name}\n`;
+};
 Blockly.BedrockFunction.forBlock['op_status'] = function(block) {
     const mode = block.getFieldValue('MODE');
     const player = block.getFieldValue('PLAYER');

@@ -176,10 +176,10 @@ Blockly.JavaFunction.forBlock['transfer'] = function(block) {
     return `transfer ${ip} ${port} ${player}\n`;
 };
 Blockly.JavaFunction.forBlock['player_spawn'] = function(block) {
-    const player = block.getFieldValue('PLAYER');
-    const x_pos = block.getFieldValue('X_POS');
-    const y_pos = block.getFieldValue('Y_POS');
-    const z_pos = block.getFieldValue('Z_POS');
+    const player = getInput(block, 'PLAYER');
+    const x_pos = getInput(block, 'X_POS');
+    const y_pos = getInput(block, 'Y_POS');
+    const z_pos = getInput(block, 'Z_POS');
     return `spawnpoint ${player} ${x_pos} ${y_pos} ${z_pos}\n`;
 };
 Blockly.JavaFunction.forBlock['run_command'] = function(block) {

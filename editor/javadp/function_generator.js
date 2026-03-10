@@ -119,7 +119,7 @@ Blockly.JavaFunction.forBlock['ride_stop'] = function(block) {
     return `ride ${rider} dismount\n`;
 };
 Blockly.JavaFunction.forBlock['op_status'] = function(block) {
-    const mode = getInput(block, 'MODE');
+    const mode = block.getFieldValue('MODE');
     const player = getInput(block, 'PLAYER');
     if (mode == "revoke") {
         return `deop ${player}\n`;

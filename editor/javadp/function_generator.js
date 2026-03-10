@@ -7,6 +7,8 @@ function getStatement(block, name) {
 }
 
 Blockly.JavaFunction = new Blockly.Generator('JavaFunction');
+Blockly.JavaFunction.ORDER_ATOMIC = 0;
+Blockly.JavaFunction.ORDER_NONE = 99;
 
 Blockly.JavaFunction.forBlock['message'] = function(block) {
     const message = block.getFieldValue('MESSAGE');

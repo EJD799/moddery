@@ -63,11 +63,11 @@ html[data-theme=blur] {
     --app-menubar-color: var(--bulma-text);
 }
 
-.modal-content .card, .dropdown-content {
+.modal-content .card, .dropdown-content, .selectmenu_menu {
     background: #ffffff95;
     backdrop-filter: blur(10px);
 }
 
-.dropdown-item:not(:hover):not(:active) {
+.dropdown-item:not(:hover):not(:active), .selectmenu_item:not(:hover):not(:active) {
     background: transparent !important;
 }

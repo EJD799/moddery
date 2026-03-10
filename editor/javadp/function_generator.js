@@ -134,7 +134,7 @@ Blockly.JavaFunction.forBlock['difficulty'] = function(block) {
     return `difficulty ${difficulty}\n`;
 };
 Blockly.JavaFunction.forBlock['gamerule'] = function(block) {
-    const rule = getInput(block, 'RULE');
+    const rule = block.getFieldValue('RULE');
     const value = getInput(block, 'VALUE');
     return `gamerule ${rule} ${value}\n`;
 };

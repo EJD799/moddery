@@ -178,7 +178,7 @@ Blockly.JavaFunction.forBlock['macro'] = function(block) {
 };
 Blockly.JavaFunction.forBlock['text'] = function(block) {
     const text = block.getFieldValue('TEXT');
-    return text;
+    return [text, Blockly.JavaFunction.ORDER_ATOMIC];
 };
 Blockly.JavaFunction.forBlock['time'] = function(block) {
     const time = block.getFieldValue('TIME');

@@ -1311,17 +1311,17 @@ var javaFunctionToolbox = {
             inputs: {
               X_POS: {
                 shadow: {
-                  type: 'math_number'
+                  type: 'text'
                 }
               },
               Y_POS: {
                 shadow: {
-                  type: 'math_number'
+                  type: 'text'
                 }
               },
               Z_POS: {
                 shadow: {
-                  type: 'math_number'
+                  type: 'text'
                 }
               }
             }

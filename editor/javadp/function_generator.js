@@ -119,8 +119,8 @@ Blockly.JavaFunction.forBlock['ride_stop'] = function(block) {
     return `ride ${rider} dismount\n`;
 };
 Blockly.JavaFunction.forBlock['op_status'] = function(block) {
-    const mode = block.getFieldValue('MODE');
-    const player = block.getFieldValue('PLAYER');
+    const mode = getInput(block, 'MODE');
+    const player = getInput(block, 'PLAYER');
     if (mode == "revoke") {
         return `deop ${player}\n`;
     } else {
@@ -132,8 +132,8 @@ Blockly.JavaFunction.forBlock['difficulty'] = function(block) {
     return `difficulty ${difficulty}\n`;
 };
 Blockly.JavaFunction.forBlock['gamerule'] = function(block) {
-    const rule = block.getFieldValue('RULE');
-    const value = block.getFieldValue('VALUE');
+    const rule = getInput(block, 'RULE');
+    const value = getInput(block, 'VALUE');
     return `gamerule ${rule} ${value}\n`;
 };
 Blockly.JavaFunction.forBlock['damage'] = function(block) {
@@ -142,9 +142,9 @@ Blockly.JavaFunction.forBlock['damage'] = function(block) {
     return `damage ${target} ${amount}\n`;
 };
 Blockly.JavaFunction.forBlock['world_spawn'] = function(block) {
-    const x_pos = block.getFieldValue('X_POS');
-    const y_pos = block.getFieldValue('Y_POS');
-    const z_pos = block.getFieldValue('Z_POS');
+    const x_pos = getInput(block, 'X_POS');
+    const y_pos = getInput(block, 'Y_POS');
+    const z_pos = getInput(block, 'Z_POS');
     return "setworldspawn " + x_pos + " " + y_pos + " " + z_pos + "\n";
 };
 Blockly.JavaFunction.forBlock['kick'] = function(block) {
@@ -323,7 +323,10 @@ Blockly.JavaFunction.workspaceToCode = function (workspace) {
   // Walk through all blocks chained under the hat
   let current = hat.nextConnection && hat.nextConnection.targetBlock();
   while (current) {
-    const line = Blockly.JavaFunction.blockToCode(current);
+    let line = Blockly.JavaFunction.blockToCode(current);
+    if (line.includes("$(")) {
+        line = "$" + line;
+    }
     if (typeof line === 'string') code += line;
     current = current.nextConnection && current.nextConnection.targetBlock();
   }

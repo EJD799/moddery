@@ -31,9 +31,9 @@ Blockly.JavaFunction.forBlock['message'] = function(block) {
     return `say ${message}\n`;
 };
 Blockly.JavaFunction.forBlock['clear_inv'] = function(block) {
-    const player = block.getFieldValue('PLAYER');
-    const item_id = block.getFieldValue('ITEM_ID');
-    const max_count = block.getFieldValue('MAX_COUNT');
+    const player = getInput(block, 'PLAYER');
+    const item_id = getInput(block, 'ITEM_ID');
+    const max_count = getInput(block, 'MAX_COUNT');
     if (item_id) {
         if (max_count) {
             return `clear ${player} ${item_id} ${max_count}\n`;

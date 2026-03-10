@@ -1321,7 +1321,10 @@ var javaFunctionToolbox = {
             inputs: {
               VALUE: {
                 shadow: {
-                  type: 'text'
+                  type: 'text',
+                  fields: {
+                    TEXT: "true"
+                  }
                 }
               }
             }
@@ -1332,17 +1335,26 @@ var javaFunctionToolbox = {
             inputs: {
               X_POS: {
                 shadow: {
-                  type: 'text'
+                  type: 'text',
+                  fields: {
+                    TEXT: "0"
+                  }
                 }
               },
               Y_POS: {
                 shadow: {
-                  type: 'text'
+                  type: 'text',
+                  fields: {
+                    TEXT: "64"
+                  }
                 }
               },
               Z_POS: {
                 shadow: {
-                  type: 'text'
+                  type: 'text',
+                  fields: {
+                    TEXT: "0"
+                  }
                 }
               }
             }

@@ -136,28 +136,16 @@ Blockly.JavaFunction.forBlock['gamerule'] = function(block) {
     const value = block.getFieldValue('VALUE');
     return `gamerule ${rule} ${value}\n`;
 };
-Blockly.JavaFunction.forBlock['max_players'] = function(block) {
-    const max_players = block.getFieldValue('MAX_PLAYERS');
-    return `setmaxplayers ${max_players}\n`;
+Blockly.JavaFunction.forBlock['damage'] = function(block) {
+    const amount = block.getFieldValue('AMOUNT');
+    const target = block.getFieldValue('TARGET');
+    return `damage ${target} ${amount}\n`;
 };
 Blockly.JavaFunction.forBlock['world_spawn'] = function(block) {
-    const amount = block.getFieldValue('AMOUNT');
-    const cause = block.getFieldValue('TYPE');
-    const damager = block.getFieldValue('SOURCE');
-    const target = block.getFieldValue('TARGET');
-    return `damage ${target} ${amount} ${cause} ${damager}\n`;
-};
-Blockly.JavaFunction.forBlock['damage'] = function(block) {
     const x_pos = block.getFieldValue('X_POS');
     const y_pos = block.getFieldValue('Y_POS');
     const z_pos = block.getFieldValue('Z_POS');
     return "setworldspawn " + x_pos + " " + y_pos + " " + z_pos + "\n";
-};
-Blockly.JavaFunction.forBlock['hud'] = function(block) {
-    const mode = block.getFieldValue('MODE');
-    const element = block.getFieldValue('ELEMENT');
-    const player = block.getFieldValue('PLAYER');
-    return `hud ${player} ${mode} ${element}\n`;
 };
 Blockly.JavaFunction.forBlock['kick'] = function(block) {
     const player = block.getFieldValue('PLAYER');

@@ -196,49 +196,71 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
         type: 'field_dropdown',
         name: 'RULE',
         options: [
-          ['commandBlockOutput', 'commandBlockOutput'],
-          ['commandBlocksEnabled', 'commandBlocksEnabled'],
-          ['doDaylightCycle', 'doDaylightCycle'],
-          ['doEntityDrops', 'doEntityDrops'],
-          ['doFireTick', 'doFireTick'],
-          ['doImmediateRespawn', 'doImmediateRespawn'],
-          ['doInsomnia', 'doInsomnia'],
-          ['doMobLoot', 'doMobLoot'],
-          ['doMobSpawning', 'doMobSpawning'],
-          ['doTileDrops', 'doTileDrops'],
-          ['doWeatherCycle', 'doWeatherCycle'],
-          ['drowningDamage', 'drowningDamage'],
-          ['fallDamage', 'fallDamage'],
-          ['fireDamage', 'fireDamage'],
-          ['keepInventory', 'keepInventory'],
-          ['maxCommandChainLength', 'maxCommandChainLength'],
-          ['mobGriefing', 'mobGriefing'],
-          ['naturalRegeneration', 'naturalRegeneration'],
-          ['pvp', 'pvp'],
-          ['randomTickSpeed', 'randomTickSpeed'],
-          ['sendCommandFeedback', 'sendCommandFeedback'],
-          ['showCoordinates', 'showCoordinates'],
-          ['showDeathMessages', 'showDeathMessages'],
-          ['tntExplodes', 'tntExplodes']
+          ["command block output", "command_block_output"],
+          ["log admin commands", "log_admin_commands"],
+          ["send command feedback", "send_command_feedback"],
+          ["show advancement messages", "show_advancement_messages"],
+          ["show death messages", "show_death_messages"],
+          ["block drops", "block_drops"],
+          ["block explosion drop decay", "block_explosion_drop_decay"],
+          ["entity drops", "entity_drops"],
+          ["mob drops", "mob_drops"],
+          ["mob explosion drop decay", "mob_explosion_drop_decay"],
+          ["projectiles can break blocks", "projectiles_can_break_blocks"],
+          ["tnt explosion drop decay", "tnt_explosion_drop_decay"],
+          ["command blocks work", "command_blocks_work"],
+          ["global sound events", "global_sound_events"],
+          ["max block modifications", "max_block_modifications"],
+          ["max command forks", "max_command_forks"],
+          ["max command sequence length", "max_command_sequence_length"],
+          ["max minecart speed", "max_minecart_speed"],
+          ["reduced debug info", "reduced_debug_info"],
+          ["tnt explodes", "tnt_explodes"],
+          ["forgive dead players", "forgive_dead_players"],
+          ["max entity cramming", "max_entity_cramming"],
+          ["mob griefing", "mob_griefing"],
+          ["raids", "raids"],
+          ["universal anger", "universal_anger"],
+          ["allow entering nether using portals", "allow_entering_nether_using_portals"],
+          ["drowning damage", "drowning_damage"],
+          ["elytra movement check", "elytra_movement_check"],
+          ["ender pearls vanish on death", "ender_pearls_vanish_on_death"],
+          ["fall damage", "fall_damage"],
+          ["fire damage", "fire_damage"],
+          ["fire spread radius around player", "fire_spread_radius_around_player"],
+          ["freeze damage", "freeze_damage"],
+          ["immediate respawn", "immediate_respawn"],
+          ["keep inventory", "keep_inventory"],
+          ["limited crafting", "limited_crafting"],
+          ["locator bar", "locator_bar"],
+          ["natural health regeneration", "natural_health_regeneration"],
+          ["player movement check", "player_movement_check"],
+          ["players nether portal creative delay", "players_nether_portal_creative_delay"],
+          ["players nether portal default delay", "players_nether_portal_default_delay"],
+          ["players sleeping percentage", "players_sleeping_percentage"],
+          ["pvp", "pvp"],
+          ["respawn radius", "respawn_radius"],
+          ["spawn monsters", "spawn_monsters"],
+          ["spectators generate chunks", "spectators_generate_chunks"],
+          ["spawn mobs", "spawn_mobs"],
+          ["spawn patrols", "spawn_patrols"],
+          ["spawn phantoms", "spawn_phantoms"],
+          ["spawn wandering traders", "spawn_wandering_traders"],
+          ["spawn wardens", "spawn_wardens"],
+          ["spawner blocks work", "spawner_blocks_work"],
+          ["advance time", "advance_time"],
+          ["advance weather", "advance_weather"],
+          ["lava source conversion", "lava_source_conversion"],
+          ["max snow accumulation height", "max_snow_accumulation_height"],
+          ["random tick speed", "random_tick_speed"],
+          ["spread vines", "spread_vines"],
+          ["water source conversion", "water_source_conversion"]
         ]
       },
       {
         type: 'field_input',
         name: 'VALUE',
         spellcheck: false
-      }
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'max_players',
-    message0: 'set player limit to %1',
-    colour: 160,
-    args0: [
-      {
-        type: 'field_number',
-        name: 'MAX_PLAYERS'
       }
     ],
     previousStatement: null,
@@ -506,7 +528,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
   },
   {
     type: 'damage',
-    message0: 'apply %1 damage to target %2 source %3 type %4',
+    message0: 'apply %1 damage to target %2',
     colour: 10,
     args0: [
       {
@@ -518,95 +540,6 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
         name: 'TARGET',
         spellcheck: false
       },
-      {
-        type: 'field_input',
-        name: 'SOURCE',
-        spellcheck: false
-      },
-      {
-        type: 'field_dropdown',
-        name: 'TYPE',
-        options: [
-            ["none", "none"],
-            ["piston", "piston"],
-            ["lava", "lava"],
-            ["campfire", "campfire"],
-            ["fire", "fire"],
-            ["anvil", "anvil"],
-            ["magma", "magma"],
-            ["soul_campfire", "soul_campfire"],
-            ["wither", "wither"],
-            ["falling_block", "falling_block"],
-            ["fireworks", "fireworks"],
-            ["thorns", "thorns"],
-            ["sonic_boom", "sonic_boom"],
-            ["contact", "contact"],
-            ["override", "override"],
-            ["entity_attack", "entity_attack"],
-            ["projectile", "projectile"],
-            ["suffocation", "suffocation"],
-            ["mace_smash", "mace_smash"],
-            ["fall", "fall"],
-            ["starve", "starve"],
-            ["ram_attack", "ram_attack"],
-            ["fire_tick", "fire_tick"],
-            ["stalactite", "stalactite"],
-            ["drowning", "drowning"],
-            ["block_explosion", "block_explosion"],
-            ["entity_explosion", "entity_explosion"],
-            ["void", "void"],
-            ["self_destruct", "self_destruct"],
-            ["magic", "magic"],
-            ["charging", "charging"],
-            ["stalagmite", "stalagmite"],
-            ["fly_into_wall", "fly_into_wall"],
-            ["lightning", "lightning"],
-            ["freezing", "freezing"],
-            ["temperature", "temperature"]
-        ]
-      }
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'hud',
-    message0: '%1 hud element %2 for %3',
-    colour: 10,
-    args0: [
-      {
-        type: 'field_dropdown',
-        name: 'MODE',
-        options: [
-          ['hide', 'hide'],
-          ['show', 'reset']
-        ]
-      },
-      {
-        type: 'field_dropdown',
-        name: 'ELEMENT',
-        options: [
-          ['all', 'all'],
-          ['air_bubbles', 'air_bubbles'],
-          ['armor', 'armor'],
-          ['crosshair', 'crosshair'],
-          ['health', 'health'],
-          ['horse_health', 'horse_health'],
-          ['hotbar', 'hotbar'],
-          ['hunger', 'hunger'],
-          ['item_text', 'item_text'],
-          ['paperdoll', 'paperdoll'],
-          ['progress_bar', 'progress_bar'],
-          ['status_effects', 'status_effects'],
-          ['tooltips', 'tooltips'],
-          ['touch_controls', 'touch_controls']
-        ]
-      },
-      {
-        type: 'field_input',
-        name: 'PLAYER',
-        spellcheck: false
-      }
     ],
     previousStatement: null,
     nextStatement: null,
@@ -1350,10 +1283,6 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
-            "type": "max_players"
-          },
-          {
-            "kind": "block",
             "type": "world_spawn"
           }
         ]
@@ -1422,10 +1351,6 @@ var javaFunctionToolbox = {
           {
             "kind": "block",
             "type": "tag"
-          },
-          {
-            "kind": "block",
-            "type": "hud"
           },
           {
             "kind": "block",

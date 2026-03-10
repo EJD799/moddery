@@ -215,14 +215,14 @@ Blockly.BedrockFunction.forBlock['max_players'] = function(block) {
     const max_players = block.getFieldValue('MAX_PLAYERS');
     return `setmaxplayers ${max_players}\n`;
 };
-Blockly.BedrockFunction.forBlock['world_spawn'] = function(block) {
+Blockly.BedrockFunction.forBlock['damage'] = function(block) {
     const amount = block.getFieldValue('AMOUNT');
     const cause = block.getFieldValue('TYPE');
     const damager = block.getFieldValue('SOURCE');
     const target = block.getFieldValue('TARGET');
     return `damage ${target} ${amount} ${cause} ${damager}\n`;
 };
-Blockly.BedrockFunction.forBlock['damage'] = function(block) {
+Blockly.BedrockFunction.forBlock['world_spawn'] = function(block) {
     const x_pos = block.getFieldValue('X_POS');
     const y_pos = block.getFieldValue('Y_POS');
     const z_pos = block.getFieldValue('Z_POS');

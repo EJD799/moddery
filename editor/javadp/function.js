@@ -22,6 +22,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'set_block',
@@ -49,6 +50,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'fill_blocks',
@@ -88,6 +90,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'clone_blocks',
@@ -145,6 +148,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'op_status',
@@ -167,6 +171,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'difficulty',
@@ -186,6 +191,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'gamerule',
@@ -265,6 +271,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'world_spawn',
@@ -289,6 +296,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'player_spawn',
@@ -315,6 +323,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'run_command',
@@ -329,6 +338,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'run_function',
@@ -343,6 +353,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'macro',
@@ -356,6 +367,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
       }
     ],
     output: null,
+    inputsInline: true
   },
   {
     type: 'time',
@@ -370,6 +382,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'weather',
@@ -388,6 +401,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'effect',
@@ -449,6 +463,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'effect_clear',
@@ -496,6 +511,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'enchant',
@@ -554,6 +570,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'xp',
@@ -588,6 +605,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'damage',
@@ -606,6 +624,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'kick',
@@ -620,6 +639,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'tp_e',
@@ -639,6 +659,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'tp_xyz',
@@ -665,6 +686,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'kill',
@@ -679,6 +701,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'gamemode',
@@ -703,6 +726,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'summon',
@@ -729,6 +753,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'give',
@@ -752,6 +777,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'message',
@@ -766,6 +792,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'spreadplayers',
@@ -800,6 +827,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'ride_start',
@@ -819,6 +847,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'ride_stop',
@@ -833,6 +862,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'particle',
@@ -859,6 +889,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'title',
@@ -887,6 +918,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'tell',
@@ -906,6 +938,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'tag',
@@ -933,6 +966,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'playsound',
@@ -989,6 +1023,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'stopsound',
@@ -1008,6 +1043,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'transfer',
@@ -1029,6 +1065,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'execute',
@@ -1109,6 +1146,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'addobjective',
@@ -1128,6 +1166,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'removeobjective',
@@ -1142,6 +1181,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'objectivedisplay',
@@ -1165,6 +1205,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'hidedisplay',
@@ -1182,6 +1223,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: 'operatescore',
@@ -1214,6 +1256,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
   },
   {
     type: "on_start",

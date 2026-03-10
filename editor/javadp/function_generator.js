@@ -1,5 +1,5 @@
 function getInput(block, name) {
-    return Blockly.JavaScript.valueToCode(block, name, Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    return Blockly.JavaFunction.valueToCode(block, name, Blockly.JavaFunction.ORDER_ATOMIC) || '0';
 }
 
 function getStatement(block, name) {
@@ -174,7 +174,7 @@ Blockly.JavaFunction.forBlock['run_function'] = function(block) {
 };
 Blockly.JavaFunction.forBlock['macro'] = function(block) {
     const name = block.getFieldValue('NAME');
-    return `$(${func})`;
+    return [`$(${func})`, Blockly.JavaFunction.ORDER_ATOMIC];
 };
 Blockly.JavaFunction.forBlock['text'] = function(block) {
     const text = block.getFieldValue('TEXT');

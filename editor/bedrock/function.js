@@ -532,6 +532,53 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
     nextStatement: null,
   },
   {
+    type: 'effect_clear',
+    message0: 'clear effects from %1 filter type %2',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      },
+      {
+        type: 'field_dropdown',
+        name: 'EFFECT',
+        options: [
+          ['Absorption', 'absorption'],
+          ['Blindness', 'blindness'],
+          ['Conduit Power', 'conduit_power'],
+          ['Fire Resistance', 'fire_resistance'],
+          ['Fatal Poison', 'fatal_poison'],
+          ['Haste', 'haste'],
+          ['Health Boost', 'health_boost'],
+          ['Hunger', 'hunger'],
+          ['Instant Damage', 'instant_damage'],
+          ['Instant Health', 'instant_health'],
+          ['Invisibility', 'invisibility'],
+          ['Jump Boost', 'jump_boost'],
+          ['Levitation', 'levitation'],
+          ['Mining Fatigue', 'mining_fatigue'],
+          ['Nausea', 'nausea'],
+          ['Night Vision', 'night_vision'],
+          ['Poison', 'poison'],
+          ['Resistance', 'resistance'],
+          ['Regeneration', 'regeneration'],
+          ['Saturation', 'saturation'],
+          ['Slowness', 'slowness'],
+          ['Slow Falling', 'slow_falling'],
+          ['Speed', 'speed'],
+          ['Strength', 'strength'],
+          ['Water Breathing', 'water_breathing'],
+          ['Weakness', 'weakness'],
+          ['Wither', 'wither']
+        ]
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
     type: 'enchant',
     message0: 'enchant held item of %1 with %2 level %3',
     colour: 10,
@@ -1684,6 +1731,10 @@ var bedrockFunctionToolbox = {
           {
             "kind": "block",
             "type": "effect"
+          },
+          {
+            "kind": "block",
+            "type": "effect_clear"
           },
           {
             "kind": "block",

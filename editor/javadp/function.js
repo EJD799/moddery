@@ -374,14 +374,6 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     nextStatement: null,
   },
   {
-    type: 'toggledownfall',
-    message0: 'toggle downfall',
-    colour: 240,
-    args0: [],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
     type: 'effect',
     message0: 'give effect %1 level %2 to %3 for %4 seconds hide particles %5',
     colour: 10,
@@ -438,6 +430,53 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
         type: 'field_checkbox',
         name: 'HIDE_PARTICLES'
       }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+  },
+  {
+    type: 'effect_clear',
+    message0: 'clear effects from %1 filter type %2',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'PLAYER',
+        spellcheck: false
+      },
+      {
+        type: 'field_dropdown',
+        name: 'EFFECT',
+        options: [
+          ['Absorption', 'absorption'],
+          ['Blindness', 'blindness'],
+          ['Conduit Power', 'conduit_power'],
+          ['Fire Resistance', 'fire_resistance'],
+          ['Fatal Poison', 'fatal_poison'],
+          ['Haste', 'haste'],
+          ['Health Boost', 'health_boost'],
+          ['Hunger', 'hunger'],
+          ['Instant Damage', 'instant_damage'],
+          ['Instant Health', 'instant_health'],
+          ['Invisibility', 'invisibility'],
+          ['Jump Boost', 'jump_boost'],
+          ['Levitation', 'levitation'],
+          ['Mining Fatigue', 'mining_fatigue'],
+          ['Nausea', 'nausea'],
+          ['Night Vision', 'night_vision'],
+          ['Poison', 'poison'],
+          ['Resistance', 'resistance'],
+          ['Regeneration', 'regeneration'],
+          ['Saturation', 'saturation'],
+          ['Slowness', 'slowness'],
+          ['Slow Falling', 'slow_falling'],
+          ['Speed', 'speed'],
+          ['Strength', 'strength'],
+          ['Water Breathing', 'water_breathing'],
+          ['Weakness', 'weakness'],
+          ['Wither', 'wither']
+        ]
+      },
     ],
     previousStatement: null,
     nextStatement: null,
@@ -975,70 +1014,6 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     nextStatement: null,
   },
   {
-    type: 'music_play',
-    message0: '%1 music track %2 at volume %3% fade %4 seconds repeat mode %5',
-    colour: 240,
-    args0: [
-      {
-        type: 'field_dropdown',
-        name: 'MODE',
-        options: [
-          ['play', 'play'],
-          ['queue', 'queue']
-        ]
-      },
-      {
-        type: 'field_input',
-        name: 'TRACK',
-        spellcheck: false
-      },
-      {
-        type: 'field_number',
-        name: 'VOLUME'
-      },
-      {
-        type: 'field_number',
-        name: 'FADE'
-      },
-      {
-        type: 'field_dropdown',
-        name: 'REPEAT',
-        options: [
-          ['play once', 'play_once'],
-          ['loop', 'loop']
-        ]
-      }
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'music_stop',
-    message0: 'stop music fade %1 seconds',
-    colour: 240,
-    args0: [
-      {
-        type: 'field_number',
-        name: 'FADE'
-      }
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'music_volume',
-    message0: 'set music volume to %1%',
-    colour: 240,
-    args0: [
-      {
-        type: 'field_number',
-        name: 'VOLUME'
-      }
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
     type: 'transfer',
     message0: 'transfer %1 to server ip %2 port %3',
     colour: 240,
@@ -1310,6 +1285,10 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
+            "type": "effect_clear"
+          },
+          {
+            "kind": "block",
             "type": "enchant"
           },
           {
@@ -1412,10 +1391,6 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
-            "type": "toggledownfall"
-          },
-          {
-            "kind": "block",
             "type": "particle"
           },
           {
@@ -1433,18 +1408,6 @@ var javaFunctionToolbox = {
           {
             "kind": "block",
             "type": "stopsound"
-          },
-          {
-            "kind": "block",
-            "type": "music_play"
-          },
-          {
-            "kind": "block",
-            "type": "music_stop"
-          },
-          {
-            "kind": "block",
-            "type": "music_volume"
           },
           {
             "kind": "block",

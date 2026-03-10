@@ -151,27 +151,11 @@ Blockly.JavaFunction.forBlock['kick'] = function(block) {
     const player = block.getFieldValue('PLAYER');
     return `kick ${player}\n`;
 };
-Blockly.JavaFunction.forBlock['music_play'] = function(block) {
-    const mode = block.getFieldValue('MODE');
-    const track = block.getFieldValue('TRACK');
-    const volume = Number(block.getFieldValue('VOLUME')) / 100;
-    const fade = block.getFieldValue('FADE');
-    const repeat = block.getFieldValue('REPEAT');
-    return `music ${mode} ${track} ${volume} ${fade} ${repeat}\n`;
-};
-Blockly.JavaFunction.forBlock['music_stop'] = function(block) {
-    const fade = block.getFieldValue('FADE');
-    return `music stop ${fade}\n`;
-};
-Blockly.JavaFunction.forBlock['music_volume'] = function(block) {
-    const volume = Number(block.getFieldValue('VOLUME')) / 100;
-    return `music volume ${volume}\n`;
-};
 Blockly.JavaFunction.forBlock['transfer'] = function(block) {
     const player = block.getFieldValue('PLAYER');
     const ip = block.getFieldValue('IP');
     const port = block.getFieldValue('PORT');
-    return `transfer ${player} ${ip} ${port}\n`;
+    return `transfer ${ip} ${port} ${player}\n`;
 };
 Blockly.JavaFunction.forBlock['player_spawn'] = function(block) {
     const player = block.getFieldValue('PLAYER');
@@ -196,16 +180,18 @@ Blockly.JavaFunction.forBlock['weather'] = function(block) {
     const weather = block.getFieldValue('WEATHER');
     return `weather ${weather}\n`;
 };
-Blockly.JavaFunction.forBlock['toggledownfall'] = function(block) {
-    return `toggledownfall\n`;
-};
 Blockly.JavaFunction.forBlock['effect'] = function(block) {
     const effect = block.getFieldValue('EFFECT');
     const level = block.getFieldValue('LEVEL');
     const player = block.getFieldValue('PLAYER');
     const duration = block.getFieldValue('DURATION');
     const hide_particles = block.getFieldValue('HIDE_PARTICLES');
-    return `effect ${player} ${effect} ${duration} ${level} ${hide_particles}\n`;
+    return `effect give ${player} ${effect} ${duration} ${level} ${hide_particles}\n`;
+};
+Blockly.BedrockFunction.forBlock['effect_clear'] = function(block) {
+    const effect = block.getFieldValue('EFFECT');
+    const player = block.getFieldValue('PLAYER');
+    return `effect clear ${player} ${effect}\n`;
 };
 Blockly.JavaFunction.forBlock['enchant'] = function(block) {
     const player = block.getFieldValue('PLAYER');

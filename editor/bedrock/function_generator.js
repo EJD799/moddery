@@ -294,6 +294,11 @@ Blockly.BedrockFunction.forBlock['effect'] = function(block) {
     const hide_particles = block.getFieldValue('HIDE_PARTICLES');
     return `effect ${player} ${effect} ${duration} ${level} ${hide_particles}\n`;
 };
+Blockly.BedrockFunction.forBlock['effect_clear'] = function(block) {
+    const effect = block.getFieldValue('EFFECT');
+    const player = block.getFieldValue('PLAYER');
+    return `effect ${player} clear ${effect}\n`;
+};
 Blockly.BedrockFunction.forBlock['enchant'] = function(block) {
     const player = block.getFieldValue('PLAYER');
     const enchantment = block.getFieldValue('ENCHANTMENT');

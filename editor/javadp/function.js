@@ -179,6 +179,21 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     colour: 160,
     args0: [
       {
+        type: 'input_value',
+        name: 'DIFFICULTY',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: 'difficulty_dropdown',
+    message0: '%1',
+    colour: 160,
+    args0: [
+      {
         type: 'field_dropdown',
         name: 'DIFFICULTY',
         options: [
@@ -189,8 +204,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
         ]
       }
     ],
-    previousStatement: null,
-    nextStatement: null,
+    output: null,
     inputsInline: true
   },
   {
@@ -1292,7 +1306,14 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
-            "type": "difficulty"
+            "type": "difficulty",
+            inputs: {
+              DIFFICULTY: {
+                shadow: {
+                  type: 'difficulty_dropdown'
+                }
+              }
+            }
           },
           {
             "kind": "block",

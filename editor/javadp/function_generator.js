@@ -10,6 +10,22 @@ Blockly.JavaFunction = new Blockly.Generator('JavaFunction');
 Blockly.JavaFunction.ORDER_ATOMIC = 0;
 Blockly.JavaFunction.ORDER_NONE = 99;
 
+
+Blockly.JavaFunction.forBlock['macro'] = function(block) {
+    const name = block.getFieldValue('NAME');
+    return [`$(${name})`, Blockly.JavaFunction.ORDER_ATOMIC];
+};
+Blockly.JavaFunction.forBlock['text'] = function(block) {
+    const text = block.getFieldValue('TEXT');
+    return [text, Blockly.JavaFunction.ORDER_ATOMIC];
+};
+Blockly.JavaFunction.forBlock['difficulty_dropdown'] = function(block) {
+    const text = block.getFieldValue('DIFFICULTY');
+    return [text, Blockly.JavaFunction.ORDER_ATOMIC];
+};
+
+
+
 Blockly.JavaFunction.forBlock['message'] = function(block) {
     const message = block.getFieldValue('MESSAGE');
     return `say ${message}\n`;
@@ -173,14 +189,6 @@ Blockly.JavaFunction.forBlock['run_command'] = function(block) {
 Blockly.JavaFunction.forBlock['run_function'] = function(block) {
     const func = block.getFieldValue('FUNCTION');
     return `function ${func}\n`;
-};
-Blockly.JavaFunction.forBlock['macro'] = function(block) {
-    const name = block.getFieldValue('NAME');
-    return [`$(${name})`, Blockly.JavaFunction.ORDER_ATOMIC];
-};
-Blockly.JavaFunction.forBlock['text'] = function(block) {
-    const text = block.getFieldValue('TEXT');
-    return [text, Blockly.JavaFunction.ORDER_ATOMIC];
 };
 Blockly.JavaFunction.forBlock['time'] = function(block) {
     const time = block.getFieldValue('TIME');

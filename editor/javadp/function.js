@@ -541,9 +541,17 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
   },
   {
     type: 'xp',
-    message0: 'give %1 xp %2 to %3',
+    message0: '%1 %2 xp %3 to %4',
     colour: 10,
     args0: [
+      {
+        type: 'field_dropdown',
+        name: 'MODE',
+        options: [
+            ["add", "add"],
+            ["set", "set"]
+        ]
+      },
       {
         type: 'field_number',
         name: 'QUANTITY',
@@ -723,51 +731,6 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
       {
         type: 'field_input',
         name: 'PLAYER',
-        spellcheck: false
-      }
-    ],
-    previousStatement: null,
-    nextStatement: null,
-  },
-  {
-    type: 'replaceitem',
-    message0: 'replace item in %1 slot %2 of %3 with %4 of %5',
-    colour: 10,
-    args0: [
-      {
-        type: 'field_dropdown',
-        name: 'SLOT_TYPE',
-        options: [
-          ['main hand', 'slot.weapon.mainhand'],
-          ['off hand', 'slot.weapon.offhand'],
-          ['hotbar', 'slot.hotbar'],
-          ['inventory', 'slot.inventory'],
-          ['helmet slot', 'slot.armor.head'],
-          ['chestplate slot', 'slot.armor.chest'],
-          ['leggings slot', 'slot.armor.legs'],
-          ['boots slot', 'slot.armor.feet'],
-          ['ender chest', 'slot.enderchest'],
-          ['saddle', 'slot.saddle'],
-          ['horse armor', 'slot.armor'],
-          ['entity chest', 'slot.chest']
-        ]
-      },
-      {
-        type: 'field_number',
-        name: 'SLOT_NUMBER'
-      },
-      {
-        type: 'field_input',
-        name: 'PLAYER',
-        spellcheck: false
-      },
-      {
-        type: 'field_number',
-        name: 'QUANTITY'
-      },
-      {
-        type: 'field_input',
-        name: 'ITEM',
         spellcheck: false
       }
     ],
@@ -957,7 +920,7 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
   },
   {
     type: 'playsound',
-    message0: 'play sound %1 for %2 at x %3 y %4 z %5 volume %6 pitch %7',
+    message0: 'play sound %1 for %2 at x %3 y %4 z %5 volume %6 pitch %7 source %8',
     colour: 240,
     args0: [
       {
@@ -989,7 +952,24 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
       {
         type: 'field_number',
         name: 'PITCH'
-      }
+      },
+      {
+        type: 'field_dropdown',
+        name: 'SOURCE',
+        options: [
+          ["master", "master"],
+          ["music", "music"],
+          ["record", "record"],
+          ["weather", "weather"],
+          ["block", "block"],
+          ["hostile", "hostile"],
+          ["neutral", "neutral"],
+          ["player", "player"],
+          ["ambient", "ambient"],
+          ["voice", "voice"],
+          ["ui", "ui"],
+        ]
+      },
     ],
     previousStatement: null,
     nextStatement: null,
@@ -1156,9 +1136,9 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
         type: 'field_dropdown',
         name: 'DISPLAY',
         options: [
-          ['sidebar ascending', 'sidebar_ascending'],
-          ['sidebar descending', 'sidebar_descending'],
-          ['below name', 'below_name']
+          ['list', 'list'],
+          ['sidebar', 'sidebar'],
+          ['below name', 'belowname']
         ]
       },
       {
@@ -1318,10 +1298,6 @@ var javaFunctionToolbox = {
           {
             "kind": "block",
             "type": "give"
-          },
-          {
-            "kind": "block",
-            "type": "replaceitem"
           },
           {
             "kind": "block",

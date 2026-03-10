@@ -208,11 +208,8 @@ Blockly.JavaFunction.forBlock['xp'] = function(block) {
     const player = block.getFieldValue('PLAYER');
     const quantity = block.getFieldValue('QUANTITY');
     const format = block.getFieldValue('FORMAT');
-    if (format == "levels") {
-        return `xp ${quantity}L ${player}\n`;
-    } else {
-        return `xp ${quantity} ${player}\n`;
-    }
+    const mode = block.getFieldValue('MODE');
+    return `xp ${mode} ${player} ${quantity} ${format}\n`;
 };
 Blockly.JavaFunction.forBlock['tp_e'] = function(block) {
     const player1 = block.getFieldValue('PLAYER1');
@@ -248,14 +245,6 @@ Blockly.JavaFunction.forBlock['give'] = function(block) {
     const player = block.getFieldValue('PLAYER');
     return `give ${player} ${item} ${quantity}\n`;
 };
-Blockly.JavaFunction.forBlock['replaceitem'] = function(block) {
-    const slot_type = block.getFieldValue('SLOT_TYPE');
-    const slot_number = block.getFieldValue('SLOT_NUMBER');
-    const player = block.getFieldValue('PLAYER');
-    const quantity = block.getFieldValue('QUANTITY');
-    const item = block.getFieldValue('ITEM');
-    return `replaceitem entity ${player} ${slot_type} ${slot_number} ${item} ${quantity}\n`;
-};
 Blockly.JavaFunction.forBlock['particle'] = function(block) {
     const particle = block.getFieldValue('PARTICLE');
     const x_pos = block.getFieldValue('X_POS');
@@ -277,18 +266,19 @@ Blockly.JavaFunction.forBlock['tag'] = function(block) {
 };
 Blockly.JavaFunction.forBlock['playsound'] = function(block) {
     const sound = block.getFieldValue('SOUND');
+    const source = block.getFieldValue('SOURCE');
     const player = block.getFieldValue('PLAYER');
     const x_pos = block.getFieldValue('X_POS');
     const y_pos = block.getFieldValue('Y_POS');
     const z_pos = block.getFieldValue('Z_POS');
     const volume = block.getFieldValue('VOLUME');
     const pitch = block.getFieldValue('PITCH');
-    return `playsound ${sound} ${player} ${x_pos} ${y_pos} ${z_pos} ${volume} ${pitch}\n`;
+    return `playsound ${sound} ${source} ${player} ${x_pos} ${y_pos} ${z_pos} ${volume} ${pitch}\n`;
 };
 Blockly.JavaFunction.forBlock['stopsound'] = function(block) {
     const sound = block.getFieldValue('SOUND');
     const player = block.getFieldValue('PLAYER');
-    return `stopsound ${player} ${sound}\n`;
+    return `stopsound ${player} * ${sound}\n`;
 };
 Blockly.JavaFunction.forBlock['addobjective'] = function(block) {
     const objective = block.getFieldValue('OBJECTIVE');
@@ -302,15 +292,7 @@ Blockly.JavaFunction.forBlock['removeobjective'] = function(block) {
 Blockly.JavaFunction.forBlock['objectivedisplay'] = function(block) {
     const objective = block.getFieldValue('OBJECTIVE');
     const display = block.getFieldValue('DISPLAY');
-    if (display == "sidebar_ascending") {
-        return `scoreboard objectives setdisplay sidebar ${objective} ascending\n`;
-    }
-    if (display == "sidebar_descending") {
-        return `scoreboard objectives setdisplay sidebar ${objective} descending\n`;
-    }
-    if (display == "belowname") {
-        return `scoreboard objectives setdisplay belowname ${objective}\n`;
-    }
+    return `scoreboard objectives setdisplay ${display} ${objective}\n`;
 };
 Blockly.JavaFunction.forBlock['hidedisplay'] = function(block) {
     const display = block.getFieldValue('DISPLAY');

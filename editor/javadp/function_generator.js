@@ -146,7 +146,7 @@ Blockly.JavaFunction.forBlock['op_status'] = function(block) {
     }
 };
 Blockly.JavaFunction.forBlock['difficulty'] = function(block) {
-    const difficulty = block.getFieldValue('DIFFICULTY');
+    const difficulty = getInput(block, 'DIFFICULTY');
     return `difficulty ${difficulty}\n`;
 };
 Blockly.JavaFunction.forBlock['gamerule'] = function(block) {

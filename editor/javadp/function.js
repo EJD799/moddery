@@ -342,6 +342,19 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     nextStatement: null,
   },
   {
+    type: 'macro',
+    message0: 'get macro %1',
+    colour: 240,
+    args0: [
+      {
+        type: 'field_input',
+        name: 'NAME',
+        spellcheck: false
+      }
+    ],
+    output: null,
+  },
+  {
     type: 'time',
     message0: 'set time to %1',
     colour: 240,
@@ -1359,6 +1372,10 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
+            "type": "macro"
+          },
+          {
+            "kind": "block",
             "type": "time"
           },
           {
@@ -1425,7 +1442,14 @@ var javaFunctionToolbox = {
     ]
   };
 
-
+Blockly.Blocks['text'].init = function() {
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldTextInput(""), "TEXT");
+  this.setOutput(true, "String");
+  this.setColour(160);
+  this.setTooltip("Text");
+  this.setHelpUrl("");
+};
 
 
 // Apply the no_disable_menu logic to all blocks

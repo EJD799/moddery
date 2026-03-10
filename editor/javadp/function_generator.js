@@ -172,6 +172,14 @@ Blockly.JavaFunction.forBlock['run_function'] = function(block) {
     const func = block.getFieldValue('FUNCTION');
     return `function ${func}\n`;
 };
+Blockly.JavaFunction.forBlock['macro'] = function(block) {
+    const name = block.getFieldValue('NAME');
+    return `$(${func})`;
+};
+Blockly.JavaFunction.forBlock['text'] = function(block) {
+    const text = block.getFieldValue('TEXT');
+    return text;
+};
 Blockly.JavaFunction.forBlock['time'] = function(block) {
     const time = block.getFieldValue('TIME');
     return `time set ${time}\n`;
@@ -305,13 +313,6 @@ Blockly.JavaFunction.forBlock['operatescore'] = function(block) {
     const objective = block.getFieldValue('OBJECTIVE');
     return `scoreboard players ${mode} ${player} ${objective} ${quantity}\n`;
 };
-
-// Chaining function for statement blocks
-/*Blockly.JavaFunction.scrub_ = function(block, code) {
-    const nextBlock = block.nextConnection && block.nextConnection.targetBlock();
-    const nextCode = nextBlock ? Blockly.JavaFunction.blockToCode(nextBlock) : '';
-    return code + nextCode;
-};*/
 
 Blockly.JavaFunction.workspaceToCode = function (workspace) {
   // Find the hat block

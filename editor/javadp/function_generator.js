@@ -176,7 +176,7 @@ Blockly.JavaFunction.forBlock['run_function'] = function(block) {
 };
 Blockly.JavaFunction.forBlock['macro'] = function(block) {
     const name = block.getFieldValue('NAME');
-    return [`$(${func})`, Blockly.JavaFunction.ORDER_ATOMIC];
+    return [`$(${name})`, Blockly.JavaFunction.ORDER_ATOMIC];
 };
 Blockly.JavaFunction.forBlock['text'] = function(block) {
     const text = block.getFieldValue('TEXT');

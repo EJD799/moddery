@@ -160,9 +160,9 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
         ]
       },
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'PLAYER',
-        spellcheck: false
+        check: null
       }
     ],
     previousStatement: null,
@@ -258,9 +258,9 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
         ]
       },
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'VALUE',
-        spellcheck: false
+        check: null
       }
     ],
     previousStatement: null,
@@ -272,16 +272,19 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     colour: 160,
     args0: [
       {
-        type: 'field_number',
-        name: 'X_POS'
+        type: 'input_value',
+        name: 'X_POS',
+        check: null
       },
       {
-        type: 'field_number',
-        name: 'Y_POS'
+        type: 'input_value',
+        name: 'Y_POS',
+        check: null
       },
       {
-        type: 'field_number',
-        name: 'Z_POS'
+        type: 'input_value',
+        name: 'Z_POS',
+        check: null
       }
     ],
     previousStatement: null,
@@ -1235,11 +1238,14 @@ var javaFunctionToolbox = {
         "contents": [
           {
             "kind": "block",
-            "type": "always_day"
-          },
-          {
-            "kind": "block",
-            "type": "op_status"
+            "type": "op_status",
+            inputs: {
+              PLAYER: {
+                shadow: {
+                  type: 'text'
+                }
+              }
+            }
           },
           {
             "kind": "block",
@@ -1247,11 +1253,35 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
-            "type": "gamerule"
+            "type": "gamerule",
+            inputs: {
+              VALUE: {
+                shadow: {
+                  type: 'text'
+                }
+              }
+            }
           },
           {
             "kind": "block",
-            "type": "world_spawn"
+            "type": "world_spawn",
+            inputs: {
+              X_POS: {
+                shadow: {
+                  type: 'math_number'
+                }
+              },
+              Y_POS: {
+                shadow: {
+                  type: 'math_number'
+                }
+              },
+              Z_POS: {
+                shadow: {
+                  type: 'math_number'
+                }
+              }
+            }
           }
         ]
       },

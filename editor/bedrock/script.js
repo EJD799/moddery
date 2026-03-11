@@ -2698,7 +2698,7 @@ const bedrockScriptToolbox = {
           }
         },
         { kind: 'block', type: 'controls_whileUntil' },
-        {
+        /*{
           kind: 'block',
           type: 'controls_for',
           inputs: {
@@ -2707,7 +2707,7 @@ const bedrockScriptToolbox = {
             BY: { shadow: { type: 'math_number', fields: { NUM: 1 } } }
           }
         },
-        { kind: 'block', type: 'controls_forEach' },
+        { kind: 'block', type: 'controls_forEach' },*/
         { kind: 'block', type: 'controls_flow_statements' }
       ]
     },
@@ -2775,13 +2775,6 @@ const bedrockScriptToolbox = {
             }
           }
         },
-        /*{
-          kind: 'block',
-          type: 'math_change',
-          values: {
-            DELTA: { shadow: { type: 'math_number', fields: { NUM: 1 } } }
-          }
-        },*/
         { kind: 'block', type: 'math_round',
           inputs: {
             NUM: { 

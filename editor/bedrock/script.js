@@ -3004,7 +3004,7 @@ const bedrockScriptToolbox = {
     },*/
     {
       kind: 'category',
-      name: 'Variables',
+      name: ' Variables',
       colour: '%{BKY_VARIABLES_HUE}',
       contents: [
         { kind: 'block', type: 'custom_var_get' },

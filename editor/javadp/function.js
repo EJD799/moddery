@@ -1367,7 +1367,7 @@ var javaFunctionToolbox = {
       },
       {
         "kind": "category",
-        "name": "Entity",
+        "name": " Entity",
         "colour": 10,
         "contents": [
           {
@@ -1498,7 +1498,7 @@ var javaFunctionToolbox = {
       },
       {
         "kind": "category",
-        "name": "Blocks",
+        "name": " Blocks",
         "colour": 80,
         "contents": [
           {
@@ -1517,7 +1517,7 @@ var javaFunctionToolbox = {
       },
       {
         "kind": "category",
-        "name": "Other",
+        "name": " Other",
         "colour": 240,
         "contents": [
           {
@@ -1572,7 +1572,7 @@ var javaFunctionToolbox = {
       },
       {
         "kind": "category",
-        "name": "Scoreboard",
+        "name": " Scoreboard",
         "colour": 320,
         "contents": [
           {

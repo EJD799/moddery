@@ -1682,7 +1682,7 @@ var bedrockFunctionToolbox = {
     "contents": [
       {
         "kind": "category",
-        "name": "Settings",
+        "name": " Settings",
         "colour": 160,
         "contents": [
           {
@@ -1713,7 +1713,7 @@ var bedrockFunctionToolbox = {
       },
       {
         "kind": "category",
-        "name": "Entity",
+        "name": " Entity",
         "colour": 10,
         "contents": [
           {
@@ -1808,7 +1808,7 @@ var bedrockFunctionToolbox = {
       },
       {
         "kind": "category",
-        "name": "Blocks",
+        "name": " Blocks",
         "colour": 80,
         "contents": [
           {
@@ -1839,7 +1839,7 @@ var bedrockFunctionToolbox = {
       },
       {
         "kind": "category",
-        "name": "Other",
+        "name": " Other",
         "colour": 240,
         "contents": [
           {
@@ -1938,7 +1938,7 @@ var bedrockFunctionToolbox = {
       },
       {
         "kind": "category",
-        "name": "Scoreboard",
+        "name": " Scoreboard",
         "colour": 320,
         "contents": [
           {

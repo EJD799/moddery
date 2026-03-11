@@ -1008,3 +1008,7 @@ progress {
 input[type=range] {
     padding: 0;
 }
+
+.blocklyToolboxCategoryLabel {
+    font-family: ModderyIcons, sans-serif !important;
+}

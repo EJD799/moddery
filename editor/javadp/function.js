@@ -1295,7 +1295,6 @@ var javaFunctionToolbox = {
       {
         "kind": "category",
         "name": "Settings",
-        "colour": 160,
         "categorystyle": "function_settings",
         "contents": [
           {
@@ -1625,6 +1624,7 @@ Blockly.BlockSvg.prototype.customContextMenu = function(menuOptions) {
 const theme = Blockly.Theme.defineTheme('iconsTheme', {
   "categoryStyles": {
     "function_settings": {
+      "colour": 160,
       "icon": "/moddery/images/blockly_icons/function_settings.svg"
     }
   }

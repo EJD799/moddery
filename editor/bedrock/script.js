@@ -2635,7 +2635,7 @@ const bedrockScriptToolbox = {
     // Logic
     {
       kind: 'category',
-      name: 'Logic',
+      name: ' Logic',
       colour: '%{BKY_LOGIC_HUE}',
       contents: [
         { kind: 'block', type: 'controls_if' },
@@ -2687,7 +2687,7 @@ const bedrockScriptToolbox = {
     // Loops
     {
       kind: 'category',
-      name: 'Loops',
+      name: ' Loops',
       colour: '%{BKY_LOOPS_HUE}',
       contents: [
         {
@@ -2714,7 +2714,7 @@ const bedrockScriptToolbox = {
     // Math
     {
       kind: 'category',
-      name: 'Math',
+      name: ' Math',
       colour: '%{BKY_MATH_HUE}',
       contents: [
         { kind: 'block', type: 'math_number' },
@@ -2837,7 +2837,7 @@ const bedrockScriptToolbox = {
     // Text
     {
       kind: 'category',
-      name: 'Text',
+      name: ' Text',
       colour: '%{BKY_TEXTS_HUE}',
       contents: [
         { kind: 'block', type: 'text' },
@@ -2914,7 +2914,7 @@ const bedrockScriptToolbox = {
     // Lists
     {
       kind: 'category',
-      name: 'Lists',
+      name: ' Lists',
       colour: '%{BKY_LISTS_HUE}',
       contents: [
         { kind: 'label', text: 'Arrays'},
@@ -2987,7 +2987,7 @@ const bedrockScriptToolbox = {
     // Colour
     {
       kind: 'category',
-      name: 'Color',
+      name: ' Color',
       colour: '%{BKY_COLOUR_HUE}',
       contents: [
         { kind: 'block', type: 'colour_picker', inputs: { COLOUR: { shadow: { type: 'text', fields: { TEXT: "#FF0000" } } } }},
@@ -3026,7 +3026,7 @@ const bedrockScriptToolbox = {
     },*/
     {
       kind: 'category',
-      name: 'Functions',
+      name: ' Functions',
       colour: '%{BKY_PROCEDURES_HUE}',
       contents: [
         { kind: 'block', type: 'custom_function_define' },
@@ -3043,7 +3043,7 @@ const bedrockScriptToolbox = {
     },
     {
       kind: 'category',
-      name: 'Events',
+      name: ' Events',
       colour: 45,
       contents: [
         { kind: 'block', type: 'before_event'},
@@ -3054,7 +3054,7 @@ const bedrockScriptToolbox = {
     },
     {
       kind: 'category',
-      name: 'World',
+      name: ' World',
       colour: 180,
       contents: [
         { kind: 'sep'},
@@ -3099,7 +3099,7 @@ const bedrockScriptToolbox = {
     },
     {
       kind: 'category',
-      name: 'Forms',
+      name: ' Forms',
       colour: 210,
       contents: [
         { kind: 'label', text: 'General'},
@@ -3130,7 +3130,7 @@ const bedrockScriptToolbox = {
     },
     {
       kind: 'category',
-      name: 'Dimension',
+      name: ' Dimension',
       colour: 100,
       contents: [
         { kind: 'label', text: 'Blocks'},
@@ -3189,7 +3189,7 @@ const bedrockScriptToolbox = {
     },
     {
         "kind": "category",
-        "name": "Scoreboard",
+        "name": " Scoreboard",
         "colour": 320,
         "contents": [
           {
@@ -3293,7 +3293,7 @@ const bedrockScriptToolbox = {
     },
     {
       kind: 'category',
-      name: 'Other',
+      name: ' Other',
       colour: "#808080",
       contents: [
         { kind: 'label', text: 'JavaScript'},

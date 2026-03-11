@@ -1012,3 +1012,7 @@ input[type=range] {
 .blocklyToolboxCategoryLabel {
     font-family: ModderyIcons, sans-serif !important;
 }
+
+.blocklyToolboxCategoryIcon {
+    width: 4px !important;
+}

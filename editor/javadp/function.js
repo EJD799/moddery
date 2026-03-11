@@ -1296,6 +1296,7 @@ var javaFunctionToolbox = {
         "kind": "category",
         "name": "Settings",
         "colour": 160,
+        "categorystyle": "function_settings",
         "contents": [
           {
             "kind": "block",
@@ -1620,9 +1621,19 @@ Blockly.BlockSvg.prototype.customContextMenu = function(menuOptions) {
   }
 };
 
+
+const theme = Blockly.Theme.defineTheme('iconsTheme', {
+  "categoryStyles": {
+    "function_settings": {
+      "icon": "/moddery/images/blockly_icons/function_settings.svg"
+    }
+  }
+});
+
 Blockly.common.defineBlocks(javaFunctionDefinitions);
 var workspace = Blockly.inject('blocklyDiv', {
   toolbox: javaFunctionToolbox,
+  theme: theme,
   move: {
     scrollbars: {
       horizontal: true,

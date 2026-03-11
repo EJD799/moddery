@@ -155,8 +155,8 @@ Blockly.JavaFunction.forBlock['gamerule'] = function(block) {
     return `gamerule ${rule} ${value}\n`;
 };
 Blockly.JavaFunction.forBlock['damage'] = function(block) {
-    const amount = block.getFieldValue('AMOUNT');
-    const target = block.getFieldValue('TARGET');
+    const amount = getInput(block, 'AMOUNT');
+    const target = getInput(block, 'TARGET');
     return `damage ${target} ${amount}\n`;
 };
 Blockly.JavaFunction.forBlock['world_spawn'] = function(block) {

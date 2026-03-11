@@ -631,13 +631,14 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     colour: 10,
     args0: [
       {
-        type: 'field_number',
+        type: 'input_value',
         name: 'AMOUNT',
+        check: null
       },
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'TARGET',
-        spellcheck: false
+        check: null
       },
     ],
     previousStatement: null,
@@ -1428,7 +1429,19 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
-            "type": "damage"
+            "type": "damage",
+            inputs: {
+              AMOUNT: {
+                shadow: {
+                  type: 'math_number'
+                }
+              },
+              TARGET: {
+                shadow: {
+                  type: 'text'
+                }
+              }
+            }
           },
           {
             "kind": "block",

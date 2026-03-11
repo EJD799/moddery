@@ -1294,7 +1294,7 @@ var javaFunctionToolbox = {
     "contents": [
       {
         "kind": "category",
-        "name": "Settings",
+        "name": " Settings",
         "colour": 160,
         "contents": [
           {

@@ -714,14 +714,14 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     colour: 10,
     args0: [
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'PLAYER1',
-        spellcheck: false
+        check: null
       },
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'PLAYER2',
-        spellcheck: false
+        check: null
       }
     ],
     previousStatement: null,
@@ -734,21 +734,24 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     colour: 10,
     args0: [
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'PLAYER',
-        spellcheck: false
+        check: null
       },
       {
-        type: 'field_number',
-        name: 'X_POS'
+        type: 'input_value',
+        name: 'X_POS',
+        check: null
       },
       {
-        type: 'field_number',
-        name: 'Y_POS'
+        type: 'input_value',
+        name: 'Y_POS',
+        check: null
       },
       {
-        type: 'field_number',
-        name: 'Z_POS'
+        type: 'input_value',
+        name: 'Z_POS',
+        check: null
       }
     ],
     previousStatement: null,
@@ -761,9 +764,9 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     colour: 10,
     args0: [
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'ENTITY',
-        spellcheck: false
+        check: null
       }
     ],
     previousStatement: null,
@@ -1599,15 +1602,56 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
-            "type": "tp_xyz"
+            "type": "tp_xyz",
+            inputs: {
+              PLAYER: {
+                shadow: {
+                  type: 'text'
+                }
+              },
+              X_POS: {
+                shadow: {
+                  type: 'text'
+                }
+              },
+              Y_POS: {
+                shadow: {
+                  type: 'text'
+                }
+              },
+              Z_POS: {
+                shadow: {
+                  type: 'text'
+                }
+              },
+            }
           },
           {
             "kind": "block",
-            "type": "tp_e"
+            "type": "tp_e",
+            inputs: {
+              PLAYER1: {
+                shadow: {
+                  type: 'text'
+                }
+              },
+              PLAYER2: {
+                shadow: {
+                  type: 'text'
+                }
+              },
+            }
           },
           {
             "kind": "block",
-            "type": "kill"
+            "type": "kill",
+            inputs: {
+              ENTITY: {
+                shadow: {
+                  type: 'text'
+                }
+              },
+            }
           },
           {
             "kind": "block",

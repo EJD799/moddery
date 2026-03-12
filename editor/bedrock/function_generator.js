@@ -326,7 +326,7 @@ Blockly.BedrockFunction.forBlock['tp_e'] = function(block) {
     return `tp ${player1} ${player2}\n`;
 };
 Blockly.BedrockFunction.forBlock['tp_xyz'] = function(block) {
-    const player1 = block.getFieldValue('PLAYER1');
+    const player = block.getFieldValue('PLAYER');
     const x_pos = block.getFieldValue('X_POS');
     const y_pos = block.getFieldValue('Y_POS');
     const z_pos = block.getFieldValue('Z_POS');

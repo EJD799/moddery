@@ -254,19 +254,19 @@ Blockly.JavaFunction.forBlock['xp'] = function(block) {
     return `xp ${mode} ${player} ${quantity} ${format}\n`;
 };
 Blockly.JavaFunction.forBlock['tp_e'] = function(block) {
-    const player1 = block.getFieldValue('PLAYER1');
-    const player2 = block.getFieldValue('PLAYER2');
+    const player1 = getInput(block, 'PLAYER1');
+    const player2 = getInput(block, 'PLAYER2');
     return `tp ${player1} ${player2}\n`;
 };
 Blockly.JavaFunction.forBlock['tp_xyz'] = function(block) {
-    const player1 = block.getFieldValue('PLAYER1');
-    const x_pos = block.getFieldValue('X_POS');
-    const y_pos = block.getFieldValue('Y_POS');
-    const z_pos = block.getFieldValue('Z_POS');
+    const player = getInput(block, 'PLAYER');
+    const x_pos = getInput(block, 'X_POS');
+    const y_pos = getInput(block, 'Y_POS');
+    const z_pos = getInput(block, 'Z_POS');
     return `tp ${player1} ${x_pos} ${y_pos} ${z_pos}\n`;
 };
 Blockly.JavaFunction.forBlock['kill'] = function(block) {
-    const entity = block.getFieldValue('ENTITY');
+    const entity = getInput(block, 'ENTITY');
     return `kill ${entity}\n`;
 };
 Blockly.JavaFunction.forBlock['gamemode'] = function(block) {

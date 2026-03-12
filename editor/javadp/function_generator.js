@@ -47,6 +47,10 @@ Blockly.JavaFunction.forBlock['xp_dropdown2'] = function(block) {
     const text = block.getFieldValue('FORMAT');
     return [text, Blockly.JavaFunction.ORDER_ATOMIC];
 };
+Blockly.JavaFunction.forBlock['gamemode_dropdown'] = function(block) {
+    const text = block.getFieldValue('GAMEMODE');
+    return [text, Blockly.JavaFunction.ORDER_ATOMIC];
+};
 
 
 
@@ -270,8 +274,8 @@ Blockly.JavaFunction.forBlock['kill'] = function(block) {
     return `kill ${entity}\n`;
 };
 Blockly.JavaFunction.forBlock['gamemode'] = function(block) {
-    const player = block.getFieldValue('PLAYER');
-    const gamemode = block.getFieldValue('GAMEMODE');
+    const player = getInput(block, 'PLAYER');
+    const gamemode = getInput(block, 'GAMEMODE');
     return `gamemode ${gamemode} ${player}\n`;
 };
 Blockly.JavaFunction.forBlock['summon'] = function(block) {

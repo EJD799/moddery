@@ -779,23 +779,37 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     colour: 10,
     args0: [
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'PLAYER',
-        spellcheck: false
+        check: null
       },
       {
-        type: 'field_dropdown',
+        type: 'input_value',
         name: 'GAMEMODE',
-        options: [
-          ['Survival', 'survival'],
-          ['Creative', 'creative'],
-          ['Adventure', 'adventure'],
-          ['Spectator', 'spectator']
-        ]
+        check: null
       }
     ],
     previousStatement: null,
     nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: 'gamemode_dropdown',
+    message0: '%1',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'GAMEMODE',
+        options: [
+          ['survival', 'survival'],
+          ['creative', 'creative'],
+          ['adventure', 'adventure'],
+          ['spectator', 'spectator']
+        ]
+      }
+    ],
+    output: null,
     inputsInline: true
   },
   {
@@ -1664,7 +1678,19 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
-            "type": "gamemode"
+            "type": "gamemode",
+            inputs: {
+              PLAYER: {
+                shadow: {
+                  type: 'text'
+                }
+              },
+              GAMEMODE: {
+                shadow: {
+                  type: 'gamemode_dropdown'
+                }
+              },
+            }
           },
           {
             "kind": "block",

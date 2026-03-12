@@ -856,10 +856,10 @@ const bedrockFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJson
         type: 'field_dropdown',
         name: 'GAMEMODE',
         options: [
-          ['Survival', 'survival'],
-          ['Creative', 'creative'],
-          ['Adventure', 'adventure'],
-          ['Spectator', 'spectator']
+          ['survival', 'survival'],
+          ['creative', 'creative'],
+          ['adventure', 'adventure'],
+          ['spectator', 'spectator']
         ]
       }
     ],

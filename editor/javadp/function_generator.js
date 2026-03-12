@@ -23,6 +23,18 @@ Blockly.JavaFunction.forBlock['difficulty_dropdown'] = function(block) {
     const text = block.getFieldValue('DIFFICULTY');
     return [text, Blockly.JavaFunction.ORDER_ATOMIC];
 };
+Blockly.JavaFunction.forBlock['effect_dropdown'] = function(block) {
+    const text = block.getFieldValue('EFFECT');
+    return [text, Blockly.JavaFunction.ORDER_ATOMIC];
+};
+Blockly.JavaFunction.forBlock['enchantment_dropdown'] = function(block) {
+    const text = block.getFieldValue('ENCHANTMENT');
+    return [text, Blockly.JavaFunction.ORDER_ATOMIC];
+};
+Blockly.JavaFunction.forBlock['boolean_dropdown'] = function(block) {
+    const text = block.getFieldValue('VALUE');
+    return [text, Blockly.JavaFunction.ORDER_ATOMIC];
+};
 
 
 
@@ -199,16 +211,16 @@ Blockly.JavaFunction.forBlock['weather'] = function(block) {
     return `weather ${weather}\n`;
 };
 Blockly.JavaFunction.forBlock['effect'] = function(block) {
-    const effect = block.getFieldValue('EFFECT');
-    const level = block.getFieldValue('LEVEL');
-    const player = block.getFieldValue('PLAYER');
-    const duration = block.getFieldValue('DURATION');
-    const hide_particles = block.getFieldValue('HIDE_PARTICLES');
+    const effect = getInput(block, 'EFFECT');
+    const level = getInput(block, 'LEVEL');
+    const player = getInput(block, 'PLAYER');
+    const duration = getInput(block, 'DURATION');
+    const hide_particles = getInput(block, 'HIDE_PARTICLES');
     return `effect give ${player} ${effect} ${duration} ${level} ${hide_particles}\n`;
 };
 Blockly.JavaFunction.forBlock['effect_clear'] = function(block) {
-    const effect = block.getFieldValue('EFFECT');
-    const player = block.getFieldValue('PLAYER');
+    const effect = getInput(block, 'EFFECT');
+    const player = getInput(block, 'PLAYER');
     return `effect clear ${player} ${effect}\n`;
 };
 Blockly.JavaFunction.forBlock['enchant'] = function(block) {

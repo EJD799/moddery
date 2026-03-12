@@ -427,56 +427,29 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     colour: 10,
     args0: [
       {
-        type: 'field_dropdown',
+        type: 'input_value',
         name: 'EFFECT',
-        options: [
-          ['Absorption', 'absorption'],
-          ['Blindness', 'blindness'],
-          ['Conduit Power', 'conduit_power'],
-          ['Fire Resistance', 'fire_resistance'],
-          ['Fatal Poison', 'fatal_poison'],
-          ['Haste', 'haste'],
-          ['Health Boost', 'health_boost'],
-          ['Hunger', 'hunger'],
-          ['Instant Damage', 'instant_damage'],
-          ['Instant Health', 'instant_health'],
-          ['Invisibility', 'invisibility'],
-          ['Jump Boost', 'jump_boost'],
-          ['Levitation', 'levitation'],
-          ['Mining Fatigue', 'mining_fatigue'],
-          ['Nausea', 'nausea'],
-          ['Night Vision', 'night_vision'],
-          ['Poison', 'poison'],
-          ['Resistance', 'resistance'],
-          ['Regeneration', 'regeneration'],
-          ['Saturation', 'saturation'],
-          ['Slowness', 'slowness'],
-          ['Slow Falling', 'slow_falling'],
-          ['Speed', 'speed'],
-          ['Strength', 'strength'],
-          ['Water Breathing', 'water_breathing'],
-          ['Weakness', 'weakness'],
-          ['Wither', 'wither']
-        ]
+        check: null
       },
       {
-        type: 'field_number',
+        type: 'input_value',
         name: 'LEVEL',
-        value: 1
+        check: null
       },
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'PLAYER',
-        spellcheck: false
+        check: null
       },
       {
-        type: 'field_number',
+        type: 'input_value',
         name: 'DURATION',
-        value: 60
+        check: null
       },
       {
-        type: 'field_checkbox',
-        name: 'HIDE_PARTICLES'
+        type: 'input_value',
+        name: 'HIDE_PARTICLES',
+        check: null
       }
     ],
     previousStatement: null,
@@ -489,10 +462,25 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     colour: 10,
     args0: [
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'PLAYER',
-        spellcheck: false
+        check: null
       },
+      {
+        type: 'input_value',
+        name: 'EFFECT',
+        check: null
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: 'effect_dropdown',
+    message0: '%1',
+    colour: 10,
+    args0: [
       {
         type: 'field_dropdown',
         name: 'EFFECT',
@@ -527,8 +515,24 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
         ]
       },
     ],
-    previousStatement: null,
-    nextStatement: null,
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: 'boolean_dropdown',
+    message0: '%1',
+    colour: 10,
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'VALUE',
+        options: [
+          ["true", "true"],
+          ["false", "false"]
+        ]
+      },
+    ],
+    output: null,
     inputsInline: true
   },
   {
@@ -1445,11 +1449,56 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
-            "type": "effect"
+            "type": "effect",
+            inputs: {
+              EFFECT: {
+                shadow: {
+                  type: 'effect_dropdown'
+                }
+              },
+              LEVEL: {
+                shadow: {
+                  type: 'math_number',
+                  fields: {
+                    "NUM": 1
+                  }
+                }
+              },
+              PLAYER: {
+                shadow: {
+                  type: 'text'
+                }
+              },
+              DURATION: {
+                shadow: {
+                  type: 'math_number',
+                  fields: {
+                    "NUM": 60
+                  }
+                }
+              },
+              HIDE_PARTICLES: {
+                shadow: {
+                  type: 'boolean_dropdown'
+                }
+              },
+            }
           },
           {
             "kind": "block",
-            "type": "effect_clear"
+            "type": "effect_clear",
+            inputs: {
+              EFFECT: {
+                shadow: {
+                  type: 'effect_dropdown'
+                }
+              },
+              PLAYER: {
+                shadow: {
+                  type: 'text'
+                }
+              },
+            }
           },
           {
             "kind": "block",

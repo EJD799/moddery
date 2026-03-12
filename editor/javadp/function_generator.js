@@ -267,7 +267,7 @@ Blockly.JavaFunction.forBlock['tp_xyz'] = function(block) {
     const x_pos = getInput(block, 'X_POS');
     const y_pos = getInput(block, 'Y_POS');
     const z_pos = getInput(block, 'Z_POS');
-    return `tp ${player1} ${x_pos} ${y_pos} ${z_pos}\n`;
+    return `tp ${player} ${x_pos} ${y_pos} ${z_pos}\n`;
 };
 Blockly.JavaFunction.forBlock['kill'] = function(block) {
     const entity = getInput(block, 'ENTITY');

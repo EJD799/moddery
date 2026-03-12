@@ -228,9 +228,9 @@ Blockly.JavaFunction.forBlock['effect_clear'] = function(block) {
     return `effect clear ${player} ${effect}\n`;
 };
 Blockly.JavaFunction.forBlock['enchant'] = function(block) {
-    const player = block.getFieldValue('PLAYER');
-    const enchantment = block.getFieldValue('ENCHANTMENT');
-    const level = block.getFieldValue('LEVEL');
+    const player = getInput(block, 'PLAYER');
+    const enchantment = getInput(block, 'ENCHANTMENT');
+    const level = getInput(block, 'LEVEL');
     return `enchant ${player} ${enchantment} ${level}\n`;
 };
 Blockly.JavaFunction.forBlock['tell'] = function(block) {

@@ -541,10 +541,30 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     colour: 10,
     args0: [
       {
-        type: 'field_input',
+        type: 'input_value',
         name: 'PLAYER',
-        spellcheck: false
+        check: null
       },
+      {
+        type: 'input_value',
+        name: 'ENCHANTMENT',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'LEVEL',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: 'enchantment_dropdown',
+    message0: '%1',
+    colour: 10,
+    args0: [
       {
         type: 'field_dropdown',
         name: 'ENCHANTMENT',
@@ -585,13 +605,8 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
           ['Unbreaking', 'unbreaking']
         ]
       },
-      {
-        type: 'field_number',
-        name: 'LEVEL'
-      }
     ],
-    previousStatement: null,
-    nextStatement: null,
+    output: null,
     inputsInline: true
   },
   {
@@ -1502,7 +1517,27 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
-            "type": "enchant"
+            "type": "enchant",
+            inputs: {
+              ENCHANTMENT: {
+                shadow: {
+                  type: 'enchantment_dropdown'
+                }
+              },
+              PLAYER: {
+                shadow: {
+                  type: 'text'
+                }
+              },
+              LEVEL: {
+                shadow: {
+                  type: 'math_number',
+                  fields: {
+                    "NUM": 1
+                  }
+                }
+              },
+            }
           },
           {
             "kind": "block",

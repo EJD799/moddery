@@ -19,6 +19,10 @@ Blockly.JavaFunction.forBlock['text'] = function(block) {
     const text = block.getFieldValue('TEXT');
     return [text, Blockly.JavaFunction.ORDER_ATOMIC];
 };
+Blockly.JavaFunction.forBlock['math_number'] = function(block) {
+    const text = block.getFieldValue('NUM');
+    return [text, Blockly.JavaFunction.ORDER_ATOMIC];
+};
 Blockly.JavaFunction.forBlock['difficulty_dropdown'] = function(block) {
     const text = block.getFieldValue('DIFFICULTY');
     return [text, Blockly.JavaFunction.ORDER_ATOMIC];

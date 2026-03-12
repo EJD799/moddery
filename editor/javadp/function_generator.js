@@ -39,6 +39,14 @@ Blockly.JavaFunction.forBlock['boolean_dropdown'] = function(block) {
     const text = block.getFieldValue('VALUE');
     return [text, Blockly.JavaFunction.ORDER_ATOMIC];
 };
+Blockly.JavaFunction.forBlock['xp_dropdown1'] = function(block) {
+    const text = block.getFieldValue('MODE');
+    return [text, Blockly.JavaFunction.ORDER_ATOMIC];
+};
+Blockly.JavaFunction.forBlock['xp_dropdown2'] = function(block) {
+    const text = block.getFieldValue('FORMAT');
+    return [text, Blockly.JavaFunction.ORDER_ATOMIC];
+};
 
 
 
@@ -239,10 +247,10 @@ Blockly.JavaFunction.forBlock['tell'] = function(block) {
     return `tell ${player} ${message}\n`;
 };
 Blockly.JavaFunction.forBlock['xp'] = function(block) {
-    const player = block.getFieldValue('PLAYER');
-    const quantity = block.getFieldValue('QUANTITY');
-    const format = block.getFieldValue('FORMAT');
-    const mode = block.getFieldValue('MODE');
+    const player = getInput(block, 'PLAYER');
+    const quantity = getInput(block, 'QUANTITY');
+    const format = getInput(block, 'FORMAT');
+    const mode = getInput(block, 'MODE');
     return `xp ${mode} ${player} ${quantity} ${format}\n`;
 };
 Blockly.JavaFunction.forBlock['tp_e'] = function(block) {

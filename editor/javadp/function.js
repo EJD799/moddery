@@ -615,6 +615,36 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
     colour: 10,
     args0: [
       {
+        type: 'input_value',
+        name: 'MODE',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'QUANTITY',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'FORMAT',
+        check: null
+      },
+      {
+        type: 'input_value',
+        name: 'PLAYER',
+        check: null
+      }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true
+  },
+  {
+    type: 'xp_dropdown1',
+    message0: '%1',
+    colour: 10,
+    args0: [
+      {
         type: 'field_dropdown',
         name: 'MODE',
         options: [
@@ -622,10 +652,15 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
             ["set", "set"]
         ]
       },
-      {
-        type: 'field_number',
-        name: 'QUANTITY',
-      },
+    ],
+    output: null,
+    inputsInline: true
+  },
+  {
+    type: 'xp_dropdown2',
+    message0: '%1',
+    colour: 10,
+    args0: [
       {
         type: 'field_dropdown',
         name: 'FORMAT',
@@ -634,14 +669,8 @@ const javaFunctionDefinitions = Blockly.common.createBlockDefinitionsFromJsonArr
             ["levels", "levels"]
         ]
       },
-      {
-        type: 'field_input',
-        name: 'PLAYER',
-        spellcheck: false
-      }
     ],
-    previousStatement: null,
-    nextStatement: null,
+    output: null,
     inputsInline: true
   },
   {
@@ -1541,7 +1570,32 @@ var javaFunctionToolbox = {
           },
           {
             "kind": "block",
-            "type": "xp"
+            "type": "xp",
+            inputs: {
+              MODE: {
+                shadow: {
+                  type: 'xp_dropdown1'
+                }
+              },
+              QUANTITY: {
+                shadow: {
+                  type: 'math_number',
+                  fields: {
+                    "NUM": 1
+                  }
+                }
+              },
+              FORMAT: {
+                shadow: {
+                  type: 'xp_dropdown2'
+                }
+              },
+              PLAYER: {
+                shadow: {
+                  type: 'text'
+                }
+              },
+            }
           },
           {
             "kind": "block",

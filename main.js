@@ -1,4 +1,4 @@
-const appVersion = "2.3.1";
+const appVersion = "2.3.2";
 const buildDate = "3/26/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -1676,6 +1676,24 @@ storageModeBox.addEventListener("change", function(e) {
 
 
 let projFileHandle = null;
+
+if ('launchQueue' in window) {
+  window.launchQueue.setConsumer(async (launchParams) => {
+    if (!launchParams.files.length) return;
+
+    try {
+      const fileHandle = launchParams.files[0];
+      projFileHandle = fileHandle;
+
+      const file = await fileHandle.getFile();
+      await openProj(file);
+
+    } catch (err) {
+      console.error(err);
+      alert("Error opening project from file.");
+    }
+  });
+}
 
 async function openProjDlg() {
   if (storageMode == "file_system") {

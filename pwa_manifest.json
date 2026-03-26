@@ -57,5 +57,37 @@
             "src": "/moddery/pwa_icons/maskable_icon_x512.png",
             "type": "image/png"
         }
+    ],
+    "categories": ["productivity"],
+    "screenshots": [
+        {
+            "src": "/moddery/images/screenshots/screenshot3.png"
+        },
+        {
+            "src": "/moddery/images/screenshots/screenshot4.png"
+        },
+        {
+            "src": "/moddery/images/screenshots/screenshot5.png"
+        },
+        {
+            "src": "/moddery/images/screenshots/screenshot6.png"
+        },
+        {
+            "src": "/moddery/images/screenshots/screenshot7.png"
+        },
+        {
+            "src": "/moddery/images/screenshots/screenshot8.png"
+        },
+        {
+            "src": "/moddery/images/screenshots/screenshot9.png"
+        }
+    ],
+    "file_handlers": [
+        {
+            "action": "/moddery/",
+            "accept": {
+                "application/zip": [".zip", ".mdry"]
+            }
+        }
     ]
 }

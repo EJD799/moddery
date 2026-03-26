@@ -2,5 +2,6 @@
     "name": "Sunset",
     "id": "sunset",
     "stylesheet": "https://ejd799.github.io/moddery/themes/sunset.css",
-    "generalType": "dark"
+    "generalType": "dark",
+    "accentColor": "hsl(221, 14%, 9%)"
 }

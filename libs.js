@@ -331,3 +331,18 @@ function removeItemInPlace(array, item) {
         array.splice(index, 1);
     }
 }
+
+function setPwaTitleBarColor(color) {
+  // 1. Check if the meta tag exists
+  let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+  
+  // 2. If not, create it
+  if (!metaThemeColor) {
+    metaThemeColor = document.createElement("meta");
+    metaThemeColor.name = "theme-color";
+    document.head.appendChild(metaThemeColor);
+  }
+  
+  // 3. Update the content to the new color
+  metaThemeColor.setAttribute("content", color);
+}

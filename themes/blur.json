@@ -2,5 +2,6 @@
     "name": "Blur",
     "id": "blur",
     "stylesheet": "https://ejd799.github.io/moddery/themes/blur.css",
-    "generalType": "light"
+    "generalType": "light",
+    "accentColor": "hsl(221, 14%, 100%)"
 }

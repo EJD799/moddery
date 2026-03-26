@@ -1,4 +1,4 @@
-const appVersion = "2.3.0";
+const appVersion = "2.3.1";
 const buildDate = "3/26/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -708,6 +708,7 @@ function selectTheme(id) {
       document.documentElement.classList.remove("theme-dark");
       document.documentElement.classList.add("theme-light");
     }
+    setPwaTitleBarColor(customThemes[id].accentColor);
   }
   handleFrameThemeChange();
   updateThemeSelector();
@@ -720,6 +721,11 @@ function loadDefaultTheme(mode) {
   }
   handleFrameThemeChange();
   themeStyleElement.innerHTML = "";
+  if (mode == "light") {
+    setPwaTitleBarColor("hsl(221, 14%, 100%)");
+  } else if (mode == "dark") {
+    setPwaTitleBarColor("hsl(221, 14%, 9%)");
+  }
 }
 
 function applyThemeCss(cssText) {
@@ -1550,8 +1556,10 @@ if (getCookie("editorTheme")) {
 function autoThemeChange() {
   if (getThemePreference() == "dark") {
     document.documentElement.setAttribute("data-theme", "dark");
+    setPwaTitleBarColor("hsl(221, 14%, 9%)");
   } else {
     document.documentElement.setAttribute("data-theme", "light");
+    setPwaTitleBarColor("hsl(221, 14%, 100%)");
   }
   handleFrameThemeChange();
 }

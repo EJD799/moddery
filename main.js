@@ -1,4 +1,4 @@
-const appVersion = "2.3.3";
+const appVersion = "2.3.4";
 const buildDate = "3/26/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
@@ -779,7 +779,8 @@ async function addCustomTheme(input) {
   customThemes[id] = {
     name: data.name,
     stylesheet: cssFile,
-    generalType: data.generalType
+    generalType: data.generalType,
+    accentColor: data.accentColor
   };
 
   createThemeBox(id, data.name, {

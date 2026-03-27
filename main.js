@@ -1,5 +1,5 @@
-const appVersion = "2.3.4";
-const buildDate = "3/26/2026";
+const appVersion = "2.3.5";
+const buildDate = "3/28/2026";
 const minEngineVersion = [1, 21, 90];
 const formatVersion = "1.21.90";
 
@@ -687,7 +687,7 @@ function isThemeInstalled(id) {
 }
 
 function selectTheme(id) {
-  if (editorTheme === id) return;
+  //if (editorTheme === id) return;
 
   editorTheme = id;
   setCookie("editorTheme", id, 399);
